@@ -1,0 +1,3 @@
+#!/bin/bash
+
+PATH="/usr/share/postman:/usr/bin" /usr/share/postman/Postman

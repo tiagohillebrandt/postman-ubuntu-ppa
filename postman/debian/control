@@ -1,0 +1,13 @@
+Source: postman
+Section: web
+Priority: optional
+Maintainer: Tiago Hillebrandt <tiago@tiagohillebrandt.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.7
+Homepage: https://www.getpostman.com/
+
+Package: postman
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Postman is the most complete API Development
+ Environment.
