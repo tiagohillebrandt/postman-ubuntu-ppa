@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Postman
+Comment=Postman is a complete toolchain for APIs development.
+Exec=/usr/bin/postman
+Icon=/usr/share/postman/resources/app/assets/icon.png
+Type=Application
+Categories=Utility;Application;Development;
