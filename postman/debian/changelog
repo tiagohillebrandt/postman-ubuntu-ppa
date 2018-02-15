@@ -1,3 +1,9 @@
+postman (5.5.3) xenial; urgency=medium
+
+  * Postman 5.5.3.
+
+ -- Tiago Hillebrandt <tiago@tiagohillebrandt.com>  Thu, 15 Feb 2018 00:44:54 -0600
+
 postman (5.5.2ubuntu1) xenial; urgency=medium
 
   * Creates menu entry for Postman.
