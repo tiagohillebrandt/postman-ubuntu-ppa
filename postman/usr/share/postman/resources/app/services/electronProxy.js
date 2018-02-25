@@ -51,7 +51,7 @@ exports.electronProxy = {
 
 			                    this.proxy.on('error', function (err, req, res) {
 				                    res.end('Something went wrong. And we are reporting a custom error message.');
-				                    console.log('Error proxying');
+				                    console.log('Error proxying', err);
                     });
 
 			                    this.proxy.on('close', function (e) {
@@ -61,7 +61,7 @@ exports.electronProxy = {
 
 			                    this.proxy_s.on('error', function (err, req, res) {
 				                    res.end('Something went wrong. And we are reporting a custom error message.');
-				                    console.log('Error proxying');
+				                    console.log('Error proxying', err);
                     });
 
 			                    this.proxy_s.on('close', function (e) {

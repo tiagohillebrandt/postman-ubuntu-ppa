@@ -2,6 +2,7 @@ var electron = require('electron'),
     Menu = electron.Menu,
     MenuItem = electron.MenuItem,
     windowManager = require('./windowManager').windowManager,
+    WindowController = require('../common/controllers/WindowController'),
     path = require('path'),
     _ = require('lodash').noConflict(),
     menuManager = {},
@@ -99,11 +100,6 @@ var electron = require('electron'),
       {
         label: 'View',
         submenu: [
-          {
-            label: 'Reload',
-            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('reloadWindow', null); }
-          },
-          { type: 'separator' },
           { role: 'togglefullscreen' },
           {
             label: 'Zoom In',
@@ -127,44 +123,40 @@ var electron = require('electron'),
           },
           { type: 'separator' },
           {
-            label: 'Show DevTools',
-            accelerator: (function () {
-              if (process.platform == 'darwin') {
-                return 'Alt+Command+I';
-              }
-              else {
-                return 'Ctrl+Shift+I';
-              }
-            }()),
-            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleDevTools', null, options); }
-          },
-          {
             label: 'Show Postman Console',
             accelerator: 'CmdOrCtrl+Alt+C',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openConsole', null, options); }
+          },
+          {
+            label: 'Developer',
+            submenu: [
+              {
+                label: 'Show DevTools (Current View)',
+                accelerator: (function () {
+                  if (process.platform == 'darwin') {
+                    return 'Alt+Command+I';
+                  }
+                  else {
+                    return 'Ctrl+Shift+I';
+                  }
+                }()),
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleDevTools', null, options); }
+              },
+              {
+                label: 'Show DevTools (Current Shell)',
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleShellDevTools', null, options); }
+              },
+              { type: 'separator' },
+              {
+                label: 'Show DevTools (Shared)',
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSharedDevTools', null, options); }
+              },
+              {
+                label: 'Show DevTools (Shared Shell)',
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSharedShellDevTools', null, options); }
+              }
+            ]
           }
-        ]
-      },
-      {
-        label: 'Collection',
-        submenu: [{
-          label: 'New Collection',
-          click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('newCollection', null, options); }
-        },
-        {
-          label: 'Import',
-          click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openImport', null, options); }
-        },
-        {
-          label: 'Runner',
-          click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openRunner', null, options); }
-        }
-        ]
-      },
-      {
-        label: 'History',
-        submenu: [
-          { label: 'No history yet' }
         ]
       },
       {
@@ -281,12 +273,7 @@ var electron = require('electron'),
       {
         label: 'View',
         submenu: [
-          {
-            label: 'Reload',
-            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('reloadWindow', null, options); }
-          },
           { role: 'togglefullscreen' },
-          { type: 'separator' },
           {
             label: 'Zoom In',
             accelerator: 'CmdOrCtrl+=',
@@ -320,44 +307,40 @@ var electron = require('electron'),
           },
           { type: 'separator' },
           {
-            label: 'Show DevTools',
-            accelerator: (function () {
-              if (process.platform == 'darwin') {
-                return 'Alt+Command+I';
-              }
-              else {
-                return 'Ctrl+Shift+I';
-              }
-            }()),
-            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleDevTools', null, options); }
-          },
-          {
             label: 'Show Postman Console',
             accelerator: 'CmdOrCtrl+Alt+C',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openConsole', null, options); }
+          },
+          {
+            label: 'Developer',
+            submenu: [
+              {
+                label: 'Show DevTools (Current View)',
+                accelerator: (function () {
+                  if (process.platform == 'darwin') {
+                    return 'Alt+Command+I';
+                  }
+                  else {
+                    return 'Ctrl+Shift+I';
+                  }
+                }()),
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleDevTools', null, options); }
+              },
+              {
+                label: 'Show DevTools (Current Shell)',
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleShellDevTools', null, options); }
+              },
+              { type: 'separator' },
+              {
+                label: 'Show DevTools (Shared)',
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSharedDevTools', null, options); }
+              },
+              {
+                label: 'Show DevTools (Shared Shell)',
+                click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSharedShellDevTools', null, options); }
+              }
+            ]
           }
-        ]
-      },
-      {
-        label: 'Collection',
-        submenu: [{
-          label: 'New Collection',
-          click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('newCollection', null, options); }
-        },
-        {
-          label: 'Import',
-          click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openImport', null, options); }
-        },
-        {
-          label: 'Runner',
-          click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openRunner', null, options); }
-        }
-        ]
-      },
-      {
-        label: 'History',
-        submenu: [
-          { label: 'No history yet' }
         ]
       },
       {
@@ -419,47 +402,34 @@ menuManager = {
     }
   },
 
-  appendHistory: function (items) {
-    var menuTemplate = this.getMenuBarTemplate();
-    var templateWithoutHistory = _.filter(menuTemplate, function (item) {
-      return item.label !== 'History';
-    });
-
-    var collectionPosition = _.findIndex(menuTemplate, function (item) {
-      return item.label === 'Collection';
-    });
-
-    var historySubmenu = _.map(items, function (item) {
-      return {
-        label: item.method + '  ' + item.url,
-        click: function () { menuManager.handleMenuAction('loadHistoryRequest', { requestId: item.id }); }
-      };
-    });
-
-    templateWithoutHistory.splice(collectionPosition + 1, 0, {
-      label: 'History',
-      submenu: historySubmenu
-    });
-
-    var menu = Menu.buildFromTemplate(templateWithoutHistory);
-    Menu.setApplicationMenu(menu);
-  },
-
   handleMenuAction: function (action, meta, options) {
-    if (action === 'reloadWindow') {
+    if (action === 'toggleDevTools') {
+      var win = BrowserWindow.getFocusedWindow();
+      win && win.webContents.send('shellMessage', { type: 'toggleDevTools' });
+    }
+    else if (action === 'toggleShellDevTools') {
       var win = BrowserWindow.getFocusedWindow();
       if (win) {
-        win.webContents.reloadIgnoringCache();
+        let webContents = win.webContents;
+        (!webContents.isDevToolsOpened()) && (webContents.toggleDevTools({ mode: 'detach' }));
       }
     }
-    else if (action === 'toggleDevTools') {
-      var win = BrowserWindow.getFocusedWindow();
-      if (win) {
-        win.webContents.send('shellMessage', { type: 'toggleDevTools' });
+    else if (action === 'toggleSharedDevTools') {
+      let sharedWindow = windowManager.getSharedWindow();
+      sharedWindow && sharedWindow.webContents.send('shellMessage', { type: 'toggleDevTools' });
+    }
+    else if (action === 'toggleSharedShellDevTools') {
+      let sharedWindow = windowManager.getSharedWindow();
+      if (sharedWindow) {
+        let webContents = sharedWindow.webContents;
+        (!webContents.isDevToolsOpened()) && (webContents.toggleDevTools({ mode: 'detach' }));
       }
     }
     else if (action === 'newWindow') {
-      windowManager.newRequesterWindow();
+      windowManager.createOrRestoreRequesterWindow();
+    }
+    else if (action === 'openRunner') {
+      windowManager.newRunnerWindow();
     }
     else if (action === 'openCustomUrl') {
       windowManager.openCustomURL(meta);
@@ -488,9 +458,6 @@ menuManager = {
     }
     else if (action === 'previousTab') {
       windowManager.sendCustomInternalEvent(action);
-    }
-    else if (action === 'loadHistoryRequest') {
-      windowManager.sendCustomInternalEvent(action, { requestId: meta.requestId });
     }
     else {
       var win = BrowserWindow.getFocusedWindow();

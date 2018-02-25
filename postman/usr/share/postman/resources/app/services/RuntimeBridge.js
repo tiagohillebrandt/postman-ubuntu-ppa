@@ -223,7 +223,7 @@ function handleRunCreate (event, id, runnerOptions = {}, runOptions, runMetaData
   var options = _.clone(runnerOptions),
       cookiePartitionId = runMetaData.cookiePartitionId,
       cookieJar = require('./cookieJar').cookieJar.create(),
-      runner, sender;
+      runner, sender, sdkCollection;
 
   options.run = options.run || {};
 

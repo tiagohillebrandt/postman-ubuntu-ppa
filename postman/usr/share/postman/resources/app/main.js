@@ -13,21 +13,87 @@ var electron = require('electron'),
     menuManager = require('./services/menuManager').menuManager,
     windowManager = require('./services/windowManager').windowManager,
     appSettings = require('./services/appSettings').appSettings,
-    uuidV4 = require('uuid/v4');
-loginUtils = require('./services/loginUtils').loginUtils,
+    uuidV4 = require('uuid/v4'),
+    loginUtils = require('./services/loginUtils').loginUtils,
     getParamsString = require('./common/utils/url').getParamsString,
     setupRuntimeBridge = require('./services/RuntimeBridge'),
     setupOAuth2TokenRequester = require('./services/OAuth2TokenRequester'),
     os = require('os'),
-    loginWindow = null;
+    loginWindow = null,
+    initializeEventBus = require('./common/event-bus'),
+    myWindow = null,
+    sharedWindow = null,
+    bootstrapModels = require('./bootstrap-models');
+
+global.isSharedBooted = false;
+
+let eventBus = initializeEventBus();
+windowManager.eventBus = eventBus;
+
+// Populates the installation id
+populateInstallationId();
+
+bootstrapModels({ eventBus: eventBus }, (err, orm) => {
+  global.pm = global.pm || {};
+
+  global.pm.models = orm.collections;
+  global.pm.__orm = orm;
+
+  // initialize event bus
+  let appEvents = eventBus.channel('app-events'),
+      runnerEvents = eventBus.channel('runner-events'),
+      errorString = '';
+
+  runnerEvents.subscribe((event = {}) => {
+    if (_.get(event, 'name') === 'launch') {
+      windowManager.newRunnerWindow({}, event.data);
+    }
+  });
+
+  appEvents.subscribe((event = {}) => {
+    console.log('App events bus', event);
+
+    // If it is a boot process;
+    if (_.get(event, 'name') === 'booted') {
+      let process = event.namespace,
+          err = event.data;
+
+      // Here there is a problem in booting shared process
+      if (process === 'shared') {
+        if (!_.isEmpty(err)) {
+          dialog.showErrorBox('Could not open Postman', 'Please contact help@getpostman.com');
+          return;
+        }
+
+        global.isSharedBooted = true;
+
+        windowManager.closeLoaderWindow();
+
+        // open requester only if the window is not availbale, otherwise it will open on all hot-reload of shared process
+        windowManager
+          .getOpenWindows('requester')
+          .then((openRequesterWindows) => {
+            if (_.size(openRequesterWindows) === 0) {
+              windowManager.restoreWindows().then((window) => {
+                myWindow = window;
+              });
+            }
+          });
+      }
+    }
+  });
+
+  this.ormInitialized = true;
+  executeQueuedActions();
+});
 
 setupRuntimeBridge();
 
 // setup OAuth 2 token requester
 setupOAuth2TokenRequester();
 
-// flag set to perform tasks before quiting
-app.quiting = false;
+// flag set to perform tasks before quitting
+app.quittingApp = false;
 
 const AUTH_CAPTURE_URL = 'https://erisedstraehruoytubecafruoytonwohsi.chromiumapp.org';
 
@@ -79,33 +145,37 @@ function attachUpdaterListeners () {
 }
 
 /**
- * fetchAndSendInstallationId
+ * Populate installation id
  * it gets the installation id from the settings.json file
- * and sends throught eh setInstallationId event to renderer
+ * and keep it in app object
  *
  */
+function populateInstallationId () {
+  appSettings && appSettings.get('installationId', (err, id) => {
+    let installationId,
+        firstLoad = false;
 
-function fetchAndSendInstallationId () {
-  appSettings.get('installationId', (err, id) => {
     if (!err && id) {
-      windowManager.sendInternalMessage({
-        event: 'setInstallationId',
-        object: { installationId: id }
-      });
-    }
-    else {
+      installationId = id;
+    } else {
+      // This means it is the first time app is loading.
+      firstLoad = true;
       installationId = uuidV4();
-      appSettings.set('installationId', installationId, (setErr) => {
-        if (!setErr) {
-          windowManager.sendInternalMessage({
-            event: 'setInstallationId',
-            object: { 'installationId': installationId }
-          });
-        }
-      });
+      appSettings.set('installationId', installationId);
     }
+
+    // Assign the values in app so that the renderers can make use of it.
+    app.firstLoad = firstLoad;
+    app.installationId = installationId;
   });
 }
+
+/**
+ * Reset firstLoad
+ */
+ function resetFirstLoad () {
+   app.firstLoad = false;
+ }
 
 /**
  * checkAndSendVersionUpdate
@@ -114,7 +184,6 @@ function fetchAndSendInstallationId () {
  * 1. Notify renderer for version update
  * 2. Sets the current version as the lastKnowVersion.
  */
-
 function checkAndSendVersionUpdate () {
   appSettings.get('lastKnownVersion', (err, lastKnownVersion) => {
     if (!err) {
@@ -141,39 +210,18 @@ function checkAndSendVersionUpdate () {
   });
 }
 
-/**
- * Forcefully setting the installation id in the main process,
- * This should be triggered from the render process only
- * Using this method we are migrating the existing installation id in the app to main process
- */
-
-function migrateInstallationId (data) {
-  appSettings.set('installationId', _.get(data, 'installationId'));
-}
-
-/**
- * Forcefully setting the lask known version in the main process,
- * This should be triggered from the render process only
- * Using this method we are migrating the existing installation id in the app to main process
- */
-
-function migrateLastKnownVersion (data) {
-  let lastKnownVersion = _.get(data, 'lastKnownVersion');
-
-  // Set only if the lastKnownVersion is not empty
-  !_.isEmpty(lastKnownVersion) && appSettings.set('lastKnownVersion', lastKnownVersion, checkAndSendVersionUpdate);
-}
-
+/** */
 function attachIpcListeners () {
   ipc.on('newRunnerWindow', (event, arg) => {
-    windowManager.newRunnerWindow(arg);
+    windowManager.newRunnerWindow({}, arg);
   });
 
   ipc.on('newConsoleWindow', function (event, arg) {
-    windowManager.newConsoleWindow(arg);
+    windowManager.newConsoleWindow({}, arg);
   });
 
   ipc.on('startBrowserLogin', (event, options) => {
+
     if (loginWindow != null) {
       if (_.isFunction(loginWindow.focus)) {
         loginWindow.focus();
@@ -184,8 +232,7 @@ function attachIpcListeners () {
           url,
           session_name,
           clean_session = false,
-          isEnterpriseLogin = false,
-          isForceLogin = false
+          isEnterpriseLogin = false
         } = options;
     loginWindow = new BrowserWindow({
       width: 1000,
@@ -321,7 +368,7 @@ function attachIpcListeners () {
       updateVersion(arg);
     }
     else if (arg.event === 'restartAndUpdate') {
-      app.quiting = true;
+      app.quittingApp = true;
       restartAndUpdate();
     }
     else if (arg.event === 'postmanInitialized') {
@@ -360,16 +407,21 @@ function attachIpcListeners () {
   });
 
   ipc.on('newRequesterWindow', function (event, arg) {
-    windowManager.newRequesterWindow();
+    windowManager.newRequesterWindow({}, arg);
+  });
+
+  ipc.on('openLoaderWindow', function () {
+    global.isSharedBooted = false;
+    myWindow = null;
+    windowManager
+      .forceCloseAllWindows()
+      .then(() => {
+        windowManager.newLoaderWindow();
+      });
   });
 
   ipc.on('closeRequesterWindow', function (event, arg) {
-    windowManager.closeRequesterWindow(arg);
-  });
-
-  ipc.on('historyChanged', function (event, arg) {
-    arg = JSON.parse(arg);
-    menuManager.appendHistory(arg);
+    windowManager.closedHandler(event, arg);
   });
 
   ipc.on('closeWindow', (event, arg) => {
@@ -377,30 +429,12 @@ function attachIpcListeners () {
     win && win.close();
   });
 
-  ipc.on('getInstallationId', () => {
-    fetchAndSendInstallationId();
+  ipc.on('checkAndSendVersionUpdate', () => {
+    checkAndSendVersionUpdate();
   });
 
-  // We are not going to use this listener until 6.0,
-  // at present, this will be called inside the migrateLastKnownVersion function
-  // ipc.on('checkAndSendVersionUpdate', () => {
-  //   checkAndSendVersionUpdate();
-  // });
-
-  // @deprecated 6.0
-  ipc.on('migrateInstallationId', (event, data) => {
-    // It is been used to migrate the setting.installation_id to
-    // appSettings json in the main
-    // The reason for this is all the partitions should have the single installation id
-    migrateInstallationId(data);
-  });
-
-  // @deprecated 6.0
-  ipc.on('migrateLastKnownVersion', (event, data) => {
-    // It is been used to migrate the localStorage.lastKnownVersion to
-    // appSettings json in the main
-    migrateLastKnownVersion(data);
-  });
+  // This will be called once the app first load analytics event is sent to unset the property.
+  ipc.on('resetFirstLoad', resetFirstLoad);
 }
 
 process.on('uncaughtException', function (e) {
@@ -420,39 +454,8 @@ function openCustomURL (url) {
 }
 
 function runPostmanShortcut (action, url) {
-  if (action == 'reloadWindow') {
-    var win = BrowserWindow.getFocusedWindow();
-    if (win) {
-      win.reloadIgnoringCache();
-    }
-  }
-  else if (action == 'newWindow') {
+  if (action == 'newWindow') {
     windowManager.newRequesterWindow();
-  }
-  else if (action == 'toggleDevTools') {
-    var win = BrowserWindow.getFocusedWindow();
-    if (win) {
-      win.webContents.send('shellMessage', { type: 'toggleDevTools' });
-    }
-  }
-  else if (action == 'openCustomUrl') {
-    openCustomURL(url);
-  }
-  else if (action === 'newTab') {
-    windowManager.sendCustomInternalEvent(action);
-  }
-  else if (action === 'closeTab') {
-    windowManager.sendCustomInternalEvent(action);
-  }
-  else if (action === 'closeWindow') {
-    var win = BrowserWindow.getFocusedWindow();
-    win && win.close();
-  }
-  else if (action === 'nextTab') {
-    windowManager.sendCustomInternalEvent(action);
-  }
-  else if (action === 'previousTab') {
-    windowManager.sendCustomInternalEvent(action);
   }
   else {
     windowManager.sendToFirstWindow({
@@ -529,17 +532,10 @@ app.on('window-all-closed', function () {
   }
 });
 
-app.on('before-quit', function (event) {
-  // bypass state saving logic if no windows are open
-  if (!windowManager.hasOpenWindows()) {
-    app.quiting = true;
-  }
-
-  if (!app.quiting) {
-    event.preventDefault();
-    app.quiting = true;
-    windowManager.sendInternalMessage({ event: 'saveAllWindowState' });
-  }
+app.on('before-quit', function () {
+  app.quittingApp = true;
+  let sharedWindow = windowManager.getSharedWindow();
+  sharedWindow && sharedWindow.show();
 });
 
 function showSaveDialog (window, fileName) {
@@ -567,8 +563,38 @@ var dockMenu = Menu.buildFromTemplate([
   }
 ]);
 
+function handleOpenUrl (url) {
+  windowManager.initUrl = url;
+  windowManager.openUrl(url);
+}
 
-var myWindow = null;
+/**
+ * Queues an action to be performed after the ORM initialization is complete
+ * 
+ * @param  {Function} action - The function to queue
+ */
+function queueAction (action) {
+  if (!_.isFunction(action)) {
+    return;
+  }
+
+  if (this.ormInitialized) {
+    return action();
+  }
+
+  this.queuedActions.push(action);
+}
+
+/**
+ * Executes all queued actions
+ */
+function executeQueuedActions () {
+  _.forEach(this.queuedActions, (action) => {
+    _.isFunction(action) && action();
+  });
+
+  this.queuedActions = [];
+}
 
 var shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
   // Someone tried to run a second instance, we should focus our window.
@@ -577,8 +603,8 @@ var shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
       if (process.argv && process.argv.length > 1 &&
          process.argv[1] && process.argv[1].startsWith('postman://')) {
         var url = process.argv[1];
-        windowManager.initUrl = url;
-        windowManager.openUrl(url);
+
+        queueAction(handleOpenUrl.bind(this, url));
       }
     }
     if (myWindow.isMinimized()) { myWindow.restore(); }
@@ -599,29 +625,22 @@ if (shouldQuit) {
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', function () {
-  myWindow = windowManager.newRequesterWindow(1);
+  windowManager.newLoaderWindow();
+  sharedWindow = windowManager.newSharedWindow();
   menuManager.createMenu();
   if (app.dock) { // app.dock is only available on OSX
     app.dock.setMenu(dockMenu);
   }
 });
 
-
 app.on('open-url', function (event, url) {
   event.preventDefault();
-  windowManager.initUrl = url;
-  windowManager.openUrl(url);
+  handleOpenUrl(url);
 });
 
-// Quit when all windows are closed.
-app.on('window-all-closed', function () {
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
-});
-
-app.on('activate', function (e, hasWindows) {
-  if (!hasWindows) {
-    windowManager.newRequesterWindow(1);
+app.on('activate', function (e, hasVisibleWindows) {
+  console.log('activate', hasVisibleWindows);
+  if (!hasVisibleWindows && global.isSharedBooted) {
+    windowManager.createOrRestoreRequesterWindow();
   }
 });

@@ -50,8 +50,8 @@ exports.appSettings = {
         });
       }
       else {
-        if (error) { console.error('Failed to get the installation id', error); }
-        return cb && cb(error, data);
+        if (err) { console.error('Failed to get the installation id', err); }
+        return cb && cb(err, data);
       }
     });
   }

@@ -149,9 +149,13 @@ class OAuth2TokenRequester {
     ]);
 
     // request window manager for login
-    let authWindowManager = this.windowManager;
+    let authWindowManager = this.windowManager,
+      options = {
+        params: ['code'],
+        uri: params.redirect_uri
+      };
 
-    authWindowManager && authWindowManager.startLoginWith(authUrl, { params: ['code'] }, (err, tokenParams) => {
+    authWindowManager && authWindowManager.startLoginWith(authUrl, options, (err, tokenParams) => {
       if (err) {
         callback(new Error(err.error_description || err.error || err), tokenParams);
         return;
@@ -214,9 +218,13 @@ class OAuth2TokenRequester {
     ]);
 
     // request window manager to start auth login flow
-    let authWindowManager = this.windowManager;
+    let authWindowManager = this.windowManager,
+      options = {
+        params: ['access_token'],
+        uri: params.redirect_uri
+      };
 
-    authWindowManager && authWindowManager.startLoginWith(authUrl, { params: ['access_token'] }, (err, tokenParams) => {
+    authWindowManager && authWindowManager.startLoginWith(authUrl, options, (err, tokenParams) => {
       if (err) {
         callback(new Error(err.error_description || err.error || err), tokenParams);
         return;

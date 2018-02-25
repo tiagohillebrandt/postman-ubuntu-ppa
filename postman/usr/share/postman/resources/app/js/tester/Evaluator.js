@@ -18,7 +18,7 @@ var Evaluator = Backbone.Model.extend({
         };
 
         window.addEventListener('message', function (event) {
-            source = event.source;
+            let source = event.source;
 
             var command = event.data.command;
 
@@ -59,15 +59,18 @@ var Evaluator = Backbone.Model.extend({
             var testEnvironment = event.data.environment;
             oldThis.scriptType = event.data.scriptType; // prscript or test
 
-            request = testEnvironment.request;
-            responseBody = testEnvironment.responseBody;
-            responseHeaders = testEnvironment.responseHeaders;
-            responseCookies = testEnvironment.responseCookies;
-            responseTime = testEnvironment.responseTime;
-            responseCode = testEnvironment.responseCode;
+            let request = testEnvironment.request,
+                responseBody = testEnvironment.responseBody,
+                responseHeaders = testEnvironment.responseHeaders,
+                responseCookies = testEnvironment.responseCookies,
+                responseTime = testEnvironment.responseTime,
+                responseCode = testEnvironment.responseCode,
 
-            environment = testEnvironment.environment;
-            globals = testEnvironment.globals;
+                environment = testEnvironment.environment,
+                globals = testEnvironment.globals,
+                iteration,
+                postman,
+                data;
 
             if ('iteration' in testEnvironment) {
                 iteration = testEnvironment.iteration;

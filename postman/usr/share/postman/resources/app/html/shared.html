@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Postman Shared</title>
+  </head>
+  <script>
+    document.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    }, false);
+
+    document.addEventListener('drop', (event) => {
+      event.preventDefault();
+    }, false);
+  </script>
+  <body>
+    <script type="text/javascript">
+      window.appletType = 'shared';
+    </script>
+    <script type="text/javascript" src="../js/libs/base64-arraybuffer.js"></script>
+    <script type="text/javascript" src="../js/libs/sails.io.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/shared.js"></script>
+  </body>
+</html>

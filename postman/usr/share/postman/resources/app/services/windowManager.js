@@ -1,49 +1,45 @@
 var electron = require('electron'),
-    Storage = require('electron-json-storage'),
-    app = electron.app,
-    shell = electron.shell,
-    BrowserWindow = electron.BrowserWindow,
-    path = require('path'),
-    _ = require('lodash').noConflict();
+  Storage = require('electron-json-storage'),
+  app = electron.app,
+  shell = electron.shell,
+  BrowserWindow = electron.BrowserWindow,
+  WindowController = require('../common/controllers/WindowController'),
+  path = require('path'),
+  uuidV4 = require('uuid/v4'),
+  _ = require('lodash').noConflict();
 
 const SHELL_PARTITION_NAME = 'persist:postman_shell';
+const MAX_WINDOW_RESTORE_COUNT = 4;
 
 exports.windowManager = {
   primaryId: '1',
   openWindowIds: [],
-  requesterPath: null, // set in initialize()
-  testRunnerPath: null, // set in initialize()
   initUrl: null,
+  eventBus: null,
   windowState: {},
 
   initialize () {
     if (process.env.PM_BUILD_ENV !== 'development') {
-      this.requesterPath = 'file://' + __dirname + '/../html/requester.html';
-      this.testRunnerPath = 'file://' + __dirname + '/../html/runner.html';
-      this.testConsolePath = 'file://' + __dirname + '/../html/console.html';
       this.webViewPath = 'file://' + __dirname + '/../html/shell.html';
+      this.loaderWindowPath = 'file://' + __dirname + '/../html/loader.html';
     }
     else {
-      this.requesterPath = 'http://localhost:8777/build/html/requester.html';
-      this.testRunnerPath = 'http://localhost:8777/build/html/runner.html';
-      this.testConsolePath = 'http://localhost:8777/build/html/console.html';
       this.webViewPath = 'http://localhost:8777/build/html/shell.html';
+      this.loaderWindowPath = 'http://localhost:8777/build/html/loader.html';
     }
     this.closedHandler = this.closedHandler.bind(this);
     this.debouncedStateChangeHandler = _.debounce(this.stateChangeHandler.bind(this), 100);
   },
 
-  focusFirstWindow () {
-    const numWindowsLeft = this.openWindowIds.length;
-    for (var i = 0; i < numWindowsLeft; i++) {
-      var bWindow = BrowserWindow.fromId(parseInt(this.openWindowIds[i]));
-      if (!bWindow) {
-        continue;
-      }
-      bWindow.show();
-      bWindow.restore();
-      return;
+  getSharedWindow () {
+    let windows = BrowserWindow.getAllWindows(),
+        sharedWindow = _.find(windows, ['type', 'shared']);
+
+    if (!sharedWindow) {
+      console.warn('Shared window not present!');
     }
+
+    return sharedWindow;
   },
 
   sendCustomInternalEvent (action, object) {
@@ -76,12 +72,13 @@ exports.windowManager = {
   sendToAllWindows (message) {
     // send event to all other windows
     var numWindowsLeft = 0;
-    if (this.openWindowIds && this.openWindowIds.length) {
-      numWindowsLeft = this.openWindowIds.length;
+    let openWindowIds = _.compact(this.openWindowIds);
+    if (openWindowIds && openWindowIds.length) {
+      numWindowsLeft = openWindowIds.length;
     }
 
     for (var i = 0; i < numWindowsLeft; i++) {
-      var bWindow = BrowserWindow.fromId(parseInt(this.openWindowIds[i]));
+      var bWindow = BrowserWindow.fromId(parseInt(openWindowIds[i]));
       if (!bWindow) {
         continue;
       }
@@ -109,7 +106,7 @@ exports.windowManager = {
       if (!this.hasExtension('React Developer Tools')) {
         var reactDevToolsPath = path.resolve(
           app.getPath('appData'),
-          'Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/0.15.7_0'
+          'Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/2.5.2_0'
         );
         BrowserWindow.addDevToolsExtension(reactDevToolsPath);
       }
@@ -143,7 +140,7 @@ exports.windowManager = {
     if (windowName === 'console') {
       return {
         center: true,
-				                                                                                height: 450,
+        height: 450,
         width: 950
       };
     }
@@ -176,25 +173,26 @@ exports.windowManager = {
   },
 
   newRequesterOpened () {
-    if (this.listenForRequesterWindow) {
-      var mainWindow = this.listenForRequesterWindow;
-      mainWindow.webContents.send('electronWindowMessage', {
-        name: 'protocolEventOnInit',
-        data: this.initUrl
+    if (this.listenForRequesterWindow && this.initUrl && this.initWindowId) {
+
+      let channel = this.eventBus.channel('protocol-handler');
+      channel.publish({
+        url: this.initUrl,
+        windowId: this.initWindowId
       });
-      this.initUrl = null;
-      this.listenForRequesterWindow = null;
+
+      this.initUrl = this.initWindowId = this.listenForRequesterWindow = null;
     }
   },
 
   quitApp () {
-    app.quiting = true;
     app.quit();
   },
 
   getWindowPref (title) {
     return {
       title: title,
+      backgroundColor: '#E8E0CB',
       webPreferences: {
         webSecurity: false,
         backgroundThrottling: false,
@@ -211,166 +209,443 @@ exports.windowManager = {
     }
   },
 
-  newRequesterWindow (id) {
-    const windowName = 'requester';
+  newSharedWindow () {
+    let window = new BrowserWindow(Object.assign(
+      this.getWindowPref('Shared'), {
+        width: 0,
+        height: 0,
+        show: false
+      }
+    ));
 
-    this.loadWindowState(windowName, (windowState) => {
-      let mainWindow = new BrowserWindow(Object.assign(
-          this.getWindowPref('Postman'),
-          windowState
-        )),
-          mainWindowId = String(mainWindow.id);
-
-      this.windowState[windowName] = windowState;
-
-      this.setWindowMode(windowState, mainWindow);
-
-      this.attachDevToolsExtensions(mainWindow);
-
-      if (!this.openWindowIds.length) {
-        this.primaryId = mainWindowId;
-      } // this is the only window. make it primary
-      this.openWindowIds.push(mainWindowId);
-
-      mainWindow.loadURL(this.webViewPath);
-      mainWindow.webContents.on('dom-ready', () => {
-        mainWindow.webContents.send('shell-loaded', {
-          id: String(mainWindowId),
-          type: 'requester',
-          primaryId: this.primaryId,
-          allIds: this.openWindowIds
-        });
-        if (this.initUrl) {
-          this.listenForRequesterWindow = mainWindow;
-        }
+    window.loadURL(this.webViewPath);
+    window.webContents.on('dom-ready', () => {
+      window.webContents.send('shared-loaded');
+      window.webContents.send('shell-loaded', {
+        id: window.id,
+        type: 'shared'
       });
+    });
 
-      mainWindow.windowName = windowName;
-      mainWindow.mainWindowId = mainWindowId;
+    window.windowName = 'shared';
+    window.type = 'shared';
 
-      /* Whent this event is fired we check if it is ok to quit the app when app window closes.
-        MacOS doesn't quit the app even if you close all the open windows whereas on Windows the app needs
-        to quit after last window is closed */
-      mainWindow.on('close', (event) => {
-        if (app.quiting || this.openWindowIds.indexOf(mainWindowId) === -1) {
-          return;
-        }
-        event.preventDefault();
-        if (process.platform !== 'win32') {
-          this.sendInternalMessage({
-            event: 'clearWindowStateAndQuit',
-            object: mainWindowId + ''
-          });
+    // special handling for shared window to keep it alive always
+    window.on('close', function (e) {
+      if (app.quittingApp) {
+        return;
+      }
+
+      if (window.isVisible()) {
+        console.log('shared.close blocked');
+        e.preventDefault();
+        window.hide();
+      }
+    });
+
+    window.on('show', function () {
+      if (app.quittingApp) {
+        return;
+      }
+      console.log('shared window shown. hiding.');
+      window.hide();
+    });
+
+    return window;
+  },
+
+  sanitizeBounds (bounds) {
+    if (_.isUndefined(bounds.x) || _.isUndefined(bounds.y)) {
+      return {
+        x: null,
+        y: null
+      };
+    }
+
+    let screen = electron.screen,
+        nearestDisplay = screen.getDisplayNearestPoint({ x: bounds.x, y: bounds.y });
+
+    let isWindowVisible = (
+      (bounds.x >= nearestDisplay.bounds.x && bounds.x <= nearestDisplay.bounds.x + nearestDisplay.bounds.width) &&
+      (bounds.y >= nearestDisplay.bounds.y && bounds.y <= nearestDisplay.bounds.y + nearestDisplay.bounds.height)
+    );
+
+    if (!isWindowVisible) {
+      return {
+        x: null,
+        y: null
+      };
+    }
+
+    return bounds;
+  },
+
+  getOpenWindows (type) {
+    return WindowController
+      .getAll({ type })
+      .then((allTypeWindows) => {
+        let allTypeWindowIds = _.map(allTypeWindows, (window) => window.browserWindowId),
+            openWindowIds = this.openWindowIds,
+            allOpenTypeWindows = _.intersection(openWindowIds, allTypeWindowIds);
+        return allOpenTypeWindows;
+      });
+  },
+
+  createOrRestoreRequesterWindow () {
+    return this
+      .getOpenWindows('requester')
+      .then((allOpenRequesterWindows) => {
+        if (_.isEmpty(allOpenRequesterWindows)) {
+          // If no requester windows are open, there will be only one requester window in the Window table
+          // Restore that.
+          return WindowController
+            .getAll({ type: 'requester' })
+            .then((allRequesterWindows) => {
+              if (_.size(allRequesterWindows) === 1) {
+                return this.newRequesterWindow(allRequesterWindows[0]);
+              }
+
+              // Worst case. if there are more than one requester window in the DB, create a window normally
+              return this.newRequesterWindow();
+            });
         }
         else {
-          if (_.size(this.openWindowIds) === 1) {
-            app.quiting = true;
-            this.sendInternalMessage({ event: 'saveAllWindowState' });
-          }
-          else {
-            this.sendInternalMessage({
-              event: 'clearWindowStateAndQuit',
-              object: mainWindowId + ''
-            });
-          }
+          // Create a new window normally
+          return this.newRequesterWindow();
         }
       });
-
-      this.addListeners(mainWindow);
-
-      this.sendInternalMessage({
-        event: 'pmWindowOpened',
-        object: String(mainWindowId)
-      });
-      return mainWindowId;
-    });
   },
 
-  closeRequesterWindow (windowId) {
-    var bWindow = BrowserWindow.fromId(parseInt(windowId));
-    if (bWindow) {
-      this.removeWindowId(String(windowId));
-      bWindow.close();
+  newRequesterWindow (window = {}, params = {}) {
+    let windowName = 'requester',
+        sanitizedBounds = this.sanitizeBounds({
+          x: _.get(window, 'position.x'),
+          y: _.get(window, 'position.y')
+        });
+
+    if (!global.isSharedBooted) {
+      console.log('WARN: Bailing requester window creation as shared is not booted!');
+      return;
     }
-    return;
+
+    let mainWindow = new BrowserWindow(Object.assign(
+      this.getWindowPref('Postman'),
+      {
+        width: _.get(window, 'size.width', 1280),
+        height: _.get(window, 'size.height', 800),
+        x: sanitizedBounds.x,
+        y: sanitizedBounds.y,
+        center: !window.position
+      }
+    ));
+
+    this.windowState[windowName] = window;
+
+    this.setWindowMode({
+      isFullScreen: window.isFullScreen,
+      maximized: window.maximized
+    }, mainWindow);
+
+    this.attachDevToolsExtensions(mainWindow);
+
+    if (!this.openWindowIds.length) {
+      this.primaryId = mainWindow.id;
+    } // this is the only window. make it primary
+    this.openWindowIds.push(mainWindow.id);
+
+    let windowId = window.id || uuidV4();
+
+    mainWindow.webContents.on('dom-ready', () => {
+      mainWindow.webContents.send('shell-loaded', {
+        id: mainWindow.id,
+        type: 'requester',
+        primaryId: this.primaryId,
+        allIds: this.openWindowIds
+      });
+      if (this.initUrl) {
+        this.listenForRequesterWindow = true;
+        this.initWindowId = windowId;
+      }
+    });
+
+    let windowParams = [{
+      type: 'requester',
+      id: windowId,
+      browserWindowId: mainWindow.id,
+      activeSession: window.activeSession || '',
+      position: window.position || {},
+      size: window.size || { width: 1280, height: 800 },
+      visibility: window.visibility || { maximized: false, isFullScreen: false }
+    }, {
+      id: windowId,
+      session: {
+        id: window.activeSession,
+        workspace: params.workspace
+      }
+    }];
+
+    mainWindow.windowName = windowName;
+    mainWindow.type = 'requester';
+    mainWindow.params = windowParams;
+
+    Promise.resolve()
+      .then(() => {
+        if (window.id) {
+          // Restoring
+          return WindowController
+            .update({
+              id: window.id,
+              browserWindowId: mainWindow.id
+            });
+        }
+        else {
+          // Not restoring
+          return WindowController
+            .create.apply(WindowController, windowParams);
+        }
+      })
+      .then(() => {
+        mainWindow.loadURL(this.webViewPath);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    this.addListeners(mainWindow);
+
+    this.sendInternalMessage({
+      event: 'pmWindowOpened',
+      object: mainWindow.id
+    });
+    return mainWindow;
   },
 
-  newRunnerWindow (testAttr) {
-    const windowName = 'runner';
+  newLoaderWindow () {
+    if (this.loaderWindowId) {
+      let window = BrowserWindow.fromId(parseInt(this.loaderWindowId));
+      if (window) {
+        window.show();
+        window.restore();
+        return;
+      }
+    }
 
-    this.loadWindowState(windowName, (windowState) => {
+    console.log('creating loader window');
+
+    let window = new BrowserWindow(Object.assign({
+        title: 'Postman',
+        width: 400,
+        height: 400,
+        backgroundColor: '#E8E0CB',
+        frame: false
+      })),
+      windowId = window.id;
+
+    this.openWindowIds.push(windowId);
+    this.loaderWindowId = windowId;
+    window.loadURL(this.loaderWindowPath);
+
+    return window;
+  },
+
+  closeLoaderWindow () {
+    if (!this.loaderWindowId) {
+      return;
+    }
+    let window = BrowserWindow.fromId(parseInt(this.loaderWindowId));
+    if (window) {
+      console.log('destroying loader window');
+      this.removeWindowId(this.loaderWindowId);
+      this.loaderWindowId = null;
+      window.destroy();
+    }
+  },
+
+  newRunnerWindow (window = {}, params = {}) {
+    let windowName = 'runner',
+        sanitizedBounds = this.sanitizeBounds({
+          x: _.get(window, 'position.x'),
+          y: _.get(window, 'position.y')
+        });
+
+    if (!global.isSharedBooted) {
+      console.log('WARN: Bailing requester window creation as shared is not booted!');
+      return;
+    }
+
+    let mainWindow = new BrowserWindow(Object.assign(
+      this.getWindowPref('Collection Runner'),
+      {
+        width: _.get(window, 'size.width', 1280),
+        height: _.get(window, 'size.height', 800),
+        x: sanitizedBounds.x,
+        y: sanitizedBounds.y,
+        center: !window.position
+      }
+    ));
+
+    this.windowState[windowName] = window;
+
+    this.setWindowMode({
+      isFullScreen: window.isFullScreen,
+      maximized: window.maximized
+    }, mainWindow);
+
+    mainWindow.webContents.on('dom-ready', () => {
+      mainWindow.webContents.send('shell-loaded', {
+        id: mainWindow.id,
+        type: 'runner'
+      });
+    });
+
+    let windowId = window.id || uuidV4();
+    let windowParams = [{
+      type: 'runner',
+      id: windowId,
+      browserWindowId: mainWindow.id,
+      activeSession: window.activeSession || '',
+      position: window.position || {},
+      size: window.size || { width: 1280, height: 800 },
+      visibility: window.visibility || { maximized: false, isFullScreen: false }
+    }, {
+      session: {
+        id: window.activeSession,
+        workspace: params.workspace,
+        state: {
+          collection: params.collection,
+          folder: params.folder,
+          environment: params.environment
+        }
+      }
+    }];
+
+    mainWindow.windowName = windowName;
+    mainWindow.type = 'runner';
+    mainWindow.params = windowParams;
+
+    Promise.resolve()
+      .then(() => {
+        if (window.id) {
+          // Restoring
+          return WindowController
+            .update({
+              id: window.id,
+              browserWindowId: mainWindow.id
+            });
+        }
+        else {
+          // Not restoring
+          return WindowController
+            .create.apply(WindowController, windowParams);
+        }
+      })
+      .then(() => {
+        mainWindow.loadURL(this.webViewPath);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    this.openWindowIds.push(mainWindow.id);
+    this.addListeners(mainWindow);
+  },
+
+  newConsoleWindow (window = {}, params = {}) {
+    let windowName = 'console',
+        sanitizedBounds = this.sanitizeBounds({
+          x: _.get(window, 'position.x'),
+          y: _.get(window, 'position.y')
+        });
+
+    if (!global.isSharedBooted) {
+      console.log('WARN: Bailing requester window creation as shared is not booted!');
+      return;
+    }
+
+    if (!this.consoleWindowId) {
       let mainWindow = new BrowserWindow(Object.assign(
-          this.getWindowPref('Collection Runner'),
-          windowState
-        )),
-          mainWindowId = String(mainWindow.id);
+        this.getWindowPref('Postman Console'),
+        {
+          width: _.get(window, 'size.width', 1000),
+          height: _.get(window, 'size.height', 400),
+          x: sanitizedBounds.x,
+          y: sanitizedBounds.y,
+          center: !window.position
+        }
+      ));
 
-      this.windowState[windowName] = windowState;
+      this.windowState[windowName] = window;
 
-      this.setWindowMode(windowState, mainWindow);
+      this.setWindowMode({
+        isFullScreen: window.isFullScreen,
+        maximized: window.maximized
+      }, mainWindow);
 
-      mainWindow.loadURL(this.webViewPath);
+      this.consoleWindowId = mainWindow.id;
+      this.openWindowIds.push(this.consoleWindowId);
+
       mainWindow.webContents.on('dom-ready', () => {
-        console.log('Sending test runner', testAttr);
         mainWindow.webContents.send('shell-loaded', {
-          id: String(mainWindow.id),
-          type: 'runner',
-          testAttr: testAttr
+          id: mainWindow.id,
+          type: 'console'
         });
       });
 
-      this.openWindowIds.push(mainWindow.id);
+      let windowId = window.id || uuidV4();
+      let windowParams = [{
+        type: 'console',
+        id: windowId,
+        browserWindowId: mainWindow.id,
+        activeSession: window.activeSession || '',
+        position: window.position || {},
+        size: window.size || { width: 1000, height: 400 },
+        visibility: window.visibility || { maximized: false, isFullScreen: false }
+      }, {
+        id: windowId,
+        session: { id: window.activeSession }
+      }];
+
       mainWindow.windowName = windowName;
-      mainWindow.mainWindowId = mainWindowId;
+      mainWindow.type = 'console';
+      mainWindow.params = windowParams;
+
+      Promise.resolve()
+      .then(() => {
+        if (window.id) {
+          // Restoring
+          return WindowController
+            .update({
+              id: window.id,
+              browserWindowId: mainWindow.id
+            });
+        }
+        else {
+          // Not restoring
+          return WindowController
+            .create.apply(WindowController, windowParams);
+        }
+      })
+      .then(() => {
+        mainWindow.loadURL(this.webViewPath);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
       this.addListeners(mainWindow);
-    });
+    }
+    else {
+      let consoleWindow = BrowserWindow.fromId(parseInt(this.consoleWindowId));
+      if (!consoleWindow) {
+        return;
+      }
+      consoleWindow.show();
+      consoleWindow.restore();
+    }
   },
 
-	                    newConsoleWindow () {
-		                    const windowName = 'console';
-
-		                    if (!this.consoleWindowId) {
-			                    this.loadWindowState(windowName, (windowState) => {
-				                    let mainWindow = new BrowserWindow(Object.assign(
-						this.getWindowPref('Postman Console'),
-						windowState
-					));
-
-					                    this.consoleWindowId = String(mainWindow.id);
-
-                      this.setWindowMode(windowState, mainWindow);
-
-                      this.windowState[windowName] = windowState;
-
-                      mainWindow.loadURL(this.webViewPath);
-
-                      mainWindow.webContents.on('dom-ready', () => {
-                        mainWindow.webContents.send('shell-loaded', {
-                          id: String(mainWindow.id),
-                          type: 'console'
-                        });
-                      });
-
-                      this.openWindowIds.push(this.consoleWindowId);
-
-                      mainWindow.windowName = windowName;
-                      mainWindow.mainWindowId = this.consoleWindowId;
-                      this.addListeners(mainWindow);
-                    });
-                    }
-		                    else {
-                      console.log('console window : ' + this.consoleWindowId);
-			                    let consoleWindow = BrowserWindow.fromId(parseInt(this.consoleWindowId));
-			                    if (!consoleWindow) {
-				                    return;
-                    }
-			                    consoleWindow.show();
-			                    consoleWindow.restore();
-                    }
-                    },
-
   addListeners (activeWindow) {
-    activeWindow.on('closed', this.closedHandler);
+    activeWindow.on('close', this.closedHandler);
     activeWindow.on('move', this.debouncedStateChangeHandler);
     activeWindow.on('resize', this.debouncedStateChangeHandler);
   },
@@ -389,60 +664,145 @@ exports.windowManager = {
 
   stateChangeHandler (e) {
     const activeWindow = e.sender;
+    const bounds = activeWindow.getBounds();
+
     this.updateWindowState(activeWindow.windowName, e.sender);
     this.saveWindowState(activeWindow.windowName);
+
+    return WindowController.get({ browserWindowId: activeWindow.id })
+      .then((window) => {
+        WindowController.update({
+          id: window.id,
+          position: {
+            x: bounds.x,
+            y: bounds.y
+          },
+          size: {
+            width: bounds.width,
+            height: bounds.height
+          },
+          meta: {
+            maximized: activeWindow.isMaximized(),
+            isFullScreen: activeWindow.isFullScreen()
+          }
+        });
+      });
   },
 
-  closedHandler (e, windowName) {
-    const activeWindow = e.sender;
-    console.log('Closed Window (id: ' + activeWindow.mainWindowId + ')');
-    this.windowClosed(activeWindow.mainWindowId, activeWindow.windowName);
-    this.removeListeners(activeWindow);
+  deleteWindowFromDB (window) {
+    let windowType = window.type,
+        windowId = window.id;
+    if (windowType !== 'requester') {
+      return WindowController
+        .get({ browserWindowId: window.id })
+        .then((closedWindow) => {
+          return WindowController.delete({ id: closedWindow.id });
+        });
+    }
+    else {
+      return WindowController
+        .count({ type: 'requester' })
+        .then((requesterWindowCount) => {
+          if (requesterWindowCount > 1) {
+            return WindowController
+              .get({ browserWindowId: windowId })
+              .then((window) => {
+                return WindowController.delete({ id: window.id });
+              });
+          }
+
+          return;
+        });
+    }
+  },
+
+  closedHandler (e) {
+    if (app.quittingApp) {
+      // Windows are being closed because the app was quit, don't try to
+      // delete window records
+      return;
+    }
+
+    let window = e.sender,
+        windowId = window.id;
+
+    console.log('Closed Window (id: ' + windowId + ')');
+
+    this.removeListeners(window);
+    this.removeWindowId(windowId);
+    if (this.consoleWindowId === windowId) {
+      this.consoleWindowId = null;
+    }
+
+    this.deleteWindowFromDB(window)
+      .then(() => {
+        // If there are no more open windows, quit the app on Windows & Linux
+        if (process.platform != 'darwin' && _.isEmpty(this.openWindowIds)) {
+          app.quit();
+        }
+      })
+      .catch(() => {
+        // If there are no more open windows, quit the app on Windows & Linux
+        if (process.platform != 'darwin' && _.isEmpty(this.openWindowIds)) {
+          app.quit();
+        }
+      });
   },
 
   removeListeners (activeWindow) {
-    activeWindow.removeListener('closed', this.closedHandler);
+    activeWindow.removeListener('close', this.closedHandler);
     activeWindow.removeListener('resize', this.debouncedStateChangeHandler);
     activeWindow.removeListener('move', this.debouncedStateChangeHandler);
   },
 
-  openUrl (url) {
-    if (this.openWindowIds.length > 0) {
-      this.sendToFirstWindow({
-        name: 'internalEvent',
-        data: {
-          event: 'protocolEvent',
-          object: this.initUrl
+  getFirstRequesterWindow () {
+    return WindowController
+      .getAll({ type: 'requester' })
+      .then((allRequesterWindows) => {
+        let requesterWindowIds = _.map(allRequesterWindows, (window) => window.browserWindowId),
+            openWindowIds = this.openWindowIds,
+            openRequesterWindows = _.intersection(openWindowIds, requesterWindowIds);
+
+        if (openRequesterWindows.length) {
+          return _.find(allRequesterWindows, (window) => window.browserWindowId === openRequesterWindows[0]);
         }
+        return;
       });
-      this.focusFirstWindow();
-      this.initUrl = null;
-    }
+  },
+
+  openUrl (url) {
+    this.getFirstRequesterWindow()
+        .then((window) => {
+          if (window) {
+            let channel = this.eventBus.channel('protocol-handler');
+            channel.publish({
+              url,
+              windowId: window.id
+            });
+
+            var bWindow = BrowserWindow.fromId(window.browserWindowId);
+            if (bWindow) {
+              bWindow.show();
+              bWindow.restore();
+            }
+
+            this.initUrl = null;
+          }
+          else {
+            // Open a new window
+            this.initUrl = url;
+            this.createOrRestoreRequesterWindow();
+          }
+        });
   },
 
   removeWindowId (windowId) {
     // remove windowId from openWindowIds
     var index = this.openWindowIds.indexOf(windowId);
+
     if (index !== -1) {
       this.openWindowIds.splice(index, 1);
     }
-  },
-
-  windowClosed (windowId, windowName) {
-    this.removeWindowId(windowId);
-
-    // send event to all other windows
-    this.sendToAllWindows({
-      name: 'otherWindowClosed',
-      data: {
-        'id': windowId,
-        'name': windowName
-      }
-    });
-
-		                                        if (this.consoleWindowId === windowId) {
-			                    this.consoleWindowId = null;
-                                        }
   },
 
   openCustomURL (url) {
@@ -451,5 +811,63 @@ exports.windowManager = {
 
   hasOpenWindows () {
     return !_.isEmpty(BrowserWindow.getAllWindows());
+  },
+
+  restoreWindows () {
+    let lastWindow;
+    return WindowController.getAll({})
+      .then((allWindows) => {
+        let allWindowIds = _.map(allWindows, (window) => window.id),
+            windowsToRestore = _.slice(allWindows, 0, MAX_WINDOW_RESTORE_COUNT),
+            windowsToRestoreIds = _.slice(allWindowIds, 0, MAX_WINDOW_RESTORE_COUNT),
+            idsToDelete = _.differenceWith(allWindowIds, windowsToRestoreIds);
+
+        if (_.isEmpty(idsToDelete)) {
+          return windowsToRestore;
+        }
+        return WindowController
+          .delete({ id: idsToDelete })
+          .then(() => {
+            return windowsToRestore;
+          });
+      })
+      .then((allWindows) => {
+        if (_.isEmpty(allWindows)) {
+          return Promise.resolve(this.newRequesterWindow());
+        }
+        else {
+          _.each(allWindows, (window) => {
+            switch (window.type) {
+              case 'requester':
+                lastWindow = this.newRequesterWindow(window);
+                break;
+              case 'runner':
+                this.newRunnerWindow(window);
+                break;
+              case 'console':
+                this.newConsoleWindow(window);
+                break;
+            }
+          });
+        }
+
+        if (!lastWindow) {
+          return Promise.resolve(this.newRequesterWindow());
+        }
+
+        return Promise.resolve(lastWindow);
+      });
+  },
+
+  forceCloseAllWindows () {
+    _.each(this.openWindowIds, (windowId) => {
+      window = BrowserWindow.fromId(parseInt(windowId));
+      window && this.removeListeners(window);
+      window && window.destroy();
+    });
+
+    this.openWindowIds = [];
+    return WindowController
+      .delete({});
   }
 };

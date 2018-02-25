@@ -45,26 +45,38 @@ class OAuth2WindowManager {
             partition: this.cookiePartitionId
           }
         }),
+        expectedUrl = new sdk.Url(matchOptions.uri),
+        expectedHost = expectedUrl.host && expectedUrl.host.join('.'),
+        urlMatched = !(expectedUrl.protocol && expectedUrl.host), // if no valid url was given, we don't try to match the redirect urls
         didCompleteAuth = false,
-        matchFound = false,
         handleUrlChange = function (urlRedirect) {
           console.log('Received redirect on auth login window', urlRedirect);
-          let parsedURL = new sdk.Url(urlRedirect),
+          let actualUrl = new sdk.Url(urlRedirect),
+            paramFound = false,
 
-              // combine params in query string and hash
-              params = new sdk.PropertyList(sdk.QueryParam, {}, _.concat(parsedURL.query.toJSON(), sdk.QueryParam.parse(parsedURL.hash))),
+            // combine params in query string and hash
+            params = new sdk.PropertyList(sdk.QueryParam, {}, _.concat(actualUrl.query.toJSON(), sdk.QueryParam.parse(actualUrl.hash))),
 
-              error,
-              endAuthFlow = function () {
-                // bail out listeners for similar events
-                didCompleteAuth = true;
+            error,
+            endAuthFlow = function () {
+              // bail out listeners for similar events
+              didCompleteAuth = true;
 
-                // It crashes when used directly.
-                // https://github.com/electron/electron/issues/1685#issuecomment-102259335
-                setTimeout(function () {
-                  authWindow.close();
-                });
-              };
+              // It crashes when used directly.
+              // https://github.com/electron/electron/issues/1685#issuecomment-102259335
+              setTimeout(function () {
+                authWindow.close();
+              });
+            };
+
+          if (!urlMatched) {
+            actualUrl.host.join('.') === expectedHost && (urlMatched = true);
+          }
+
+          if (!urlMatched) {
+            console.log('URL did not match the registered callbackURL, so skipping');
+            return;
+          }
 
           // decode param values
           params.each(function (param) {
@@ -80,11 +92,11 @@ class OAuth2WindowManager {
             return;
           }
 
-          matchFound = params.find((param) => {
+          paramFound = params.find((param) => {
             return _.includes(matchOptions.params, _.toLower(param.key));
           });
 
-          if (matchFound) {
+          if (paramFound) {
             console.log('Matched code/access_token. Closing auth login window now.');
             endAuthFlow();
             callback && callback(null, params.toObject());
