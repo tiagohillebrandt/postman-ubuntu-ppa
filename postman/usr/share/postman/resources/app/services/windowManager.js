@@ -102,29 +102,17 @@ exports.windowManager = {
       return;
     }
 
-    try {
-      if (!this.hasExtension('React Developer Tools')) {
-        var reactDevToolsPath = path.resolve(
-          app.getPath('appData'),
-          'Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/2.5.2_0'
-        );
-        BrowserWindow.addDevToolsExtension(reactDevToolsPath);
-      }
-    }
-    catch (e) {
-      console.error('React Devtools Error: ', e.message, ', Path: ', reactDevToolsPath);
-    }
+    // Don't move this to the top,
+    // This should be required only in development mode.
+    // This package is not bundled in production build.
+    var { default: installExtension, REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS } = require('electron-devtools-installer');
 
-    // try {
-    //   var reduxDevToolsPath = path.resolve(
-    //     app.getPath('appData'),
-    //     'Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.5.0.1_0'
-    //   );
-    //   BrowserWindow.addDevToolsExtension(reduxDevToolsPath);
-    // }
-    // catch (e) {
-    //   console.error('Redux Devtools Error: ', e.message, ', Path: ', reactDevToolsPath);
-    // }
+    // Just include more extensions above and append them to the array to attach other available extensions
+    [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS].forEach((extension) => {
+      installExtension(extension)
+        .then((name) => console.log(`Added DevTools Extension: ${name}`))
+        .catch((err) => console.log('An error occurred while adding DevTools extension: ', err));
+    });
 
     try {
       if (!this.hasExtension('devtron')) {
@@ -391,6 +379,14 @@ exports.windowManager = {
     Promise.resolve()
       .then(() => {
         if (window.id) {
+          // Checking if the window to restore actually does exist in DB Or not before updating.
+          // This makes sure that when the window starts booting, a record always exists in the DB
+          return WindowController.get({ id: window.id });
+        }
+        return;
+      })
+      .then((dbWindow) => {
+        if (dbWindow) {
           // Restoring
           return WindowController
             .update({
@@ -430,8 +426,6 @@ exports.windowManager = {
       }
     }
 
-    console.log('creating loader window');
-
     let window = new BrowserWindow(Object.assign({
         title: 'Postman',
         width: 400,
@@ -454,7 +448,6 @@ exports.windowManager = {
     }
     let window = BrowserWindow.fromId(parseInt(this.loaderWindowId));
     if (window) {
-      console.log('destroying loader window');
       this.removeWindowId(this.loaderWindowId);
       this.loaderWindowId = null;
       window.destroy();
@@ -526,6 +519,14 @@ exports.windowManager = {
     Promise.resolve()
       .then(() => {
         if (window.id) {
+          // Checking if the window to restore actually does exist in DB Or not before updating.
+          // This makes sure that when the window starts booting, a record always exists in the DB
+          return WindowController.get({ id: window.id });
+        }
+        return;
+      })
+      .then((dbWindow) => {
+        if (dbWindow) {
           // Restoring
           return WindowController
             .update({
@@ -612,6 +613,14 @@ exports.windowManager = {
       Promise.resolve()
       .then(() => {
         if (window.id) {
+          // Checking if the window to restore actually does exist in DB Or not before updating.
+          // This makes sure that when the window starts booting, a record always exists in the DB
+          return WindowController.get({ id: window.id });
+        }
+        return;
+      })
+      .then((dbWindow) => {
+        if (dbWindow) {
           // Restoring
           return WindowController
             .update({
@@ -689,12 +698,12 @@ exports.windowManager = {
       });
   },
 
-  deleteWindowFromDB (window) {
-    let windowType = window.type,
-        windowId = window.id;
+  deleteWindowFromDB (browserWindow) {
+    let windowType = browserWindow.type,
+        windowId = browserWindow.id;
     if (windowType !== 'requester') {
       return WindowController
-        .get({ browserWindowId: window.id })
+        .get({ browserWindowId: browserWindow.id })
         .then((closedWindow) => {
           return WindowController.delete({ id: closedWindow.id });
         });

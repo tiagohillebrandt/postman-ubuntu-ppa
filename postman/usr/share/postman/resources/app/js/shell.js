@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 1779:
+/***/ 1783:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21,11 +21,11 @@ module.exports = shellUtils;
 
 /***/ }),
 
-/***/ 2121:
+/***/ 2125:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {var _stringify = __webpack_require__(48);var _stringify2 = _interopRequireDefault(_stringify);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var dbService = {
+/* WEBPACK VAR INJECTION */(function(_) {var _stringify = __webpack_require__(45);var _stringify2 = _interopRequireDefault(_stringify);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var dbService = {
 
   /**
                                                                                                                                                                                                                                                    * getData is used to get the partitions from the localStorage
@@ -88,19 +88,19 @@ module.exports = dbService;
 
 /***/ }),
 
-/***/ 3331:
+/***/ 3335:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(3332);
+module.exports = __webpack_require__(3336);
 
 
 /***/ }),
 
-/***/ 3332:
+/***/ 3336:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _init = __webpack_require__(3333);var _init2 = _interopRequireDefault(_init);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _init = __webpack_require__(3337);var _init2 = _interopRequireDefault(_init);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 _init2.default.init();
 
@@ -108,16 +108,16 @@ window.sh = _init2.default;
 
 /***/ }),
 
-/***/ 3333:
+/***/ 3337:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _toConsumableArray2 = __webpack_require__(50);var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);var _shellController = __webpack_require__(3334);var _shellController2 = _interopRequireDefault(_shellController);
-var _shellMeta = __webpack_require__(3337);var _shellMeta2 = _interopRequireDefault(_shellMeta);
-var _shellUtils = __webpack_require__(1779);var _shellUtils2 = _interopRequireDefault(_shellUtils);
-var _eventBus = __webpack_require__(706);var _eventBus2 = _interopRequireDefault(_eventBus);
+var _toConsumableArray2 = __webpack_require__(51);var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);var _shellController = __webpack_require__(3338);var _shellController2 = _interopRequireDefault(_shellController);
+var _shellMeta = __webpack_require__(3341);var _shellMeta2 = _interopRequireDefault(_shellMeta);
+var _shellUtils = __webpack_require__(1783);var _shellUtils2 = _interopRequireDefault(_shellUtils);
+var _eventBus = __webpack_require__(707);var _eventBus2 = _interopRequireDefault(_eventBus);
 
-var _shellConstants = __webpack_require__(1647);
+var _shellConstants = __webpack_require__(1651);
 
 
 
@@ -685,13 +685,13 @@ module.exports = sh;
 
 /***/ }),
 
-/***/ 3334:
+/***/ 3338:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {var _users = __webpack_require__(3335);var _users2 = _interopRequireDefault(_users);
-var _partitions = __webpack_require__(3336);var _partitions2 = _interopRequireDefault(_partitions);
-var _shellUtils = __webpack_require__(1779);var _shellUtils2 = _interopRequireDefault(_shellUtils);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/* WEBPACK VAR INJECTION */(function(_) {var _users = __webpack_require__(3339);var _users2 = _interopRequireDefault(_users);
+var _partitions = __webpack_require__(3340);var _partitions2 = _interopRequireDefault(_partitions);
+var _shellUtils = __webpack_require__(1783);var _shellUtils2 = _interopRequireDefault(_shellUtils);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 var shellController = {
 
@@ -842,15 +842,15 @@ module.exports = shellController;
 
 /***/ }),
 
-/***/ 3335:
+/***/ 3339:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {var _dbService = __webpack_require__(2121);var _dbService2 = _interopRequireDefault(_dbService);
+/* WEBPACK VAR INJECTION */(function(_) {var _dbService = __webpack_require__(2125);var _dbService2 = _interopRequireDefault(_dbService);
 
-var _shellUtils = __webpack_require__(1779);var _shellUtils2 = _interopRequireDefault(_shellUtils);
+var _shellUtils = __webpack_require__(1783);var _shellUtils2 = _interopRequireDefault(_shellUtils);
 
-var _eventBus = __webpack_require__(706);var _eventBus2 = _interopRequireDefault(_eventBus);
+var _eventBus = __webpack_require__(707);var _eventBus2 = _interopRequireDefault(_eventBus);
 var _modelEvent = __webpack_require__(10);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 var DB_KEY = 'users';
@@ -1009,13 +1009,13 @@ module.exports = users;
 
 /***/ }),
 
-/***/ 3336:
+/***/ 3340:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {var _dbService = __webpack_require__(2121);var _dbService2 = _interopRequireDefault(_dbService);
+/* WEBPACK VAR INJECTION */(function(_) {var _dbService = __webpack_require__(2125);var _dbService2 = _interopRequireDefault(_dbService);
 
-var _shellUtils = __webpack_require__(1779);var _shellUtils2 = _interopRequireDefault(_shellUtils);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _shellUtils = __webpack_require__(1783);var _shellUtils2 = _interopRequireDefault(_shellUtils);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 var uuidV4 = __webpack_require__(125);
 
@@ -1139,7 +1139,7 @@ module.exports = partitions;
 
 /***/ }),
 
-/***/ 3337:
+/***/ 3341:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1261,4 +1261,4 @@ module.exports = require("electron");
 
 /***/ })
 
-},[3331]);
+},[3335]);
