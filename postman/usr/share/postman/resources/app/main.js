@@ -25,6 +25,27 @@ var electron = require('electron'),
     sharedWindow = null,
     bootstrapModels = require('./bootstrap-models');
 
+let argv = process.argv.slice(1);
+
+for (let i = 0; i < argv.length; i++) {
+  // to check for the user data path flag
+  if (argv[i].startsWith('--user-data-path=')) {
+    let arg = argv[i].split('=');
+
+    if (arg[1] !== '') {
+      let path = arg.slice(1).join('=');
+      try {
+        // setting the path for the directory storing app's configuration files
+        app.setPath('userData', path);
+      }
+      catch (e) {
+        console.error(e);
+      }
+    }
+    break;
+  }
+}
+
 global.isSharedBooted = false;
 
 let eventBus = initializeEventBus();
@@ -570,7 +591,7 @@ function handleOpenUrl (url) {
 
 /**
  * Queues an action to be performed after the ORM initialization is complete
- * 
+ *
  * @param  {Function} action - The function to queue
  */
 function queueAction (action) {
