@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Postman</title>
+  <link rel="stylesheet" type="text/css" href="../../js/authentication.css">
+  <script>
+    document.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    }, false);
+
+    document.addEventListener('drop', (event) => {
+      event.preventDefault();
+    }, false);
+  </script>
+</head>
+<body class="show-footer">
+  <div class="pm-loader">
+    <div class="pm-loader-container">
+      <div class='pm-loader-atoms'>
+        <div class='pm-loader-center-atom'></div>
+        <div class='pm-loader-orbit-1'><div class='pm-loader-atom-1'></div></div>
+        <div class='pm-loader-orbit-2'><div class='pm-loader-atom-2'></div></div>
+        <div class='pm-loader-orbit-3'><div class='pm-loader-atom-3'></div></div>
+      </div>
+    </div>
+  </div>
+
+  <webview partition="authentication"></webview>
+  <p id="footer">
+    <a href="#" id="cancel-btn"></a>
+    <a href="#" id="back-btn">Sign in / Sign up through email instead</a>
+  </p>
+
+  <script type="text/javascript" src="../../js/authentication.js"></script>
+</body>
+</html>

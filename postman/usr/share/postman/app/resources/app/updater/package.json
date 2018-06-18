@@ -1,0 +1,31 @@
+{
+  "name": "@postman-app/updater",
+  "main": "index.js",
+  "version": "0.0.0",
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "description": "Simple updater module for the postman app",
+  "dependencies": {
+    "lodash": "4.15.0",
+    "@postman/hermes": "0.1.0-beta.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chalk": "2.4.0",
+    "eslint": "4.9.0",
+    "eslint-plugin-jsdoc": "3.6.2",
+    "eslint-plugin-lodash": "2.7.0",
+    "eslint-plugin-security": "1.4.0",
+    "mocha": "2.5.3",
+    "nsp": "2.8.1",
+    "prettyjson": "1.1.3",
+    "shelljs": "^0.6.0"
+  },
+  "scripts": {
+    "test-unit": "node ./npm/test-unit.js",
+    "test-system": "node ./npm/test-system.js",
+    "test-lint": "node ./npm/test-lint.js",
+    "test": "node ./npm/test.js"
+  }
+}
