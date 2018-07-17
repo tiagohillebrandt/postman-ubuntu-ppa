@@ -1,6 +1,6 @@
 webpackJsonp([13],{
 
-/***/ 1480:
+/***/ 1521:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/javascript_worker';
@@ -8,7 +8,7 @@ module.exports.src = "\"no use strict\";(function(window){function resolveModule
 
 /***/ }),
 
-/***/ 1521:
+/***/ 1561:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/css_worker';
@@ -16,7 +16,7 @@ module.exports.src = "\"no use strict\";(function(window){function resolveModule
 
 /***/ }),
 
-/***/ 1522:
+/***/ 1562:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/html_worker';
@@ -24,7 +24,7 @@ module.exports.src = "\"no use strict\";(function(window){function resolveModule
 
 /***/ }),
 
-/***/ 1604:
+/***/ 1641:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/xml_worker';
@@ -32,7 +32,7 @@ module.exports.src = "\"no use strict\";(function(window){function resolveModule
 
 /***/ }),
 
-/***/ 2098:
+/***/ 2131:
 /***/ (function(module, exports, __webpack_require__) {
 
 ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
@@ -798,7 +798,7 @@ oop.inherits(Mode, TextMode);
     };
 
     this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], __webpack_require__(1480), "JavaScriptWorker");
+        var worker = new WorkerClient(["ace"], __webpack_require__(1521), "JavaScriptWorker");
         worker.attachToDocument(session.getDocument());
 
         worker.on("annotate", function(results) {
@@ -1464,7 +1464,7 @@ oop.inherits(Mode, TextMode);
     this.blockComment = {start: "<!--", end: "-->"};
 
     this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], __webpack_require__(1604), "Worker");
+        var worker = new WorkerClient(["ace"], __webpack_require__(1641), "Worker");
         worker.attachToDocument(session.getDocument());
 
         worker.on("error", function(e) {
@@ -1935,7 +1935,7 @@ oop.inherits(Mode, TextMode);
     };
 
     this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], __webpack_require__(1521), "Worker");
+        var worker = new WorkerClient(["ace"], __webpack_require__(1561), "Worker");
         worker.attachToDocument(session.getDocument());
 
         worker.on("annotate", function(e) {
@@ -2485,7 +2485,7 @@ oop.inherits(Mode, TextMode);
     this.createWorker = function(session) {
         if (this.constructor != Mode)
             return;
-        var worker = new WorkerClient(["ace"], __webpack_require__(1522), "Worker");
+        var worker = new WorkerClient(["ace"], __webpack_require__(1562), "Worker");
         worker.attachToDocument(session.getDocument());
 
         if (this.fragmentContext)

@@ -284,6 +284,14 @@ async.series([
       }
     });
 
+    ipc.on('overrideRequestHeaders', function (event, arg) {
+      let viewSession = require('electron').session.fromPartition(arg.partitionId);
+      viewSession.webRequest.onBeforeSendHeaders((request, callback) => {
+        Object.assign(request.requestHeaders, arg.headers);
+        callback({ cancel: false, requestHeaders: request.requestHeaders });
+      });
+    });
+
     ipc.on('getSaveTarget', function (event, arg) {
       var retPath = showSaveDialog(event.sender, arg);
       if (!retPath) {

@@ -83,7 +83,7 @@ class CookieManager {
       // todo: is it better to set them _during_ the run?
       // convert the cookie to a format the App uses internally.
       responseCookies.push({
-        url: ensureProperUrl(url),
+        url: `${cookie.secure ? 'https' : 'http'}://${url}`,
         name: cookie.key,
         value: cookie.value,
         domain: cookie.domain,

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "../js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1426);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1468);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -17167,11 +17167,11 @@
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(27)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(30)(module)))
 
 /***/ }),
 
-/***/ 139:
+/***/ 137:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -17356,14 +17356,14 @@
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
 })(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(6)))
 
 /***/ }),
 
-/***/ 140:
+/***/ 138:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(141);
+/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(139);
 
 /**
                                                    * Initializes event bus on the global `pm` object. Does nothing if it is already initialized.
@@ -17380,11 +17380,11 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 141:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(0),
-EventEmitter = __webpack_require__(38);
+EventEmitter = __webpack_require__(39);
 
 // INTERNAL CHANNEL INDENTIFIERS
 var INTERNAL_CHANNEL_BROADCAST_MAIN = 'PM_EB_INT_BROADCAST_MAIN',
@@ -17426,7 +17426,7 @@ function getWebContentsId(webContents) {
    * @param {any} message 
    */
 function _broadcastRenderer(message, options) {
-  __webpack_require__(7).ipcRenderer.send(INTERNAL_CHANNEL_BROADCAST_MAIN, message, options);
+  __webpack_require__(8).ipcRenderer.send(INTERNAL_CHANNEL_BROADCAST_MAIN, message, options);
 }
 
 /**
@@ -17444,7 +17444,7 @@ function _broadcastMain(message) {
    * @param {any} message 
    */
 function _sendToWebContents(message) {
-  var allWebContents = __webpack_require__(7).webContents.getAllWebContents();
+  var allWebContents = __webpack_require__(8).webContents.getAllWebContents();
   _.chain(allWebContents).
   filter(function (webContents) {
     return _.includes(['window', 'webview'], webContents.getType());
@@ -17481,7 +17481,7 @@ function _constructMessage(channel, payload, source, target) {
 function _getCurrentContext() {
   // renderer process - window or webview
   if (_isRenderer()) {
-    var currentWebContents = __webpack_require__(7).remote.getCurrentWebContents();
+    var currentWebContents = __webpack_require__(8).remote.getCurrentWebContents();
     return {
       type: currentWebContents.getType(),
       id: getWebContentsId(currentWebContents) };
@@ -17570,13 +17570,13 @@ function EventBus(_context) {
      */
   (function _attachInternalEvents() {
     if (_isRenderer()) {
-      __webpack_require__(7).ipcRenderer.
+      __webpack_require__(8).ipcRenderer.
       on(INTERNAL_CHANNEL_BROADCAST_REND, function (event, message) {
         _dispatch(message);
       });
     } else
     {
-      __webpack_require__(7).ipcMain.
+      __webpack_require__(8).ipcMain.
       on(INTERNAL_CHANNEL_BROADCAST_MAIN, function (event, message, options) {
         _dispatch(message);
         if (!options.onlyToMain) {
@@ -17597,24 +17597,40 @@ function EventBus(_context) {
 module.exports = function initialize() {
   return new EventBus(_getCurrentContext());
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 
-/***/ 1426:
+/***/ 146:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const GET_LOGGEDIN_USERS = 'getLoggedInUsers';
+/* harmony export (immutable) */ __webpack_exports__["a"] = GET_LOGGEDIN_USERS;
+
+const SEND_TO_MAIN = 'sendToMain';
+/* harmony export (immutable) */ __webpack_exports__["b"] = SEND_TO_MAIN;
+
+const VIEW_READY = 'viewReady';
+/* harmony export (immutable) */ __webpack_exports__["c"] = VIEW_READY;
+
+
+/***/ }),
+
+/***/ 1468:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1427);
+module.exports = __webpack_require__(1469);
 
 
 /***/ }),
 
-/***/ 1427:
+/***/ 1469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(1428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(1470);
 
 
 __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */].init();
@@ -17623,20 +17639,20 @@ window.sh = __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */];
 
 /***/ }),
 
-/***/ 1428:
+/***/ 1470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shell_shellController__ = __webpack_require__(1429);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shell_shellMeta__ = __webpack_require__(1432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shell_authHandler__ = __webpack_require__(1433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter__ = __webpack_require__(1434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shell_shellController__ = __webpack_require__(1471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shell_shellMeta__ = __webpack_require__(1474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shell_authHandler__ = __webpack_require__(1475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter__ = __webpack_require__(1476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shell_shellUtils__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shell_shellUtils__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shell_shellConstants__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shell_shellActions__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shell_shellConstants__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shell_shellActions__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_model_event__ = __webpack_require__(3);
 
 
@@ -17649,11 +17665,11 @@ window.sh = __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */];
 
 
 
-const session = __webpack_require__(7).remote.session;
+const session = __webpack_require__(8).remote.session;
 
-const electronApp = __webpack_require__(7).remote.app;
+const electronApp = __webpack_require__(8).remote.app;
 
-const { ipcRenderer } = __webpack_require__(7);
+const { ipcRenderer } = __webpack_require__(8);
 
 const _ = __webpack_require__(0);
 
@@ -18097,7 +18113,8 @@ const sh = {
     this.attachShellIPCListeners(view, opts);
     this.setViewAttributes(view, opts);
     this.meta.setActivePartition(opts.partitionId);
-    this.overrideCORSHeaders(opts.partitionId);
+
+    this.overrideRequestHeaders(opts.partitionId);
   },
 
   /**
@@ -18134,18 +18151,17 @@ const sh = {
       * 
       * @param {String} partitionId - ID of the partition
       */
-  overrideCORSHeaders(partitionId) {
+  overrideRequestHeaders(partitionId) {
     let persistPartition = 'persist:' + partitionId;
 
     if (partitionId === __WEBPACK_IMPORTED_MODULE_6__shell_shellConstants__["b" /* DEFAULT_PARTITION */]) {
       persistPartition = '';
     }
+    ipcRenderer.send('overrideRequestHeaders', {
+      partitionId: persistPartition,
+      headers: { Origin: window.CORS_ORIGIN_HEADER } });
 
-    let viewSession = session.fromPartition(persistPartition);
-    viewSession.webRequest.onBeforeSendHeaders((request, callback) => {
-      request.requestHeaders['Origin'] = window.CORS_ORIGIN_HEADER;
-      callback({ cancel: false, requestHeaders: request.requestHeaders });
-    });
+
   },
 
   /**
@@ -18242,7 +18258,7 @@ const sh = {
     }
 
     // Gets the session for the partition provided
-    const cookiesSession = __webpack_require__(7).remote.session.
+    const cookiesSession = __webpack_require__(8).remote.session.
     fromPartition(cookiePartition);
 
     // clean and call the cb function.
@@ -18265,13 +18281,13 @@ const sh = {
 
 /***/ }),
 
-/***/ 1429:
+/***/ 1471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__users__ = __webpack_require__(1430);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partitions__ = __webpack_require__(1431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shellUtils__ = __webpack_require__(237);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__users__ = __webpack_require__(1472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partitions__ = __webpack_require__(1473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shellUtils__ = __webpack_require__(236);
 
 
 
@@ -18425,12 +18441,12 @@ var shellController = {
 
 /***/ }),
 
-/***/ 1430:
+/***/ 1472:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(237);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(3);
 
 
@@ -18594,17 +18610,17 @@ var users = {
 
 /***/ }),
 
-/***/ 1431:
+/***/ 1473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(237);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(236);
 
 
 
 
-const uuidV4 = __webpack_require__(57);
+const uuidV4 = __webpack_require__(58);
 
 const DEFAULT_PARTITION = 'default';
 
@@ -18726,7 +18742,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 1432:
+/***/ 1474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18873,7 +18889,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 1433:
+/***/ 1475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19015,7 +19031,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 1434:
+/***/ 1476:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = {
@@ -19054,23 +19070,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 147:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const GET_LOGGEDIN_USERS = 'getLoggedInUsers';
-/* harmony export (immutable) */ __webpack_exports__["a"] = GET_LOGGEDIN_USERS;
-
-const SEND_TO_MAIN = 'sendToMain';
-/* harmony export (immutable) */ __webpack_exports__["b"] = SEND_TO_MAIN;
-
-const VIEW_READY = 'viewReady';
-/* harmony export (immutable) */ __webpack_exports__["c"] = VIEW_READY;
-
-
-/***/ }),
-
-/***/ 217:
+/***/ 216:
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -19109,7 +19109,7 @@ if (getRandomValues) {
 
 /***/ }),
 
-/***/ 218:
+/***/ 217:
 /***/ (function(module, exports) {
 
 /**
@@ -19139,7 +19139,7 @@ module.exports = bytesToUuid;
 
 /***/ }),
 
-/***/ 237:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19157,34 +19157,6 @@ var shellUtils = {
 
 /* harmony default export */ __webpack_exports__["a"] = (shellUtils);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function () {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function () {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
 
 /***/ }),
 
@@ -24787,7 +24759,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35).setImmediate, __webpack_require__(5), __webpack_require__(4), __webpack_require__(27)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36).setImmediate, __webpack_require__(6), __webpack_require__(4), __webpack_require__(30)(module)))
 
 /***/ }),
 
@@ -24921,7 +24893,35 @@ processEvent = function (event, allowedEvents, iteratee, callback) {
 
 /***/ }),
 
-/***/ 35:
+/***/ 30:
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function () {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function () {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !== "undefined" && global || typeof self !== "undefined" && self || window;
@@ -24973,7 +24973,7 @@ exports._unrefActive = exports.active = function (item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(139);
+__webpack_require__(137);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -24983,7 +24983,7 @@ exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || t
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25019,7 +25019,7 @@ const PARTITIONS_STORE = {
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -25316,7 +25316,43 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 5:
+/***/ 58:
+/***/ (function(module, exports, __webpack_require__) {
+
+var rng = __webpack_require__(216);
+var bytesToUuid = __webpack_require__(217);
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+
+/***/ }),
+
+/***/ 6:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -25507,43 +25543,7 @@ process.umask = function () {
 
 /***/ }),
 
-/***/ 57:
-/***/ (function(module, exports, __webpack_require__) {
-
-var rng = __webpack_require__(217);
-var bytesToUuid = __webpack_require__(218);
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
-
-/***/ }),
-
-/***/ 643:
+/***/ 653:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25610,7 +25610,7 @@ module.exports = v4;
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("electron");

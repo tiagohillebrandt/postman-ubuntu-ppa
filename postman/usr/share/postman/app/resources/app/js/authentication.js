@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "../js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1435);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1477);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -17167,11 +17167,11 @@
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(27)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(30)(module)))
 
 /***/ }),
 
-/***/ 139:
+/***/ 137:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -17356,14 +17356,14 @@
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
 })(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(6)))
 
 /***/ }),
 
-/***/ 140:
+/***/ 138:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(141);
+/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(139);
 
 /**
                                                    * Initializes event bus on the global `pm` object. Does nothing if it is already initialized.
@@ -17380,11 +17380,11 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 141:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(0),
-EventEmitter = __webpack_require__(38);
+EventEmitter = __webpack_require__(39);
 
 // INTERNAL CHANNEL INDENTIFIERS
 var INTERNAL_CHANNEL_BROADCAST_MAIN = 'PM_EB_INT_BROADCAST_MAIN',
@@ -17426,7 +17426,7 @@ function getWebContentsId(webContents) {
    * @param {any} message 
    */
 function _broadcastRenderer(message, options) {
-  __webpack_require__(7).ipcRenderer.send(INTERNAL_CHANNEL_BROADCAST_MAIN, message, options);
+  __webpack_require__(8).ipcRenderer.send(INTERNAL_CHANNEL_BROADCAST_MAIN, message, options);
 }
 
 /**
@@ -17444,7 +17444,7 @@ function _broadcastMain(message) {
    * @param {any} message 
    */
 function _sendToWebContents(message) {
-  var allWebContents = __webpack_require__(7).webContents.getAllWebContents();
+  var allWebContents = __webpack_require__(8).webContents.getAllWebContents();
   _.chain(allWebContents).
   filter(function (webContents) {
     return _.includes(['window', 'webview'], webContents.getType());
@@ -17481,7 +17481,7 @@ function _constructMessage(channel, payload, source, target) {
 function _getCurrentContext() {
   // renderer process - window or webview
   if (_isRenderer()) {
-    var currentWebContents = __webpack_require__(7).remote.getCurrentWebContents();
+    var currentWebContents = __webpack_require__(8).remote.getCurrentWebContents();
     return {
       type: currentWebContents.getType(),
       id: getWebContentsId(currentWebContents) };
@@ -17570,13 +17570,13 @@ function EventBus(_context) {
      */
   (function _attachInternalEvents() {
     if (_isRenderer()) {
-      __webpack_require__(7).ipcRenderer.
+      __webpack_require__(8).ipcRenderer.
       on(INTERNAL_CHANNEL_BROADCAST_REND, function (event, message) {
         _dispatch(message);
       });
     } else
     {
-      __webpack_require__(7).ipcMain.
+      __webpack_require__(8).ipcMain.
       on(INTERNAL_CHANNEL_BROADCAST_MAIN, function (event, message, options) {
         _dispatch(message);
         if (!options.onlyToMain) {
@@ -17597,31 +17597,31 @@ function EventBus(_context) {
 module.exports = function initialize() {
   return new EventBus(_getCurrentContext());
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 
-/***/ 1435:
+/***/ 1477:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1436);
+module.exports = __webpack_require__(1478);
 
 
 /***/ }),
 
-/***/ 1436:
+/***/ 1478:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_auth_scss__ = __webpack_require__(1437);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_auth_scss__ = __webpack_require__(1479);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_auth_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_auth_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__authService__ = __webpack_require__(1438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__authService__ = __webpack_require__(1480);
 const _ = __webpack_require__(0),
-{ shell } = __webpack_require__(7),
-url = __webpack_require__(185),
-querystring = __webpack_require__(222),
-session = __webpack_require__(7).remote.session;
+{ shell } = __webpack_require__(8),
+url = __webpack_require__(184),
+querystring = __webpack_require__(221),
+session = __webpack_require__(8).remote.session;
 
 
 
@@ -17853,18 +17853,18 @@ const AuthRenderer = (() => {
 
 /***/ }),
 
-/***/ 1437:
+/***/ 1479:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 1438:
+/***/ 1480:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_initializeEventBus__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_initializeEventBus__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_initializeEventBus___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_initializeEventBus__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(3);
 
@@ -17911,7 +17911,7 @@ const AuthRenderer = (() => {
 
 /***/ }),
 
-/***/ 185:
+/***/ 184:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17938,8 +17938,8 @@ const AuthRenderer = (() => {
 
 
 
-var punycode = __webpack_require__(376);
-var util = __webpack_require__(377);
+var punycode = __webpack_require__(377);
+var util = __webpack_require__(378);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -18022,7 +18022,7 @@ slashedProtocol = {
   'gopher:': true,
   'file:': true
 },
-    querystring = __webpack_require__(222);
+    querystring = __webpack_require__(221);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -18625,7 +18625,7 @@ Url.prototype.parseHost = function () {
 
 /***/ }),
 
-/***/ 222:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18634,7 +18634,7 @@ Url.prototype.parseHost = function () {
 
 
 var QueryString = exports;
-var Buffer = __webpack_require__(8).Buffer;
+var Buffer = __webpack_require__(9).Buffer;
 
 
 // a safe fast alternative to decodeURIComponent
@@ -19031,34 +19031,6 @@ function decodeStr(s, decoder) {
     return QueryString.unescape(s, true);
   }
 }
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function () {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function () {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
 
 /***/ }),
 
@@ -24661,7 +24633,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35).setImmediate, __webpack_require__(5), __webpack_require__(4), __webpack_require__(27)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36).setImmediate, __webpack_require__(6), __webpack_require__(4), __webpack_require__(30)(module)))
 
 /***/ }),
 
@@ -24795,7 +24767,35 @@ processEvent = function (event, allowedEvents, iteratee, callback) {
 
 /***/ }),
 
-/***/ 333:
+/***/ 30:
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function () {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function () {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
+/***/ 332:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24923,7 +24923,7 @@ function fromByteArray(uint8) {
 
 /***/ }),
 
-/***/ 334:
+/***/ 333:
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -25013,7 +25013,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ 335:
+/***/ 334:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -25024,7 +25024,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 35:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !== "undefined" && global || typeof self !== "undefined" && self || window;
@@ -25076,7 +25076,7 @@ exports._unrefActive = exports.active = function (item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(139);
+__webpack_require__(137);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -25086,7 +25086,7 @@ exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || t
 
 /***/ }),
 
-/***/ 376:
+/***/ 377:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -25615,11 +25615,11 @@ exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || t
 		root.punycode = punycode;
 	}
 })(this);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)(module), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30)(module), __webpack_require__(4)))
 
 /***/ }),
 
-/***/ 377:
+/***/ 378:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25642,7 +25642,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -25939,7 +25939,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -26130,14 +26130,14 @@ process.umask = function () {
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26151,9 +26151,9 @@ module.exports = require("electron");
 
 
 
-var base64 = __webpack_require__(333);
-var ieee754 = __webpack_require__(334);
-var isArray = __webpack_require__(335);
+var base64 = __webpack_require__(332);
+var ieee754 = __webpack_require__(333);
+var isArray = __webpack_require__(334);
 
 exports.Buffer = Buffer;
 exports.SlowBuffer = SlowBuffer;
