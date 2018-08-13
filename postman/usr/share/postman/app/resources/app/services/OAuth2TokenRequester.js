@@ -66,10 +66,11 @@ class OAuth2TokenRequester {
       ]);
     }
     else {
-      request.body.urlencoded.add({
-        key: 'client_id',
-        value: options.client_id
-      });
+      options.grant_type === OAUTH2_GRANT_TYPE.AUTHORIZATION_CODE &&
+        request.body.urlencoded.add({
+          key: 'client_id',
+          value: options.client_id
+        });
 
       request.auth = new sdk.RequestAuth({
         type: 'basic',

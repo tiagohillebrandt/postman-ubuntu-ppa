@@ -291,11 +291,6 @@ function handleRunCreate (event, id, runnerOptions = {}, runOptions, runMetaData
       },
 
       prerequest (err, cursor, prResults, item) {
-        _.forEach(prResults, (test) => {
-          test.result.globals = test.result.globals.values.syncToObject();
-          test.result.environment = test.result.environment.values.syncToObject();
-        });
-
         sender.send('RUNTIME_CALLBACK_PREREQUEST', id, wrapError(err), cursor, JSON.stringify(prResults), serializeSDKObject(item));
       },
 
@@ -333,11 +328,6 @@ function handleRunCreate (event, id, runnerOptions = {}, runOptions, runMetaData
       },
 
       test: (err, cursor, testResults, item) => {
-        _.forEach(testResults, (test) => {
-          test.result.globals = test.result.globals.values.syncToObject();
-          test.result.environment = test.result.environment.values.syncToObject();
-        });
-
         sender.send('RUNTIME_CALLBACK_TEST', id, wrapError(err), cursor, JSON.stringify(testResults), serializeSDKObject(item));
 
         // to make sure the run instance is not disposed before completing the callback
@@ -491,7 +481,7 @@ function handleRunDispose (event, id) {
 
 /**
  * Uses runtime to authorize the request and sends the result back to renderer.
- * 
+ *
  * @param {Object} event - The IPC event that invoked this function
  * @param {UUID} id - ID to determine whom to reply to.
  * @param {Object} request - Postman SDK Request
@@ -518,7 +508,7 @@ function handleAuthorizeRequest (event, id, request) {
 
 /**
  * Returns the manifest for the given auth type.
- * 
+ *
  * @param {Object} event - The IPC event that invoked this function
  * @param {UUID} id - ID to determine whom to reply to.
  * @param {String} authType - Authorization type

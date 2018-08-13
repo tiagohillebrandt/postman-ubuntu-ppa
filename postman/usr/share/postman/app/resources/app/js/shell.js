@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "../js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1468);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1604);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -82,7 +82,7 @@
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.5';
+  var VERSION = '4.17.10';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -506,6 +506,14 @@
   /** Used to access faster Node.js helpers. */
   var nodeUtil = (function() {
     try {
+      // Use `util.types` for Node.js 10+.
+      var types = freeModule && freeModule.require && freeModule.require('util').types;
+
+      if (types) {
+        return types;
+      }
+
+      // Legacy `process.binding('util')` for Node.js < 10.
       return freeProcess && freeProcess.binding && freeProcess.binding('util');
     } catch (e) {}
   }());
@@ -17167,11 +17175,11 @@
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(30)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(28)(module)))
 
 /***/ }),
 
-/***/ 137:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -17356,14 +17364,14 @@
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
 })(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 138:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(139);
+/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(142);
 
 /**
                                                    * Initializes event bus on the global `pm` object. Does nothing if it is already initialized.
@@ -17380,11 +17388,11 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 139:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(0),
-EventEmitter = __webpack_require__(39);
+EventEmitter = __webpack_require__(41);
 
 // INTERNAL CHANNEL INDENTIFIERS
 var INTERNAL_CHANNEL_BROADCAST_MAIN = 'PM_EB_INT_BROADCAST_MAIN',
@@ -17597,11 +17605,11 @@ function EventBus(_context) {
 module.exports = function initialize() {
   return new EventBus(_getCurrentContext());
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 146:
+/***/ 150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17617,20 +17625,20 @@ const VIEW_READY = 'viewReady';
 
 /***/ }),
 
-/***/ 1468:
+/***/ 1604:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1469);
+module.exports = __webpack_require__(1605);
 
 
 /***/ }),
 
-/***/ 1469:
+/***/ 1605:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(1470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(1606);
 
 
 __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */].init();
@@ -17639,20 +17647,20 @@ window.sh = __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */];
 
 /***/ }),
 
-/***/ 1470:
+/***/ 1606:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shell_shellController__ = __webpack_require__(1471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shell_shellMeta__ = __webpack_require__(1474);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shell_authHandler__ = __webpack_require__(1475);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter__ = __webpack_require__(1476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shell_shellController__ = __webpack_require__(1607);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shell_shellMeta__ = __webpack_require__(1610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shell_authHandler__ = __webpack_require__(1611);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter__ = __webpack_require__(1612);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__shell_adapters_authHandlerAdapter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shell_shellUtils__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shell_shellUtils__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__common_initializeEventBus__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shell_shellConstants__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shell_shellActions__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shell_shellConstants__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shell_shellActions__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_model_event__ = __webpack_require__(3);
 
 
@@ -18148,7 +18156,7 @@ const sh = {
       * Overrides all Origin headers for a given partition for CORS config.
       * This is used to make sure all cross-origin requests from the app has the Origin header set to a predefined value.
       * All services need this header to operate (Publishing Service, for example)
-      * 
+      *
       * @param {String} partitionId - ID of the partition
       */
   overrideRequestHeaders(partitionId) {
@@ -18281,13 +18289,13 @@ const sh = {
 
 /***/ }),
 
-/***/ 1471:
+/***/ 1607:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__users__ = __webpack_require__(1472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partitions__ = __webpack_require__(1473);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shellUtils__ = __webpack_require__(236);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__users__ = __webpack_require__(1608);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partitions__ = __webpack_require__(1609);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shellUtils__ = __webpack_require__(246);
 
 
 
@@ -18441,12 +18449,12 @@ var shellController = {
 
 /***/ }),
 
-/***/ 1472:
+/***/ 1608:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(236);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(665);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(3);
 
 
@@ -18610,17 +18618,17 @@ var users = {
 
 /***/ }),
 
-/***/ 1473:
+/***/ 1609:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(236);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dbService__ = __webpack_require__(665);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shellUtils__ = __webpack_require__(246);
 
 
 
 
-const uuidV4 = __webpack_require__(58);
+const uuidV4 = __webpack_require__(54);
 
 const DEFAULT_PARTITION = 'default';
 
@@ -18742,7 +18750,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 1474:
+/***/ 1610:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18889,7 +18897,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 1475:
+/***/ 1611:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19031,7 +19039,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 1476:
+/***/ 1612:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {module.exports = {
@@ -19070,7 +19078,7 @@ var partitions = {
 
 /***/ }),
 
-/***/ 216:
+/***/ 219:
 /***/ (function(module, exports) {
 
 // Unique ID creation requires a high quality random # generator.  In the
@@ -19078,9 +19086,11 @@ var partitions = {
 // and inconsistent support for the `crypto` API.  We do the best we can via
 // feature-detection
 
-// getRandomValues needs to be invoked in a context where "this" is a Crypto implementation.
-var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues.bind(crypto)) ||
-                      (typeof(msCrypto) != 'undefined' && msCrypto.getRandomValues.bind(msCrypto));
+// getRandomValues needs to be invoked in a context where "this" is a Crypto
+// implementation. Also, find the complete implementation of crypto on IE11.
+var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
+                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
+
 if (getRandomValues) {
   // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
   var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
@@ -19109,7 +19119,7 @@ if (getRandomValues) {
 
 /***/ }),
 
-/***/ 217:
+/***/ 220:
 /***/ (function(module, exports) {
 
 /**
@@ -19124,14 +19134,15 @@ for (var i = 0; i < 256; ++i) {
 function bytesToUuid(buf, offset) {
   var i = offset || 0;
   var bth = byteToHex;
-  return bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] + '-' +
-          bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]] +
-          bth[buf[i++]] + bth[buf[i++]];
+  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+  return ([bth[buf[i++]], bth[buf[i++]], 
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]],
+	bth[buf[i++]], bth[buf[i++]],
+	bth[buf[i++]], bth[buf[i++]]]).join('');
 }
 
 module.exports = bytesToUuid;
@@ -19139,7 +19150,7 @@ module.exports = bytesToUuid;
 
 /***/ }),
 
-/***/ 236:
+/***/ 246:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19161,6 +19172,216 @@ var shellUtils = {
 /***/ }),
 
 /***/ 28:
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function () {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function () {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getEventName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getEventData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getEventMeta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getEventNamespace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getLowLevelEvents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getActor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return processEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return findEvents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return subscribeToQueue; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
+
+
+
+const DEFAULT_QUEUE_HANDLER_TIMEOUT = 30 * 1000; // 30 seconds
+
+/**
+ *
+ * @param {String} name
+ * @param {String} namespace
+ * @param {Object=} data
+ * @param {Array[Object]} events
+ * @param {Object=} meta
+ */
+let createEvent = function (name, namespace, data, events, meta) {
+  // If the model or the actions are empty then it needs to error out.
+  if (__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEmpty(name) || __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEmpty(namespace)) {
+    throw new Error('ModelEvent: Cannot create event without name or namespace');
+  }
+
+  let event = { name, namespace };
+
+  data && (event.data = data);
+  events && (event.events = events);
+  meta && (event.meta = meta);
+
+  // returns the instruction POJO.
+  return event;
+},
+
+/**
+    *
+    */
+getEventName = function (event) {
+  return event && event.name;
+},
+
+getEventNamespace = function (event) {
+  return event && event.namespace;
+},
+
+getEventData = function (event) {
+  return event && event.data;
+},
+
+getEventMeta = function (event) {
+  return event && event.meta;
+},
+
+getLowLevelEvents = function (event) {
+  return event && event.events;
+},
+
+getActor = function (event) {
+  return event && event.meta && event.meta.actor;
+},
+
+/**
+    * @param {Object} event - Source event Object to extract data from.
+    * @param {Object} criteria - Event and namespace to extract data from.
+    */
+findEvents = function (event, criteria) {
+  if (!event) {
+    return [];
+  }
+  if (criteria.name === event.name && criteria.namespace === event.namespace) {
+    return [event];
+  }
+  let eventData = [];
+  __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.forEach(event.events, e => {
+    let data = findEvents(e, criteria);
+    if (!__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEmpty(data)) {
+      eventData = data;
+      return false;
+    }
+  });
+  return eventData;
+},
+
+processEvent = function (event, allowedEvents, iteratee, callback) {
+  // bail out
+  if (!event || !iteratee) {
+    return;
+  }
+
+  // bail out
+  if (!allowedEvents) {
+    callback(new Error('Could not find handlers dictionary to process events'));
+  }
+
+  let lowLevelEvents;
+
+  // if there is a handler for the current event, process with it
+  if (__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.includes(allowedEvents, getEventName(event))) {
+    iteratee.length < 2 && console.warn('It looks like you are trying to pass a handler to processEvent without a callback.');
+
+    return iteratee(event, callback);
+  }
+
+  lowLevelEvents = getLowLevelEvents(event);
+
+  // otherwise try if the low level events can be handled
+  __WEBPACK_IMPORTED_MODULE_1_async___default.a.eachSeries(lowLevelEvents, function (event, cb) {
+    // resetting call stack here
+    // for really large events the call stack can blow up really fast
+    setTimeout(function () {
+      return processEvent(event, allowedEvents, iteratee, cb);
+    }, 0);
+  }, callback);
+},
+
+subscribeToQueue = function subscribeToQueue(handler, timeout) {
+  if (!handler) {
+    return;
+  }
+
+  let modelEventsChannel = pm.eventBus.channel('model-events'),
+  handlerQueue,
+  disposeEventListener;
+
+  function asyncQueueWorker(event, cb) {
+    // flag used to make sure the worker callback `cb` is not called multiple times.
+    // queue will throw error if `cb` is called multiple times.
+    let done = false;
+
+    // Watchdog that calls cb in 1 minute so that queue is not blocked
+    let watchdog = setTimeout(() => {
+      !done && __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isFunction(cb) && cb();
+      done = true;
+      console.error('Model Event queue terminating handler for: ', event);
+    }, timeout || DEFAULT_QUEUE_HANDLER_TIMEOUT);
+
+    const doneCb = () => {
+      watchdog && clearTimeout(watchdog);
+      !done && __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isFunction(cb) && cb();
+      done = true;
+    };
+
+    try {
+      handler(event, doneCb);
+    }
+    catch (e) {
+      watchdog && clearTimeout(watchdog);
+      !done && __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isFunction(cb) && cb();
+      done = true;
+    }
+  }
+
+  handlerQueue = __WEBPACK_IMPORTED_MODULE_1_async___default.a.queue(asyncQueueWorker, 1);
+
+  disposeEventListener = modelEventsChannel.subscribe(function (event) {
+    handlerQueue.push(event, __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.noop);
+  });
+
+  return function disposeEventQueueSubscription() {
+    disposeEventListener && disposeEventListener();
+    handlerQueue.kill();
+  };
+};
+
+
+
+
+/***/ }),
+
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate, process, global, module) {(function (global, factory) {
@@ -24759,169 +24980,47 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36).setImmediate, __webpack_require__(6), __webpack_require__(4), __webpack_require__(30)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39).setImmediate, __webpack_require__(5), __webpack_require__(4), __webpack_require__(28)(module)))
 
 /***/ }),
 
-/***/ 3:
+/***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getEventName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getEventData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getEventMeta; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getEventNamespace; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getLowLevelEvents; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getActor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return processEvent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return findEvents; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
+const HTML_MAP = {
+  requester: 'requester.html',
+  runner: 'runner.html',
+  console: 'console.html',
+  shared: 'shared.html' };
+/* harmony export (immutable) */ __webpack_exports__["c"] = HTML_MAP;
 
 
 
-/**
-                            *
-                            * @param {String} name
-                            * @param {String} namespace
-                            * @param {Object=} data
-                            * @param {Array[Object]} events
-                            * @param {Object=} meta
-                            */
-let createEvent = function (name, namespace, data, events, meta) {
-  // If the model or the actions are empty then it needs to error out.
-  if (__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEmpty(name) || __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEmpty(namespace)) {
-    throw new Error('ModelEvent: Cannot create event without name or namespace');
-  }
-
-  let event = { name, namespace };
-
-  data && (event.data = data);
-  events && (event.events = events);
-  meta && (event.meta = meta);
-
-  // returns the instruction POJO.
-  return event;
-},
-
-/**
-    *
-    */
-getEventName = function (event) {
-  return event && event.name;
-},
-
-getEventNamespace = function (event) {
-  return event && event.namespace;
-},
-
-getEventData = function (event) {
-  return event && event.data;
-},
-
-getEventMeta = function (event) {
-  return event && event.meta;
-},
-
-getLowLevelEvents = function (event) {
-  return event && event.events;
-},
-
-getActor = function (event) {
-  return event && event.meta && event.meta.actor;
-},
-
-/**
-    * @param {Object} event - Source event Object to extract data from.
-    * @param {Object} criteria - Event and namespace to extract data from.
-    */
-findEvents = function (event, criteria) {
-  if (!event) {
-    return [];
-  }
-  if (criteria.name === event.name && criteria.namespace === event.namespace) {
-    return [event];
-  }
-  let eventData = [];
-  __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.forEach(event.events, e => {
-    let data = findEvents(e, criteria);
-    if (!__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEmpty(data)) {
-      eventData = data;
-      return false;
-    }
-  });
-  return eventData;
-},
-
-processEvent = function (event, allowedEvents, iteratee, callback) {
-  // bail out
-  if (!event || !iteratee) {
-    return;
-  }
-
-  // bail out
-  if (!allowedEvents) {
-    callback(new Error('Could not find handlers dictionary to process events'));
-  }
-
-  let lowLevelEvents;
-
-  // if there is a handler for the current event, process with it
-  if (__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.includes(allowedEvents, getEventName(event))) {
-    iteratee.length < 2 && console.warn('It looks like you are trying to pass a handler to processEvent without a callback.');
-
-    return iteratee(event, callback);
-  }
-
-  lowLevelEvents = getLowLevelEvents(event);
-
-  // otherwise try if the low level events can be handled
-  __WEBPACK_IMPORTED_MODULE_1_async___default.a.eachSeries(lowLevelEvents, function (event, cb) {
-    // resetting call stack here
-    // for really large events the call stack can blow up really fast
-    setTimeout(function () {
-      return processEvent(event, allowedEvents, iteratee, cb);
-    }, 0);
-  }, callback);
-};
+const WINDOW_EVENTS_MAP = {
+  requester: 'setWindowIds',
+  runner: 'setRunnerWindowId' };
+/* harmony export (immutable) */ __webpack_exports__["e"] = WINDOW_EVENTS_MAP;
 
 
+
+const DEFAULT_PARTITION = 'default';
+/* harmony export (immutable) */ __webpack_exports__["b"] = DEFAULT_PARTITION;
+
+const DEFAULT_COOKIE_PARTITION = 'persist:postman_user_cookies';
+/* harmony export (immutable) */ __webpack_exports__["a"] = DEFAULT_COOKIE_PARTITION;
+
+
+const PARTITIONS_STORE = {
+  COOKIES: 'cookies',
+  INDEXEDDB: 'indexdb',
+  LOCALSTORAGE: 'localstorage' };
+/* harmony export (immutable) */ __webpack_exports__["d"] = PARTITIONS_STORE;
 
 
 /***/ }),
 
-/***/ 30:
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function () {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function () {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-/***/ }),
-
-/***/ 36:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !== "undefined" && global || typeof self !== "undefined" && self || window;
@@ -24973,7 +25072,7 @@ exports._unrefActive = exports.active = function (item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(137);
+__webpack_require__(140);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -24983,43 +25082,33 @@ exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || t
 
 /***/ }),
 
-/***/ 368:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 4:
+/***/ (function(module, exports) {
 
-"use strict";
-const HTML_MAP = {
-  requester: 'requester.html',
-  runner: 'runner.html',
-  console: 'console.html',
-  shared: 'shared.html' };
-/* harmony export (immutable) */ __webpack_exports__["c"] = HTML_MAP;
+var g;
 
+// This works in non-strict mode
+g = function () {
+	return this;
+}();
 
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
 
-const WINDOW_EVENTS_MAP = {
-  requester: 'setWindowIds',
-  runner: 'setRunnerWindowId' };
-/* harmony export (immutable) */ __webpack_exports__["e"] = WINDOW_EVENTS_MAP;
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
 
-
-
-const DEFAULT_PARTITION = 'default';
-/* harmony export (immutable) */ __webpack_exports__["b"] = DEFAULT_PARTITION;
-
-const DEFAULT_COOKIE_PARTITION = 'persist:postman_user_cookies';
-/* harmony export (immutable) */ __webpack_exports__["a"] = DEFAULT_COOKIE_PARTITION;
-
-
-const PARTITIONS_STORE = {
-  COOKIES: 'cookies',
-  INDEXEDDB: 'indexdb',
-  LOCALSTORAGE: 'localstorage' };
-/* harmony export (immutable) */ __webpack_exports__["d"] = PARTITIONS_STORE;
-
+module.exports = g;
 
 /***/ }),
 
-/***/ 39:
+/***/ 41:
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -25290,69 +25379,7 @@ function isUndefined(arg) {
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = function () {
-	return this;
-}();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-/***/ }),
-
-/***/ 58:
-/***/ (function(module, exports, __webpack_require__) {
-
-var rng = __webpack_require__(216);
-var bytesToUuid = __webpack_require__(217);
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rng)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid(rnds);
-}
-
-module.exports = v4;
-
-
-/***/ }),
-
-/***/ 6:
+/***/ 5:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -25543,7 +25570,43 @@ process.umask = function () {
 
 /***/ }),
 
-/***/ 653:
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+var rng = __webpack_require__(219);
+var bytesToUuid = __webpack_require__(220);
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+
+/***/ }),
+
+/***/ 665:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

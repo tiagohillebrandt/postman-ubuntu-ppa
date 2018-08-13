@@ -114,6 +114,11 @@ var electron = require('electron'),
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('decreaseZoom', null, options); }
           },
           {
+            label: 'Reset Zoom',
+            accelerator: 'CmdOrCtrl+0',
+            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('resetZoom', null, options); }
+          },
+          {
             label: 'Toggle Sidebar',
             accelerator: 'CmdOrCtrl+\\',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSidebar', null, options); }
@@ -285,6 +290,11 @@ var electron = require('electron'),
             label: 'Zoom Out',
             accelerator: 'CmdOrCtrl+-',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('decreaseZoom', null, options); }
+          },
+          {
+            label: 'Reset Zoom',
+            accelerator: 'CmdOrCtrl+0',
+            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('resetZoom', null, options); }
           },
           {
             label: 'Toggle Sidebar',

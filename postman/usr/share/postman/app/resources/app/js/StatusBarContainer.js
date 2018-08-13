@@ -1,366 +1,10 @@
 webpackJsonp([10],{
 
-/***/ 1674:
+/***/ 1980:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FoundTarget; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tooltips__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_CollectionIcon__ = __webpack_require__(657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_EnvironmentIcon__ = __webpack_require__(1553);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__ = __webpack_require__(1605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__collections_CollectionMetaIcons__ = __webpack_require__(661);
-
-
-
-
-
-
-
-
-
-let
-
-FoundInstance = class FoundInstance extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-    this.state = { showTooltip: false };
-    this.handleShowTooltipToggle = this.handleShowTooltipToggle.bind(this);
-    this.handleHideTooltipToggle = this.handleHideTooltipToggle.bind(this);
-  }
-
-  handleShowTooltipToggle() {
-    if (!this.props.tooltipContent) {
-      return;
-    }
-
-    !this.state.showTooltip && this.setState({ showTooltip: true });
-  }
-
-  handleHideTooltipToggle() {
-    if (!this.props.tooltipContent) {
-      return;
-    }
-
-    this.state.showTooltip && this.setState({ showTooltip: false });
-  }
-
-  render() {
-    let { text } = this.props;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-          className: this.props.className, ref: 'searchInstance',
-          onMouseEnter: this.handleShowTooltipToggle,
-          onMouseLeave: this.handleHideTooltipToggle },
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, text.substring(0, this.props.startIndex)),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'instance-highlight-text' }, this.props.matchedString),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, text.substring(this.props.startIndex + this.props.matchedString.length, text.length)),
-
-        this.props.tooltipContent &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'instance-tooltip', ref: 'instanceTooltip' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tooltips__["a" /* Tooltip */], {
-              show: this.state.showTooltip,
-              refElement: this.refs.instanceTooltip,
-              placement: 'bottom-left',
-              immediate: true },
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tooltips__["b" /* TooltipBody */], null,
-              this.props.tooltipContent)))));
-
-
-
-
-
-
-  }};let
-
-
-FoundEntity = class FoundEntity extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-  }
-
-  getLabelForEntity(entity) {
-    if (!entity) {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null);
-    }
-    const labels = {
-      'GET': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--GET' }, entity),
-      'POST': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--POST' }, entity),
-      'DELETE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--DELETE' }, entity),
-      'PUT': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, entity),
-      'FOLDER': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__["a" /* default */], { className: 'identifier--FOLDER' }) };
-
-
-    return labels[entity] || __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--default' }, entity);
-  }
-
-  render() {
-    let { entity } = this.props;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity' },
-
-        entity.type !== this.props.baseType &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__path' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-breadcrumb' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'path-prefix' }, entity.path),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-name-wrapper' },
-              '  >  ',
-              this.getLabelForEntity(entity.label),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-name' }, entity.name)))),
-
-
-
-
-
-        _.invoke(this.props, 'renderOpenEntityComponent', entity),
-
-
-        _.map(entity.fields, (field, index) => {
-          return (
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FoundFields, {
-              key: index,
-              field: field }));
-
-
-        })));
-
-
-
-  }};let
-
-
-FoundFields = class FoundFields extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let { field } = this.props;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__field' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target-entity__field-label' }, field.label),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity--instances' },
-
-          _.map(field.foundAt, (instance, index) => {
-            return (
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FoundInstance, {
-                key: index,
-                className: 'found-in-target-entity--instance',
-                text: instance.metaString,
-                matchedString: instance.matchedString,
-                startIndex: instance.index,
-                tooltipContent: instance.tooltipContent }));
-
-
-          }))));
-
-
-
-
-  }};let
-
-
-FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-    this.state = { show: true };
-    this.toggleShow = this.toggleShow.bind(this);
-  }
-
-  getClassNames() {
-    return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({
-      'found-in-target': true,
-      'empty-name': !_.get(this.props.target, 'targetName') });
-
-  }
-
-  toggleShow() {
-    this.setState({ show: !this.state.show });
-  }
-
-  getBaseIcon(baseType) {
-    switch (baseType) {
-      case 'collection':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_CollectionIcon__["a" /* default */], { className: 'target-collection' });
-      case 'environment':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_EnvironmentIcon__["a" /* default */], { className: 'target-environment' });}
-
-  }
-
-  render() {
-    let { target } = this.props;
-    let collectionStore = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('CollectionStore');
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClassNames() },
-
-        target.targetName &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--name-wrapper', onClick: this.toggleShow },
-          this.state.show ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__["a" /* default */], null) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__["a" /* default */], null),
-          this.getBaseIcon(this.props.baseType),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, target.targetName),
-
-          this.props.baseType === 'collection' &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__collections_CollectionMetaIcons__["a" /* default */], { collection: collectionStore.find(target.id) })),
-
-
-
-
-        this.state.show &&
-        _.map(target.entities, (entity, index) => {
-          return (
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FoundEntity, {
-              key: index,
-              baseType: this.props.baseType,
-              entity: entity,
-              renderOpenEntityComponent: this.props.renderOpenEntityComponent }));
-
-
-        })));
-
-
-
-  }};
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 1675:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceFieldSelector; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__ = __webpack_require__(78);
-var _class;
-
-
-
-let
-
-
-FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default()(_class = class FindReplaceFieldSelector extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-    this.state = { show: false };
-    this.handleToggleSelector = this.handleToggleSelector.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
-  handleToggleSelector() {
-    this.setState({ show: !this.state.show });
-  }
-
-  handleFieldSelect(type, property) {
-    this.props.onIncludeFields(type, property);
-  }
-
-  handleClickOutside() {
-    this.setState({ show: false });
-  }
-
-  getFieldLabelText() {
-    return _.size(this.props.includedFields) == this.props.fieldCount ? 'all' : _.size(this.props.includedFields);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace--field-selector' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
-            type: 'text',
-            className: 'find-replace--field-selector-button',
-            onClick: this.handleToggleSelector },
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Include ${this.getFieldLabelText()} fields`),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__["a" /* default */], { className: 'find-replace--field-selector-expand' })),
-
-
-        this.state.show &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--head' }, 'INCLUDE FIELDS'),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--list' },
-
-            _.map(this.props.fields, (fieldType, index) => {
-              return (
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: index, className: 'search-field-selector--section' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--section-label' }, fieldType.displayName),
-
-                  _.map(fieldType.fields, (field, index) => {
-                    return (
-                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: index, className: 'search-field-selector--section-item' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], { checked: _.includes(this.props.includedFields, `${fieldType.type}-${field.key}`), onChange: this.handleFieldSelect.bind(this, fieldType.type, field.key) }),
-                        field.displayName));
-
-
-                  })));
-
-
-
-            })))));
-
-
-
-
-
-
-  }}) || _class;
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 1676:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceNotFound; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(107);
-
-
-let
-
-FindReplaceNotFound = class FindReplaceNotFound extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-image' }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-header' }, `Nothing found for "${this.props.searchedQuery}"`),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Try another search, or modify the entities to find in. ')))));
-
-
-
-
-  }};
-
-/***/ }),
-
-/***/ 1841:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppUrlConstants__ = __webpack_require__(107);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppUrlConstants__ = __webpack_require__(128);
 let
 
 PluginInterface = class PluginInterface {
@@ -475,14 +119,547 @@ PluginInterface = class PluginInterface {
 
 /***/ }),
 
-/***/ 1842:
+/***/ 1981:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AuthConstants__ = __webpack_require__(671);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
+
+const limit = 25;
+
+/**
+                   * Instances of the searched string in a given entity property
+                   *
+                   * @typedef {Object} foundInstance
+                   * @property {number} actualIndex - Start index of the found result in actual string
+                   * @property {number} index - Start index of the found result in meta string
+                   * @property {string} matchedString - String which matched the given Regex
+                   * @property {string} metaString - A section of the string that contains the found result
+                   */
+
+
+/**
+                       * Entity properties in which we found the searched string
+                       *
+                       * @typedef {Object} foundFields
+                       * @property {string} label Label to be displayed in results
+                       * @property {string} property Property or path to reach the property
+                       * @property {foundInstance[]} instances Array of found instances
+                       */
+
+/**
+                           *
+                           * @param {Object} options
+                           * @param {string} options.text - string in which you want to find
+                           * @param {regex} options.regex
+                           * @param {string} [options.meta] - optional properties
+                           *
+                           * @returns {foundInstance[]}
+                           */
+function find({ text, regex, meta = {} }) {
+  let arr,
+  result = [];
+  text = text || '';
+  while ((arr = regex.exec(text)) !== null) {
+    let delta = Math.floor(arr.index / limit),
+    matchedString = arr[0];
+
+    result.push(_.extend({
+      actualIndex: arr.index,
+      matchedString: matchedString,
+      index: arr.index - limit * delta,
+      metaString: text.substring(limit * delta, arr.index + matchedString.length > limit * (delta + 1) ? arr.index + matchedString.length : limit * (delta + 1)) },
+    meta));
+  }
+
+  return result;
+}
+
+/**
+   * @param {Object} option
+   * @param {String} option.data Property value in which you want to find
+   * @param {regex} option.regex
+   * @param {string} option.label Label to be displayed in results
+   * @param {string} option.[propertyPath] Property or path to reach that property
+   *
+   * @returns {foundFields[]}
+   */
+function findInString({ data, regex, label, propertyPath = '' }) {
+  let splitedProperty = propertyPath.split('.'),
+  property = splitedProperty.shift(),
+  result = find({ text: data, regex, meta: { pathToProperty: splitedProperty.join('.') } });
+
+  if (_.isEmpty(result)) {
+    return [];
+  }
+  return [{
+    property,
+    label,
+    instances: result }];
+
+}
+
+/**
+   * @param {Object} option
+   * @param {Object[]} option.data Property value in which you want to find
+   * @param {regex} option.regex
+   * @param {string} option.label Label to be displayed in results
+   * @param {string} option.propertyPath Property or path to reach that property
+   *
+   * @returns {foundFields[]}
+   */
+function findInArrObj({ data, regex, label, propertyPath }) {
+  let keys = [],
+  values = [],
+  description = [];
+  _.forEach(data, (obj, index) => {
+    let searchedKeys = find({
+      text: _.toString(obj.key),
+      regex,
+      meta: { pathToProperty: `${index}.key` } }),
+
+    searchedValues = find({
+      text: _.toString(obj.value),
+      regex,
+      meta: {
+        tooltipContent: `Key: ${obj.key}`,
+        pathToProperty: `${index}.value` } }),
+
+
+    searchedDescription = find({
+      text: _.toString(obj.description),
+      regex,
+      meta: {
+        tooltipContent: `Key: ${obj.key}`,
+        pathToProperty: `${index}.description` } });
+
+
+
+    if (!_.isEmpty(searchedKeys)) {
+      keys = _.concat(keys, searchedKeys);
+    }
+    if (!_.isEmpty(searchedValues)) {
+      values = _.concat(values, searchedValues);
+    }
+    if (!_.isEmpty(searchedDescription)) {
+      description = _.concat(description, searchedDescription);
+    }
+  });
+
+  let result = [];
+  if (!_.isEmpty(keys)) {
+    result.push({
+      property: propertyPath,
+      label: `${label} name`,
+      instances: keys });
+
+  }
+  if (!_.isEmpty(values)) {
+    result.push({
+      property: propertyPath,
+      label: `${label} value`,
+      instances: values });
+
+  }
+  if (!_.isEmpty(description)) {
+    result.push({
+      property: propertyPath,
+      label: `${label} description`,
+      instances: description });
+
+  }
+
+  return result;
+}
+
+/**
+   * @param {Object} option
+   * @param {Object[]|String} option.data Property value in which you want to find
+   * @param {regex} option.regex
+   * @param {string} option.label Label to be displayed in results
+   * @param {string} option.propertyPath Property or path to reach that property
+   *
+   * @returns {foundFields[]}
+   */
+function findInBody({ data, regex, label, propertyPath }) {
+  if (_.isEmpty(data)) {
+    return [];
+  }
+  if (typeof data === 'string') {
+    return findInString({ data, regex, label: 'Request Body', propertyPath });
+  } else
+  {
+    return findInArrObj({ data, regex, label: 'Request Body', propertyPath });
+  }
+}
+
+/**
+   * @param {Object} option
+   * @param {Object} option.data Property value in which you want to find
+   * @param {regex} option.regex
+   * @param {string} option.label Label to be displayed in results
+   * @param {string} option.propertyPath Property or path to reach that property
+   *
+   * @returns {foundFields[]}
+   */
+function findInAuth({ data, regex, label, propertyPath }) {
+  let results = [];
+  if (_.isEmpty(data)) {
+    return results;
+  }
+  let type = _.get(data, 'type'),
+  authArray = _.get(data, [type], []),
+  ignoreProperties = [
+  'id',
+  'showPassword',
+  'disableRetryRequest',
+  'signatureMethod',
+  'timestamp',
+  'addParamsToHeader',
+  'addEmptyParamsToSign',
+  'disableRetryRequest'],
+
+  authLabel = __WEBPACK_IMPORTED_MODULE_1__constants_AuthConstants__["i" /* AUTH_TYPE_LABEL_MAP */][type];
+
+  _.forEach(authArray, (obj, index) => {
+    if (_.includes(ignoreProperties, _.get(obj, 'key'))) {
+      return;
+    }
+    let authResult = findInString({ data: obj.value, regex, label: `${label} > ${authLabel} > ${obj.key}`, propertyPath: `${propertyPath}.${type}.${index}.value` });
+    results = _.concat(results, authResult);
+  });
+  return results;
+}
+
+// Replacer Helpers
+
+/**
+ *
+ * @param {Object} option
+ * @param {string} option.source Base string in which you want to replace
+ * @param {number} option.index index at which you want to replace
+ * @param {string} option.oldString String to be replace
+ * @param {string} option.newString String to replace with
+ */
+function replaceAt({ source, index, oldString, newString }) {
+  return source.substr(0, index) + source.substr(index, source.length).replace(oldString, newString);
+}
+
+/**
+   *
+   * @param {Object} option
+   * @param {Object} option.data Object in which these properties needs to be replaced
+   * @param {Object} option.replacementString String to replace with
+   * @param {FoundInstance[]} option.instances
+   * @param {String} option.propertyPath Path to reach that Property
+   */
+function replaceInProperty({ data, replacementString, instances, propertyPath }) {
+  let diff = 0;
+  _.forEach(instances, instance => {
+    let newString = replaceAt({ source: _.get(data, propertyPath), index: instance.actualIndex + diff, oldString: instance.matchedString, newString: replacementString });
+    diff += replacementString.length - instance.matchedString.length;
+    _.set(data, propertyPath, newString);
+  });
+}
+
+/**
+   *
+   * @param {Object} option
+   * @param {Object} option.data Object in which these properties needs to be replaced
+   * @param {Object} option.replacementString String to replace with
+   * @param {FoundInstance[]} option.instances
+   * @param {String} option.propertyPath Path to reach that Property
+   */
+function replaceInScripts({ data, replacementString, instances, propertyPath }) {
+  let type = _.last(propertyPath.split('_')),
+  script = _.get(_.find(data.events, ['listen', type]), 'script', {}),
+  scriptString = { exec: _.get(script, 'exec', []).join('\n') };
+  replaceInProperty({ data: scriptString, replacementString, instances, propertyPath: 'exec' });
+  _.set(script, 'exec', scriptString.exec.split('\n'));
+}
+
+/**
+   *
+   * @param {Object} option
+   * @param {Object} option.data Object in which these properties needs to be replaced
+   * @param {Object} option.replacementString String to replace with
+   * @param {FoundInstance[]} option.instances
+   * @param {String} option.propertyPath Path to reach that Property
+   */
+function replaceInBody({ data, replacementString, instances, propertyPath }) {
+  if (typeof _.get(data, propertyPath) === 'string') {
+    replaceInProperty({ data, replacementString, instances, propertyPath });
+  } else
+  {
+    replaceInObject({ data, replacementString, instances, propertyPath });
+  }
+}
+
+/**
+   *
+   * @param {Object} option
+   * @param {Object} option.data Object in which these properties needs to be replaced
+   * @param {Object} option.replacementString String to replace with
+   * @param {FoundInstance[]} option.instances
+   * @param {String} option.propertyPath Path to reach that Property
+   */
+function replaceInObject({ data, replacementString, instances, propertyPath }) {
+  let groupedProperty = _.groupBy(instances, 'pathToProperty');
+  _.forOwn(groupedProperty, (groupedValues, key) => {
+    replaceInProperty({ data, replacementString, instances: groupedValues, propertyPath: `${propertyPath}.${key}` });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  collection: {
+    name: {
+      accessor: item => item.name,
+      label: 'Collection name',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Name' },
+
+    description: {
+      accessor: item => item.description,
+      label: 'Collection description',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Description' },
+
+    events_prerequest: {
+      accessor: item => _.get(_.find(item.events, ['listen', 'prerequest']), ['script', 'exec'], []).join('\n'),
+      label: 'Collection Pre-request script',
+      findHelper: findInString,
+      replaceHelper: replaceInScripts,
+      filterDisplayName: 'Pre-request script' },
+
+    events_test: {
+      accessor: item => _.get(_.find(item.events, ['listen', 'test']), ['script', 'exec'], []).join('\n'),
+      label: 'Collection Tests',
+      findHelper: findInString,
+      replaceHelper: replaceInScripts,
+      filterDisplayName: 'Tests' },
+
+    auth: {
+      accessor: item => item.auth,
+      label: 'Authorization',
+      findHelper: findInAuth,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Authorization' },
+
+    variables: {
+      accessor: item => item.variables,
+      label: 'Variable',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Variable' } },
+
+
+  folder: {
+    name: {
+      accessor: item => item.name,
+      label: 'Folder name',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Name' },
+
+    description: {
+      accessor: item => item.description,
+      label: 'Folder description',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Description' },
+
+    events_prerequest: {
+      accessor: item => _.get(_.find(item.events, ['listen', 'prerequest']), ['script', 'exec'], []).join('\n'),
+      label: 'Folder Pre-request script',
+      findHelper: findInString,
+      replaceHelper: replaceInScripts,
+      filterDisplayName: 'Pre-request script' },
+
+    events_test: {
+      accessor: item => _.get(_.find(item.events, ['listen', 'test']), ['script', 'exec'], []).join('\n'),
+      label: 'Folder Tests',
+      findHelper: findInString,
+      replaceHelper: replaceInScripts,
+      filterDisplayName: 'Tests' },
+
+    auth: {
+      accessor: item => item.auth,
+      label: 'Authorization',
+      findHelper: findInAuth,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Authorization' } },
+
+
+  request: {
+    name: {
+      accessor: item => item.name,
+      label: 'Request name',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Name' },
+
+    description: {
+      accessor: item => item.description,
+      label: 'Request description',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Description' },
+
+    url: {
+      accessor: item => item.url,
+      label: 'Request URL',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'URL' },
+
+    queryParams: {
+      accessor: item => item.queryParams,
+      label: 'Request Query Parameter',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Query parameters' },
+
+    pathVariableData: {
+      accessor: item => item.pathVariableData,
+      label: 'Request Path Variable',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Path variables' },
+
+    headerData: {
+      accessor: item => item.headerData,
+      label: 'Request Header',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Headers' },
+
+    events_prerequest: {
+      accessor: item => _.get(_.find(item.events, ['listen', 'prerequest']), ['script', 'exec'], []).join('\n'),
+      label: 'Request Pre-request script',
+      findHelper: findInString,
+      replaceHelper: replaceInScripts,
+      filterDisplayName: 'Pre-request script' },
+
+    events_test: {
+      accessor: item => _.get(_.find(item.events, ['listen', 'test']), ['script', 'exec'], []).join('\n'),
+      label: 'Request Tests',
+      findHelper: findInString,
+      replaceHelper: replaceInScripts,
+      filterDisplayName: 'Tests' },
+
+    auth: {
+      accessor: item => item.auth,
+      label: 'Authorization',
+      findHelper: findInAuth,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Authorization' },
+
+    data: {
+      accessor: item => __WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].isMethodWithBody(item.method) && item.data,
+      label: 'Request body',
+      findHelper: findInBody,
+      replaceHelper: replaceInBody,
+      filterDisplayName: 'Request body' } },
+
+
+  response: {
+    name: {
+      accessor: item => item.name,
+      label: 'Example name',
+      replaceHelper: replaceInProperty,
+      findHelper: findInString,
+      filterDisplayName: 'Name' },
+
+    requestObject_url: {
+      accessor: item => item.requestObject && item.requestObject.url,
+      label: 'Example request URL',
+      findHelper: findInString,
+      replaceHelper: options => replaceInProperty(_extends({}, options, { propertyPath: options.propertyPath.split('_').join('.') })),
+      filterDisplayName: 'URL' },
+
+    requestObject_queryParams: {
+      accessor: item => item.requestObject && item.requestObject.queryParams,
+      label: 'Example query parameter',
+      findHelper: findInArrObj,
+      replaceHelper: options => replaceInObject(_extends({}, options, { propertyPath: options.propertyPath.split('_').join('.') })),
+      filterDisplayName: 'Query parameters' },
+
+    requestObject_pathVariableData: {
+      accessor: item => item.requestObject && item.requestObject.pathVariableData,
+      label: 'Example path variable',
+      findHelper: findInArrObj,
+      replaceHelper: options => replaceInObject(_extends({}, options, { propertyPath: options.propertyPath.split('_').join('.') })),
+      filterDisplayName: 'Path Varaibles' },
+
+    requestObject_headerData: {
+      accessor: item => item.requestObject && item.requestObject.headerData,
+      label: 'Example request headers',
+      findHelper: findInArrObj,
+      replaceHelper: options => replaceInObject(_extends({}, options, { propertyPath: options.propertyPath.split('_').join('.') })),
+      filterDisplayName: 'Request headers' },
+
+    requestObject_data: {
+      accessor: item => item.requestObject && item.requestObject.data,
+      label: 'Example request body',
+      findHelper: findInBody,
+      replaceHelper: options => replaceInBody(_extends({}, options, { propertyPath: options.propertyPath.split('_').join('.') })),
+      filterDisplayName: 'Request body' },
+
+    text: {
+      accessor: item => item.text,
+      label: 'Example response',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Request body' },
+
+    headers: {
+      accessor: item => item.headers,
+      label: 'Example response headers',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Headers' } },
+
+
+  environment: {
+    name: {
+      accessor: item => item.name,
+      label: 'Environment name',
+      findHelper: findInString,
+      replaceHelper: replaceInProperty,
+      filterDisplayName: 'Name' },
+
+    values: {
+      accessor: item => item.values,
+      label: 'Environment variable',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Variables' } },
+
+
+  globals: {
+    values: {
+      accessor: item => item.values,
+      label: 'Global variable',
+      findHelper: findInArrObj,
+      replaceHelper: replaceInObject,
+      filterDisplayName: 'Variables' } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 1982:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Text; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 
 let
@@ -506,14 +683,14 @@ Text = class Text extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 1843:
+/***/ 1983:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Icon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 
 let
@@ -542,18 +719,18 @@ Icon = class Icon extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 1844:
+/***/ 1984:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Pane; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_draggable__ = __webpack_require__(1512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_draggable__ = __webpack_require__(1647);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_draggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_CloseIcon__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_CloseIcon__ = __webpack_require__(80);
 
 
 
@@ -631,15 +808,15 @@ Pane = class Pane extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 1845:
+/***/ 1985:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Drawer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -707,7 +884,7 @@ Drawer.defaultProps = {
 
 /***/ }),
 
-/***/ 2792:
+/***/ 2929:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -715,16 +892,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return StatusBarContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_status_bar_StatusBar__ = __webpack_require__(2793);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_bar_plugins__ = __webpack_require__(2794);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugins_PluginInterface__ = __webpack_require__(1841);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_status_bar_base_Item__ = __webpack_require__(2819);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_status_bar_base_Text__ = __webpack_require__(1842);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_status_bar_base_Icon__ = __webpack_require__(1843);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_status_bar_base_Pane__ = __webpack_require__(1844);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_status_bar_base_Drawer__ = __webpack_require__(1845);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_RequesterTabLayoutConstants__ = __webpack_require__(447);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_status_bar_StatusBar__ = __webpack_require__(2930);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_bar_plugins__ = __webpack_require__(2931);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugins_PluginInterface__ = __webpack_require__(1980);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_status_bar_base_Item__ = __webpack_require__(2958);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_status_bar_base_Text__ = __webpack_require__(1982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_status_bar_base_Icon__ = __webpack_require__(1983);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_status_bar_base_Pane__ = __webpack_require__(1984);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_status_bar_base_Drawer__ = __webpack_require__(1985);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_RequesterTabLayoutConstants__ = __webpack_require__(414);
 var _class;
 
 
@@ -864,13 +1041,13 @@ StatusBarContainer = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* obse
 
 /***/ }),
 
-/***/ 2793:
+/***/ 2930:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_events__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__plugins_PluginInterface__ = __webpack_require__(1841);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__plugins_PluginInterface__ = __webpack_require__(1980);
 
 let
 
@@ -902,18 +1079,18 @@ StatusBar = class StatusBar extends __WEBPACK_IMPORTED_MODULE_0_events___default
 
 /***/ }),
 
-/***/ 2794:
+/***/ 2931:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Console__ = __webpack_require__(2795);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Help__ = __webpack_require__(2797);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShortcutsReference__ = __webpack_require__(2799);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TwoPane__ = __webpack_require__(2801);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FindAndReplace__ = __webpack_require__(2804);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ToggleSidebar__ = __webpack_require__(2814);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__XFlowActivityFeed__ = __webpack_require__(2816);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcher__ = __webpack_require__(2818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Console__ = __webpack_require__(2932);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Help__ = __webpack_require__(2934);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShortcutsReference__ = __webpack_require__(2936);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TwoPane__ = __webpack_require__(2938);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FindAndReplace__ = __webpack_require__(2941);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ToggleSidebar__ = __webpack_require__(2953);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__XFlowActivityFeed__ = __webpack_require__(2955);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcher__ = __webpack_require__(2957);
 
 
 
@@ -935,11 +1112,11 @@ __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcher__["a" /* default */]]);
 
 /***/ }),
 
-/***/ 2795:
+/***/ 2932:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_ConsoleIcon__ = __webpack_require__(2796);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_ConsoleIcon__ = __webpack_require__(2933);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'Console',
@@ -999,9 +1176,9 @@ __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcher__["a" /* default */]]);
               tooltip: `Postman Console (${this.getShortcut()})` },
 
             React.createElement(Icon, {
-              onClick: this.handleClick,
               className: 'plugin__console__icon',
-              icon: this.getIcon() })));
+              icon: this.getIcon(),
+              onClick: this.handleClick })));
 
 
 
@@ -1012,14 +1189,14 @@ __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcher__["a" /* default */]]);
 
 /***/ }),
 
-/***/ 2796:
+/***/ 2933:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = ConsoleIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1043,12 +1220,12 @@ function ConsoleIcon(props) {
 
 /***/ }),
 
-/***/ 2797:
+/***/ 2934:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_HelpIcon__ = __webpack_require__(2798);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_HelpIcon__ = __webpack_require__(2935);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(128);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1078,13 +1255,13 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
             PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["i" /* DOCS_SECURITY_URL */]);
             break;
           case 'support':
-            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["O" /* SUPPORT_URL */]);
+            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["P" /* SUPPORT_URL */]);
             break;
           case 'twitter':
-            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["U" /* TWITTER_URL */]);
+            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["V" /* TWITTER_URL */]);
             break;
           case 'community':
-            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["C" /* POSTMAN_COMMUNITY */]);
+            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["D" /* POSTMAN_COMMUNITY */]);
             break;
           default:
             break;}
@@ -1154,14 +1331,14 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 /***/ }),
 
-/***/ 2798:
+/***/ 2935:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = HelpIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1185,11 +1362,11 @@ function HelpIcon(props) {
 
 /***/ }),
 
-/***/ 2799:
+/***/ 2936:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_KeyboardShortcutIcon__ = __webpack_require__(2800);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_KeyboardShortcutIcon__ = __webpack_require__(2937);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -1268,14 +1445,14 @@ function HelpIcon(props) {
 
 /***/ }),
 
-/***/ 2800:
+/***/ 2937:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = KeyboardShortcutIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1299,12 +1476,12 @@ function KeyboardShortcutIcon(props) {
 
 /***/ }),
 
-/***/ 2801:
+/***/ 2938:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_TwoPaneIcon__ = __webpack_require__(2802);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_SinglePaneIcon__ = __webpack_require__(2803);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_TwoPaneIcon__ = __webpack_require__(2939);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_SinglePaneIcon__ = __webpack_require__(2940);
 
 
 
@@ -1386,14 +1563,14 @@ function KeyboardShortcutIcon(props) {
 
 /***/ }),
 
-/***/ 2802:
+/***/ 2939:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = TwoPaneIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1417,14 +1594,14 @@ function TwoPaneIcon(props) {
 
 /***/ }),
 
-/***/ 2803:
+/***/ 2940:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SinglePaneIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1448,12 +1625,12 @@ function SinglePaneIcon(props) {
 
 /***/ }),
 
-/***/ 2804:
+/***/ 2941:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__find_replace__ = __webpack_require__(2805);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_FindIcon__ = __webpack_require__(2813);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__find_replace__ = __webpack_require__(2942);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_FindIcon__ = __webpack_require__(2952);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1524,7 +1701,7 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
             React.createElement(Pane, {
                 className: 'plugin__find-and-replace__pane',
-                paneHeight: 350 },
+                paneHeight: 450 },
 
               React.createElement(__WEBPACK_IMPORTED_MODULE_0__find_replace__["a" /* default */], {
                 isOpen: this.props.isOpen,
@@ -1540,21 +1717,22 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 /***/ }),
 
-/***/ 2805:
+/***/ 2942:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplace; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FindReplaceOptionSection__ = __webpack_require__(2806);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceResultsSection__ = __webpack_require__(2808);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FindReplaceOptionSection__ = __webpack_require__(2943);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceResultsSection__ = __webpack_require__(2945);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_keymaps_KeyMaps__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_EnvironmentController__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_GlobalsController__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_keymaps_KeyMaps__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_EnvironmentController__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_GlobalsController__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ReplaceService__ = __webpack_require__(2950);
 var _class;
 
 
@@ -1565,7 +1743,7 @@ var _class;
 
 
 
-var WebpackWorker = __webpack_require__(2812);let
+var WebpackWorker = __webpack_require__(2951);let
 
 
 FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */])(_class = class FindReplace extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
@@ -1574,10 +1752,13 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */
     this.state = {
       searchedQuery: '',
       searchedResult: [],
-      isLoading: false };
+      isLoading: false,
+      selectedCount: 0 };
 
     this.handleFind = this.handleFind.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleReplace = this.handleReplace.bind(this);
   }
 
   getKeyMapHandlers() {
@@ -1646,23 +1827,31 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */
       return [];
     }
     let workspaceGlobals = await __WEBPACK_IMPORTED_MODULE_8__modules_controllers_GlobalsController__["a" /* default */].get({ workspace: Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveGlobalsStore').workspace });
-    return workspaceGlobals && workspaceGlobals.values || [];
+    return workspaceGlobals;
   }
 
   async handleFind(findOptions) {
     var myWorker = new WebpackWorker();
     myWorker.onerror = error => {
       this.setState({ isLoading: false });
-      console.log('worker error', error);
+      console.error('worker error', error);
       pm.crashReporter.report(error);
       myWorker.terminate();
     };
 
-    let collections = await this.getTargetCollections(findOptions);
-    let environments = await this.getTargetEnvironments(findOptions);
-    let globals = await this.getTargetGlobals(findOptions);
+    let [
+    collections,
+    environments,
+    globals] =
+    await Promise.all([
+    this.getTargetCollections(findOptions),
+    this.getTargetEnvironments(findOptions),
+    this.getTargetGlobals(findOptions)]);
+
+
     myWorker.postMessage(JSON.stringify({
       type: 'find',
+      userId: Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('CurrentUserStore').id,
       findOptions: _.pick(findOptions, ['findQuery', 'isRegex', 'ignoreCase']),
       searchTargets: {
         collections,
@@ -1675,12 +1864,41 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */
       this.setState({
         searchedResult: _.get(e.data, 'result'),
         searchedQuery: _.get(e.data, 'findQuery'),
-        isLoading: false });
+        isLoading: false,
+        selectedCount: 0 });
 
       myWorker.terminate();
     };
 
     this.setState({ isLoading: true });
+  }
+
+  handleChange(searchedResult) {
+    let selectedCount = 0;
+    _.forOwn(searchedResult, (targets, key) => {
+      _.forEach(targets, target => {
+        _.forEach(target.entities, entity => {
+          _.forEach(entity.fields, field => {
+            selectedCount += _.size(_.filter(field.instances, 'isSelected'));
+          });
+        });
+      });
+    });
+    this.setState({
+      searchedResult,
+      selectedCount });
+
+  }
+
+  handleReplace(replaceString) {
+    this.setState({ isLoading: true });
+    __WEBPACK_IMPORTED_MODULE_9__ReplaceService__["a" /* default */].replace(this.state.searchedResult, replaceString).then(actions => {
+      return Promise.all(actions).then(() => {
+        this.refs.findReplaceOptionSection.handleFind();
+      });
+    }).catch(() => {
+      this.refs.findReplaceOptionSection.handleFind();
+    });
   }
 
   render() {
@@ -1693,9 +1911,12 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */
             userCollections: Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').collections,
             userEnvironments: Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').environments,
             searchedResult: this.state.searchedResult,
-            onClose: this.handleClose }),
+            onClose: this.handleClose,
+            onReplace: this.handleReplace,
+            onSelectAll: this.handleChange,
+            selectedCount: this.state.selectedCount }),
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__FindReplaceResultsSection__["a" /* default */], { isLoading: this.state.isLoading, searchedResult: this.state.searchedResult, searchedQuery: this.state.searchedQuery }))));
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__FindReplaceResultsSection__["a" /* default */], { isLoading: this.state.isLoading, searchedResult: this.state.searchedResult, searchedQuery: this.state.searchedQuery, onChange: this.handleChange }))));
 
 
 
@@ -1704,23 +1925,27 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */
 
 /***/ }),
 
-/***/ 2806:
+/***/ 2943:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceOptionSection; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_radio_group__ = __webpack_require__(1547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_radio_group__ = __webpack_require__(1672);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_radio_group___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__ = __webpack_require__(2807);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__ = __webpack_require__(2944);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(107);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
+
 
 
 
@@ -1729,7 +1954,8 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 let
 
-FindReplaceOptionSection = class FindReplaceOptionSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["a" /* observer */])(_class = class FindReplaceOptionSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
@@ -1753,7 +1979,8 @@ FindReplaceOptionSection = class FindReplaceOptionSection extends __WEBPACK_IMPO
           items: [] } },
 
 
-      replaceString: '' };
+      replaceString: '',
+      isSelectedAll: false };
 
     this.handleRegexChange = this.handleRegexChange.bind(this);
     this.handleCaseChange = this.handleCaseChange.bind(this);
@@ -1762,6 +1989,7 @@ FindReplaceOptionSection = class FindReplaceOptionSection extends __WEBPACK_IMPO
     this.handleTargetSelect = this.handleTargetSelect.bind(this);
     this.handleCollectionSelectClose = this.handleCollectionSelectClose.bind(this);
     this.handleCollectionSelect = this.handleCollectionSelect.bind(this);
+    this.handleSelectAllChange = this.handleSelectAllChange.bind(this);
   }
 
   handleRegexChange(value) {
@@ -1901,152 +2129,224 @@ FindReplaceOptionSection = class FindReplaceOptionSection extends __WEBPACK_IMPO
     return false;
   }
 
+  handleSelectAllChange() {
+    this.setState({ isSelectedAll: !this.state.isSelectedAll }, () => {
+      this.props.onSelectAll(_.transform(this.props.searchedResult, (result, targets, key) => {
+        result[key] = _.map(targets, target => {
+          return _extends({},
+          target, {
+            entities: _.map(target.entities, entity => {
+              return _extends({},
+              entity, {
+                isSelected: entity.isReplaceAllowed && this.state.isSelectedAll,
+                fields: _.map(entity.fields, field => {
+                  return _extends({},
+                  field, {
+                    isSelected: entity.isReplaceAllowed && this.state.isSelectedAll,
+                    instances: _.map(field.instances, f => {
+                      return _extends({},
+                      f, {
+                        isSelected: entity.isReplaceAllowed && this.state.isSelectedAll });
+
+                    }) });
+
+                }) });
+
+            }) });
+
+        });
+      }, {}));
+    });
+  }
+
   render() {
+    let featureFlags = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('FeatureFlagsStore').featureFlags;
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-options-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'FIND'),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-box-container' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'FIND'),
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-box-wrapper' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-wrapper' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-box-wrapper' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-wrapper' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["b" /* Input */], {
+                  ref: 'findInput',
+                  type: 'text',
+                  inputStyle: 'box',
+                  onChange: this.handleFindQueryChange,
+                  value: this.state.findQuery,
+                  placeholder: 'Enter text to find...',
+                  onSubmit: this.handleFind,
+                  onEscape: this.props.onClose }),
+
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-options' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-option-item' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
+                      checked: this.state.isRegex,
+                      onChange: this.handleRegexChange }),
+
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Regex')),
+
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-option-item' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
+                      checked: this.state.ignoreCase,
+                      onChange: this.handleCaseChange }),
+
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Ignore Case')))),
+
+
+
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
+                  type: 'primary',
+                  size: 'small',
+                  onClick: this.handleFind,
+                  disabled: this.handleDisableFind() }, 'Find'))),
+
+
+
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-wrapper' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'WHERE'),
+
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["RadioGroup"], {
+                name: this.state.uniqueName,
+                selectedValue: this.state.searchTarget,
+                onChange: this.handleTargetSelect,
+                className: 'find-target-options-wrapper' },
+
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { className: 'find-target-option-item' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["Radio"], { value: 'all', className: 'radio-button' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Everything'))),
+
+
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { className: 'find-target-option-item' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["Radio"], { value: 'some', className: 'radio-button' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Choose entities to find in')))),
+
+
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getEntitiesClasses() },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity collection-entity' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
+                  checked: this.state.subSearchTarget.collections,
+                  disabled: this.state.searchTarget === 'all',
+                  onChange: this.handleTargetEntityChange.bind(this, 'collections') }),
+
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
+                    className: this.getSelectedEntityClasses('collections'),
+                    onClick: this.handleTargetEntityOpen.bind(this, 'collections') },
+
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Collections ${this.getSelectedTargetCount('collections')}`),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
+
+
+                _.get(this.state.selectedTarget, 'collections.show') &&
+                this.state.searchTarget === 'some' &&
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__["a" /* default */], {
+                  label: 'Collections',
+                  selectedItems: this.state.selectedTarget.collections.items,
+                  items: this.props.userCollections,
+                  onClose: this.handleCollectionSelectClose.bind(this, 'collections'),
+                  onSelect: this.handleCollectionSelect.bind(this, 'collections'),
+                  onCancel: this.props.onClose })),
+
+
+
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity environment-entity' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
+                  checked: this.state.subSearchTarget.environments,
+                  disabled: this.state.searchTarget === 'all',
+                  onChange: this.handleTargetEntityChange.bind(this, 'environments') }),
+
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
+                    className: this.getSelectedEntityClasses('environments'),
+                    onClick: this.handleTargetEntityOpen.bind(this, 'environments') },
+
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Environments ${this.getSelectedTargetCount('environments')}`),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
+
+
+                _.get(this.state.selectedTarget, 'environments.show') &&
+                this.state.searchTarget === 'some' &&
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__["a" /* default */], {
+                  label: 'Environments',
+                  selectedItems: this.state.selectedTarget.environments.items,
+                  items: this.props.userEnvironments,
+                  onClose: this.handleCollectionSelectClose.bind(this, 'environments'),
+                  onSelect: this.handleCollectionSelect.bind(this, 'environments') })),
+
+
+
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
+                  checked: this.state.subSearchTarget.globals,
+                  disabled: this.state.searchTarget === 'all',
+                  onChange: this.handleTargetEntityChange.bind(this, 'globals') }),
+
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Globals'))))),
+
+
+
+
+
+        featureFlags.get('replaceElements') &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getReplaceBoxClasses() },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'REPLACE WITH'),
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'replace-input-wrapper' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'replace-input-option-wrapper' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["b" /* Input */], {
-                ref: 'findInput',
                 type: 'text',
                 inputStyle: 'box',
-                onChange: this.handleFindQueryChange,
-                value: this.state.findQuery,
-                placeholder: 'Enter text to find...',
-                onSubmit: this.handleFind,
-                onEscape: this.props.onClose }),
+                value: this.state.replaceString,
+                placeholder: 'Enter text to replace with...',
+                onChange: value => {
+                  this.setState({ replaceString: value });
+                } }),
 
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-options' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-option-item' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
-                    checked: this.state.isRegex,
-                    onChange: this.handleRegexChange }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'replace-input-extra-options' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
+                  checked: this.state.isSelectedAll,
+                  onChange: this.handleSelectAllChange }),
 
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Regex')),
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-option-item' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
-                    checked: this.state.ignoreCase,
-                    onChange: this.handleCaseChange }),
-
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Ignore Case')))),
-
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Select all'))),
 
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
                 type: 'primary',
                 size: 'small',
-                onClick: this.handleFind,
-                disabled: this.handleDisableFind() }, 'Find'))),
+                onClick: () => {
+                  this.props.onReplace(this.state.replaceString);
+                } },
+
+              `Replace in ${this.props.selectedCount} selected`)))));
 
 
 
 
 
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'WHERE'),
 
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["RadioGroup"], {
-              name: this.state.uniqueName,
-              selectedValue: this.state.searchTarget,
-              onChange: this.handleTargetSelect,
-              className: 'find-target-options-wrapper' },
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { className: 'find-target-option-item' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["Radio"], { value: 'all', className: 'radio-button' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Everything'))),
-
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { className: 'find-target-option-item' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["Radio"], { value: 'some', className: 'radio-button' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Choose entities to find in')))),
-
-
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getEntitiesClasses() },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity collection-entity' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
-                checked: this.state.subSearchTarget.collections,
-                disabled: this.state.searchTarget === 'all',
-                onChange: this.handleTargetEntityChange.bind(this, 'collections') }),
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
-                  className: this.getSelectedEntityClasses('collections'),
-                  onClick: this.handleTargetEntityOpen.bind(this, 'collections') },
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Collections ${this.getSelectedTargetCount('collections')}`),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
-
-
-              _.get(this.state.selectedTarget, 'collections.show') &&
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__["a" /* default */], {
-                label: 'Collections',
-                selectedItems: this.state.selectedTarget.collections.items,
-                items: this.props.userCollections,
-                onClose: this.handleCollectionSelectClose.bind(this, 'collections'),
-                onSelect: this.handleCollectionSelect.bind(this, 'collections'),
-                onCancel: this.props.onClose })),
-
-
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity environment-entity' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
-                checked: this.state.subSearchTarget.environments,
-                disabled: this.state.searchTarget === 'all',
-                onChange: this.handleTargetEntityChange.bind(this, 'environments') }),
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
-                  className: this.getSelectedEntityClasses('environments'),
-                  onClick: this.handleTargetEntityOpen.bind(this, 'environments') },
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Environments ${this.getSelectedTargetCount('environments')}`),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
-
-
-              _.get(this.state.selectedTarget, 'environments.show') &&
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__["a" /* default */], {
-                label: 'Environments',
-                selectedItems: this.state.selectedTarget.environments.items,
-                items: this.props.userEnvironments,
-                onClose: this.handleCollectionSelectClose.bind(this, 'environments'),
-                onSelect: this.handleCollectionSelect.bind(this, 'environments') })),
-
-
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
-                checked: this.state.subSearchTarget.globals,
-                disabled: this.state.searchTarget === 'all',
-                onChange: this.handleTargetEntityChange.bind(this, 'globals') }),
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Globals'))))));
-
-
-
-
-
-  }};
+  }}) || _class;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 2807:
+/***/ 2944:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceSearchTargetSelector; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CloseIcon__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CloseIcon__ = __webpack_require__(80);
 var _class;
 
 
@@ -2149,23 +2449,25 @@ FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_cli
 
 /***/ }),
 
-/***/ 2808:
+/***/ 2945:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceResultsSection; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tabs__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceCollectionsTab__ = __webpack_require__(2809);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FindReplaceEnvironmentsTab__ = __webpack_require__(2810);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__FindReplaceGlobalsTab__ = __webpack_require__(2811);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_pure_render_decorator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_LoadingIndicator__ = __webpack_require__(1493);
-var _class;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tabs__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__ = __webpack_require__(2946);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pure_render_decorator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_CollectionSidebarService__ = __webpack_require__(1698);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ManageEnvironmentViews__ = __webpack_require__(1666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__ = __webpack_require__(1981);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
 
 
 
@@ -2178,11 +2480,54 @@ var _class;
 const TABS = {
   COLLECTIONS: 'Collections',
   ENVIRONMENTS: 'Environments',
-  GLOBALS: 'Globals' };let
+  GLOBALS: 'Globals' };
+
+
+/**
+                         *
+                         * @param {Object} data - FindReplaceHelper
+                         */
+function deNormalizeFilter(data) {
+  return _.map(data, (value, key) => {
+    return {
+      key,
+      displayName: value.filterDisplayName };
+
+  });
+}
+
+const collectionFields = [{
+  type: 'collection',
+  displayName: 'Collections',
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].collection) },
+{
+  type: 'folder',
+  displayName: 'Folders',
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].folder) },
+{
+  type: 'request',
+  displayName: 'Requests',
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].request) },
+{
+  type: 'response',
+  displayName: 'Examples',
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].response) }];
+
+
+const environmentFields = [{
+  type: 'environment',
+  displayName: 'Environments',
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].environment) }];
+
+
+const globalFields = [{
+  type: 'globals',
+  displayName: 'Globals',
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].globals) }];let
 
 
 
-FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator___default()(_class = class FindReplaceResultsSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___default()(_class = class FindReplaceResultsSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = { activeTab: TABS.COLLECTIONS };
@@ -2202,11 +2547,18 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator___
     }, 0);
   }
 
+  handleChange(target, items) {
+    this.props.onChange(_extends({},
+    this.props.searchedResult, {
+      [target]: items }));
+
+  }
+
   render() {
     if (this.props.isLoading) {
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_LoadingIndicator__["a" /* default */], null)));
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_LoadingIndicator__["a" /* default */], null)));
 
 
     }
@@ -2214,7 +2566,7 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator___
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
 
-          this.props.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_LoadingIndicator__["a" /* default */], null) :
+          this.props.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_LoadingIndicator__["a" /* default */], null) :
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-wrapper empty-results' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-image' }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-text' },
@@ -2241,15 +2593,79 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator___
 
 
         this.state.activeTab === TABS.COLLECTIONS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceCollectionsTab__["a" /* default */], { searchedItems: this.props.searchedResult.collections, searchedQuery: this.props.searchedQuery }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+          type: 'collection',
+          searchedItems: this.props.searchedResult.collections,
+          searchedQuery: this.props.searchedQuery,
+          fields: collectionFields,
+          onChange: this.handleChange.bind(this, 'collections'),
+          renderOpenEntityComponent: entity => {
+            if (entity.type !== 'request') {
+              return null;
+            }
+            return (
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
+                  type: 'text',
+                  className: 'open-entity entity--request',
+                  onClick: () => {
+                    let tab = pm.tabManager.getTabByRequestId(entity.id);
+                    __WEBPACK_IMPORTED_MODULE_6__modules_services_CollectionSidebarService__["a" /* default */].openRequestInTab(entity.id, { newTab: !tab });
+                    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'collections');
+                  } }, 'Open in builder'));
+
+
+
+
+          } }),
+
 
 
         this.state.activeTab === TABS.ENVIRONMENTS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FindReplaceEnvironmentsTab__["a" /* default */], { searchedItems: this.props.searchedResult.environments, searchedQuery: this.props.searchedQuery }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+          type: 'environment',
+          searchedItems: this.props.searchedResult.environments,
+          searchedQuery: this.props.searchedQuery,
+          fields: environmentFields,
+          onChange: this.handleChange.bind(this, 'environments'),
+          renderOpenEntityComponent: entity => {
+            return (
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
+                  type: 'text',
+                  className: 'open-entity',
+                  onClick: () => {
+                    pm.mediator.trigger('showManageEnvironmentModal', entity.id);
+                    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'environments');
+                  } }, 'Open'));
+
+
+
+
+          } }),
+
 
 
         this.state.activeTab === TABS.GLOBALS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__FindReplaceGlobalsTab__["a" /* default */], { searchedItems: this.props.searchedResult.globals, searchedQuery: this.props.searchedQuery })));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+          type: 'globals',
+          searchedItems: this.props.searchedResult.globals,
+          searchedQuery: this.props.searchedQuery,
+          fields: globalFields,
+          onChange: this.handleChange.bind(this, 'globals'),
+          renderOpenEntityComponent: entity => {
+            return (
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
+                  type: 'text',
+                  className: 'open-entity',
+                  onClick: () => {
+                    pm.mediator.trigger('showManageEnvironmentModal', __WEBPACK_IMPORTED_MODULE_8__constants_ManageEnvironmentViews__["d" /* MANAGE_ENVIRONMENT_VIEW_GLOBALS */]);
+                    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'globals');
+                  } }, 'Open'));
+
+
+
+
+          } })));
+
 
 
 
@@ -2258,106 +2674,22 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_7_pure_render_decorator___
 
 /***/ }),
 
-/***/ 2809:
+/***/ 2946:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceCollectionsTab; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FoundTarget__ = __webpack_require__(1674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__ = __webpack_require__(1675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__ = __webpack_require__(1676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_CollectionSidebarService__ = __webpack_require__(1559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FoundTarget__ = __webpack_require__(2947);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__ = __webpack_require__(2948);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__ = __webpack_require__(2949);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(11);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
 
-
-
-
-
-const collectionFields = [{
-  type: 'collection',
-  displayName: 'Collections',
-  fields: [{
-    key: 'name',
-    displayName: 'Name' },
-  {
-    key: 'description',
-    displayName: 'Description' },
-  {
-    key: 'collectionPreRequestScript',
-    displayName: 'Pre-request script' },
-  {
-    key: 'collectionTests',
-    displayName: 'Tests' },
-  {
-    key: 'collectionAuth',
-    displayName: 'Authorization' },
-  {
-    key: 'collectionVariables',
-    displayName: 'Variable' }] },
-
-{
-  type: 'folder',
-  displayName: 'Folders',
-  fields: [{
-    key: 'name',
-    displayName: 'Name' },
-  {
-    key: 'description',
-    displayName: 'Description' },
-  {
-    key: 'folderPreRequestScript',
-    displayName: 'Pre-request script' },
-  {
-    key: 'folderTests',
-    displayName: 'Tests' },
-  {
-    key: 'folderAuth',
-    displayName: 'Authorization' }] },
-
-{
-  type: 'request',
-  displayName: 'Requests',
-  fields: [{
-    key: 'name',
-    displayName: 'Name' },
-  {
-    key: 'description',
-    displayName: 'Description' },
-  {
-    key: 'url',
-    displayName: 'URL' },
-  {
-    key: 'pathVariableData',
-    displayName: 'Path variables' },
-  {
-    key: 'queryParams',
-    displayName: 'Query parameters' },
-  {
-    key: 'requestAuth',
-    displayName: 'Authorization' },
-  {
-    key: 'headerData',
-    displayName: 'Headers' },
-  {
-    key: 'data',
-    displayName: 'Request body' },
-  {
-    key: 'preRequestScript',
-    displayName: 'Pre-request script' },
-  {
-    key: 'tests',
-    displayName: 'Tests' },
-  {
-    key: 'responses',
-    displayName: 'Examples' }] }];let
-
-
+let
 
 FindReplaceCollectionsTab = class FindReplaceCollectionsTab extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
@@ -2369,13 +2701,14 @@ FindReplaceCollectionsTab = class FindReplaceCollectionsTab extends __WEBPACK_IM
 
 
     this.handleIncludeFields = this.handleIncludeFields.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getDefaultIncudedFields() {
     let fields = [];
-    _.forEach(collectionFields, collectionField => {
-      _.forEach(collectionField.fields, f => {
-        fields.push(`${collectionField.type}-${f.key}`);
+    _.forEach(this.props.fields, itemField => {
+      _.forEach(itemField.fields, f => {
+        fields.push(`${itemField.type}-${f.key}`);
       });
     });
 
@@ -2419,178 +2752,25 @@ FindReplaceCollectionsTab = class FindReplaceCollectionsTab extends __WEBPACK_IM
     return items;
   }
 
-  renderOpenEntityComponent(entity) {
-    if (entity.type !== 'request') {
-      return null;
-    }
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Buttons__["a" /* Button */], {
-          type: 'text',
-          className: 'open-entity entity--request',
-          onClick: () => {
-            let tab = pm.tabManager.getTabByRequestId(entity.id);
-            __WEBPACK_IMPORTED_MODULE_5__modules_services_CollectionSidebarService__["a" /* default */].openRequestInTab(entity.id, { newTab: !tab });
-            __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'collections');
-          } }, 'Open in builder'));
-
-
-
-
-  }
-
-  render() {
-    let filteredItems = this.getFilteredItems();
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-tab-content' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__["a" /* default */], {
-          onIncludeFields: this.handleIncludeFields,
-          fields: collectionFields,
-          includedFields: this.state.includedFields,
-          fieldCount: this.state.fieldCount }),
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace--found-results' },
-
-          _.isEmpty(filteredItems) ?
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__["a" /* default */], { searchedQuery: this.props.searchedQuery }) :
-
-
-          _.map(filteredItems, collection => {
-            return (
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__FoundTarget__["a" /* default */], {
-                key: collection.id,
-                baseType: 'collection',
-                target: collection,
-                renderOpenEntityComponent: this.renderOpenEntityComponent }));
-
-
-          }))));
-
-
-
-
-
-  }};
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2810:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceEnvironmentsTab; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FoundTarget__ = __webpack_require__(1674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__ = __webpack_require__(1675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__ = __webpack_require__(1676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__ = __webpack_require__(22);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
-
-
-
-
-
-
-const environmentFields = [{
-  type: 'environment',
-  displayName: 'Environments',
-  fields: [{
-    key: 'name',
-    displayName: 'Name' },
-  {
-    key: 'values.key',
-    displayName: 'Variable name' },
-  {
-    key: 'values.value',
-    displayName: 'Variable value' }] }];let
-
-
-
-FindReplaceEnvironmentsTab = class FindReplaceEnvironmentsTab extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor(props) {
-    super(props);
-    let defaultFields = this.getDefaultIncudedFields();
-    this.state = {
-      includedFields: defaultFields,
-      fieldCount: _.size(defaultFields) };
-
-
-    this.handleIncludeFields = this.handleIncludeFields.bind(this);
-  }
-
-  getDefaultIncudedFields() {
-    let fields = [];
-    _.forEach(environmentFields, environmentField => {
-      _.forEach(environmentField.fields, f => {
-        fields.push(`${environmentField.type}-${f.key}`);
-      });
-    });
-
-    return fields;
-  }
-
-  handleIncludeFields(type, property) {
-    let str = `${type}-${property}`;
-    let includedFields = this.state.includedFields;
-    if (_.includes(this.state.includedFields, str)) {
-      includedFields = _.filter(this.state.includedFields, field => {return field !== str;});
-    } else
-    {
-      includedFields.push(str);
-    }
-    this.setState({ includedFields });
-  }
-
-  getFilteredItems() {
-    let items = [];
-    _.forEach(this.props.searchedItems, item => {
-      let arr = [];
-      _.forEach(item.entities, entity => {
-        let sanitizedFields = _.filter(entity.fields, field => {
-          return _.includes(this.state.includedFields, `${entity.type}-${field.property}`);
-        });
-        if (!_.isEmpty(sanitizedFields)) {
-          arr.push(_extends({},
-          entity, {
-            fields: sanitizedFields }));
-
-        }
-      });
-      if (!_.isEmpty(arr)) {
-        items.push(_extends({},
-        item, {
-          entities: arr }));
-
+  handleChange(position, object) {
+    this.props.onChange(
+    _.map(this.props.searchedItems, (item, index) => {
+      if (position !== index) {
+        return item;
       }
-    });
-    return items;
-  }
-
-  renderOpenEntityComponent(entity) {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Buttons__["a" /* Button */], {
-          type: 'text',
-          className: 'open-entity',
-          onClick: () => {
-            pm.mediator.trigger('showManageEnvironmentModal', entity.id);
-            __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'environments');
-          } }, 'Open'));
-
-
-
+      return object;
+    }));
 
   }
 
   render() {
-    let filteredItems = this.getFilteredItems();
+    let filteredItems = this.getFilteredItems(),
+    featureFlags = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('FeatureFlagsStore').featureFlags;
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-tab-content' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__["a" /* default */], {
           onIncludeFields: this.handleIncludeFields,
-          fields: environmentFields,
+          fields: this.props.fields,
           includedFields: this.state.includedFields,
           fieldCount: this.state.fieldCount }),
 
@@ -2601,13 +2781,16 @@ FindReplaceEnvironmentsTab = class FindReplaceEnvironmentsTab extends __WEBPACK_
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__["a" /* default */], { searchedQuery: this.props.searchedQuery }) :
 
 
-          _.map(this.getFilteredItems(), environment => {
+          _.map(filteredItems, (item, index) => {
             return (
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__FoundTarget__["a" /* default */], {
-                key: environment.id,
-                baseType: 'environment',
-                target: environment,
-                renderOpenEntityComponent: this.renderOpenEntityComponent }));
+                key: item.id,
+                id: index,
+                baseType: this.props.type,
+                target: item,
+                renderOpenEntityComponent: this.props.renderOpenEntityComponent,
+                onChange: this.handleChange,
+                allowSelect: featureFlags.get('replaceElements') }));
 
 
           }))));
@@ -2621,19 +2804,25 @@ FindReplaceEnvironmentsTab = class FindReplaceEnvironmentsTab extends __WEBPACK_
 
 /***/ }),
 
-/***/ 2811:
+/***/ 2947:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceGlobalsTab; });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FoundTarget; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FoundTarget__ = __webpack_require__(1674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__ = __webpack_require__(1675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__ = __webpack_require__(1676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_ManageEnvironmentViews__ = __webpack_require__(1529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tooltips__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_CollectionIcon__ = __webpack_require__(670);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_EnvironmentIcon__ = __webpack_require__(1693);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__ = __webpack_require__(1745);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__collections_CollectionMetaIcons__ = __webpack_require__(674);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_Inputs__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_PluralizeHelper__ = __webpack_require__(669);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -2642,122 +2831,347 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 
 
-const globalFields = [{
-  type: 'global',
-  displayName: 'Globals',
-  fields: [{
-    key: 'globals.key',
-    displayName: 'Variable name' },
-  {
-    key: 'globals.value',
-    displayName: 'Variable value' }] }];let
 
 
 
-FindReplaceGlobalsTab = class FindReplaceGlobalsTab extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+let
+FoundInstance = class FoundInstance extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
   constructor(props) {
     super(props);
-    let defaultFields = this.getDefaultIncudedFields();
-    this.state = {
-      includedFields: defaultFields,
-      fieldCount: _.size(defaultFields) };
-
-
-    this.handleIncludeFields = this.handleIncludeFields.bind(this);
+    this.state = { showTooltip: false };
+    this.handleShowTooltipToggle = this.handleShowTooltipToggle.bind(this);
+    this.handleHideTooltipToggle = this.handleHideTooltipToggle.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  getDefaultIncudedFields() {
-    let fields = [];
-    _.forEach(globalFields, globalField => {
-      _.forEach(globalField.fields, f => {
-        fields.push(`${globalField.type}-${f.key}`);
-      });
-    });
-
-    return fields;
-  }
-
-  handleIncludeFields(type, property) {
-    let str = `${type}-${property}`;
-    let includedFields = this.state.includedFields;
-    if (_.includes(this.state.includedFields, str)) {
-      includedFields = _.filter(this.state.includedFields, field => {return field !== str;});
-    } else
-    {
-      includedFields.push(str);
+  handleShowTooltipToggle() {
+    if (!this.props.instance.tooltipContent) {
+      return;
     }
-    this.setState({ includedFields });
+
+    !this.state.showTooltip && this.setState({ showTooltip: true });
   }
 
-  getFilteredItems() {
-    let items = [];
-    _.forEach(this.props.searchedItems, item => {
-      let arr = [];
-      _.forEach(item.entities, entity => {
-        let sanitizedFields = _.filter(entity.fields, field => {
-          return _.includes(this.state.includedFields, `${entity.type}-${field.property}`);
-        });
-        if (!_.isEmpty(sanitizedFields)) {
-          arr.push(_extends({},
-          entity, {
-            fields: sanitizedFields }));
+  handleHideTooltipToggle() {
+    if (!this.props.instance.tooltipContent) {
+      return;
+    }
 
-        }
-      });
-      if (!_.isEmpty(arr)) {
-        items.push(_extends({},
-        item, {
-          entities: arr }));
-
-      }
-    });
-    return items;
+    this.state.showTooltip && this.setState({ showTooltip: false });
   }
 
-  renderOpenEntityComponent(entity) {
+  handleChange() {
+    this.props.onChange(this.props.id);
+  }
+
+  render() {
+    let {
+      metaString,
+      index,
+      matchedString,
+      tooltipContent,
+      isSelected } =
+    this.props.instance;
     return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Buttons__["a" /* Button */], {
-          type: 'text',
-          className: 'open-entity',
-          onClick: () => {
-            pm.mediator.trigger('showManageEnvironmentModal', __WEBPACK_IMPORTED_MODULE_5__constants_ManageEnvironmentViews__["d" /* MANAGE_ENVIRONMENT_VIEW_GLOBALS */]);
-            __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'globals');
-          } }, 'Open'));
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-instance-row' },
+
+        this.props.allowSelect &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Inputs__["a" /* Checkbox */], {
+          checked: isSelected,
+          onChange: this.handleChange,
+          disabled: this.props.disabled }),
+
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
+            className: this.props.className, ref: 'searchInstance',
+            onMouseEnter: this.handleShowTooltipToggle,
+            onMouseLeave: this.handleHideTooltipToggle },
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, metaString.substring(0, index)),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'instance-highlight-text' }, matchedString),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, metaString.substring(index + matchedString.length, metaString.length)),
+
+          tooltipContent &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'instance-tooltip', ref: 'instanceTooltip' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tooltips__["a" /* Tooltip */], {
+                show: this.state.showTooltip,
+                refElement: this.refs.instanceTooltip,
+                placement: 'bottom-left',
+                immediate: true },
+
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tooltips__["b" /* TooltipBody */], null,
+                tooltipContent))))));
 
 
 
+
+
+
+
+  }};let
+
+
+FoundFields = class FoundFields extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleInstanceChange = this.handleInstanceChange.bind(this);
+  }
+
+  handleChange() {
+    this.props.onChange(this.props.id, _extends({},
+    this.props.field, {
+      isSelected: !this.props.field.isSelected,
+      instances: _.map(this.props.field.instances, instance => {
+        return _extends({},
+        instance, {
+          isSelected: !this.props.field.isSelected });
+
+      }) }));
+
+  }
+
+  handleInstanceChange(instanceId) {
+    this.props.onChange(this.props.id, _extends({},
+    this.props.field, {
+      isSelected: this.props.field.isSelected && !this.props.field.isSelected,
+      instances: _.map(this.props.field.instances, (instance, index) => {
+        if (index !== instanceId) {
+          return instance;
+        }
+        return _extends({},
+        instance, {
+          isSelected: !instance.isSelected });
+
+      }) }));
 
   }
 
   render() {
-    let filteredItems = this.getFilteredItems();
+    let { field } = this.props;
     return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-tab-content' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__["a" /* default */], {
-          onIncludeFields: this.handleIncludeFields,
-          fields: globalFields,
-          includedFields: this.state.includedFields,
-          fieldCount: this.state.fieldCount }),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__field' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__field-label-row' },
 
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace--found-results' },
-
-          _.isEmpty(filteredItems) ?
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__["a" /* default */], { searchedQuery: this.props.searchedQuery }) :
+          this.props.allowSelect &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Inputs__["a" /* Checkbox */], {
+            checked: this.props.field.isSelected,
+            onChange: this.handleChange,
+            disabled: this.props.disabled }),
 
 
-          _.map(this.getFilteredItems(), globals => {
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target-entity__field-label' }, field.label)),
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity--instances' },
+
+          _.map(field.instances, (instance, index) => {
             return (
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__FoundTarget__["a" /* default */], {
-                key: globals.id,
-                baseType: 'global',
-                target: globals,
-                renderOpenEntityComponent: this.renderOpenEntityComponent }));
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FoundInstance, {
+                key: index,
+                id: index,
+                className: 'found-in-target-entity--instance',
+                instance: instance,
+                onChange: this.handleInstanceChange,
+                disabled: this.props.disabled,
+                allowSelect: this.props.allowSelect }));
 
 
           }))));
 
 
+
+
+  }};let
+
+
+FoundEntity = class FoundEntity extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFieldChange = this.handleFieldChange.bind(this);
+  }
+
+  getLabelForEntity(entity) {
+    if (!entity) {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null);
+    }
+    const labels = {
+      'GET': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--GET' }, entity),
+      'POST': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--POST' }, entity),
+      'DELETE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--DELETE' }, entity),
+      'PUT': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, entity),
+      'FOLDER': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__["a" /* default */], { className: 'identifier--FOLDER' }),
+      'EXAMPLE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, 'EXAMPLE') };
+
+
+    return labels[entity] || __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--default' }, entity);
+  }
+
+  handleChange() {
+    this.props.onChange(this.props.id, _extends({},
+    this.props.entity, {
+      isSelected: !this.props.entity.isSelected,
+      fields: _.map(this.props.entity.fields, field => {
+        return _extends({},
+        field, {
+          isSelected: !this.props.entity.isSelected,
+          instances: _.map(field.instances, instance => {
+            return _extends({},
+            instance, {
+              isSelected: !this.props.entity.isSelected });
+
+          }) });
+
+      }) }));
+
+  }
+
+  handleFieldChange(fieldId, changedField) {
+    this.props.onChange(this.props.id, _extends({},
+    this.props.entity, {
+      isSelected: this.props.entity.isSelected && !this.props.entity.isSelected,
+      fields: _.map(this.props.entity.fields, (field, index) => {
+        if (index !== fieldId) {
+          return field;
+        }
+        return changedField;
+      }) }));
+
+  }
+
+  render() {
+    let { entity } = this.props;
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity' },
+
+        entity.type !== this.props.baseType &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__path-wrapper' },
+
+          this.props.allowSelect &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Inputs__["a" /* Checkbox */], {
+            checked: this.props.entity.isSelected,
+            onChange: this.handleChange,
+            disabled: this.props.disabled }),
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__path' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-breadcrumb' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'path-prefix' }, entity.path),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-name-wrapper' },
+                '  >  ',
+                this.getLabelForEntity(entity.label),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-name' }, entity.name))))),
+
+
+
+
+
+
+        _.invoke(this.props, 'renderOpenEntityComponent', entity),
+
+
+        _.map(entity.fields, (field, index) => {
+          return (
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FoundFields, {
+              key: index,
+              id: index,
+              field: field,
+              onChange: this.handleFieldChange,
+              disabled: this.props.disabled,
+              allowSelect: this.props.allowSelect }));
+
+
+        })));
+
+
+
+  }};let
+
+
+FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
+  constructor(props) {
+    super(props);
+    this.state = { show: true };
+    this.toggleShow = this.toggleShow.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  getClassNames() {
+    return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({
+      'found-in-target': true,
+      'empty-name': !_.get(this.props.target, 'targetName') });
+
+  }
+
+  toggleShow() {
+    this.setState({ show: !this.state.show });
+  }
+
+  getBaseIcon(baseType) {
+    switch (baseType) {
+      case 'collection':
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_CollectionIcon__["a" /* default */], { className: 'target-collection' });
+      case 'environment':
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_EnvironmentIcon__["a" /* default */], { className: 'target-environment' });}
+
+  }
+
+  handleChange(entityId, changedEntity) {
+    this.props.onChange(this.props.id, _extends({},
+    this.props.target, {
+      entities: _.map(this.props.target.entities, (entity, index) => {
+        if (entityId !== index) {
+          return entity;
+        }
+        return changedEntity;
+      }) }));
+
+  }
+
+  render() {
+    let { target } = this.props;
+    let collectionStore = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('CollectionStore');
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClassNames() },
+
+        target.targetName &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--name-wrapper', onClick: this.toggleShow },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--name' },
+            this.state.show ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__["a" /* default */], { className: 'arrow' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__["a" /* default */], { className: 'arrow' }),
+            this.getBaseIcon(this.props.baseType),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, target.targetName),
+
+            this.props.baseType === 'collection' &&
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__collections_CollectionMetaIcons__["a" /* default */], { collection: collectionStore.find(target.id) })),
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--count' },
+
+            ` (${target.occurrences} ${__WEBPACK_IMPORTED_MODULE_11__utils_PluralizeHelper__["a" /* default */].pluralize({
+              count: target.occurrences,
+              singular: 'result',
+              plural: 'results' })
+            })`)),
+
+
+
+
+
+        this.state.show &&
+        _.map(target.entities, (entity, index) => {
+          return (
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FoundEntity, {
+              key: index,
+              id: index,
+              baseType: this.props.baseType,
+              entity: entity,
+              renderOpenEntityComponent: this.props.renderOpenEntityComponent,
+              onChange: this.handleChange,
+              disabled: !entity.isReplaceAllowed,
+              allowSelect: this.props.allowSelect }));
+
+
+        })));
 
 
 
@@ -2766,7 +3180,256 @@ FindReplaceGlobalsTab = class FindReplaceGlobalsTab extends __WEBPACK_IMPORTED_M
 
 /***/ }),
 
-/***/ 2812:
+/***/ 2948:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceFieldSelector; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+var _class;
+
+
+
+let
+
+
+FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default()(_class = class FindReplaceFieldSelector extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = { show: false };
+    this.handleToggleSelector = this.handleToggleSelector.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  handleToggleSelector() {
+    this.setState({ show: !this.state.show });
+  }
+
+  handleFieldSelect(type, property) {
+    this.props.onIncludeFields(type, property);
+  }
+
+  handleClickOutside() {
+    this.setState({ show: false });
+  }
+
+  getFieldLabelText() {
+    return _.size(this.props.includedFields) == this.props.fieldCount ? 'ALL' : _.size(this.props.includedFields);
+  }
+
+  render() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace--field-selector' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
+            type: 'text',
+            className: 'find-replace--field-selector-button',
+            onClick: this.handleToggleSelector },
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `FILTER (${this.getFieldLabelText()} FIELDS)`),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__["a" /* default */], { className: 'find-replace--field-selector-expand' })),
+
+
+        this.state.show &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector-wrapper' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--head' }, 'INCLUDE FIELDS'),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--list' },
+
+            _.map(this.props.fields, (fieldType, index) => {
+              return (
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: index, className: 'search-field-selector--section' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--section-label' }, fieldType.displayName),
+
+                  _.map(fieldType.fields, (field, index) => {
+                    return (
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: index, className: 'search-field-selector--section-item' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], { checked: _.includes(this.props.includedFields, `${fieldType.type}-${field.key}`), onChange: this.handleFieldSelect.bind(this, fieldType.type, field.key) }),
+                        field.displayName));
+
+
+                  })));
+
+
+
+            })))));
+
+
+
+
+
+
+  }}) || _class;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 2949:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceNotFound; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(128);
+
+
+let
+
+FindReplaceNotFound = class FindReplaceNotFound extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-wrapper' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-image' }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-header' }, `Nothing found for "${this.props.searchedQuery}"`),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Try another search, or modify the entities to find in. ')))));
+
+
+
+
+  }};
+
+/***/ }),
+
+/***/ 2950:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_GlobalsController__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_FindReplaceHelper__ = __webpack_require__(1981);
+
+
+
+
+
+
+const accessorMap = {
+  collection: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getCollection,
+  folder: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getFolder,
+  request: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getRequest,
+  response: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getResponse,
+  environment: __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__["a" /* default */]),
+  globals: __WEBPACK_IMPORTED_MODULE_3__modules_controllers_GlobalsController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_3__modules_controllers_GlobalsController__["a" /* default */]) };
+
+
+/**
+                                                             * This is the normalized version of replace target.
+                                                             * This helps in performing replace operation efficiently
+                                                             *
+                                                             * @typedef {Object} normalizedTarget
+                                                             * @property {string} type Type of entity e.g collection, request etc
+                                                             * @property {string} id Id of the entity
+                                                             * @property {Object} changes This object will have properties, defined under
+                                                             * different entity types, in FindReplaceHelper, and these properties will represent
+                                                             * an array of found instances with that property in this entity. Refer tests to see object
+                                                             * structure.
+                                                             *
+                                                             */
+
+
+/**
+                                                                 * Searched results on which we need to perform replace
+                                                                 *
+                                                                 * @param {Object} replaceTarget
+                                                                 * @param {FoundTarget[]} replaceTarget.collections
+                                                                 * @param {FoundTarget[]} replaceTarget.environments
+                                                                 * @param {FoundTarget[]} replaceTarget.globals
+                                                                 *
+                                                                 * @returns {normalizedTarget[]}
+                                                                 */
+function normalizeTarget(replaceTarget) {
+  let result = [];
+  _.forOwn(replaceTarget, targets => {
+    _.forEach(targets, target => {
+      _.forEach(target.entities, entity => {
+        let changes = {};
+        _.forEach(entity.fields, field => {
+          let instancesToReplace = _.filter(field.instances, 'isSelected');
+          if (!_.isEmpty(instancesToReplace)) {
+            if (_.isArray(changes[field.property])) {
+              changes[field.property] = _.concat(changes[field.property], instancesToReplace);
+            } else
+            {
+              changes[field.property] = instancesToReplace;
+            }
+          }
+        });
+        if (!_.isEmpty(changes)) {
+          result.push({
+            type: entity.type,
+            id: entity.id,
+            changes });
+
+        }
+      });
+    });
+  });
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  /**
+                  *
+                  * @param {Object} replaceTarget
+                  * @param {FoundTarget[]} replaceTarget.collections
+                  * @param {FoundTarget[]} replaceTarget.environments
+                  * @param {FoundTarget[]} replaceTarget.globals
+                  * @param {string} replacementString String to replace with
+                  *
+                  * @returns {promise}
+                  */
+  replace(replaceTarget, replacementString) {
+    let normalizedTargets = normalizeTarget(replaceTarget),
+    actions = [];
+    if (_.isEmpty(normalizedTargets)) {
+      return Promise.resolve();
+    }
+    return new Promise((resolve, reject) => {
+      _.forEach(normalizedTargets, (normalizedTarget, index) => {
+        if (accessorMap.hasOwnProperty(normalizedTarget.type)) {
+          let dispatchPromise = accessorMap[normalizedTarget.type]({ id: normalizedTarget.id }).then(data => {
+            if (!data) {
+              return;
+            }
+            _.forOwn(normalizedTarget.changes, (instances, key) => {
+              let obj = _.get(__WEBPACK_IMPORTED_MODULE_4__utils_FindReplaceHelper__["a" /* default */], [normalizedTarget.type, key]);
+              if (!obj || !_.isFunction(obj.replaceHelper)) {
+                return;
+              }
+              obj.replaceHelper({ data, replacementString, instances, propertyPath: key });
+            });
+            let updateEvent = {
+              name: 'update',
+              namespace: normalizedTarget.type,
+              data };
+
+            return Object(__WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__["a" /* default */])(updateEvent);
+          });
+          actions.push(dispatchPromise);
+        }
+      });
+      resolve(actions);
+    });
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 2951:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function() {
@@ -2775,14 +3438,14 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 2813:
+/***/ 2952:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = FindIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -2806,11 +3469,11 @@ function FindIcon(props) {
 
 /***/ }),
 
-/***/ 2814:
+/***/ 2953:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_SidebarShowIcon__ = __webpack_require__(2815);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_SidebarShowIcon__ = __webpack_require__(2954);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -2886,14 +3549,14 @@ function FindIcon(props) {
 
 /***/ }),
 
-/***/ 2815:
+/***/ 2954:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SidebarShowIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -2917,11 +3580,11 @@ function SidebarShowIcon(props) {
 
 /***/ }),
 
-/***/ 2816:
+/***/ 2955:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_LightBulbIcon__ = __webpack_require__(2817);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_LightBulbIcon__ = __webpack_require__(2956);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -2998,14 +3661,14 @@ function SidebarShowIcon(props) {
 
 /***/ }),
 
-/***/ 2817:
+/***/ 2956:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = LightBulbIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -3029,20 +3692,20 @@ function LightBulbIcon(props) {
 
 /***/ }),
 
-/***/ 2818:
+/***/ 2957:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_RequesterTabConstants__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants_js__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcherIntro__ = __webpack_require__(1839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__TypeSwitcher__ = __webpack_require__(1672);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants_js__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__WorkspaceTypeSwitcherIntro__ = __webpack_require__(1977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__TypeSwitcher__ = __webpack_require__(1812);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -3080,7 +3743,7 @@ const labelMap = {
       }
 
       componentWillMount() {
-        this.viewModeReaction = Object(__WEBPACK_IMPORTED_MODULE_3_mobx__["l" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('ActiveWorkspaceSessionStore').viewMode, viewMode => {
+        this.viewModeReaction = Object(__WEBPACK_IMPORTED_MODULE_3_mobx__["o" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('ActiveWorkspaceSessionStore').viewMode, viewMode => {
           if (viewMode === __WEBPACK_IMPORTED_MODULE_0__constants_RequesterTabConstants__["a" /* WORKSPACE_BROWSER_VIEW */]) {
             this.handleShowTooltip();
           }
@@ -3189,20 +3852,20 @@ const labelMap = {
 
 /***/ }),
 
-/***/ 2819:
+/***/ 2958:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Item; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Text__ = __webpack_require__(1842);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Icon__ = __webpack_require__(1843);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Pane__ = __webpack_require__(1844);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Drawer__ = __webpack_require__(1845);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Tooltips__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Text__ = __webpack_require__(1982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Icon__ = __webpack_require__(1983);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Pane__ = __webpack_require__(1984);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Drawer__ = __webpack_require__(1985);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Tooltips__ = __webpack_require__(251);
 
 
 

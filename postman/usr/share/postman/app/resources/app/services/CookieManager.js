@@ -135,7 +135,7 @@ class CookieManager {
 
           this.cookieStore.set(cookie, (err) => {
             if (err) {
-              console.error('Error storing cookies in Electron store:', err);
+              console.error('Error storing cookies in Electron store:', cookie, err);
             }
             cb(); // swallow the error, because there's nothing we can do about it anyway.
           });

@@ -1,17 +1,17 @@
 webpackJsonp([12],{
 
-/***/ 1569:
+/***/ 1687:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceBrowserFilter; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_LibrarySortTypeConstants__ = __webpack_require__(1655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_LibrarySortTypeLabelMap__ = __webpack_require__(2432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_LibrarySortTypeConstants__ = __webpack_require__(1797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_LibrarySortTypeLabelMap__ = __webpack_require__(2565);
 
 
 
@@ -73,7 +73,7 @@ let WorkspaceBrowserFilter = class WorkspaceBrowserFilter extends __WEBPACK_IMPO
 
 /***/ }),
 
-/***/ 1655:
+/***/ 1797:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92,7 +92,7 @@ const LIBRARY_SORT_TYPE_DATE_CREATED = 'date-created';
 
 /***/ }),
 
-/***/ 2430:
+/***/ 2563:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,25 +100,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return WorkspaceBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__WorkspaceBrowserItems_WorkspaceCollectionsBrowser__ = __webpack_require__(2431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__WorkspaceBrowserItems_WorkspaceEnvironmentsBrowser__ = __webpack_require__(2433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__WorkspaceBrowserItems_WorkspaceMonitorsBrowser__ = __webpack_require__(2435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceBrowserItems_WorkspaceMocksBrowser__ = __webpack_require__(2437);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__WorkspaceBrowserItems_WorkspaceIntegrationsBrowser__ = __webpack_require__(2439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__WorkspaceBrowserItems_WorkspaceActivityBrowser__ = __webpack_require__(2441);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_pipelines_user_action__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_model_event__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__WorkspaceBrowserItems_WorkspaceOfflineView__ = __webpack_require__(2444);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__utils_util__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_workspaces_WorkspaceActionDropdown__ = __webpack_require__(679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__WorkspaceBrowserItems_WorkspaceCollectionsBrowser__ = __webpack_require__(2564);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__WorkspaceBrowserItems_WorkspaceEnvironmentsBrowser__ = __webpack_require__(2566);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__WorkspaceBrowserItems_WorkspaceMonitorsBrowser__ = __webpack_require__(2568);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceBrowserItems_WorkspaceMocksBrowser__ = __webpack_require__(2570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__WorkspaceBrowserItems_WorkspaceHistoryBrowser__ = __webpack_require__(2572);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__WorkspaceBrowserItems_WorkspaceIntegrationsBrowser__ = __webpack_require__(2575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__WorkspaceBrowserItems_WorkspaceActivityBrowser__ = __webpack_require__(2577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_pipelines_user_action__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_model_event__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__WorkspaceBrowserItems_WorkspaceOfflineView__ = __webpack_require__(2580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_workspaces_WorkspaceActionDropdown__ = __webpack_require__(691);
 var _class;
+
 
 
 
@@ -140,7 +142,7 @@ var _class;
 let
 
 
-WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* observer */])(_class = class WorkspaceBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_12_mobx_react__["a" /* observer */])(_class = class WorkspaceBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
@@ -159,8 +161,8 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
   }
 
   componentDidUpdate() {
-    if (Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').isSwitching) {
-      Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').resetLifecycle(Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveWorkspaceSessionStore').workspace);
+    if (Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').isSwitching) {
+      Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').resetLifecycle(Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveWorkspaceSessionStore').workspace);
     }
   }
 
@@ -176,31 +178,31 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
 
   handleTabSelect(tab) {
     this.setState({ activeTab: tab });
-    __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__["a" /* default */].addEvent('workspace', 'browse', tab);
+    __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent('workspace', 'browse', tab);
   }
 
   handleWorkspaceAction(action) {
-    let workspaceId = Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id;
+    let workspaceId = Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id;
     switch (action) {
       case 'add_dependencies':
-        __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__["a" /* default */].addEvent('workspace', 'initiate_add_to_ws', 'browse');
+        __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent('workspace', 'initiate_add_to_ws', 'browse');
         pm.mediator.trigger('openBulkAddToWorkspaceModal', workspaceId);
         break;
 
       case 'details':
-        __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__["a" /* default */].addEvent('workspace', 'view_details');
-        pm.mediator.trigger('openWorkspaceDetailsModal', Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore'));
+        __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent('workspace', 'view_details');
+        pm.mediator.trigger('openWorkspaceDetailsModal', Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore'));
         break;
 
       case 'join':
-        let joinWorkspaceEvent = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('join', 'workspace', { model: 'workspace', workspace: { id: workspaceId } });
+        let joinWorkspaceEvent = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('join', 'workspace', { model: 'workspace', workspace: { id: workspaceId } });
 
-        Object(__WEBPACK_IMPORTED_MODULE_12__modules_pipelines_user_action__["a" /* default */])(joinWorkspaceEvent).
+        Object(__WEBPACK_IMPORTED_MODULE_13__modules_pipelines_user_action__["a" /* default */])(joinWorkspaceEvent).
         then(() => {
-          Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').switch(workspaceId);
+          Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').switch(workspaceId);
         }).
         catch(e => {
-          Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').resetLifecycle(workspaceId);
+          Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').resetLifecycle(workspaceId);
         });
         break;}
 
@@ -210,12 +212,12 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
     if (this.state.isOffline) {
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-browser__container' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__WorkspaceBrowserItems_WorkspaceOfflineView__["a" /* default */], null)));
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_17__WorkspaceBrowserItems_WorkspaceOfflineView__["a" /* default */], null)));
 
 
     }
 
-    let isJoining = Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').isJoining(Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
+    let isJoining = Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('WorkspaceLifecycleStore').isJoining(Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-browser__container' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-browser__tabs' },
@@ -230,15 +232,16 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__["a" /* Tab */], { refKey: 'monitors', className: 'requester-library-tab--environments' }, 'Monitors'),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__["a" /* Tab */], { refKey: 'mocks', className: 'requester-library-tab--environments' }, 'Mocks'),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__["a" /* Tab */], { refKey: 'integrations', className: 'requester-library-tab--environments' }, 'Integrations'),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__["a" /* Tab */], { refKey: 'activity', className: 'requester-library-tab--environments' }, 'Activity')),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__["a" /* Tab */], { refKey: 'activity', className: 'requester-library-tab--environments' }, 'Activity'),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Tabs__["a" /* Tab */], { refKey: 'history', className: 'requester-library-tab--history' }, 'History')),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-browser__tabs__actions' },
 
-            !Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
+            !Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                 type: 'primary',
                 size: 'small',
-                disabled: isJoining || Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isLoading,
+                disabled: isJoining || Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isLoading,
                 onClick: this.handleWorkspaceAction.bind(this, 'join'),
                 className: 'join__button' },
 
@@ -250,7 +253,7 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
 
 
 
-            !Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
+            !Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                 type: 'secondary',
                 size: 'small',
@@ -261,7 +264,7 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
 
 
 
-            Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
+            Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                 type: 'secondary',
                 size: 'small',
@@ -272,9 +275,9 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
 
 
 
-            Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_18__components_workspaces_WorkspaceActionDropdown__["a" /* default */], {
-              workspaceId: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id,
+            Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').isMember &&
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_19__components_workspaces_WorkspaceActionDropdown__["a" /* default */], {
+              workspaceId: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id,
               tooltipPlacement: 'left' }))),
 
 
@@ -283,38 +286,45 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
 
         this.state.activeTab === 'collections' &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__WorkspaceBrowserItems_WorkspaceCollectionsBrowser__["a" /* WorkspaceCollectionsBrowser */], {
-          collections: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').collections }),
+          collections: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').collections,
+          archivedCollections: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').archivedCollections }),
 
 
 
         this.state.activeTab === 'environments' &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__WorkspaceBrowserItems_WorkspaceEnvironmentsBrowser__["a" /* WorkspaceEnvironmentsBrowser */], {
-          environments: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').environments }),
+          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }),
 
 
 
         this.state.activeTab === 'monitors' &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__WorkspaceBrowserItems_WorkspaceMonitorsBrowser__["a" /* WorkspaceMonitorsBrowser */], {
-          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }),
+          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }),
 
 
 
         this.state.activeTab === 'mocks' &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__WorkspaceBrowserItems_WorkspaceMocksBrowser__["a" /* WorkspaceMocksBrowser */], {
-          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }),
+          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }),
 
 
 
         this.state.activeTab === 'integrations' &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__WorkspaceBrowserItems_WorkspaceIntegrationsBrowser__["a" /* WorkspaceIntegrationsBrowser */], {
-          integrations: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').integrations }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__WorkspaceBrowserItems_WorkspaceIntegrationsBrowser__["a" /* WorkspaceIntegrationsBrowser */], {
+          integrations: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').integrations }),
 
 
 
         this.state.activeTab === 'activity' &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__WorkspaceBrowserItems_WorkspaceActivityBrowser__["a" /* WorkspaceActivityBrowser */], {
-          isSignedIn: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('CurrentUserStore').isLoggedIn,
-          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_15__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id })));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__WorkspaceBrowserItems_WorkspaceActivityBrowser__["a" /* WorkspaceActivityBrowser */], {
+          isSignedIn: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('CurrentUserStore').isLoggedIn,
+          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }),
+
+
+
+        this.state.activeTab === 'history' &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__WorkspaceBrowserItems_WorkspaceHistoryBrowser__["a" /* WorkspaceHistoryBrowser */], {
+          workspaceId: Object(__WEBPACK_IMPORTED_MODULE_16__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id })));
 
 
 
@@ -324,34 +334,35 @@ WorkspaceBrowser = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* obser
 
 /***/ }),
 
-/***/ 2431:
+/***/ 2564:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceCollectionsBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_ShareIcon__ = __webpack_require__(1603);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_empty_states_CollectionsEmpty__ = __webpack_require__(1612);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_empty_states_NoResultFound__ = __webpack_require__(1548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__ = __webpack_require__(1496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_CollectionActionsUtil__ = __webpack_require__(1639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_uid_helper__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__constants_LibrarySortTypeConstants__ = __webpack_require__(1655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__utils_util__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_base_LoadingIndicator__ = __webpack_require__(1493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_base_InlineEditor__ = __webpack_require__(1560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__models_services_DashboardService__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_collections_CollectionMetaIcons__ = __webpack_require__(661);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_archivedResource_ArchivedResource__ = __webpack_require__(1747);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_ShareIcon__ = __webpack_require__(1743);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_empty_states_CollectionsEmpty__ = __webpack_require__(1755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_empty_states_NoResultFound__ = __webpack_require__(1673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_moment__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__ = __webpack_require__(1632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_CollectionActionsUtil__ = __webpack_require__(1781);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__utils_uid_helper__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__constants_LibrarySortTypeConstants__ = __webpack_require__(1797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_base_InlineEditor__ = __webpack_require__(1700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__models_services_DashboardService__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_collections_CollectionMetaIcons__ = __webpack_require__(674);
 var _class;
 
 
@@ -377,12 +388,14 @@ var _class;
 
 
 
-let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react__["a" /* observer */])(_class = class WorkspaceCollectionsBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+
+let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_15_mobx_react__["a" /* observer */])(_class = class WorkspaceCollectionsBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
       filterQuery: '',
-      sortType: __WEBPACK_IMPORTED_MODULE_13__constants_LibrarySortTypeConstants__["c" /* LIBRARY_SORT_TYPE_NAME */] };
+      sortType: __WEBPACK_IMPORTED_MODULE_14__constants_LibrarySortTypeConstants__["c" /* LIBRARY_SORT_TYPE_NAME */] };
 
 
     this.handleFilterQueryChange = this.handleFilterQueryChange.bind(this);
@@ -416,26 +429,26 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
 
   getSortFunction(type) {
     switch (type) {
-      case __WEBPACK_IMPORTED_MODULE_13__constants_LibrarySortTypeConstants__["c" /* LIBRARY_SORT_TYPE_NAME */]:
+      case __WEBPACK_IMPORTED_MODULE_14__constants_LibrarySortTypeConstants__["c" /* LIBRARY_SORT_TYPE_NAME */]:
         return collection => _.toLower(collection.name);
 
-      case __WEBPACK_IMPORTED_MODULE_13__constants_LibrarySortTypeConstants__["b" /* LIBRARY_SORT_TYPE_LAST_MODIFIED */]:
-        return collection => new __WEBPACK_IMPORTED_MODULE_8_moment___default.a(collection.updatedAt);
+      case __WEBPACK_IMPORTED_MODULE_14__constants_LibrarySortTypeConstants__["b" /* LIBRARY_SORT_TYPE_LAST_MODIFIED */]:
+        return collection => new __WEBPACK_IMPORTED_MODULE_9_moment___default.a(collection.updatedAt);
 
-      case __WEBPACK_IMPORTED_MODULE_13__constants_LibrarySortTypeConstants__["a" /* LIBRARY_SORT_TYPE_DATE_CREATED */]:
-        return collection => new __WEBPACK_IMPORTED_MODULE_8_moment___default.a(collection.createdAt);
+      case __WEBPACK_IMPORTED_MODULE_14__constants_LibrarySortTypeConstants__["a" /* LIBRARY_SORT_TYPE_DATE_CREATED */]:
+        return collection => new __WEBPACK_IMPORTED_MODULE_9_moment___default.a(collection.createdAt);
 
-      case __WEBPACK_IMPORTED_MODULE_13__constants_LibrarySortTypeConstants__["d" /* LIBRARY_SORT_TYPE_OWNER */]:
-        return collection => _.toLower(__WEBPACK_IMPORTED_MODULE_15__utils_util__["a" /* default */].getUserNameForId(collection.owner.id, Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('CurrentUserStore')));}
+      case __WEBPACK_IMPORTED_MODULE_14__constants_LibrarySortTypeConstants__["d" /* LIBRARY_SORT_TYPE_OWNER */]:
+        return collection => _.toLower(__WEBPACK_IMPORTED_MODULE_16__utils_util__["a" /* default */].getUserNameForId(collection.owner.id, Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('CurrentUserStore')));}
 
   }
 
   handleAction(collection, action) {
-    if (!Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isMember) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isMember) {
       pm.mediator.trigger('joinWorkspace');
       return;
     }
-    Object(__WEBPACK_IMPORTED_MODULE_11__utils_CollectionActionsUtil__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_12__utils_uid_helper__["a" /* decomposeUID */])(collection.id).modelId, action, {}, { origin: 'browse' });
+    Object(__WEBPACK_IMPORTED_MODULE_12__utils_CollectionActionsUtil__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_13__utils_uid_helper__["a" /* decomposeUID */])(collection.id).modelId, action, {}, { origin: 'browse' });
   }
 
   handleShare(collection) {
@@ -447,42 +460,42 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
 
     return [
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */],
       label: 'Modify permissions',
       isEnabled: isDeletable && shared },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */],
       label: 'Duplicate',
       isEnabled: true },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DOWNLOAD */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DOWNLOAD */],
       label: 'Export',
       isEnabled: true },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */],
       label: 'Monitor Collection',
       isEnabled: isEditable },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */],
       label: 'Mock Collection',
       isEnabled: true },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_PUBLISH_DOCS */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_PUBLISH_DOCS */],
       label: 'Publish Docs',
       isEnabled: isEditable },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */],
       label: 'Remove from workspace',
       isEnabled: true },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_9__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */],
+      type: __WEBPACK_IMPORTED_MODULE_10__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */],
       label: 'Delete',
       isEnabled: isDeletable }];
 
@@ -494,7 +507,7 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
     .filter('isEnabled').
     map(action => {
       return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Dropdowns__["d" /* MenuItem */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Dropdowns__["d" /* MenuItem */], {
             key: action.type,
             refKey: action.type },
 
@@ -505,28 +518,39 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
   }
 
   handleCollectionClick(collectionId) {
-    __WEBPACK_IMPORTED_MODULE_19__modules_services_AnalyticsService__["a" /* default */].addEvent('documentation', 'view', 'browse');
-    Object(__WEBPACK_IMPORTED_MODULE_18__models_services_DashboardService__["i" /* openEntity */])('collections', collectionId, Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
+    __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__["a" /* default */].addEvent('documentation', 'view', 'browse');
+    Object(__WEBPACK_IMPORTED_MODULE_19__models_services_DashboardService__["j" /* openEntity */])('collections', collectionId, Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
   }
 
   handleRefresh() {
-    let workspaceId = Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id;
-    Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').fetchWorkspace(workspaceId);
+    let workspaceId = Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id;
+    Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').fetchWorkspace(workspaceId);
   }
 
   render() {
-    let collections = this.getFilteredCollections();
-    if (Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isLoading) {
+    let collections = this.getFilteredCollections(),
+    archivedResources = {
+      archivedCollectionsCount: this.props.archivedCollections && this.props.archivedCollections.length || 0 };
+
+    if (Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isLoading) {
       return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__components_base_LoadingIndicator__["a" /* default */], null));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_17__components_base_LoadingIndicator__["a" /* default */], null));
 
     }
     if (_.isEmpty(this.props.collections)) {
       return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-item-browser__container collections empty' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_empty_states_CollectionsEmpty__["a" /* default */], {
-            isMember: Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isMember,
-            workspaceId: Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id })));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-item-browser__container collections empty' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_empty_states_CollectionsEmpty__["a" /* default */], {
+              isMember: Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isMember,
+              workspaceId: Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id })),
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_archivedResource_ArchivedResource__["a" /* default */], {
+            archivedResources: archivedResources,
+            label: 'COLLECTIONS',
+            showWarning: true,
+            onClick: __WEBPACK_IMPORTED_MODULE_19__models_services_DashboardService__["f" /* openArchivedCollections */] })));
 
 
 
@@ -550,8 +574,8 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collections__list' },
 
-          _.isEmpty(collections) &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_empty_states_NoResultFound__["a" /* default */], null),
+          _.isEmpty(collections) && this.state.filterQuery &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_empty_states_NoResultFound__["a" /* default */], null),
 
 
           _.map(collections, collection => {
@@ -566,11 +590,11 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
                           onClick: this.handleCollectionClick.bind(this, collection.id) },
 
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, collection.name),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_20__components_collections_CollectionMetaIcons__["a" /* default */], { collection: collection }))),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_21__components_collections_CollectionMetaIcons__["a" /* default */], { collection: collection }))),
 
 
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collections__item__owner' },
-                      __WEBPACK_IMPORTED_MODULE_15__utils_util__["a" /* default */].getUserNameForId(collection.owner.id, Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('CurrentUserStore')))),
+                      __WEBPACK_IMPORTED_MODULE_16__utils_util__["a" /* default */].getUserNameForId(collection.owner.id, Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('CurrentUserStore')))),
 
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entities__item__action_wrapper' },
@@ -579,22 +603,22 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
                         type: 'secondary',
                         size: 'small' },
 
-                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_Icons_ShareIcon__["a" /* default */], { className: 'share-icon' }),
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Icons_ShareIcon__["a" /* default */], { className: 'share-icon' }),
                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Share')),
 
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Dropdowns__["a" /* Dropdown */], {
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Dropdowns__["a" /* Dropdown */], {
                         className: 'entities_item__action__dropdown',
                         onSelect: this.handleAction.bind(this, collection) },
 
-                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Dropdowns__["b" /* DropdownButton */], {
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Dropdowns__["b" /* DropdownButton */], {
                           dropdownStyle: 'nocaret',
                           type: 'custom' },
 
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], null,
-                          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__["a" /* default */], { className: 'entities_item__action__dropdown-btn' }))),
+                          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_Icons_MoreIcon__["a" /* default */], { className: 'entities_item__action__dropdown-btn' }))),
 
 
-                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Dropdowns__["c" /* DropdownMenu */], {
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Dropdowns__["c" /* DropdownMenu */], {
                           'align-right': true,
                           dropup: 'auto' },
 
@@ -603,7 +627,7 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
 
 
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_17__components_base_InlineEditor__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_18__components_base_InlineEditor__["a" /* default */], {
                   isViewMore: true,
                   className: 'collections__item__description',
                   placeholder: 'Adding a description makes your docs better',
@@ -611,8 +635,14 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
 
 
 
-          }))));
+          })),
 
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_archivedResource_ArchivedResource__["a" /* default */], {
+          archivedResources: archivedResources,
+          label: 'COLLECTIONS',
+          showWarning: true,
+          onClick: __WEBPACK_IMPORTED_MODULE_19__models_services_DashboardService__["f" /* openArchivedCollections */] })));
 
 
 
@@ -621,11 +651,11 @@ let WorkspaceCollectionsBrowser = Object(__WEBPACK_IMPORTED_MODULE_14_mobx_react
 
 /***/ }),
 
-/***/ 2432:
+/***/ 2565:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LibrarySortTypeConstants__ = __webpack_require__(1655);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LibrarySortTypeConstants__ = __webpack_require__(1797);
 
 
 
@@ -640,27 +670,27 @@ sortTypeLabelMap[__WEBPACK_IMPORTED_MODULE_0__LibrarySortTypeConstants__["a" /* 
 
 /***/ }),
 
-/***/ 2433:
+/***/ 2566:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceEnvironmentsBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Icons_MoreIcon__ = __webpack_require__(655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_ShareIcon__ = __webpack_require__(1603);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_empty_states_EnvironmentsEmpty__ = __webpack_require__(2434);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_uid_helper__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_EnvironmentActionUtil__ = __webpack_require__(1783);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_LoadingIndicator__ = __webpack_require__(1493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_empty_states_NoResultFound__ = __webpack_require__(1548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__utils_util__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_services_DashboardService__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_ShareIcon__ = __webpack_require__(1743);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_empty_states_EnvironmentsEmpty__ = __webpack_require__(2567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_uid_helper__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_EnvironmentActionUtil__ = __webpack_require__(1920);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_empty_states_NoResultFound__ = __webpack_require__(1673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_services_DashboardService__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_services_AnalyticsService__ = __webpack_require__(22);
 var _class;
 
@@ -688,14 +718,25 @@ let WorkspaceEnvironmentsBrowser = Object(__WEBPACK_IMPORTED_MODULE_6_mobx_react
     this.handleFilterQueryChange = this.handleFilterQueryChange.bind(this);
     this.handleFilterQueryCancel = this.handleFilterQueryCancel.bind(this);
     this.handleAction = this.handleAction.bind(this);
-    this.handleRefreshDebounced = _.debounce(this.handleRefresh, 5000, {
-      leading: true,
-      trailing: false });
-
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
 
-  getFilteredEnvironments() {
-    return _.filter(this.props.environments, environment => _.includes(_.toLower(environment.name), _.toLower(this.state.filterQuery)));
+  componentDidMount() {
+    this.fetchEnvironments(this.props.workspaceId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.workspaceId !== nextProps.workspaceId) {
+      this.fetchEnvironments(nextProps.workspaceId);
+    }
+  }
+
+  fetchEnvironments(id) {
+    Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').fetchWorkspaceEnvironment(id);
+  }
+
+  getFilteredEnvironments(environments) {
+    return _.filter(environments, environment => _.includes(_.toLower(environment.name), _.toLower(this.state.filterQuery)));
   }
 
   handleFilterQueryChange(filterQuery) {
@@ -760,23 +801,23 @@ let WorkspaceEnvironmentsBrowser = Object(__WEBPACK_IMPORTED_MODULE_6_mobx_react
 
   handleEnvironmentClick(environmentId) {
     __WEBPACK_IMPORTED_MODULE_15__modules_services_AnalyticsService__["a" /* default */].addEvent('environment', 'view_in_web', 'browse');
-    Object(__WEBPACK_IMPORTED_MODULE_14__models_services_DashboardService__["i" /* openEntity */])('environments', environmentId, Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
+    Object(__WEBPACK_IMPORTED_MODULE_14__models_services_DashboardService__["j" /* openEntity */])('environments', environmentId, this.props.workspaceId);
   }
 
   handleRefresh() {
-    let workspaceId = Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id;
-    Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').fetchWorkspace(workspaceId);
+    this.fetchEnvironments(this.props.workspaceId);
   }
 
   render() {
-    let environments = this.getFilteredEnvironments();
+    let environments = Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').environments,
+    filteredEnvironments = this.getFilteredEnvironments(environments);
     if (Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').isLoading) {
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_base_LoadingIndicator__["a" /* default */], null));
 
     }
 
-    if (_.isEmpty(this.props.environments)) {
+    if (_.isEmpty(environments)) {
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-item-browser__container environments empty' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_empty_states_EnvironmentsEmpty__["a" /* default */], {
@@ -796,18 +837,18 @@ let WorkspaceEnvironmentsBrowser = Object(__WEBPACK_IMPORTED_MODULE_6_mobx_react
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'text',
-              onClick: this.handleRefreshDebounced }, 'Refresh')),
+              onClick: this.handleRefresh }, 'Refresh')),
 
 
 
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'environments__list' },
 
-          _.isEmpty(environments) &&
+          _.isEmpty(filteredEnvironments) &&
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__components_empty_states_NoResultFound__["a" /* default */], null),
 
 
-          _.map(environments, environment => {
+          _.map(filteredEnvironments, environment => {
             return (
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: environment.id, className: 'environments__list__item' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'environments__item__label' },
@@ -864,16 +905,16 @@ let WorkspaceEnvironmentsBrowser = Object(__WEBPACK_IMPORTED_MODULE_6_mobx_react
 
 /***/ }),
 
-/***/ 2434:
+/***/ 2567:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentsEmpty; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_ManageEnvironmentViews__ = __webpack_require__(1529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_ManageEnvironmentViews__ = __webpack_require__(1666);
 
 
 
@@ -931,7 +972,7 @@ EnvironmentsEmpty = class EnvironmentsEmpty extends __WEBPACK_IMPORTED_MODULE_0_
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
               type: 'text',
               className: 'learn-more-link',
-              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["W" /* VARIABLE_DOCS */]) }, 'variables'),
+              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["X" /* VARIABLE_DOCS */]) }, 'variables'),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, '. You can easily switch between different setups without changing your requests.')),
 
@@ -958,25 +999,25 @@ EnvironmentsEmpty = class EnvironmentsEmpty extends __WEBPACK_IMPORTED_MODULE_0_
 
 /***/ }),
 
-/***/ 2435:
+/***/ 2568:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceMonitorsBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_empty_states_MonitorsEmpty__ = __webpack_require__(2436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_MonitorController__ = __webpack_require__(688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_LoadingIndicator__ = __webpack_require__(1493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_empty_states_NoResultFound__ = __webpack_require__(1548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_services_DashboardService__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_empty_states_MonitorsEmpty__ = __webpack_require__(2569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_MonitorController__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_empty_states_NoResultFound__ = __webpack_require__(1673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_services_DashboardService__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__ = __webpack_require__(22);
 var _class;
 
@@ -1088,12 +1129,12 @@ let WorkspaceMonitorsBrowser = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["
 
   handleMonitorClick(monitorId) {
     __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__["a" /* default */].addEvent('monitor', 'view_run_details', 'browse');
-    Object(__WEBPACK_IMPORTED_MODULE_12__models_services_DashboardService__["i" /* openEntity */])('monitors', monitorId, Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
+    Object(__WEBPACK_IMPORTED_MODULE_12__models_services_DashboardService__["j" /* openEntity */])('monitors', monitorId, Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
   }
 
   handleEditMonitor(monitorId) {
     __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__["a" /* default */].addEvent('monitor', 'browse_action', 'edit');
-    Object(__WEBPACK_IMPORTED_MODULE_12__models_services_DashboardService__["b" /* editEntity */])('monitors', monitorId, Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
+    Object(__WEBPACK_IMPORTED_MODULE_12__models_services_DashboardService__["a" /* editEntity */])('monitors', monitorId, Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id);
   }
 
   render() {
@@ -1195,15 +1236,15 @@ let WorkspaceMonitorsBrowser = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["
 
 /***/ }),
 
-/***/ 2436:
+/***/ 2569:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonitorsEmpty; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(128);
 
 
 let
@@ -1244,7 +1285,7 @@ MonitorsEmpty = class MonitorsEmpty extends __WEBPACK_IMPORTED_MODULE_0_react__[
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
               type: 'text',
               className: 'learn-more-link',
-              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["z" /* MONITORING_DOCS */]) }, 'Monitor your collections'),
+              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["A" /* MONITORING_DOCS */]) }, 'Monitor your collections'),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' to schedule automated tests to check for performance and response.')),
 
@@ -1263,25 +1304,25 @@ MonitorsEmpty = class MonitorsEmpty extends __WEBPACK_IMPORTED_MODULE_0_react__[
 
 /***/ }),
 
-/***/ 2437:
+/***/ 2570:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceMocksBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_empty_states_MocksEmpty__ = __webpack_require__(2438);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_MockController__ = __webpack_require__(689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_LoadingIndicator__ = __webpack_require__(1493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_empty_states_NoResultFound__ = __webpack_require__(1548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_ClipboardHelper__ = __webpack_require__(1532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_empty_states_MocksEmpty__ = __webpack_require__(2571);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_MockController__ = __webpack_require__(702);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_empty_states_NoResultFound__ = __webpack_require__(1673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_ClipboardHelper__ = __webpack_require__(1668);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_services_AnalyticsService__ = __webpack_require__(22);
 var _class;
 
@@ -1490,15 +1531,15 @@ let WorkspaceMocksBrowser = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" 
 
 /***/ }),
 
-/***/ 2438:
+/***/ 2571:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MocksEmpty; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(128);
 
 
 let
@@ -1540,7 +1581,7 @@ MocksEmpty = class MocksEmpty extends __WEBPACK_IMPORTED_MODULE_0_react__["Compo
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
               type: 'text',
               className: 'learn-more-link',
-              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["y" /* MOCK_DOCS */]) }, 'mock server'),
+              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["z" /* MOCK_DOCS */]) }, 'mock server'),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' to simulate each endpoint and its corresponding environment in a Postman Collection, before sending the actual request.')),
 
@@ -1559,18 +1600,304 @@ MocksEmpty = class MocksEmpty extends __WEBPACK_IMPORTED_MODULE_0_react__["Compo
 
 /***/ }),
 
-/***/ 2439:
+/***/ 2572:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceHistoryBrowser; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__postman_date_helper__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__postman_date_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__postman_date_helper__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_empty_states_HistoryEmpty__ = __webpack_require__(2573);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_SyncWorkspaceController__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceHistoryGroupItem__ = __webpack_require__(2574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_empty_states_NoResultFound__ = __webpack_require__(1673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_archivedResource_ArchivedResource__ = __webpack_require__(1747);
+var _class;
+
+
+
+
+
+
+
+
+
+
+
+
+
+let WorkspaceHistoryBrowser = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */])(_class = class WorkspaceHistoryBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterQuery: '',
+      histories: [],
+      isLoading: false,
+      archivedHistory: 0 };
+
+
+    this.handleFilterQueryChange = this.handleFilterQueryChange.bind(this);
+    this.handleFilterQueryCancel = this.handleFilterQueryCancel.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.handleRefreshDebounced = _.debounce(this.fetchData, 5000, {
+      leading: true,
+      trailing: false });
+
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  componentWillUnmount() {
+    this.handleRefreshDebounced && this.handleRefreshDebounced.cancel();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.workspaceId !== nextProps.workspaceId) {
+      this.fetchData(nextProps.workspaceId);
+    }
+  }
+
+  fetchData() {
+    this.setState({ histories: [], isLoading: true, archivedHistory: 0 });
+    this.populateHistory();
+    this.populateArchivedCount();
+  }
+
+  populateHistory() {
+    this.setState({ isLoading: true });
+    return __WEBPACK_IMPORTED_MODULE_7__modules_controllers_SyncWorkspaceController__["a" /* default */].getAllHistory({ workspace: Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('ActiveBrowseWorkspaceStore').id }).
+    then(list => {
+      this.setState({
+        histories: list,
+        isLoading: false });
+
+    });
+  }
+
+  populateArchivedCount() {
+    return __WEBPACK_IMPORTED_MODULE_7__modules_controllers_SyncWorkspaceController__["a" /* default */].fetchArchivedCounts({ id: this.props.workspaceId }).
+    then(response => {
+      if (response) {
+        this.setState({ archivedHistory: response.history });
+      }
+    });
+  }
+
+  getGroupedFilteredHistories() {
+    let histories = this.getFilteredHistory();
+    return __WEBPACK_IMPORTED_MODULE_1__postman_date_helper___default.a.getDateGroups(histories, 'createdAt');
+  }
+
+  getFilteredHistory() {
+    return _.filter(this.state.histories, history => _.includes(_.toLower(history.url), _.toLower(this.state.filterQuery)));
+  }
+
+  handleFilterQueryChange(filterQuery) {
+    this.setState({ filterQuery });
+  }
+
+  handleFilterQueryCancel() {
+    this.setState({ filterQuery: '' });
+  }
+
+  render() {
+    let groupedHistories = this.getGroupedFilteredHistories(),
+    archivedResources = {
+      archivedHistoryCount: this.state.archivedHistory };
+
+
+    if (this.state.isLoading) {
+      return (
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_base_LoadingIndicator__["a" /* default */], null));
+
+    }
+
+    if (_.isEmpty(this.state.histories)) {
+      return (
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-item-browser__container history empty' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_empty_states_HistoryEmpty__["a" /* default */], null)),
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_archivedResource_ArchivedResource__["a" /* default */], {
+            archivedResources: archivedResources,
+            label: 'HISTORIES' })));
+
+
+
+    }
+
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-item-browser__container history' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-head' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_workspaces_WorkspaceBrowserFilter__["a" /* WorkspaceBrowserFilter */], {
+            onFilterQueryChange: this.handleFilterQueryChange,
+            onFilterQueryCancel: this.handleFilterQueryCancel,
+            filterQuery: this.state.filterQuery }),
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_Buttons__["a" /* Button */], {
+              type: 'text',
+              onClick: this.handleRefreshDebounced }, 'Refresh')),
+
+
+
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'history__list' },
+
+          _.isEmpty(groupedHistories) &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_empty_states_NoResultFound__["a" /* default */], null),
+
+
+          _.map(groupedHistories, group => {
+            return (
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__WorkspaceHistoryGroupItem__["a" /* default */], {
+                group: group,
+                key: group.name }));
+
+
+          })),
+
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_archivedResource_ArchivedResource__["a" /* default */], {
+          archivedResources: archivedResources,
+          label: 'HISTORIES' })));
+
+
+
+  }}) || _class;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 2573:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryEmpty; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+
+let
+
+HistoryEmpty = class HistoryEmpty extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty__illustration-wrapper entity-empty__illustration-wrapper--history' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'history-empty__illustration' })),
+
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty__title' }, 'No history requests'),
+
+
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty__subtitle' }, 'Requests send through the Postman app in a workspace are automatically saved in the workspace\'s History.')));
+
+
+
+
+  }};
+
+/***/ }),
+
+/***/ 2574:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceHistoryGroupItem; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pure_render_decorator__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_pure_render_decorator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_history_HistoryListItem__ = __webpack_require__(1862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_DownSolidIcon__ = __webpack_require__(79);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
+
+
+let
+
+
+WorkspaceHistoryGroupItem = __WEBPACK_IMPORTED_MODULE_2_pure_render_decorator___default()(_class = class WorkspaceHistoryGroupItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = { isOpen: true };
+
+    this.handleToggleGroup = this.handleToggleGroup.bind(this);
+  }
+
+  getCollapseButtonClasses() {
+    return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({
+      'caret': true,
+      'is-closed': !this.state.isOpen });
+
+  }
+
+  handleToggleGroup() {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+
+  render() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'history-sidebar-list-item-group' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
+            className: 'history-sidebar-list-item-group__meta',
+            onClick: this.handleToggleGroup },
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'history-sidebar-list-item-group__name' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_Icons_DownSolidIcon__["a" /* default */], { className: this.getCollapseButtonClasses() }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, this.props.group.name))),
+
+
+        this.state.isOpen &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'history-sidebar-list-item-group__items' },
+
+          _.map(this.props.group.items, item => {
+            return (
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_history_HistoryListItem__["a" /* default */], _extends({},
+              item, {
+                hideActions: true,
+                key: item.id })));
+
+
+          }))));
+
+
+
+
+
+  }}) || _class;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 2575:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceIntegrationsBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_empty_states_IntegrationsEmpty__ = __webpack_require__(2440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_workspaces_WorkspaceBrowserFilter__ = __webpack_require__(1687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_empty_states_IntegrationsEmpty__ = __webpack_require__(2576);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(11);
 var _class;
 
 
@@ -1650,16 +1977,16 @@ let WorkspaceIntegrationsBrowser = Object(__WEBPACK_IMPORTED_MODULE_4_mobx_react
 
 /***/ }),
 
-/***/ 2440:
+/***/ 2576:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IntegrationsEmpty; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_services_DashboardService__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_services_DashboardService__ = __webpack_require__(250);
 
 
 
@@ -1674,7 +2001,7 @@ IntegrationsEmpty = class IntegrationsEmpty extends __WEBPACK_IMPORTED_MODULE_0_
   }
 
   handleAddIntegrations() {
-    Object(__WEBPACK_IMPORTED_MODULE_3__models_services_DashboardService__["j" /* openIntegrationBrowse */])(this.props.workspaceId);
+    Object(__WEBPACK_IMPORTED_MODULE_3__models_services_DashboardService__["k" /* openIntegrationBrowse */])(this.props.workspaceId);
   }
 
   openLink(url) {
@@ -1710,19 +2037,19 @@ IntegrationsEmpty = class IntegrationsEmpty extends __WEBPACK_IMPORTED_MODULE_0_
 
 /***/ }),
 
-/***/ 2441:
+/***/ 2577:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceActivityBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_activity_feed_ActivityFeed__ = __webpack_require__(1734);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_library_LibraryEmptyListItem__ = __webpack_require__(2442);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_library_LibraryEmptyActivityFeed__ = __webpack_require__(2443);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_activity_feed_ActivityFeed__ = __webpack_require__(1871);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_library_LibraryEmptyListItem__ = __webpack_require__(2578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_library_LibraryEmptyActivityFeed__ = __webpack_require__(2579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(668);
 var _class;
 
 
@@ -1803,18 +2130,18 @@ let WorkspaceActivityBrowser = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["
 
 /***/ }),
 
-/***/ 2442:
+/***/ 2578:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LibraryEmptyListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_LoadingIndicator__ = __webpack_require__(1493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_AppUrlConstants__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_LoadingIndicator__ = __webpack_require__(1629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_AppUrlConstants__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AuthHandlerService__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AuthHandlerService__ = __webpack_require__(668);
 
 
 
@@ -1829,7 +2156,7 @@ LibraryEmptyListItem = class LibraryEmptyListItem extends __WEBPACK_IMPORTED_MOD
   }
 
   handleTeamLibraryDocs() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_3__constants_AppUrlConstants__["R" /* TEAM_LIBRARY_DOCS */]);
+    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_3__constants_AppUrlConstants__["S" /* TEAM_LIBRARY_DOCS */]);
     __WEBPACK_IMPORTED_MODULE_4__modules_services_AnalyticsService__["a" /* default */].addEvent('onboarding', 'view_documentation_sharing', 'team_library');
   }
 
@@ -1879,7 +2206,7 @@ LibraryEmptyListItem = class LibraryEmptyListItem extends __WEBPACK_IMPORTED_MOD
 
 /***/ }),
 
-/***/ 2443:
+/***/ 2579:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1905,15 +2232,15 @@ LibraryEmptyActivityFeed = class LibraryEmptyActivityFeed extends __WEBPACK_IMPO
 
 /***/ }),
 
-/***/ 2444:
+/***/ 2580:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceOfflineView; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_RequesterTabConstants__ = __webpack_require__(109);
 
 

@@ -7,7 +7,6 @@ var electron = require('electron'),
     ipc = electron.ipcMain,
     circularJSON = require('circular-json'),
     _ = require('lodash').noConflict(),
-    urlParse = require('url-parse'),
     async = require('async'),
     electronProxy = require('./services/electronProxy').electronProxy,
     menuManager = require('./services/menuManager').menuManager,
@@ -206,13 +205,6 @@ async.series([
     });
   }
 
-  /**
-   * Reset firstLoad
-   */
-  function resetFirstLoad () {
-    app.firstLoad = false;
-  }
-
   /** */
   function attachIpcListeners () {
     ipc.on('newRunnerWindow', (event, arg) => {
@@ -343,9 +335,6 @@ async.series([
       var win = BrowserWindow.fromId(parseInt(arg));
       win && win.close();
     });
-
-    // This will be called once the app first load analytics event is sent to unset the property.
-    ipc.on('resetFirstLoad', resetFirstLoad);
   }
 
   process.on('uncaughtException', function (e) {
@@ -608,11 +597,23 @@ async.series([
     handleOpenUrl(url);
   });
 
-  app.on('activate', function (e, hasVisibleWindows) {
-    console.log('activate', hasVisibleWindows);
-    if (!hasVisibleWindows && global.isSharedBooted) {
-      windowManager.createOrRestoreRequesterWindow();
+  app.on('activate', function () {
+    // bail out if shared window is not booted
+    if (!global.isSharedBooted) {
+      return;
     }
+
+    windowManager
+      .getOpenWindows('requester')
+      .then((openRequesterWindows) => {
+        // if there are open requester windows do nothing
+        if (!_.isEmpty(openRequesterWindows)) {
+          return;
+        }
+
+        // if there are no open requester windows open or restore a requester window
+        windowManager.createOrRestoreRequesterWindow();
+      });
   });
 });
 

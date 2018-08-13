@@ -1,19 +1,19 @@
 webpackJsonp([11],{
 
-/***/ 1727:
+/***/ 1864:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserFolderListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_pureRenderDecorator__ = __webpack_require__(1602);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_InlineInput__ = __webpack_require__(1531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__ = __webpack_require__(1558);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_FolderIcon__ = __webpack_require__(1605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderItemActions__ = __webpack_require__(2122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(1496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_pureRenderDecorator__ = __webpack_require__(1742);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_InlineInput__ = __webpack_require__(1662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__ = __webpack_require__(1697);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_FolderIcon__ = __webpack_require__(1745);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderItemActions__ = __webpack_require__(2254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(1632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(107);
 var _dec, _class;
 
 
@@ -61,7 +61,7 @@ let
 
 
 
-CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
@@ -94,11 +94,11 @@ CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__co
   }
 
   handleSubmit(value) {
-    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], this.props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_RENAME */], value);
+    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], this.props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME */], value);
   }
 
   handleActionTrigger(entity, entityId, action) {
-    if (action === __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME_TOGGLE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RENAME_TOGGLE */]) {
       this.toggleEditName();
     } else
     {
@@ -142,26 +142,26 @@ CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__co
 
 /***/ }),
 
-/***/ 1728:
+/***/ 1865:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserRequestListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_RequestMethodHelper__ = __webpack_require__(1638);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineInput__ = __webpack_require__(1531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_InlineEditor__ = __webpack_require__(1560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_ContextMenu__ = __webpack_require__(1558);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Icons_EditIcon__ = __webpack_require__(1507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_base_Icons_RenameIcon__ = __webpack_require__(1557);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Icons_DeleteIcon__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Icons_CopyIcon__ = __webpack_require__(1513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__ = __webpack_require__(1496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_RequestMethodHelper__ = __webpack_require__(1780);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineInput__ = __webpack_require__(1662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_InlineEditor__ = __webpack_require__(1700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_ContextMenu__ = __webpack_require__(1697);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Icons_EditIcon__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_base_Icons_RenameIcon__ = __webpack_require__(1696);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Icons_DeleteIcon__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Icons_CopyIcon__ = __webpack_require__(1648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__ = __webpack_require__(1632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_mobx_react__ = __webpack_require__(107);
 var _dec, _class;
 
 
@@ -216,7 +216,7 @@ let
 
 
 
-CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_12_mobx_react__["a" /* observer */])(_class = class CollectionBrowserRequestListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_12_mobx_react__["a" /* observer */])(_class = class CollectionBrowserRequestListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
@@ -270,11 +270,11 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__c
   }
 
   handleNameUpdate(value) {
-    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["f" /* ACTION_TARGET_REQUEST */], this.props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_RENAME */], value);
+    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["f" /* ACTION_TARGET_REQUEST */], this.props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME */], value);
   }
 
   handleActionTrigger(entityId, action) {
-    if (action === __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME_TOGGLE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RENAME_TOGGLE */]) {
       this.toggleEditName();
     } else
     {
@@ -289,7 +289,7 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__c
   }
 
   handleRequestDescriptionUpdate(value) {
-    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["f" /* ACTION_TARGET_REQUEST */], this.props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DESCRIPTION_UPDATE */], value);
+    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["f" /* ACTION_TARGET_REQUEST */], this.props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DESCRIPTION_UPDATE */], value);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -335,25 +335,25 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__c
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["b" /* ButtonGroup */], null,
                 this.state.showRename && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME_TOGGLE */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RENAME_TOGGLE */]) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_base_Icons_RenameIcon__["a" /* default */], { className: 'collection-browser-collection-rename-icon' })),
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_base_Icons_EditIcon__["a" /* default */], { className: 'collection-browser-collection-edit-icon' })),
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-collection-duplicate-icon' })),
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-collection-delete-icon' })))))),
 
@@ -377,7 +377,7 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__c
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-expandable-view-list-item_request__openinbuilder' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
                 className: 'collection-expandable-view-list-item_request__openinbuilder_link',
-                onClick: this.handleActionTrigger.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_OPEN_IN_BUILDER */]) }, 'Open in builder')))));
+                onClick: this.handleActionTrigger.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["p" /* ACTION_TYPE_OPEN_IN_BUILDER */]) }, 'Open in builder')))));
 
 
 
@@ -390,14 +390,14 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_6__c
 
 /***/ }),
 
-/***/ 1732:
+/***/ 1869:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = RefreshIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -421,7 +421,7 @@ function RefreshIcon(props) {
 
 /***/ }),
 
-/***/ 1733:
+/***/ 1870:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -434,7 +434,7 @@ const MONITOR_RUNS = 'monitor_request_runs';
 
 /***/ }),
 
-/***/ 2118:
+/***/ 2250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -442,22 +442,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CollectionBrowserContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_draggable__ = __webpack_require__(1512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_draggable__ = __webpack_require__(1647);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_draggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_collections_browser_CollectionBrowser__ = __webpack_require__(2119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_AppSettingsDefaults__ = __webpack_require__(455);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_requests_Request__ = __webpack_require__(666);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_pipelines_user_action__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_services_DocumenterService__ = __webpack_require__(1511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_collections_browser_CollectionBrowser__ = __webpack_require__(2251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_AppSettingsDefaults__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_requests_Request__ = __webpack_require__(677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_pipelines_user_action__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_services_DocumenterService__ = __webpack_require__(1699);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_model_event__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_CollectionSidebarService__ = __webpack_require__(1559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_CollectionActionsUtil__ = __webpack_require__(1639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_services_AuthHandlerService__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__ = __webpack_require__(1496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_CollectionSidebarService__ = __webpack_require__(1698);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_CollectionActionsUtil__ = __webpack_require__(1781);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_services_AuthHandlerService__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__ = __webpack_require__(1632);
 var _class;
 
 
@@ -540,7 +540,7 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
   handleCollectionActions(id, action) {
     let store = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('EnvironmentStore');
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RUN */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["u" /* ACTION_TYPE_RUN */]) {
       let environmentId = null,
       environment = store.find(Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore').id);
       if (environment) {
@@ -572,7 +572,7 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
       return;
     }
 
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RUN */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["u" /* ACTION_TYPE_RUN */]) {
       let environmentId = null,
       environment = store.find(Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore').id),
       collectionId = null;
@@ -596,13 +596,16 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
 
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) {
       pm.mediator.trigger('showEditFolderModal', id);
+    } else
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */]) {
+      this.handleCreateRequest(Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('FolderStore').find(id));
     } else
     if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) {
       pm.mediator.trigger('showAddFolderModal', _.get(collection, 'id'), id);
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) {
       let duplicateFolderEvent = {
         name: 'duplicate',
         namespace: 'folder',
@@ -619,10 +622,10 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
         console.error('Error in pipeline while duplicating folder', err);
       });
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) {
       pm.mediator.trigger('showDeleteFolderModal', id);
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_RENAME */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME */]) {
       let updateFolderEvent = {
         name: 'update',
         namespace: 'folder',
@@ -640,7 +643,7 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
         console.error('Error in pipeline while renaming folder', err);
       });
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DESCRIPTION_UPDATE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DESCRIPTION_UPDATE */]) {
       let updateFolderEvent = {
         name: 'update',
         namespace: 'folder',
@@ -662,10 +665,10 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
   handleRequestActions(id, action, data) {
 
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) {
       pm.mediator.trigger('editCollectionRequest', id);
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) {
       let duplicateRequestEvent = {
         name: 'duplicate',
         namespace: 'request',
@@ -683,14 +686,14 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
         console.error('Error in pipeline while duplicating request', err);
       });
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) {
       pm.mediator.trigger('showDeleteRequestModal', id);
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_OPEN_IN_BUILDER */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["p" /* ACTION_TYPE_OPEN_IN_BUILDER */]) {
       __WEBPACK_IMPORTED_MODULE_11__modules_services_CollectionSidebarService__["a" /* default */].openRequestInTab(id);
       this.handleClose();
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_RENAME */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME */]) {
       let updateRequestEvent = {
         name: 'update',
         namespace: 'request',
@@ -708,7 +711,7 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
         console.error('Error in pipeline while renaming request', err);
       });
     } else
-    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DESCRIPTION_UPDATE */]) {
+    if (action === __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DESCRIPTION_UPDATE */]) {
       let updateRequestEvent = {
         name: 'update',
         namespace: 'request',
@@ -991,7 +994,7 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
 /***/ }),
 
-/***/ 2119:
+/***/ 2251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1000,13 +1003,13 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CollectionBrowserCollectionDetails__ = __webpack_require__(2120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderDetails__ = __webpack_require__(2182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CollectionBrowserCollectionDetails__ = __webpack_require__(2252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderDetails__ = __webpack_require__(2314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_CollectionActionsConstants__ = __webpack_require__(1496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_CollectionActionsConstants__ = __webpack_require__(1632);
 
 
 
@@ -1088,7 +1091,7 @@ CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_
   }
 
   handleTeamLabelClick() {
-    this.props.onActionTriggered && this.props.onActionTriggered('collection', this.props.collection.id, __WEBPACK_IMPORTED_MODULE_7__constants_CollectionActionsConstants__["v" /* ACTION_TYPE_SHARE */]);
+    this.props.onActionTriggered && this.props.onActionTriggered('collection', this.props.collection.id, __WEBPACK_IMPORTED_MODULE_7__constants_CollectionActionsConstants__["w" /* ACTION_TYPE_SHARE */]);
   }
 
   handleScroll() {
@@ -1177,7 +1180,7 @@ CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_
     this.collectionBrowserNode && this.collectionBrowserNode.addEventListener('scroll', this.handleScroll);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     this.collectionBrowserNode && this.collectionBrowserNode.removeEventListener('scroll', this.handleScroll);
   }
 
@@ -1254,29 +1257,29 @@ CollectionBrowser.defaultProps = { selectedFolder: {} };
 
 /***/ }),
 
-/***/ 2120:
+/***/ 2252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserCollectionDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_date_helper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineInput__ = __webpack_require__(1531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_EditIcon__ = __webpack_require__(1507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_CloseIcon__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__CollectionBrowserCollectionContents__ = __webpack_require__(2121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__containers_collections_browser_CollectionBrowserMocksContainer__ = __webpack_require__(2151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__containers_collections_browser_CollectionBrowserMonitorListContainer__ = __webpack_require__(2156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CollectionBrowserActivityfeed__ = __webpack_require__(2161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__CollectionBrowserCollectionAction__ = __webpack_require__(2181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__utils_util__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineInput__ = __webpack_require__(1662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_EditIcon__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__CollectionBrowserCollectionContents__ = __webpack_require__(2253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__containers_collections_browser_CollectionBrowserMocksContainer__ = __webpack_require__(2283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__containers_collections_browser_CollectionBrowserMonitorListContainer__ = __webpack_require__(2288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CollectionBrowserActivityfeed__ = __webpack_require__(2293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__CollectionBrowserCollectionAction__ = __webpack_require__(2313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__utils_util__ = __webpack_require__(13);
 var _class;
 
 
@@ -1501,23 +1504,23 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
 
 /***/ }),
 
-/***/ 2121:
+/***/ 2253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserCollectionContents; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserFolderListItem__ = __webpack_require__(1727);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserRequestListItem__ = __webpack_require__(1728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__ = __webpack_require__(1560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_PublishIcon__ = __webpack_require__(1518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserFolderListItem__ = __webpack_require__(1864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserRequestListItem__ = __webpack_require__(1865);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__ = __webpack_require__(1700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_PublishIcon__ = __webpack_require__(1652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(107);
 var _class;
 
 
@@ -1639,19 +1642,19 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
 
 /***/ }),
 
-/***/ 2122:
+/***/ 2254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserFolderItemActions; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Icons_RenameIcon__ = __webpack_require__(1557);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_EditIcon__ = __webpack_require__(1507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_CopyIcon__ = __webpack_require__(1513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_DeleteIcon__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(1496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Icons_RenameIcon__ = __webpack_require__(1696);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_EditIcon__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_CopyIcon__ = __webpack_require__(1648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_DeleteIcon__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(1632);
 
 
 
@@ -1681,25 +1684,25 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["b" /* ButtonGroup */], null,
           showRename && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["s" /* ACTION_TYPE_RENAME_TOGGLE */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RENAME_TOGGLE */]) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Icons_RenameIcon__["a" /* default */], { className: 'collection-browser-collection-rename-icon' })),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_Icons_EditIcon__["a" /* default */], { className: 'collection-browser-collection-edit-icon' })),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-collection-duplicate-icon' })),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-collection-delete-icon' })))));
 
@@ -1711,25 +1714,27 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
 
 /***/ }),
 
-/***/ 2151:
+/***/ 2283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMocksContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_collections_browser_mocks_CollectionBrowserMockHeader__ = __webpack_require__(2152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_mocks_CollectionBrowserMockList__ = __webpack_require__(2153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_LimitServiceConstants__ = __webpack_require__(1733);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_MockController__ = __webpack_require__(689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_collections_browser_mocks_CollectionBrowserMockHeader__ = __webpack_require__(2284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_mocks_CollectionBrowserMockList__ = __webpack_require__(2285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_LimitServiceConstants__ = __webpack_require__(1870);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_MockController__ = __webpack_require__(702);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__new_button_CreateNewXService__ = __webpack_require__(1746);
 var _class;
+
 
 
 
@@ -1815,10 +1820,15 @@ CollectionBrowserMocksContainer = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react_
     !this.state.refreshing && this.fetchMocks(this.props.collection.uid);
   }
 
-  handleAddMock(opts = {}) {
-    pm.mediator.trigger('addNewMock',
-    { collectionId: this.props.collection.id, from: opts.from },
+  handleAddMock(data = {}) {
+    __WEBPACK_IMPORTED_MODULE_11__new_button_CreateNewXService__["a" /* default */].create(
+    'openCreateNewMockModal',
+    {
+      collectionId: this.props.collection.id,
+      opts: { from: data.from } },
+
     this.fetchMocks.bind(this, this.props.collection.uid));
+
   }
 
   getClasses() {
@@ -1854,22 +1864,22 @@ CollectionBrowserMocksContainer = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react_
 
 /***/ }),
 
-/***/ 2152:
+/***/ 2284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockHeader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Infobar__ = __webpack_require__(667);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_RefreshIcon__ = __webpack_require__(1732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_AddIcon__ = __webpack_require__(1517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_PublishIcon__ = __webpack_require__(1518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messaging_Alert__ = __webpack_require__(1646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_RefreshIcon__ = __webpack_require__(1869);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_AddIcon__ = __webpack_require__(1651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_PublishIcon__ = __webpack_require__(1652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(107);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
 
 
@@ -1890,7 +1900,7 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
   }
 
   handleMockLearn() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["y" /* MOCK_DOCS */]);
+    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["z" /* MOCK_DOCS */]);
     __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('onboarding', 'view_documentation_intro_mock', 'collection_browser');
   }
 
@@ -1908,6 +1918,8 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
 
 
   render() {
+    let alertMessage = _.get(this.props, 'message.message');
+
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-learn-more-header' },
@@ -1932,11 +1944,13 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
 
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'divider' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Infobar__["a" /* default */], _extends({},
+
+        alertMessage &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__messaging_Alert__["a" /* default */], _extends({},
         this.props.message, {
-          message: _.get(this.props, 'message.message'),
-          className: 'collection-browser-infobar',
-          onClose: this.props.onMessageClose })),
+          message: alertMessage,
+          onDismiss: this.props.onMessageClose })),
+
 
 
         !_.isEmpty(this.props.mocks) &&
@@ -1960,16 +1974,16 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
 
 /***/ }),
 
-/***/ 2153:
+/***/ 2285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockList; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMockItem__ = __webpack_require__(2154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMockEmptyListItem__ = __webpack_require__(2155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMockItem__ = __webpack_require__(2286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMockEmptyListItem__ = __webpack_require__(2287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(11);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -2018,21 +2032,21 @@ CollectionBrowserMockList = class CollectionBrowserMockList extends __WEBPACK_IM
 
 /***/ }),
 
-/***/ 2154:
+/***/ 2286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ClipboardHelper__ = __webpack_require__(1532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MockIcon__ = __webpack_require__(1519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DeleteIcon__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ClipboardHelper__ = __webpack_require__(1668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MockIcon__ = __webpack_require__(1653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DeleteIcon__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(13);
 var _class;
 
 
@@ -2111,15 +2125,15 @@ CollectionBrowserMockItem.defaultProps = { onDelete: _.noop };
 
 /***/ }),
 
-/***/ 2155:
+/***/ 2287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockEmptyListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(11);
 var _class;
 
 let
@@ -2173,26 +2187,28 @@ CollectionBrowserMockEmptyListItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_rea
 
 /***/ }),
 
-/***/ 2156:
+/***/ 2288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorListContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_monitors_CollectionBrowserMonitorHeader__ = __webpack_require__(2157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_collections_browser_monitors_CollectionBrowserMonitorList__ = __webpack_require__(2158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_LimitServiceConstants__ = __webpack_require__(1733);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_services_DashboardService__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_monitors_CollectionBrowserMonitorHeader__ = __webpack_require__(2289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_collections_browser_monitors_CollectionBrowserMonitorList__ = __webpack_require__(2290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_LimitServiceConstants__ = __webpack_require__(1870);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_services_DashboardService__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_MonitorController__ = __webpack_require__(688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_MonitorController__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__new_button_CreateNewXService__ = __webpack_require__(1746);
 var _class;
+
 
 
 
@@ -2275,7 +2291,7 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
 
   handleEdit(monitorId) {
     __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('monitor', 'initiate_edit');
-    Object(__WEBPACK_IMPORTED_MODULE_6__models_services_DashboardService__["b" /* editEntity */])('monitors', monitorId, Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id);
+    Object(__WEBPACK_IMPORTED_MODULE_6__models_services_DashboardService__["a" /* editEntity */])('monitors', monitorId, Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id);
   }
 
   handleSignIn() {
@@ -2286,10 +2302,15 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
     !this.state.refreshing && this.fetchMonitors(this.props.collection.uid);
   }
 
-  handleAddMonitor(opts = {}) {
-    pm.mediator.trigger('addNewMonitor',
-    { collectionId: this.props.collection.id, from: opts.from },
+  handleAddMonitor(data = {}) {
+    __WEBPACK_IMPORTED_MODULE_12__new_button_CreateNewXService__["a" /* default */].create(
+    'openCreateNewMonitorModal',
+    {
+      collectionId: this.props.collection.id,
+      opts: { from: data.from } },
+
     this.fetchMonitors.bind(this, this.props.collection.uid));
+
   }
 
   isEditable() {
@@ -2333,22 +2354,22 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
 
 /***/ }),
 
-/***/ 2157:
+/***/ 2289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorHeader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Infobar__ = __webpack_require__(667);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_PublishIcon__ = __webpack_require__(1518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_RefreshIcon__ = __webpack_require__(1732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_AddIcon__ = __webpack_require__(1517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messaging_Alert__ = __webpack_require__(1646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_PublishIcon__ = __webpack_require__(1652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_RefreshIcon__ = __webpack_require__(1869);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_AddIcon__ = __webpack_require__(1651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(107);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
 
 
@@ -2369,7 +2390,7 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
   }
 
   handleMonitorLearn() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["z" /* MONITORING_DOCS */]);
+    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["A" /* MONITORING_DOCS */]);
     __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('onboarding', 'view_documentation_intro_monitors', 'collection_browser');
   }
 
@@ -2387,6 +2408,8 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 
   render() {
+    let alertMessage = _.get(this.props, 'message.message');
+
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-learn-more-header' },
@@ -2412,11 +2435,12 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'divider' }),
 
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Infobar__["a" /* default */], _extends({},
+        alertMessage &&
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__messaging_Alert__["a" /* default */], _extends({},
         this.props.message, {
-          message: _.get(this.props, 'message.message'),
-          className: 'collection-browser-infobar',
-          onClose: this.props.onMessageClose })),
+          message: alertMessage,
+          onDismiss: this.props.onMessageClose })),
+
 
 
         !_.isEmpty(this.props.monitors) && this.props.isEditable &&
@@ -2440,15 +2464,15 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 /***/ }),
 
-/***/ 2158:
+/***/ 2290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorList; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMonitorListItem__ = __webpack_require__(2159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMonitorEmptyItem__ = __webpack_require__(2160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMonitorListItem__ = __webpack_require__(2291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMonitorEmptyItem__ = __webpack_require__(2292);
 
 
 
@@ -2495,21 +2519,21 @@ CollectionBrowserMonitorList = class CollectionBrowserMonitorList extends __WEBP
 
 /***/ }),
 
-/***/ 2159:
+/***/ 2291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_MonitorIcon__ = __webpack_require__(1520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_EditIcon__ = __webpack_require__(1507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DeleteIcon__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_util__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_MonitorIcon__ = __webpack_require__(1654);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_EditIcon__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DeleteIcon__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_util__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(22);
 var _class;
 
@@ -2547,7 +2571,7 @@ CollectionBrowserMonitorListItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react
 
   handleOpenMonitor() {
     __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__["a" /* default */].addEvent('monitor', 'view_run_details', 'collection_browser');
-    Object(__WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__["i" /* openEntity */])('monitors', this.props.monitor.id, Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id);
+    Object(__WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__["j" /* openEntity */])('monitors', this.props.monitor.id, Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id);
   }
 
   render() {
@@ -2597,15 +2621,15 @@ CollectionBrowserMonitorListItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react
 
 /***/ }),
 
-/***/ 2160:
+/***/ 2292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorEmptyItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(11);
 var _class;
 
 let
@@ -2658,15 +2682,15 @@ CollectionBrowserMonitorEmptyItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_reac
 
 /***/ }),
 
-/***/ 2161:
+/***/ 2293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserActivityfeed; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activity_feed_ActivityFeed__ = __webpack_require__(1734);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activity_feed_ActivityFeed__ = __webpack_require__(1871);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 
 
@@ -2700,35 +2724,37 @@ CollectionBrowserActivityfeed = class CollectionBrowserActivityfeed extends __WE
 
 /***/ }),
 
-/***/ 2181:
+/***/ 2313:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserCollectionAction; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MoreIcon__ = __webpack_require__(655);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__ = __webpack_require__(673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__ = __webpack_require__(1519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__ = __webpack_require__(1507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Icons_LockedIcon__ = __webpack_require__(672);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_Icons_NewFolderIcon__ = __webpack_require__(1604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_Icons_MonitorIcon__ = __webpack_require__(1520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_Icons_PublishIcon__ = __webpack_require__(1518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_Icons_DeleteIcon__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_classnames__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__models_services_DocumenterService__ = __webpack_require__(1511);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_services_APIService__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__stores_get_store__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__ = __webpack_require__(1496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_mobx_react__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__ = __webpack_require__(686);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__ = __webpack_require__(1653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Icons_LockedIcon__ = __webpack_require__(685);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_Icons_NewFolderIcon__ = __webpack_require__(1744);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_Icons_MonitorIcon__ = __webpack_require__(1654);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_Icons_PublishIcon__ = __webpack_require__(1652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_Icons_DeleteIcon__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_Icons_RequestIcon__ = __webpack_require__(1680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_classnames__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__models_services_DocumenterService__ = __webpack_require__(1699);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_services_APIService__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_services_AnalyticsService__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__ = __webpack_require__(1632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_mobx_react__ = __webpack_require__(107);
 var _class;
+
 
 
 
@@ -2752,7 +2778,7 @@ var _class;
 let
 
 
-CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_react__["a" /* observer */])(_class = class CollectionBrowserCollectionAction extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_21_mobx_react__["a" /* observer */])(_class = class CollectionBrowserCollectionAction extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = { dropdownOpen: false };
@@ -2766,17 +2792,17 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
   }
 
   handleViewDocumentation() {
-    __WEBPACK_IMPORTED_MODULE_15__models_services_DocumenterService__["a" /* default */].getDocumentationURL(_.get(this.props, 'collection.id'), (e, documentUrl) => {
+    __WEBPACK_IMPORTED_MODULE_16__models_services_DocumenterService__["a" /* default */].getDocumentationURL(_.get(this.props, 'collection.id'), (e, documentUrl) => {
       if (e) {
         return;
       }
-      __WEBPACK_IMPORTED_MODULE_18__modules_services_AnalyticsService__["a" /* default */].addEvent('documentation', 'view', 'collection_browser');
-      Object(__WEBPACK_IMPORTED_MODULE_16__modules_services_APIService__["u" /* openAuthenticatedRoute */])(documentUrl);
+      __WEBPACK_IMPORTED_MODULE_19__modules_services_AnalyticsService__["a" /* default */].addEvent('documentation', 'view', 'collection_browser');
+      Object(__WEBPACK_IMPORTED_MODULE_17__modules_services_APIService__["t" /* openAuthenticatedRoute */])(documentUrl);
     });
   }
 
   handleSelect(action) {
-    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], this.props.collection.id, action);
+    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], this.props.collection.id, action);
   }
 
   handleToggle(value) {
@@ -2788,7 +2814,9 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
   }
 
   getActions() {
-    const {
+    const currentUser = Object(__WEBPACK_IMPORTED_MODULE_18__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
+    isLoggedIn = currentUser && currentUser.isLoggedIn,
+    {
       isEditable,
       isDeletable,
       shared } =
@@ -2796,81 +2824,87 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
 
     return [
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */],
       label: 'Edit',
       shortcut: 'edit',
       isEnabled: isEditable,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */],
       label: 'Modify permissions',
-      isEnabled: isDeletable && shared,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_Icons_LockedIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */]) }) },
+      isEnabled: isLoggedIn && isDeletable && shared,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_Icons_LockedIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */],
+      label: 'Add Request',
+      isEnabled: isEditable,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_14__base_Icons_RequestIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */]) }) },
+
+    {
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */],
       label: 'Add Folder',
       isEnabled: isEditable,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Icons_NewFolderIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Icons_NewFolderIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */],
       label: 'Duplicate',
       shortcut: 'duplicate',
       isEnabled: true,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DOWNLOAD */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DOWNLOAD */],
       label: 'Export',
       isEnabled: true,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DOWNLOAD */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DOWNLOAD */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */],
       label: 'Monitor Collection',
       isEnabled: isEditable,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Icons_MonitorIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Icons_MonitorIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */],
       label: 'Mock Collection',
       isEnabled: true,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_PUBLISH_DOCS */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_PUBLISH_DOCS */],
       label: 'Publish Docs',
       isEnabled: isEditable,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__base_Icons_PublishIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_PUBLISH_DOCS */]) }) },
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__base_Icons_PublishIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["r" /* ACTION_TYPE_PUBLISH_DOCS */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */],
       label: 'Remove from workspace',
-      isEnabled: true,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */]) }) },
+      isEnabled: isLoggedIn,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */],
+      type: __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */],
       label: 'Delete',
       shortcut: 'delete',
       isEnabled: isDeletable,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_Icons_DeleteIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]) }) }];
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_Icons_DeleteIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) }) }];
 
 
   }
 
   getMenuItemIconClasses(label) {
-    return __WEBPACK_IMPORTED_MODULE_14_classnames___default()({ 'dropdown-menu-item-icon': true }, 'collection-browser-collection-' + label + '-icon');
+    return __WEBPACK_IMPORTED_MODULE_15_classnames___default()({ 'dropdown-menu-item-icon': true }, 'collection-browser-collection-' + label + '-icon');
   }
 
   getActionIconClassNames(label) {
-    return __WEBPACK_IMPORTED_MODULE_14_classnames___default()({ ['collection-browser-collection-' + label + '-icon']: true });
+    return __WEBPACK_IMPORTED_MODULE_15_classnames___default()({ ['collection-browser-collection-' + label + '-icon']: true });
   }
 
   getMenuItemClasses(isPro) {
-    return __WEBPACK_IMPORTED_MODULE_14_classnames___default()({ 'dropdown-menu-item--pro-disabled': isPro });
+    return __WEBPACK_IMPORTED_MODULE_15_classnames___default()({ 'dropdown-menu-item--pro-disabled': isPro });
   }
 
   getMenuItems() {
@@ -2903,10 +2937,10 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
     if (!collection) {
       return null;
     }
-    let currentUser = Object(__WEBPACK_IMPORTED_MODULE_17__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
+    let currentUser = Object(__WEBPACK_IMPORTED_MODULE_18__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
     isLoggedIn = currentUser && currentUser.isLoggedIn,
     isSyncEnabled = currentUser && currentUser.syncEnabled,
-    menuItems = isLoggedIn && this.getMenuItems();
+    menuItems = this.getMenuItems();
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
@@ -2917,7 +2951,7 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
               className: 'collection-browser-collection-action-share-button',
               size: 'small',
               type: 'primary',
-              onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["v" /* ACTION_TYPE_SHARE */]) }, 'Share'),
+              onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["w" /* ACTION_TYPE_SHARE */]) }, 'Share'),
 
 
 
@@ -2926,7 +2960,7 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
               className: 'collection-browser-collection-action-run-button',
               size: 'small',
               type: 'primary',
-              onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RUN */]) }, 'Run'),
+              onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_20__constants_CollectionActionsConstants__["u" /* ACTION_TYPE_RUN */]) }, 'Run'),
 
 
 
@@ -2941,77 +2975,6 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
 
 
 
-
-          !isLoggedIn &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["b" /* ButtonGroup */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Edit Collection',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__["a" /* default */], { className: 'collection-browser-collection-edit-icon' })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Duplicate Collection',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-collection-duplicate-icon' }),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-collection-duplicate-icon' })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Download Collection',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DOWNLOAD */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__["a" /* default */], { className: 'collection-browser-collection-download-icon' })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Add Folder',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Icons_NewFolderIcon__["a" /* default */], { className: 'collection-browser-collection-add-folder-icon' })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Monitor Collection',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Icons_MonitorIcon__["a" /* default */], { className: this.getActionIconClassNames(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */]) })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Mock Collection',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__["a" /* default */], { className: this.getActionIconClassNames(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */]) })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Publish Docs',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_PUBLISH_DOCS */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__base_Icons_PublishIcon__["a" /* default */], { className: this.getActionIconClassNames(__WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_PUBLISH_DOCS */]) })),
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                className: 'collection-browser-collection-action-button',
-                tooltip: 'Delete Collection',
-                type: 'icon',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_19__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]) },
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-collection-delete-icon' }))),
-
-
-
-          isLoggedIn &&
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["a" /* Dropdown */], {
               onSelect: this.handleSelect,
               onToggle: this.handleToggle,
@@ -3035,35 +2998,41 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_20_mobx_rea
 
 
 
-
-
   }}) || _class;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 2182:
+/***/ 2314:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserFolderDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__ = __webpack_require__(1560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CollectionBrowserRequestListItem__ = __webpack_require__(1728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderListItem__ = __webpack_require__(1727);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Breadcrumb__ = __webpack_require__(2183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_base_Icons_EditIcon__ = __webpack_require__(1507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Icons_NewFolderIcon__ = __webpack_require__(1604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Icons_DeleteIcon__ = __webpack_require__(654);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_Icons_CopyIcon__ = __webpack_require__(1513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_base_Icons_CloseIcon__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__ = __webpack_require__(1496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__ = __webpack_require__(1700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserRequestListItem__ = __webpack_require__(1865);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__CollectionBrowserFolderListItem__ = __webpack_require__(1864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Breadcrumb__ = __webpack_require__(2315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Icons_EditIcon__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_Icons_NewFolderIcon__ = __webpack_require__(1744);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_base_Icons_DeleteIcon__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_Icons_CopyIcon__ = __webpack_require__(1648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_Icons_RequestIcon__ = __webpack_require__(1680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__base_Icons_MoreIcon__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__ = __webpack_require__(1632);
 var _class;
+
+
+
+
 
 
 
@@ -3080,13 +3049,17 @@ var _class;
 let
 
 
-CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderDetails extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderDetails extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
+    this.state = { dropdownOpen: false };
     this.toggleCollectionView = this.toggleCollectionView.bind(this);
     this.handleActionTrigger = this.handleActionTrigger.bind(this);
     this.handleFolderSelect = this.handleFolderSelect.bind(this);
     this.handleFolderDescriptionUpdate = this.handleFolderDescriptionUpdate.bind(this);
+
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   toggleCollectionView() {
@@ -3098,7 +3071,7 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
   }
 
   getCollectionHeaderClasses() {
-    return __WEBPACK_IMPORTED_MODULE_2_classnames___default()({
+    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({
       'collection-browser-folder-details-header': true,
       'collection-browser-folder-details-header--padded-below': _.isEmpty(_.get(this.props.folder, 'description')) && !this.props.collection.isEditable });
 
@@ -3134,13 +3107,104 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
 
   handleFolderDescriptionUpdate(value) {
     this.setState({ description: value }, () => {
-      this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], this.props.folder.id,
-      __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DESCRIPTION_UPDATE */], this.state.description);
+      this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], this.props.folder.id,
+      __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["l" /* ACTION_TYPE_DESCRIPTION_UPDATE */], this.state.description);
     });
   }
 
   handleFolderSelect(folder) {
     this.props.onFolderSelect && this.props.onFolderSelect(folder);
+  }
+
+  handleSelect(action) {
+    this.props.onActionTriggered && this.props.onActionTriggered(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], this.props.folder.id, action);
+  }
+
+  handleToggle(value) {
+    if (value === this.state.dropdownOpen) {
+      return;
+    }
+
+    this.setState({ dropdownOpen: value });
+  }
+
+  getActions() {
+    const {
+      isEditable,
+      isDeletable,
+      shared } =
+    this.props.collection;
+
+    return [
+    {
+      type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */],
+      label: 'Edit',
+      shortcut: 'edit',
+      isEnabled: isEditable,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_base_Icons_EditIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) }) },
+
+    {
+      type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */],
+      label: 'Add Request',
+      isEnabled: isEditable,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_15__base_Icons_RequestIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */]) }) },
+
+    {
+      type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */],
+      label: 'Add Folder',
+      isEnabled: isEditable,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_base_Icons_NewFolderIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) }) },
+
+    {
+      type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */],
+      label: 'Duplicate',
+      shortcut: 'duplicate',
+      isEnabled: true,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__components_base_Icons_CopyIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) }) },
+
+    {
+      type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */],
+      label: 'Delete',
+      shortcut: 'delete',
+      isEnabled: isDeletable,
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__components_base_Icons_DeleteIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) }) }];
+
+
+  }
+
+  getMenuItemIconClasses(label) {
+    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({ 'dropdown-menu-item-icon': true }, `collection-browser-collection-${label}-icon`);
+  }
+
+  getActionIconClassNames(label) {
+    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({ [`collection-browser-collection-${label}-icon`]: true });
+  }
+
+  getMenuItemClasses(isPro) {
+    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({ 'dropdown-menu-item--pro-disabled': isPro });
+  }
+
+  getMenuItems() {
+    return _.chain(this.getActions()).
+    filter('isEnabled').
+    map(action => {
+      const modifierLabel = action.modifier && action.modifier(this.props.isPRO);
+
+      return (
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], {
+            className: this.getMenuItemClasses(modifierLabel),
+            key: action.type,
+            refKey: action.type },
+
+          action.icon,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'dropdown-menu-item-label' }, action.label),
+
+          modifierLabel &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'dropdown-menu-item-modifier' }, modifierLabel)));
+
+
+
+    }).value();
   }
 
   render() {
@@ -3153,13 +3217,14 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
 
     let ownFolders = _.get(folder, 'ownFolders', []),
     ownRequests = _.get(folder, 'ownRequests', []),
-    folderPath = folder.path;
+    folderPath = folder.path,
+    menuItems = this.getMenuItems();
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.props.className },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-details-wrapper' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getCollectionHeaderClasses() },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Breadcrumb__["a" /* default */], {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_base_Breadcrumb__["a" /* default */], {
               items: folderPath,
               containerWidth: this.props.browserWidth,
               offsetRight: 100,
@@ -3174,13 +3239,13 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
               ref: 'breadcrumb' }),
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-header-close-btn' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__components_base_Icons_CloseIcon__["a" /* default */], {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_14__components_base_Icons_CloseIcon__["a" /* default */], {
                 className: 'collection-browser-header-close-icon',
                 onClick: this.props.onClose }))),
 
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__["a" /* default */], {
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__["a" /* default */], {
             className: 'collection-browser-folder-description-wrapper',
             editable: collection.isEditable,
             placeholder: 'Adding a description makes your docs better',
@@ -3198,44 +3263,30 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
                 type: 'primary',
                 size: 'small',
                 className: 'collection-browser-collection-action-run-button',
-                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], folder.id, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_RUN */]) }, 'Run'),
+                onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], folder.id, __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["u" /* ACTION_TYPE_RUN */]) }, 'Run'),
 
 
 
 
             collection.isEditable &&
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["b" /* ButtonGroup */], null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                  type: 'icon',
-                  className: 'collection-browser-collection-action-button',
-                  onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], folder.id, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_EDIT */]),
-                  tooltip: 'Edit Folder' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["a" /* Dropdown */], {
+                onSelect: this.handleSelect,
+                onToggle: this.handleToggle,
+                className: 'collection-browser-actions-dropdown-folder' },
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_base_Icons_EditIcon__["a" /* default */], { className: 'collection-browser-collection-edit-icon' })),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["b" /* DropdownButton */], {
+                  dropdownStyle: 'nocaret',
+                  type: 'custom' },
 
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                  type: 'icon',
-                  className: 'collection-browser-collection-action-button',
-                  onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], folder.id, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]),
-                  tooltip: 'Add Folder' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], { className: 'collection-browser-collection-dropdown-actions-button-wrapper' },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__base_Icons_MoreIcon__["a" /* default */], { className: 'collection-browser-collection-dropdown-actions-button' }))),
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_base_Icons_NewFolderIcon__["a" /* default */], { className: 'collection-browser-collection-add-folder-icon' })),
 
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                  type: 'icon',
-                  className: 'collection-browser-collection-action-button',
-                  onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], folder.id, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["m" /* ACTION_TYPE_DUPLICATE */]),
-                  tooltip: 'Duplicate Folder' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["c" /* DropdownMenu */], {
+                  'align-left': true,
+                  dropup: 'auto' },
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-collection-duplicate-icon' })),
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
-                  type: 'icon',
-                  className: 'collection-browser-collection-action-button',
-                  onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], folder.id, __WEBPACK_IMPORTED_MODULE_13__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_DELETE */]),
-                  tooltip: 'Delete Folder' },
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-collection-delete-icon' })))),
+                menuItems))),
 
 
 
@@ -3267,7 +3318,7 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
 
             _.map(ownFolders, folder => {
               return (
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderListItem__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__CollectionBrowserFolderListItem__["a" /* default */], {
                   folder: folder,
                   isEditable: _.get(this.props, 'collection.isEditable'),
                   key: folder.id,
@@ -3280,7 +3331,7 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
 
             _.map(ownRequests, request => {
               return (
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__CollectionBrowserRequestListItem__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CollectionBrowserRequestListItem__["a" /* default */], {
                   request: request,
                   browserWidth: this.props.browserWidth,
                   isOpen: this.props.isOpen,
@@ -3304,7 +3355,7 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
 
 /***/ }),
 
-/***/ 2183:
+/***/ 2315:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3313,12 +3364,12 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Buttons__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Dropdowns__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_FolderIcon__ = __webpack_require__(1605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_DownSolidIcon__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icons_CollectionIcon__ = __webpack_require__(657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Buttons__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Dropdowns__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_FolderIcon__ = __webpack_require__(1745);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icons_CollectionIcon__ = __webpack_require__(670);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_prop_types__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_prop_types__);
