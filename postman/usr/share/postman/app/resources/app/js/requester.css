@@ -7852,6 +7852,7 @@ input[disabled].share-collection-modal-collection-link {
   .key-value-form-row__type-select-container.is-open {
     display: flex; }
   .key-value-form-row__type-select-container .dropdown-menu {
+    min-width: 50px;
     margin-top: 0px; }
   .key-value-form-row__type-select-container .dropdown-button {
     flex: 1; }
@@ -9837,6 +9838,12 @@ input[disabled].share-collection-modal-collection-link {
   padding: 0;
   height: 570px;
   overflow-y: initial; }
+
+.user-welcome-modal .user-welcome-modal--dismiss-icon {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  cursor: pointer; }
 
 .user-welcome-modal .user-welcome__left-section {
   display: flex;
@@ -13776,6 +13783,11 @@ input[disabled].share-collection-modal-collection-link {
 
 .workspace-join-modal {
   font-family: "OpenSans", Helvetica, Arial, sans-serif; }
+  .workspace-join-modal .workspace-join-modal--dismiss-icon {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    cursor: pointer; }
   .workspace-join-modal .workspace-join-modal__wrapper {
     padding: 40px 20px;
     display: flex;
@@ -13814,11 +13826,6 @@ input[disabled].share-collection-modal-collection-link {
   .workspace-join-modal .workspace-join-modal__action {
     display: flex;
     justify-content: center; }
-  .workspace-join-modal .modal-header-close-button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    opacity: 0.6; }
   .workspace-join-modal .always-show-checkbox {
     display: flex;
     align-items: center;

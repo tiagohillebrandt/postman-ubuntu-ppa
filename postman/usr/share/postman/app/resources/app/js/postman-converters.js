@@ -43287,6 +43287,10 @@ const DEPRECATED_PROPS = [
 'tests',
 'preRequestScript'],
 
+ARRAY_BODY_TYPES = ['params', 'urlencoded'],
+ALLOWED_DATA_FIELDS = ['key', 'value', 'description', 'type', 'enabled'],
+ALLOWED_QUERY_PARAMS_FIELDS = ['key', 'value', 'equals', 'description', 'enabled'],
+ALLOWED_RESPONSE_HEADER_FIELDS = ['key', 'value', 'name', 'description', 'type'],
 COLLECTION_META_PROPS = ['owner', 'permissions', 'shared', 'favorite'];
 
 /**
@@ -43297,6 +43301,67 @@ COLLECTION_META_PROPS = ['owner', 'permissions', 'shared', 'favorite'];
 function onExportSuccess(id, exportVersion) {
   pm.alerts.success('Saved');
   __WEBPACK_IMPORTED_MODULE_4__modules_services_AnalyticsService__["a" /* default */].addEvent('collection', 'download', exportVersion, null, { collection_id: id });
+}
+
+/**
+   * Sanitizes the collection-request and example-request fields
+   * @param {Object} request
+   */
+function sanitizeRequestFields(request) {
+  // Bail out when request is falsy or is string (possible for example requests)
+  if (!request || typeof request === 'string') {
+    return request;
+  }
+
+  // Body of type form and urlencoded are only stored as array.
+  // Do not sanitize body of type raw and binary
+  let shouldSanitizeBody = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.includes(ARRAY_BODY_TYPES, request.dataMode) && !__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isEmpty(request.data),
+  shouldSanitizeParams = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isArray(request.queryParams) && !__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isEmpty(request.queryParams);
+
+  if (shouldSanitizeBody) {
+    if (__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isArray(request.data)) {
+      request.data = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.map(request.data, value => {
+        return __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.pick(value, ALLOWED_DATA_FIELDS);
+      });
+    } else {
+      // It's possible that a request was saved with body type form/url-encoded and then later the type was changed to raw/binary.
+      // In that case if the actual data wasn't reset we do it now to avoid exporting incorrect data
+      request.data = [];
+    }
+  }
+
+  if (shouldSanitizeParams) {
+    request.queryParams = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.map(request.queryParams, value => {
+      return __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.pick(value, ALLOWED_QUERY_PARAMS_FIELDS);
+    });
+  }
+
+  return request;
+}
+
+/**
+   * Sanitizes the response fields
+   * @param {Object} request
+   */
+function sanitizeResponseFields(response) {
+  if (!response) {
+    return response;
+  }
+
+  let shouldSanitizeHeaders = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isArray(response.headers) && !__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isEmpty(response.headers);
+
+  response.requestObject && (
+  response.requestObject = sanitizeRequestFields(response.requestObject));
+
+  if (!shouldSanitizeHeaders) {
+    return response;
+  }
+
+  response.headers = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.map(response.headers, value => {
+    return __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.pick(value, ALLOWED_RESPONSE_HEADER_FIELDS);
+  });
+
+  return response;
 }
 
 /**
@@ -43340,6 +43405,14 @@ function getCollectionDataForFile(id, options, callback) {
 
       requestIdsAdded.push(requests[i].id);
       requests[i].synced = false;
+
+      // sanitize request fields
+      requests[i] = sanitizeRequestFields(requests[i]);
+
+      // sanitize the responses
+      if (__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isArray(requests[i].responses) && !__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isEmpty(requests[i].responses)) {
+        requests[i].responses = __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.map(requests[i].responses, sanitizeResponseFields);
+      }
 
       if (requests[i].dataMode === 'raw') {
         requests[i].rawModeData = requests[i].data;
@@ -43806,7 +43879,7 @@ function purifyCollectionData(collection) {
 }
 
 /**
-   * 
+   *
    */
 function purifyRequestData(request) {
 
@@ -43838,6 +43911,23 @@ function purifyRequestData(request) {
 
   if (Array.isArray(request.responses)) {
     for (let i = 0; i < request.responses.length; i++) {
+      // convert response.requestObject from string to object
+      if (__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.has(request.responses[i], 'requestObject') && typeof request.responses[i].requestObject === 'string') {
+        let parsedObject = null;
+
+        // Now we need to try parse this value as object and send it to db.
+        try {
+          parsedObject = JSON.parse(request.responses[i].requestObject);
+        }
+        catch (e) {
+          // no-op here
+        } finally
+        {
+          // Value should be a valid json object or null
+          request.responses[i].requestObject = parsedObject;
+        }
+      }
+
       let sanitizeResult = sanitizeWithRules(request.responses[i], responseSanitizeRules);
       if (sanitizeResult.isSuccess) {
         request.responses[i] = sanitizeResult.obj;
@@ -43852,10 +43942,10 @@ function purifyRequestData(request) {
 
 /**
    * @description Sanitize object with rules
-   * 
+   *
    * @param {Object} obj - the object that needs to be sanitized
    * @param {Object} rules = sanitization rules
-   * 
+   *
    * @return {Object} sanitized object + status
    */
 function sanitizeWithRules(obj, rules) {

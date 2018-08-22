@@ -478,7 +478,7 @@ ConsoleMessageList.defaultProps = { messages: [] };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_json_tree__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_json_tree___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_react_json_tree__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Markdown__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ConsoleMessageConstants__ = __webpack_require__(183);
@@ -11173,7 +11173,14 @@ KeyMaps.childContextTypes = { hotKeyParent: __WEBPACK_IMPORTED_MODULE_3_prop_typ
 
 /***/ }),
 
-/***/ 79:
+/***/ 8:
+/***/ (function(module, exports) {
+
+module.exports = require("electron");
+
+/***/ }),
+
+/***/ 80:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11201,13 +11208,6 @@ function DownSolidIcon(props) {
 
 
 }
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports) {
-
-module.exports = require("electron");
 
 /***/ }),
 
@@ -11307,7 +11307,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_ExclamationIcon__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icons_SearchIcon__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Icons_SuccessIcon__ = __webpack_require__(108);

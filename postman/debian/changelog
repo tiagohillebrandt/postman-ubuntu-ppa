@@ -1,3 +1,9 @@
+postman (6.2.5) xenial; urgency=medium
+
+  * Postman 6.2.5.
+
+ -- Tiago Hillebrandt <tiago@tiagohillebrandt.com>  Wed, 22 Aug 2018 03:06:15 -0500
+
 postman (6.2.4) xenial; urgency=medium
 
   * Postman 6.2.4.

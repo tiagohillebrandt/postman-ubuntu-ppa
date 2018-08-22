@@ -1007,7 +1007,7 @@ module.exports = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Avatar__ = __webpack_require__(1682);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Dropdowns__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Inputs__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Icons_ProfileIcon__ = __webpack_require__(1939);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_controllers_UserController__ = __webpack_require__(24);
@@ -2313,7 +2313,7 @@ module.exports = cloneArrayBuffer;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_MenuIcon__ = __webpack_require__(1904);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_prop_types__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_prop_types__);
@@ -12017,7 +12017,7 @@ HeaderPresetList = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a" /* observ
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx_react__ = __webpack_require__(107);
 var _class;
 
@@ -18887,7 +18887,7 @@ EmptyListMessage = class EmptyListMessage extends __WEBPACK_IMPORTED_MODULE_0_re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__CookiesManagementCookieEditor__ = __webpack_require__(2693);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PluralizeHelper__ = __webpack_require__(669);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
 
@@ -19046,7 +19046,7 @@ CookiesManagementDomainsListItem = class CookiesManagementDomainsListItem extend
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_CloseIcon__ = __webpack_require__(79);
 
 
 let
@@ -19803,7 +19803,7 @@ ProxySettingsConnection = class ProxySettingsConnection extends __WEBPACK_IMPORT
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FilteredSelectorSearchList__ = __webpack_require__(2705);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__postman_react_click_outside__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__postman_react_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_DownSolidIcon__ = __webpack_require__(80);
 var _class;
 
 
@@ -40398,6 +40398,8 @@ FinishTemplate = class FinishTemplate extends __WEBPACK_IMPORTED_MODULE_0_react_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_new_button_XFlowActivityList__ = __webpack_require__(2897);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Tabs__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Icons_CloseIcon__ = __webpack_require__(79);
+
 
 
 
@@ -40526,6 +40528,7 @@ ActivityFeedModalContainer = class ActivityFeedModalContainer extends __WEBPACK_
           customStyles: this.getCustomStyles(),
           onRequestClose: this.handleClose },
 
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_base_Icons_CloseIcon__["a" /* default */], { className: 'user-welcome-modal--dismiss-icon', onClick: this.handleClose }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Modals__["b" /* ModalContent */], null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-welcome__left-section' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-title' }, 'Welcome to Postman!'),
@@ -40958,7 +40961,9 @@ WorkspaceJoinModalContainer = class WorkspaceJoinModalContainer extends __WEBPAC
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx_react__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(79);
 var _class;
+
 
 
 
@@ -40974,6 +40979,7 @@ WorkspaceJoinModal = Object(__WEBPACK_IMPORTED_MODULE_3_mobx_react__["a" /* obse
           isOpen: this.props.isOpen,
           onRequestClose: this.props.onRequestClose },
 
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__["a" /* default */], { onClick: this.props.onRequestClose, className: 'workspace-join-modal--dismiss-icon' }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Modals__["b" /* ModalContent */], null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-join-modal__wrapper' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-header-close-button', onClick: this.props.onRequestClose }),
@@ -41098,6 +41104,8 @@ WorkspaceJoinedModalContainer = class WorkspaceJoinedModalContainer extends __WE
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Inputs__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__status_bar_TypeSwitcher__ = __webpack_require__(1812);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_RequesterTabConstants__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_CloseIcon__ = __webpack_require__(79);
+
 
 
 
@@ -41114,6 +41122,7 @@ WorkspaceJoinedModal = class WorkspaceJoinedModal extends __WEBPACK_IMPORTED_MOD
           isOpen: this.props.isOpen,
           onRequestClose: this.props.onRequestClose },
 
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_CloseIcon__["a" /* default */], { onClick: this.props.onRequestClose, className: 'workspace-join-modal--dismiss-icon' }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Modals__["b" /* ModalContent */], null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'workspace-join-modal__wrapper' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-header-close-button', onClick: this.props.onRequestClose }),
@@ -41126,7 +41135,7 @@ WorkspaceJoinedModal = class WorkspaceJoinedModal extends __WEBPACK_IMPORTED_MOD
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
                     className:
                     `workspace-join-modal__type-switcher-toggle
-                    plugin__workspace-view-switcher__wrapper 
+                    plugin__workspace-view-switcher__wrapper
                     plugin__workspace-view-switcher` },
 
 

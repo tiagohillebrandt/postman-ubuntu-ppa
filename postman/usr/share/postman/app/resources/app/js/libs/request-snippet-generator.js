@@ -15352,7 +15352,7 @@ module.exports={
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.1.tgz",
   "_shasum": "c2d0b7776911b86722c632c3c06c60f2f819939a",
   "_spec": "elliptic@^6.0.0",
-  "_where": "/var/lib/buildkite-agent/builds/postman-ci-agent-linux-8/postman/app-package-and-deploy/node_modules/browserify-sign",
+  "_where": "/var/lib/buildkite-agent/builds/postman-ci-agent-linux-4/postman/app-package-and-deploy/node_modules/browserify-sign",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"

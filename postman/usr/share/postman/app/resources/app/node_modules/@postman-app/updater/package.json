@@ -1,7 +1,7 @@
 {
   "name": "@postman-app/updater",
   "main": "index.js",
-  "version": "6.2.4",
+  "version": "6.2.5",
   "engines": {
     "node": ">=8.10.0"
   },

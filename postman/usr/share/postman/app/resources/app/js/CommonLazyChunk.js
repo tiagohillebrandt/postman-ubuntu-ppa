@@ -5167,7 +5167,7 @@ module.exports = removeTextWithStrategy;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_RightSolidIcon__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_prop_types__);
 
@@ -6947,7 +6947,7 @@ module.exports = moveSelectionBackward;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Inputs__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_ExclamationIcon__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__AuthTypeSelector__ = __webpack_require__(2488);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__AuthBasicEditor__ = __webpack_require__(2489);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__AuthBearerEditor__ = __webpack_require__(2490);
@@ -30884,7 +30884,7 @@ function MenuIcon(props) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(80);
 
 
 
@@ -47902,15 +47902,18 @@ KeyValueFormEditor = class KeyValueFormEditor extends __WEBPACK_IMPORTED_MODULE_
     }
   }
 
-  getBlankValue(id, defaults = {}) {
+  getBlankValue(id, newRow = {}) {
     let blankRow = {
-      key: defaults.key || '',
-      value: defaults.value || '',
-      sessionValue: defaults.sessionValue || null,
-      description: defaults.description || '',
-      type: defaults.type || 'text',
+      key: newRow.key || '',
+      value: newRow.value || '',
+      description: newRow.description || '',
+      type: newRow.type || 'text',
       id: id };
 
+
+    if (_.includes(this.props.allowedColumns, 'sessionValue')) {
+      blankRow.sessionValue = newRow.sessionValue;
+    }
 
     if (!this.props.disableToggle) {
       blankRow.enabled = true;
@@ -48010,7 +48013,7 @@ KeyValueFormEditor = class KeyValueFormEditor extends __WEBPACK_IMPORTED_MODULE_
         if (createValue.type === 'file' || createValue.value !== '') {
           column = 1;
         } else
-        if (createValue.sessionValue !== '') {
+        if (_.includes(this.props.allowedColumns, 'sessionValue') && createValue.sessionValue) {
           column = 2;
         } else
         if (createValue.description !== '') {
@@ -48087,9 +48090,19 @@ KeyValueFormEditor = class KeyValueFormEditor extends __WEBPACK_IMPORTED_MODULE_
       onToggleKeyValueEditor: this.props.onToggleKeyValueEditor,
       persistAll: this.persistAll,
       resetAll: this.resetAll,
-      onToggleColumns: this.props.onColumnToggle });
+      onToggleColumns: this.props.onColumnToggle }),
 
 
+    defaultCreateRow = {
+      key: '',
+      value: '',
+      type: 'text',
+      description: '' };
+
+
+    if (_.includes(this.props.allowedColumns, 'sessionValue')) {
+      defaultCreateRow.sessionValue = null;
+    }
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
@@ -48139,13 +48152,7 @@ KeyValueFormEditor = class KeyValueFormEditor extends __WEBPACK_IMPORTED_MODULE_
           index: this.state.values.length,
           key: this.state.values.length,
           ref: 'KeyValueFormCreateRow',
-          value: {
-            key: '',
-            value: '',
-            sessionValue: '',
-            type: 'text',
-            description: '' },
-
+          value: defaultCreateRow,
           keyPlaceholder: this.props.keyPlaceholder,
           valuePlaceholder: this.props.valuePlaceholder,
           onChange: this.handleCreate },
@@ -48295,8 +48302,8 @@ KeyValueFormSortable = class KeyValueFormSortable extends __WEBPACK_IMPORTED_MOD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Buttons__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Dropdowns__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_MenuIcon__ = __webpack_require__(1904);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_DownSolidIcon__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_DownSolidIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_VariableRowDropdown_js__ = __webpack_require__(2469);
@@ -51300,7 +51307,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(80);
 
 
 
@@ -54314,7 +54321,7 @@ InheritedAuthInfo.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__keymaps_KeyMaps__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_CloseIcon__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_CloseIcon__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__empty_states_CrashHandler__ = __webpack_require__(195);
 
 

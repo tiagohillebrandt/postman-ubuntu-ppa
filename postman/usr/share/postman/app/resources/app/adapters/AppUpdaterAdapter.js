@@ -24,6 +24,14 @@ let AppUpdaterAdapter = {
     },
 
     /**
+     * @method getDesktopPath
+     * @return {String}, returns the desktop path for the current user using electron getPath API
+     */
+    getDesktopPath () {
+      return electron.app.getPath('desktop');
+    },
+
+    /**
      * This will return the path of the Postman directory
      *
      * some-folder
@@ -43,7 +51,7 @@ let AppUpdaterAdapter = {
     /**
      * @method getLastKnownVersion
      * @description This helps in getting the last known version saved in app settings
-     * @param {Function} cb 
+     * @param {Function} cb
      */
     getLastKnownVersion (cb) {
       appSettings.get('lastKnownVersion', cb);
@@ -52,7 +60,7 @@ let AppUpdaterAdapter = {
     /**
      * @method setLastKnownVersion
      * @description This helps in setting the last known version to app settings
-     * @param {String} version 
+     * @param {String} version
      */
     setLastKnownVersion (version) {
       appSettings.set('lastKnownVersion', version);
@@ -60,7 +68,7 @@ let AppUpdaterAdapter = {
 
     /**
      * @method getAutoUpdater
-     * @description This returns the autoUpdater to be used in updater, 
+     * @description This returns the autoUpdater to be used in updater,
      * at present it sends electron.autoUpdater
      * @return {Object} electron.autoUpdater
      */
