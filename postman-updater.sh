@@ -18,4 +18,8 @@ if [[ $? -eq 0 ]]; then
     cp -R bin/ $currdir/postman/usr/share/postman/
 fi
 
-rm -r $tempdir
+cleanup() {
+    test -d $tempdir && rm -r $tempdir
+}
+
+trap cleanup EXIT
