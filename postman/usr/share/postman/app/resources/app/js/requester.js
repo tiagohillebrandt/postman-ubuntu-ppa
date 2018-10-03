@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
@@ -13,9 +13,9 @@ module.exports = require("os");
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_PmConsole__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Shortcuts__ = __webpack_require__(604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ToastManager__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_PmConsole__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Shortcuts__ = __webpack_require__(605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ToastManager__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_helpers_OAuth2Tokens__ = __webpack_require__(1255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_cookies_CookieManager__ = __webpack_require__(1256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_helpers_OAuth2Manager__ = __webpack_require__(1257);
@@ -30,7 +30,7 @@ module.exports = require("os");
 
 
 
-let alerts = __webpack_require__(355);
+let alerts = __webpack_require__(356);
 
 /**
                                                  *
@@ -768,7 +768,7 @@ OAuth2Manager = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Model.extend({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_postman_collection__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_util__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_backbone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_SessionHelper__ = __webpack_require__(47);
@@ -965,7 +965,6 @@ ElectronContextMenu = class ElectronContextMenu {
     this.currentSelection = '';
     this.activeComponent = null;
     this.attachEventListeners();
-
     window.addEventListener('contextmenu', e => {
       e.preventDefault();
 
@@ -1521,14 +1520,14 @@ CollectionClipboard = class CollectionClipboard {
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootStore__ = __webpack_require__(1348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootTab__ = __webpack_require__(1350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_UIZoom__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_ProxyListManager__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_UIZoom__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_ProxyListManager__ = __webpack_require__(369);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_AppUpdateNotifier__ = __webpack_require__(1353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_tcp_ElectronTCPReader__ = __webpack_require__(1355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_requests_CertificateManager__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_requests_CertificateManager__ = __webpack_require__(370);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_ProtocolHandler__ = __webpack_require__(1356);
 
 
@@ -1696,7 +1695,7 @@ function bootTab(cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_pipelines_user_action__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_model_event__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_UserController__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_UserController__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_CollectionPermissionService__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_backbone__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_backbone__);
@@ -3581,7 +3580,7 @@ var TabManager = __WEBPACK_IMPORTED_MODULE_9_backbone___default.a.Collection.ext
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_backbone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_ResolveVariableHelper__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_ResolveVariableHelper__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__ = __webpack_require__(111);
 
 
@@ -4133,17 +4132,17 @@ var RequestBody = __WEBPACK_IMPORTED_MODULE_1_backbone___default.a.Model.extend(
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppSettingsDefaults__ = __webpack_require__(421);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_APIService__ = __webpack_require__(60);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppSettingsDefaults__ = __webpack_require__(423);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_APIService__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_ShellHelper__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_ShellHelper__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_model_event__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_domain__ = __webpack_require__(1354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_domain___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_domain__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_InfobarConstants__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_InfobarConstants__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__controllers_Infobar__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_backbone__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_backbone__);
@@ -4951,10 +4950,10 @@ ElectronTCPReader = class ElectronTCPReader {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(60);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Importer__ = __webpack_require__(418);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_UserController__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Importer__ = __webpack_require__(420);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_UserController__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(13);
@@ -5042,12 +5041,12 @@ const ProtocolHandler = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__in_app_messaging_InAppController__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__in_app_messaging_InAppController__ = __webpack_require__(352);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__ = __webpack_require__(1362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_APIService__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_NotificationService__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_APIService__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_NotificationService__ = __webpack_require__(603);
 
 
 
@@ -5106,9 +5105,9 @@ function bootInAppMessaging(cb) {
           events: [{
             key: 'received',
             value: Date.now(),
-            dataType: 'timestamp' }] }]);
+            dataType: 'timestamp' }] }],
 
-
+        meta);
       },
 
       onView: (notification, meta) => {
@@ -5120,9 +5119,9 @@ function bootInAppMessaging(cb) {
           events: [{
             key: 'viewed',
             value: Date.now(),
-            dataType: 'timestamp' }] }]);
+            dataType: 'timestamp' }] }],
 
-
+        meta);
       },
 
       onActionClick: (notification, meta) => {
@@ -5131,9 +5130,9 @@ function bootInAppMessaging(cb) {
           events: [{
             key: `clicked_${meta.action}`,
             value: Date.now(),
-            dataType: 'timestamp' }] }]);
+            dataType: 'timestamp' }] }],
 
-
+        meta);
       },
 
       onDrop: (notification, meta) => {
@@ -5142,9 +5141,9 @@ function bootInAppMessaging(cb) {
           events: [{
             key: 'dropped',
             value: Date.now(),
-            dataType: 'timestamp' }] }]);
+            dataType: 'timestamp' }] }],
 
-
+        meta);
       },
 
       onDismiss: (notification, meta) => {
@@ -5153,9 +5152,9 @@ function bootInAppMessaging(cb) {
           events: [{
             key: 'dismissed',
             value: Date.now(),
-            dataType: 'timestamp' }] }]);
+            dataType: 'timestamp' }] }],
 
-
+        meta);
       } } });
 
 
@@ -5214,7 +5213,7 @@ function transformForBanner(message) {
 
 /***/ }),
 
-/***/ 138:
+/***/ 139:
 /***/ (function(module, exports) {
 
 /*
@@ -5378,7 +5377,7 @@ function subscribeToModelEvents(service, namespaces) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(165);
 
 
@@ -5722,7 +5721,7 @@ function InformationIcon(props) {
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
@@ -10746,8 +10745,8 @@ module.exports = require("fs");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getCollectionPublishURL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return openEnterprise; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return openArchivedCollections; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(129);
 
 
 
@@ -10904,7 +10903,7 @@ function getCollectionPublishURL(id, workspaceId) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sanitize_filename__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sanitize_filename___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sanitize_filename__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_base64_arraybuffer__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_base64_arraybuffer__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_base64_arraybuffer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_base64_arraybuffer__);
 
 
@@ -10916,7 +10915,7 @@ function __errorHandler(e) {
 // electron
 function __removeFileIfExists(name, callback) {
   try {
-    var fs = __webpack_require__(23);
+    var fs = __webpack_require__(24);
     fs.unlink(name, function (err) {
       callback();
     });
@@ -11048,7 +11047,7 @@ function renderResponsePreview(name, data, type, callback) {
     var electronPath = __webpack_require__(8).remote.app.getPath('temp') + '/' + name;
 
     // write to the file
-    var fs = __webpack_require__(23);
+    var fs = __webpack_require__(24);
     fs.writeFile(electronPath, data, function (err) {
       if (err) {
         console.log('err', err);
@@ -11078,7 +11077,7 @@ function saveAndOpenFileForResponse(name, data, type, callback) {
   {
     // Buffer is a browserified Buffer that doesn't work in the browser
     // NativeBuffer comes from the background process and works
-    var fs = __webpack_require__(23),
+    var fs = __webpack_require__(24),
     NativeBuffer = __webpack_require__(8).remote.require('buffer').Buffer,
     base64 = __WEBPACK_IMPORTED_MODULE_2_base64_arraybuffer___default.a.encode(data.stream),
     dataBuffer = new NativeBuffer(base64, 'base64');
@@ -11104,7 +11103,7 @@ function saveAndOpenFile(name, data, type, callback) {
     callback(new Error('Save aborted'));
   } else
   {
-    var fs = __webpack_require__(23);
+    var fs = __webpack_require__(24);
     fs.writeFile(path, data, function (err) {
       if (err) __errorHandler(err);
 
@@ -11744,7 +11743,7 @@ module.exports = require("child_process");
 
 /***/ }),
 
-/***/ 352:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11827,7 +11826,7 @@ PmConsole = class PmConsole {
 
 /***/ }),
 
-/***/ 353:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11882,7 +11881,7 @@ let ToastManager = class ToastManager {
 
 /***/ }),
 
-/***/ 354:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11912,7 +11911,7 @@ let ResolveVariableHelper = class ResolveVariableHelper {
 
 /***/ }),
 
-/***/ 355:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11926,7 +11925,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_DashboardService__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Toast__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Toast__ = __webpack_require__(357);
 
 
 
@@ -12184,7 +12183,7 @@ const warn = function (message, options) {
 
 /***/ }),
 
-/***/ 356:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12356,7 +12355,7 @@ Toast.propTypes = {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12618,11 +12617,11 @@ let bootSession = cb => {
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerProxy__ = __webpack_require__(365);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerProxy__ = __webpack_require__(366);
 
 
 /**
@@ -12638,7 +12637,7 @@ function bootSyncProxy(cb) {
 
 /***/ }),
 
-/***/ 365:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12764,7 +12763,7 @@ var SyncManagerProxy = __WEBPACK_IMPORTED_MODULE_1_backbone___default.a.Model.ex
 
 /***/ }),
 
-/***/ 366:
+/***/ 367:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12787,7 +12786,7 @@ function mergeMutations(destination, source = {}) {
 
 /***/ }),
 
-/***/ 367:
+/***/ 368:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12860,7 +12859,7 @@ var UIZoom = __WEBPACK_IMPORTED_MODULE_1_backbone___default.a.Model.extend({
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12899,7 +12898,7 @@ _.assign(ProxyListManager.prototype, /** @lends ProxyListManager.prototype */{
 
 /***/ }),
 
-/***/ 369:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12924,7 +12923,7 @@ const Certificate = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.exten
       return;
     }
 
-    const fs = __webpack_require__(23);
+    const fs = __webpack_require__(24);
     fs.readFile(this.get('pemPath'), (err, _pemData) => {
       fs.readFile(this.get('keyPath'), (err, _keyData) => {
         this.set({
@@ -13089,7 +13088,7 @@ const CertificateManager = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Coll
 
 /***/ }),
 
-/***/ 415:
+/***/ 417:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13211,7 +13210,7 @@ module.exports = CharacterMetadata;
 
 /***/ }),
 
-/***/ 422:
+/***/ 424:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13292,10 +13291,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CharacterMetadata = __webpack_require__(415);
+var CharacterMetadata = __webpack_require__(417);
 var Immutable = __webpack_require__(247);
 
-var findRangesImmutable = __webpack_require__(422);
+var findRangesImmutable = __webpack_require__(424);
 
 var List = Immutable.List,
     Map = Immutable.Map,
@@ -13472,22 +13471,22 @@ module.exports = generateRandomKey;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_postman_collection_transformer__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_postman_collection_transformer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_postman_collection_transformer__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_RuntimeBridge__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_http_reasons__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_http_reasons__ = __webpack_require__(594);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_http_reasons___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_http_reasons__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_pipelines_user_action__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_model_event__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_HistoryService__ = __webpack_require__(744);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__stores_get_store__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_ResolveVariableHelper__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_ResolveVariableHelper__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_controllers_EnvironmentController__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_controllers_EnvironmentController__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_controllers_GlobalsController__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__utils_vkbeautify__ = __webpack_require__(690);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_backbone__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_backbone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_services_VariableSessionService__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__utils_SessionHelper__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__utils_RequestUtil__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__utils_RequestUtil__ = __webpack_require__(367);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -16328,9 +16327,9 @@ module.exports = randomizeBlockMapKeys;
 
 
 
-var CharacterMetadata = __webpack_require__(415);
+var CharacterMetadata = __webpack_require__(417);
 
-var findRangesImmutable = __webpack_require__(422);
+var findRangesImmutable = __webpack_require__(424);
 var invariant = __webpack_require__(249);
 
 function removeEntitiesAtEdges(contentState, selectionState) {
@@ -16897,7 +16896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const Requester = __WEBPACK_IMPORTED_MODULE_4_react_loadable___default()({
-  loader: () => __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 1620)),
+  loader: () => __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 1621)),
   loading: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null) });
 
 
@@ -16944,10 +16943,10 @@ __WEBPACK_IMPORTED_MODULE_2__init__["a" /* default */].init(err => {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootSettings__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootTelemetry__ = __webpack_require__(231);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootIndependentServices__ = __webpack_require__(1253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootSession__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootSession__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootRequester__ = __webpack_require__(1347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_booted__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootThemeManager__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootThemeManager__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootConfigurations__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_bootInAppMessage__ = __webpack_require__(1361);
 

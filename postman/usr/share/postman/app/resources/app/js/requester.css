@@ -2664,7 +2664,7 @@ th {
       padding: 0 16px 0 16px; }
 
 .infobar__dismiss_container {
-  margin: 0px 16px;
+  margin-right: 16px;
   cursor: pointer; }
   .infobar__dismiss_container .infobar__dismiss_icon {
     padding-top: 2px; }
@@ -11064,7 +11064,8 @@ input[disabled].share-collection-modal-collection-link {
   cursor: default;
   font-family: "OpenSans", Helvetica, Arial, sans-serif;
   font-size: 12px;
-  overflow: hidden; }
+  overflow: hidden;
+  z-index: 50; }
   .plugin__find-and-replace__pane .find-replace-wrapper {
     display: flex;
     height: 100%; }

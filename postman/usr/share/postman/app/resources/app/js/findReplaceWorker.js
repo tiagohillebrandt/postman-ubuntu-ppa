@@ -28323,6 +28323,7 @@ var _ = __webpack_require__(0).noConflict(),
     PATH_SEPARATOR = '/',
     DOMAIN_SEPARATOR = '.',
     AUTH_SEPARATOR = ':',
+    PATH_VARIABLE_IDENTIFIER = ':',
 
     GET_0 = '[0]',
     GET_1 = '[1]',
@@ -28344,9 +28345,10 @@ var _ = __webpack_require__(0).noConflict(),
 module.exports = {
     parse: function (url) {
         url = _.trim(url);
-        var p = {
-            raw: url
-        };
+        var pathVariables,
+            p = {
+                raw: url
+            };
 
         // extract the protocol
         p.protocol = _.get(url.match(regexes.extractProtocol), GET_1);
@@ -28400,6 +28402,15 @@ module.exports = {
 
         // extract the hash
         p.hash = _.get(url.match(regexes.extractSearch), GET_1);
+
+        // extract path variables
+        pathVariables = _.transform(p.path, function (res, segment) {
+            // check if the segment has path variable prefix followed by the variable name.
+            if (_.startsWith(segment, PATH_VARIABLE_IDENTIFIER) && segment !== PATH_VARIABLE_IDENTIFIER) {
+                res.push({ key: segment.slice(1) }); // remove path variable prefix.
+            }
+        }, []);
+        p.variable = pathVariables.length ? pathVariables : undefined;
 
         return p;
     },
@@ -40294,13 +40305,10 @@ function sanitizeHtml(html, options, _recursing) {
               }
             }
             if (name === 'iframe' && a === 'src') {
-              //Check if value contains proper hostname prefix
-              if (value.substring(0, 2) === '//') {
-                var prefix = 'https:';
-                value = prefix.concat(value);
-              }
               try {
-                parsed = url.parse(value);
+                // naughtyHref is in charge of whether protocol relative URLs
+                // are cool. We should just accept them
+                parsed = url.parse(value, false, true);
                 if (options.allowedIframeHostnames) {
                   var whitelistedHostnames = options.allowedIframeHostnames.find(function (hostname) {
                     return hostname === parsed.hostname;

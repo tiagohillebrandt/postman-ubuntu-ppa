@@ -2,7 +2,6 @@ var electron = require('electron'),
     app = electron.app,
     BrowserWindow = electron.BrowserWindow,
     Menu = electron.Menu,
-    shell = electron.shell,
     dialog = electron.dialog,
     ipc = electron.ipcMain,
     circularJSON = require('circular-json'),
@@ -15,8 +14,6 @@ var electron = require('electron'),
     authHandlerAdapter = require('./services/adapters/AuthHandlerAdapter'),
     appSettings = require('./services/appSettings').appSettings,
     uuidV4 = require('uuid/v4'),
-    loginUtils = require('./services/loginUtils').loginUtils,
-    getParamsString = require('./common/utils/url').getParamsString,
     setupRuntimeBridge = require('./services/RuntimeBridge'),
     setupOAuth2TokenRequester = require('./services/OAuth2TokenRequester'),
     os = require('os'),
@@ -24,7 +21,8 @@ var electron = require('electron'),
     myWindow = null,
     sharedWindow = null,
     bootstrapModels = require('./bootstrap-models'),
-    initializeUpdaterHandler = require('./services/UpdaterHandler').init;
+    initializeUpdaterHandler = require('./services/UpdaterHandler').init,
+    ProtocolHandler = require('./services/ProtocolHandler');
 
 const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
       MOVE_DIALOG_ACTION_BUTTON = 'Move to Applications Folder',
@@ -66,6 +64,14 @@ async.series([
       app.updaterInstance = updaterInstance;
       cb(err);
     });
+  },
+
+  /**
+   * Initialize protocolHandler
+   */
+  (cb) => {
+    ProtocolHandler.init(app);
+    cb();
   }
 ], (err) => {
 
@@ -136,7 +142,7 @@ async.series([
 
           windowManager.closeLoaderWindow();
 
-          // open requester only if the window is not availbale, otherwise it will open on all hot-reload of shared process
+          // open requester only if the window is not available, otherwise it will open on all hot-reload of shared process
           windowManager
             .getOpenWindows('requester')
             .then((openRequesterWindows) => {
@@ -149,9 +155,6 @@ async.series([
         }
       }
     });
-
-    this.ormInitialized = true;
-    executeQueuedActions();
   });
 
   setupRuntimeBridge();
@@ -162,22 +165,10 @@ async.series([
   // flag set to perform tasks before quitting
   app.quittingApp = false;
 
-  const AUTH_CAPTURE_URL = 'https://erisedstraehruoytubecafruoytonwohsi.chromiumapp.org';
-
-  if (os.type() == 'Windows_NT') {
-    if (process.argv && process.argv.length > 1 &&
-      process.argv[1] && process.argv[1].startsWith('postman://')) {
-      var url = process.argv[1];
-      windowManager.initUrl = url;
-      windowManager.openUrl(url);
-    }
-  }
-
   // Postman's API will run here. will be used by the interceptor for sending captured requests
   var API_SERVER_PORT = 8082,
       thisName = null,
-      thisPlatform = 'OSX',
-      initUrl = null; // URL set when app is opened via a postman:// link
+      thisPlatform = 'OSX';
 
   /**
    * Populate installation id
@@ -355,14 +346,6 @@ async.series([
 
   /**
    *
-   * @param {*} url
-   */
-  function openCustomURL (url) {
-    shell.openExternal(url);
-  }
-
-  /**
-   *
    * @param {*} action
    * @param {*} url
    */
@@ -444,43 +427,6 @@ async.series([
   ]);
 
   /**
-   *
-   * @param {*} url
-   */
-  function handleOpenUrl (url) {
-    windowManager.initUrl = url;
-    windowManager.openUrl(url);
-  }
-
-  /**
-   * Queues an action to be performed after the ORM initialization is complete
-   *
-   * @param  {Function} action - The function to queue
-   */
-  function queueAction (action) {
-    if (!_.isFunction(action)) {
-      return;
-    }
-
-    if (this.ormInitialized) {
-      return action();
-    }
-
-    this.queuedActions.push(action);
-  }
-
-  /**
-   * Executes all queued actions
-   */
-  function executeQueuedActions () {
-    _.forEach(this.queuedActions, (action) => {
-      _.isFunction(action) && action();
-    });
-
-    this.queuedActions = [];
-  }
-
-  /**
    * Determines whether to show the prompt for moving the current app to applications folder
    */
   function shouldShowMovePrompt (cb) {
@@ -541,26 +487,16 @@ async.series([
     });
   }
 
-  var shouldQuit = app.makeSingleInstance((commandLine, workingDirectory) => {
-    // Someone tried to run a second instance, we should focus our window.
+  // app.makeSingleInstance will be deprecated in 3.x in-favour of 'second-instance' event
+  var shouldQuit = app.makeSingleInstance((commandLine) => {
     if (myWindow) {
-      if (os.type() == 'Windows_NT') {
-        if (process.argv && process.argv.length > 1 &&
-          process.argv[1] && process.argv[1].startsWith('postman://')) {
-          var url = process.argv[1];
+      ProtocolHandler.processArg(commandLine);
 
-          queueAction(handleOpenUrl.bind(this, url));
-        }
-      }
+      // Someone tried to run a second instance, we should focus our window.
       if (myWindow.isMinimized()) { myWindow.restore(); }
       myWindow.focus();
     }
   });
-
-  if (os.type() !== 'Linux') {
-    // For Linux it is not supported
-    app.setAsDefaultProtocolClient('postman');
-  }
 
   if (shouldQuit) {
     app.quit();
@@ -591,11 +527,6 @@ async.series([
   // This method will be called when Electron has done everything
   // initialization and ready for creating browser windows.
   app.isReady() ? onAppReady() : app.on('ready', onAppReady);
-
-  app.on('open-url', function (event, url) {
-    event.preventDefault();
-    handleOpenUrl(url);
-  });
 
   app.on('activate', function () {
     // bail out if shared window is not booted

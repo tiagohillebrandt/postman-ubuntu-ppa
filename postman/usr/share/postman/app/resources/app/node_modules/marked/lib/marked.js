@@ -135,7 +135,7 @@ block.pedantic = merge({}, block.normal, {
 
 function Lexer(options) {
   this.tokens = [];
-  this.tokens.links = {};
+  this.tokens.links = Object.create(null);
   this.options = options || marked.defaults;
   this.rules = block.normal;
 
@@ -191,6 +191,9 @@ Lexer.prototype.token = function(src, top) {
       bull,
       b,
       item,
+      listStart,
+      listItems,
+      t,
       space,
       i,
       tag,
@@ -217,7 +220,7 @@ Lexer.prototype.token = function(src, top) {
       this.tokens.push({
         type: 'code',
         text: !this.options.pedantic
-          ? cap.replace(/\n+$/, '')
+          ? rtrim(cap, '\n')
           : cap
       });
       continue;
@@ -316,15 +319,19 @@ Lexer.prototype.token = function(src, top) {
       bull = cap[2];
       isordered = bull.length > 1;
 
-      this.tokens.push({
+      listStart = {
         type: 'list_start',
         ordered: isordered,
-        start: isordered ? +bull : ''
-      });
+        start: isordered ? +bull : '',
+        loose: false
+      };
+
+      this.tokens.push(listStart);
 
       // Get each top-level item.
       cap = cap[0].match(this.rules.item);
 
+      listItems = [];
       next = false;
       l = cap.length;
       i = 0;
@@ -365,6 +372,10 @@ Lexer.prototype.token = function(src, top) {
           if (!loose) loose = next;
         }
 
+        if (loose) {
+          listStart.loose = true;
+        }
+
         // Check for task list items
         istask = /^\[[ xX]\] /.test(item);
         ischecked = undefined;
@@ -373,13 +384,15 @@ Lexer.prototype.token = function(src, top) {
           item = item.replace(/^\[[ xX]\] +/, '');
         }
 
-        this.tokens.push({
-          type: loose
-            ? 'loose_item_start'
-            : 'list_item_start',
+        t = {
+          type: 'list_item_start',
           task: istask,
-          checked: ischecked
-        });
+          checked: ischecked,
+          loose: loose
+        };
+
+        listItems.push(t);
+        this.tokens.push(t);
 
         // Recurse.
         this.token(item, false);
@@ -387,6 +400,14 @@ Lexer.prototype.token = function(src, top) {
         this.tokens.push({
           type: 'list_item_end'
         });
+      }
+
+      if (listStart.loose) {
+        l = listItems.length;
+        i = 0;
+        for (; i < l; i++) {
+          listItems[i].loose = true;
+        }
       }
 
       this.tokens.push({
@@ -519,10 +540,10 @@ var inline = {
   link: /^!?\[(label)\]\(href(?:\s+(title))?\s*\)/,
   reflink: /^!?\[(label)\]\[(?!\s*\])((?:\\[\[\]]?|[^\[\]\\])+)\]/,
   nolink: /^!?\[(?!\s*\])((?:\[[^\[\]]*\]|\\[\[\]]|[^\[\]])*)\](?:\[\])?/,
-  strong: /^__([^\s][\s\S]*?[^\s])__(?!_)|^\*\*([^\s][\s\S]*?[^\s])\*\*(?!\*)|^__([^\s])__(?!_)|^\*\*([^\s])\*\*(?!\*)/,
-  em: /^_([^\s][\s\S]*?[^\s_])_(?!_)|^_([^\s_][\s\S]*?[^\s])_(?!_)|^\*([^\s][\s\S]*?[^\s*])\*(?!\*)|^\*([^\s*][\s\S]*?[^\s])\*(?!\*)|^_([^\s_])_(?!_)|^\*([^\s*])\*(?!\*)/,
+  strong: /^__([^\s])__(?!_)|^\*\*([^\s])\*\*(?!\*)|^__([^\s][\s\S]*?[^\s])__(?!_)|^\*\*([^\s][\s\S]*?[^\s])\*\*(?!\*)/,
+  em: /^_([^\s_])_(?!_)|^\*([^\s*"<\[])\*(?!\*)|^_([^\s][\s\S]*?[^\s_])_(?!_)|^_([^\s_][\s\S]*?[^\s])_(?!_)|^\*([^\s"<\[][\s\S]*?[^\s*])\*(?!\*)|^\*([^\s*"<\[][\s\S]*?[^\s])\*(?!\*)/,
   code: /^(`+)\s*([\s\S]*?[^`]?)\s*\1(?!`)/,
-  br: /^ {2,}\n(?!\s*$)/,
+  br: /^( {2,}|\\)\n(?!\s*$)/,
   del: noop,
   text: /^[\s\S]+?(?=[\\<!\[`*]|\b_| {2,}\n|$)/
 };
@@ -544,7 +565,7 @@ inline.tag = edit(inline.tag)
   .getRegex();
 
 inline._label = /(?:\[[^\[\]]*\]|\\[\[\]]?|`[^`]*`|[^\[\]\\])*?/;
-inline._href = /\s*(<(?:\\[<>]?|[^\s<>\\])*>|(?:\\[()]?|\([^\s\x00-\x1f()\\]*\)|[^\s\x00-\x1f()\\])*?)/;
+inline._href = /\s*(<(?:\\[<>]?|[^\s<>\\])*>|(?:\\[()]?|\([^\s\x00-\x1f\\]*\)|[^\s\x00-\x1f()\\])*?)/;
 inline._title = /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/;
 
 inline.link = edit(inline.link)
@@ -588,7 +609,7 @@ inline.gfm = merge({}, inline.normal, {
     .replace('email', inline._email)
     .getRegex(),
   _backpedal: /(?:[^?!.,:;*_~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_~)]+(?!$))+/,
-  del: /^~~(?=\S)([\s\S]*?\S)~~/,
+  del: /^~+(?=\S)([\s\S]*?\S)~+/,
   text: edit(inline.text)
     .replace(']|', '~]|')
     .replace('|', '|https?://|ftp://|www\\.|[a-zA-Z0-9.!#$%&\'*+/=?^_`{\\|}~-]+@|')
@@ -655,7 +676,8 @@ InlineLexer.prototype.output = function(src) {
       text,
       href,
       title,
-      cap;
+      cap,
+      prevCapZero;
 
   while (src) {
     // escape
@@ -681,7 +703,10 @@ InlineLexer.prototype.output = function(src) {
 
     // url (gfm)
     if (!this.inLink && (cap = this.rules.url.exec(src))) {
-      cap[0] = this.rules._backpedal.exec(cap[0])[0];
+      do {
+        prevCapZero = cap[0];
+        cap[0] = this.rules._backpedal.exec(cap[0])[0];
+      } while (prevCapZero !== cap[0]);
       src = src.substring(cap[0].length);
       if (cap[2] === '@') {
         text = escape(cap[0]);
@@ -1217,24 +1242,16 @@ Parser.prototype.tok = function() {
     }
     case 'list_item_start': {
       body = '';
+      var loose = this.token.loose;
 
       if (this.token.task) {
         body += this.renderer.checkbox(this.token.checked);
       }
 
       while (this.next().type !== 'list_item_end') {
-        body += this.token.type === 'text'
+        body += !loose && this.token.type === 'text'
           ? this.parseText()
           : this.tok();
-      }
-
-      return this.renderer.listitem(body);
-    }
-    case 'loose_item_start': {
-      body = '';
-
-      while (this.next().type !== 'list_item_end') {
-        body += this.tok();
       }
 
       return this.renderer.listitem(body);
@@ -1303,7 +1320,7 @@ function resolveUrl(base, href) {
     if (/^[^:]+:\/*[^/]*$/.test(base)) {
       baseUrls[' ' + base] = base + '/';
     } else {
-      baseUrls[' ' + base] = base.replace(/[^/]*$/, '');
+      baseUrls[' ' + base] = rtrim(base, '/', true);
     }
   }
   base = baseUrls[' ' + base];
@@ -1340,7 +1357,22 @@ function merge(obj) {
 }
 
 function splitCells(tableRow, count) {
-  var cells = tableRow.replace(/([^\\])\|/g, '$1 |').split(/ +\| */),
+  // ensure that every cell-delimiting pipe has a space
+  // before it to distinguish it from an escaped pipe
+  var row = tableRow.replace(/\|/g, function (match, offset, str) {
+        var escaped = false,
+            curr = offset;
+        while (--curr >= 0 && str[curr] === '\\') escaped = !escaped;
+        if (escaped) {
+          // odd number of slashes means | is escaped
+          // so we leave it alone
+          return '|';
+        } else {
+          // add space before unescaped |
+          return ' |';
+        }
+      }),
+      cells = row.split(/ \|/),
       i = 0;
 
   if (cells.length > count) {
@@ -1350,9 +1382,36 @@ function splitCells(tableRow, count) {
   }
 
   for (; i < cells.length; i++) {
-    cells[i] = cells[i].replace(/\\\|/g, '|');
+    // leading or trailing whitespace is ignored per the gfm spec
+    cells[i] = cells[i].trim().replace(/\\\|/g, '|');
   }
   return cells;
+}
+
+// Remove trailing 'c's. Equivalent to str.replace(/c*$/, '').
+// /c*$/ is vulnerable to REDOS.
+// invert: Remove suffix of non-c chars instead. Default falsey.
+function rtrim(str, c, invert) {
+  if (str.length === 0) {
+    return '';
+  }
+
+  // Length of suffix matching the invert condition.
+  var suffLen = 0;
+
+  // Step left until we fail to match the invert condition.
+  while (suffLen < str.length) {
+    var currChar = str.charAt(str.length - suffLen - 1);
+    if (currChar === c && !invert) {
+      suffLen++;
+    } else if (currChar !== c && invert) {
+      suffLen++;
+    } else {
+      break;
+    }
+  }
+
+  return str.substr(0, str.length - suffLen);
 }
 
 /**

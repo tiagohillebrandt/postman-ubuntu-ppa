@@ -15352,7 +15352,7 @@ module.exports={
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.4.1.tgz",
   "_shasum": "c2d0b7776911b86722c632c3c06c60f2f819939a",
   "_spec": "elliptic@^6.0.0",
-  "_where": "/var/lib/buildkite-agent/builds/postman-ci-agent-linux-4/postman/app-package-and-deploy/node_modules/browserify-sign",
+  "_where": "/var/lib/buildkite-agent/builds/postman-ci-agent-linux-2/postman/app-package-and-deploy/node_modules/browserify-sign",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -75575,13 +75575,91 @@ function from (source) {
 }).call(this,require('_process'))
 },{"_process":124,"stream":144}],333:[function(require,module,exports){
 var util = require('util')
+var isProperty = require('is-property')
 
 var INDENT_START = /[\{\[]/
 var INDENT_END = /[\}\]]/
 
-module.exports = function() {
+// from https://mathiasbynens.be/notes/reserved-keywords
+var RESERVED = [
+  'do',
+  'if',
+  'in',
+  'for',
+  'let',
+  'new',
+  'try',
+  'var',
+  'case',
+  'else',
+  'enum',
+  'eval',
+  'null',
+  'this',
+  'true',
+  'void',
+  'with',
+  'await',
+  'break',
+  'catch',
+  'class',
+  'const',
+  'false',
+  'super',
+  'throw',
+  'while',
+  'yield',
+  'delete',
+  'export',
+  'import',
+  'public',
+  'return',
+  'static',
+  'switch',
+  'typeof',
+  'default',
+  'extends',
+  'finally',
+  'package',
+  'private',
+  'continue',
+  'debugger',
+  'function',
+  'arguments',
+  'interface',
+  'protected',
+  'implements',
+  'instanceof',
+  'NaN',
+  'undefined'
+]
+
+var RESERVED_MAP = {}
+
+for (var i = 0; i < RESERVED.length; i++) {
+  RESERVED_MAP[RESERVED[i]] = true
+}
+
+var isVariable = function (name) {
+  return isProperty(name) && !RESERVED_MAP.hasOwnProperty(name)
+}
+
+var formats = {
+  s: function(s) {
+    return '' + s
+  },
+  d: function(d) {
+    return '' + Number(d)
+  },
+  o: function(o) {
+    return JSON.stringify(o)
+  }
+}
+
+var genfun = function() {
   var lines = []
   var indent = 0
+  var vars = {}
 
   var push = function(str) {
     var spaces = ''
@@ -75589,28 +75667,61 @@ module.exports = function() {
     lines.push(spaces+str)
   }
 
+  var pushLine = function(line) {
+    if (INDENT_END.test(line.trim()[0]) && INDENT_START.test(line[line.length-1])) {
+      indent--
+      push(line)
+      indent++
+      return
+    }
+    if (INDENT_START.test(line[line.length-1])) {
+      push(line)
+      indent++
+      return
+    }
+    if (INDENT_END.test(line.trim()[0])) {
+      indent--
+      push(line)
+      return
+    }
+
+    push(line)
+  }
+
   var line = function(fmt) {
     if (!fmt) return line
 
-    if (INDENT_END.test(fmt.trim()[0]) && INDENT_START.test(fmt[fmt.length-1])) {
-      indent--
-      push(util.format.apply(util, arguments))
-      indent++
-      return line
-    }
-    if (INDENT_START.test(fmt[fmt.length-1])) {
-      push(util.format.apply(util, arguments))
-      indent++
-      return line
-    }
-    if (INDENT_END.test(fmt.trim()[0])) {
-      indent--
-      push(util.format.apply(util, arguments))
-      return line
+    if (arguments.length === 1 && fmt.indexOf('\n') > -1) {
+      var lines = fmt.trim().split('\n')
+      for (var i = 0; i < lines.length; i++) {
+        pushLine(lines[i].trim())
+      }
+    } else {
+      pushLine(util.format.apply(util, arguments))
     }
 
-    push(util.format.apply(util, arguments))
     return line
+  }
+
+  line.scope = {}
+  line.formats = formats
+
+  line.sym = function(name) {
+    if (!name || !isVariable(name)) name = 'tmp'
+    if (!vars[name]) vars[name] = 0
+    return name + (vars[name]++ || '')
+  }
+
+  line.property = function(obj, name) {
+    if (arguments.length === 1) {
+      name = obj
+      obj = ''
+    }
+
+    name = name + ''
+
+    if (isProperty(name)) return (obj ? obj + '.' + name : name)
+    return obj ? obj + '[' + JSON.stringify(name) + ']' : JSON.stringify(name)
   }
 
   line.toString = function() {
@@ -75618,9 +75729,15 @@ module.exports = function() {
   }
 
   line.toFunction = function(scope) {
+    if (!scope) scope = {}
+
     var src = 'return ('+line.toString()+')'
 
-    var keys = Object.keys(scope || {}).map(function(key) {
+    Object.keys(line.scope).forEach(function (key) {
+      if (!scope[key]) scope[key] = line.scope[key]
+    })
+
+    var keys = Object.keys(scope).map(function(key) {
       return key
     })
 
@@ -75636,7 +75753,10 @@ module.exports = function() {
   return line
 }
 
-},{"util":180}],334:[function(require,module,exports){
+genfun.formats = formats
+module.exports = genfun
+
+},{"is-property":493,"util":180}],334:[function(require,module,exports){
 var isProperty = require('is-property')
 
 var gen = function(obj, prop) {
@@ -101189,7 +101309,6 @@ var Stream = require('stream').Stream
 module.exports = function (mapper, opts) {
 
   var stream = new Stream()
-    , self = this
     , inputs = 0
     , outputs = 0
     , ended = false
@@ -101198,8 +101317,8 @@ module.exports = function (mapper, opts) {
     , lastWritten = 0
     , inNext = false
 
-  this.opts = opts || {};
-  var errorEventName = this.opts.failures ? 'failure' : 'error';
+  opts = opts || {};
+  var errorEventName = opts.failures ? 'failure' : 'error';
 
   // Items that are not ready to be written yet (because they would come out of
   // order) get stuck in a queue for later.
@@ -101241,7 +101360,7 @@ module.exports = function (mapper, opts) {
     if(destroyed) return
     inNext = true
 
-    if (!err || self.opts.failures) {
+    if (!err || opts.failures) {
       queueData(data, number)
     }
 
@@ -101293,7 +101412,7 @@ module.exports = function (mapper, opts) {
 
   stream.end = function (data) {
     if(ended) return
-    end()
+    end(data)
   }
 
   stream.destroy = function () {
@@ -113393,6 +113512,7 @@ function split (matcher, mapper, options) {
   var decoder = new Decoder()
   var soFar = ''
   var maxLength = options && options.maxLength;
+  var trailing = options && options.trailing === false ? false : true
   if('function' === typeof matcher)
     mapper = matcher, matcher = null
   if (!matcher)
@@ -113418,7 +113538,7 @@ function split (matcher, mapper, options) {
     soFar = pieces.pop()
 
     if (maxLength && soFar.length > maxLength)
-      stream.emit('error', new Error('maximum buffer reached'))
+      return stream.emit('error', new Error('maximum buffer reached'))
 
     for (var i = 0; i < pieces.length; i++) {
       var piece = pieces[i]
@@ -113432,12 +113552,11 @@ function split (matcher, mapper, options) {
   function () {
     if(decoder.end)
       next(this, decoder.end())
-    if(soFar != null)
+    if(trailing && soFar != null)
       emit(this, soFar)
     this.queue(null)
   })
 }
-
 
 },{"string_decoder":175,"through":552}],550:[function(require,module,exports){
 'use strict';
@@ -113506,18 +113625,25 @@ exports.stringify = function (arr) {
 
 },{"array-uniq":298,"number-is-nan":544}],551:[function(require,module,exports){
 var duplexer = require('duplexer')
+var through = require('through')
 
 module.exports = function () {
+  var streams
 
-  var streams = [].slice.call(arguments)
-    , first = streams[0]
+  if(arguments.length == 1 && Array.isArray(arguments[0])) {
+    streams = arguments[0]
+  } else {
+    streams = [].slice.call(arguments)
+  }
+
+  if(streams.length == 0)
+    return through()
+  else if(streams.length == 1)
+    return streams[0]
+
+  var first = streams[0]
     , last = streams[streams.length - 1]
     , thepipe = duplexer(first, last)
-
-  if(streams.length == 1)
-    return streams[0]
-  else if (!streams.length)
-    throw new Error('connect called with empty args')
 
   //pipe all the streams together
 
@@ -113525,17 +113651,17 @@ module.exports = function () {
     if(streams.length < 2)
       return
     streams[0].pipe(streams[1])
-    recurse(streams.slice(1))  
+    recurse(streams.slice(1))
   }
-  
+
   recurse(streams)
- 
+
   function onerror () {
     var args = [].slice.call(arguments)
     args.unshift('error')
     thepipe.emit.apply(thepipe, args)
   }
-  
+
   //es.duplex already reemits the error from the first and last stream.
   //add a listener for the inner streams in the pipeline.
   for(var i = 1; i < streams.length - 1; i ++)
@@ -113544,8 +113670,7 @@ module.exports = function () {
   return thepipe
 }
 
-
-},{"duplexer":318}],552:[function(require,module,exports){
+},{"duplexer":318,"through":552}],552:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 

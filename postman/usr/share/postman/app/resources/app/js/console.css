@@ -2664,7 +2664,7 @@ th {
       padding: 0 16px 0 16px; }
 
 .infobar__dismiss_container {
-  margin: 0px 16px;
+  margin-right: 16px;
   cursor: pointer; }
   .infobar__dismiss_container .infobar__dismiss_icon {
     padding-top: 2px; }

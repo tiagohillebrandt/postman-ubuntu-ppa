@@ -1,13 +1,13 @@
 webpackJsonp([6],{
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -177,7 +177,7 @@ Emitter.prototype.hasListeners = function(event){
 
 /***/ }),
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -185,14 +185,14 @@ Emitter.prototype.hasListeners = function(event){
  */
 
 var keys = __webpack_require__(1579);
-var hasBinary = __webpack_require__(659);
+var hasBinary = __webpack_require__(660);
 var sliceBuffer = __webpack_require__(1581);
 var after = __webpack_require__(1582);
 var utf8 = __webpack_require__(1583);
 
 var base64encoder;
 if (global && global.ArrayBuffer) {
-  base64encoder = __webpack_require__(138);
+  base64encoder = __webpack_require__(139);
 }
 
 /**
@@ -791,7 +791,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 
-/***/ 138:
+/***/ 139:
 /***/ (function(module, exports) {
 
 /*
@@ -880,7 +880,7 @@ module.exports = __webpack_require__(1540);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(1541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_TelemetryHelpers__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__ = __webpack_require__(1603);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__ = __webpack_require__(1604);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(22);
 
@@ -920,9 +920,9 @@ __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */].init(err => {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootTelemetry__ = __webpack_require__(231);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootShared__ = __webpack_require__(1564);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_booted__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_initialize_db_initialize__ = __webpack_require__(1601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_initialize_db_initialize__ = __webpack_require__(1602);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootConfigurations__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_initializeConfigurationsValues__ = __webpack_require__(1602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_initializeConfigurationsValues__ = __webpack_require__(1603);
 
 
 
@@ -977,7 +977,7 @@ pm.init = done => {
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Migrate;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_circular_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall__ = __webpack_require__(649);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async_waterfall__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async_eachSeries__);
@@ -996,9 +996,9 @@ pm.init = done => {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Helpers__ = __webpack_require__(1560);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__OAuth2AccessTokens__ = __webpack_require__(1561);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__oldDb__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client__ = __webpack_require__(650);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client__ = __webpack_require__(651);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__postman_sync_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_DatabaseService__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_DatabaseService__ = __webpack_require__(653);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__ = __webpack_require__(22);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -1329,7 +1329,7 @@ module.exports = exports["default"];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_user__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(78);
 
@@ -1620,7 +1620,7 @@ function LocalChanges(migrationContext, cb) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Collections;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall__ = __webpack_require__(649);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_waterfall__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async_eachSeries__);
@@ -1634,16 +1634,16 @@ function LocalChanges(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_util__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__oldDb__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder__ = __webpack_require__(531);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder__ = __webpack_require__(532);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__models_folder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__models_request__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response__ = __webpack_require__(535);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response__ = __webpack_require__(536);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__models_response__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__models_collection__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_CollectionModelService__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_event_to_changesets__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_event_to_changesets__ = __webpack_require__(650);
 
 
 
@@ -2386,7 +2386,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _asyncMap;
 
-var _noop = __webpack_require__(137);
+var _noop = __webpack_require__(138);
 
 var _noop2 = _interopRequireDefault(_noop);
 
@@ -2491,7 +2491,7 @@ function SyncedSince(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_header_preset__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(65);
@@ -2642,7 +2642,7 @@ function Headerpreset(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_collection_run__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(55);
@@ -2847,7 +2847,7 @@ function Collectionrun(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_history__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(55);
@@ -3262,7 +3262,7 @@ function Workspace(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment__ = __webpack_require__(531);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_environment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(65);
@@ -3527,7 +3527,7 @@ function WorkspaceSession(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__ = __webpack_require__(528);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(65);
@@ -3668,7 +3668,7 @@ function Helpers(migrationContext, cb) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__ = __webpack_require__(527);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(65);
@@ -3912,7 +3912,7 @@ module.exports = collateChangesets;
 
 const _ = __webpack_require__(0),
   async = __webpack_require__(30),
-  Bucket = __webpack_require__(651),
+  Bucket = __webpack_require__(652),
   REQUIRED_SERVICES = ['dbService'],
 
   ACTIVE_BUCKET_ID_PREFIX = '.active';
@@ -4244,8 +4244,9 @@ module.exports = SyncClient;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__ = __webpack_require__(1597);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_ConnectivityService__ = __webpack_require__(1598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__ = __webpack_require__(1599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_SignedOutUserMessagingService__ = __webpack_require__(1600);
 
 
 
@@ -4254,7 +4255,8 @@ module.exports = SyncClient;
 
 
 
-let alerts = __webpack_require__(1600);
+
+let alerts = __webpack_require__(1601);
 
 /**
                                                            *
@@ -4277,6 +4279,7 @@ function bootShared(cb) {
 
     __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__["a" /* default */].init();
     __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_8__modules_services_SignedOutUserMessagingService__["a" /* default */].init();
 
     // Starts the user fetch and unlocks the session.
     Object(__WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__["a" /* initiateBoot */])();
@@ -5572,18 +5575,18 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_SyncIssueHelper__ = __webpack_require__(732);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_SyncService__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sync_client__ = __webpack_require__(650);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sync_client__ = __webpack_require__(651);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_sync_client__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_sails_io__ = __webpack_require__(1570);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_sails_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__postman_sails_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_DatabaseService__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_DatabaseService__ = __webpack_require__(653);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_async__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SyncOutgoingHandler__ = __webpack_require__(1593);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHelpers__ = __webpack_require__(1594);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_model_event__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_pipelines_app_action__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__ = __webpack_require__(22);
@@ -6000,7 +6003,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   initializeQueues: function () {
     this.ingressQueue = __WEBPACK_IMPORTED_MODULE_6_async___default.a.queue(this._processIngressChangeset.bind(this), 1);
     this.syncClientCommandQueue = __WEBPACK_IMPORTED_MODULE_6_async___default.a.queue(this._processSyncClientCommand.bind(this), 1);
-    this.syncIncomingChangesetQueue = __WEBPACK_IMPORTED_MODULE_6_async___default.a.queue(__WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__["a" /* handleSyncChangeset */], 1);
+    this.syncIncomingChangesetQueue = __WEBPACK_IMPORTED_MODULE_6_async___default.a.queue(this._handleIncomingSyncChangeset.bind(this), 1);
   },
 
   _nukeQueues: function () {
@@ -6107,7 +6110,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     let watchdog = setTimeout(() => {
       !done && _.isFunction(cb) && cb();
       done = true;
-      console.error('Sync changeset queue recovered by watchdog: ' + changeset);
+      console.error('Sync changeset queue recovered by watchdog: ', changeset);
     }, 60 * 1000);
 
     const doneCb = () => {
@@ -8362,8 +8365,8 @@ module.exports = IOClient;
  */
 
 var url = __webpack_require__(1573);
-var parser = __webpack_require__(409);
-var Manager = __webpack_require__(656);
+var parser = __webpack_require__(410);
+var Manager = __webpack_require__(657);
 var debug = __webpack_require__(74)('socket.io-client');
 
 /**
@@ -8448,8 +8451,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(656);
-exports.Socket = __webpack_require__(662);
+exports.Manager = __webpack_require__(657);
+exports.Socket = __webpack_require__(663);
 
 
 /***/ }),
@@ -8462,7 +8465,7 @@ exports.Socket = __webpack_require__(662);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(653);
+var parseuri = __webpack_require__(654);
 var debug = __webpack_require__(74)('socket.io-client:url');
 
 /**
@@ -8546,8 +8549,8 @@ function url (uri, loc) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(654);
-var isBuf = __webpack_require__(655);
+var isArray = __webpack_require__(655);
+var isBuf = __webpack_require__(656);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -8698,7 +8701,7 @@ module.exports = __webpack_require__(1576);
  * @api public
  *
  */
-module.exports.parser = __webpack_require__(127);
+module.exports.parser = __webpack_require__(128);
 
 
 /***/ }),
@@ -8710,12 +8713,12 @@ module.exports.parser = __webpack_require__(127);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(657);
-var Emitter = __webpack_require__(126);
+var transports = __webpack_require__(658);
+var Emitter = __webpack_require__(127);
 var debug = __webpack_require__(74)('engine.io-client:socket');
-var index = __webpack_require__(661);
-var parser = __webpack_require__(127);
-var parseuri = __webpack_require__(653);
+var index = __webpack_require__(662);
+var parser = __webpack_require__(128);
+var parseuri = __webpack_require__(654);
 var parseqs = __webpack_require__(244);
 
 /**
@@ -8849,9 +8852,9 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(411);
-Socket.transports = __webpack_require__(657);
-Socket.parser = __webpack_require__(127);
+Socket.Transport = __webpack_require__(412);
+Socket.transports = __webpack_require__(658);
+Socket.parser = __webpack_require__(128);
 
 /**
  * Creates transport of the given type.
@@ -9485,9 +9488,9 @@ try {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(410);
-var Polling = __webpack_require__(658);
-var Emitter = __webpack_require__(126);
+var XMLHttpRequest = __webpack_require__(411);
+var Polling = __webpack_require__(659);
+var Emitter = __webpack_require__(127);
 var inherit = __webpack_require__(245);
 var debug = __webpack_require__(74)('engine.io-client:polling-xhr');
 
@@ -10381,7 +10384,7 @@ module.exports = (function() {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(658);
+var Polling = __webpack_require__(659);
 var inherit = __webpack_require__(245);
 
 /**
@@ -10619,11 +10622,11 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(411);
-var parser = __webpack_require__(127);
+var Transport = __webpack_require__(412);
+var parser = __webpack_require__(128);
 var parseqs = __webpack_require__(244);
 var inherit = __webpack_require__(245);
-var yeast = __webpack_require__(660);
+var yeast = __webpack_require__(661);
 var debug = __webpack_require__(74)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -12065,12 +12068,12 @@ module.exports = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SyncOutgoingHandler; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__ = __webpack_require__(650);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_EnvironmentController__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_EnvironmentController__ = __webpack_require__(58);
 
 
 
@@ -12488,7 +12491,7 @@ function SyncOutgoingHandler() {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeHydratedChangeset; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_models__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_models__ = __webpack_require__(120);
 
 
 /**
@@ -13028,8 +13031,8 @@ function eventToAnalytics(event, callback) {
 /* unused harmony export initializeUser */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_ConnectivityController__ = __webpack_require__(575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_ConnectivityController__ = __webpack_require__(576);
 
 
 
@@ -13097,7 +13100,7 @@ function initializeUser(connectivity = {}) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(23);
 
 
 let
@@ -13189,6 +13192,161 @@ ConnectivityService = class ConnectivityService {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(3);
+
+
+
+
+
+const DEFAULT_LIMIT = 10,
+POLLING_HEADER_NAME = 'x-polling-interval';
+
+let alreadyInitialised = false;
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  /**
+                 * Fetches the base URL from S3 bucket
+                 */
+  fetchBaseUrl() {
+    return __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(pm.signedOutUserMessagingConfigUrl).
+    then(({ body }) => {
+      if (body.config && body.config.notificationsUrl) {
+        return body.config.notificationsUrl;
+      }
+      return pm.signedOutUserMessagingBaseUrl;
+    }).
+    catch(({ error }) => {
+      return pm.signedOutUserMessagingBaseUrl;
+    });
+  },
+
+  /**
+     * Checks that the function was not already called and initialises variables
+     */
+  init() {
+    if (alreadyInitialised) {
+      return;
+    }
+    let appEventsBus = pm.eventBus.channel('app-events');
+    return appEventsBus.subscribe(async (event = {}) => {
+      if (event.name === 'booted' && event.namespace === 'requester' && !alreadyInitialised) {
+        let isUserOffline = this.isUserOffline();
+
+        this.attachModelListeners();
+
+        if (isUserOffline) {
+          return;
+        }
+        pm.signedOutUserMessagingBaseUrl = await this.fetchBaseUrl();
+        this.nextPolling = null;
+        alreadyInitialised = true;
+
+        // @HACK: This is to ensure that the Infobar component is mounted after the requester loads so that the notification is shown reliably
+        setTimeout(() => this.fetchNotifications(), 5000);
+      }
+    });
+  },
+
+  /**
+     * Attaches model listeners and listens to internet connectivity
+     */
+  attachModelListeners() {
+    pm.mediator.on('appOnline', async () => {
+      if (!alreadyInitialised) {
+        alreadyInitialised = true;
+        pm.signedOutUserMessagingBaseUrl = await this.fetchBaseUrl();
+        this.fetchNotifications();
+      }
+    });
+  },
+
+  /**
+     * Fetches notification from sync URL and sets the next polling interval - clears the polling if the user is signed in
+     */
+  fetchNotifications() {
+    return this.isUserSignedOut().then(isSignedOut => {
+      if (!isSignedOut) {
+
+        // If the user signs it before the timeout is triggered, we unset the existing timer and bail
+        this.nextPolling && clearTimeout(this.nextPolling);
+        return;
+      }
+
+      const notificationURL = `${pm.signedOutUserMessagingBaseUrl}/notification?app_id=${pm.app.get('installationId')}&limit=${DEFAULT_LIMIT}&events=viewed`;
+
+      __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(notificationURL).
+      then(({ body, headers }) => {
+        let nextPoll = headers.has(POLLING_HEADER_NAME) && parseInt(headers.get(POLLING_HEADER_NAME));
+        if (!_.isNaN(nextPoll)) {
+          clearTimeout(this.nextPolling);
+          this.nextPolling = setTimeout(() => this.fetchNotifications(), nextPoll);
+        }
+        return this._dispatchUnreadNotifications(body);
+      }).
+      catch(({ error }) => {
+        alreadyInitialised = false;
+        console.log('Error in fetching notifications for signed out users', error);
+      });
+    });
+  },
+
+  /**
+     * Extracts notifications, filters unread
+     * @param { Object } notifications
+     */
+  _dispatchUnreadNotifications(notifications) {
+
+    _.chain(notifications).
+    filter(notification => {
+      return notification.data && notification.data.events && !_.some(notification.data.events, { key: 'viewed' });
+    }).
+    forEach(notification => {
+      return this._dispatchNotification(notification.data);
+    }).
+    value();
+  },
+
+  /**
+     * Creates the notification event and dispatches user action
+     * @param { Object } notification
+     */
+  _dispatchNotification(notification) {
+
+    // Adding source in meta to distinguish who's triggering the event so that the logic is not dependent on checking if the user is signed in or not.
+    let notificationEvent = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["a" /* createEvent */])('create', 'notification', notification, null, { source: 'SignedOutUser' });
+    return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(notificationEvent);
+  },
+
+  /**
+     * Checks if the user is logged out
+     * @returns { Boolean } isSignedOut
+     */
+  isUserSignedOut() {
+
+    return __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get().then(({ id }) => {
+      return id === '0';
+    });
+  },
+
+  /**
+     * Checks if the user is offline
+     * @returns { Boolean } isUserOffline
+     */
+  isUserOffline() {
+    return !navigator.onLine;
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 1601:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {const eventBusChannel = null;
 /* harmony export (immutable) */ __webpack_exports__["eventBusChannel"] = eventBusChannel;
@@ -13275,7 +13433,7 @@ const warn = function (message, options) {
 
 /***/ }),
 
-/***/ 1601:
+/***/ 1602:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13285,8 +13443,8 @@ const warn = function (message, options) {
 /* unused harmony export pushPendingCommit */
 /* unused harmony export timeoutMigration */
 /* unused harmony export applyMigrations */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__migrations__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_dexie__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__migrations__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_dexie__ = __webpack_require__(520);
 
 
 
@@ -13600,11 +13758,11 @@ function applyMigrations(migrations, context, migrators, options) {
 
 /***/ }),
 
-/***/ 1602:
+/***/ 1603:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_UserConfigurationController__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_UserConfigurationController__ = __webpack_require__(119);
 
 
 /**
@@ -13635,7 +13793,7 @@ function initializeConfigurationsValues(cb) {
 
 /***/ }),
 
-/***/ 1603:
+/***/ 1604:
 /***/ (function(module, exports) {
 
 let GoogleAnalytics = class GoogleAnalytics {
@@ -13813,7 +13971,7 @@ function subscribeToModelEvents(service, namespaces) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(165);
 
 
@@ -13918,7 +14076,7 @@ module.exports = {"inviteByNonAdmin":false,"replaceElements":false}
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
@@ -13989,7 +14147,7 @@ module.exports = require("child_process");
 
 /***/ }),
 
-/***/ 409:
+/***/ 410:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -13998,10 +14156,10 @@ module.exports = require("child_process");
  */
 
 var debug = __webpack_require__(74)('socket.io-parser');
-var Emitter = __webpack_require__(126);
+var Emitter = __webpack_require__(127);
 var binary = __webpack_require__(1574);
-var isArray = __webpack_require__(654);
-var isBuf = __webpack_require__(655);
+var isArray = __webpack_require__(655);
+var isBuf = __webpack_require__(656);
 
 /**
  * Protocol version.
@@ -14413,7 +14571,7 @@ function error(msg) {
 
 /***/ }),
 
-/***/ 410:
+/***/ 411:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -14458,15 +14616,15 @@ module.exports = function (opts) {
 
 /***/ }),
 
-/***/ 411:
+/***/ 412:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var parser = __webpack_require__(127);
-var Emitter = __webpack_require__(126);
+var parser = __webpack_require__(128);
+var Emitter = __webpack_require__(127);
 
 /**
  * Module exports.
@@ -14622,7 +14780,7 @@ Transport.prototype.onClose = function () {
 
 /***/ }),
 
-/***/ 648:
+/***/ 649:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14654,11 +14812,11 @@ exports.default = function (tasks, callback) {
     nextTask([]);
 };
 
-var _isArray = __webpack_require__(413);
+var _isArray = __webpack_require__(414);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _noop = __webpack_require__(137);
+var _noop = __webpack_require__(138);
 
 var _noop2 = _interopRequireDefault(_noop);
 
@@ -14670,7 +14828,7 @@ var _slice = __webpack_require__(198);
 
 var _slice2 = _interopRequireDefault(_slice);
 
-var _onlyOnce = __webpack_require__(436);
+var _onlyOnce = __webpack_require__(437);
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
@@ -14739,82 +14897,6 @@ module.exports = exports['default'];
  *     callback(null, 'done');
  * }
  */
-
-/***/ }),
-
-/***/ 649:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(119);
-
-
-
-/**
-                                                  * Extracts all the events which have convertors. This is used as the reference list for `processEvent`.
-                                                  * All events, not part of this list are ignored.
-                                                  *
-                                                  * @param {Object} models
-                                                  * @returns {Array<String>}
-                                                  */
-function extractEventsWithListeners(models) {
-  // 1. for each sync model
-  return _.reduce(models, function (activeListeners, syncModel) {
-    let convertors = _.get(syncModel, ['toChangesets']);
-
-    // 1.a. if the model has convertors defined
-    // 1.b. accumulate the convertors
-    convertors && (activeListeners = activeListeners.concat(_.keys(convertors)));
-
-    return activeListeners;
-  }, []);
-}
-
-// extract a list of all event listeners from all sync models
-let interestedEvents = extractEventsWithListeners(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */]);
-
-/**
-                                                                *
-                                                                */
-function eventToChangesets(event, callback) {
-  if (!event) {
-    return callback(null, []);
-  }
-
-  let changesets = [];
-
-  Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["i" /* processEvent */])(event, interestedEvents, function (childEvent, cb) {
-    let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["g" /* getEventNamespace */])(childEvent),
-    eventName = Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["f" /* getEventName */])(childEvent),
-    handler;
-
-    // unsupported model
-    if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace]) {
-      return cb();
-    }
-
-    // 1. find handler in sync-models
-    // 2. if not found, find handler in default sync-model
-    handler = _.get(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace], ['toChangesets', eventName]) ||
-    _.get(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */].default, ['toChangesets', eventName]);
-
-    // this should never happen
-    if (!handler) {
-      return cb();
-    }
-
-    // convert events to changesets and accumulate
-    changesets = changesets.concat(handler(childEvent, event));
-
-    return cb();
-  }, function () {
-    callback && callback(null, changesets);
-  });
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (eventToChangesets);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
@@ -15362,17 +15444,93 @@ let oldDb = {
 /***/ }),
 
 /***/ 650:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(120);
+
+
+
+/**
+                                                  * Extracts all the events which have convertors. This is used as the reference list for `processEvent`.
+                                                  * All events, not part of this list are ignored.
+                                                  *
+                                                  * @param {Object} models
+                                                  * @returns {Array<String>}
+                                                  */
+function extractEventsWithListeners(models) {
+  // 1. for each sync model
+  return _.reduce(models, function (activeListeners, syncModel) {
+    let convertors = _.get(syncModel, ['toChangesets']);
+
+    // 1.a. if the model has convertors defined
+    // 1.b. accumulate the convertors
+    convertors && (activeListeners = activeListeners.concat(_.keys(convertors)));
+
+    return activeListeners;
+  }, []);
+}
+
+// extract a list of all event listeners from all sync models
+let interestedEvents = extractEventsWithListeners(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */]);
+
+/**
+                                                                *
+                                                                */
+function eventToChangesets(event, callback) {
+  if (!event) {
+    return callback(null, []);
+  }
+
+  let changesets = [];
+
+  Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["i" /* processEvent */])(event, interestedEvents, function (childEvent, cb) {
+    let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["g" /* getEventNamespace */])(childEvent),
+    eventName = Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["f" /* getEventName */])(childEvent),
+    handler;
+
+    // unsupported model
+    if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace]) {
+      return cb();
+    }
+
+    // 1. find handler in sync-models
+    // 2. if not found, find handler in default sync-model
+    handler = _.get(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace], ['toChangesets', eventName]) ||
+    _.get(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */].default, ['toChangesets', eventName]);
+
+    // this should never happen
+    if (!handler) {
+      return cb();
+    }
+
+    // convert events to changesets and accumulate
+    changesets = changesets.concat(handler(childEvent, event));
+
+    return cb();
+  }, function () {
+    callback && callback(null, changesets);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (eventToChangesets);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 651:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  Bucket: __webpack_require__(651),
+  Bucket: __webpack_require__(652),
   SyncClient: __webpack_require__(1563)
 };
 
 
 /***/ }),
 
-/***/ 651:
+/***/ 652:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable
@@ -15384,7 +15542,7 @@ module.exports = {
 
 const _ = __webpack_require__(0),
   async = __webpack_require__(30),
-  uuid = __webpack_require__(344),
+  uuid = __webpack_require__(345),
   collate = __webpack_require__(1562),
   CONCURRENCY_BATCH_SIZE = 100,
   SEP = '__',
@@ -16603,7 +16761,7 @@ module.exports = Bucket;
 
 /***/ }),
 
-/***/ 652:
+/***/ 653:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16611,10 +16769,10 @@ module.exports = Bucket;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_HeaderPresetController__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_HistoryController__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_EnvironmentController__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_EnvironmentController__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_GlobalsController__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_WorkspaceController__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CollectionRunController__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CollectionRunController__ = __webpack_require__(342);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -17076,7 +17234,7 @@ function getService() {
 
 /***/ }),
 
-/***/ 653:
+/***/ 654:
 /***/ (function(module, exports) {
 
 /**
@@ -17122,7 +17280,7 @@ module.exports = function parseuri(str) {
 
 /***/ }),
 
-/***/ 654:
+/***/ 655:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -17134,7 +17292,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 655:
+/***/ 656:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -17166,7 +17324,7 @@ function isBuf(obj) {
 
 /***/ }),
 
-/***/ 656:
+/***/ 657:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -17175,13 +17333,13 @@ function isBuf(obj) {
  */
 
 var eio = __webpack_require__(1575);
-var Socket = __webpack_require__(662);
-var Emitter = __webpack_require__(126);
-var parser = __webpack_require__(409);
-var on = __webpack_require__(663);
-var bind = __webpack_require__(664);
+var Socket = __webpack_require__(663);
+var Emitter = __webpack_require__(127);
+var parser = __webpack_require__(410);
+var on = __webpack_require__(664);
+var bind = __webpack_require__(665);
 var debug = __webpack_require__(74)('socket.io-client:manager');
-var indexOf = __webpack_require__(661);
+var indexOf = __webpack_require__(662);
 var Backoff = __webpack_require__(1589);
 
 /**
@@ -17746,14 +17904,14 @@ Manager.prototype.onreconnect = function () {
 
 /***/ }),
 
-/***/ 657:
+/***/ 658:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(410);
+var XMLHttpRequest = __webpack_require__(411);
 var XHR = __webpack_require__(1578);
 var JSONP = __webpack_require__(1585);
 var websocket = __webpack_require__(1586);
@@ -17807,18 +17965,18 @@ function polling (opts) {
 
 /***/ }),
 
-/***/ 658:
+/***/ 659:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(411);
+var Transport = __webpack_require__(412);
 var parseqs = __webpack_require__(244);
-var parser = __webpack_require__(127);
+var parser = __webpack_require__(128);
 var inherit = __webpack_require__(245);
-var yeast = __webpack_require__(660);
+var yeast = __webpack_require__(661);
 var debug = __webpack_require__(74)('engine.io-client:polling');
 
 /**
@@ -17832,7 +17990,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(410);
+  var XMLHttpRequest = __webpack_require__(411);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -18059,7 +18217,7 @@ Polling.prototype.uri = function () {
 
 /***/ }),
 
-/***/ 659:
+/***/ 660:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* global Blob File */
@@ -18131,7 +18289,7 @@ function hasBinary (obj) {
 
 /***/ }),
 
-/***/ 660:
+/***/ 661:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18207,7 +18365,7 @@ module.exports = yeast;
 
 /***/ }),
 
-/***/ 661:
+/***/ 662:
 /***/ (function(module, exports) {
 
 
@@ -18223,7 +18381,7 @@ module.exports = function(arr, obj){
 
 /***/ }),
 
-/***/ 662:
+/***/ 663:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -18231,14 +18389,14 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(409);
-var Emitter = __webpack_require__(126);
+var parser = __webpack_require__(410);
+var Emitter = __webpack_require__(127);
 var toArray = __webpack_require__(1588);
-var on = __webpack_require__(663);
-var bind = __webpack_require__(664);
+var on = __webpack_require__(664);
+var bind = __webpack_require__(665);
 var debug = __webpack_require__(74)('socket.io-client:socket');
 var parseqs = __webpack_require__(244);
-var hasBin = __webpack_require__(659);
+var hasBin = __webpack_require__(660);
 
 /**
  * Module exports.
@@ -18668,7 +18826,7 @@ Socket.prototype.binary = function (binary) {
 
 /***/ }),
 
-/***/ 663:
+/***/ 664:
 /***/ (function(module, exports) {
 
 
@@ -18699,7 +18857,7 @@ function on (obj, ev, fn) {
 
 /***/ }),
 
-/***/ 664:
+/***/ 665:
 /***/ (function(module, exports) {
 
 /**
@@ -18726,78 +18884,6 @@ module.exports = function(obj, fn){
   }
 };
 
-
-/***/ }),
-
-/***/ 668:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pipelines_app_action__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_PostLoginService__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AnalyticsService__ = __webpack_require__(22);
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  channel: 'auth-handler-events',
-  login({ isSignup } = {}) {
-    __WEBPACK_IMPORTED_MODULE_4__AnalyticsService__["a" /* default */].addEvent('account', 'initiate_signin', null, null, null, { noActiveWorkspace: true });
-    pm.eventBus.channel(this.channel).publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('login', 'authentication', { isSignup }));
-  },
-  reAuthenticate() {
-    __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__["a" /* default */].get().then(currentUser => {
-      pm.eventBus.channel(this.channel).publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('reauthenticate', 'authentication', { userID: currentUser.id }));
-    });
-  },
-  handlePostAuthentication(userData) {
-    userData.appUserType = 'currentUser';
-
-    __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__["a" /* default */].update(userData).then(() => {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('bootstrapUser', 'user'));
-    }).then(() => {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('migratePreloginData', 'user'));
-    });
-  },
-  init() {
-    let authHandlerChannel = pm.eventBus.channel(this.channel);
-
-    __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__["a" /* default */].get().then(currentUser => {
-      if (currentUser.id == 0) {
-        // Request for userInfo
-        authHandlerChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('get_auth_info', 'authentication'));
-      }
-
-      authHandlerChannel.subscribe(event => {
-        if (event.name === 'authenticated') {
-          __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__["a" /* default */].get().then(currentUser => {
-            let invalidateSessionSignin = currentUser.id !== '0';
-
-            __WEBPACK_IMPORTED_MODULE_4__AnalyticsService__["a" /* default */].addEvent('account', invalidateSessionSignin ? 'invalidate_session_sign_in' : 'sign_in', 'account', null, null, { noActiveWorkspace: true });
-
-            if (event.data.hasAccounts && !invalidateSessionSignin) {// This is not the first user AND the user is not locked
-              __WEBPACK_IMPORTED_MODULE_4__AnalyticsService__["a" /* default */].addEvent('account', 'successful_add_account');
-            }
-
-            return event.data.userData || {};
-          }).then(userData => {
-            this.handlePostAuthentication(userData);
-          });
-
-        }
-
-        if (event.name === 'skip') {
-          __WEBPACK_IMPORTED_MODULE_4__AnalyticsService__["a" /* default */].addEvent('account', 'skip', null, null, null, { noActiveWorkspace: true });
-        }
-      });
-
-    });
-  } });
 
 /***/ }),
 
