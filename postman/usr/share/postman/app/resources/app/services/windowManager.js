@@ -40,6 +40,10 @@ exports.windowManager = {
     this.debouncedStateChangeHandler = _.debounce(this.stateChangeHandler.bind(this), 100);
   },
 
+  getWebviewPath () {
+    return `${this.webViewPath}?sessionId=${app.sessionId}&logPath=${app.logPath}`;
+  },
+
   hideAllWindows () {
     this.isWindowVisibleByDefault = false;
 
@@ -63,7 +67,7 @@ exports.windowManager = {
         sharedWindow = _.find(windows, ['type', 'shared']);
 
     if (!sharedWindow) {
-      console.warn('Shared window not present!');
+      pm.logger.error('WindowManager~getSharedWindow: Shared window is not available');
     }
 
     return sharedWindow;
@@ -137,8 +141,8 @@ exports.windowManager = {
     // Just include more extensions above and append them to the array to attach other available extensions
     [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS].forEach((extension) => {
       installExtension(extension)
-        .then((name) => console.log(`Added DevTools Extension: ${name}`))
-        .catch((err) => console.log('An error occurred while adding DevTools extension: ', err));
+        .then((name) => pm.logger.info(`WindowManager~attachDevToolsExtension: Added DevTools Extension: ${name}`))
+        .catch((err) => pm.logger.warn('WindowManager~attachDevToolsExtension: An error occurred while adding DevTools extension: ', err));
     });
 
     try {
@@ -147,7 +151,7 @@ exports.windowManager = {
       }
     }
     catch (e) {
-      console.error('Devtron DevTools Error: ', e.message);
+      pm.logger.warn('WindowManager~attachDevToolsExtension: Adding devtron failed', e.message);
     }
   },
 
@@ -174,7 +178,7 @@ exports.windowManager = {
     }
     else {
       Storage.get(windowName, (error, lastWindowState) => {
-        if (error) { console.error('Failed to load window state: ' + windowName); }
+        if (error) { pm.logger.error('WindowManager~loadWindowState - Failed to load window state: ' + windowName); }
         return callback(error || _.isEmpty(lastWindowState) ? this.getDefaultWindowState(windowName) : lastWindowState);
       });
     }
@@ -182,7 +186,7 @@ exports.windowManager = {
 
   saveWindowState (windowName, callback) {
     Storage.set(windowName, this.windowState[windowName], (error) => {
-      if (error) { console.error('Failed to store window state: ' + windowName); }
+      if (error) { pm.logger.error('WindowManager~loadWindowState - Failed to store window state: ' + windowName); }
       return callback && callback();
     });
   },
@@ -226,6 +230,7 @@ exports.windowManager = {
 
   newSharedWindow () {
     let startTime = Date.now(),
+      { sessionId, logPath } = app,
       window = new BrowserWindow(Object.assign(
         this.getWindowPref('Shared'), {
           width: 0,
@@ -234,13 +239,15 @@ exports.windowManager = {
         }
       ));
 
-    window.loadURL(this.webViewPath);
+    window.loadURL(this.getWebviewPath());
     window.webContents.on('dom-ready', () => {
       window.webContents.send('shared-loaded');
       window.webContents.send('shell-loaded', {
         id: window.id,
         type: 'shared',
-        startTime
+        startTime,
+        sessionId,
+        logPath
       });
     });
 
@@ -254,7 +261,7 @@ exports.windowManager = {
       }
 
       if (window.isVisible()) {
-        console.log('shared.close blocked');
+        pm.logger.warn('WindowManager~newSharedWindow - shared.close blocked');
         e.preventDefault();
         window.hide();
       }
@@ -264,7 +271,7 @@ exports.windowManager = {
       if (app.quittingApp) {
         return;
       }
-      console.log('shared window shown. hiding.');
+      pm.logger.warn('WindowManager~newSharedWindow: shared window shown. hiding.');
       window.hide();
     });
 
@@ -335,6 +342,7 @@ exports.windowManager = {
 
   newRequesterWindow (window = {}, params = {}) {
     let startTime = Date.now(),
+      { sessionId, logPath } = app,
       windowName = 'requester',
       sanitizedBounds = this.sanitizeBounds({
         x: _.get(window, 'position.x'),
@@ -342,7 +350,7 @@ exports.windowManager = {
       });
 
     if (!global.isSharedBooted) {
-      console.log('WARN: Bailing requester window creation as shared is not booted!');
+      pm.logger.warn('WindowManager~newRequesterWindow - Bailing requester window creation as shared is not booted!');
       return;
     }
 
@@ -380,7 +388,9 @@ exports.windowManager = {
         type: 'requester',
         primaryId: this.primaryId,
         allIds: this.openWindowIds,
-        startTime
+        startTime,
+        sessionId,
+        logPath
       });
       if (this.initUrl) {
         this.listenForRequesterWindow = true;
@@ -433,10 +443,10 @@ exports.windowManager = {
         }
       })
       .then(() => {
-        mainWindow.loadURL(this.webViewPath);
+        mainWindow.loadURL(this.getWebviewPath());
       })
       .catch((e) => {
-        console.log(e);
+        pm.logger.error('WindowManager~newRequesterWindow - Error in loading window from db', e);
       });
 
     this.addListeners(mainWindow);
@@ -468,7 +478,6 @@ exports.windowManager = {
         icon: path.resolve(app.getAppPath(), 'assets/icon.png')
       })),
       windowId = window.id;
-
     this.openWindowIds.push(windowId);
     this.loaderWindowId = windowId;
     window.loadURL(this.loaderWindowPath);
@@ -490,6 +499,7 @@ exports.windowManager = {
 
   newRunnerWindow (window = {}, params = {}) {
     let startTime = Date.now(),
+      { sessionId, logPath } = app,
       windowName = 'runner',
       sanitizedBounds = this.sanitizeBounds({
         x: _.get(window, 'position.x'),
@@ -497,7 +507,7 @@ exports.windowManager = {
       });
 
     if (!global.isSharedBooted) {
-      console.log('WARN: Bailing requester window creation as shared is not booted!');
+      pm.logger.warn('WindowManager~newRunnerWindow - Bailing requester window creation as shared is not booted!');
       return;
     }
 
@@ -524,7 +534,9 @@ exports.windowManager = {
       mainWindow.webContents.send('shell-loaded', {
         id: mainWindow.id,
         type: 'runner',
-        startTime
+        startTime,
+        sessionId,
+        logPath
       });
     });
 
@@ -581,7 +593,7 @@ exports.windowManager = {
         mainWindow.loadURL(this.webViewPath);
       })
       .catch((e) => {
-        console.log(e);
+        pm.logger.error('WindowManager~newRunnerWindow - Error in loading window from db', e);
       });
 
     this.openWindowIds.push(mainWindow.id);
@@ -590,6 +602,7 @@ exports.windowManager = {
 
   newConsoleWindow (window = {}, params = {}) {
     let startTime = Date.now(),
+      { sessionId, logPath } = app,
       windowName = 'console',
       sanitizedBounds = this.sanitizeBounds({
         x: _.get(window, 'position.x'),
@@ -597,7 +610,7 @@ exports.windowManager = {
       });
 
     if (!global.isSharedBooted) {
-      console.log('WARN: Bailing requester window creation as shared is not booted!');
+      pm.logger.warn('WindowManager~newConsoleWindow - Bailing requester window creation as shared is not booted!');
       return;
     }
 
@@ -628,7 +641,9 @@ exports.windowManager = {
         mainWindow.webContents.send('shell-loaded', {
           id: mainWindow.id,
           type: 'console',
-          startTime
+          startTime,
+          sessionId,
+          logPath
         });
       });
 
@@ -675,10 +690,10 @@ exports.windowManager = {
         }
       })
       .then(() => {
-        mainWindow.loadURL(this.webViewPath);
+        mainWindow.loadURL(this.getWebviewPath());
       })
       .catch((e) => {
-        console.log(e);
+        pm.logger.error('WindowManager~newConsoleWindow - Error in loading console window from db', e);
       });
 
       this.addListeners(mainWindow);
@@ -775,7 +790,7 @@ exports.windowManager = {
     let window = e.sender,
         windowId = window.id;
 
-    console.log('Closed Window (id: ' + windowId + ')');
+    pm.logger.info(`WindowManager~closeHandler - Closed Window (id: ${windowId} )`);
 
     this.removeListeners(window);
     this.removeWindowId(windowId);

@@ -17758,6 +17758,23 @@ module.exports = {
         awsSigV4: function (newParams) {
             return newParams;
         }
+    },
+
+    /**
+     * Validate protocolProfileBehavior property's value.
+     *
+     * @param {Object} source - A generic object that could contain the protocolProfileBehavior property.
+     * @param {?Object} destination - The destination object that needs the addition of protocolProfileBehavior.
+     * @returns {Boolean} - A Boolean value to decide whether to include the property or not.
+     */
+    addProtocolProfileBehavior: function (source, destination) {
+        var behavior = source && source.protocolProfileBehavior;
+
+        if (!(behavior && typeof behavior === 'object')) { return false; }
+
+        destination && (destination.protocolProfileBehavior = behavior);
+
+        return true;
     }
 };
 
@@ -34120,13 +34137,14 @@ _.assign(Builders.prototype, {
         }
         else if (mode === 'file') {
             data.mode = mode;
+            // @todo: Consider setting non-string src values to null, as has been done for formdata below.
             data[mode] = { src: _.get(requestV1, 'rawModeData') };
         }
         else if (!_.isEmpty(requestV1.data)) {
             data.mode = mode;
             data[mode] = _.map(requestV1.data, function (param) {
-                if (param.type === 'file' && param.value) {
-                    param.src = param.value;
+                if (param.type === 'file' && _.has(param, 'value')) {
+                    param.src = _.isString(param.value) ? param.value : null;
                     delete param.value;
                 }
                 if (param.enabled === false) {
@@ -34141,6 +34159,9 @@ _.assign(Builders.prototype, {
                 return param;
             });
         }
+
+        if (requestV1.dataDisabled) { data.disabled = true; }
+        else if (retainEmpty) { data.disabled = false; }
 
         return data;
     },
@@ -34416,6 +34437,8 @@ _.assign(Builders.prototype, {
                 event: self.event(requestV1)
             };
 
+        // add protocolProfileBehavior property from requestV1 to the item
+        util.addProtocolProfileBehavior(requestV1, item);
         self.options.retainIds && (item._postman_id = requestV1.id || util.uid());
 
         units.forEach(function (unit) {
@@ -34883,8 +34906,8 @@ _.assign(Builders.prototype, {
 
         return _.map(item.request.body[mode], function (elem) {
             // Only update the value in v1 if src in v2 is non-empty
-            if (elem && elem.type === 'file' && _.has(elem, 'src') && !_.isEmpty(elem.src)) {
-                elem.value = elem.src;
+            if (elem && elem.type === 'file' && _.has(elem, 'src')) {
+                elem.value = _.isString(elem.src) ? elem.src : null;
                 delete elem.src;
             }
 
@@ -35147,6 +35170,14 @@ _.assign(Builders.prototype, {
             currentHelper: currentHelper,
             helperAttributes: helperAttributes
         };
+
+        // add protocolProfileBehavior property from item to the request
+        util.addProtocolProfileBehavior(item, request);
+
+        // only include the dataDisabled flag if truthy
+        if (req && req.body && _.has(req.body, 'disabled') && (req.body.disabled || retainEmpty)) {
+            request.dataDisabled = Boolean(req.body.disabled);
+        }
 
         description = item.request && self.description(item.request.description);
 
@@ -37436,11 +37467,11 @@ util = class util {
     let syncStatus = pm.syncManager.get('currentSyncStatus');
     if (syncStatus === 'makeNotConnected') {
       isInvalidSync = true;
-      pm.alerts.error('This action requests you to be online. Please check your internet connection.');
+      pm.toasts.error('This action requests you to be online. Please check your internet connection.');
     } else
     if (syncStatus === 'disabledSync') {
       isInvalidSync = true;
-      pm.alerts.error('This action requests syncing to be enabled. Turn on syncing to keep your Postman data updated.');
+      pm.toasts.error('This action requests syncing to be enabled. Turn on syncing to keep your Postman data updated.');
     }
 
     return isInvalidSync;
@@ -39853,7 +39884,8 @@ module.exports = function required(port, protocol) {
 "use strict";
 
 
-var has = Object.prototype.hasOwnProperty;
+var has = Object.prototype.hasOwnProperty
+  , undef;
 
 /**
  * Decode a URI encoded string.
@@ -39905,16 +39937,28 @@ function querystring(query) {
 function querystringify(obj, prefix) {
   prefix = prefix || '';
 
-  var pairs = [];
+  var pairs = []
+    , value
+    , key;
 
   //
   // Optionally prefix with a '?' if needed
   //
   if ('string' !== typeof prefix) prefix = '?';
 
-  for (var key in obj) {
+  for (key in obj) {
     if (has.call(obj, key)) {
-      pairs.push(encodeURIComponent(key) +'='+ encodeURIComponent(obj[key]));
+      value = obj[key];
+
+      //
+      // Edge cases where we actually want to encode the value to an empty
+      // string instead of the stringified value.
+      //
+      if (!value && (value === null || value === undef || isNaN(value))) {
+        value = '';
+      }
+
+      pairs.push(encodeURIComponent(key) +'='+ encodeURIComponent(value));
     }
   }
 
@@ -53534,12 +53578,20 @@ _.assign(Builders.prototype, {
     data: function (requestV1) {
         if (!requestV1) { return; }
 
-        var mode = requestV1.dataMode;
+        var mode = requestV1.dataMode,
+            noDefaults = this.options.noDefaults,
+            retainEmptyValues = this.options.retainEmptyValues;
 
-        if ((!mode || mode === 'binary') && !this.options.noDefaults) { return []; }
+        if ((!mode || mode === 'binary') && !noDefaults) { return []; }
         if (!requestV1.data) { return; }
 
-        _.isArray(requestV1.data) && normalizeEntities(requestV1.data, this.options);
+        _.isArray(requestV1.data) && _.forEach(requestV1.data, function (datum) {
+            if (datum.type === 'file' && (_.has(datum, 'value') || !noDefaults)) {
+                datum.value = _.isString(datum.value) ? datum.value : null;
+            }
+
+            util.cleanEmptyValue(datum, 'description', retainEmptyValues);
+        });
 
         return requestV1.data;
     },
@@ -53629,6 +53681,13 @@ _.assign(Builders.prototype, {
 
             result && (requestV1[unit] = result);
         });
+
+        if (requestV1.dataDisabled) { requestV1.dataDisabled = true; }
+        else if (retainEmpty) { requestV1.dataDisabled = false; }
+        else { delete requestV1.dataDisabled; }
+
+        // remove invalid protocolProfileBehavior property from requestV1
+        !util.addProtocolProfileBehavior(requestV1) && delete requestV1.protocolProfileBehavior;
 
         collectionId && !noDefaults && (requestV1.collectionId = collectionId);
 

@@ -1,7 +1,7 @@
 
 module.exports = function () {
   let broadcastChannel = pm.eventBus.channel('waterline-shared-nedb-datastore'),
-      isSharedProcess = window.appletType === 'shared';
+      isSharedProcess = pm.windowConfig.process === 'shared';
 
   return {
     adapter: 'waterline-shared-nedb',

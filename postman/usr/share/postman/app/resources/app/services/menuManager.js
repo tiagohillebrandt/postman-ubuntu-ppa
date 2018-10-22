@@ -161,6 +161,11 @@ var electron = require('electron'),
               {
                 label: 'Show DevTools (Shared Shell)',
                 click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSharedShellDevTools', null, options); }
+              },
+              { type: 'separator' },
+              {
+                label: 'View Logs in Finder',
+                click: function () { menuManager.handleMenuAction('openLogsFolder'); }
               }
             ]
           }
@@ -350,6 +355,11 @@ var electron = require('electron'),
               {
                 label: 'Show DevTools (Shared Shell)',
                 click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('toggleSharedShellDevTools', null, options); }
+              },
+              { type: 'separator' },
+              {
+                label: process.platform === 'win32' ? 'View Logs in Explorer' : 'View Logs in File Manager',
+                click: function () { menuManager.handleMenuAction('openLogsFolder'); }
               }
             ]
           }
@@ -474,6 +484,9 @@ menuManager = {
     else if (action === 'checkElectronUpdates') {
       let updaterEventBus = global.pm.eventBus.channel(APP_UPDATE_EVENTS);
       updaterEventBus.publish({ name: CHECK_FOR_ELECTRON_UPDATE, namespace: APP_UPDATE });
+    }
+    else if (action === 'openLogsFolder') {
+      electron.shell.openItem(electron.app.logPath);
     }
     else {
       var win = BrowserWindow.getFocusedWindow();

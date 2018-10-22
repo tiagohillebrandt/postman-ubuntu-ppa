@@ -50,7 +50,7 @@ class OAuth2WindowManager {
         urlMatched = !(expectedUrl.protocol && expectedUrl.host), // if no valid url was given, we don't try to match the redirect urls
         didCompleteAuth = false,
         handleUrlChange = function (urlRedirect) {
-          console.log('Received redirect on auth login window', urlRedirect);
+          pm.logger.info('OAuth2WindowManager~startLoginWith - Received redirect on auth login window');
           let actualUrl = new sdk.Url(urlRedirect),
             paramFound = false,
 
@@ -74,7 +74,7 @@ class OAuth2WindowManager {
           }
 
           if (!urlMatched) {
-            console.log('URL did not match the registered callbackURL, so skipping');
+            pm.logger.info('OAuth2WindowManager~startLoginWith - URL did not match the registered callbackURL, so skipping');
             return;
           }
 
@@ -97,7 +97,7 @@ class OAuth2WindowManager {
           });
 
           if (paramFound) {
-            console.log('Matched code/access_token. Closing auth login window now.');
+            pm.logger.info('OAuth2WindowManager~startLoginWith - Matched code/access_token. Closing auth login window now.');
             endAuthFlow();
             callback && callback(null, params.toObject());
             return;
@@ -140,7 +140,7 @@ class OAuth2WindowManager {
       handleUrlChange(newUrl);
     });
 
-    console.log('Opening auth login window', url.toString());
+    pm.logger.info('OAuth2WindowManager~startLoginWith - Opening auth login window', url.toString());
 
     // open authorization url in a window
     authWindow.loadURL(url.toString());

@@ -11,6 +11,15 @@ const electron = require('electron'),
 let AppUpdaterAdapter = {
 
     /**
+     * @method getLogger
+     * @description It gives the logger instance from the app
+     * @return {Logger}
+     */
+    getLogger () {
+      return global.pm.logger || console;
+    },
+
+    /**
      * @method getCurrentVersion
      * @description This provides the current version of the app
      * @return {String}

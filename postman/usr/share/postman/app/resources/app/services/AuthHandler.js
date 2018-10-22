@@ -10,12 +10,16 @@ module.exports = (() => {
   let htmlPath = path.resolve(__dirname, '..', 'html/auth');
 
   let config = {
-    authHTML: process.env.PM_BUILD_ENV !== 'development' ?
-              url.format({ protocol: 'file', pathname: path.resolve(htmlPath, 'auth.html') }) :
-              'http://localhost:8777/build/html/auth/auth.html',
+    getAuthHTML: () => {
+      let authUrl = process.env.PM_BUILD_ENV !== 'development' ?
+                  url.format({ protocol: 'file', pathname: path.resolve(htmlPath, 'auth.html') }) :
+                  'http://localhost:8777/build/html/auth/auth.html';
+
+      return `${authUrl}?sessionId=${app.sessionId}&logPath=${app.logPath}`;
+    },
     errorHTML: process.env.PM_BUILD_ENV !== 'development' ?
-              url.format({ protocol: 'file', pathname: path.resolve(htmlPath, 'error.html') }) :
-              'http://localhost:8777/build/html/auth/error.html'
+                  url.format({ protocol: 'file', pathname: path.resolve(htmlPath, 'error.html') }) :
+                  'http://localhost:8777/build/html/auth/error.html'
   };
 
   let locals = {
@@ -124,7 +128,7 @@ module.exports = (() => {
         icon: path.resolve(app.getAppPath(), 'assets/icon.png')
       });
 
-      locals.window.loadURL(config.authHTML);
+      locals.window.loadURL(config.getAuthHTML());
 
       locals.window.webContents.on('did-finish-load', () => {
         let queryParams = _.merge(locals.adapter.getAppInfo(), locals.adapter.getSystemInfo());

@@ -42,7 +42,7 @@ module.exports = (url, cb) => {
 
       if (!match) {
         // System proxy defined has invalid syntax
-        console.log('System proxy defined has invalid syntax');
+        pm.logger.warn('getSystemProxy - System proxy defined has invalid syntax');
         return cb(null, undefined);
       }
 

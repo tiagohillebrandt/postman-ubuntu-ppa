@@ -10,4 +10,6 @@ module.exports = function () {
 
   global.pm = global.pm || {};
   global.pm.eventBus = initializeEventBus();
+
+  global.pm.logger.info('EventBus~initialize - Success');
 };

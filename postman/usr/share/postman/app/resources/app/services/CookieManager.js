@@ -117,7 +117,7 @@ class CookieManager {
           return async.each(_.filter(existingCookiesForDomain, (cookie) => { return _.includes(removedCookies, cookie.name); }), (cookie, cb) => {
             this.deleteCookie(domain, cookie.name, cookie.domain + cookie.path, (err) => {
               if (err) {
-                console.error('Error deleting cookies in Electron store:', err);
+                pm.logger.error('CookieManager~pushCookies - Error deleting cookies in Electron store', err);
               }
               cb();
             });
@@ -135,7 +135,7 @@ class CookieManager {
 
           this.cookieStore.set(cookie, (err) => {
             if (err) {
-              console.error('Error storing cookies in Electron store:', cookie, err);
+              pm.logger.error('CookieManager~pushCookies - Error storing cookies in Electron store', err);
             }
             cb(); // swallow the error, because there's nothing we can do about it anyway.
           });

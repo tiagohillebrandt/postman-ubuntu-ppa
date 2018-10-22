@@ -11,7 +11,7 @@ const os = require('os'),
  * @param {String} url
  */
 function handleOpenUrl (url) {
-  console.log(`ProtocolHandler~handleOpenUrl: ${url}`);
+  pm.logger.info(`ProtocolHandler~handleOpenUrl: ${url}`);
   windowManager.initUrl = url;
   windowManager.openUrl(url);
 }
@@ -43,7 +43,7 @@ function handleOpenUrlForDarwin (event, url) {
   // https://electronjs.org/docs/api/app#event-open-url-macos
   // PreventDefault is needed if we are handling the event.
   event.preventDefault();
-  console.log(`ProtocolHandler~handleOpenUrlForDarwin: ${url}`);
+  pm.logger.info(`ProtocolHandler~handleOpenUrlForDarwin - Opened with url: ${url}`);
   handleOpenUrl(url);
 }
 
@@ -62,7 +62,7 @@ function init (app) {
   // For handling Darwin
   app.on('open-url', handleOpenUrlForDarwin);
 
-  console.log(`ProtocolHandler~init: Setting custom protocol handling [status: ${isCustomProtocolAssigned}]`);
+  pm.logger.info(`ProtocolHandler~init - Success with status: ${isCustomProtocolAssigned}]`);
 }
 
 module.exports = { init, processArg };

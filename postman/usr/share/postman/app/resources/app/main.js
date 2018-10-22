@@ -7,6 +7,7 @@ var electron = require('electron'),
     circularJSON = require('circular-json'),
     _ = require('lodash').noConflict(),
     async = require('async'),
+    path = require('path'),
     electronProxy = require('./services/electronProxy').electronProxy,
     menuManager = require('./services/menuManager').menuManager,
     windowManager = require('./services/windowManager').windowManager,
@@ -22,7 +23,10 @@ var electron = require('electron'),
     sharedWindow = null,
     bootstrapModels = require('./bootstrap-models'),
     initializeUpdaterHandler = require('./services/UpdaterHandler').init,
-    ProtocolHandler = require('./services/ProtocolHandler');
+    RuntimeExecutionService = require('./services/RuntimeExecutionService'),
+    ProtocolHandler = require('./services/ProtocolHandler'),
+    initializeLogger = require('./services/logger').init,
+    { getValue } = require('./utils/processArg');
 
 const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
       MOVE_DIALOG_ACTION_BUTTON = 'Move to Applications Folder',
@@ -30,7 +34,20 @@ const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
       MOVE_DIALOG_CHECKBOX_MESSAGE = 'Do not remind me again',
       MOVE_DIALOG_DETAILS = 'I can move myself to the Applications folder if you\'d like. This will ensure that future updates will be installed correctly.';
 
+
+try {
+  // set the path for the directory storing app's configuration files
+  getValue('user-data-path') && app.setPath('userData', getValue('user-data-path'));
+}
+catch (e) {
+  console.error(e);
+}
+
+app.sessionId = process.pid; // set the current process id as sessionId
+
+global.pm = global.pm || {};
 async.series([
+
   /**
    * It disables hardware acceleration if an environment variable `POSTMAN_DISABLE_GPU` is set
    */
@@ -38,21 +55,23 @@ async.series([
     // https://postman.zendesk.com/agent/tickets/19959
     // This has to be called before app is ready https://github.com/electron/electron/blob/master/docs/api/app.md#appdisablehardwareacceleration
     if (process.env.POSTMAN_DISABLE_GPU === 'true') {
-      console.log('Disabling hardware acceleration');
       app.disableHardwareAcceleration();
     }
     cb(null);
   },
 
   /**
+   * initializeLogger
+   */
+  initializeLogger,
+
+  /**
    * Initialize the event bus in the global.pm object
    */
   (cb) => {
-    global.pm = global.pm || {};
 
     // initializes event bus on global `pm` object
     initializeEventBus();
-
     cb(null);
   },
 
@@ -67,6 +86,14 @@ async.series([
   },
 
   /**
+   * Initialize RuntimeExecutionService
+   */
+  (cb) => {
+    RuntimeExecutionService.initialize();
+    cb();
+  },
+
+  /**
    * Initialize protocolHandler
    */
   (cb) => {
@@ -77,28 +104,7 @@ async.series([
 
   if (err) {
     // We are continue proceeding for now. even we see error.
-    console.log(`Main boot sequence error: ${err}`);
-  }
-
-  let argv = process.argv.slice(1);
-
-  for (let i = 0; i < argv.length; i++) {
-    // to check for the user data path flag
-    if (argv[i].startsWith('--user-data-path=')) {
-      let arg = argv[i].split('=');
-
-      if (arg[1] !== '') {
-        let path = arg.slice(1).join('=');
-        try {
-          // setting the path for the directory storing app's configuration files
-          app.setPath('userData', path);
-        }
-        catch (e) {
-          console.error(e);
-        }
-      }
-      break;
-    }
+    pm.logger.error('Main~booting: Failed', err);
   }
 
   global.isSharedBooted = false;
@@ -107,8 +113,6 @@ async.series([
   windowManager.eventBus = eventBus;
 
   bootstrapModels({ eventBus: eventBus }, (err, orm) => {
-    global.pm = global.pm || {};
-
     global.pm.models = orm.collections;
     global.pm.__orm = orm;
 
@@ -124,12 +128,12 @@ async.series([
     });
 
     appEvents.subscribe((event = {}) => {
-      console.log('App events bus', event);
-
       // If it is a boot process;
       if (_.get(event, 'name') === 'booted') {
         let process = event.namespace,
             err = event.data;
+
+        pm.logger.info(`Main~AppEvents - Received booted event for process ${process}`);
 
         // Here there is a problem in booting shared process
         if (process === 'shared') {
@@ -164,11 +168,6 @@ async.series([
 
   // flag set to perform tasks before quitting
   app.quittingApp = false;
-
-  // Postman's API will run here. will be used by the interceptor for sending captured requests
-  var API_SERVER_PORT = 8082,
-      thisName = null,
-      thisPlatform = 'OSX';
 
   /**
    * Populate installation id
@@ -215,7 +214,7 @@ async.series([
         if (typeof port === 'string') {
           port = parseInt(port);
         }
-        console.log('Starting proxy on port: ' + port);
+        pm.logger.info('Main~IPC-MessageToElectron - Starting proxy on port: ' + port);
         try {
           var ret = electronProxy.startProxy(
               port,
@@ -236,7 +235,7 @@ async.series([
         }
         catch (e) {
           // error while starting proxy
-          console.log('Error while starting proxy: ', e);
+          pm.logger.error('Main~IPC-MessageToElectron - Error while starting proxy: ', e);
           windowManager.sendInternalMessage({
             event: 'proxyNotif',
             'object': 'start',
@@ -290,7 +289,7 @@ async.series([
         let parsedArg = circularJSON.parse(arg);
         if (parsedArg.event === 'pmWindowPrimaryChanged') {
           windowManager.primaryId = arg.object;
-          console.log('Primary Window set (id: ' + windowManager.primaryId + ')');
+          pm.logger.info('Main~IPC-sendToAllWindows - Primary Window set (id: ' + windowManager.primaryId + ')');
         }
         else if (parsedArg.event === 'quitApp') {
           windowManager.quitApp();
@@ -300,7 +299,7 @@ async.series([
         }
       }
       catch (e) {
-        console.log('Malformed message, ignoring.');
+        pm.logger.warn('Main~IPC-sendToAllWindows - Malformed message, ignoring.', e);
       }
     });
 
@@ -337,11 +336,10 @@ async.series([
    * @param {*} e
    */
   function handleUncaughtError (e) {
-    console.log('Uncaught errors', e);
+    console.error('Main~handleUncaughtError - Uncaught errors', e);
 
-    // Can happen for proxy error
-    // explore other possibilities
-    // TODO: Kane
+    // Logger might not be there in this state, hence the safe check
+    pm.logger && pm.logger.error('Main~handleUncaughtError - Uncaught errors', e);
   }
 
   /**
@@ -412,7 +410,6 @@ async.series([
   }
   attachIpcListeners();
 
-  thisName = app.getName();
   windowManager.initialize();
 
   var dockMenu = Menu.buildFromTemplate([
@@ -439,11 +436,11 @@ async.series([
 
     appSettings.get('doNotRemindMoveToApplications', (err, doNotRemind) => {
       if (err) {
-        console.log('Error while trying to get "mode" from appSettings', err);
+        pm.logger.error('Main~shouldShowMovePrompt - Error while trying to get "mode" from appSettings', err);
         return cb(false);
       }
 
-      doNotRemind && console.log('Not showing the prompt since user has chosen not to be reminded again');
+      doNotRemind && pm.logger.info('Main~shouldShowMovePrompt - Not showing the prompt since user has chosen not to be reminded again');
       return cb(!doNotRemind);
     });
   }
@@ -457,7 +454,7 @@ async.series([
         return cb();
       }
 
-      console.log('Postman is not in applications folder, showing a prompt to move it there');
+      pm.logger.info('Main~promptMoveToApplicationsFolder - Postman is not in applications folder, showing a prompt to move it there');
 
       dialog.showMessageBox({
         type: 'question',

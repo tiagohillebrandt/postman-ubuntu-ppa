@@ -22,11 +22,11 @@ function bootstrap (config, done) {
     datastores: { 'persistent-nedb': wlSharedNeDBFileConfig(waterlineConfig) }
   }, function (err, orm) {
     if (err) {
-      console.error('ORM initialization failed: ', err);
+      pm.logger.error('Bootstrap-models~bootstrap -Failed', err);
       return done(err);
     }
     if (orm) {
-      console.log('ORM initialization successful');
+      pm.logger.info('Bootstrap-models~bootstrap - Success');
       return done(null, orm);
     }
   });

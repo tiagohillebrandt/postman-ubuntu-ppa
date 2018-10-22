@@ -31,7 +31,7 @@ const initializeUpdater = require('@postman-app/updater').init,
 
         // If no updater found for the OS, consider it as not as error, just go through it
         if (!updaterInstance) {
-          console.log('Updater not found');
+          pm.logger.warn('UpdaterHandler~init - Updater not found for the os');
           cb && cb();
           return;
         }
@@ -39,6 +39,8 @@ const initializeUpdater = require('@postman-app/updater').init,
         updaterInstance.init((err) => {
             attachUpdaterEventsListeners(updaterInstance);
             attachUpdaterListeners(updaterInstance);
+
+            err ? pm.logger.error('UpdateHandler~init - Failed', err) : pm.logger.info('UpdateHandler~init - Success');
             cb && cb(err, updaterInstance);
         });
       },
@@ -61,7 +63,7 @@ const initializeUpdater = require('@postman-app/updater').init,
        */
       attachUpdaterEventsListeners = function (updaterInstance) {
         pm.eventBus.channel(APP_UPDATE_EVENTS).subscribe((event = {}) => {
-          console.log('App updater event', event); // Logging intentionally
+          pm.logger.info(`UpdateHandler~${APP_UPDATE_EVENTS} - Received event`, event); // Logging intentionally
 
           let eventName = event.name;
           if (eventName === CHECK_FOR_ELECTRON_VERSION_UPDATED) {

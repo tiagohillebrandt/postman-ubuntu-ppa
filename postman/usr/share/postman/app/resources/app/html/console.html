@@ -2,39 +2,35 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; connect-src https://*.getpostman.com https://sentry.postmanlabs.com; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src data:;"
+    >
     <title>Console Webview</title>
+    <script src="../js/preload.js"></script>
     <link rel="preload" href="../js/console.css" as="style">
     <link rel="preload" href="../js/vendor-shared.js" as='script'>
     <link rel="preload" href="../js/vendor-ui.js" as='script'>
     <link rel="preload" href="../js/console.js" as='script'>
-    <script>
-      document.addEventListener('dragover', (event) => {
-        event.preventDefault();
-      }, false);
-
-      document.addEventListener('drop', (event) => {
-        event.preventDefault();
-      }, false);
-    </script>
     <style>
       @keyframes orbit {
         0% {
           transform: rotate(0deg);
         }
-    
+
         100% {
           transform: rotate(360deg);
         }
       }
-    
+
       .pm-loader.is-exiting {
         opacity: 0;
       }
-    
+
       .pm-loader.is-hidden {
         display: none;
       }
-    
+
       body {
         margin: 0;
         width: 100vw;
@@ -42,7 +38,7 @@
         overflow: hidden;
         position: absolute;
       }
-    
+
       .pm-loader {
         width: 100%;
         height: 100%;
@@ -51,7 +47,7 @@
         background: #E8E0CB;
         transition: opacity 0.5s linear;
       }
-    
+
       .pm-loader-container {
         width: 100%;
         height: 100%;
@@ -60,7 +56,7 @@
         flex-direction: column;
         justify-content: center;
       }
-    
+
       .pm-loader-atoms {
         width: 100px;
         height: 100px;
@@ -69,7 +65,7 @@
         align-items: center;
         justify-content: center;
       }
-    
+
       .pm-loader-center-atom {
         top: 33px;
         left: 33px;
@@ -79,7 +75,7 @@
         border-radius: 50%;
         background-color: #ef5b25;
       }
-    
+
       .pm-loader-orbit-1 {
         top: 20px;
         left: 20px;
@@ -89,7 +85,7 @@
         border-radius: 50%;
         border: 1px solid #ef5b25;
       }
-    
+
       .pm-loader-orbit-2 {
         top: 8px;
         left: 8px;
@@ -99,7 +95,7 @@
         position: absolute;
         border: 1px solid #ef5b25;
       }
-    
+
       .pm-loader-orbit-3 {
         top: -4px;
         left: -4px;
@@ -109,7 +105,7 @@
         border-radius: 50%;
         border: 1px solid #ef5b25;
       }
-    
+
       .pm-loader-atom-1 {
         width: 8px;
         height: 8px;
@@ -122,7 +118,7 @@
         animation-timing-function: linear;
         -webkit-transform-origin: 24px 24px;
       }
-    
+
       .pm-loader-atom-2 {
         width: 8px;
         height: 8px;
@@ -135,7 +131,7 @@
         animation-timing-function: linear;
         -webkit-transform-origin: 32px 32px;
       }
-    
+
       .pm-loader-atom-3 {
         width: 8px;
         height: 8px;
@@ -148,14 +144,14 @@
         animation-timing-function: linear;
         -webkit-transform-origin: 41px 41px;
       }
-    
+
       .app-root {
         width: 100%;
         height: 100%;
         overflow: hidden;
         position: absolute;
       }
-    
+
       .app-root.is-hidden {
         display: none;
       }

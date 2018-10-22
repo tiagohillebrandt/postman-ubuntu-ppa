@@ -307,7 +307,7 @@ class OAuth2TokenRequester {
 
     runtimeUtils.populateProxyAndCertificateOptions(runOptions, this.runMetaData || {});
 
-    console.log('Requesting OAuth 2.0 access token');
+    pm.logger.info('OAuth2TokenRequester~requestAccessToken - Requesting OAuth 2.0 access token');
     runner.run(collection, runOptions, (err, run) => {
       if (err) {
         callback && callback(err);

@@ -11,7 +11,7 @@ exports.appSettings = {
    */
   getAll (cb) {
     Storage.get(DB_KEY, (error, data) => {
-      if (error) { console.error('Failed to get data from storage', error); }
+      if (error) { pm.logger.error('appSettings~getAll - Failed to get data from storage', error); }
       return cb && cb(error, data);
     });
   },
@@ -23,7 +23,7 @@ exports.appSettings = {
    */
   get (key, cb) {
     Storage.get(DB_KEY, (error, data) => {
-      if (error) { console.error('Failed to get data from storage', error); }
+      if (error) { pm.logger.error('appSettings~get - Failed to get data from storage', error); }
       return cb && cb(error, _.get(data, key));
     });
   },
@@ -36,7 +36,7 @@ exports.appSettings = {
    */
 
   set (key, value, cb) {
-    // Gets the lastest existing settings from the storage
+    // Gets the latest settings from the storage
     this.getAll((err, data) => {
       if (!err) {
 
@@ -45,12 +45,12 @@ exports.appSettings = {
 
         // Sets up the data for you in the settings json
         Storage.set(DB_KEY, data, (error) => {
-          if (error) { console.error('Failed to store data on storage', error); }
+          if (error) { pm.logger.error('appSettings~set - Failed to store data on storage', error); }
           return cb && cb(error, data);
         });
       }
       else {
-        if (err) { console.error('Failed to get data from storage', err); }
+        if (err) { pm.logger.error('appSettings~set - Failed to get data from storage', err); }
         return cb && cb(err, data);
       }
     });

@@ -6,10 +6,12 @@ var ipcMain = require('electron').ipcMain,
     SerializedError = require('serialised-error'),
     getSystemProxy = require('../utils/getSystemProxy'),
     cookieManagerInstance = require('./CookieManager'),
-    fs = require('fs');
-
-var { stringifyCookieObject, _parseCookieHeader } = require('../common/utils/cookie');
-var { ensureProperUrl, getURLProps } = require('../common/utils/url');
+    fs = require('fs'),
+    cookieIntegration = require('./RuntimeCookieIntegration'),
+    putCookiesInTheJar = cookieIntegration.putCookiesInTheJar,
+    addCookiesFromJarToCookieManager = cookieIntegration.addCookiesFromJarToCookieManager,
+    { stringifyCookieObject, _parseCookieHeader } = require('../common/utils/cookie'),
+    { ensureProperUrl, getURLProps } = require('../common/utils/url');
 
 /**
  * A Postman SDK object
@@ -44,40 +46,6 @@ function wrapError (error) {
 }
 
 /**
- * Gets cookies from a cookieManager instance and adds them to a cookieJar
- *
- * @function NodeRuntimeBridge~putCookiesInTheJar
- *
- * @param {String} cookiePartitionId    - cookiePartitionId is the partition id needs to be used for the cookies
- * @param {CookieManager} cookieManager - CookieManager instance with cookies
- * @param {CookieJar} cookieJar         - CookieJar instance to move the cookies to
- */
-function putCookiesInTheJar (cookiePartitionId, cookieManager, cookieJar) {
-  cookieManager.getCookies(cookiePartitionId, (err, cookies) => {
-    if (err) { return; }
-    _.forEach(cookies, (cookie) => {
-      var domain = cookie.domain,
-          url,
-          cookieString;
-
-      if (domain[0] === '.') {
-        domain = domain.substring(1);
-      }
-
-      url = 'http://' + domain + cookie.path;
-      cookieString = stringifyCookieObject(cookie);
-
-      try {
-        cookieJar.setCookie(cookieString, url);
-      }
-      catch (e) {
-        console.error(e);
-      }
-    });
-  });
-}
-
-/**
  * Adds cookies from headers to cookieJar
  *
  * @function NodeRuntimeBridge~addCookiesFromHeaderToJar
@@ -100,43 +68,14 @@ function addCookiesFromHeaderToJar (cookiePartitionId, cookieJar, requestHeaders
             cookieJar.setCookie(stringifyCookieObject(cookie), requestUrlValue);
           }
           catch (e) {
-            console.error(e);
+            pm.logger.error('RuntimeBridge~addCookiesFromHeaderToJar - Error adding cookie to jar', e);
           }
         });
       }
       catch (e) {
-        console.error(e);
+        pm.logger.error('RuntimeBridge~addCookiesFromHeaderToJar - Error parsing cookie header', e);
       }
     }
-  });
-}
-
-/**
- * Extract cookies from a CookieJar instance and add them to the CookieManager
- *
- * @function NodeRuntimeBridge~addCookiesFromJarToCookieManager
- *
- * @param {string} cookiePartitionId    - cookie partition id
- * @param {CookieJar} cookieJar         - CookieJar instance to read cookies from
- * @param {CookieManager} cookieManager - Target CookieManager to move cookies into
- * @param {URL} transformedUrl          - Final request URL
- * @param {Function} cb                 - Callback called with the cookies
-*/
-function addCookiesFromJarToCookieManager (cookiePartitionId, cookieJar, cookieManager, transformedUrl, cb) {
-  var sentUrl = getURLProps(ensureProperUrl(transformedUrl)),
-      domain = sentUrl.hostname,
-      path = sentUrl.pathname;
-
-  // todo: we're using a private object here (hence the crazy number of checks),
-  // because the API provided by the cookieJar is not good enough. Need to submit a PR
-  // to the upstream "request" module to expose this functionality.
-  cookieJar._jar &&
-  cookieJar._jar.store &&
-  cookieJar._jar.store.findCookies &&
-  cookieJar._jar.store.findCookies(domain, path, (error, cookiesFromJar) => {
-    cookieManager.pushCookies(cookiePartitionId, cookiesFromJar, transformedUrl, (cookies) => {
-      cb(null, cookies);
-    });
   });
 }
 
