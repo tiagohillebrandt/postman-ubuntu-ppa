@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 2518:
+/***/ 2571:
 /***/ (function(module, exports, __webpack_require__) {
 
 ace.define("ace/mode/json_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
@@ -294,7 +294,7 @@ oop.inherits(Mode, TextMode);
     };
 
     this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], __webpack_require__(2863), "JsonWorker");
+        var worker = new WorkerClient(["ace"], __webpack_require__(2928), "JsonWorker");
         worker.attachToDocument(session.getDocument());
 
         worker.on("annotate", function(e) {
@@ -318,7 +318,7 @@ exports.Mode = Mode;
 
 /***/ }),
 
-/***/ 2863:
+/***/ 2928:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/json_worker';

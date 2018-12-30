@@ -1,474 +1,31 @@
 webpackJsonp([30],{
 
-/***/ 1114:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InputSelect; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Inputs__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_prop_types__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_DownSolidIcon__ = __webpack_require__(95);
-
-
-
-
-
-
-
-
-/**
-                                                          * @private
-                                                          * A Select component that supports input filtering, options.
-                                                          * Supports:
-                                                          * Standard select features with custom-rendered options.
-                                                          * Displays input field to filter out the options.
-                                                          * Usage:
-                                                          * <InputSelect
-                                                          *  placeholder={'Filter Colors'}
-                                                          *  defaultIndex={1}
-                                                          *  optionCount={10}
-                                                          *  optionRenderer={
-                                                          *   ({ index, search }) => list[index] //Could be a DOM element
-                                                          *  }
-                                                          *  closeOnSelect={'false'}
-                                                          *  onSelect={() => {}}
-                                                          *  />
-                                                          */
-
-let InputSelect = class InputSelect extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      focusedIndex: 0,
-      highlight: false,
-      isOpen: false,
-      inputValue: props.getInputValue(props.defaultIndex),
-      selectedIndex: props.defaultIndex };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.focusOption = this.focusOption.bind(this);
-    this.focusAdjacentOption = this.focusAdjacentOption.bind(this);
-    this.selectFocusedOption = this.selectFocusedOption.bind(this);
-    this.handleToggleList = this.handleToggleList.bind(this);
-    this.handleCloseListOnEscape = this.handleCloseListOnEscape.bind(this);
-    this.handleMouseDown = this.handleMouseDown.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleMouseDownOnList = this.handleMouseDownOnList.bind(this);
-  }
-
-  renderOptions() {
-    const { optionCount, optionRenderer, isSearchable } = this.props,
-    { inputValue, selectedIndex, focusedIndex } = this.state,
-    options = [];
-
-    this._visibleIndexes = [];
-
-    for (let i = 0; i < optionCount; i++) {
-      const search = !this._toggleList && !this._inputFocus && inputValue;
-
-      if (!search || search && isSearchable(i)) {
-        const option = optionRenderer(i, search, focusedIndex);
-        if (option) {
-          this._visibleIndexes.push(i);
-          options.push(
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', {
-              className: __WEBPACK_IMPORTED_MODULE_4_classnames___default()({
-                'item': true,
-                'is-focused': i === focusedIndex,
-                'is-selected': i === selectedIndex }),
-
-              key: 'option-' + i,
-              ref: i === focusedIndex ? 'focused' : null,
-              onMouseDown: e => {
-                this.handleMouseDown(e, i);
-              },
-              onMouseEnter: e => {
-                this.handleMouseEnter(e, i);
-              },
-              onMouseLeave: e => {
-                this.handleMouseLeave(e, i);
-              } },
-
-            option));
-
-        }
-      }
-    }
-    return options;
-  }
-
-  handleMouseDown(event, index) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.selectFocusedOption(index);
-  }
-
-  handleMouseEnter(event, index) {
-    this.focusOption(index);
-  }
-
-  handleMouseLeave() {
-    this.focusOption(this.state.selectedIndex);
-  }
-
-  handleCancel() {
-    this._cancel = true;
-    this.focus();
-  }
-
-  focus() {
-    if (!this.refs.input) {
-      return;
-    }
-    this.refs.input.focus();
-  }
-
-  blur() {
-    if (!this.refs.input) {
-      return;
-    }
-    this.refs.input.blur();
-  }
-
-  setFocusOnToggleButton() {
-    if (!this.refs.button) {
-      return;
-    }
-    this.refs.button.focus();
-  }
-
-  handleCloseListOnEscape() {
-    this.blur();
-    this.setState({
-      isOpen: false,
-      focusedIndex: this.state.selectedIndex });
-
-  }
-
-  handleToggleList() {
-    this._toggleList = true;
-    this.setState({ isOpen: !this.state.isOpen }, () => {
-      if (this.state.isOpen) {
-        this.focus();
-      }
-    });
-  }
-
-  // To allow scrollbar usage
-  handleMouseDownOnList(e) {
-    e.stopPropagation();
-    e.preventDefault();
-  }
-
-  handleKeyDown(e) {
-    switch (e.key) {
-      case 'ArrowDown':{
-          e.preventDefault();
-          this.focusAdjacentOption('next');
-          break;
-        }
-      case 'ArrowUp':{
-          e.preventDefault();
-          this.focusAdjacentOption('previous');
-          break;
-        }
-      case 'Enter':{
-          e.preventDefault();
-          this.selectFocusedOption();
-          break;
-        }
-      case 'Escape':{
-          // Important: as it empties out the input field
-          e.preventDefault();
-          this.handleCloseListOnEscape();
-          break;
-        }
-      default:{
-          break;
-        }}
-
-  }
-
-  handleFocus() {
-    if (this.props.openOnFocus) {
-      this._inputFocus = true;
-      this.setState({ isOpen: true });
-    }
-    this.props.onFocus && this.props.onFocus();
-  }
-
-  handleBlur() {
-    const { selectedIndex } = this.state;
-    const { getInputValue } = this.props;
-
-    if (this._toggleList && this.state.isOpen) {
-      this._toggleList = false;
-      this.focus();
-      return;
-    }
-
-    if (this.props.closeOnSelect && this._optionSelected) {
-      this._optionSelected = false;
-      this.props.onBlur && this.props.onBlur();
-      return;
-    }
-
-    if (this._cancel) {
-      this._cancel = false;
-      this.focus();
-      return;
-    }
-
-    this.setState({
-      isOpen: !this.props.closeOnBlur,
-      inputValue: getInputValue(selectedIndex) });
-
-
-    this.props.onBlur && this.props.onBlur();
-  }
-
-  getNextVisibleIndex(list, index) {
-    if (index >= 0 && index + 1 <= list.length - 1) {
-      return list[index + 1];
-    }
-    return list[0];
-  }
-
-  getPreviousVisibleIndex(list, index) {
-    if (index > 0) {
-      return list[index - 1];
-    }
-    return list[list.length - 1];
-  }
-
-  focusOption(index) {
-    this.setState({ focusedIndex: index });
-  }
-
-  focusAdjacentOption(dir) {
-    let focusedIndex = this.state.focusedIndex,
-    visibleIndexes = this._visibleIndexes;
-
-    if (dir === 'next' && focusedIndex !== -1) {
-      focusedIndex = this.getNextVisibleIndex(visibleIndexes, visibleIndexes.indexOf(focusedIndex));
-    } else
-    if (dir === 'previous') {
-      focusedIndex = this.getPreviousVisibleIndex(visibleIndexes, visibleIndexes.indexOf(focusedIndex));
-    }
-
-    this._scrollToFocusedOption = true;
-    this.setState({ focusedIndex: focusedIndex });
-  }
-
-  selectFocusedOption(index) {
-    const { getInputValue, blurOnSelect } = this.props;
-    const focusedIndex = index >= 0 ? index : this.state.focusedIndex;
-
-    // If no value selected, then reset
-    if (focusedIndex === this.state.selectedIndex) {
-      this.setState({ inputValue: getInputValue(focusedIndex) }, () => {
-        if (blurOnSelect) {
-          this.blur();
-        }
-      });
-      return;
-    }
-
-    this._optionSelected = true;
-
-    const inputValue = getInputValue(index);
-    if (inputValue) {
-      this.setState({
-        inputValue: inputValue,
-        focusedIndex: focusedIndex,
-        selectedIndex: focusedIndex,
-        isOpen: !this.props.closeOnSelect },
-      () => {
-        if (blurOnSelect) {
-          this.blur();
-        }
-      });
-    } else
-    {
-      this.setState({
-        focusedIndex: focusedIndex,
-        selectedIndex: focusedIndex,
-        isOpen: !this.props.closeOnSelect },
-      () => {
-        if (blurOnSelect) {
-          this.blur();
-        }
-      });
-    }
-
-    this.props.onSelect(focusedIndex);
-  }
-
-  handleChange(inputValue) {
-    this._toggleList = false;
-    this._inputFocus = false;
-    this.setState({
-      inputValue: inputValue,
-      isOpen: true });
-
-  }
-
-  componentDidUpdate() {
-    const { focused, list } = this.refs;
-
-    // disable scrolling to focused option on mouse events
-    if (this._scrollToFocusedOption && focused && list) {
-
-      this._scrollToFocusedOption = false;
-
-      const focusedDOM = Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["findDOMNode"])(focused);
-      const listDOM = Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["findDOMNode"])(list);
-      const focusedRect = focusedDOM.getBoundingClientRect();
-      const menuRect = listDOM.getBoundingClientRect();
-      if (focusedRect.bottom > menuRect.bottom || focusedRect.top < menuRect.top) {
-        listDOM.scrollTop = focusedDOM.offsetTop + focusedDOM.clientHeight - listDOM.offsetHeight;
-      }
-    }
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.defaultIndex !== nextProps.defaultIndex ||
-    nextProps.getInputValue(nextProps.defaultIndex) !== this.state.inputValue) {
-      this.setState({
-        selectedIndex: nextProps.defaultIndex,
-        inputValue: nextProps.getInputValue(nextProps.defaultIndex) });
-
-    }
-  }
-
-  highlight() {
-    this.setState({ highlight: true }, () => {
-      setTimeout(() => {
-        this.setState({ highlight: false });
-      }, this.props.highlightTimeout);
-    });
-  }
-
-  getWrapperClasses() {
-    return __WEBPACK_IMPORTED_MODULE_4_classnames___default()({
-      [this.props.className]: true,
-      'input-select-wrapper': true,
-      'highlight': this.state.highlight,
-      'is-open': this.state.isOpen });
-
-  }
-
-  render() {
-    const {
-      placeholder,
-      hideSearchGlass,
-      hideCancelOnBlur,
-      showToggleButton,
-      selectAllOnFocus,
-      width } =
-    this.props;
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-          className: this.getWrapperClasses(),
-          style: { width: width } },
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Inputs__["b" /* Input */], {
-          hideCancelOnBlur: hideCancelOnBlur,
-          hideSearchGlass: hideSearchGlass,
-          inputStyle: 'search',
-          placeholder: placeholder || 'Type to filter',
-          query: this.state.inputValue,
-          ref: 'input',
-          selectAllOnFocus: selectAllOnFocus,
-          onBlur: this.handleBlur,
-          onCancel: this.handleCancel,
-          onChange: this.handleChange,
-          onFocus: this.handleFocus,
-          onKeyDown: this.handleKeyDown }),
-
-        showToggleButton &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], {
-            className: 'dropdown-button',
-            ref: 'button',
-            onMouseDown: this.handleToggleList },
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_DownSolidIcon__["a" /* default */], { className: 'dropdown-caret' })),
-
-        this.state.isOpen &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', {
-            className: 'input-select-list',
-            ref: 'list',
-            onMouseDown: this.handleMouseDownOnList },
-
-          this.renderOptions())));
-
-
-
-  }};
-
-
-InputSelect.defaultProps = {
-  blurOnSelect: true,
-  closeOnBlur: true,
-  closeOnSelect: true,
-  defaultIndex: 0,
-  hideCancelOnBlur: false,
-  hideSearchGlass: true,
-  highlightTimeout: 1000,
-  openOnFocus: true };
-
-
-InputSelect.propTypes = {
-  blurOnSelect: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool,
-  closeOnBlur: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool,
-  closeOnSelect: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool,
-  hideCancelOnBlur: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool,
-  hideSearchGlass: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool,
-  highlightTimeout: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.number,
-  onBlur: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.func,
-  onFocus: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.func,
-  openOnFocus: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.bool };
-
-/***/ }),
-
-/***/ 2972:
+/***/ 3038:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RequesterBuilderContainer; });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RequesterBuilderContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__postman_react_click_outside__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__postman_react_click_outside__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__postman_react_click_outside__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pure_render_decorator__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pure_render_decorator__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_pure_render_decorator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_keymaps_KeyMaps__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_draggable__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_draggable__ = __webpack_require__(228);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_draggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__environments_EnvironmentSelectorContainer__ = __webpack_require__(2973);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__environments_EnvironmentPreviewContainer__ = __webpack_require__(2975);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__environments_EnvironmentMenuContainer__ = __webpack_require__(2979);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tabs_TabTitles__ = __webpack_require__(2982);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_tabs_TabContents__ = __webpack_require__(2986);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPath__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__environments_EnvironmentSelectorContainer__ = __webpack_require__(3039);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__environments_EnvironmentPreviewContainer__ = __webpack_require__(3041);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__environments_EnvironmentMenuContainer__ = __webpack_require__(3045);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_tabs_TabTitles__ = __webpack_require__(3048);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_tabs_TabContents__ = __webpack_require__(3052);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_TabShortcutsService__ = __webpack_require__(2670);
 var _class;
+
 
 
 
@@ -493,28 +50,34 @@ RequesterBuilderContainer = __WEBPACK_IMPORTED_MODULE_1__postman_react_click_out
       tabScrollDirection: 'none' };
 
 
+    this.focus = this.focus.bind(this);
     this.handleStartDrag = this.handleStartDrag.bind(this);
     this.handleStopDrag = this.handleStopDrag.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
   }
 
-  getKeymapHandlers() {
-    return {
-      openNewTab: pm.shortcuts.handle('openNewTab'),
-      closeCurrentTab: pm.shortcuts.handle('closeCurrentTab'),
-      forceCloseCurrentTab: pm.shortcuts.handle('forceCloseCurrentTab'),
-      switchToNextTab: pm.shortcuts.handle('switchToNextTab'),
-      switchToPreviousTab: pm.shortcuts.handle('switchToPreviousTab'),
-      switchToTab1: pm.shortcuts.handle('switchToTab1'),
-      switchToTab2: pm.shortcuts.handle('switchToTab2'),
-      switchToTab3: pm.shortcuts.handle('switchToTab3'),
-      switchToTab4: pm.shortcuts.handle('switchToTab4'),
-      switchToTab5: pm.shortcuts.handle('switchToTab5'),
-      switchToTab6: pm.shortcuts.handle('switchToTab6'),
-      switchToTab7: pm.shortcuts.handle('switchToTab7'),
-      switchToTab8: pm.shortcuts.handle('switchToTab8'),
-      switchToLastTab: pm.shortcuts.handle('switchToLastTab') };
+  componentWillMount() {
+    this.attachModelListeners();
+  }
 
+  componentWillUnmount() {
+    this.detachModelListeners();
+  }
+
+  attachModelListeners() {
+    pm.mediator.on('focusBuilder', this.focus);
+  }
+
+  detachModelListeners() {
+    pm.mediator.off('focusBuilder', this.focus);
+  }
+
+  getKeymapHandlers() {
+    return Object(__WEBPACK_IMPORTED_MODULE_12__services_TabShortcutsService__["a" /* getTabShortcuts */])();
+  }
+
+  focus() {
+    _.invoke(this, 'refs.builder.focus');
   }
 
   handleStartDrag(event, data) {
@@ -573,26 +136,27 @@ RequesterBuilderContainer = __WEBPACK_IMPORTED_MODULE_1__postman_react_click_out
 
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_tabs_TabContents__["a" /* default */], null))));
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_tabs_TabContents__["a" /* default */], { ref: 'builder' }))));
 
 
 
   }}) || _class) || _class;
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 2973:
+/***/ 3039:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentSelectorContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_environments_EnvironmentSelector__ = __webpack_require__(2974);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_environments_EnvironmentSelector__ = __webpack_require__(3040);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceSessionController__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_pipelines_user_action__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceSessionController__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_pipelines_user_action__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_model_event__ = __webpack_require__(5);
 var _class;
 
@@ -600,7 +164,12 @@ var _class;
 
 
 
-let
+
+
+const defaultEnvironment = {
+  id: null,
+  name: 'No Environment' };let
+
 
 
 EnvironmentSelectorContainer = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */])(_class = class EnvironmentSelectorContainer extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
@@ -635,25 +204,21 @@ EnvironmentSelectorContainer = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["
     sortBy(environment => environment.name.toLowerCase()).
     value();
 
-    environments.unshift({
-      id: null,
-      name: 'No Environment' });
-
+    environments.unshift(defaultEnvironment);
 
     return environments;
   }
 
   render() {
     const selectorEnvironmentList = this.getSelectorEnvironmentList(Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').environments),
-    selectedEnvironmentIndex = _.findIndex(selectorEnvironmentList, env => {
-      return env.id === Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore').id;
-    });
-
+    selectedEnvironment = _.find(selectorEnvironmentList, environment => {
+      return environment.id === Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore').id;
+    }) || defaultEnvironment;
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_environments_EnvironmentSelector__["a" /* default */], {
         environmentsList: selectorEnvironmentList,
         ref: 'selector',
-        selectedEnvironmentIndex: selectedEnvironmentIndex,
+        selectedEnvironment: selectedEnvironment,
         selectorWidth: this.props.selectorWidth,
         onSelect: this.handleEnvironmentSelect }));
 
@@ -663,17 +228,19 @@ EnvironmentSelectorContainer = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["
 
 /***/ }),
 
-/***/ 2974:
+/***/ 3040:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentSelector; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_InputSelect__ = __webpack_require__(1114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_SearchHighlighter__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_InputSelectV2__ = __webpack_require__(1232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_SearchHighlighter__ = __webpack_require__(440);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_XPaths_XPath__ = __webpack_require__(27);
+
 
 
 
@@ -683,41 +250,40 @@ EnvironmentSelector = class EnvironmentSelector extends __WEBPACK_IMPORTED_MODUL
   constructor(props) {
     super(props);
     this.handleEnvironmentSelect = this.handleEnvironmentSelect.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
   }
 
-  handleEnvironmentSelect(list, index) {
-    this.props.onSelect && this.props.onSelect(list[index].id);
-  }
-
-  highlight() {
-    if (!this.refs.inputSelect) {
-      return;
-    }
-    this.refs.inputSelect.highlight();
-  }
-
-  getOption(list, index, search) {
-    const name = list[index].name;
-    if (search) {
-      if (!_.includes(name.toLowerCase(), search.toLowerCase())) {
-        return null;
-      }
-      return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-select-item' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_SearchHighlighter__["a" /* default */], {
-            source: name,
-            query: search })));
-
-
-
-    }
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-select-item' }, name);
-  }
-
-  handleSelect(index) {
+  handleEnvironmentSelect(environment) {
     pm.mediator.trigger('focusBuilder');
-    return this.handleEnvironmentSelect(this.props.environmentsList, index);
+    this.props.onSelect && this.props.onSelect(environment.id);
+  }
+
+  filterEnvironments(environmentList, query, options = {}) {
+
+    if (!query || options.firstRender) {
+      return environmentList;
+    }
+
+    return _.filter(environmentList, environment => {
+      return environment.id && _.includes(environment.name.toLowerCase(), query.toLowerCase());
+    });
+  }
+
+  getOption(item, search, option = {}) {
+    const name = item.name,
+    id = item.id;
+    if (search && !option.firstRender) {
+      return (
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_XPaths_XPath__["a" /* default */], { identifier: id },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-select-item' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_SearchHighlighter__["a" /* default */], {
+              source: name,
+              query: search }))));
+
+
+
+
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_XPaths_XPath__["a" /* default */], { identifier: id }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-select-item' }, name));
   }
 
   getSelectWrapperClasses() {
@@ -725,28 +291,21 @@ EnvironmentSelector = class EnvironmentSelector extends __WEBPACK_IMPORTED_MODUL
   }
 
   render() {
-    const { environmentsList, selectedEnvironmentIndex, selectorWidth } = this.props;
+    const { environmentsList, selectedEnvironment, selectorWidth } = this.props;
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'environment-selector-container' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getSelectWrapperClasses() },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_InputSelect__["a" /* InputSelect */], {
-            hideCancelOnBlur: true,
-            selectAllOnFocus: true,
-            showToggleButton: true,
-            defaultIndex: selectedEnvironmentIndex < 0 ? 0 : selectedEnvironmentIndex,
-            width: selectorWidth,
-            getInputValue: index => {
-              return _.get(environmentsList[index], 'name', '');
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_InputSelectV2__["a" /* InputSelectV2 */], {
+            style: { width: selectorWidth },
+            selectedItem: selectedEnvironment,
+            getInputValue: environmentObj => {
+              return environmentObj.name || '';
             },
-            isSearchable: index => {
-              return index > 0;
-            },
-            optionCount: environmentsList.length,
-            optionRenderer: (index, search) => {
-              return this.getOption(environmentsList, index, search);
-            },
+            optionRenderer: this.getOption,
+            getFilteredList: this.filterEnvironments.bind(this, environmentsList),
             ref: 'inputSelect',
-            onSelect: this.handleSelect }))));
+            onSelect: this.handleEnvironmentSelect,
+            menuClassName: 'environment-selector-menu' }))));
 
 
 
@@ -756,24 +315,25 @@ EnvironmentSelector = class EnvironmentSelector extends __WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
-/***/ 2975:
+/***/ 3041:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentPreviewContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_environments_EnvironmentPreview__ = __webpack_require__(2976);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_environments_EnvironmentPreview__ = __webpack_require__(3042);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_PreviewIcon__ = __webpack_require__(2978);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_pipelines_user_action__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_VariableSessionHelper__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_PreviewIcon__ = __webpack_require__(3044);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_pipelines_user_action__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_VariableSessionHelper__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPath__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
 
 
@@ -784,8 +344,8 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 
 
-let
 
+let
 
 EnvironmentPreviewContainer = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a" /* observer */])(_class = class EnvironmentPreviewContainer extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
@@ -915,15 +475,17 @@ EnvironmentPreviewContainer = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Icons_PreviewIcon__["a" /* default */], { className: 'environment-preview-icon' })),
 
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_environments_EnvironmentPreview__["a" /* default */], {
-          isOpen: this.state.isOpen,
-          selectedEnvironmentStore: environment,
-          globalsStore: globals,
-          onClose: this.handlePreviewClose,
-          onHover: this.handleHover,
-          onEnvironmentSessionUpdate: this.handleEnvironmentSessionUpdate,
-          onGlobalsSessionUpdate: this.handleGlobalsSessionUpdate,
-          hoveredKey: this.state.hoveredKey })));
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPath__["a" /* default */], { identifier: 'previewList', isVisible: this.state.isOpen },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_environments_EnvironmentPreview__["a" /* default */], {
+            isOpen: this.state.isOpen,
+            selectedEnvironmentStore: environment,
+            globalsStore: globals,
+            onClose: this.handlePreviewClose,
+            onHover: this.handleHover,
+            onEnvironmentSessionUpdate: this.handleEnvironmentSessionUpdate,
+            onGlobalsSessionUpdate: this.handleGlobalsSessionUpdate,
+            hoveredKey: this.state.hoveredKey }))));
+
 
 
 
@@ -932,7 +494,7 @@ EnvironmentPreviewContainer = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a
 
 /***/ }),
 
-/***/ 2976:
+/***/ 3042:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -940,16 +502,18 @@ EnvironmentPreviewContainer = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["a
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EnvironmentPreviewList__ = __webpack_require__(2977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EnvironmentPreviewList__ = __webpack_require__(3043);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_ManageEnvironmentViews__ = __webpack_require__(2551);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_ManageEnvironmentViews__ = __webpack_require__(2603);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_VariableSessionHelper__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__variables_VariableAlertWrapper__ = __webpack_require__(2574);
-var _class;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_VariableSessionHelper__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__variables_VariableAlertWrapper__ = __webpack_require__(2627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(27);
+var _dec, _class;
+
 
 
 
@@ -960,8 +524,7 @@ var _class;
 let
 
 
-
-EnvironmentPreview = __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside___default()(_class = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class EnvironmentPreview extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+EnvironmentPreview = (_dec = __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside___default()({ eventCapturingPhase: false }), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class EnvironmentPreview extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
@@ -1014,46 +577,50 @@ EnvironmentPreview = __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside___
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClasses() },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'environment-preview-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__EnvironmentPreviewList__["a" /* default */], {
-            title: _.get(this.props.selectedEnvironmentStore, 'name', 'Environment'),
-            items: environmentValues,
-            envId: _.get(this.props.selectedEnvironmentStore, 'id'),
-            keyHeading: 'VARIABLE',
-            valueHeading: 'INITIAL VALUE',
-            sessionHeading: 'CURRENT VALUE',
-            onHover: this.props.onHover,
-            onEdit: this.handleEnvironmentEdit,
-            onAdd: this.handleEnvironmentAdd,
-            onUpdate: this.props.onEnvironmentSessionUpdate,
-            emptyMessage: 'No active Environment',
-            hoveredKey: this.props.hoveredKey,
-            overriddenKeys: [] }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__["a" /* default */], { identifier: 'environment' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__EnvironmentPreviewList__["a" /* default */], {
+              title: _.get(this.props.selectedEnvironmentStore, 'name', 'Environment'),
+              items: environmentValues,
+              envId: _.get(this.props.selectedEnvironmentStore, 'id'),
+              keyHeading: 'VARIABLE',
+              valueHeading: 'INITIAL VALUE',
+              sessionHeading: 'CURRENT VALUE',
+              onHover: this.props.onHover,
+              onEdit: this.handleEnvironmentEdit,
+              onAdd: this.handleEnvironmentAdd,
+              onUpdate: this.props.onEnvironmentSessionUpdate,
+              emptyMessage: 'No active Environment',
+              hoveredKey: this.props.hoveredKey,
+              overriddenKeys: [] })),
+
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'environment-preview-divider' }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__EnvironmentPreviewList__["a" /* default */], {
-            title: 'Globals',
-            items: globalValues,
-            keyHeading: 'VARIABLE',
-            valueHeading: 'INITIAL VALUE',
-            sessionHeading: 'CURRENT VALUE',
-            onHover: this.props.onHover,
-            onEdit: this.handleGlobalEdit,
-            onUpdate: this.props.onGlobalsSessionUpdate,
-            emptyMessage: 'No Globals available',
-            hoveredKey: this.props.hoveredKey,
-            overriddenKeys: _.map(environmentValues, 'key'),
-            envId: 'globals' }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__["a" /* default */], { identifier: 'globals' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__EnvironmentPreviewList__["a" /* default */], {
+              title: 'Globals',
+              items: globalValues,
+              keyHeading: 'VARIABLE',
+              valueHeading: 'INITIAL VALUE',
+              sessionHeading: 'CURRENT VALUE',
+              onHover: this.props.onHover,
+              onEdit: this.handleGlobalEdit,
+              onUpdate: this.props.onGlobalsSessionUpdate,
+              emptyMessage: 'No Globals available',
+              hoveredKey: this.props.hoveredKey,
+              overriddenKeys: _.map(environmentValues, 'key'),
+              envId: 'globals' })),
+
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__variables_VariableAlertWrapper__["a" /* default */], { onMessageLinkClick: this.handleClose }))));
 
 
 
-  }}) || _class) || _class;
+  }}) || _class) || _class);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 2977:
+/***/ 3043:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1063,15 +630,17 @@ EnvironmentPreview = __WEBPACK_IMPORTED_MODULE_5__postman_react_click_outside___
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_InlineInput__ = __webpack_require__(1062);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_EditIcon__ = __webpack_require__(702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_VariableSessionService__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_InlineInput__ = __webpack_require__(1071);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_EditIcon__ = __webpack_require__(706);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_VariableSessionService__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_VariableSessionHelper__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_VariablesConstants__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_VariableSessionHelper__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_VariablesConstants__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
+
 
 
 
@@ -1172,11 +741,11 @@ EnvironmentPreviewList = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* 
   }
 
   handleGlobalDocs() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["q" /* GLOBAL_VARIABLE_DOCS */]);
+    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["p" /* GLOBAL_VARIABLE_DOCS */]);
   }
 
   handleEnvironmentDocs() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["n" /* ENVIRONMENT_DOCS */]);
+    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["m" /* ENVIRONMENT_DOCS */]);
   }
 
   render() {
@@ -1248,32 +817,33 @@ EnvironmentPreviewList = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* 
           _.map(items, (item, index) => {
             if (item.enabled) {
               return (
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-                    onMouseEnter: this.props.onHover.bind(this, item.key),
-                    onMouseLeave: this.props.onHover.bind(this, null),
-                    className: this.getClasses(item),
-                    key: `variable-${index}` },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_XPaths_XPath__["a" /* default */], { identifier: index, key: `variable-${index}` },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
+                      onMouseEnter: this.props.onHover.bind(this, item.key),
+                      onMouseLeave: this.props.onHover.bind(this, null),
+                      className: this.getClasses(item) },
 
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'environment-preview-list-item__key' }, item.key),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'environment-preview-list-item__value' }, item.value),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'environment-preview-list-item__session-value' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_InlineInput__["a" /* default */], {
-                      className: 'collection-browser-details-header__name',
-                      placeholder: item.sessionValue,
-                      ref: this.getVariableRef(index),
-                      value: index == this.state.editableVariableIndex ? item.sessionValue : _.truncate(item.sessionValue, truncateOptions),
-                      onSubmit: this.handleVariableSubmit.bind(this, index),
-                      onToggleEdit: this.handleVariableToggle.bind(this, index) }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'environment-preview-list-item__key' }, item.key),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'environment-preview-list-item__value' }, item.value),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'environment-preview-list-item__session-value' },
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_InlineInput__["a" /* default */], {
+                        className: 'collection-browser-details-header__name',
+                        placeholder: item.sessionValue,
+                        ref: this.getVariableRef(index),
+                        value: index == this.state.editableVariableIndex ? item.sessionValue : _.truncate(item.sessionValue, truncateOptions),
+                        onSubmit: this.handleVariableSubmit.bind(this, index),
+                        onToggleEdit: this.handleVariableToggle.bind(this, index) }),
 
 
-                    !this.state.editableVariableIndex &&
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
-                        className: 'environment-preview-list-item__session-value__edit-icon-wrapper',
-                        onClick: this.handleEditVariable.bind(this, index) },
+                      !this.state.editableVariableIndex &&
+                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
+                          className: 'environment-preview-list-item__session-value__edit-icon-wrapper',
+                          onClick: this.handleEditVariable.bind(this, index) },
 
-                      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_EditIcon__["a" /* default */], {
-                        className: 'environment-preview-list-item__session-value__edit-icon',
-                        size: 'xs' })))));
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_EditIcon__["a" /* default */], {
+                          className: 'environment-preview-list-item__session-value__edit-icon',
+                          size: 'xs' }))))));
+
 
 
 
@@ -1295,14 +865,14 @@ EnvironmentPreviewList.defaultProps = { items: [] };
 
 /***/ }),
 
-/***/ 2978:
+/***/ 3044:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = PreviewIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(49);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1326,18 +896,18 @@ function PreviewIcon(props) {
 
 /***/ }),
 
-/***/ 2979:
+/***/ 3045:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentMenuContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_pure_render_decorator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_environments_EnvironmentMenu__ = __webpack_require__(2980);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_environments_EnvironmentMenu__ = __webpack_require__(3046);
 var _class;
 
 
@@ -1381,17 +951,17 @@ EnvironmentMenuContainer = __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator___d
 
 /***/ }),
 
-/***/ 2980:
+/***/ 3046:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentMenu; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_pure_render_decorator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_SettingsIcon__ = __webpack_require__(2981);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_SettingsIcon__ = __webpack_require__(3047);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_classnames__);
 var _class;
@@ -1435,14 +1005,14 @@ EnvironmentMenu = __WEBPACK_IMPORTED_MODULE_1_pure_render_decorator___default()(
 
 /***/ }),
 
-/***/ 2981:
+/***/ 3047:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SettingsIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(49);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1466,24 +1036,24 @@ function SettingsIcon(props) {
 
 /***/ }),
 
-/***/ 2982:
+/***/ 3048:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabTitles; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__TabTitle__ = __webpack_require__(2983);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__NewTabAction__ = __webpack_require__(2984);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__TabActions__ = __webpack_require__(2985);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__TabTitle__ = __webpack_require__(3049);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__NewTabAction__ = __webpack_require__(3050);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__TabActions__ = __webpack_require__(3051);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_EditorService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
 
 
@@ -1562,7 +1132,7 @@ TabTitles = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */])
 
 /***/ }),
 
-/***/ 2983:
+/***/ 3049:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1571,15 +1141,15 @@ TabTitles = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */])
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dnd__ = __webpack_require__(1063);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dnd__ = __webpack_require__(1072);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dnd___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dnd__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mobx_react__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mobx_react__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_CloseIcon__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_CloseIcon__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_EditorService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Tooltips__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Tooltips__ = __webpack_require__(146);
 var _dec, _dec2, _class;
 
 
@@ -1793,13 +1363,17 @@ TabTitle = (_dec = Object(__WEBPACK_IMPORTED_MODULE_2_react_dnd__["DropTarget"])
     let tab = this.props.tab,
     editor = Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('EditorStore').find(tab.id),
     tabUiStore = Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('TabUIStore'),
-    Icon;
+    Icon,
+    showIcons;
 
     if (!editor) {
       return null;
     }
 
-    Icon = editor.model && editor.model.getIcon();
+    // if setting for showIcons is switched to true,
+    // then find the icon
+    showIcons = Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('ConfigurationStore') && Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('ConfigurationStore').get('editor.showIcons');
+    Icon = showIcons && editor.model && editor.model.getIcon();
 
     return connectDropTarget(connectDragPreview(connectDragSource(
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
@@ -1837,9 +1411,11 @@ TabTitle = (_dec = Object(__WEBPACK_IMPORTED_MODULE_2_react_dnd__["DropTarget"])
 
 
 
+      showIcons &&
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab__icon' },
 
         Icon && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Icon, { editor: this.props.tab })),
+
 
 
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab__name' },
@@ -1866,14 +1442,14 @@ TabTitle = (_dec = Object(__WEBPACK_IMPORTED_MODULE_2_react_dnd__["DropTarget"])
 
 /***/ }),
 
-/***/ 2984:
+/***/ 3050:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewTab; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Icons_AddIcon__ = __webpack_require__(2542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Icons_AddIcon__ = __webpack_require__(2595);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_EditorService__ = __webpack_require__(94);
 
 
@@ -1902,20 +1478,24 @@ NewTab = class NewTab extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 2985:
+/***/ 3051:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequesterTabOptions; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MoreIcon__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_ShortcutsList__ = __webpack_require__(1064);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_EditorService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_MoreIcon__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_ShortcutsList__ = __webpack_require__(1073);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_EditorService__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(7);
+var _class;
+
 
 
 
@@ -1925,117 +1505,190 @@ NewTab = class NewTab extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 let
 
-RequesterTabOptions = class RequesterTabOptions extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+RequesterTabOptions = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */])(_class = class RequesterTabOptions extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
+    this.getRecentlyClosedTabs = this.getRecentlyClosedTabs.bind(this);
   }
 
   handleClick() {
     this.props.onClick && this.props.onClick();
   }
 
-  handleSelect(item) {
+  handleSelect(item, editorId) {
     switch (item) {
       case 'duplicate':
-        __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].duplicate();
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].duplicate();
         break;
       case 'close-active':
-        __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].closeCurrent();
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].closeCurrent();
         break;
       case 'force-close-active':
-        __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].closeCurrent({ force: true });
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].closeCurrent({ force: true });
         break;
       case 'close-other':
-        __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].closeAllButCurrent();
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].closeAllButCurrent();
         break;
       case 'close-all':
-        __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].closeAll();
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].closeAll();
         break;
       case 'force-close-all':
-        __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].requestForceCloseAll();
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].requestForceCloseAll();
+        break;
+      case 'undo-close':
+        if (!editorId) {
+          return;
+        }
+        __WEBPACK_IMPORTED_MODULE_7__services_EditorService__["a" /* default */].undoClose(editorId);
         break;}
 
+  }
+
+  getRecentlyClosedTabs() {
+    let closedEditors = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('ActiveWorkspaceSessionStore').closedEditors || [],
+    EditorStore = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('EditorStore');
+
+    if (!closedEditors) {
+      return;
+    }
+
+    return _.chain(closedEditors).
+    map(id => {
+      let editor = EditorStore.find(id),
+      editorModel = editor && editor.model;
+
+      if (!editorModel) {
+        return;
+      }
+
+      let configStore = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('ConfigurationStore'),
+      showIcons = configStore && configStore.get('editor.showIcons'),
+      Icon = showIcons && editorModel.getIcon(),
+      name = editorModel.name;
+
+      return (
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: editor.id, key: editor.id },
+
+          Icon &&
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab__icon' },
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Icon, { editor: editorModel })),
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { title: name },
+
+            name)));
+
+
+
+    }).
+    compact().
+    value();
   }
 
   closeDropdown() {
     _.invoke(this.refs, 'dropdown.__wrappedComponent.toggleDropdown', null, false);
   }
 
+  getEmptyStateForRecentlyClosed() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { disabled: true },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab__name' }, 'None')));
+
+
+
+
+
+  }
+
   render() {
 
+    let recentlyClosedTabs = this.getRecentlyClosedTabs(),
+    emptyStateForRecentlyClosed = this.getEmptyStateForRecentlyClosed(),
+    subMenuForRecentlyClosed = !_.isEmpty(recentlyClosedTabs) ? recentlyClosedTabs : emptyStateForRecentlyClosed;
+
     return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["a" /* Dropdown */], {
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["a" /* Dropdown */], {
           ref: 'dropdown',
           className: 'tab-actions-dropdown',
           onSelect: this.handleSelect,
           onToggle: this.props.onToggle },
 
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["b" /* DropdownButton */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["b" /* DropdownButton */], {
             dropdownStyle: 'nocaret',
             type: 'custom' },
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], { className: 'requester-tab-options', onClick: this.handleClick },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_MoreIcon__["a" /* default */], { className: 'requester-tab-options-icon' }))),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], { className: 'requester-tab-options', onClick: this.handleClick },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_MoreIcon__["a" /* default */], { className: 'requester-tab-options-icon' }))),
 
 
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["c" /* DropdownMenu */], { 'align-right': true },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["d" /* MenuItem */], { refKey: 'duplicate' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'duplicate' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["c" /* DropdownMenu */], { 'align-right': true },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'undo-close', hasSubMenu: true },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'undoClosed' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Recently Closed')),
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["f" /* SubMenuItem */], null,
+
+              subMenuForRecentlyClosed)),
+
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'duplicate' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'duplicate' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Duplicate Current Tab'))),
 
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'divider divider--space' }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["d" /* MenuItem */], { refKey: 'close-active' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'closeCurrentTab' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'close-active' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'closeCurrentTab' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Close Current Tab'),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__shortcut' }, Object(__WEBPACK_IMPORTED_MODULE_4__controllers_ShortcutsList__["c" /* getShortcutByName */])('closeCurrentTab')))),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__shortcut' }, Object(__WEBPACK_IMPORTED_MODULE_5__controllers_ShortcutsList__["c" /* getShortcutByName */])('closeCurrentTab')))),
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["d" /* MenuItem */], { refKey: 'force-close-active' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'forceCloseCurrentTab' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'force-close-active' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'forceCloseCurrentTab' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Force Close Current Tab'),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__shortcut' }, Object(__WEBPACK_IMPORTED_MODULE_4__controllers_ShortcutsList__["c" /* getShortcutByName */])('forceCloseCurrentTab')))),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__shortcut' }, Object(__WEBPACK_IMPORTED_MODULE_5__controllers_ShortcutsList__["c" /* getShortcutByName */])('forceCloseCurrentTab')))),
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["d" /* MenuItem */], { refKey: 'close-other' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'closeOtherTabs' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'close-other' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'closeOtherTabs' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Close All but Current Tab'))),
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["d" /* MenuItem */], { refKey: 'close-all' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'closeAllTabs' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'close-all' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'closeAllTabs' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Close All Tabs'))),
 
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__["d" /* MenuItem */], { refKey: 'force-close-all' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'forceCloseAllTabs' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], { refKey: 'force-close-all' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_XPaths_XPath__["a" /* default */], { identifier: 'forceCloseAllTabs' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-options__label' }, 'Force Close All Tabs'))))));
 
 
 
 
 
-  }};
+  }}) || _class;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 2986:
+/***/ 3052:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabContents; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_XPaths_XPath__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__TabContent__ = __webpack_require__(2987);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TabContent__ = __webpack_require__(3053);
 var _class;
-
 
 
 let
@@ -2045,6 +1698,7 @@ TabContents = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */
 
   constructor() {
     super(...arguments);
+    this.focus = this.focus.bind(this);
   }
 
   componentDidMount() {
@@ -2059,6 +1713,13 @@ TabContents = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */
     }
   }
 
+  focus() {
+    let activeTabId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('TabUIStore').activeTab,
+    tab = this.refs[activeTabId];
+
+    tab && tab.focus();
+  }
+
   getTabs() {
     let tabs = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('TabUIStore').tabContents,
     activeTab = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('TabUIStore').activeTab,
@@ -2070,18 +1731,14 @@ TabContents = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */
 
     return _.chain(tabs).
     map(tab => {
-      if (!EditorStore.find(tab)) {
+      let editor = EditorStore.find(tab);
+
+      if (!editor) {
         return;
       }
 
       return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_XPaths_XPath__["a" /* default */], {
-            key: tab,
-            identifier: tab,
-            isVisible: tab === activeTab },
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__TabContent__["a" /* default */], { tabId: tab, isActive: activeTab === tab })));
-
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__TabContent__["a" /* default */], { key: tab, tabId: tab, isActive: activeTab === tab, ref: tab }));
 
     }).
     compact().
@@ -2105,20 +1762,26 @@ TabContents = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */
 
 /***/ }),
 
-/***/ 2987:
+/***/ 3053:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabContent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_empty_states_CrashHandler__ = __webpack_require__(443);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_EditorService__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_empty_states_CrashHandler__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_EditorService__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
+
+
+
 
 
 
@@ -2127,11 +1790,12 @@ var _class;
 let
 
 
-TabContent = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */])(_class = class TabContent extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+TabContent = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a" /* observer */])(_class = class TabContent extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
   constructor() {
     super(...arguments);
 
+    this.focus = this.focus.bind(this);
     this.closeTab = this.closeTab.bind(this);
     this.handleScrollToTop = this.handleScrollToTop.bind(this);
     this.handleScrollToBottom = this.handleScrollToBottom.bind(this);
@@ -2166,19 +1830,24 @@ TabContent = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */]
   closeTab() {
     let tabId = this.props.tabId;
 
-    return __WEBPACK_IMPORTED_MODULE_5__services_EditorService__["a" /* default */].close({ id: tabId });
+    return __WEBPACK_IMPORTED_MODULE_6__services_EditorService__["a" /* default */].close({ id: tabId });
   }
 
   getTabContainerClasses({ isActive }) {
-    return __WEBPACK_IMPORTED_MODULE_2_classnames___default()({
+    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({
       'requester-tab-content-container': true,
       'is-hidden': !isActive });
 
   }
 
+  focus() {
+    let $node = Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["findDOMNode"])(this.refs.container);
+    $node && $node.focus();
+  }
+
   render() {
     let tabId = this.props.tabId,
-    editorStore = Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('EditorStore').find(tabId),
+    editorStore = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('EditorStore').find(tabId),
     editorModel = editorStore && editorStore.model;
 
     if (!editorModel) {
@@ -2188,12 +1857,14 @@ TabContent = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */]
     let EditorView = editorModel.getView();
 
     return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getTabContainerClasses({ isActive: this.props.isActive }) },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-content', ref: 'container', tabIndex: '-1' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_empty_states_CrashHandler__["a" /* default */], { onClose: this.closeTab },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(EditorView, {
-              id: tabId,
-              editor: editorModel })))));
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: tabId, isVisible: this.props.isActive },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getTabContainerClasses({ isActive: this.props.isActive }) },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'requester-tab-content', ref: 'container', tabIndex: '-1' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_empty_states_CrashHandler__["a" /* default */], { onClose: this.closeTab },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(EditorView, {
+                id: tabId,
+                editor: editorModel }))))));
+
 
 
 

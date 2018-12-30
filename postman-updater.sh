@@ -19,7 +19,7 @@ if [[ $? -eq 0 ]]; then
 fi
 
 cleanup() {
-    test -d $tempdir && rm -r $tempdir
+    test -d $tempdir && rm -rf $tempdir
 }
 
 trap cleanup EXIT

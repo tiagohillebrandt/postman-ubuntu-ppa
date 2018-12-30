@@ -1,4 +1,4 @@
-const initializeUpdater = require('@postman-app/updater').init,
+const initializeUpdater = require('@postman/app-updater').init,
       SerializedError = require('serialised-error'),
 
       electron = require('electron'),

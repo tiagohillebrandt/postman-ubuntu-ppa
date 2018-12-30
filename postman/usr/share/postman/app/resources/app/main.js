@@ -137,7 +137,7 @@ async.series([
 
         // Here there is a problem in booting shared process
         if (process === 'shared') {
-          if (!_.isEmpty(err)) {
+          if (err) {
             dialog.showErrorBox('Could not open Postman', 'Please contact help@getpostman.com');
             return;
           }

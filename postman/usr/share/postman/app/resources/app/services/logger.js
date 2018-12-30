@@ -2,7 +2,7 @@ const os = require('os'),
     mkdirp = require('mkdirp'),
     path = require('path'),
     { app } = require('electron'),
-    { Originator, Collectors } = require('@postman-app/logger'),
+    { Originator, Collectors } = require('@postman/app-logger'),
     { getValue } = require('../utils/processArg'),
 
     /**

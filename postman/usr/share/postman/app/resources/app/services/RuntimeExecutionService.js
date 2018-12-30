@@ -178,8 +178,7 @@ var RuntimeExecutionService = {
 
           addAborter(info.id, aborter);
 
-          let requestUrl = request.url && request.url.toString(),
-              requestHeaders = request.headers && request.headers.toObject();
+          let requestUrl = request.url && request.url.toString();
 
           pm.eventBus.channel('postman-runtime').publish({
             name: 'net',
@@ -192,7 +191,7 @@ var RuntimeExecutionService = {
               request: {
                 url: requestUrl,
                 method: request.method,
-                headers: requestHeaders
+                headers: request.headers && request.headers.toJSON()
               }
             }
           });
@@ -211,7 +210,7 @@ var RuntimeExecutionService = {
           consolePayload.request = {
             url: request && request.url && request.url.toString(),
             method: requestJSON.method,
-            headers: request && request.headers && request.headers.toObject(),
+            headers: request && request.headers && request.headers.toJSON(),
             body: requestJSON.body,
             certificate: requestJSON.certificate,
             proxy: requestJSON.proxy
@@ -221,7 +220,7 @@ var RuntimeExecutionService = {
             consolePayload.response = {
               responseTime: response.responseTime,
               code: response.code,
-              headers: response.headers && response.headers.toObject(),
+              headers: response.headers && response.headers.toJSON(),
               body: response.size().body / 1024 > 1024 ? 'Responses larger than 1MB are not shown' : response.text()
             };
           }
@@ -346,8 +345,7 @@ var RuntimeExecutionService = {
                 code: response.code,
                 status: response.status,
                 responseTime: response.responseTime,
-                responseSize: response.size(),
-                responseContentInfo: response.contentInfo()
+                responseSize: response.size()
               }
             }
           });
