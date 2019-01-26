@@ -1,6 +1,6 @@
 /**
  * marked - a markdown parser
- * Copyright (c) 2011-2014, Christopher Jeffrey. (MIT Licensed)
+ * Copyright (c) 2011-2018, Christopher Jeffrey. (MIT Licensed)
  * https://github.com/markedjs/marked
  */
 
@@ -541,11 +541,11 @@ var inline = {
   reflink: /^!?\[(label)\]\[(?!\s*\])((?:\\[\[\]]?|[^\[\]\\])+)\]/,
   nolink: /^!?\[(?!\s*\])((?:\[[^\[\]]*\]|\\[\[\]]|[^\[\]])*)\](?:\[\])?/,
   strong: /^__([^\s])__(?!_)|^\*\*([^\s])\*\*(?!\*)|^__([^\s][\s\S]*?[^\s])__(?!_)|^\*\*([^\s][\s\S]*?[^\s])\*\*(?!\*)/,
-  em: /^_([^\s_])_(?!_)|^\*([^\s*"<\[])\*(?!\*)|^_([^\s][\s\S]*?[^\s_])_(?!_)|^_([^\s_][\s\S]*?[^\s])_(?!_)|^\*([^\s"<\[][\s\S]*?[^\s*])\*(?!\*)|^\*([^\s*"<\[][\s\S]*?[^\s])\*(?!\*)/,
-  code: /^(`+)\s*([\s\S]*?[^`]?)\s*\1(?!`)/,
+  em: /^_([^\s_])_(?!_)|^\*([^\s*"<\[])\*(?!\*)|^_([^\s][\s\S]*?[^\s_])_(?!_|[^\s.])|^_([^\s_][\s\S]*?[^\s])_(?!_|[^\s.])|^\*([^\s"<\[][\s\S]*?[^\s*])\*(?!\*)|^\*([^\s*"<\[][\s\S]*?[^\s])\*(?!\*)/,
+  code: /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/,
   br: /^( {2,}|\\)\n(?!\s*$)/,
   del: noop,
-  text: /^[\s\S]+?(?=[\\<!\[`*]|\b_| {2,}\n|$)/
+  text: /^(`+|[^`])[\s\S]*?(?=[\\<!\[`*]|\b_| {2,}\n|$)/
 };
 
 inline._escapes = /\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/g;
@@ -605,17 +605,19 @@ inline.pedantic = merge({}, inline.normal, {
 
 inline.gfm = merge({}, inline.normal, {
   escape: edit(inline.escape).replace('])', '~|])').getRegex(),
-  url: edit(/^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/)
-    .replace('email', inline._email)
-    .getRegex(),
+  _extended_email: /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/,
+  url: /^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/,
   _backpedal: /(?:[^?!.,:;*_~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_~)]+(?!$))+/,
   del: /^~+(?=\S)([\s\S]*?\S)~+/,
   text: edit(inline.text)
     .replace(']|', '~]|')
-    .replace('|', '|https?://|ftp://|www\\.|[a-zA-Z0-9.!#$%&\'*+/=?^_`{\\|}~-]+@|')
+    .replace('|$', '|https?://|ftp://|www\\.|[a-zA-Z0-9.!#$%&\'*+/=?^_`{\\|}~-]+@|$')
     .getRegex()
 });
 
+inline.gfm.url = edit(inline.gfm.url)
+  .replace('email', inline.gfm._extended_email)
+  .getRegex();
 /**
  * GFM + Line Breaks Inline Grammar
  */
@@ -703,15 +705,15 @@ InlineLexer.prototype.output = function(src) {
 
     // url (gfm)
     if (!this.inLink && (cap = this.rules.url.exec(src))) {
-      do {
-        prevCapZero = cap[0];
-        cap[0] = this.rules._backpedal.exec(cap[0])[0];
-      } while (prevCapZero !== cap[0]);
-      src = src.substring(cap[0].length);
       if (cap[2] === '@') {
         text = escape(cap[0]);
         href = 'mailto:' + text;
       } else {
+        // do extended autolink path validation
+        do {
+          prevCapZero = cap[0];
+          cap[0] = this.rules._backpedal.exec(cap[0])[0];
+        } while (prevCapZero !== cap[0]);
         text = escape(cap[0]);
         if (cap[1] === 'www.') {
           href = 'http://' + text;
@@ -719,6 +721,7 @@ InlineLexer.prototype.output = function(src) {
           href = text;
         }
       }
+      src = src.substring(cap[0].length);
       out += this.renderer.link(href, null, text);
       continue;
     }
@@ -730,12 +733,18 @@ InlineLexer.prototype.output = function(src) {
       } else if (this.inLink && /^<\/a>/i.test(cap[0])) {
         this.inLink = false;
       }
+      if (!this.inRawBlock && /^<(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
+        this.inRawBlock = true;
+      } else if (this.inRawBlock && /^<\/(pre|code|kbd|script)(\s|>)/i.test(cap[0])) {
+        this.inRawBlock = false;
+      }
+
       src = src.substring(cap[0].length);
       out += this.options.sanitize
         ? this.options.sanitizer
           ? this.options.sanitizer(cap[0])
           : escape(cap[0])
-        : cap[0]
+        : cap[0];
       continue;
     }
 
@@ -820,7 +829,11 @@ InlineLexer.prototype.output = function(src) {
     // text
     if (cap = this.rules.text.exec(src)) {
       src = src.substring(cap[0].length);
-      out += this.renderer.text(escape(this.smartypants(cap[0])));
+      if (this.inRawBlock) {
+        out += this.renderer.text(cap[0]);
+      } else {
+        out += this.renderer.text(escape(this.smartypants(cap[0])));
+      }
       continue;
     }
 
@@ -834,7 +847,7 @@ InlineLexer.prototype.output = function(src) {
 
 InlineLexer.escapes = function(text) {
   return text ? text.replace(InlineLexer.rules._escapes, '$1') : text;
-}
+};
 
 /**
  * Compile Link
@@ -970,7 +983,7 @@ Renderer.prototype.checkbox = function(checked) {
     + 'disabled="" type="checkbox"'
     + (this.options.xhtml ? ' /' : '')
     + '> ';
-}
+};
 
 Renderer.prototype.paragraph = function(text) {
   return '<p>' + text + '</p>\n';
@@ -1021,24 +1034,8 @@ Renderer.prototype.del = function(text) {
 };
 
 Renderer.prototype.link = function(href, title, text) {
-  if (this.options.sanitize) {
-    try {
-      var prot = decodeURIComponent(unescape(href))
-        .replace(/[^\w:]/g, '')
-        .toLowerCase();
-    } catch (e) {
-      return text;
-    }
-    if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0 || prot.indexOf('data:') === 0) {
-      return text;
-    }
-  }
-  if (this.options.baseUrl && !originIndependentUrl.test(href)) {
-    href = resolveUrl(this.options.baseUrl, href);
-  }
-  try {
-    href = encodeURI(href).replace(/%25/g, '%');
-  } catch (e) {
+  href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
+  if (href === null) {
     return text;
   }
   var out = '<a href="' + escape(href) + '"';
@@ -1050,9 +1047,11 @@ Renderer.prototype.link = function(href, title, text) {
 };
 
 Renderer.prototype.image = function(href, title, text) {
-  if (this.options.baseUrl && !originIndependentUrl.test(href)) {
-    href = resolveUrl(this.options.baseUrl, href);
+  href = cleanUrl(this.options.sanitize, this.options.baseUrl, href);
+  if (href === null) {
+    return text;
   }
+
   var out = '<img src="' + href + '" alt="' + text + '"';
   if (title) {
     out += ' title="' + title + '"';
@@ -1080,16 +1079,16 @@ TextRenderer.prototype.codespan =
 TextRenderer.prototype.del =
 TextRenderer.prototype.text = function (text) {
   return text;
-}
+};
 
 TextRenderer.prototype.link =
 TextRenderer.prototype.image = function(href, title, text) {
   return '' + text;
-}
+};
 
 TextRenderer.prototype.br = function() {
   return '';
-}
+};
 
 /**
  * Parsing & Compiling
@@ -1274,13 +1273,31 @@ Parser.prototype.tok = function() {
  */
 
 function escape(html, encode) {
-  return html
-    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+  if (encode) {
+    if (escape.escapeTest.test(html)) {
+      return html.replace(escape.escapeReplace, function (ch) { return escape.replacements[ch]; });
+    }
+  } else {
+    if (escape.escapeTestNoEncode.test(html)) {
+      return html.replace(escape.escapeReplaceNoEncode, function (ch) { return escape.replacements[ch]; });
+    }
+  }
+
+  return html;
 }
+
+escape.escapeTest = /[&<>"']/;
+escape.escapeReplace = /[&<>"']/g;
+escape.replacements = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+};
+
+escape.escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/;
+escape.escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g;
 
 function unescape(html) {
   // explicitly match decimal, hex, and named HTML entities
@@ -1310,6 +1327,30 @@ function edit(regex, opt) {
       return new RegExp(regex, opt);
     }
   };
+}
+
+function cleanUrl(sanitize, base, href) {
+  if (sanitize) {
+    try {
+      var prot = decodeURIComponent(unescape(href))
+        .replace(/[^\w:]/g, '')
+        .toLowerCase();
+    } catch (e) {
+      return null;
+    }
+    if (prot.indexOf('javascript:') === 0 || prot.indexOf('vbscript:') === 0 || prot.indexOf('data:') === 0) {
+      return null;
+    }
+  }
+  if (base && !originIndependentUrl.test(href)) {
+    href = resolveUrl(base, href);
+  }
+  try {
+    href = encodeURI(href).replace(/%25/g, '%');
+  } catch (e) {
+    return null;
+  }
+  return href;
 }
 
 function resolveUrl(base, href) {
@@ -1442,7 +1483,7 @@ function marked(src, opt, callback) {
         i = 0;
 
     try {
-      tokens = Lexer.lex(src, opt)
+      tokens = Lexer.lex(src, opt);
     } catch (e) {
       return callback(e);
     }
@@ -1541,7 +1582,7 @@ marked.getDefaults = function () {
     tables: true,
     xhtml: false
   };
-}
+};
 
 marked.defaults = marked.getDefaults();
 

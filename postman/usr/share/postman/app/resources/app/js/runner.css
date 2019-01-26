@@ -447,6 +447,7 @@ th {
 /* Icons */
 /* Workspace Type Switcher */
 /* Invite */
+/* Fork label */
 /* Variables */
 /* Styles */
 .btn {
@@ -3536,6 +3537,78 @@ th {
   top: 0px;
   left: 0px; }
 
+.markdown-base-content {
+  padding: 20px;
+  background-color: var(--bg-secondary);
+  height: 100%; }
+  .markdown-base-content .markdown-editor-text-wrapper {
+    width: 100%; }
+    .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text {
+      color: var(--content-secondary);
+      font-family: "OpenSans", Helvetica, Arial, sans-serif;
+      line-height: 18px;
+      overflow: hidden;
+      position: relative;
+      font-family: "OpenSans", Helvetica, Arial, sans-serif;
+      cursor: text;
+      -webkit-user-select: text;
+      user-select: text;
+      cursor: text;
+      -webkit-user-select: text;
+      user-select: text; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text h1, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text h2, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text h3, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text h4, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text h5, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text h6 {
+        margin: 3px 0 0;
+        font-weight: 600;
+        font-size: 12px; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text hr {
+        border-style: none;
+        border-width: 0;
+        border-bottom: 1px solid var(--hairline-regular); }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text blockquote {
+        padding-left: 10px;
+        margin: 5px;
+        border-left: 3px solid var(--hairline-regular); }
+        .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text blockquote blockquote {
+          margin-left: 20px; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text p, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text span {
+        margin: 3px 0;
+        font-size: 11px; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text ul {
+        margin: 5px; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text a {
+        color: #f47023;
+        text-decoration: none; }
+        .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text a:hover {
+          text-decoration: underline; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text pre {
+        padding: 3px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--hairline-regular);
+        border-radius: 3px; }
+        .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text pre code {
+          padding: 0;
+          background-color: transparent;
+          border: 0;
+          border-radius: 0; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text code {
+        padding: 1px 3px;
+        font-family: "Cousine", monospace;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--hairline-regular);
+        border-radius: 3px; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text table {
+        border-collapse: collapse;
+        border: 1px solid var(--hairline-regular); }
+        .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text table tr, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text table td, .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text table th {
+          padding: 2px 5px;
+          border: 1px solid var(--hairline-regular); }
+        .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text table tbody tr:nth-child(2n) {
+          background-color: var(--bg-secondary); }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text img {
+        max-width: 50%; }
+      .markdown-base-content .markdown-editor-text-wrapper .markdown-editor-text p {
+        word-break: break-word; }
+
 .error-card-container {
   display: flex;
   width: 100%;
@@ -5162,6 +5235,14 @@ body {
         margin-bottom: 10px; }
         .workspace-browser__container .workspace-item-browser__container.collections .collections__item__header .collections__item__label__wrapper {
           flex: 1; }
+      .workspace-browser__container .workspace-item-browser__container.collections .collection__item__fork-label {
+        font-weight: normal;
+        font-size: 11px;
+        color: var(--content-secondary);
+        margin: 16px; }
+        .workspace-browser__container .workspace-item-browser__container.collections .collection__item__fork-label .pm-icon {
+          vertical-align: bottom;
+          margin-right: 8px; }
       .workspace-browser__container .workspace-item-browser__container.collections .collections__item__description {
         font-size: 12px;
         color: var(--content-primary);
@@ -6129,10 +6210,10 @@ body {
   .popover .popover-step {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px; }
+    padding-bottom: 10px;
+    font-size: 11px; }
     .popover .popover-step .popover-step-title {
       color: var(--accent-success);
-      font-size: 11px;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -6141,7 +6222,8 @@ body {
         margin-right: 10px; }
     .popover .popover-step .popover-dismiss {
       cursor: pointer;
-      align-self: center; }
+      align-self: center;
+      color: var(--content-secondary); }
   .popover .popover-header {
     display: flex;
     justify-content: space-between;

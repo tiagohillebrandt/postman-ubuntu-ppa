@@ -18,6 +18,14 @@ function bootstrap (config, done) {
   });
   start({
     models: pmModels,
+
+    // waterline adds a model called archive to store all records for `model.archive()`
+    // `archiveModelIdentity: false` will disable the `archive` functionality
+    // see https://github.com/balderdashy/waterline/blob/cc758f44c9dd2a771233a7acf3f34dd641407c5b/lib/waterline.js#L397-L400
+    // to avoid setting this in each of the model we set this property as the default setting
+    // for all models
+    // see https://github.com/balderdashy/waterline/blob/cc758f44c9dd2a771233a7acf3f34dd641407c5b/lib/waterline.js#L850-L854
+    defaultModelSettings: { archiveModelIdentity: false },
     adapters: { 'waterline-shared-nedb': wlSharedNeDB },
     datastores: { 'persistent-nedb': wlSharedNeDBFileConfig(waterlineConfig) }
   }, function (err, orm) {

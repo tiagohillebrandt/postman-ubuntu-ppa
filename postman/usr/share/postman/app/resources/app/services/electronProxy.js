@@ -6,7 +6,7 @@ var HttpProxy = require('http-proxy'),
     fs = require('fs'),
     urlParser = require('url');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 var regex_hostport = /^([^:]+)(:([0-9]+))?$/;
 

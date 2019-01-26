@@ -164,9 +164,9 @@ function getParent (model, type) {
 
 /**
  * filter disowned subtrees in populated collection
- * 
+ *
  * @param {Object} collection
- * 
+ *
 * @returns {Object} filtered collection
  */
 function filterDisownedCollectionSubTrees (collection) {
@@ -194,7 +194,7 @@ function filterDisownedCollectionSubTrees (collection) {
 
 /**
  * Util function to fix oreder of folder/requests
- * @param {*} collection 
+ * @param {*} collection
  */
 function fixEntityOrdersInCollection (collection) {
   let allFolders = _.map(collection.folders, 'id'),

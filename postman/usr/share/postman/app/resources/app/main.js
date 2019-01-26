@@ -7,7 +7,6 @@ var electron = require('electron'),
     circularJSON = require('circular-json'),
     _ = require('lodash').noConflict(),
     async = require('async'),
-    path = require('path'),
     electronProxy = require('./services/electronProxy').electronProxy,
     menuManager = require('./services/menuManager').menuManager,
     windowManager = require('./services/windowManager').windowManager,
@@ -19,13 +18,16 @@ var electron = require('electron'),
     setupOAuth2TokenRequester = require('./services/OAuth2TokenRequester'),
     os = require('os'),
     initializeEventBus = require('./common/initializeEventBus'),
+    { isAppUpdateEnabled } = require('./services/AutoUpdaterService'),
     myWindow = null,
     sharedWindow = null,
     bootstrapModels = require('./bootstrap-models'),
     initializeUpdaterHandler = require('./services/UpdaterHandler').init,
     RuntimeExecutionService = require('./services/RuntimeExecutionService'),
     ProtocolHandler = require('./services/ProtocolHandler'),
-    initializeLogger = require('./services/logger').init,
+    initializeLogger = require('./services/Logger').init,
+    initializePluginsHostHandler = require('./services/PluginsHostHandler').init,
+    CrashReporter = require('./services/CrashReporter'),
     { getValue } = require('./utils/processArg');
 
 const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
@@ -46,6 +48,7 @@ catch (e) {
 app.sessionId = process.pid; // set the current process id as sessionId
 
 global.pm = global.pm || {};
+
 async.series([
 
   /**
@@ -59,6 +62,11 @@ async.series([
     }
     cb(null);
   },
+
+  /**
+   * Iniitialize crash reporter
+   */
+  CrashReporter.init,
 
   /**
    * initializeLogger
@@ -99,7 +107,10 @@ async.series([
   (cb) => {
     ProtocolHandler.init(app);
     cb();
-  }
+  },
+
+  initializePluginsHostHandler
+
 ], (err) => {
 
   if (err) {
@@ -192,7 +203,18 @@ async.series([
       // Assign the values in app so that the renderers can make use of it.
       app.firstLoad = firstLoad;
       app.installationId = installationId;
+
+      // Set the user scope for crash reporter
+      CrashReporter.setUserScope({ app_id: installationId }, _.noop);
+      CrashReporter.setExtraScope({ session: app.sessionId }, _.noop);
     });
+  }
+
+  /**
+   * Setting whether App Updates are enabled or disabled
+   */
+  function populateUpdateSettings () {
+    app.isUpdateEnabled = isAppUpdateEnabled();
   }
 
   /** */
@@ -389,10 +411,13 @@ async.series([
   });
 
   app.on('before-quit', function () {
+    pm.logger.info('Qitting app');
     app.quittingApp = true;
     let sharedWindow = windowManager.getSharedWindow();
     sharedWindow && sharedWindow.show();
     app.updaterInstance = null; // clear the updater instance
+    pm.pluginHost.terminate();
+    pm.logger.info(pm.pluginHost.host);
   });
 
   /**
@@ -507,6 +532,7 @@ async.series([
     promptMoveToApplicationsFolder(() => {
       // Populates the installation id
       populateInstallationId();
+      populateUpdateSettings();
       windowManager.newLoaderWindow();
       sharedWindow = windowManager.newSharedWindow();
 

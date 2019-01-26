@@ -1,4 +1,5 @@
 var electron = require('electron'),
+    app = electron.app,
     Menu = electron.Menu,
     MenuItem = electron.MenuItem,
     windowManager = require('./windowManager').windowManager,
@@ -11,8 +12,8 @@ var electron = require('electron'),
     APP_UPDATE = 'app-update',
     APP_UPDATE_EVENTS = 'app-update-events',
     CHECK_FOR_ELECTRON_UPDATE = 'checkForElectronUpdate',
-    osxTopBarMenuTemplate = [
-      {
+    getOsxTopBarMenuTemplate = function () {
+      return [{
         label: appName,
         submenu: [
           { role: 'about' },
@@ -211,10 +212,10 @@ var electron = require('electron'),
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://getpostman.com/support', options); }
           }
         ]
-      }
-    ],
-    topBarMenuTemplate = [
-      {
+      }];
+    },
+    getTopBarMenuTemplate = function () {
+      return [{
         label: 'File',
         submenu: [
           {
@@ -365,15 +366,20 @@ var electron = require('electron'),
           }
         ]
       },
+
+      /**
+       * If current platform is linux and SNAP is running, removing the update flow
+       */
       {
         label: 'Help',
         role: 'help',
-        submenu: [
-          {
+        submenu: _.compact([
+          app.isUpdateEnabled ? {
             label: 'Check for Updates',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('checkElectronUpdates', null, options); }
-          },
-          { type: 'separator' },
+          } : null,
+          app.isUpdateEnabled ?
+          { type: 'separator' } : null,
           {
             label: 'Documentation',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://www.getpostman.com/docs/', options); }
@@ -390,9 +396,9 @@ var electron = require('electron'),
             label: 'Support',
             click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://getpostman.com/support', options); }
           }
-        ]
-      }
-    ],
+        ])
+      }];
+    },
     dockMenuTemplate = [
       {
         label: 'New Collection',
@@ -417,10 +423,10 @@ menuManager = {
   getMenuBarTemplate: function () {
     var platform = os.platform();
     if (platform === 'darwin') {
-      return osxTopBarMenuTemplate;
+      return getOsxTopBarMenuTemplate();
     }
     else {
-      return topBarMenuTemplate;
+      return getTopBarMenuTemplate();
     }
   },
 

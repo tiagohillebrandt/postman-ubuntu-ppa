@@ -7,8 +7,8 @@ var INTERNAL_CHANNEL_BROADCAST_MAIN = 'PM_EB_INT_BROADCAST_MAIN',
 
 /**
  * utility function to decide if current context is renderer or main process
- * 
- * @returns 
+ *
+ * @returns
  */
 function _isRenderer () {
   // renderer with nodeIntegration turned off
@@ -27,9 +27,9 @@ function _isRenderer () {
 
 /**
  * constructs webcontents id
- * 
- * @param {any} webContents 
- * @returns 
+ *
+ * @param {any} webContents
+ * @returns
  */
 function getWebContentsId (webContents) {
   return 'renderer-' + webContents.id;
@@ -37,8 +37,8 @@ function getWebContentsId (webContents) {
 
 /**
  * broadcasts to bus (renderer)
- * 
- * @param {any} message 
+ *
+ * @param {any} message
  */
 function _broadcastRenderer (message, options) {
   require('electron').ipcRenderer.send(INTERNAL_CHANNEL_BROADCAST_MAIN, message, options);
@@ -46,8 +46,8 @@ function _broadcastRenderer (message, options) {
 
 /**
  * broadcasts to bus (main)
- * 
- * @param {any} message 
+ *
+ * @param {any} message
  */
 function _broadcastMain (message) {
   _sendToWebContents(message);
@@ -55,8 +55,8 @@ function _broadcastMain (message) {
 
 /**
  * broadcast the message to all renderers
- * 
- * @param {any} message 
+ *
+ * @param {any} message
  */
 function _sendToWebContents (message) {
   var allWebContents = require('electron').webContents.getAllWebContents();
@@ -72,12 +72,12 @@ function _sendToWebContents (message) {
 
 /**
  * constructs broadcast message payload
- * 
- * @param {any} channel 
- * @param {any} payload 
- * @param {any} source 
- * @param {any} target 
- * @returns 
+ *
+ * @param {any} channel
+ * @param {any} payload
+ * @param {any} source
+ * @param {any} target
+ * @returns
  */
 function _constructMessage (channel, payload, source, target) {
   return {
@@ -90,8 +90,8 @@ function _constructMessage (channel, payload, source, target) {
 
 /**
  * gets current context
- * 
- * @returns 
+ *
+ * @returns
  */
 function _getCurrentContext () {
   // renderer process - window or webview
@@ -124,9 +124,9 @@ function EventBus (_context) {
 
   /**
    * publish to channel
-   * 
-   * @param {String} channel 
-   * @param {any} payload 
+   *
+   * @param {String} channel
+   * @param {any} payload
    */
   function _publish (channel, payload, options = {}) {
     var message = _constructMessage(channel, payload, _context);
@@ -146,9 +146,9 @@ function EventBus (_context) {
 
   /**
    * subscribe to channel
-   * 
-   * @param {String} channel 
-   * @param {any} payload 
+   *
+   * @param {String} channel
+   * @param {any} payload
    * @param {any} opts
    */
   function _subscribe (channel, listener, opts) {
@@ -163,9 +163,9 @@ function EventBus (_context) {
 
   /**
    * unsubscribe to listener from channel
-   * 
-   * @param {String} channel 
-   * @param {any} listener 
+   *
+   * @param {String} channel
+   * @param {any} listener
    */
   function _unsubscribe (channel, listener) {
     _emitter.removeListener(channel, listener);
@@ -173,8 +173,8 @@ function EventBus (_context) {
 
   /**
    * dispatch internal event to the channel
-   * 
-   * @param {any} message 
+   *
+   * @param {any} message
    */
   function _dispatch (message) {
     _emitter.emit(message.channel, message.payload);

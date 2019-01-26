@@ -925,7 +925,7 @@ exports.windowManager = {
 
   forceCloseAllWindows () {
     _.each(this.openWindowIds, (windowId) => {
-      window = BrowserWindow.fromId(parseInt(windowId));
+      let window = BrowserWindow.fromId(parseInt(windowId));
       window && this.removeListeners(window);
       window && window.destroy();
     });
