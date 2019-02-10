@@ -9606,7 +9606,7 @@ exports['default'] = JSONNestedNode;
 /***/ 94:
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.2' };
+var core = module.exports = { version: '2.6.3' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
