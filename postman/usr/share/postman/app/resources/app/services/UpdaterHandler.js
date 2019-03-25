@@ -3,7 +3,6 @@ const initializeUpdater = require('@postman/app-updater').init,
 
       electron = require('electron'),
 
-      appSettings = require('../services/appSettings').appSettings,
       AppUpdaterAdapter = require('../adapters/AppUpdaterAdapter'),
 
       APP_UPDATE = 'appUpdate',
@@ -109,8 +108,13 @@ const initializeUpdater = require('@postman/app-updater').init,
        * @param {String=} name
        * @param {String=} date
        * @param {String=} URL
+       * @param {String=} downloadVersion
        */
-      handleOnUpdateDownloaded = function (event, notes, name, date, URL) {
+      handleOnUpdateDownloaded = function (event, notes, name, date, URL, downloadVersion) {
+        if (downloadVersion) {
+          AppUpdaterAdapter.setDownloadedVersion(downloadVersion);
+        }
+
         pm.eventBus.channel(APP_UPDATE_EVENTS).publish({
           name: ELECTRON_UPDATE_DOWNLOADED,
           namespace: APP_UPDATE,
@@ -118,7 +122,8 @@ const initializeUpdater = require('@postman/app-updater').init,
             name,
             notes,
             date,
-            URL
+            URL,
+            downloadVersion
           }
         });
       },
@@ -200,7 +205,17 @@ const initializeUpdater = require('@postman/app-updater').init,
        * @param {Object} updaterInstance
        */
       restartAndUpdate = function (updaterInstance) {
-        updaterInstance.restartAppToUpdate();
+        // Marking restart flag as true to relaunch the app after applying updates
+        updaterInstance.restartAppToUpdate({ restart: true });
+      },
+
+      /**
+       * @method applyUpdateAndQuit
+       * @param {Object} updaterInstance
+       */
+      applyUpdateAndQuit = function (updaterInstance) {
+        // Marking restart flag as false to prevent relaunching the app after applying updates
+        updaterInstance.restartAppToUpdate({ restart: false });
       },
 
       /**
@@ -217,4 +232,7 @@ const initializeUpdater = require('@postman/app-updater').init,
        * =========================================
        */
 
-module.exports = { init };
+module.exports = {
+  init,
+  applyUpdateAndQuit
+ };

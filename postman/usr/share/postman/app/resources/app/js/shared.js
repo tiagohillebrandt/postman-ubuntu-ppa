@@ -1,77 +1,6 @@
-webpackJsonp([21],{
+webpackJsonp([23],{
 
-/***/ 100:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isScheduler;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function isScheduler(value) {
-    return value && typeof value.schedule === 'function';
-}
-//# sourceMappingURL=isScheduler.js.map
-
-
-/***/ }),
-
-/***/ 102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = map;
-/* unused harmony export MapOperator */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function map(project, thisArg) {
-    return function mapOperation(source) {
-        if (typeof project !== 'function') {
-            throw new TypeError('argument is not a function. Are you looking for `mapTo()`?');
-        }
-        return source.lift(new MapOperator(project, thisArg));
-    };
-}
-var MapOperator = /*@__PURE__*/ (function () {
-    function MapOperator(project, thisArg) {
-        this.project = project;
-        this.thisArg = thisArg;
-    }
-    MapOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new MapSubscriber(subscriber, this.project, this.thisArg));
-    };
-    return MapOperator;
-}());
-
-var MapSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](MapSubscriber, _super);
-    function MapSubscriber(destination, project, thisArg) {
-        var _this = _super.call(this, destination) || this;
-        _this.project = project;
-        _this.count = 0;
-        _this.thisArg = thisArg || _this;
-        return _this;
-    }
-    MapSubscriber.prototype._next = function (value) {
-        var result;
-        try {
-            result = this.project.call(this.thisArg, value, this.count++);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.next(result);
-    };
-    return MapSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=map.js.map
-
-
-/***/ }),
-
-/***/ 1075:
+/***/ 1200:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -103,27 +32,27 @@ exports.default = function (tasks, callback) {
     nextTask([]);
 };
 
-var _isArray = __webpack_require__(149);
+var _isArray = __webpack_require__(168);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _noop = __webpack_require__(210);
+var _noop = __webpack_require__(188);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(567);
+var _once = __webpack_require__(612);
 
 var _once2 = _interopRequireDefault(_once);
 
-var _slice = __webpack_require__(457);
+var _slice = __webpack_require__(494);
 
 var _slice2 = _interopRequireDefault(_slice);
 
-var _onlyOnce = __webpack_require__(786);
+var _onlyOnce = __webpack_require__(613);
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(211);
+var _wrapAsync = __webpack_require__(172);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -191,12 +120,12 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 1076:
+/***/ 1201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(242);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(276);
 
 
 
@@ -267,30 +196,30 @@ function eventToChangesets(event, callback) {
 
 /***/ }),
 
-/***/ 1077:
+/***/ 1202:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  Bucket: __webpack_require__(716),
-  SyncClient: __webpack_require__(2534)
+  Bucket: __webpack_require__(800),
+  SyncClient: __webpack_require__(2868)
 };
 
 
 /***/ }),
 
-/***/ 1078:
+/***/ 1203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_HeaderPresetController__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_HistoryController__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HistoryResponseController__ = __webpack_require__(491);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_EnvironmentController__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_WorkspaceController__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_CollectionRunController__ = __webpack_require__(622);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_HeaderPresetController__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_HistoryController__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HistoryResponseController__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_EnvironmentController__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_WorkspaceController__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_CollectionRunController__ = __webpack_require__(283);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -418,10 +347,9 @@ function getWorkspaceInstance(id, opts, cb) {
   then(workspace => {
     if (!workspace) {
       console.error('DBS.getInstance err');
-      cb(EntityNotFoundError('workspace', id));
+      cb(null);
+      return;
     }
-
-    console.log('populated workspace', workspace);
 
     let sanitized = sanitizeInstance(workspace, _extends({}, opts));
 
@@ -429,7 +357,7 @@ function getWorkspaceInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(EntityNotFoundError('workspace', id));
+    cb(null);
   });
 }
 
@@ -450,7 +378,7 @@ function getCollectionInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(EntityNotFoundError('collection', id));
+    cb(null);
   });
 }
 
@@ -471,7 +399,7 @@ function getFolderInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(EntityNotFoundError('folder', id));
+    cb(null);
   });
 }
 
@@ -492,7 +420,7 @@ function getRequestInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(EntityNotFoundError('request', id));
+    cb(null);
   });
 }
 
@@ -513,7 +441,7 @@ function getResponseInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(EntityNotFoundError('response', id));
+    cb(null);
   });
 }
 
@@ -531,7 +459,7 @@ function getGlobalsInstance(id, opts, cb) {
     let sanitizedGlobals = null;
 
     if (!globals) {
-      cb(EntityNotFoundError('globals', id));
+      cb(null);
       return;
     }
 
@@ -549,7 +477,7 @@ function getGlobalsInstance(id, opts, cb) {
     return;
   }).catch(error => {
     console.error('Error getting globals instance. Check `getGlobalsInstance` in DatabaseService', error);
-    cb(error);
+    cb(null);
   });
 }
 
@@ -567,7 +495,7 @@ function getEnvironmentInstance(id, opts, cb) {
     let sanitizedEnvironment = null;
 
     if (!environment) {
-      cb(EntityNotFoundError('environment', id));
+      cb(null);
       return;
     }
 
@@ -585,7 +513,7 @@ function getEnvironmentInstance(id, opts, cb) {
     return;
   }).catch(error => {
     console.error('Error getting environment instance. Check `getEnvironmentInstance` in DatabaseService', error);
-    cb(error);
+    cb(null);
   });
 }
 
@@ -604,14 +532,14 @@ function getUserInstance(id, opts, cb) {
   then(function (globals) {
     if (!globals) {
       console.error('DBS.getInstance err');
-      return cb(EntityNotFoundError('user', id));
+      return cb(null);
     }
 
     return cb(null, { globals: globals.values });
   }).
   catch(function (e) {
     console.error('DBS.getInstance err', e);
-    return cb(e);
+    cb(null);
   });
 }
 
@@ -628,7 +556,7 @@ function getHeaderPresetInstance(id, opts, cb) {
   get({ id }).then(headerPreset => {
     if (!headerPreset) {
       console.error('DBS.getInstance err');
-      cb(EntityNotFoundError('headerPreset', id));
+      cb(null);
       return;
     }
 
@@ -639,7 +567,7 @@ function getHeaderPresetInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(err);
+    cb(null);
     return;
   });
 }
@@ -657,7 +585,7 @@ function getHistoryInstance(id, opts, cb) {
   get({ id }, getControllerOptions(opts)).then(history => {
     if (!history) {
       console.error('DBS.getInstance err');
-      cb(EntityNotFoundError('history', id));
+      cb(null);
       return;
     }
 
@@ -668,7 +596,7 @@ function getHistoryInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(err);
+    cb(null);
     return;
   });
 }
@@ -686,7 +614,7 @@ function getHistoryResponseInstance(id, opts, cb) {
   get({ id }).then(historyResponse => {
     if (!historyResponse) {
       console.error('DBS.getInstance err');
-      cb(EntityNotFoundError('historyresponse', id));
+      cb(null);
       return;
     }
 
@@ -697,7 +625,7 @@ function getHistoryResponseInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(err);
+    cb(null);
     return;
   });
 }
@@ -728,7 +656,7 @@ function getBucketModel() {
       return;
     }).
     catch(err => {
-      callback(err, null);
+      callback(null);
     });
   }
 
@@ -751,7 +679,7 @@ function getCollectionRunInstance(id, opts, cb) {
   get({ id }).then(collectionRun => {
     if (!collectionRun) {
       console.error('DBS.getInstance err');
-      cb(EntityNotFoundError('collectionRun', id));
+      cb(null);
       return;
     }
 
@@ -762,7 +690,7 @@ function getCollectionRunInstance(id, opts, cb) {
   }).
   catch(err => {
     console.error('DBS.getInstance err', err);
-    cb(err);
+    cb(null);
     return;
   });
 }
@@ -784,7 +712,7 @@ function getService() {
 
 /***/ }),
 
-/***/ 1079:
+/***/ 1204:
 /***/ (function(module, exports) {
 
 /**
@@ -830,7 +758,7 @@ module.exports = function parseuri(str) {
 
 /***/ }),
 
-/***/ 1080:
+/***/ 1205:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -842,7 +770,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 1081:
+/***/ 1206:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -870,11 +798,11 @@ function isBuf(obj) {
           (withNativeArrayBuffer && (obj instanceof global.ArrayBuffer || isView(obj)));
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 1082:
+/***/ 1207:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -882,15 +810,15 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(2553);
-var Socket = __webpack_require__(1088);
-var Emitter = __webpack_require__(251);
-var parser = __webpack_require__(717);
-var on = __webpack_require__(1089);
-var bind = __webpack_require__(1090);
-var debug = __webpack_require__(519)('socket.io-client:manager');
-var indexOf = __webpack_require__(1087);
-var Backoff = __webpack_require__(2569);
+var eio = __webpack_require__(2886);
+var Socket = __webpack_require__(1213);
+var Emitter = __webpack_require__(291);
+var parser = __webpack_require__(801);
+var on = __webpack_require__(1214);
+var bind = __webpack_require__(1215);
+var debug = __webpack_require__(578)('socket.io-client:manager');
+var indexOf = __webpack_require__(1212);
+var Backoff = __webpack_require__(2902);
 
 /**
  * IE6+ hasOwnProperty
@@ -1454,17 +1382,17 @@ Manager.prototype.onreconnect = function () {
 
 /***/ }),
 
-/***/ 1083:
+/***/ 1208:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(718);
-var XHR = __webpack_require__(2556);
-var JSONP = __webpack_require__(2565);
-var websocket = __webpack_require__(2566);
+var XMLHttpRequest = __webpack_require__(802);
+var XHR = __webpack_require__(2889);
+var JSONP = __webpack_require__(2898);
+var websocket = __webpack_require__(2899);
 
 /**
  * Export transports.
@@ -1511,23 +1439,23 @@ function polling (opts) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 1084:
+/***/ 1209:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(719);
-var parseqs = __webpack_require__(520);
-var parser = __webpack_require__(252);
-var inherit = __webpack_require__(521);
-var yeast = __webpack_require__(1086);
-var debug = __webpack_require__(522)('engine.io-client:polling');
+var Transport = __webpack_require__(803);
+var parseqs = __webpack_require__(579);
+var parser = __webpack_require__(292);
+var inherit = __webpack_require__(580);
+var yeast = __webpack_require__(1211);
+var debug = __webpack_require__(581)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -1540,7 +1468,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(718);
+  var XMLHttpRequest = __webpack_require__(802);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -1767,7 +1695,7 @@ Polling.prototype.uri = function () {
 
 /***/ }),
 
-/***/ 1085:
+/***/ 1210:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* global Blob File */
@@ -1776,7 +1704,7 @@ Polling.prototype.uri = function () {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(2558);
+var isArray = __webpack_require__(2891);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof Blob === 'function' ||
@@ -1835,11 +1763,11 @@ function hasBinary (obj) {
   return false;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12).Buffer))
 
 /***/ }),
 
-/***/ 1086:
+/***/ 1211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1915,7 +1843,7 @@ module.exports = yeast;
 
 /***/ }),
 
-/***/ 1087:
+/***/ 1212:
 /***/ (function(module, exports) {
 
 
@@ -1931,7 +1859,7 @@ module.exports = function(arr, obj){
 
 /***/ }),
 
-/***/ 1088:
+/***/ 1213:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1939,14 +1867,14 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(717);
-var Emitter = __webpack_require__(251);
-var toArray = __webpack_require__(2568);
-var on = __webpack_require__(1089);
-var bind = __webpack_require__(1090);
-var debug = __webpack_require__(519)('socket.io-client:socket');
-var parseqs = __webpack_require__(520);
-var hasBin = __webpack_require__(1085);
+var parser = __webpack_require__(801);
+var Emitter = __webpack_require__(291);
+var toArray = __webpack_require__(2901);
+var on = __webpack_require__(1214);
+var bind = __webpack_require__(1215);
+var debug = __webpack_require__(578)('socket.io-client:socket');
+var parseqs = __webpack_require__(579);
+var hasBin = __webpack_require__(1210);
 
 /**
  * Module exports.
@@ -2376,7 +2304,7 @@ Socket.prototype.binary = function (binary) {
 
 /***/ }),
 
-/***/ 1089:
+/***/ 1214:
 /***/ (function(module, exports) {
 
 
@@ -2407,34 +2335,7 @@ function on (obj, ev, fn) {
 
 /***/ }),
 
-/***/ 109:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = tryCatch;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__errorObject__ = __webpack_require__(99);
-/** PURE_IMPORTS_START _errorObject PURE_IMPORTS_END */
-
-var tryCatchTarget;
-function tryCatcher() {
-    try {
-        return tryCatchTarget.apply(this, arguments);
-    }
-    catch (e) {
-        __WEBPACK_IMPORTED_MODULE_0__errorObject__["a" /* errorObject */].e = e;
-        return __WEBPACK_IMPORTED_MODULE_0__errorObject__["a" /* errorObject */];
-    }
-}
-function tryCatch(fn) {
-    tryCatchTarget = fn;
-    return tryCatcher;
-}
-//# sourceMappingURL=tryCatch.js.map
-
-
-/***/ }),
-
-/***/ 1090:
+/***/ 1215:
 /***/ (function(module, exports) {
 
 /**
@@ -2464,7 +2365,496 @@ module.exports = function(obj, fn){
 
 /***/ }),
 
-/***/ 1091:
+/***/ 1216:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process, _) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_GateKeeperController__ = __webpack_require__(716);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+
+
+
+
+const GATEKEEPER = 'gatekeeper',
+WEBSOCKET = 'websocket',
+SYNC = 'sync',
+NOTIFICATION = 'notification',
+MAX_FAILURE_RETRY = 5,
+INITIAL_FAILURE_TIMEOUT = 60,
+FAILURE_TIMEOUT_INCREMENT_IN_SEC = 60;
+
+let gatekeeperChannel,
+retryTimeOut,
+failureTimeOut,
+continuousFailureAttempt = 0,
+failureRetryTimeOutInSec = INITIAL_FAILURE_TIMEOUT;
+
+/**
+                                                     * Initiator
+                                                     * Attaches the handler for the app-events to handler the sync
+                                                     */
+function init() {
+  gatekeeperChannel = pm.eventBus.channel(GATEKEEPER);
+  pm.eventBus.channel('model-events').subscribe(handleModelEvents);
+}
+
+/**
+   * @method handleModelEvents
+   * @param {Object} event
+   */
+function handleModelEvents(event) {
+  let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event);
+  if (eventNamespace === 'user') {
+    Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["i" /* processEvent */])(event, ['bootstrappedUser'], handleGateKeeperRefresh);
+  } else
+
+  if (eventNamespace === 'team') {
+    Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["i" /* processEvent */])(event, ['activated', 'deactivated', 'planChanged'], handleGateKeeperRefresh);
+  } else
+
+  if (eventNamespace === 'gatekeeper') {
+    Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["i" /* processEvent */])(event, ['remoteFetched'], handleGateKeeperRefreshedEvent);
+  }
+}
+
+/**
+   * Handler for gatekeeper refreshing
+   * @method handleGateKeeperRefresh
+   *
+   */
+function handleGateKeeperRefresh(event, cb) {
+  // It can happen async no need to wait for the whole side effects
+  process.nextTick(cb);
+
+  Object(__WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('remoteFetch', 'gatekeeper')).
+  then(response => {
+    // Resetting the continuousFailureAttempt to zero;
+    continuousFailureAttempt = 0;
+    failureRetryTimeOutInSec = INITIAL_FAILURE_TIMEOUT;
+  }).
+  catch(err => {
+    pm.logger.warn('GateKeeperService~handleGateKeeperRefresh error', err);
+
+    continuousFailureAttempt = continuousFailureAttempt + 1;
+
+    if (continuousFailureAttempt >= MAX_FAILURE_RETRY) {
+      return;
+    }
+
+    setFailureTimeout();
+  });
+}
+
+/**
+   * Handler for gateKeeper refresh events
+   * @param {Object} eventData
+   */
+function handleGateKeeperRefreshedEvent(event, cb) {
+  // It can happen async no need to wait for the whole side effects
+  process.nextTick(cb);
+
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event) !== 'gatekeeper') {
+    return;
+  }
+
+  let meta = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["e" /* getEventMeta */])(event) || {},
+  previousKeys = meta.previousKeys || [];
+
+  __WEBPACK_IMPORTED_MODULE_1__controllers_GateKeeperController__["a" /* default */].getAll({}).
+  then(currentKeys => {
+    if (!currentKeys) {
+      // If current keys are empty throw an error which should not happen
+      pm.logger.error('GateKeeperService~handleGateKeeperRefreshedEvent Current keys are empty');
+      return;
+    }
+
+    _.map(currentKeys, key => {
+      let previousKey = _.find(previousKeys, { type: key.type });
+
+      // This should call the toggle
+      // 1. If the key is not there previously
+      // 2. If the pervious value is different from the current value
+      if (!previousKey || key.value !== previousKey.value) {
+        _handleKeyToggler(key);
+      }
+    });
+  });
+
+  setRetryTimeout(meta);
+}
+
+/**
+   * @method setFailureTimeout
+   * @descriptions It sets the timeout for retry the gatekeeper refresh
+   */
+function setFailureTimeout() {
+
+  clearTimeout(retryTimeOut);
+  clearTimeout(failureTimeOut);
+
+  failureTimeOut = setTimeout(handleGateKeeperRefresh, failureRetryTimeOutInSec * 1000);
+
+  failureRetryTimeOutInSec = failureRetryTimeOutInSec + FAILURE_TIMEOUT_INCREMENT_IN_SEC;
+}
+
+/**
+   * @method setRetryTimeout
+   * @descriptions It sets the timeout for retry the gatekeeper refresh
+   * @param {Object} options
+   * @param {Number} options.retryAfterInSeconds
+   */
+function setRetryTimeout(options = {}) {
+  let { retryAfterInSeconds } = options;
+
+  if (!retryAfterInSeconds || typeof retryAfterInSeconds !== 'number') {
+    pm.logger.error('GateKeeperService~setRetryTimeout Invalid Retry timeout value ', retryAfterInSeconds);
+    return;
+  }
+
+  clearTimeout(retryTimeOut);
+  clearTimeout(failureTimeOut);
+
+  retryTimeOut = setTimeout(handleGateKeeperRefresh, retryAfterInSeconds * 1000);
+}
+
+/**
+   * @private
+   * @method _handleKeyToggler
+   * @param {Object} key
+   * It calls the appropriate toggle functions for key type
+   */
+function _handleKeyToggler(key = {}) {
+  switch (key.type) {
+    case WEBSOCKET:
+      return onWebsocketToggle(key.value);
+    case SYNC:
+      return onSyncToggle(key.value);
+    case NOTIFICATION:
+      return onNotificationToggle(key.value);
+    default:
+      pm.logger.warn('GateKeeperService~_handleKeyToggler: Invalid key type provided', key);}
+
+}
+
+
+/**
+   * Called for sync toggle
+   * @param {Boolean} isEnabled
+   */
+function onSyncToggle(isEnabled) {
+  pm.logger.info(`GateKeeperService~onSyncToggle Key value toggled for Sync to ${isEnabled}`);
+  gatekeeperChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(SYNC, GATEKEEPER, { isEnabled }));
+}
+
+/**
+   * @param {Boolean} isEnabled
+   */
+function onNotificationToggle(isEnabled) {
+  pm.logger.info(`GateKeeperService~onNotificationToggle Key value toggled for Notification to ${isEnabled}`);
+  gatekeeperChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(NOTIFICATION, GATEKEEPER, { isEnabled }));
+}
+
+/**
+   *
+   * @param {Boolean} isEnabled
+   */
+function onWebsocketToggle(isEnabled) {
+  pm.logger.info(`GateKeeperService~onWebsocketToggle Key value toggled for Websocket to ${isEnabled}`);
+  gatekeeperChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(WEBSOCKET, GATEKEEPER, { isEnabled }));
+}
+
+
+/**
+   * @method isWebSocketEnabled
+   * @return Promise<Boolean>
+   */
+function isWebSocketEnabled() {
+  return _getGateKeeperValue(WEBSOCKET);
+}
+
+/**
+   * @method isSyncEnabled
+   * @return Promise<Boolean>
+   */
+function isSyncEnabled() {
+  return _getGateKeeperValue(SYNC);
+}
+
+/**
+   * @method isNotificationEnabled
+   * @return Promise<Boolean>
+   */
+function isNotificationEnabled() {
+  return _getGateKeeperValue(NOTIFICATION);
+}
+
+/**
+   * @private
+   * @method _getGateKeeperValue
+   * @param {String} keyType
+   * @return Promise<Boolean>
+   */
+function _getGateKeeperValue(type) {
+  if (!type) {
+    return Promise.reject(new Error('GateKeeperService~_getGateKeeperKey: Invalid keyType' + type));
+  }
+
+  return __WEBPACK_IMPORTED_MODULE_1__controllers_GateKeeperController__["a" /* default */].get({ type }).
+  then(syncKey => {
+    if (!syncKey || !_.isBoolean(syncKey.value)) {
+      return false;
+    }
+
+    return syncKey.value;
+  }).
+  catch(e => {
+    pm.logger.error('GateKeeperService~_getGateKeeperKey: Error in fetching gatekeeper key', e);
+    return false;
+  });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({ init, isWebSocketEnabled, isSyncEnabled, isNotificationEnabled });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5), __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 1217:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscribeAddedModelsInWindowStream; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_sync_helpers_SocketEventsService__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceSessionController__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_WorkspaceController__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CurrentUserController__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__ = __webpack_require__(698);
+
+
+
+
+
+
+
+
+
+
+
+
+const POLLING_INTERVAL_TO_GET_MODELS = 10 * 1000, // 10 seconds
+UNSUBSCRIBE_INTERVAL = 1 * 60 * 1000, // 1 minute
+THROTTLE_INTERVAL_FETCH_MODELS_SYNC_WINDOW = 300; // 300 ms
+
+let isUnsubscribeTimelineSubscriptionActive = false,
+isSyncAndSubscribeTimelineSubscriptionActive = false;
+
+/**
+                                                       * Used to get the models in the sync window
+                                                       *
+                                                       * @returns {Promise Array.<Object>}
+                                                       */
+async function getModelsInSyncWindow() {
+
+  // find user
+  let user = await __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CurrentUserController__["a" /* default */].get();
+
+  // bail out if user is missing(during logout) or signed out user
+  if (!user || user.id === '0') {
+    return [];
+  }
+
+  // find the windows
+  let windowRecords = (await pm.models.window.find()) || []; // WindowController not used here because it is not available in renderer process
+
+  // find active workspace sessions for those windows
+  let activeWorkspaceSessions = (await __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceSessionController__["a" /* default */].getAll({ id: windowRecords.map(w => w.activeSession) })) || [];
+
+  // find workspaces for those sessions
+  let activeWorkspaces = (await __WEBPACK_IMPORTED_MODULE_5__modules_controllers_WorkspaceController__["a" /* default */].getAll({ id: activeWorkspaceSessions.map(s => s.workspace) })) || [];
+
+  let activeTimelineIds = [];
+
+  // push user, user is always in sync window
+  activeTimelineIds.push({ model: 'user', modelId: user.id });
+
+  _.forEach(activeWorkspaces, workspace => {
+    activeTimelineIds.push({
+      model: 'workspace',
+      modelId: workspace.id });
+
+
+    if (!workspace.dependencies) {
+      return;
+    }
+
+    _.forEach(workspace.dependencies.collections, collectionUid => {
+      activeTimelineIds.push({
+        model: 'collection',
+        modelId: collectionUid });
+
+    });
+
+    _.forEach(workspace.dependencies.environments, environmentUid => {
+      activeTimelineIds.push({
+        model: 'environment',
+        modelId: environmentUid });
+
+    });
+  });
+
+  return activeTimelineIds;
+}
+
+
+/**
+   * An observable that emits
+   */
+let workspaceChanges$ = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](function (observer) {
+  let unsubscribeFromModelEvents = pm.eventBus.channel('model-events').subscribe(event => {
+    observer.next(event);
+  });
+
+  return function () {
+    unsubscribeFromModelEvents && unsubscribeFromModelEvents();
+  };
+}).
+pipe(
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
+  let eventName = Object(__WEBPACK_IMPORTED_MODULE_7__modules_model_event__["f" /* getEventName */])(event),
+  eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_7__modules_model_event__["g" /* getEventNamespace */])(event);
+
+  if (eventName === 'switchWorkspace' && eventNamespace === 'workspace') {
+    return true;
+  }
+}));
+
+
+/**
+      * Observable that emits one value when a model is craeted locally.
+      * Note that this is listening to changesets created on sync client instead of models created on DB.
+      * This makes sure that when we attempt syncing, the item is present on the sync client.
+      */
+let localModelCreates$ = Object(__WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__["a" /* getRealtimeOutgoingMessagesObservable */])().
+pipe(
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(changeset => {
+  if (!changeset) {
+    return false;
+  }
+
+  if (changeset.model === 'collection' && (changeset.action === 'import' || changeset.action === 'create')) {
+    return true;
+  }
+
+  if (changeset.model === 'environment' && (changeset.action === 'import' || changeset.action === 'create')) {
+    return true;
+  }
+
+  return false;
+}));
+
+
+// merge all events that can change the models that need to be synced
+// add a timer to recover any events we miss
+// throttle the events
+// then read the current list of models to sync
+const modelsInSyncWindowObservable$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["i" /* merge */])(workspaceChanges$, localModelCreates$, Object(__WEBPACK_IMPORTED_MODULE_3__modules_sync_helpers_SocketEventsService__["a" /* getSocketConnectsObservable */])(), Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["h" /* interval */])(POLLING_INTERVAL_TO_GET_MODELS)).
+pipe(
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["l" /* throttleTime */])(THROTTLE_INTERVAL_FETCH_MODELS_SYNC_WINDOW, __WEBPACK_IMPORTED_MODULE_0_rxjs__["d" /* asyncScheduler */], { leading: true, trailing: true }),
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(getModelsInSyncWindow),
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
+/* harmony export (immutable) */ __webpack_exports__["a"] = modelsInSyncWindowObservable$;
+
+
+
+
+/**
+           * Similar to modelsInSyncWindowObservable$
+           *
+           * Includes terminating when socket disconnects and a tickle whenever socket connects
+           */
+let modelsInSyncWindowWithComplete$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["i" /* merge */])(modelsInSyncWindowObservable$).
+pipe(
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["k" /* takeUntil */])(Object(__WEBPACK_IMPORTED_MODULE_3__modules_sync_helpers_SocketEventsService__["b" /* getSocketDisconnectsObservable */])()));
+
+
+/**
+                                               */
+function syncAndSubscribeTimelineSubscription() {
+  // should bail out to refrain from adding more subscriptions
+  if (isSyncAndSubscribeTimelineSubscriptionActive) {
+    return;
+  }
+
+  // this observable completes when the socket disconnects
+  modelsInSyncWindowWithComplete$.
+  subscribe(modelsInWindow => {
+    _.forEach(modelsInWindow, timelineId => {
+      Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["c" /* syncAndSubscribeTimeline */])(timelineId);
+    });
+  }, () => {
+    pm.logger.error('SyncWindowService~syncAndSubscribeTimelineSubscription: Error in the active models in window stream');
+
+    // this is needed so on complete to reset the flag
+    isSyncAndSubscribeTimelineSubscriptionActive = false;
+  }, () => {
+    // this is needed so on complete to reset the flag
+    isSyncAndSubscribeTimelineSubscriptionActive = false;
+  });
+}
+
+/**
+   */
+function unsubscribeTimelineSubscription() {
+  // should bail out to refrain from adding more subscriptions
+  if (isUnsubscribeTimelineSubscriptionActive) {
+    return;
+  }
+
+  // this observable completes when the socket disconnects
+  modelsInSyncWindowWithComplete$.
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["l" /* throttleTime */])(UNSUBSCRIBE_INTERVAL, __WEBPACK_IMPORTED_MODULE_0_rxjs__["d" /* asyncScheduler */], { leading: false, trailing: true })).
+
+  subscribe(modelsInSyncWindow => {
+    let subscribedModels = Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["a" /* getSubscribedTimelines */])();
+
+    let timelinesToUnsubscribe = _.differenceWith(subscribedModels, modelsInSyncWindow, (item1, item2) => {
+      return item1.model === item2.model && item1.modelId === item2.modelId;
+    });
+
+    _.forEach(timelinesToUnsubscribe, timelineId => {
+      Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["f" /* unsubscribeTimeline */])(timelineId);
+    });
+  }, () => {
+    pm.logger.error('SyncWindowService~unsubscribeTimelineSubscription: Error in the active models in window stream');
+
+    // this is needed so on error to reset the flag
+    isUnsubscribeTimelineSubscriptionActive = false;
+  }, () => {
+
+    // this is needed so on complete to reset the flag
+    isUnsubscribeTimelineSubscriptionActive = false;
+  });
+}
+
+/**
+   * Subscribe to the added models stream
+   */
+function subscribeAddedModelsInWindowStream() {
+  syncAndSubscribeTimelineSubscription();
+  unsubscribeTimelineSubscription();
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 1218:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2498,31 +2888,233 @@ function transformLayout(config) {
 
 /***/ }),
 
-/***/ 1092:
+/***/ 1276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export NEVER */
-/* unused harmony export never */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_noop__ = __webpack_require__(447);
-/** PURE_IMPORTS_START _Observable,_util_noop PURE_IMPORTS_END */
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mobx__ = __webpack_require__(7);
 
 
-var NEVER = /*@__PURE__*/ new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](__WEBPACK_IMPORTED_MODULE_1__util_noop__["a" /* noop */]);
-function never() {
-    return NEVER;
-}
-//# sourceMappingURL=never.js.map
 
+
+
+
+
+
+const DEFAULT_LIMIT = 10,
+POLLING_HEADER_NAME = 'x-polling-interval',
+acceptedNotificationTypes = ['toast', 'banner', 'backgroundPush', 'modal'];
+
+let alreadyInitialized = false;
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  /**
+                 * Fetches the base URL from S3 bucket
+                 */
+  fetchBaseUrl() {
+    return __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(pm.notificationPollingConfigUrl).
+    then(({ body }) => {
+      if (body.config && body.config.notificationsUrl) {
+        return body.config.notificationsUrl;
+      }
+      return pm.notificationPollingBaseUrl;
+    }).
+    catch(({ error }) => {
+      return pm.notificationPollingBaseUrl;
+    });
+  },
+
+  /**
+     * Checks that the function was not already called. If not, attaches listeners and initializes variables
+     */
+  async init() {
+    if (alreadyInitialized) {
+      return;
+    }
+
+    const isUserSignedIn = await this.isUserSignedIn();
+
+    this.nextPolling = null;
+    this.nextPollInterval = 7200000; // 2HRS. FALLBACK INTERVAL IF THE API CALL FAILS FOR THE FIRST TIME
+
+    // This is called before so that we can initiate signed in user notification polling as soon as the user signs in
+    this.attachSyncFinishListener();
+
+    if (!isUserSignedIn) {
+      pm.notificationPollingBaseUrl = await this.fetchBaseUrl();
+      this.fetchNotifications();
+    }
+  },
+
+  /**
+      * Function to attach a bootstrap finish listener and trigger fetchNotifications for signed in users
+      */
+  async attachSyncFinishListener() {
+    let syncStatusStore = Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('SyncStatusStore');
+
+    syncStatusStore.onSyncAvailable().
+    then(() => {
+      this._fetchSignedInNotifications();
+    });
+  },
+
+  async _fetchSignedInNotifications() {
+    let currentUser = await this.fetchCurrentUser();
+
+    pm.notificationPollingBaseUrl = currentUser.syncserver_url;
+
+    // If the user is signed out and signs back in, we call fetchNotifications
+    this.fetchNotifications();
+  },
+
+  /**
+     * Attaches model listeners and listens to internet connectivity
+     */
+  attachListeners() {
+    pm.mediator.on('appOnline', async () => {
+      if (!alreadyInitialized) {
+        this.fetchNotifications();
+      }
+    });
+  },
+
+  /**
+     * Fetches notification from sync URL and sets the next polling interval - clears the poll interval previously set.
+     * Also computes headers and params based on user status (Signed in or not)
+     */
+  async fetchNotifications() {
+    const currentUser = await this.fetchCurrentUser();
+
+    let { notificationURL, headers } = this.computeNotificationURLAndHeaders(currentUser);
+
+    // If the user's status changes before the timeout is triggered, we unset the existing timer
+    this.nextPolling && clearTimeout(this.nextPolling);
+
+    __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(notificationURL, {
+      headers: headers }).
+    then(({ body, headers }) => {
+      let nextPoll = parseInt(headers.get(POLLING_HEADER_NAME));
+
+      if (!_.isNaN(nextPoll)) {
+        clearTimeout(this.nextPolling);
+
+        this.nextPollInterval = nextPoll; // Caching the poll interval
+        this.nextPolling = setTimeout(() => this.fetchNotifications(), nextPoll);
+      }
+
+      alreadyInitialized = true;
+      return this._dispatchUnreadNotifications(body);
+    }).
+    catch(({ error }) => {
+
+      // Incase the API fetch fails, we set timeout to the previously cached interval
+      this.nextPolling = setTimeout(() => this.fetchNotifications(), this.nextPollInterval);
+    });
+  },
+
+  /**
+     * Extracts notifications, filters unread
+     * @param { Object } notifications
+     */
+  _dispatchUnreadNotifications(notifications) {
+
+    _.chain(notifications).
+    filter(notification => {
+      return notification.data && notification.data.events && !_.some(notification.data.events, { key: 'viewed' });
+    }).
+    forEach(notification => {
+      return this._dispatchNotification(notification.data);
+    }).
+    value();
+  },
+
+  /**
+     * Creates the notification event and dispatches user action
+     * @param { Object } notification
+     */
+  async _dispatchNotification(notification) {
+
+    let isUserSignedIn = await this.isUserSignedIn(),
+    meta = {};
+
+    if (!isUserSignedIn) {
+      meta = { source: 'SignedOutUser' };
+    }
+
+    // Adding source in meta to distinguish who's triggering the event so that the logic is not dependent on checking if the user is signed in or not.
+    let notificationEvent = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["a" /* createEvent */])('create', 'notification', notification, null, meta);
+    return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(notificationEvent);
+  },
+
+  /**
+     * Returns user object from the controller
+     * @returns { Object } currentUser
+     */
+  fetchCurrentUser() {
+
+    return __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get().then(user => {
+      return user;
+    });
+  },
+
+  /**
+      * Checks if the user is signed
+      * @returns { Boolean } isUserSignedIn
+      */
+  async isUserSignedIn() {
+    let { id } = await this.fetchCurrentUser();
+    return id !== '0';
+  },
+
+  /**
+     * Checks if the user is offline
+     * @returns { Boolean } isUserOffline
+     */
+  isUserOffline() {
+    return !navigator.onLine;
+  },
+
+  /**
+      * Sets access token in the header if the user is signed in or app id in the params if the user is signed out
+      * @param { Object } currentUser
+      * @returns { Object }
+      */
+  computeNotificationURLAndHeaders(currentUser) {
+    let notificationURL = `${pm.notificationPollingBaseUrl}/notification?limit=${DEFAULT_LIMIT}&events=viewed`,
+    headers = {};
+
+    if (currentUser.id === '0') {
+      notificationURL += `&app_id=${pm.app.get('installationId')}`;
+    } else
+    {
+      const token = _.get(currentUser, 'auth.access_token');
+
+      // Add type filter with the notification type we want to show
+      notificationURL += `&type=${acceptedNotificationTypes.join('&type=')}&groupByType=true`;
+
+      headers = {
+        'x-access-token': token };
+
+    }
+
+    return { notificationURL, headers };
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 1156:
+/***/ 1282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(17);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(23);
 let
 
 SyncIssueHelper = class SyncIssueHelper {
@@ -2567,5395 +3159,7 @@ SyncIssueHelper = class SyncIssueHelper {
 
 /***/ }),
 
-/***/ 1159:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__internal_operators_audit__ = __webpack_require__(730);
-/* unused harmony reexport audit */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__internal_operators_auditTime__ = __webpack_require__(1161);
-/* unused harmony reexport auditTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__internal_operators_buffer__ = __webpack_require__(1163);
-/* unused harmony reexport buffer */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__internal_operators_bufferCount__ = __webpack_require__(1164);
-/* unused harmony reexport bufferCount */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__internal_operators_bufferTime__ = __webpack_require__(1165);
-/* unused harmony reexport bufferTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__internal_operators_bufferToggle__ = __webpack_require__(1166);
-/* unused harmony reexport bufferToggle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__internal_operators_bufferWhen__ = __webpack_require__(1167);
-/* unused harmony reexport bufferWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__internal_operators_catchError__ = __webpack_require__(1168);
-/* unused harmony reexport catchError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__internal_operators_combineAll__ = __webpack_require__(1169);
-/* unused harmony reexport combineAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__internal_operators_combineLatest__ = __webpack_require__(1170);
-/* unused harmony reexport combineLatest */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__internal_operators_concat__ = __webpack_require__(1176);
-/* unused harmony reexport concat */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__internal_operators_concatAll__ = __webpack_require__(740);
-/* unused harmony reexport concatAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__internal_operators_concatMap__ = __webpack_require__(741);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_12__internal_operators_concatMap__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__internal_operators_concatMapTo__ = __webpack_require__(1177);
-/* unused harmony reexport concatMapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__internal_operators_count__ = __webpack_require__(1178);
-/* unused harmony reexport count */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__internal_operators_debounce__ = __webpack_require__(1179);
-/* unused harmony reexport debounce */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__internal_operators_debounceTime__ = __webpack_require__(1180);
-/* unused harmony reexport debounceTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__internal_operators_defaultIfEmpty__ = __webpack_require__(258);
-/* unused harmony reexport defaultIfEmpty */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__internal_operators_delay__ = __webpack_require__(1181);
-/* unused harmony reexport delay */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__internal_operators_delayWhen__ = __webpack_require__(1182);
-/* unused harmony reexport delayWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__internal_operators_dematerialize__ = __webpack_require__(1183);
-/* unused harmony reexport dematerialize */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__internal_operators_distinct__ = __webpack_require__(1184);
-/* unused harmony reexport distinct */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__internal_operators_distinctUntilChanged__ = __webpack_require__(743);
-/* unused harmony reexport distinctUntilChanged */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__internal_operators_distinctUntilKeyChanged__ = __webpack_require__(1185);
-/* unused harmony reexport distinctUntilKeyChanged */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__internal_operators_elementAt__ = __webpack_require__(1186);
-/* unused harmony reexport elementAt */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__internal_operators_endWith__ = __webpack_require__(1187);
-/* unused harmony reexport endWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__internal_operators_every__ = __webpack_require__(1188);
-/* unused harmony reexport every */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__internal_operators_exhaust__ = __webpack_require__(1189);
-/* unused harmony reexport exhaust */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__internal_operators_exhaustMap__ = __webpack_require__(1190);
-/* unused harmony reexport exhaustMap */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__internal_operators_expand__ = __webpack_require__(1191);
-/* unused harmony reexport expand */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__internal_operators_filter__ = __webpack_require__(259);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_30__internal_operators_filter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__internal_operators_finalize__ = __webpack_require__(1192);
-/* unused harmony reexport finalize */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__internal_operators_find__ = __webpack_require__(745);
-/* unused harmony reexport find */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__internal_operators_findIndex__ = __webpack_require__(1193);
-/* unused harmony reexport findIndex */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__internal_operators_first__ = __webpack_require__(1194);
-/* unused harmony reexport first */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__internal_operators_groupBy__ = __webpack_require__(760);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_35__internal_operators_groupBy__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__internal_operators_ignoreElements__ = __webpack_require__(1195);
-/* unused harmony reexport ignoreElements */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__internal_operators_isEmpty__ = __webpack_require__(1196);
-/* unused harmony reexport isEmpty */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__internal_operators_last__ = __webpack_require__(1197);
-/* unused harmony reexport last */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__internal_operators_map__ = __webpack_require__(102);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_39__internal_operators_map__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__internal_operators_mapTo__ = __webpack_require__(1198);
-/* unused harmony reexport mapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__internal_operators_materialize__ = __webpack_require__(1199);
-/* unused harmony reexport materialize */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__internal_operators_max__ = __webpack_require__(1200);
-/* unused harmony reexport max */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__internal_operators_merge__ = __webpack_require__(1201);
-/* unused harmony reexport merge */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__internal_operators_mergeAll__ = __webpack_require__(535);
-/* unused harmony reexport mergeAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__internal_operators_mergeMap__ = __webpack_require__(257);
-/* unused harmony reexport mergeMap */
-/* unused harmony reexport flatMap */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__internal_operators_mergeMapTo__ = __webpack_require__(1202);
-/* unused harmony reexport mergeMapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__internal_operators_mergeScan__ = __webpack_require__(1203);
-/* unused harmony reexport mergeScan */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__internal_operators_min__ = __webpack_require__(1204);
-/* unused harmony reexport min */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__internal_operators_multicast__ = __webpack_require__(227);
-/* unused harmony reexport multicast */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__internal_operators_observeOn__ = __webpack_require__(747);
-/* unused harmony reexport observeOn */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__internal_operators_onErrorResumeNext__ = __webpack_require__(1205);
-/* unused harmony reexport onErrorResumeNext */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__internal_operators_pairwise__ = __webpack_require__(1206);
-/* unused harmony reexport pairwise */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__internal_operators_partition__ = __webpack_require__(1207);
-/* unused harmony reexport partition */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__internal_operators_pluck__ = __webpack_require__(1209);
-/* unused harmony reexport pluck */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__internal_operators_publish__ = __webpack_require__(1210);
-/* unused harmony reexport publish */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__internal_operators_publishBehavior__ = __webpack_require__(1211);
-/* unused harmony reexport publishBehavior */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__internal_operators_publishLast__ = __webpack_require__(1212);
-/* unused harmony reexport publishLast */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__internal_operators_publishReplay__ = __webpack_require__(1213);
-/* unused harmony reexport publishReplay */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__internal_operators_race__ = __webpack_require__(1216);
-/* unused harmony reexport race */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__internal_operators_reduce__ = __webpack_require__(437);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_60__internal_operators_reduce__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__internal_operators_repeat__ = __webpack_require__(1217);
-/* unused harmony reexport repeat */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__internal_operators_repeatWhen__ = __webpack_require__(1218);
-/* unused harmony reexport repeatWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__internal_operators_retry__ = __webpack_require__(1219);
-/* unused harmony reexport retry */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__internal_operators_retryWhen__ = __webpack_require__(1220);
-/* unused harmony reexport retryWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__internal_operators_refCount__ = __webpack_require__(539);
-/* unused harmony reexport refCount */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__internal_operators_sample__ = __webpack_require__(1221);
-/* unused harmony reexport sample */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__internal_operators_sampleTime__ = __webpack_require__(1222);
-/* unused harmony reexport sampleTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__internal_operators_scan__ = __webpack_require__(538);
-/* unused harmony reexport scan */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__internal_operators_sequenceEqual__ = __webpack_require__(1223);
-/* unused harmony reexport sequenceEqual */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__internal_operators_share__ = __webpack_require__(1224);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_70__internal_operators_share__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__internal_operators_shareReplay__ = __webpack_require__(1225);
-/* unused harmony reexport shareReplay */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__internal_operators_single__ = __webpack_require__(1226);
-/* unused harmony reexport single */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__internal_operators_skip__ = __webpack_require__(1227);
-/* unused harmony reexport skip */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__internal_operators_skipLast__ = __webpack_require__(1228);
-/* unused harmony reexport skipLast */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__internal_operators_skipUntil__ = __webpack_require__(1229);
-/* unused harmony reexport skipUntil */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__internal_operators_skipWhile__ = __webpack_require__(1230);
-/* unused harmony reexport skipWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__internal_operators_startWith__ = __webpack_require__(1231);
-/* unused harmony reexport startWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__internal_operators_subscribeOn__ = __webpack_require__(1232);
-/* unused harmony reexport subscribeOn */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__internal_operators_switchAll__ = __webpack_require__(1237);
-/* unused harmony reexport switchAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__internal_operators_switchMap__ = __webpack_require__(540);
-/* unused harmony reexport switchMap */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__internal_operators_switchMapTo__ = __webpack_require__(1238);
-/* unused harmony reexport switchMapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__internal_operators_take__ = __webpack_require__(536);
-/* unused harmony reexport take */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__internal_operators_takeLast__ = __webpack_require__(537);
-/* unused harmony reexport takeLast */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__internal_operators_takeUntil__ = __webpack_require__(1239);
-/* unused harmony reexport takeUntil */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__internal_operators_takeWhile__ = __webpack_require__(1240);
-/* unused harmony reexport takeWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__internal_operators_tap__ = __webpack_require__(744);
-/* unused harmony reexport tap */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__internal_operators_throttle__ = __webpack_require__(748);
-/* unused harmony reexport throttle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__internal_operators_throttleTime__ = __webpack_require__(1241);
-/* unused harmony reexport throttleTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__internal_operators_throwIfEmpty__ = __webpack_require__(436);
-/* unused harmony reexport throwIfEmpty */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__internal_operators_timeInterval__ = __webpack_require__(1242);
-/* unused harmony reexport timeInterval */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__internal_operators_timeout__ = __webpack_require__(1243);
-/* unused harmony reexport timeout */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__internal_operators_timeoutWith__ = __webpack_require__(749);
-/* unused harmony reexport timeoutWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__internal_operators_timestamp__ = __webpack_require__(1244);
-/* unused harmony reexport timestamp */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__internal_operators_toArray__ = __webpack_require__(1245);
-/* unused harmony reexport toArray */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__internal_operators_window__ = __webpack_require__(1246);
-/* unused harmony reexport window */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__internal_operators_windowCount__ = __webpack_require__(1247);
-/* unused harmony reexport windowCount */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__internal_operators_windowTime__ = __webpack_require__(1248);
-/* unused harmony reexport windowTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_98__internal_operators_windowToggle__ = __webpack_require__(1249);
-/* unused harmony reexport windowToggle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_99__internal_operators_windowWhen__ = __webpack_require__(1250);
-/* unused harmony reexport windowWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_100__internal_operators_withLatestFrom__ = __webpack_require__(1251);
-/* unused harmony reexport withLatestFrom */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_101__internal_operators_zip__ = __webpack_require__(1252);
-/* unused harmony reexport zip */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_102__internal_operators_zipAll__ = __webpack_require__(1253);
-/* unused harmony reexport zipAll */
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=index.js.map
-
-
-/***/ }),
-
-/***/ 1160:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = toSubscriber;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__symbol_rxSubscriber__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Observer__ = __webpack_require__(731);
-/** PURE_IMPORTS_START _Subscriber,_symbol_rxSubscriber,_Observer PURE_IMPORTS_END */
-
-
-
-function toSubscriber(nextOrObserver, error, complete) {
-    if (nextOrObserver) {
-        if (nextOrObserver instanceof __WEBPACK_IMPORTED_MODULE_0__Subscriber__["a" /* Subscriber */]) {
-            return nextOrObserver;
-        }
-        if (nextOrObserver[__WEBPACK_IMPORTED_MODULE_1__symbol_rxSubscriber__["a" /* rxSubscriber */]]) {
-            return nextOrObserver[__WEBPACK_IMPORTED_MODULE_1__symbol_rxSubscriber__["a" /* rxSubscriber */]]();
-        }
-    }
-    if (!nextOrObserver && !error && !complete) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Subscriber__["a" /* Subscriber */](__WEBPACK_IMPORTED_MODULE_2__Observer__["a" /* empty */]);
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Subscriber__["a" /* Subscriber */](nextOrObserver, error, complete);
-}
-//# sourceMappingURL=toSubscriber.js.map
-
-
-/***/ }),
-
-/***/ 1161:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export auditTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__audit__ = __webpack_require__(730);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_timer__ = __webpack_require__(759);
-/** PURE_IMPORTS_START _scheduler_async,_audit,_observable_timer PURE_IMPORTS_END */
-
-
-
-function auditTime(duration, scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_0__scheduler_async__["a" /* async */];
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_1__audit__["a" /* audit */])(function () { return Object(__WEBPACK_IMPORTED_MODULE_2__observable_timer__["a" /* timer */])(duration, scheduler); });
-}
-//# sourceMappingURL=auditTime.js.map
-
-
-/***/ }),
-
-/***/ 1162:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Action; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/** PURE_IMPORTS_START tslib,_Subscription PURE_IMPORTS_END */
-
-
-var Action = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](Action, _super);
-    function Action(scheduler, work) {
-        return _super.call(this) || this;
-    }
-    Action.prototype.schedule = function (state, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        return this;
-    };
-    return Action;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]));
-
-//# sourceMappingURL=Action.js.map
-
-
-/***/ }),
-
-/***/ 1163:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export buffer */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function buffer(closingNotifier) {
-    return function bufferOperatorFunction(source) {
-        return source.lift(new BufferOperator(closingNotifier));
-    };
-}
-var BufferOperator = /*@__PURE__*/ (function () {
-    function BufferOperator(closingNotifier) {
-        this.closingNotifier = closingNotifier;
-    }
-    BufferOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new BufferSubscriber(subscriber, this.closingNotifier));
-    };
-    return BufferOperator;
-}());
-var BufferSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BufferSubscriber, _super);
-    function BufferSubscriber(destination, closingNotifier) {
-        var _this = _super.call(this, destination) || this;
-        _this.buffer = [];
-        _this.add(Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(_this, closingNotifier));
-        return _this;
-    }
-    BufferSubscriber.prototype._next = function (value) {
-        this.buffer.push(value);
-    };
-    BufferSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        var buffer = this.buffer;
-        this.buffer = [];
-        this.destination.next(buffer);
-    };
-    return BufferSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=buffer.js.map
-
-
-/***/ }),
-
-/***/ 1164:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export bufferCount */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function bufferCount(bufferSize, startBufferEvery) {
-    if (startBufferEvery === void 0) {
-        startBufferEvery = null;
-    }
-    return function bufferCountOperatorFunction(source) {
-        return source.lift(new BufferCountOperator(bufferSize, startBufferEvery));
-    };
-}
-var BufferCountOperator = /*@__PURE__*/ (function () {
-    function BufferCountOperator(bufferSize, startBufferEvery) {
-        this.bufferSize = bufferSize;
-        this.startBufferEvery = startBufferEvery;
-        if (!startBufferEvery || bufferSize === startBufferEvery) {
-            this.subscriberClass = BufferCountSubscriber;
-        }
-        else {
-            this.subscriberClass = BufferSkipCountSubscriber;
-        }
-    }
-    BufferCountOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new this.subscriberClass(subscriber, this.bufferSize, this.startBufferEvery));
-    };
-    return BufferCountOperator;
-}());
-var BufferCountSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BufferCountSubscriber, _super);
-    function BufferCountSubscriber(destination, bufferSize) {
-        var _this = _super.call(this, destination) || this;
-        _this.bufferSize = bufferSize;
-        _this.buffer = [];
-        return _this;
-    }
-    BufferCountSubscriber.prototype._next = function (value) {
-        var buffer = this.buffer;
-        buffer.push(value);
-        if (buffer.length == this.bufferSize) {
-            this.destination.next(buffer);
-            this.buffer = [];
-        }
-    };
-    BufferCountSubscriber.prototype._complete = function () {
-        var buffer = this.buffer;
-        if (buffer.length > 0) {
-            this.destination.next(buffer);
-        }
-        _super.prototype._complete.call(this);
-    };
-    return BufferCountSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-var BufferSkipCountSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BufferSkipCountSubscriber, _super);
-    function BufferSkipCountSubscriber(destination, bufferSize, startBufferEvery) {
-        var _this = _super.call(this, destination) || this;
-        _this.bufferSize = bufferSize;
-        _this.startBufferEvery = startBufferEvery;
-        _this.buffers = [];
-        _this.count = 0;
-        return _this;
-    }
-    BufferSkipCountSubscriber.prototype._next = function (value) {
-        var _a = this, bufferSize = _a.bufferSize, startBufferEvery = _a.startBufferEvery, buffers = _a.buffers, count = _a.count;
-        this.count++;
-        if (count % startBufferEvery === 0) {
-            buffers.push([]);
-        }
-        for (var i = buffers.length; i--;) {
-            var buffer = buffers[i];
-            buffer.push(value);
-            if (buffer.length === bufferSize) {
-                buffers.splice(i, 1);
-                this.destination.next(buffer);
-            }
-        }
-    };
-    BufferSkipCountSubscriber.prototype._complete = function () {
-        var _a = this, buffers = _a.buffers, destination = _a.destination;
-        while (buffers.length > 0) {
-            var buffer = buffers.shift();
-            if (buffer.length > 0) {
-                destination.next(buffer);
-            }
-        }
-        _super.prototype._complete.call(this);
-    };
-    return BufferSkipCountSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=bufferCount.js.map
-
-
-/***/ }),
-
-/***/ 1165:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export bufferTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START tslib,_scheduler_async,_Subscriber,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-
-function bufferTime(bufferTimeSpan) {
-    var length = arguments.length;
-    var scheduler = __WEBPACK_IMPORTED_MODULE_1__scheduler_async__["a" /* async */];
-    if (Object(__WEBPACK_IMPORTED_MODULE_3__util_isScheduler__["a" /* isScheduler */])(arguments[arguments.length - 1])) {
-        scheduler = arguments[arguments.length - 1];
-        length--;
-    }
-    var bufferCreationInterval = null;
-    if (length >= 2) {
-        bufferCreationInterval = arguments[1];
-    }
-    var maxBufferSize = Number.POSITIVE_INFINITY;
-    if (length >= 3) {
-        maxBufferSize = arguments[2];
-    }
-    return function bufferTimeOperatorFunction(source) {
-        return source.lift(new BufferTimeOperator(bufferTimeSpan, bufferCreationInterval, maxBufferSize, scheduler));
-    };
-}
-var BufferTimeOperator = /*@__PURE__*/ (function () {
-    function BufferTimeOperator(bufferTimeSpan, bufferCreationInterval, maxBufferSize, scheduler) {
-        this.bufferTimeSpan = bufferTimeSpan;
-        this.bufferCreationInterval = bufferCreationInterval;
-        this.maxBufferSize = maxBufferSize;
-        this.scheduler = scheduler;
-    }
-    BufferTimeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new BufferTimeSubscriber(subscriber, this.bufferTimeSpan, this.bufferCreationInterval, this.maxBufferSize, this.scheduler));
-    };
-    return BufferTimeOperator;
-}());
-var Context = /*@__PURE__*/ (function () {
-    function Context() {
-        this.buffer = [];
-    }
-    return Context;
-}());
-var BufferTimeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BufferTimeSubscriber, _super);
-    function BufferTimeSubscriber(destination, bufferTimeSpan, bufferCreationInterval, maxBufferSize, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.bufferTimeSpan = bufferTimeSpan;
-        _this.bufferCreationInterval = bufferCreationInterval;
-        _this.maxBufferSize = maxBufferSize;
-        _this.scheduler = scheduler;
-        _this.contexts = [];
-        var context = _this.openContext();
-        _this.timespanOnly = bufferCreationInterval == null || bufferCreationInterval < 0;
-        if (_this.timespanOnly) {
-            var timeSpanOnlyState = { subscriber: _this, context: context, bufferTimeSpan: bufferTimeSpan };
-            _this.add(context.closeAction = scheduler.schedule(dispatchBufferTimeSpanOnly, bufferTimeSpan, timeSpanOnlyState));
-        }
-        else {
-            var closeState = { subscriber: _this, context: context };
-            var creationState = { bufferTimeSpan: bufferTimeSpan, bufferCreationInterval: bufferCreationInterval, subscriber: _this, scheduler: scheduler };
-            _this.add(context.closeAction = scheduler.schedule(dispatchBufferClose, bufferTimeSpan, closeState));
-            _this.add(scheduler.schedule(dispatchBufferCreation, bufferCreationInterval, creationState));
-        }
-        return _this;
-    }
-    BufferTimeSubscriber.prototype._next = function (value) {
-        var contexts = this.contexts;
-        var len = contexts.length;
-        var filledBufferContext;
-        for (var i = 0; i < len; i++) {
-            var context_1 = contexts[i];
-            var buffer = context_1.buffer;
-            buffer.push(value);
-            if (buffer.length == this.maxBufferSize) {
-                filledBufferContext = context_1;
-            }
-        }
-        if (filledBufferContext) {
-            this.onBufferFull(filledBufferContext);
-        }
-    };
-    BufferTimeSubscriber.prototype._error = function (err) {
-        this.contexts.length = 0;
-        _super.prototype._error.call(this, err);
-    };
-    BufferTimeSubscriber.prototype._complete = function () {
-        var _a = this, contexts = _a.contexts, destination = _a.destination;
-        while (contexts.length > 0) {
-            var context_2 = contexts.shift();
-            destination.next(context_2.buffer);
-        }
-        _super.prototype._complete.call(this);
-    };
-    BufferTimeSubscriber.prototype._unsubscribe = function () {
-        this.contexts = null;
-    };
-    BufferTimeSubscriber.prototype.onBufferFull = function (context) {
-        this.closeContext(context);
-        var closeAction = context.closeAction;
-        closeAction.unsubscribe();
-        this.remove(closeAction);
-        if (!this.closed && this.timespanOnly) {
-            context = this.openContext();
-            var bufferTimeSpan = this.bufferTimeSpan;
-            var timeSpanOnlyState = { subscriber: this, context: context, bufferTimeSpan: bufferTimeSpan };
-            this.add(context.closeAction = this.scheduler.schedule(dispatchBufferTimeSpanOnly, bufferTimeSpan, timeSpanOnlyState));
-        }
-    };
-    BufferTimeSubscriber.prototype.openContext = function () {
-        var context = new Context();
-        this.contexts.push(context);
-        return context;
-    };
-    BufferTimeSubscriber.prototype.closeContext = function (context) {
-        this.destination.next(context.buffer);
-        var contexts = this.contexts;
-        var spliceIndex = contexts ? contexts.indexOf(context) : -1;
-        if (spliceIndex >= 0) {
-            contexts.splice(contexts.indexOf(context), 1);
-        }
-    };
-    return BufferTimeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_2__Subscriber__["a" /* Subscriber */]));
-function dispatchBufferTimeSpanOnly(state) {
-    var subscriber = state.subscriber;
-    var prevContext = state.context;
-    if (prevContext) {
-        subscriber.closeContext(prevContext);
-    }
-    if (!subscriber.closed) {
-        state.context = subscriber.openContext();
-        state.context.closeAction = this.schedule(state, state.bufferTimeSpan);
-    }
-}
-function dispatchBufferCreation(state) {
-    var bufferCreationInterval = state.bufferCreationInterval, bufferTimeSpan = state.bufferTimeSpan, subscriber = state.subscriber, scheduler = state.scheduler;
-    var context = subscriber.openContext();
-    var action = this;
-    if (!subscriber.closed) {
-        subscriber.add(context.closeAction = scheduler.schedule(dispatchBufferClose, bufferTimeSpan, { subscriber: subscriber, context: context }));
-        action.schedule(state, bufferCreationInterval);
-    }
-}
-function dispatchBufferClose(arg) {
-    var subscriber = arg.subscriber, context = arg.context;
-    subscriber.closeContext(context);
-}
-//# sourceMappingURL=bufferTime.js.map
-
-
-/***/ }),
-
-/***/ 1166:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export bufferToggle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/** PURE_IMPORTS_START tslib,_Subscription,_util_subscribeToResult,_OuterSubscriber PURE_IMPORTS_END */
-
-
-
-
-function bufferToggle(openings, closingSelector) {
-    return function bufferToggleOperatorFunction(source) {
-        return source.lift(new BufferToggleOperator(openings, closingSelector));
-    };
-}
-var BufferToggleOperator = /*@__PURE__*/ (function () {
-    function BufferToggleOperator(openings, closingSelector) {
-        this.openings = openings;
-        this.closingSelector = closingSelector;
-    }
-    BufferToggleOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new BufferToggleSubscriber(subscriber, this.openings, this.closingSelector));
-    };
-    return BufferToggleOperator;
-}());
-var BufferToggleSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BufferToggleSubscriber, _super);
-    function BufferToggleSubscriber(destination, openings, closingSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.openings = openings;
-        _this.closingSelector = closingSelector;
-        _this.contexts = [];
-        _this.add(Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(_this, openings));
-        return _this;
-    }
-    BufferToggleSubscriber.prototype._next = function (value) {
-        var contexts = this.contexts;
-        var len = contexts.length;
-        for (var i = 0; i < len; i++) {
-            contexts[i].buffer.push(value);
-        }
-    };
-    BufferToggleSubscriber.prototype._error = function (err) {
-        var contexts = this.contexts;
-        while (contexts.length > 0) {
-            var context_1 = contexts.shift();
-            context_1.subscription.unsubscribe();
-            context_1.buffer = null;
-            context_1.subscription = null;
-        }
-        this.contexts = null;
-        _super.prototype._error.call(this, err);
-    };
-    BufferToggleSubscriber.prototype._complete = function () {
-        var contexts = this.contexts;
-        while (contexts.length > 0) {
-            var context_2 = contexts.shift();
-            this.destination.next(context_2.buffer);
-            context_2.subscription.unsubscribe();
-            context_2.buffer = null;
-            context_2.subscription = null;
-        }
-        this.contexts = null;
-        _super.prototype._complete.call(this);
-    };
-    BufferToggleSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        outerValue ? this.closeBuffer(outerValue) : this.openBuffer(innerValue);
-    };
-    BufferToggleSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.closeBuffer(innerSub.context);
-    };
-    BufferToggleSubscriber.prototype.openBuffer = function (value) {
-        try {
-            var closingSelector = this.closingSelector;
-            var closingNotifier = closingSelector.call(this, value);
-            if (closingNotifier) {
-                this.trySubscribe(closingNotifier);
-            }
-        }
-        catch (err) {
-            this._error(err);
-        }
-    };
-    BufferToggleSubscriber.prototype.closeBuffer = function (context) {
-        var contexts = this.contexts;
-        if (contexts && context) {
-            var buffer = context.buffer, subscription = context.subscription;
-            this.destination.next(buffer);
-            contexts.splice(contexts.indexOf(context), 1);
-            this.remove(subscription);
-            subscription.unsubscribe();
-        }
-    };
-    BufferToggleSubscriber.prototype.trySubscribe = function (closingNotifier) {
-        var contexts = this.contexts;
-        var buffer = [];
-        var subscription = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-        var context = { buffer: buffer, subscription: subscription };
-        contexts.push(context);
-        var innerSubscription = Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(this, closingNotifier, context);
-        if (!innerSubscription || innerSubscription.closed) {
-            this.closeBuffer(context);
-        }
-        else {
-            innerSubscription.context = context;
-            this.add(innerSubscription);
-            subscription.add(innerSubscription);
-        }
-    };
-    return BufferToggleSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=bufferToggle.js.map
-
-
-/***/ }),
-
-/***/ 1167:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export bufferWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subscription,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-
-function bufferWhen(closingSelector) {
-    return function (source) {
-        return source.lift(new BufferWhenOperator(closingSelector));
-    };
-}
-var BufferWhenOperator = /*@__PURE__*/ (function () {
-    function BufferWhenOperator(closingSelector) {
-        this.closingSelector = closingSelector;
-    }
-    BufferWhenOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new BufferWhenSubscriber(subscriber, this.closingSelector));
-    };
-    return BufferWhenOperator;
-}());
-var BufferWhenSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BufferWhenSubscriber, _super);
-    function BufferWhenSubscriber(destination, closingSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.closingSelector = closingSelector;
-        _this.subscribing = false;
-        _this.openBuffer();
-        return _this;
-    }
-    BufferWhenSubscriber.prototype._next = function (value) {
-        this.buffer.push(value);
-    };
-    BufferWhenSubscriber.prototype._complete = function () {
-        var buffer = this.buffer;
-        if (buffer) {
-            this.destination.next(buffer);
-        }
-        _super.prototype._complete.call(this);
-    };
-    BufferWhenSubscriber.prototype._unsubscribe = function () {
-        this.buffer = null;
-        this.subscribing = false;
-    };
-    BufferWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.openBuffer();
-    };
-    BufferWhenSubscriber.prototype.notifyComplete = function () {
-        if (this.subscribing) {
-            this.complete();
-        }
-        else {
-            this.openBuffer();
-        }
-    };
-    BufferWhenSubscriber.prototype.openBuffer = function () {
-        var closingSubscription = this.closingSubscription;
-        if (closingSubscription) {
-            this.remove(closingSubscription);
-            closingSubscription.unsubscribe();
-        }
-        var buffer = this.buffer;
-        if (this.buffer) {
-            this.destination.next(buffer);
-        }
-        this.buffer = [];
-        var closingNotifier = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(this.closingSelector)();
-        if (closingNotifier === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-            this.error(__WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */].e);
-        }
-        else {
-            closingSubscription = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-            this.closingSubscription = closingSubscription;
-            this.add(closingSubscription);
-            this.subscribing = true;
-            closingSubscription.add(Object(__WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__["a" /* subscribeToResult */])(this, closingNotifier));
-            this.subscribing = false;
-        }
-    };
-    return BufferWhenSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=bufferWhen.js.map
-
-
-/***/ }),
-
-/***/ 1168:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export catchError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_InnerSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-function catchError(selector) {
-    return function catchErrorOperatorFunction(source) {
-        var operator = new CatchOperator(selector);
-        var caught = source.lift(operator);
-        return (operator.caught = caught);
-    };
-}
-var CatchOperator = /*@__PURE__*/ (function () {
-    function CatchOperator(selector) {
-        this.selector = selector;
-    }
-    CatchOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new CatchSubscriber(subscriber, this.selector, this.caught));
-    };
-    return CatchOperator;
-}());
-var CatchSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](CatchSubscriber, _super);
-    function CatchSubscriber(destination, selector, caught) {
-        var _this = _super.call(this, destination) || this;
-        _this.selector = selector;
-        _this.caught = caught;
-        return _this;
-    }
-    CatchSubscriber.prototype.error = function (err) {
-        if (!this.isStopped) {
-            var result = void 0;
-            try {
-                result = this.selector(err, this.caught);
-            }
-            catch (err2) {
-                _super.prototype.error.call(this, err2);
-                return;
-            }
-            this._unsubscribeAndRecycle();
-            var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__["a" /* InnerSubscriber */](this, undefined, undefined);
-            this.add(innerSubscriber);
-            Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__["a" /* subscribeToResult */])(this, result, undefined, undefined, innerSubscriber);
-        }
-    };
-    return CatchSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=catchError.js.map
-
-
-/***/ }),
-
-/***/ 1169:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export combineAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_combineLatest__ = __webpack_require__(544);
-/** PURE_IMPORTS_START _observable_combineLatest PURE_IMPORTS_END */
-
-function combineAll(project) {
-    return function (source) { return source.lift(new __WEBPACK_IMPORTED_MODULE_0__observable_combineLatest__["a" /* CombineLatestOperator */](project)); };
-}
-//# sourceMappingURL=combineAll.js.map
-
-
-/***/ }),
-
-/***/ 1170:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export combineLatest */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_combineLatest__ = __webpack_require__(544);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_from__ = __webpack_require__(131);
-/** PURE_IMPORTS_START _util_isArray,_observable_combineLatest,_observable_from PURE_IMPORTS_END */
-
-
-
-var none = {};
-function combineLatest() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    var project = null;
-    if (typeof observables[observables.length - 1] === 'function') {
-        project = observables.pop();
-    }
-    if (observables.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_0__util_isArray__["a" /* isArray */])(observables[0])) {
-        observables = observables[0].slice();
-    }
-    return function (source) { return source.lift.call(Object(__WEBPACK_IMPORTED_MODULE_2__observable_from__["a" /* from */])([source].concat(observables)), new __WEBPACK_IMPORTED_MODULE_1__observable_combineLatest__["a" /* CombineLatestOperator */](project)); };
-}
-//# sourceMappingURL=combineLatest.js.map
-
-
-/***/ }),
-
-/***/ 1171:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isInteropObservable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__symbol_observable__ = __webpack_require__(229);
-/** PURE_IMPORTS_START _symbol_observable PURE_IMPORTS_END */
-
-function isInteropObservable(input) {
-    return input && typeof input[__WEBPACK_IMPORTED_MODULE_0__symbol_observable__["a" /* observable */]] === 'function';
-}
-//# sourceMappingURL=isInteropObservable.js.map
-
-
-/***/ }),
-
-/***/ 1172:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isIterable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__symbol_iterator__ = __webpack_require__(256);
-/** PURE_IMPORTS_START _symbol_iterator PURE_IMPORTS_END */
-
-function isIterable(input) {
-    return input && typeof input[__WEBPACK_IMPORTED_MODULE_0__symbol_iterator__["a" /* iterator */]] === 'function';
-}
-//# sourceMappingURL=isIterable.js.map
-
-
-/***/ }),
-
-/***/ 1173:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = fromPromise;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToPromise__ = __webpack_require__(735);
-/** PURE_IMPORTS_START _Observable,_Subscription,_util_subscribeToPromise PURE_IMPORTS_END */
-
-
-
-function fromPromise(input, scheduler) {
-    if (!scheduler) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToPromise__["a" /* subscribeToPromise */])(input));
-    }
-    else {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var sub = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-            sub.add(scheduler.schedule(function () {
-                return input.then(function (value) {
-                    sub.add(scheduler.schedule(function () {
-                        subscriber.next(value);
-                        sub.add(scheduler.schedule(function () { return subscriber.complete(); }));
-                    }));
-                }, function (err) {
-                    sub.add(scheduler.schedule(function () { return subscriber.error(err); }));
-                });
-            }));
-            return sub;
-        });
-    }
-}
-//# sourceMappingURL=fromPromise.js.map
-
-
-/***/ }),
-
-/***/ 1174:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = fromIterable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__symbol_iterator__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToIterable__ = __webpack_require__(736);
-/** PURE_IMPORTS_START _Observable,_Subscription,_symbol_iterator,_util_subscribeToIterable PURE_IMPORTS_END */
-
-
-
-
-function fromIterable(input, scheduler) {
-    if (!input) {
-        throw new Error('Iterable cannot be null');
-    }
-    if (!scheduler) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToIterable__["a" /* subscribeToIterable */])(input));
-    }
-    else {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var sub = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-            var iterator;
-            sub.add(function () {
-                if (iterator && typeof iterator.return === 'function') {
-                    iterator.return();
-                }
-            });
-            sub.add(scheduler.schedule(function () {
-                iterator = input[__WEBPACK_IMPORTED_MODULE_2__symbol_iterator__["a" /* iterator */]]();
-                sub.add(scheduler.schedule(function () {
-                    if (subscriber.closed) {
-                        return;
-                    }
-                    var value;
-                    var done;
-                    try {
-                        var result = iterator.next();
-                        value = result.value;
-                        done = result.done;
-                    }
-                    catch (err) {
-                        subscriber.error(err);
-                        return;
-                    }
-                    if (done) {
-                        subscriber.complete();
-                    }
-                    else {
-                        subscriber.next(value);
-                        this.schedule();
-                    }
-                }));
-            }));
-            return sub;
-        });
-    }
-}
-//# sourceMappingURL=fromIterable.js.map
-
-
-/***/ }),
-
-/***/ 1175:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = fromObservable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__symbol_observable__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToObservable__ = __webpack_require__(737);
-/** PURE_IMPORTS_START _Observable,_Subscription,_symbol_observable,_util_subscribeToObservable PURE_IMPORTS_END */
-
-
-
-
-function fromObservable(input, scheduler) {
-    if (!scheduler) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToObservable__["a" /* subscribeToObservable */])(input));
-    }
-    else {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var sub = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-            sub.add(scheduler.schedule(function () {
-                var observable = input[__WEBPACK_IMPORTED_MODULE_2__symbol_observable__["a" /* observable */]]();
-                sub.add(observable.subscribe({
-                    next: function (value) { sub.add(scheduler.schedule(function () { return subscriber.next(value); })); },
-                    error: function (err) { sub.add(scheduler.schedule(function () { return subscriber.error(err); })); },
-                    complete: function () { sub.add(scheduler.schedule(function () { return subscriber.complete(); })); },
-                }));
-            }));
-            return sub;
-        });
-    }
-}
-//# sourceMappingURL=fromObservable.js.map
-
-
-/***/ }),
-
-/***/ 1176:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export concat */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_concat__ = __webpack_require__(440);
-/** PURE_IMPORTS_START _observable_concat PURE_IMPORTS_END */
-
-function concat() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    return function (source) { return source.lift.call(__WEBPACK_IMPORTED_MODULE_0__observable_concat__["a" /* concat */].apply(void 0, [source].concat(observables))); };
-}
-//# sourceMappingURL=concat.js.map
-
-
-/***/ }),
-
-/***/ 1177:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export concatMapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__concatMap__ = __webpack_require__(741);
-/** PURE_IMPORTS_START _concatMap PURE_IMPORTS_END */
-
-function concatMapTo(innerObservable, resultSelector) {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__concatMap__["a" /* concatMap */])(function () { return innerObservable; }, resultSelector);
-}
-//# sourceMappingURL=concatMapTo.js.map
-
-
-/***/ }),
-
-/***/ 1178:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export count */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function count(predicate) {
-    return function (source) { return source.lift(new CountOperator(predicate, source)); };
-}
-var CountOperator = /*@__PURE__*/ (function () {
-    function CountOperator(predicate, source) {
-        this.predicate = predicate;
-        this.source = source;
-    }
-    CountOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new CountSubscriber(subscriber, this.predicate, this.source));
-    };
-    return CountOperator;
-}());
-var CountSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](CountSubscriber, _super);
-    function CountSubscriber(destination, predicate, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.source = source;
-        _this.count = 0;
-        _this.index = 0;
-        return _this;
-    }
-    CountSubscriber.prototype._next = function (value) {
-        if (this.predicate) {
-            this._tryPredicate(value);
-        }
-        else {
-            this.count++;
-        }
-    };
-    CountSubscriber.prototype._tryPredicate = function (value) {
-        var result;
-        try {
-            result = this.predicate(value, this.index++, this.source);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        if (result) {
-            this.count++;
-        }
-    };
-    CountSubscriber.prototype._complete = function () {
-        this.destination.next(this.count);
-        this.destination.complete();
-    };
-    return CountSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=count.js.map
-
-
-/***/ }),
-
-/***/ 1179:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export debounce */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function debounce(durationSelector) {
-    return function (source) { return source.lift(new DebounceOperator(durationSelector)); };
-}
-var DebounceOperator = /*@__PURE__*/ (function () {
-    function DebounceOperator(durationSelector) {
-        this.durationSelector = durationSelector;
-    }
-    DebounceOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DebounceSubscriber(subscriber, this.durationSelector));
-    };
-    return DebounceOperator;
-}());
-var DebounceSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DebounceSubscriber, _super);
-    function DebounceSubscriber(destination, durationSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.durationSelector = durationSelector;
-        _this.hasValue = false;
-        _this.durationSubscription = null;
-        return _this;
-    }
-    DebounceSubscriber.prototype._next = function (value) {
-        try {
-            var result = this.durationSelector.call(this, value);
-            if (result) {
-                this._tryNext(value, result);
-            }
-        }
-        catch (err) {
-            this.destination.error(err);
-        }
-    };
-    DebounceSubscriber.prototype._complete = function () {
-        this.emitValue();
-        this.destination.complete();
-    };
-    DebounceSubscriber.prototype._tryNext = function (value, duration) {
-        var subscription = this.durationSubscription;
-        this.value = value;
-        this.hasValue = true;
-        if (subscription) {
-            subscription.unsubscribe();
-            this.remove(subscription);
-        }
-        subscription = Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(this, duration);
-        if (subscription && !subscription.closed) {
-            this.add(this.durationSubscription = subscription);
-        }
-    };
-    DebounceSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.emitValue();
-    };
-    DebounceSubscriber.prototype.notifyComplete = function () {
-        this.emitValue();
-    };
-    DebounceSubscriber.prototype.emitValue = function () {
-        if (this.hasValue) {
-            var value = this.value;
-            var subscription = this.durationSubscription;
-            if (subscription) {
-                this.durationSubscription = null;
-                subscription.unsubscribe();
-                this.remove(subscription);
-            }
-            this.value = null;
-            this.hasValue = false;
-            _super.prototype._next.call(this, value);
-        }
-    };
-    return DebounceSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=debounce.js.map
-
-
-/***/ }),
-
-/***/ 1180:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export debounceTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheduler_async__ = __webpack_require__(78);
-/** PURE_IMPORTS_START tslib,_Subscriber,_scheduler_async PURE_IMPORTS_END */
-
-
-
-function debounceTime(dueTime, scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_async__["a" /* async */];
-    }
-    return function (source) { return source.lift(new DebounceTimeOperator(dueTime, scheduler)); };
-}
-var DebounceTimeOperator = /*@__PURE__*/ (function () {
-    function DebounceTimeOperator(dueTime, scheduler) {
-        this.dueTime = dueTime;
-        this.scheduler = scheduler;
-    }
-    DebounceTimeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DebounceTimeSubscriber(subscriber, this.dueTime, this.scheduler));
-    };
-    return DebounceTimeOperator;
-}());
-var DebounceTimeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DebounceTimeSubscriber, _super);
-    function DebounceTimeSubscriber(destination, dueTime, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.dueTime = dueTime;
-        _this.scheduler = scheduler;
-        _this.debouncedSubscription = null;
-        _this.lastValue = null;
-        _this.hasValue = false;
-        return _this;
-    }
-    DebounceTimeSubscriber.prototype._next = function (value) {
-        this.clearDebounce();
-        this.lastValue = value;
-        this.hasValue = true;
-        this.add(this.debouncedSubscription = this.scheduler.schedule(dispatchNext, this.dueTime, this));
-    };
-    DebounceTimeSubscriber.prototype._complete = function () {
-        this.debouncedNext();
-        this.destination.complete();
-    };
-    DebounceTimeSubscriber.prototype.debouncedNext = function () {
-        this.clearDebounce();
-        if (this.hasValue) {
-            var lastValue = this.lastValue;
-            this.lastValue = null;
-            this.hasValue = false;
-            this.destination.next(lastValue);
-        }
-    };
-    DebounceTimeSubscriber.prototype.clearDebounce = function () {
-        var debouncedSubscription = this.debouncedSubscription;
-        if (debouncedSubscription !== null) {
-            this.remove(debouncedSubscription);
-            debouncedSubscription.unsubscribe();
-            this.debouncedSubscription = null;
-        }
-    };
-    return DebounceTimeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-function dispatchNext(subscriber) {
-    subscriber.debouncedNext();
-}
-//# sourceMappingURL=debounceTime.js.map
-
-
-/***/ }),
-
-/***/ 1181:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export delay */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isDate__ = __webpack_require__(742);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Notification__ = __webpack_require__(441);
-/** PURE_IMPORTS_START tslib,_scheduler_async,_util_isDate,_Subscriber,_Notification PURE_IMPORTS_END */
-
-
-
-
-
-function delay(delay, scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_1__scheduler_async__["a" /* async */];
-    }
-    var absoluteDelay = Object(__WEBPACK_IMPORTED_MODULE_2__util_isDate__["a" /* isDate */])(delay);
-    var delayFor = absoluteDelay ? (+delay - scheduler.now()) : Math.abs(delay);
-    return function (source) { return source.lift(new DelayOperator(delayFor, scheduler)); };
-}
-var DelayOperator = /*@__PURE__*/ (function () {
-    function DelayOperator(delay, scheduler) {
-        this.delay = delay;
-        this.scheduler = scheduler;
-    }
-    DelayOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DelaySubscriber(subscriber, this.delay, this.scheduler));
-    };
-    return DelayOperator;
-}());
-var DelaySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DelaySubscriber, _super);
-    function DelaySubscriber(destination, delay, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.delay = delay;
-        _this.scheduler = scheduler;
-        _this.queue = [];
-        _this.active = false;
-        _this.errored = false;
-        return _this;
-    }
-    DelaySubscriber.dispatch = function (state) {
-        var source = state.source;
-        var queue = source.queue;
-        var scheduler = state.scheduler;
-        var destination = state.destination;
-        while (queue.length > 0 && (queue[0].time - scheduler.now()) <= 0) {
-            queue.shift().notification.observe(destination);
-        }
-        if (queue.length > 0) {
-            var delay_1 = Math.max(0, queue[0].time - scheduler.now());
-            this.schedule(state, delay_1);
-        }
-        else {
-            this.unsubscribe();
-            source.active = false;
-        }
-    };
-    DelaySubscriber.prototype._schedule = function (scheduler) {
-        this.active = true;
-        this.add(scheduler.schedule(DelaySubscriber.dispatch, this.delay, {
-            source: this, destination: this.destination, scheduler: scheduler
-        }));
-    };
-    DelaySubscriber.prototype.scheduleNotification = function (notification) {
-        if (this.errored === true) {
-            return;
-        }
-        var scheduler = this.scheduler;
-        var message = new DelayMessage(scheduler.now() + this.delay, notification);
-        this.queue.push(message);
-        if (this.active === false) {
-            this._schedule(scheduler);
-        }
-    };
-    DelaySubscriber.prototype._next = function (value) {
-        this.scheduleNotification(__WEBPACK_IMPORTED_MODULE_4__Notification__["a" /* Notification */].createNext(value));
-    };
-    DelaySubscriber.prototype._error = function (err) {
-        this.errored = true;
-        this.queue = [];
-        this.destination.error(err);
-    };
-    DelaySubscriber.prototype._complete = function () {
-        this.scheduleNotification(__WEBPACK_IMPORTED_MODULE_4__Notification__["a" /* Notification */].createComplete());
-    };
-    return DelaySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__Subscriber__["a" /* Subscriber */]));
-var DelayMessage = /*@__PURE__*/ (function () {
-    function DelayMessage(time, notification) {
-        this.time = time;
-        this.notification = notification;
-    }
-    return DelayMessage;
-}());
-//# sourceMappingURL=delay.js.map
-
-
-/***/ }),
-
-/***/ 1182:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export delayWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subscriber,_Observable,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-function delayWhen(delayDurationSelector, subscriptionDelay) {
-    if (subscriptionDelay) {
-        return function (source) {
-            return new SubscriptionDelayObservable(source, subscriptionDelay)
-                .lift(new DelayWhenOperator(delayDurationSelector));
-        };
-    }
-    return function (source) { return source.lift(new DelayWhenOperator(delayDurationSelector)); };
-}
-var DelayWhenOperator = /*@__PURE__*/ (function () {
-    function DelayWhenOperator(delayDurationSelector) {
-        this.delayDurationSelector = delayDurationSelector;
-    }
-    DelayWhenOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DelayWhenSubscriber(subscriber, this.delayDurationSelector));
-    };
-    return DelayWhenOperator;
-}());
-var DelayWhenSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DelayWhenSubscriber, _super);
-    function DelayWhenSubscriber(destination, delayDurationSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.delayDurationSelector = delayDurationSelector;
-        _this.completed = false;
-        _this.delayNotifierSubscriptions = [];
-        _this.index = 0;
-        return _this;
-    }
-    DelayWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.destination.next(outerValue);
-        this.removeSubscription(innerSub);
-        this.tryComplete();
-    };
-    DelayWhenSubscriber.prototype.notifyError = function (error, innerSub) {
-        this._error(error);
-    };
-    DelayWhenSubscriber.prototype.notifyComplete = function (innerSub) {
-        var value = this.removeSubscription(innerSub);
-        if (value) {
-            this.destination.next(value);
-        }
-        this.tryComplete();
-    };
-    DelayWhenSubscriber.prototype._next = function (value) {
-        var index = this.index++;
-        try {
-            var delayNotifier = this.delayDurationSelector(value, index);
-            if (delayNotifier) {
-                this.tryDelay(delayNotifier, value);
-            }
-        }
-        catch (err) {
-            this.destination.error(err);
-        }
-    };
-    DelayWhenSubscriber.prototype._complete = function () {
-        this.completed = true;
-        this.tryComplete();
-    };
-    DelayWhenSubscriber.prototype.removeSubscription = function (subscription) {
-        subscription.unsubscribe();
-        var subscriptionIdx = this.delayNotifierSubscriptions.indexOf(subscription);
-        if (subscriptionIdx !== -1) {
-            this.delayNotifierSubscriptions.splice(subscriptionIdx, 1);
-        }
-        return subscription.outerValue;
-    };
-    DelayWhenSubscriber.prototype.tryDelay = function (delayNotifier, value) {
-        var notifierSubscription = Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(this, delayNotifier, value);
-        if (notifierSubscription && !notifierSubscription.closed) {
-            this.add(notifierSubscription);
-            this.delayNotifierSubscriptions.push(notifierSubscription);
-        }
-    };
-    DelayWhenSubscriber.prototype.tryComplete = function () {
-        if (this.completed && this.delayNotifierSubscriptions.length === 0) {
-            this.destination.complete();
-        }
-    };
-    return DelayWhenSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-var SubscriptionDelayObservable = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SubscriptionDelayObservable, _super);
-    function SubscriptionDelayObservable(source, subscriptionDelay) {
-        var _this = _super.call(this) || this;
-        _this.source = source;
-        _this.subscriptionDelay = subscriptionDelay;
-        return _this;
-    }
-    SubscriptionDelayObservable.prototype._subscribe = function (subscriber) {
-        this.subscriptionDelay.subscribe(new SubscriptionDelaySubscriber(subscriber, this.source));
-    };
-    return SubscriptionDelayObservable;
-}(__WEBPACK_IMPORTED_MODULE_2__Observable__["a" /* Observable */]));
-var SubscriptionDelaySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SubscriptionDelaySubscriber, _super);
-    function SubscriptionDelaySubscriber(parent, source) {
-        var _this = _super.call(this) || this;
-        _this.parent = parent;
-        _this.source = source;
-        _this.sourceSubscribed = false;
-        return _this;
-    }
-    SubscriptionDelaySubscriber.prototype._next = function (unused) {
-        this.subscribeToSource();
-    };
-    SubscriptionDelaySubscriber.prototype._error = function (err) {
-        this.unsubscribe();
-        this.parent.error(err);
-    };
-    SubscriptionDelaySubscriber.prototype._complete = function () {
-        this.subscribeToSource();
-    };
-    SubscriptionDelaySubscriber.prototype.subscribeToSource = function () {
-        if (!this.sourceSubscribed) {
-            this.sourceSubscribed = true;
-            this.unsubscribe();
-            this.source.subscribe(this.parent);
-        }
-    };
-    return SubscriptionDelaySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=delayWhen.js.map
-
-
-/***/ }),
-
-/***/ 1183:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export dematerialize */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function dematerialize() {
-    return function dematerializeOperatorFunction(source) {
-        return source.lift(new DeMaterializeOperator());
-    };
-}
-var DeMaterializeOperator = /*@__PURE__*/ (function () {
-    function DeMaterializeOperator() {
-    }
-    DeMaterializeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DeMaterializeSubscriber(subscriber));
-    };
-    return DeMaterializeOperator;
-}());
-var DeMaterializeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DeMaterializeSubscriber, _super);
-    function DeMaterializeSubscriber(destination) {
-        return _super.call(this, destination) || this;
-    }
-    DeMaterializeSubscriber.prototype._next = function (value) {
-        value.observe(this.destination);
-    };
-    return DeMaterializeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=dematerialize.js.map
-
-
-/***/ }),
-
-/***/ 1184:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export distinct */
-/* unused harmony export DistinctSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function distinct(keySelector, flushes) {
-    return function (source) { return source.lift(new DistinctOperator(keySelector, flushes)); };
-}
-var DistinctOperator = /*@__PURE__*/ (function () {
-    function DistinctOperator(keySelector, flushes) {
-        this.keySelector = keySelector;
-        this.flushes = flushes;
-    }
-    DistinctOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DistinctSubscriber(subscriber, this.keySelector, this.flushes));
-    };
-    return DistinctOperator;
-}());
-var DistinctSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DistinctSubscriber, _super);
-    function DistinctSubscriber(destination, keySelector, flushes) {
-        var _this = _super.call(this, destination) || this;
-        _this.keySelector = keySelector;
-        _this.values = new Set();
-        if (flushes) {
-            _this.add(Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(_this, flushes));
-        }
-        return _this;
-    }
-    DistinctSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.values.clear();
-    };
-    DistinctSubscriber.prototype.notifyError = function (error, innerSub) {
-        this._error(error);
-    };
-    DistinctSubscriber.prototype._next = function (value) {
-        if (this.keySelector) {
-            this._useKeySelector(value);
-        }
-        else {
-            this._finalizeNext(value, value);
-        }
-    };
-    DistinctSubscriber.prototype._useKeySelector = function (value) {
-        var key;
-        var destination = this.destination;
-        try {
-            key = this.keySelector(value);
-        }
-        catch (err) {
-            destination.error(err);
-            return;
-        }
-        this._finalizeNext(key, value);
-    };
-    DistinctSubscriber.prototype._finalizeNext = function (key, value) {
-        var values = this.values;
-        if (!values.has(key)) {
-            values.add(key);
-            this.destination.next(value);
-        }
-    };
-    return DistinctSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-
-//# sourceMappingURL=distinct.js.map
-
-
-/***/ }),
-
-/***/ 1185:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export distinctUntilKeyChanged */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__distinctUntilChanged__ = __webpack_require__(743);
-/** PURE_IMPORTS_START _distinctUntilChanged PURE_IMPORTS_END */
-
-function distinctUntilKeyChanged(key, compare) {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__distinctUntilChanged__["a" /* distinctUntilChanged */])(function (x, y) { return compare ? compare(x[key], y[key]) : x[key] === y[key]; });
-}
-//# sourceMappingURL=distinctUntilKeyChanged.js.map
-
-
-/***/ }),
-
-/***/ 1186:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export elementAt */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_ArgumentOutOfRangeError__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filter__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__throwIfEmpty__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__defaultIfEmpty__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__take__ = __webpack_require__(536);
-/** PURE_IMPORTS_START _util_ArgumentOutOfRangeError,_filter,_throwIfEmpty,_defaultIfEmpty,_take PURE_IMPORTS_END */
-
-
-
-
-
-function elementAt(index, defaultValue) {
-    if (index < 0) {
-        throw new __WEBPACK_IMPORTED_MODULE_0__util_ArgumentOutOfRangeError__["a" /* ArgumentOutOfRangeError */]();
-    }
-    var hasDefaultValue = arguments.length >= 2;
-    return function (source) {
-        return source.pipe(Object(__WEBPACK_IMPORTED_MODULE_1__filter__["a" /* filter */])(function (v, i) { return i === index; }), Object(__WEBPACK_IMPORTED_MODULE_4__take__["a" /* take */])(1), hasDefaultValue
-            ? Object(__WEBPACK_IMPORTED_MODULE_3__defaultIfEmpty__["a" /* defaultIfEmpty */])(defaultValue)
-            : Object(__WEBPACK_IMPORTED_MODULE_2__throwIfEmpty__["a" /* throwIfEmpty */])(function () { return new __WEBPACK_IMPORTED_MODULE_0__util_ArgumentOutOfRangeError__["a" /* ArgumentOutOfRangeError */](); }));
-    };
-}
-//# sourceMappingURL=elementAt.js.map
-
-
-/***/ }),
-
-/***/ 1187:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export endWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_fromArray__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_scalar__ = __webpack_require__(534);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_empty__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_concat__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START _observable_fromArray,_observable_scalar,_observable_empty,_observable_concat,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-
-
-function endWith() {
-    var array = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        array[_i] = arguments[_i];
-    }
-    return function (source) {
-        var scheduler = array[array.length - 1];
-        if (Object(__WEBPACK_IMPORTED_MODULE_4__util_isScheduler__["a" /* isScheduler */])(scheduler)) {
-            array.pop();
-        }
-        else {
-            scheduler = null;
-        }
-        var len = array.length;
-        if (len === 1 && !scheduler) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_concat__["a" /* concat */])(source, Object(__WEBPACK_IMPORTED_MODULE_1__observable_scalar__["a" /* scalar */])(array[0]));
-        }
-        else if (len > 0) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_concat__["a" /* concat */])(source, Object(__WEBPACK_IMPORTED_MODULE_0__observable_fromArray__["a" /* fromArray */])(array, scheduler));
-        }
-        else {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_concat__["a" /* concat */])(source, Object(__WEBPACK_IMPORTED_MODULE_2__observable_empty__["b" /* empty */])(scheduler));
-        }
-    };
-}
-//# sourceMappingURL=endWith.js.map
-
-
-/***/ }),
-
-/***/ 1188:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export every */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function every(predicate, thisArg) {
-    return function (source) { return source.lift(new EveryOperator(predicate, thisArg, source)); };
-}
-var EveryOperator = /*@__PURE__*/ (function () {
-    function EveryOperator(predicate, thisArg, source) {
-        this.predicate = predicate;
-        this.thisArg = thisArg;
-        this.source = source;
-    }
-    EveryOperator.prototype.call = function (observer, source) {
-        return source.subscribe(new EverySubscriber(observer, this.predicate, this.thisArg, this.source));
-    };
-    return EveryOperator;
-}());
-var EverySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](EverySubscriber, _super);
-    function EverySubscriber(destination, predicate, thisArg, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.thisArg = thisArg;
-        _this.source = source;
-        _this.index = 0;
-        _this.thisArg = thisArg || _this;
-        return _this;
-    }
-    EverySubscriber.prototype.notifyComplete = function (everyValueMatch) {
-        this.destination.next(everyValueMatch);
-        this.destination.complete();
-    };
-    EverySubscriber.prototype._next = function (value) {
-        var result = false;
-        try {
-            result = this.predicate.call(this.thisArg, value, this.index++, this.source);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        if (!result) {
-            this.notifyComplete(false);
-        }
-    };
-    EverySubscriber.prototype._complete = function () {
-        this.notifyComplete(true);
-    };
-    return EverySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=every.js.map
-
-
-/***/ }),
-
-/***/ 1189:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export exhaust */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function exhaust() {
-    return function (source) { return source.lift(new SwitchFirstOperator()); };
-}
-var SwitchFirstOperator = /*@__PURE__*/ (function () {
-    function SwitchFirstOperator() {
-    }
-    SwitchFirstOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SwitchFirstSubscriber(subscriber));
-    };
-    return SwitchFirstOperator;
-}());
-var SwitchFirstSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SwitchFirstSubscriber, _super);
-    function SwitchFirstSubscriber(destination) {
-        var _this = _super.call(this, destination) || this;
-        _this.hasCompleted = false;
-        _this.hasSubscription = false;
-        return _this;
-    }
-    SwitchFirstSubscriber.prototype._next = function (value) {
-        if (!this.hasSubscription) {
-            this.hasSubscription = true;
-            this.add(Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(this, value));
-        }
-    };
-    SwitchFirstSubscriber.prototype._complete = function () {
-        this.hasCompleted = true;
-        if (!this.hasSubscription) {
-            this.destination.complete();
-        }
-    };
-    SwitchFirstSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.remove(innerSub);
-        this.hasSubscription = false;
-        if (this.hasCompleted) {
-            this.destination.complete();
-        }
-    };
-    return SwitchFirstSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=exhaust.js.map
-
-
-/***/ }),
-
-/***/ 1190:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export exhaustMap */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__map__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__observable_from__ = __webpack_require__(131);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_InnerSubscriber,_util_subscribeToResult,_map,_observable_from PURE_IMPORTS_END */
-
-
-
-
-
-
-function exhaustMap(project, resultSelector) {
-    if (resultSelector) {
-        return function (source) { return source.pipe(exhaustMap(function (a, i) { return Object(__WEBPACK_IMPORTED_MODULE_5__observable_from__["a" /* from */])(project(a, i)).pipe(Object(__WEBPACK_IMPORTED_MODULE_4__map__["a" /* map */])(function (b, ii) { return resultSelector(a, b, i, ii); })); })); };
-    }
-    return function (source) {
-        return source.lift(new ExhauseMapOperator(project));
-    };
-}
-var ExhauseMapOperator = /*@__PURE__*/ (function () {
-    function ExhauseMapOperator(project) {
-        this.project = project;
-    }
-    ExhauseMapOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ExhaustMapSubscriber(subscriber, this.project));
-    };
-    return ExhauseMapOperator;
-}());
-var ExhaustMapSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ExhaustMapSubscriber, _super);
-    function ExhaustMapSubscriber(destination, project) {
-        var _this = _super.call(this, destination) || this;
-        _this.project = project;
-        _this.hasSubscription = false;
-        _this.hasCompleted = false;
-        _this.index = 0;
-        return _this;
-    }
-    ExhaustMapSubscriber.prototype._next = function (value) {
-        if (!this.hasSubscription) {
-            this.tryNext(value);
-        }
-    };
-    ExhaustMapSubscriber.prototype.tryNext = function (value) {
-        var result;
-        var index = this.index++;
-        try {
-            result = this.project(value, index);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.hasSubscription = true;
-        this._innerSub(result, value, index);
-    };
-    ExhaustMapSubscriber.prototype._innerSub = function (result, value, index) {
-        var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__["a" /* InnerSubscriber */](this, undefined, undefined);
-        this.add(innerSubscriber);
-        Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__["a" /* subscribeToResult */])(this, result, value, index, innerSubscriber);
-    };
-    ExhaustMapSubscriber.prototype._complete = function () {
-        this.hasCompleted = true;
-        if (!this.hasSubscription) {
-            this.destination.complete();
-        }
-    };
-    ExhaustMapSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.destination.next(innerValue);
-    };
-    ExhaustMapSubscriber.prototype.notifyError = function (err) {
-        this.destination.error(err);
-    };
-    ExhaustMapSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.remove(innerSub);
-        this.hasSubscription = false;
-        if (this.hasCompleted) {
-            this.destination.complete();
-        }
-    };
-    return ExhaustMapSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=exhaustMap.js.map
-
-
-/***/ }),
-
-/***/ 1191:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export expand */
-/* unused harmony export ExpandOperator */
-/* unused harmony export ExpandSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-function expand(project, concurrent, scheduler) {
-    if (concurrent === void 0) {
-        concurrent = Number.POSITIVE_INFINITY;
-    }
-    if (scheduler === void 0) {
-        scheduler = undefined;
-    }
-    concurrent = (concurrent || 0) < 1 ? Number.POSITIVE_INFINITY : concurrent;
-    return function (source) { return source.lift(new ExpandOperator(project, concurrent, scheduler)); };
-}
-var ExpandOperator = /*@__PURE__*/ (function () {
-    function ExpandOperator(project, concurrent, scheduler) {
-        this.project = project;
-        this.concurrent = concurrent;
-        this.scheduler = scheduler;
-    }
-    ExpandOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ExpandSubscriber(subscriber, this.project, this.concurrent, this.scheduler));
-    };
-    return ExpandOperator;
-}());
-
-var ExpandSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ExpandSubscriber, _super);
-    function ExpandSubscriber(destination, project, concurrent, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.project = project;
-        _this.concurrent = concurrent;
-        _this.scheduler = scheduler;
-        _this.index = 0;
-        _this.active = 0;
-        _this.hasCompleted = false;
-        if (concurrent < Number.POSITIVE_INFINITY) {
-            _this.buffer = [];
-        }
-        return _this;
-    }
-    ExpandSubscriber.dispatch = function (arg) {
-        var subscriber = arg.subscriber, result = arg.result, value = arg.value, index = arg.index;
-        subscriber.subscribeToProjection(result, value, index);
-    };
-    ExpandSubscriber.prototype._next = function (value) {
-        var destination = this.destination;
-        if (destination.closed) {
-            this._complete();
-            return;
-        }
-        var index = this.index++;
-        if (this.active < this.concurrent) {
-            destination.next(value);
-            var result = Object(__WEBPACK_IMPORTED_MODULE_1__util_tryCatch__["a" /* tryCatch */])(this.project)(value, index);
-            if (result === __WEBPACK_IMPORTED_MODULE_2__util_errorObject__["a" /* errorObject */]) {
-                destination.error(__WEBPACK_IMPORTED_MODULE_2__util_errorObject__["a" /* errorObject */].e);
-            }
-            else if (!this.scheduler) {
-                this.subscribeToProjection(result, value, index);
-            }
-            else {
-                var state = { subscriber: this, result: result, value: value, index: index };
-                this.add(this.scheduler.schedule(ExpandSubscriber.dispatch, 0, state));
-            }
-        }
-        else {
-            this.buffer.push(value);
-        }
-    };
-    ExpandSubscriber.prototype.subscribeToProjection = function (result, value, index) {
-        this.active++;
-        this.add(Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(this, result, value, index));
-    };
-    ExpandSubscriber.prototype._complete = function () {
-        this.hasCompleted = true;
-        if (this.hasCompleted && this.active === 0) {
-            this.destination.complete();
-        }
-    };
-    ExpandSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this._next(innerValue);
-    };
-    ExpandSubscriber.prototype.notifyComplete = function (innerSub) {
-        var buffer = this.buffer;
-        this.remove(innerSub);
-        this.active--;
-        if (buffer && buffer.length > 0) {
-            this._next(buffer.shift());
-        }
-        if (this.hasCompleted && this.active === 0) {
-            this.destination.complete();
-        }
-    };
-    return ExpandSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-
-//# sourceMappingURL=expand.js.map
-
-
-/***/ }),
-
-/***/ 1192:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export finalize */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subscription__ = __webpack_require__(62);
-/** PURE_IMPORTS_START tslib,_Subscriber,_Subscription PURE_IMPORTS_END */
-
-
-
-function finalize(callback) {
-    return function (source) { return source.lift(new FinallyOperator(callback)); };
-}
-var FinallyOperator = /*@__PURE__*/ (function () {
-    function FinallyOperator(callback) {
-        this.callback = callback;
-    }
-    FinallyOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new FinallySubscriber(subscriber, this.callback));
-    };
-    return FinallyOperator;
-}());
-var FinallySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](FinallySubscriber, _super);
-    function FinallySubscriber(destination, callback) {
-        var _this = _super.call(this, destination) || this;
-        _this.add(new __WEBPACK_IMPORTED_MODULE_2__Subscription__["a" /* Subscription */](callback));
-        return _this;
-    }
-    return FinallySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=finalize.js.map
-
-
-/***/ }),
-
-/***/ 1193:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export findIndex */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operators_find__ = __webpack_require__(745);
-/** PURE_IMPORTS_START _operators_find PURE_IMPORTS_END */
-
-function findIndex(predicate, thisArg) {
-    return function (source) { return source.lift(new __WEBPACK_IMPORTED_MODULE_0__operators_find__["a" /* FindValueOperator */](predicate, source, true, thisArg)); };
-}
-//# sourceMappingURL=findIndex.js.map
-
-
-/***/ }),
-
-/***/ 1194:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export first */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_EmptyError__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filter__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__take__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__defaultIfEmpty__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__throwIfEmpty__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_identity__ = __webpack_require__(231);
-/** PURE_IMPORTS_START _util_EmptyError,_filter,_take,_defaultIfEmpty,_throwIfEmpty,_util_identity PURE_IMPORTS_END */
-
-
-
-
-
-
-function first(predicate, defaultValue) {
-    var hasDefaultValue = arguments.length >= 2;
-    return function (source) { return source.pipe(predicate ? Object(__WEBPACK_IMPORTED_MODULE_1__filter__["a" /* filter */])(function (v, i) { return predicate(v, i, source); }) : __WEBPACK_IMPORTED_MODULE_5__util_identity__["a" /* identity */], Object(__WEBPACK_IMPORTED_MODULE_2__take__["a" /* take */])(1), hasDefaultValue ? Object(__WEBPACK_IMPORTED_MODULE_3__defaultIfEmpty__["a" /* defaultIfEmpty */])(defaultValue) : Object(__WEBPACK_IMPORTED_MODULE_4__throwIfEmpty__["a" /* throwIfEmpty */])(function () { return new __WEBPACK_IMPORTED_MODULE_0__util_EmptyError__["a" /* EmptyError */](); })); };
-}
-//# sourceMappingURL=first.js.map
-
-
-/***/ }),
-
-/***/ 1195:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export ignoreElements */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function ignoreElements() {
-    return function ignoreElementsOperatorFunction(source) {
-        return source.lift(new IgnoreElementsOperator());
-    };
-}
-var IgnoreElementsOperator = /*@__PURE__*/ (function () {
-    function IgnoreElementsOperator() {
-    }
-    IgnoreElementsOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new IgnoreElementsSubscriber(subscriber));
-    };
-    return IgnoreElementsOperator;
-}());
-var IgnoreElementsSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](IgnoreElementsSubscriber, _super);
-    function IgnoreElementsSubscriber() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    IgnoreElementsSubscriber.prototype._next = function (unused) {
-    };
-    return IgnoreElementsSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=ignoreElements.js.map
-
-
-/***/ }),
-
-/***/ 1196:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export isEmpty */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function isEmpty() {
-    return function (source) { return source.lift(new IsEmptyOperator()); };
-}
-var IsEmptyOperator = /*@__PURE__*/ (function () {
-    function IsEmptyOperator() {
-    }
-    IsEmptyOperator.prototype.call = function (observer, source) {
-        return source.subscribe(new IsEmptySubscriber(observer));
-    };
-    return IsEmptyOperator;
-}());
-var IsEmptySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](IsEmptySubscriber, _super);
-    function IsEmptySubscriber(destination) {
-        return _super.call(this, destination) || this;
-    }
-    IsEmptySubscriber.prototype.notifyComplete = function (isEmpty) {
-        var destination = this.destination;
-        destination.next(isEmpty);
-        destination.complete();
-    };
-    IsEmptySubscriber.prototype._next = function (value) {
-        this.notifyComplete(false);
-    };
-    IsEmptySubscriber.prototype._complete = function () {
-        this.notifyComplete(true);
-    };
-    return IsEmptySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=isEmpty.js.map
-
-
-/***/ }),
-
-/***/ 1197:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export last */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_EmptyError__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filter__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__takeLast__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__throwIfEmpty__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__defaultIfEmpty__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_identity__ = __webpack_require__(231);
-/** PURE_IMPORTS_START _util_EmptyError,_filter,_takeLast,_throwIfEmpty,_defaultIfEmpty,_util_identity PURE_IMPORTS_END */
-
-
-
-
-
-
-function last(predicate, defaultValue) {
-    var hasDefaultValue = arguments.length >= 2;
-    return function (source) { return source.pipe(predicate ? Object(__WEBPACK_IMPORTED_MODULE_1__filter__["a" /* filter */])(function (v, i) { return predicate(v, i, source); }) : __WEBPACK_IMPORTED_MODULE_5__util_identity__["a" /* identity */], Object(__WEBPACK_IMPORTED_MODULE_2__takeLast__["a" /* takeLast */])(1), hasDefaultValue ? Object(__WEBPACK_IMPORTED_MODULE_4__defaultIfEmpty__["a" /* defaultIfEmpty */])(defaultValue) : Object(__WEBPACK_IMPORTED_MODULE_3__throwIfEmpty__["a" /* throwIfEmpty */])(function () { return new __WEBPACK_IMPORTED_MODULE_0__util_EmptyError__["a" /* EmptyError */](); })); };
-}
-//# sourceMappingURL=last.js.map
-
-
-/***/ }),
-
-/***/ 1198:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export mapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function mapTo(value) {
-    return function (source) { return source.lift(new MapToOperator(value)); };
-}
-var MapToOperator = /*@__PURE__*/ (function () {
-    function MapToOperator(value) {
-        this.value = value;
-    }
-    MapToOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new MapToSubscriber(subscriber, this.value));
-    };
-    return MapToOperator;
-}());
-var MapToSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](MapToSubscriber, _super);
-    function MapToSubscriber(destination, value) {
-        var _this = _super.call(this, destination) || this;
-        _this.value = value;
-        return _this;
-    }
-    MapToSubscriber.prototype._next = function (x) {
-        this.destination.next(this.value);
-    };
-    return MapToSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=mapTo.js.map
-
-
-/***/ }),
-
-/***/ 1199:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export materialize */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Notification__ = __webpack_require__(441);
-/** PURE_IMPORTS_START tslib,_Subscriber,_Notification PURE_IMPORTS_END */
-
-
-
-function materialize() {
-    return function materializeOperatorFunction(source) {
-        return source.lift(new MaterializeOperator());
-    };
-}
-var MaterializeOperator = /*@__PURE__*/ (function () {
-    function MaterializeOperator() {
-    }
-    MaterializeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new MaterializeSubscriber(subscriber));
-    };
-    return MaterializeOperator;
-}());
-var MaterializeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](MaterializeSubscriber, _super);
-    function MaterializeSubscriber(destination) {
-        return _super.call(this, destination) || this;
-    }
-    MaterializeSubscriber.prototype._next = function (value) {
-        this.destination.next(__WEBPACK_IMPORTED_MODULE_2__Notification__["a" /* Notification */].createNext(value));
-    };
-    MaterializeSubscriber.prototype._error = function (err) {
-        var destination = this.destination;
-        destination.next(__WEBPACK_IMPORTED_MODULE_2__Notification__["a" /* Notification */].createError(err));
-        destination.complete();
-    };
-    MaterializeSubscriber.prototype._complete = function () {
-        var destination = this.destination;
-        destination.next(__WEBPACK_IMPORTED_MODULE_2__Notification__["a" /* Notification */].createComplete());
-        destination.complete();
-    };
-    return MaterializeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=materialize.js.map
-
-
-/***/ }),
-
-/***/ 1200:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export max */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reduce__ = __webpack_require__(437);
-/** PURE_IMPORTS_START _reduce PURE_IMPORTS_END */
-
-function max(comparer) {
-    var max = (typeof comparer === 'function')
-        ? function (x, y) { return comparer(x, y) > 0 ? x : y; }
-        : function (x, y) { return x > y ? x : y; };
-    return Object(__WEBPACK_IMPORTED_MODULE_0__reduce__["a" /* reduce */])(max);
-}
-//# sourceMappingURL=max.js.map
-
-
-/***/ }),
-
-/***/ 1201:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export merge */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_merge__ = __webpack_require__(761);
-/** PURE_IMPORTS_START _observable_merge PURE_IMPORTS_END */
-
-function merge() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    return function (source) { return source.lift.call(__WEBPACK_IMPORTED_MODULE_0__observable_merge__["a" /* merge */].apply(void 0, [source].concat(observables))); };
-}
-//# sourceMappingURL=merge.js.map
-
-
-/***/ }),
-
-/***/ 1202:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export mergeMapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mergeMap__ = __webpack_require__(257);
-/** PURE_IMPORTS_START _mergeMap PURE_IMPORTS_END */
-
-function mergeMapTo(innerObservable, resultSelector, concurrent) {
-    if (concurrent === void 0) {
-        concurrent = Number.POSITIVE_INFINITY;
-    }
-    if (typeof resultSelector === 'function') {
-        return Object(__WEBPACK_IMPORTED_MODULE_0__mergeMap__["a" /* mergeMap */])(function () { return innerObservable; }, resultSelector, concurrent);
-    }
-    if (typeof resultSelector === 'number') {
-        concurrent = resultSelector;
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_0__mergeMap__["a" /* mergeMap */])(function () { return innerObservable; }, concurrent);
-}
-//# sourceMappingURL=mergeMapTo.js.map
-
-
-/***/ }),
-
-/***/ 1203:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export mergeScan */
-/* unused harmony export MergeScanOperator */
-/* unused harmony export MergeScanSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__InnerSubscriber__ = __webpack_require__(150);
-/** PURE_IMPORTS_START tslib,_util_tryCatch,_util_errorObject,_util_subscribeToResult,_OuterSubscriber,_InnerSubscriber PURE_IMPORTS_END */
-
-
-
-
-
-
-function mergeScan(accumulator, seed, concurrent) {
-    if (concurrent === void 0) {
-        concurrent = Number.POSITIVE_INFINITY;
-    }
-    return function (source) { return source.lift(new MergeScanOperator(accumulator, seed, concurrent)); };
-}
-var MergeScanOperator = /*@__PURE__*/ (function () {
-    function MergeScanOperator(accumulator, seed, concurrent) {
-        this.accumulator = accumulator;
-        this.seed = seed;
-        this.concurrent = concurrent;
-    }
-    MergeScanOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new MergeScanSubscriber(subscriber, this.accumulator, this.seed, this.concurrent));
-    };
-    return MergeScanOperator;
-}());
-
-var MergeScanSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](MergeScanSubscriber, _super);
-    function MergeScanSubscriber(destination, accumulator, acc, concurrent) {
-        var _this = _super.call(this, destination) || this;
-        _this.accumulator = accumulator;
-        _this.acc = acc;
-        _this.concurrent = concurrent;
-        _this.hasValue = false;
-        _this.hasCompleted = false;
-        _this.buffer = [];
-        _this.active = 0;
-        _this.index = 0;
-        return _this;
-    }
-    MergeScanSubscriber.prototype._next = function (value) {
-        if (this.active < this.concurrent) {
-            var index = this.index++;
-            var ish = Object(__WEBPACK_IMPORTED_MODULE_1__util_tryCatch__["a" /* tryCatch */])(this.accumulator)(this.acc, value);
-            var destination = this.destination;
-            if (ish === __WEBPACK_IMPORTED_MODULE_2__util_errorObject__["a" /* errorObject */]) {
-                destination.error(__WEBPACK_IMPORTED_MODULE_2__util_errorObject__["a" /* errorObject */].e);
-            }
-            else {
-                this.active++;
-                this._innerSub(ish, value, index);
-            }
-        }
-        else {
-            this.buffer.push(value);
-        }
-    };
-    MergeScanSubscriber.prototype._innerSub = function (ish, value, index) {
-        var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_5__InnerSubscriber__["a" /* InnerSubscriber */](this, undefined, undefined);
-        this.add(innerSubscriber);
-        Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__["a" /* subscribeToResult */])(this, ish, value, index, innerSubscriber);
-    };
-    MergeScanSubscriber.prototype._complete = function () {
-        this.hasCompleted = true;
-        if (this.active === 0 && this.buffer.length === 0) {
-            if (this.hasValue === false) {
-                this.destination.next(this.acc);
-            }
-            this.destination.complete();
-        }
-    };
-    MergeScanSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        var destination = this.destination;
-        this.acc = innerValue;
-        this.hasValue = true;
-        destination.next(innerValue);
-    };
-    MergeScanSubscriber.prototype.notifyComplete = function (innerSub) {
-        var buffer = this.buffer;
-        this.remove(innerSub);
-        this.active--;
-        if (buffer.length > 0) {
-            this._next(buffer.shift());
-        }
-        else if (this.active === 0 && this.hasCompleted) {
-            if (this.hasValue === false) {
-                this.destination.next(this.acc);
-            }
-            this.destination.complete();
-        }
-    };
-    return MergeScanSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__["a" /* OuterSubscriber */]));
-
-//# sourceMappingURL=mergeScan.js.map
-
-
-/***/ }),
-
-/***/ 1204:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export min */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reduce__ = __webpack_require__(437);
-/** PURE_IMPORTS_START _reduce PURE_IMPORTS_END */
-
-function min(comparer) {
-    var min = (typeof comparer === 'function')
-        ? function (x, y) { return comparer(x, y) < 0 ? x : y; }
-        : function (x, y) { return x < y ? x : y; };
-    return Object(__WEBPACK_IMPORTED_MODULE_0__reduce__["a" /* reduce */])(min);
-}
-//# sourceMappingURL=min.js.map
-
-
-/***/ }),
-
-/***/ 1205:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export onErrorResumeNext */
-/* unused harmony export onErrorResumeNextStatic */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_from__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_observable_from,_util_isArray,_OuterSubscriber,_InnerSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-
-function onErrorResumeNext() {
-    var nextSources = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        nextSources[_i] = arguments[_i];
-    }
-    if (nextSources.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_2__util_isArray__["a" /* isArray */])(nextSources[0])) {
-        nextSources = nextSources[0];
-    }
-    return function (source) { return source.lift(new OnErrorResumeNextOperator(nextSources)); };
-}
-function onErrorResumeNextStatic() {
-    var nextSources = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        nextSources[_i] = arguments[_i];
-    }
-    var source = null;
-    if (nextSources.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_2__util_isArray__["a" /* isArray */])(nextSources[0])) {
-        nextSources = nextSources[0];
-    }
-    source = nextSources.shift();
-    return Object(__WEBPACK_IMPORTED_MODULE_1__observable_from__["a" /* from */])(source, null).lift(new OnErrorResumeNextOperator(nextSources));
-}
-var OnErrorResumeNextOperator = /*@__PURE__*/ (function () {
-    function OnErrorResumeNextOperator(nextSources) {
-        this.nextSources = nextSources;
-    }
-    OnErrorResumeNextOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new OnErrorResumeNextSubscriber(subscriber, this.nextSources));
-    };
-    return OnErrorResumeNextOperator;
-}());
-var OnErrorResumeNextSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](OnErrorResumeNextSubscriber, _super);
-    function OnErrorResumeNextSubscriber(destination, nextSources) {
-        var _this = _super.call(this, destination) || this;
-        _this.destination = destination;
-        _this.nextSources = nextSources;
-        return _this;
-    }
-    OnErrorResumeNextSubscriber.prototype.notifyError = function (error, innerSub) {
-        this.subscribeToNextSource();
-    };
-    OnErrorResumeNextSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.subscribeToNextSource();
-    };
-    OnErrorResumeNextSubscriber.prototype._error = function (err) {
-        this.subscribeToNextSource();
-    };
-    OnErrorResumeNextSubscriber.prototype._complete = function () {
-        this.subscribeToNextSource();
-    };
-    OnErrorResumeNextSubscriber.prototype.subscribeToNextSource = function () {
-        var next = this.nextSources.shift();
-        if (next) {
-            var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_4__InnerSubscriber__["a" /* InnerSubscriber */](this, undefined, undefined);
-            this.add(innerSubscriber);
-            Object(__WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__["a" /* subscribeToResult */])(this, next, undefined, undefined, innerSubscriber);
-        }
-        else {
-            this.destination.complete();
-        }
-    };
-    return OnErrorResumeNextSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=onErrorResumeNext.js.map
-
-
-/***/ }),
-
-/***/ 1206:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export pairwise */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function pairwise() {
-    return function (source) { return source.lift(new PairwiseOperator()); };
-}
-var PairwiseOperator = /*@__PURE__*/ (function () {
-    function PairwiseOperator() {
-    }
-    PairwiseOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new PairwiseSubscriber(subscriber));
-    };
-    return PairwiseOperator;
-}());
-var PairwiseSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](PairwiseSubscriber, _super);
-    function PairwiseSubscriber(destination) {
-        var _this = _super.call(this, destination) || this;
-        _this.hasPrev = false;
-        return _this;
-    }
-    PairwiseSubscriber.prototype._next = function (value) {
-        if (this.hasPrev) {
-            this.destination.next([this.prev, value]);
-        }
-        else {
-            this.hasPrev = true;
-        }
-        this.prev = value;
-    };
-    return PairwiseSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=pairwise.js.map
-
-
-/***/ }),
-
-/***/ 1207:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export partition */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_not__ = __webpack_require__(1208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filter__ = __webpack_require__(259);
-/** PURE_IMPORTS_START _util_not,_filter PURE_IMPORTS_END */
-
-
-function partition(predicate, thisArg) {
-    return function (source) {
-        return [
-            Object(__WEBPACK_IMPORTED_MODULE_1__filter__["a" /* filter */])(predicate, thisArg)(source),
-            Object(__WEBPACK_IMPORTED_MODULE_1__filter__["a" /* filter */])(Object(__WEBPACK_IMPORTED_MODULE_0__util_not__["a" /* not */])(predicate, thisArg))(source)
-        ];
-    };
-}
-//# sourceMappingURL=partition.js.map
-
-
-/***/ }),
-
-/***/ 1208:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = not;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function not(pred, thisArg) {
-    function notPred() {
-        return !(notPred.pred.apply(notPred.thisArg, arguments));
-    }
-    notPred.pred = pred;
-    notPred.thisArg = thisArg;
-    return notPred;
-}
-//# sourceMappingURL=not.js.map
-
-
-/***/ }),
-
-/***/ 1209:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export pluck */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__(102);
-/** PURE_IMPORTS_START _map PURE_IMPORTS_END */
-
-function pluck() {
-    var properties = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        properties[_i] = arguments[_i];
-    }
-    var length = properties.length;
-    if (length === 0) {
-        throw new Error('list of properties cannot be empty.');
-    }
-    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_0__map__["a" /* map */])(plucker(properties, length))(source); };
-}
-function plucker(props, length) {
-    var mapper = function (x) {
-        var currentProp = x;
-        for (var i = 0; i < length; i++) {
-            var p = currentProp[props[i]];
-            if (typeof p !== 'undefined') {
-                currentProp = p;
-            }
-            else {
-                return undefined;
-            }
-        }
-        return currentProp;
-    };
-    return mapper;
-}
-//# sourceMappingURL=pluck.js.map
-
-
-/***/ }),
-
-/***/ 1210:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export publish */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multicast__ = __webpack_require__(227);
-/** PURE_IMPORTS_START _Subject,_multicast PURE_IMPORTS_END */
-
-
-function publish(selector) {
-    return selector ?
-        Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(function () { return new __WEBPACK_IMPORTED_MODULE_0__Subject__["a" /* Subject */](); }, selector) :
-        Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(new __WEBPACK_IMPORTED_MODULE_0__Subject__["a" /* Subject */]());
-}
-//# sourceMappingURL=publish.js.map
-
-
-/***/ }),
-
-/***/ 1211:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export publishBehavior */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BehaviorSubject__ = __webpack_require__(763);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multicast__ = __webpack_require__(227);
-/** PURE_IMPORTS_START _BehaviorSubject,_multicast PURE_IMPORTS_END */
-
-
-function publishBehavior(value) {
-    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(new __WEBPACK_IMPORTED_MODULE_0__BehaviorSubject__["a" /* BehaviorSubject */](value))(source); };
-}
-//# sourceMappingURL=publishBehavior.js.map
-
-
-/***/ }),
-
-/***/ 1212:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export publishLast */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AsyncSubject__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multicast__ = __webpack_require__(227);
-/** PURE_IMPORTS_START _AsyncSubject,_multicast PURE_IMPORTS_END */
-
-
-function publishLast() {
-    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(new __WEBPACK_IMPORTED_MODULE_0__AsyncSubject__["a" /* AsyncSubject */]())(source); };
-}
-//# sourceMappingURL=publishLast.js.map
-
-
-/***/ }),
-
-/***/ 1213:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export publishReplay */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ReplaySubject__ = __webpack_require__(547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__multicast__ = __webpack_require__(227);
-/** PURE_IMPORTS_START _ReplaySubject,_multicast PURE_IMPORTS_END */
-
-
-function publishReplay(bufferSize, windowTime, selectorOrScheduler, scheduler) {
-    if (selectorOrScheduler && typeof selectorOrScheduler !== 'function') {
-        scheduler = selectorOrScheduler;
-    }
-    var selector = typeof selectorOrScheduler === 'function' ? selectorOrScheduler : undefined;
-    var subject = new __WEBPACK_IMPORTED_MODULE_0__ReplaySubject__["a" /* ReplaySubject */](bufferSize, windowTime, scheduler);
-    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(function () { return subject; }, selector)(source); };
-}
-//# sourceMappingURL=publishReplay.js.map
-
-
-/***/ }),
-
-/***/ 1214:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QueueAction; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncAction__ = __webpack_require__(265);
-/** PURE_IMPORTS_START tslib,_AsyncAction PURE_IMPORTS_END */
-
-
-var QueueAction = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](QueueAction, _super);
-    function QueueAction(scheduler, work) {
-        var _this = _super.call(this, scheduler, work) || this;
-        _this.scheduler = scheduler;
-        _this.work = work;
-        return _this;
-    }
-    QueueAction.prototype.schedule = function (state, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (delay > 0) {
-            return _super.prototype.schedule.call(this, state, delay);
-        }
-        this.delay = delay;
-        this.state = state;
-        this.scheduler.flush(this);
-        return this;
-    };
-    QueueAction.prototype.execute = function (state, delay) {
-        return (delay > 0 || this.closed) ?
-            _super.prototype.execute.call(this, state, delay) :
-            this._execute(state, delay);
-    };
-    QueueAction.prototype.requestAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if ((delay !== null && delay > 0) || (delay === null && this.delay > 0)) {
-            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);
-        }
-        return scheduler.flush(this);
-    };
-    return QueueAction;
-}(__WEBPACK_IMPORTED_MODULE_1__AsyncAction__["a" /* AsyncAction */]));
-
-//# sourceMappingURL=QueueAction.js.map
-
-
-/***/ }),
-
-/***/ 1215:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QueueScheduler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__ = __webpack_require__(266);
-/** PURE_IMPORTS_START tslib,_AsyncScheduler PURE_IMPORTS_END */
-
-
-var QueueScheduler = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](QueueScheduler, _super);
-    function QueueScheduler() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return QueueScheduler;
-}(__WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__["a" /* AsyncScheduler */]));
-
-//# sourceMappingURL=QueueScheduler.js.map
-
-
-/***/ }),
-
-/***/ 1216:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export race */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_race__ = __webpack_require__(765);
-/** PURE_IMPORTS_START _util_isArray,_observable_race PURE_IMPORTS_END */
-
-
-function race() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    return function raceOperatorFunction(source) {
-        if (observables.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_0__util_isArray__["a" /* isArray */])(observables[0])) {
-            observables = observables[0];
-        }
-        return source.lift.call(__WEBPACK_IMPORTED_MODULE_1__observable_race__["a" /* race */].apply(void 0, [source].concat(observables)));
-    };
-}
-//# sourceMappingURL=race.js.map
-
-
-/***/ }),
-
-/***/ 1217:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export repeat */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START tslib,_Subscriber,_observable_empty PURE_IMPORTS_END */
-
-
-
-function repeat(count) {
-    if (count === void 0) {
-        count = -1;
-    }
-    return function (source) {
-        if (count === 0) {
-            return Object(__WEBPACK_IMPORTED_MODULE_2__observable_empty__["b" /* empty */])();
-        }
-        else if (count < 0) {
-            return source.lift(new RepeatOperator(-1, source));
-        }
-        else {
-            return source.lift(new RepeatOperator(count - 1, source));
-        }
-    };
-}
-var RepeatOperator = /*@__PURE__*/ (function () {
-    function RepeatOperator(count, source) {
-        this.count = count;
-        this.source = source;
-    }
-    RepeatOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new RepeatSubscriber(subscriber, this.count, this.source));
-    };
-    return RepeatOperator;
-}());
-var RepeatSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RepeatSubscriber, _super);
-    function RepeatSubscriber(destination, count, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.count = count;
-        _this.source = source;
-        return _this;
-    }
-    RepeatSubscriber.prototype.complete = function () {
-        if (!this.isStopped) {
-            var _a = this, source = _a.source, count = _a.count;
-            if (count === 0) {
-                return _super.prototype.complete.call(this);
-            }
-            else if (count > -1) {
-                this.count = count - 1;
-            }
-            source.subscribe(this._unsubscribeAndRecycle());
-        }
-    };
-    return RepeatSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=repeat.js.map
-
-
-/***/ }),
-
-/***/ 1218:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export repeatWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subject,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-
-function repeatWhen(notifier) {
-    return function (source) { return source.lift(new RepeatWhenOperator(notifier)); };
-}
-var RepeatWhenOperator = /*@__PURE__*/ (function () {
-    function RepeatWhenOperator(notifier) {
-        this.notifier = notifier;
-    }
-    RepeatWhenOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new RepeatWhenSubscriber(subscriber, this.notifier, source));
-    };
-    return RepeatWhenOperator;
-}());
-var RepeatWhenSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RepeatWhenSubscriber, _super);
-    function RepeatWhenSubscriber(destination, notifier, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.notifier = notifier;
-        _this.source = source;
-        _this.sourceIsBeingSubscribedTo = true;
-        return _this;
-    }
-    RepeatWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.sourceIsBeingSubscribedTo = true;
-        this.source.subscribe(this);
-    };
-    RepeatWhenSubscriber.prototype.notifyComplete = function (innerSub) {
-        if (this.sourceIsBeingSubscribedTo === false) {
-            return _super.prototype.complete.call(this);
-        }
-    };
-    RepeatWhenSubscriber.prototype.complete = function () {
-        this.sourceIsBeingSubscribedTo = false;
-        if (!this.isStopped) {
-            if (!this.retries) {
-                this.subscribeToRetries();
-            }
-            if (!this.retriesSubscription || this.retriesSubscription.closed) {
-                return _super.prototype.complete.call(this);
-            }
-            this._unsubscribeAndRecycle();
-            this.notifications.next();
-        }
-    };
-    RepeatWhenSubscriber.prototype._unsubscribe = function () {
-        var _a = this, notifications = _a.notifications, retriesSubscription = _a.retriesSubscription;
-        if (notifications) {
-            notifications.unsubscribe();
-            this.notifications = null;
-        }
-        if (retriesSubscription) {
-            retriesSubscription.unsubscribe();
-            this.retriesSubscription = null;
-        }
-        this.retries = null;
-    };
-    RepeatWhenSubscriber.prototype._unsubscribeAndRecycle = function () {
-        var _unsubscribe = this._unsubscribe;
-        this._unsubscribe = null;
-        _super.prototype._unsubscribeAndRecycle.call(this);
-        this._unsubscribe = _unsubscribe;
-        return this;
-    };
-    RepeatWhenSubscriber.prototype.subscribeToRetries = function () {
-        this.notifications = new __WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]();
-        var retries = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(this.notifier)(this.notifications);
-        if (retries === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-            return _super.prototype.complete.call(this);
-        }
-        this.retries = retries;
-        this.retriesSubscription = Object(__WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__["a" /* subscribeToResult */])(this, retries);
-    };
-    return RepeatWhenSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=repeatWhen.js.map
-
-
-/***/ }),
-
-/***/ 1219:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export retry */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function retry(count) {
-    if (count === void 0) {
-        count = -1;
-    }
-    return function (source) { return source.lift(new RetryOperator(count, source)); };
-}
-var RetryOperator = /*@__PURE__*/ (function () {
-    function RetryOperator(count, source) {
-        this.count = count;
-        this.source = source;
-    }
-    RetryOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new RetrySubscriber(subscriber, this.count, this.source));
-    };
-    return RetryOperator;
-}());
-var RetrySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RetrySubscriber, _super);
-    function RetrySubscriber(destination, count, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.count = count;
-        _this.source = source;
-        return _this;
-    }
-    RetrySubscriber.prototype.error = function (err) {
-        if (!this.isStopped) {
-            var _a = this, source = _a.source, count = _a.count;
-            if (count === 0) {
-                return _super.prototype.error.call(this, err);
-            }
-            else if (count > -1) {
-                this.count = count - 1;
-            }
-            source.subscribe(this._unsubscribeAndRecycle());
-        }
-    };
-    return RetrySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=retry.js.map
-
-
-/***/ }),
-
-/***/ 1220:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export retryWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subject,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-
-function retryWhen(notifier) {
-    return function (source) { return source.lift(new RetryWhenOperator(notifier, source)); };
-}
-var RetryWhenOperator = /*@__PURE__*/ (function () {
-    function RetryWhenOperator(notifier, source) {
-        this.notifier = notifier;
-        this.source = source;
-    }
-    RetryWhenOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new RetryWhenSubscriber(subscriber, this.notifier, this.source));
-    };
-    return RetryWhenOperator;
-}());
-var RetryWhenSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RetryWhenSubscriber, _super);
-    function RetryWhenSubscriber(destination, notifier, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.notifier = notifier;
-        _this.source = source;
-        return _this;
-    }
-    RetryWhenSubscriber.prototype.error = function (err) {
-        if (!this.isStopped) {
-            var errors = this.errors;
-            var retries = this.retries;
-            var retriesSubscription = this.retriesSubscription;
-            if (!retries) {
-                errors = new __WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]();
-                retries = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(this.notifier)(errors);
-                if (retries === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-                    return _super.prototype.error.call(this, __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */].e);
-                }
-                retriesSubscription = Object(__WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__["a" /* subscribeToResult */])(this, retries);
-            }
-            else {
-                this.errors = null;
-                this.retriesSubscription = null;
-            }
-            this._unsubscribeAndRecycle();
-            this.errors = errors;
-            this.retries = retries;
-            this.retriesSubscription = retriesSubscription;
-            errors.next(err);
-        }
-    };
-    RetryWhenSubscriber.prototype._unsubscribe = function () {
-        var _a = this, errors = _a.errors, retriesSubscription = _a.retriesSubscription;
-        if (errors) {
-            errors.unsubscribe();
-            this.errors = null;
-        }
-        if (retriesSubscription) {
-            retriesSubscription.unsubscribe();
-            this.retriesSubscription = null;
-        }
-        this.retries = null;
-    };
-    RetryWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        var _unsubscribe = this._unsubscribe;
-        this._unsubscribe = null;
-        this._unsubscribeAndRecycle();
-        this._unsubscribe = _unsubscribe;
-        this.source.subscribe(this);
-    };
-    return RetryWhenSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=retryWhen.js.map
-
-
-/***/ }),
-
-/***/ 1221:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export sample */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function sample(notifier) {
-    return function (source) { return source.lift(new SampleOperator(notifier)); };
-}
-var SampleOperator = /*@__PURE__*/ (function () {
-    function SampleOperator(notifier) {
-        this.notifier = notifier;
-    }
-    SampleOperator.prototype.call = function (subscriber, source) {
-        var sampleSubscriber = new SampleSubscriber(subscriber);
-        var subscription = source.subscribe(sampleSubscriber);
-        subscription.add(Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(sampleSubscriber, this.notifier));
-        return subscription;
-    };
-    return SampleOperator;
-}());
-var SampleSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SampleSubscriber, _super);
-    function SampleSubscriber() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.hasValue = false;
-        return _this;
-    }
-    SampleSubscriber.prototype._next = function (value) {
-        this.value = value;
-        this.hasValue = true;
-    };
-    SampleSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.emitValue();
-    };
-    SampleSubscriber.prototype.notifyComplete = function () {
-        this.emitValue();
-    };
-    SampleSubscriber.prototype.emitValue = function () {
-        if (this.hasValue) {
-            this.hasValue = false;
-            this.destination.next(this.value);
-        }
-    };
-    return SampleSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=sample.js.map
-
-
-/***/ }),
-
-/***/ 1222:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export sampleTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheduler_async__ = __webpack_require__(78);
-/** PURE_IMPORTS_START tslib,_Subscriber,_scheduler_async PURE_IMPORTS_END */
-
-
-
-function sampleTime(period, scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_async__["a" /* async */];
-    }
-    return function (source) { return source.lift(new SampleTimeOperator(period, scheduler)); };
-}
-var SampleTimeOperator = /*@__PURE__*/ (function () {
-    function SampleTimeOperator(period, scheduler) {
-        this.period = period;
-        this.scheduler = scheduler;
-    }
-    SampleTimeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SampleTimeSubscriber(subscriber, this.period, this.scheduler));
-    };
-    return SampleTimeOperator;
-}());
-var SampleTimeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SampleTimeSubscriber, _super);
-    function SampleTimeSubscriber(destination, period, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.period = period;
-        _this.scheduler = scheduler;
-        _this.hasValue = false;
-        _this.add(scheduler.schedule(dispatchNotification, period, { subscriber: _this, period: period }));
-        return _this;
-    }
-    SampleTimeSubscriber.prototype._next = function (value) {
-        this.lastValue = value;
-        this.hasValue = true;
-    };
-    SampleTimeSubscriber.prototype.notifyNext = function () {
-        if (this.hasValue) {
-            this.hasValue = false;
-            this.destination.next(this.lastValue);
-        }
-    };
-    return SampleTimeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-function dispatchNotification(state) {
-    var subscriber = state.subscriber, period = state.period;
-    subscriber.notifyNext();
-    this.schedule(state, period);
-}
-//# sourceMappingURL=sampleTime.js.map
-
-
-/***/ }),
-
-/***/ 1223:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export sequenceEqual */
-/* unused harmony export SequenceEqualOperator */
-/* unused harmony export SequenceEqualSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_errorObject__ = __webpack_require__(99);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_tryCatch,_util_errorObject PURE_IMPORTS_END */
-
-
-
-
-function sequenceEqual(compareTo, comparor) {
-    return function (source) { return source.lift(new SequenceEqualOperator(compareTo, comparor)); };
-}
-var SequenceEqualOperator = /*@__PURE__*/ (function () {
-    function SequenceEqualOperator(compareTo, comparor) {
-        this.compareTo = compareTo;
-        this.comparor = comparor;
-    }
-    SequenceEqualOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SequenceEqualSubscriber(subscriber, this.compareTo, this.comparor));
-    };
-    return SequenceEqualOperator;
-}());
-
-var SequenceEqualSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SequenceEqualSubscriber, _super);
-    function SequenceEqualSubscriber(destination, compareTo, comparor) {
-        var _this = _super.call(this, destination) || this;
-        _this.compareTo = compareTo;
-        _this.comparor = comparor;
-        _this._a = [];
-        _this._b = [];
-        _this._oneComplete = false;
-        _this.add(compareTo.subscribe(new SequenceEqualCompareToSubscriber(destination, _this)));
-        return _this;
-    }
-    SequenceEqualSubscriber.prototype._next = function (value) {
-        if (this._oneComplete && this._b.length === 0) {
-            this.emit(false);
-        }
-        else {
-            this._a.push(value);
-            this.checkValues();
-        }
-    };
-    SequenceEqualSubscriber.prototype._complete = function () {
-        if (this._oneComplete) {
-            this.emit(this._a.length === 0 && this._b.length === 0);
-        }
-        else {
-            this._oneComplete = true;
-        }
-    };
-    SequenceEqualSubscriber.prototype.checkValues = function () {
-        var _c = this, _a = _c._a, _b = _c._b, comparor = _c.comparor;
-        while (_a.length > 0 && _b.length > 0) {
-            var a = _a.shift();
-            var b = _b.shift();
-            var areEqual = false;
-            if (comparor) {
-                areEqual = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(comparor)(a, b);
-                if (areEqual === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-                    this.destination.error(__WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */].e);
-                }
-            }
-            else {
-                areEqual = a === b;
-            }
-            if (!areEqual) {
-                this.emit(false);
-            }
-        }
-    };
-    SequenceEqualSubscriber.prototype.emit = function (value) {
-        var destination = this.destination;
-        destination.next(value);
-        destination.complete();
-    };
-    SequenceEqualSubscriber.prototype.nextB = function (value) {
-        if (this._oneComplete && this._a.length === 0) {
-            this.emit(false);
-        }
-        else {
-            this._b.push(value);
-            this.checkValues();
-        }
-    };
-    return SequenceEqualSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-
-var SequenceEqualCompareToSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SequenceEqualCompareToSubscriber, _super);
-    function SequenceEqualCompareToSubscriber(destination, parent) {
-        var _this = _super.call(this, destination) || this;
-        _this.parent = parent;
-        return _this;
-    }
-    SequenceEqualCompareToSubscriber.prototype._next = function (value) {
-        this.parent.nextB(value);
-    };
-    SequenceEqualCompareToSubscriber.prototype._error = function (err) {
-        this.parent.error(err);
-    };
-    SequenceEqualCompareToSubscriber.prototype._complete = function () {
-        this.parent._complete();
-    };
-    return SequenceEqualCompareToSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=sequenceEqual.js.map
-
-
-/***/ }),
-
-/***/ 1224:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = share;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__multicast__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__refCount__ = __webpack_require__(539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subject__ = __webpack_require__(72);
-/** PURE_IMPORTS_START _multicast,_refCount,_Subject PURE_IMPORTS_END */
-
-
-
-function shareSubjectFactory() {
-    return new __WEBPACK_IMPORTED_MODULE_2__Subject__["a" /* Subject */]();
-}
-function share() {
-    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__refCount__["a" /* refCount */])()(Object(__WEBPACK_IMPORTED_MODULE_0__multicast__["a" /* multicast */])(shareSubjectFactory)(source)); };
-}
-//# sourceMappingURL=share.js.map
-
-
-/***/ }),
-
-/***/ 1225:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export shareReplay */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ReplaySubject__ = __webpack_require__(547);
-/** PURE_IMPORTS_START _ReplaySubject PURE_IMPORTS_END */
-
-function shareReplay(bufferSize, windowTime, scheduler) {
-    if (bufferSize === void 0) {
-        bufferSize = Number.POSITIVE_INFINITY;
-    }
-    if (windowTime === void 0) {
-        windowTime = Number.MAX_VALUE;
-    }
-    return function (source) { return source.lift(shareReplayOperator(bufferSize, windowTime, scheduler)); };
-}
-function shareReplayOperator(bufferSize, windowTime, scheduler) {
-    var subject;
-    var refCount = 0;
-    var subscription;
-    var hasError = false;
-    var isComplete = false;
-    return function shareReplayOperation(source) {
-        refCount++;
-        if (!subject || hasError) {
-            hasError = false;
-            subject = new __WEBPACK_IMPORTED_MODULE_0__ReplaySubject__["a" /* ReplaySubject */](bufferSize, windowTime, scheduler);
-            subscription = source.subscribe({
-                next: function (value) { subject.next(value); },
-                error: function (err) {
-                    hasError = true;
-                    subject.error(err);
-                },
-                complete: function () {
-                    isComplete = true;
-                    subject.complete();
-                },
-            });
-        }
-        var innerSub = subject.subscribe(this);
-        return function () {
-            refCount--;
-            innerSub.unsubscribe();
-            if (subscription && refCount === 0 && isComplete) {
-                subscription.unsubscribe();
-            }
-        };
-    };
-}
-//# sourceMappingURL=shareReplay.js.map
-
-
-/***/ }),
-
-/***/ 1226:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export single */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_EmptyError__ = __webpack_require__(262);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_EmptyError PURE_IMPORTS_END */
-
-
-
-function single(predicate) {
-    return function (source) { return source.lift(new SingleOperator(predicate, source)); };
-}
-var SingleOperator = /*@__PURE__*/ (function () {
-    function SingleOperator(predicate, source) {
-        this.predicate = predicate;
-        this.source = source;
-    }
-    SingleOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SingleSubscriber(subscriber, this.predicate, this.source));
-    };
-    return SingleOperator;
-}());
-var SingleSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SingleSubscriber, _super);
-    function SingleSubscriber(destination, predicate, source) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.source = source;
-        _this.seenValue = false;
-        _this.index = 0;
-        return _this;
-    }
-    SingleSubscriber.prototype.applySingleValue = function (value) {
-        if (this.seenValue) {
-            this.destination.error('Sequence contains more than one element');
-        }
-        else {
-            this.seenValue = true;
-            this.singleValue = value;
-        }
-    };
-    SingleSubscriber.prototype._next = function (value) {
-        var index = this.index++;
-        if (this.predicate) {
-            this.tryNext(value, index);
-        }
-        else {
-            this.applySingleValue(value);
-        }
-    };
-    SingleSubscriber.prototype.tryNext = function (value, index) {
-        try {
-            if (this.predicate(value, index, this.source)) {
-                this.applySingleValue(value);
-            }
-        }
-        catch (err) {
-            this.destination.error(err);
-        }
-    };
-    SingleSubscriber.prototype._complete = function () {
-        var destination = this.destination;
-        if (this.index > 0) {
-            destination.next(this.seenValue ? this.singleValue : undefined);
-            destination.complete();
-        }
-        else {
-            destination.error(new __WEBPACK_IMPORTED_MODULE_2__util_EmptyError__["a" /* EmptyError */]);
-        }
-    };
-    return SingleSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=single.js.map
-
-
-/***/ }),
-
-/***/ 1227:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export skip */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function skip(count) {
-    return function (source) { return source.lift(new SkipOperator(count)); };
-}
-var SkipOperator = /*@__PURE__*/ (function () {
-    function SkipOperator(total) {
-        this.total = total;
-    }
-    SkipOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SkipSubscriber(subscriber, this.total));
-    };
-    return SkipOperator;
-}());
-var SkipSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SkipSubscriber, _super);
-    function SkipSubscriber(destination, total) {
-        var _this = _super.call(this, destination) || this;
-        _this.total = total;
-        _this.count = 0;
-        return _this;
-    }
-    SkipSubscriber.prototype._next = function (x) {
-        if (++this.count > this.total) {
-            this.destination.next(x);
-        }
-    };
-    return SkipSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=skip.js.map
-
-
-/***/ }),
-
-/***/ 1228:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export skipLast */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_ArgumentOutOfRangeError__ = __webpack_require__(261);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_ArgumentOutOfRangeError PURE_IMPORTS_END */
-
-
-
-function skipLast(count) {
-    return function (source) { return source.lift(new SkipLastOperator(count)); };
-}
-var SkipLastOperator = /*@__PURE__*/ (function () {
-    function SkipLastOperator(_skipCount) {
-        this._skipCount = _skipCount;
-        if (this._skipCount < 0) {
-            throw new __WEBPACK_IMPORTED_MODULE_2__util_ArgumentOutOfRangeError__["a" /* ArgumentOutOfRangeError */];
-        }
-    }
-    SkipLastOperator.prototype.call = function (subscriber, source) {
-        if (this._skipCount === 0) {
-            return source.subscribe(new __WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */](subscriber));
-        }
-        else {
-            return source.subscribe(new SkipLastSubscriber(subscriber, this._skipCount));
-        }
-    };
-    return SkipLastOperator;
-}());
-var SkipLastSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SkipLastSubscriber, _super);
-    function SkipLastSubscriber(destination, _skipCount) {
-        var _this = _super.call(this, destination) || this;
-        _this._skipCount = _skipCount;
-        _this._count = 0;
-        _this._ring = new Array(_skipCount);
-        return _this;
-    }
-    SkipLastSubscriber.prototype._next = function (value) {
-        var skipCount = this._skipCount;
-        var count = this._count++;
-        if (count < skipCount) {
-            this._ring[count] = value;
-        }
-        else {
-            var currentIndex = count % skipCount;
-            var ring = this._ring;
-            var oldValue = ring[currentIndex];
-            ring[currentIndex] = value;
-            this.destination.next(oldValue);
-        }
-    };
-    return SkipLastSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=skipLast.js.map
-
-
-/***/ }),
-
-/***/ 1229:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export skipUntil */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_InnerSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-function skipUntil(notifier) {
-    return function (source) { return source.lift(new SkipUntilOperator(notifier)); };
-}
-var SkipUntilOperator = /*@__PURE__*/ (function () {
-    function SkipUntilOperator(notifier) {
-        this.notifier = notifier;
-    }
-    SkipUntilOperator.prototype.call = function (destination, source) {
-        return source.subscribe(new SkipUntilSubscriber(destination, this.notifier));
-    };
-    return SkipUntilOperator;
-}());
-var SkipUntilSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SkipUntilSubscriber, _super);
-    function SkipUntilSubscriber(destination, notifier) {
-        var _this = _super.call(this, destination) || this;
-        _this.hasValue = false;
-        var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__["a" /* InnerSubscriber */](_this, undefined, undefined);
-        _this.add(innerSubscriber);
-        _this.innerSubscription = innerSubscriber;
-        Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__["a" /* subscribeToResult */])(_this, notifier, undefined, undefined, innerSubscriber);
-        return _this;
-    }
-    SkipUntilSubscriber.prototype._next = function (value) {
-        if (this.hasValue) {
-            _super.prototype._next.call(this, value);
-        }
-    };
-    SkipUntilSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.hasValue = true;
-        if (this.innerSubscription) {
-            this.innerSubscription.unsubscribe();
-        }
-    };
-    SkipUntilSubscriber.prototype.notifyComplete = function () {
-    };
-    return SkipUntilSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=skipUntil.js.map
-
-
-/***/ }),
-
-/***/ 1230:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export skipWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function skipWhile(predicate) {
-    return function (source) { return source.lift(new SkipWhileOperator(predicate)); };
-}
-var SkipWhileOperator = /*@__PURE__*/ (function () {
-    function SkipWhileOperator(predicate) {
-        this.predicate = predicate;
-    }
-    SkipWhileOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SkipWhileSubscriber(subscriber, this.predicate));
-    };
-    return SkipWhileOperator;
-}());
-var SkipWhileSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SkipWhileSubscriber, _super);
-    function SkipWhileSubscriber(destination, predicate) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.skipping = true;
-        _this.index = 0;
-        return _this;
-    }
-    SkipWhileSubscriber.prototype._next = function (value) {
-        var destination = this.destination;
-        if (this.skipping) {
-            this.tryCallPredicate(value);
-        }
-        if (!this.skipping) {
-            destination.next(value);
-        }
-    };
-    SkipWhileSubscriber.prototype.tryCallPredicate = function (value) {
-        try {
-            var result = this.predicate(value, this.index++);
-            this.skipping = Boolean(result);
-        }
-        catch (err) {
-            this.destination.error(err);
-        }
-    };
-    return SkipWhileSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=skipWhile.js.map
-
-
-/***/ }),
-
-/***/ 1231:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export startWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_fromArray__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_scalar__ = __webpack_require__(534);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_empty__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_concat__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START _observable_fromArray,_observable_scalar,_observable_empty,_observable_concat,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-
-
-function startWith() {
-    var array = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        array[_i] = arguments[_i];
-    }
-    return function (source) {
-        var scheduler = array[array.length - 1];
-        if (Object(__WEBPACK_IMPORTED_MODULE_4__util_isScheduler__["a" /* isScheduler */])(scheduler)) {
-            array.pop();
-        }
-        else {
-            scheduler = null;
-        }
-        var len = array.length;
-        if (len === 1 && !scheduler) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_concat__["a" /* concat */])(Object(__WEBPACK_IMPORTED_MODULE_1__observable_scalar__["a" /* scalar */])(array[0]), source);
-        }
-        else if (len > 0) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_concat__["a" /* concat */])(Object(__WEBPACK_IMPORTED_MODULE_0__observable_fromArray__["a" /* fromArray */])(array, scheduler), source);
-        }
-        else {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_concat__["a" /* concat */])(Object(__WEBPACK_IMPORTED_MODULE_2__observable_empty__["b" /* empty */])(scheduler), source);
-        }
-    };
-}
-//# sourceMappingURL=startWith.js.map
-
-
-/***/ }),
-
-/***/ 1232:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export subscribeOn */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_SubscribeOnObservable__ = __webpack_require__(1233);
-/** PURE_IMPORTS_START _observable_SubscribeOnObservable PURE_IMPORTS_END */
-
-function subscribeOn(scheduler, delay) {
-    if (delay === void 0) {
-        delay = 0;
-    }
-    return function subscribeOnOperatorFunction(source) {
-        return source.lift(new SubscribeOnOperator(scheduler, delay));
-    };
-}
-var SubscribeOnOperator = /*@__PURE__*/ (function () {
-    function SubscribeOnOperator(scheduler, delay) {
-        this.scheduler = scheduler;
-        this.delay = delay;
-    }
-    SubscribeOnOperator.prototype.call = function (subscriber, source) {
-        return new __WEBPACK_IMPORTED_MODULE_0__observable_SubscribeOnObservable__["a" /* SubscribeOnObservable */](source, this.delay, this.scheduler).subscribe(subscriber);
-    };
-    return SubscribeOnOperator;
-}());
-//# sourceMappingURL=subscribeOn.js.map
-
-
-/***/ }),
-
-/***/ 1233:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubscribeOnObservable; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheduler_asap__ = __webpack_require__(766);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isNumeric__ = __webpack_require__(439);
-/** PURE_IMPORTS_START tslib,_Observable,_scheduler_asap,_util_isNumeric PURE_IMPORTS_END */
-
-
-
-
-var SubscribeOnObservable = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SubscribeOnObservable, _super);
-    function SubscribeOnObservable(source, delayTime, scheduler) {
-        if (delayTime === void 0) {
-            delayTime = 0;
-        }
-        if (scheduler === void 0) {
-            scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_asap__["a" /* asap */];
-        }
-        var _this = _super.call(this) || this;
-        _this.source = source;
-        _this.delayTime = delayTime;
-        _this.scheduler = scheduler;
-        if (!Object(__WEBPACK_IMPORTED_MODULE_3__util_isNumeric__["a" /* isNumeric */])(delayTime) || delayTime < 0) {
-            _this.delayTime = 0;
-        }
-        if (!scheduler || typeof scheduler.schedule !== 'function') {
-            _this.scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_asap__["a" /* asap */];
-        }
-        return _this;
-    }
-    SubscribeOnObservable.create = function (source, delay, scheduler) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (scheduler === void 0) {
-            scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_asap__["a" /* asap */];
-        }
-        return new SubscribeOnObservable(source, delay, scheduler);
-    };
-    SubscribeOnObservable.dispatch = function (arg) {
-        var source = arg.source, subscriber = arg.subscriber;
-        return this.add(source.subscribe(subscriber));
-    };
-    SubscribeOnObservable.prototype._subscribe = function (subscriber) {
-        var delay = this.delayTime;
-        var source = this.source;
-        var scheduler = this.scheduler;
-        return scheduler.schedule(SubscribeOnObservable.dispatch, delay, {
-            source: source, subscriber: subscriber
-        });
-    };
-    return SubscribeOnObservable;
-}(__WEBPACK_IMPORTED_MODULE_1__Observable__["a" /* Observable */]));
-
-//# sourceMappingURL=SubscribeOnObservable.js.map
-
-
-/***/ }),
-
-/***/ 1234:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsapAction; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_Immediate__ = __webpack_require__(1235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AsyncAction__ = __webpack_require__(265);
-/** PURE_IMPORTS_START tslib,_util_Immediate,_AsyncAction PURE_IMPORTS_END */
-
-
-
-var AsapAction = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AsapAction, _super);
-    function AsapAction(scheduler, work) {
-        var _this = _super.call(this, scheduler, work) || this;
-        _this.scheduler = scheduler;
-        _this.work = work;
-        return _this;
-    }
-    AsapAction.prototype.requestAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (delay !== null && delay > 0) {
-            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);
-        }
-        scheduler.actions.push(this);
-        return scheduler.scheduled || (scheduler.scheduled = __WEBPACK_IMPORTED_MODULE_1__util_Immediate__["a" /* Immediate */].setImmediate(scheduler.flush.bind(scheduler, null)));
-    };
-    AsapAction.prototype.recycleAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if ((delay !== null && delay > 0) || (delay === null && this.delay > 0)) {
-            return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
-        }
-        if (scheduler.actions.length === 0) {
-            __WEBPACK_IMPORTED_MODULE_1__util_Immediate__["a" /* Immediate */].clearImmediate(id);
-            scheduler.scheduled = undefined;
-        }
-        return undefined;
-    };
-    return AsapAction;
-}(__WEBPACK_IMPORTED_MODULE_2__AsyncAction__["a" /* AsyncAction */]));
-
-//# sourceMappingURL=AsapAction.js.map
-
-
-/***/ }),
-
-/***/ 1235:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Immediate; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var nextHandle = 1;
-var tasksByHandle = {};
-function runIfPresent(handle) {
-    var cb = tasksByHandle[handle];
-    if (cb) {
-        cb();
-    }
-}
-var Immediate = {
-    setImmediate: function (cb) {
-        var handle = nextHandle++;
-        tasksByHandle[handle] = cb;
-        Promise.resolve().then(function () { return runIfPresent(handle); });
-        return handle;
-    },
-    clearImmediate: function (handle) {
-        delete tasksByHandle[handle];
-    },
-};
-//# sourceMappingURL=Immediate.js.map
-
-
-/***/ }),
-
-/***/ 1236:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsapScheduler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__ = __webpack_require__(266);
-/** PURE_IMPORTS_START tslib,_AsyncScheduler PURE_IMPORTS_END */
-
-
-var AsapScheduler = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AsapScheduler, _super);
-    function AsapScheduler() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    AsapScheduler.prototype.flush = function (action) {
-        this.active = true;
-        this.scheduled = undefined;
-        var actions = this.actions;
-        var error;
-        var index = -1;
-        var count = actions.length;
-        action = action || actions.shift();
-        do {
-            if (error = action.execute(action.state, action.delay)) {
-                break;
-            }
-        } while (++index < count && (action = actions.shift()));
-        this.active = false;
-        if (error) {
-            while (++index < count && (action = actions.shift())) {
-                action.unsubscribe();
-            }
-            throw error;
-        }
-    };
-    return AsapScheduler;
-}(__WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__["a" /* AsyncScheduler */]));
-
-//# sourceMappingURL=AsapScheduler.js.map
-
-
-/***/ }),
-
-/***/ 1237:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export switchAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__switchMap__ = __webpack_require__(540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_identity__ = __webpack_require__(231);
-/** PURE_IMPORTS_START _switchMap,_util_identity PURE_IMPORTS_END */
-
-
-function switchAll() {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__switchMap__["a" /* switchMap */])(__WEBPACK_IMPORTED_MODULE_1__util_identity__["a" /* identity */]);
-}
-//# sourceMappingURL=switchAll.js.map
-
-
-/***/ }),
-
-/***/ 1238:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export switchMapTo */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__switchMap__ = __webpack_require__(540);
-/** PURE_IMPORTS_START _switchMap PURE_IMPORTS_END */
-
-function switchMapTo(innerObservable, resultSelector) {
-    return resultSelector ? Object(__WEBPACK_IMPORTED_MODULE_0__switchMap__["a" /* switchMap */])(function () { return innerObservable; }, resultSelector) : Object(__WEBPACK_IMPORTED_MODULE_0__switchMap__["a" /* switchMap */])(function () { return innerObservable; });
-}
-//# sourceMappingURL=switchMapTo.js.map
-
-
-/***/ }),
-
-/***/ 1239:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export takeUntil */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function takeUntil(notifier) {
-    return function (source) { return source.lift(new TakeUntilOperator(notifier)); };
-}
-var TakeUntilOperator = /*@__PURE__*/ (function () {
-    function TakeUntilOperator(notifier) {
-        this.notifier = notifier;
-    }
-    TakeUntilOperator.prototype.call = function (subscriber, source) {
-        var takeUntilSubscriber = new TakeUntilSubscriber(subscriber);
-        var notifierSubscription = Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(takeUntilSubscriber, this.notifier);
-        if (notifierSubscription && !takeUntilSubscriber.seenValue) {
-            takeUntilSubscriber.add(notifierSubscription);
-            return source.subscribe(takeUntilSubscriber);
-        }
-        return takeUntilSubscriber;
-    };
-    return TakeUntilOperator;
-}());
-var TakeUntilSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TakeUntilSubscriber, _super);
-    function TakeUntilSubscriber(destination) {
-        var _this = _super.call(this, destination) || this;
-        _this.seenValue = false;
-        return _this;
-    }
-    TakeUntilSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.seenValue = true;
-        this.complete();
-    };
-    TakeUntilSubscriber.prototype.notifyComplete = function () {
-    };
-    return TakeUntilSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=takeUntil.js.map
-
-
-/***/ }),
-
-/***/ 1240:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export takeWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function takeWhile(predicate) {
-    return function (source) { return source.lift(new TakeWhileOperator(predicate)); };
-}
-var TakeWhileOperator = /*@__PURE__*/ (function () {
-    function TakeWhileOperator(predicate) {
-        this.predicate = predicate;
-    }
-    TakeWhileOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new TakeWhileSubscriber(subscriber, this.predicate));
-    };
-    return TakeWhileOperator;
-}());
-var TakeWhileSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TakeWhileSubscriber, _super);
-    function TakeWhileSubscriber(destination, predicate) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.index = 0;
-        return _this;
-    }
-    TakeWhileSubscriber.prototype._next = function (value) {
-        var destination = this.destination;
-        var result;
-        try {
-            result = this.predicate(value, this.index++);
-        }
-        catch (err) {
-            destination.error(err);
-            return;
-        }
-        this.nextOrComplete(value, result);
-    };
-    TakeWhileSubscriber.prototype.nextOrComplete = function (value, predicateResult) {
-        var destination = this.destination;
-        if (Boolean(predicateResult)) {
-            destination.next(value);
-        }
-        else {
-            destination.complete();
-        }
-    };
-    return TakeWhileSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=takeWhile.js.map
-
-
-/***/ }),
-
-/***/ 1241:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export throttleTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__throttle__ = __webpack_require__(748);
-/** PURE_IMPORTS_START tslib,_Subscriber,_scheduler_async,_throttle PURE_IMPORTS_END */
-
-
-
-
-function throttleTime(duration, scheduler, config) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_async__["a" /* async */];
-    }
-    if (config === void 0) {
-        config = __WEBPACK_IMPORTED_MODULE_3__throttle__["a" /* defaultThrottleConfig */];
-    }
-    return function (source) { return source.lift(new ThrottleTimeOperator(duration, scheduler, config.leading, config.trailing)); };
-}
-var ThrottleTimeOperator = /*@__PURE__*/ (function () {
-    function ThrottleTimeOperator(duration, scheduler, leading, trailing) {
-        this.duration = duration;
-        this.scheduler = scheduler;
-        this.leading = leading;
-        this.trailing = trailing;
-    }
-    ThrottleTimeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ThrottleTimeSubscriber(subscriber, this.duration, this.scheduler, this.leading, this.trailing));
-    };
-    return ThrottleTimeOperator;
-}());
-var ThrottleTimeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ThrottleTimeSubscriber, _super);
-    function ThrottleTimeSubscriber(destination, duration, scheduler, leading, trailing) {
-        var _this = _super.call(this, destination) || this;
-        _this.duration = duration;
-        _this.scheduler = scheduler;
-        _this.leading = leading;
-        _this.trailing = trailing;
-        _this._hasTrailingValue = false;
-        _this._trailingValue = null;
-        return _this;
-    }
-    ThrottleTimeSubscriber.prototype._next = function (value) {
-        if (this.throttled) {
-            if (this.trailing) {
-                this._trailingValue = value;
-                this._hasTrailingValue = true;
-            }
-        }
-        else {
-            this.add(this.throttled = this.scheduler.schedule(dispatchNext, this.duration, { subscriber: this }));
-            if (this.leading) {
-                this.destination.next(value);
-            }
-        }
-    };
-    ThrottleTimeSubscriber.prototype._complete = function () {
-        if (this._hasTrailingValue) {
-            this.destination.next(this._trailingValue);
-            this.destination.complete();
-        }
-        else {
-            this.destination.complete();
-        }
-    };
-    ThrottleTimeSubscriber.prototype.clearThrottle = function () {
-        var throttled = this.throttled;
-        if (throttled) {
-            if (this.trailing && this._hasTrailingValue) {
-                this.destination.next(this._trailingValue);
-                this._trailingValue = null;
-                this._hasTrailingValue = false;
-            }
-            throttled.unsubscribe();
-            this.remove(throttled);
-            this.throttled = null;
-        }
-    };
-    return ThrottleTimeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-function dispatchNext(arg) {
-    var subscriber = arg.subscriber;
-    subscriber.clearThrottle();
-}
-//# sourceMappingURL=throttleTime.js.map
-
-
-/***/ }),
-
-/***/ 1242:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export timeInterval */
-/* unused harmony export TimeInterval */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scan__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_defer__ = __webpack_require__(554);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map__ = __webpack_require__(102);
-/** PURE_IMPORTS_START _scheduler_async,_scan,_observable_defer,_map PURE_IMPORTS_END */
-
-
-
-
-function timeInterval(scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_0__scheduler_async__["a" /* async */];
-    }
-    return function (source) {
-        return Object(__WEBPACK_IMPORTED_MODULE_2__observable_defer__["a" /* defer */])(function () {
-            return source.pipe(Object(__WEBPACK_IMPORTED_MODULE_1__scan__["a" /* scan */])(function (_a, value) {
-                var current = _a.current;
-                return ({ value: value, current: scheduler.now(), last: current });
-            }, { current: scheduler.now(), value: undefined, last: undefined }), Object(__WEBPACK_IMPORTED_MODULE_3__map__["a" /* map */])(function (_a) {
-                var current = _a.current, last = _a.last, value = _a.value;
-                return new TimeInterval(value, current - last);
-            }));
-        });
-    };
-}
-var TimeInterval = /*@__PURE__*/ (function () {
-    function TimeInterval(value, interval) {
-        this.value = value;
-        this.interval = interval;
-    }
-    return TimeInterval;
-}());
-
-//# sourceMappingURL=timeInterval.js.map
-
-
-/***/ }),
-
-/***/ 1243:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export timeout */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_TimeoutError__ = __webpack_require__(767);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__timeoutWith__ = __webpack_require__(749);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_throwError__ = __webpack_require__(546);
-/** PURE_IMPORTS_START _scheduler_async,_util_TimeoutError,_timeoutWith,_observable_throwError PURE_IMPORTS_END */
-
-
-
-
-function timeout(due, scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_0__scheduler_async__["a" /* async */];
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_2__timeoutWith__["a" /* timeoutWith */])(due, Object(__WEBPACK_IMPORTED_MODULE_3__observable_throwError__["a" /* throwError */])(new __WEBPACK_IMPORTED_MODULE_1__util_TimeoutError__["a" /* TimeoutError */]()), scheduler);
-}
-//# sourceMappingURL=timeout.js.map
-
-
-/***/ }),
-
-/***/ 1244:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export timestamp */
-/* unused harmony export Timestamp */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__map__ = __webpack_require__(102);
-/** PURE_IMPORTS_START _scheduler_async,_map PURE_IMPORTS_END */
-
-
-function timestamp(scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_0__scheduler_async__["a" /* async */];
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_1__map__["a" /* map */])(function (value) { return new Timestamp(value, scheduler.now()); });
-}
-var Timestamp = /*@__PURE__*/ (function () {
-    function Timestamp(value, timestamp) {
-        this.value = value;
-        this.timestamp = timestamp;
-    }
-    return Timestamp;
-}());
-
-//# sourceMappingURL=timestamp.js.map
-
-
-/***/ }),
-
-/***/ 1245:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export toArray */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reduce__ = __webpack_require__(437);
-/** PURE_IMPORTS_START _reduce PURE_IMPORTS_END */
-
-function toArrayReducer(arr, item, index) {
-    if (index === 0) {
-        return [item];
-    }
-    arr.push(item);
-    return arr;
-}
-function toArray() {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__reduce__["a" /* reduce */])(toArrayReducer, []);
-}
-//# sourceMappingURL=toArray.js.map
-
-
-/***/ }),
-
-/***/ 1246:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export window */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-function window(windowBoundaries) {
-    return function windowOperatorFunction(source) {
-        return source.lift(new WindowOperator(windowBoundaries));
-    };
-}
-var WindowOperator = /*@__PURE__*/ (function () {
-    function WindowOperator(windowBoundaries) {
-        this.windowBoundaries = windowBoundaries;
-    }
-    WindowOperator.prototype.call = function (subscriber, source) {
-        var windowSubscriber = new WindowSubscriber(subscriber);
-        var sourceSubscription = source.subscribe(windowSubscriber);
-        if (!sourceSubscription.closed) {
-            windowSubscriber.add(Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__["a" /* subscribeToResult */])(windowSubscriber, this.windowBoundaries));
-        }
-        return sourceSubscription;
-    };
-    return WindowOperator;
-}());
-var WindowSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WindowSubscriber, _super);
-    function WindowSubscriber(destination) {
-        var _this = _super.call(this, destination) || this;
-        _this.window = new __WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]();
-        destination.next(_this.window);
-        return _this;
-    }
-    WindowSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.openWindow();
-    };
-    WindowSubscriber.prototype.notifyError = function (error, innerSub) {
-        this._error(error);
-    };
-    WindowSubscriber.prototype.notifyComplete = function (innerSub) {
-        this._complete();
-    };
-    WindowSubscriber.prototype._next = function (value) {
-        this.window.next(value);
-    };
-    WindowSubscriber.prototype._error = function (err) {
-        this.window.error(err);
-        this.destination.error(err);
-    };
-    WindowSubscriber.prototype._complete = function () {
-        this.window.complete();
-        this.destination.complete();
-    };
-    WindowSubscriber.prototype._unsubscribe = function () {
-        this.window = null;
-    };
-    WindowSubscriber.prototype.openWindow = function () {
-        var prevWindow = this.window;
-        if (prevWindow) {
-            prevWindow.complete();
-        }
-        var destination = this.destination;
-        var newWindow = this.window = new __WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]();
-        destination.next(newWindow);
-    };
-    return WindowSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_2__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=window.js.map
-
-
-/***/ }),
-
-/***/ 1247:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export windowCount */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subject__ = __webpack_require__(72);
-/** PURE_IMPORTS_START tslib,_Subscriber,_Subject PURE_IMPORTS_END */
-
-
-
-function windowCount(windowSize, startWindowEvery) {
-    if (startWindowEvery === void 0) {
-        startWindowEvery = 0;
-    }
-    return function windowCountOperatorFunction(source) {
-        return source.lift(new WindowCountOperator(windowSize, startWindowEvery));
-    };
-}
-var WindowCountOperator = /*@__PURE__*/ (function () {
-    function WindowCountOperator(windowSize, startWindowEvery) {
-        this.windowSize = windowSize;
-        this.startWindowEvery = startWindowEvery;
-    }
-    WindowCountOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new WindowCountSubscriber(subscriber, this.windowSize, this.startWindowEvery));
-    };
-    return WindowCountOperator;
-}());
-var WindowCountSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WindowCountSubscriber, _super);
-    function WindowCountSubscriber(destination, windowSize, startWindowEvery) {
-        var _this = _super.call(this, destination) || this;
-        _this.destination = destination;
-        _this.windowSize = windowSize;
-        _this.startWindowEvery = startWindowEvery;
-        _this.windows = [new __WEBPACK_IMPORTED_MODULE_2__Subject__["a" /* Subject */]()];
-        _this.count = 0;
-        destination.next(_this.windows[0]);
-        return _this;
-    }
-    WindowCountSubscriber.prototype._next = function (value) {
-        var startWindowEvery = (this.startWindowEvery > 0) ? this.startWindowEvery : this.windowSize;
-        var destination = this.destination;
-        var windowSize = this.windowSize;
-        var windows = this.windows;
-        var len = windows.length;
-        for (var i = 0; i < len && !this.closed; i++) {
-            windows[i].next(value);
-        }
-        var c = this.count - windowSize + 1;
-        if (c >= 0 && c % startWindowEvery === 0 && !this.closed) {
-            windows.shift().complete();
-        }
-        if (++this.count % startWindowEvery === 0 && !this.closed) {
-            var window_1 = new __WEBPACK_IMPORTED_MODULE_2__Subject__["a" /* Subject */]();
-            windows.push(window_1);
-            destination.next(window_1);
-        }
-    };
-    WindowCountSubscriber.prototype._error = function (err) {
-        var windows = this.windows;
-        if (windows) {
-            while (windows.length > 0 && !this.closed) {
-                windows.shift().error(err);
-            }
-        }
-        this.destination.error(err);
-    };
-    WindowCountSubscriber.prototype._complete = function () {
-        var windows = this.windows;
-        if (windows) {
-            while (windows.length > 0 && !this.closed) {
-                windows.shift().complete();
-            }
-        }
-        this.destination.complete();
-    };
-    WindowCountSubscriber.prototype._unsubscribe = function () {
-        this.count = 0;
-        this.windows = null;
-    };
-    return WindowCountSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=windowCount.js.map
-
-
-/***/ }),
-
-/***/ 1248:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export windowTime */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_isNumeric__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START tslib,_Subject,_scheduler_async,_Subscriber,_util_isNumeric,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-
-
-
-function windowTime(windowTimeSpan) {
-    var scheduler = __WEBPACK_IMPORTED_MODULE_2__scheduler_async__["a" /* async */];
-    var windowCreationInterval = null;
-    var maxWindowSize = Number.POSITIVE_INFINITY;
-    if (Object(__WEBPACK_IMPORTED_MODULE_5__util_isScheduler__["a" /* isScheduler */])(arguments[3])) {
-        scheduler = arguments[3];
-    }
-    if (Object(__WEBPACK_IMPORTED_MODULE_5__util_isScheduler__["a" /* isScheduler */])(arguments[2])) {
-        scheduler = arguments[2];
-    }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_4__util_isNumeric__["a" /* isNumeric */])(arguments[2])) {
-        maxWindowSize = arguments[2];
-    }
-    if (Object(__WEBPACK_IMPORTED_MODULE_5__util_isScheduler__["a" /* isScheduler */])(arguments[1])) {
-        scheduler = arguments[1];
-    }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_4__util_isNumeric__["a" /* isNumeric */])(arguments[1])) {
-        windowCreationInterval = arguments[1];
-    }
-    return function windowTimeOperatorFunction(source) {
-        return source.lift(new WindowTimeOperator(windowTimeSpan, windowCreationInterval, maxWindowSize, scheduler));
-    };
-}
-var WindowTimeOperator = /*@__PURE__*/ (function () {
-    function WindowTimeOperator(windowTimeSpan, windowCreationInterval, maxWindowSize, scheduler) {
-        this.windowTimeSpan = windowTimeSpan;
-        this.windowCreationInterval = windowCreationInterval;
-        this.maxWindowSize = maxWindowSize;
-        this.scheduler = scheduler;
-    }
-    WindowTimeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new WindowTimeSubscriber(subscriber, this.windowTimeSpan, this.windowCreationInterval, this.maxWindowSize, this.scheduler));
-    };
-    return WindowTimeOperator;
-}());
-var CountedSubject = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](CountedSubject, _super);
-    function CountedSubject() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._numberOfNextedValues = 0;
-        return _this;
-    }
-    CountedSubject.prototype.next = function (value) {
-        this._numberOfNextedValues++;
-        _super.prototype.next.call(this, value);
-    };
-    Object.defineProperty(CountedSubject.prototype, "numberOfNextedValues", {
-        get: function () {
-            return this._numberOfNextedValues;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return CountedSubject;
-}(__WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]));
-var WindowTimeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WindowTimeSubscriber, _super);
-    function WindowTimeSubscriber(destination, windowTimeSpan, windowCreationInterval, maxWindowSize, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.destination = destination;
-        _this.windowTimeSpan = windowTimeSpan;
-        _this.windowCreationInterval = windowCreationInterval;
-        _this.maxWindowSize = maxWindowSize;
-        _this.scheduler = scheduler;
-        _this.windows = [];
-        var window = _this.openWindow();
-        if (windowCreationInterval !== null && windowCreationInterval >= 0) {
-            var closeState = { subscriber: _this, window: window, context: null };
-            var creationState = { windowTimeSpan: windowTimeSpan, windowCreationInterval: windowCreationInterval, subscriber: _this, scheduler: scheduler };
-            _this.add(scheduler.schedule(dispatchWindowClose, windowTimeSpan, closeState));
-            _this.add(scheduler.schedule(dispatchWindowCreation, windowCreationInterval, creationState));
-        }
-        else {
-            var timeSpanOnlyState = { subscriber: _this, window: window, windowTimeSpan: windowTimeSpan };
-            _this.add(scheduler.schedule(dispatchWindowTimeSpanOnly, windowTimeSpan, timeSpanOnlyState));
-        }
-        return _this;
-    }
-    WindowTimeSubscriber.prototype._next = function (value) {
-        var windows = this.windows;
-        var len = windows.length;
-        for (var i = 0; i < len; i++) {
-            var window_1 = windows[i];
-            if (!window_1.closed) {
-                window_1.next(value);
-                if (window_1.numberOfNextedValues >= this.maxWindowSize) {
-                    this.closeWindow(window_1);
-                }
-            }
-        }
-    };
-    WindowTimeSubscriber.prototype._error = function (err) {
-        var windows = this.windows;
-        while (windows.length > 0) {
-            windows.shift().error(err);
-        }
-        this.destination.error(err);
-    };
-    WindowTimeSubscriber.prototype._complete = function () {
-        var windows = this.windows;
-        while (windows.length > 0) {
-            var window_2 = windows.shift();
-            if (!window_2.closed) {
-                window_2.complete();
-            }
-        }
-        this.destination.complete();
-    };
-    WindowTimeSubscriber.prototype.openWindow = function () {
-        var window = new CountedSubject();
-        this.windows.push(window);
-        var destination = this.destination;
-        destination.next(window);
-        return window;
-    };
-    WindowTimeSubscriber.prototype.closeWindow = function (window) {
-        window.complete();
-        var windows = this.windows;
-        windows.splice(windows.indexOf(window), 1);
-    };
-    return WindowTimeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__Subscriber__["a" /* Subscriber */]));
-function dispatchWindowTimeSpanOnly(state) {
-    var subscriber = state.subscriber, windowTimeSpan = state.windowTimeSpan, window = state.window;
-    if (window) {
-        subscriber.closeWindow(window);
-    }
-    state.window = subscriber.openWindow();
-    this.schedule(state, windowTimeSpan);
-}
-function dispatchWindowCreation(state) {
-    var windowTimeSpan = state.windowTimeSpan, subscriber = state.subscriber, scheduler = state.scheduler, windowCreationInterval = state.windowCreationInterval;
-    var window = subscriber.openWindow();
-    var action = this;
-    var context = { action: action, subscription: null };
-    var timeSpanState = { subscriber: subscriber, window: window, context: context };
-    context.subscription = scheduler.schedule(dispatchWindowClose, windowTimeSpan, timeSpanState);
-    action.add(context.subscription);
-    action.schedule(state, windowCreationInterval);
-}
-function dispatchWindowClose(state) {
-    var subscriber = state.subscriber, window = state.window, context = state.context;
-    if (context && context.action && context.subscription) {
-        context.action.remove(context.subscription);
-    }
-    subscriber.closeWindow(window);
-}
-//# sourceMappingURL=windowTime.js.map
-
-
-/***/ }),
-
-/***/ 1249:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export windowToggle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subject,_Subscription,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-
-
-function windowToggle(openings, closingSelector) {
-    return function (source) { return source.lift(new WindowToggleOperator(openings, closingSelector)); };
-}
-var WindowToggleOperator = /*@__PURE__*/ (function () {
-    function WindowToggleOperator(openings, closingSelector) {
-        this.openings = openings;
-        this.closingSelector = closingSelector;
-    }
-    WindowToggleOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new WindowToggleSubscriber(subscriber, this.openings, this.closingSelector));
-    };
-    return WindowToggleOperator;
-}());
-var WindowToggleSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WindowToggleSubscriber, _super);
-    function WindowToggleSubscriber(destination, openings, closingSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.openings = openings;
-        _this.closingSelector = closingSelector;
-        _this.contexts = [];
-        _this.add(_this.openSubscription = Object(__WEBPACK_IMPORTED_MODULE_6__util_subscribeToResult__["a" /* subscribeToResult */])(_this, openings, openings));
-        return _this;
-    }
-    WindowToggleSubscriber.prototype._next = function (value) {
-        var contexts = this.contexts;
-        if (contexts) {
-            var len = contexts.length;
-            for (var i = 0; i < len; i++) {
-                contexts[i].window.next(value);
-            }
-        }
-    };
-    WindowToggleSubscriber.prototype._error = function (err) {
-        var contexts = this.contexts;
-        this.contexts = null;
-        if (contexts) {
-            var len = contexts.length;
-            var index = -1;
-            while (++index < len) {
-                var context_1 = contexts[index];
-                context_1.window.error(err);
-                context_1.subscription.unsubscribe();
-            }
-        }
-        _super.prototype._error.call(this, err);
-    };
-    WindowToggleSubscriber.prototype._complete = function () {
-        var contexts = this.contexts;
-        this.contexts = null;
-        if (contexts) {
-            var len = contexts.length;
-            var index = -1;
-            while (++index < len) {
-                var context_2 = contexts[index];
-                context_2.window.complete();
-                context_2.subscription.unsubscribe();
-            }
-        }
-        _super.prototype._complete.call(this);
-    };
-    WindowToggleSubscriber.prototype._unsubscribe = function () {
-        var contexts = this.contexts;
-        this.contexts = null;
-        if (contexts) {
-            var len = contexts.length;
-            var index = -1;
-            while (++index < len) {
-                var context_3 = contexts[index];
-                context_3.window.unsubscribe();
-                context_3.subscription.unsubscribe();
-            }
-        }
-    };
-    WindowToggleSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        if (outerValue === this.openings) {
-            var closingSelector = this.closingSelector;
-            var closingNotifier = Object(__WEBPACK_IMPORTED_MODULE_3__util_tryCatch__["a" /* tryCatch */])(closingSelector)(innerValue);
-            if (closingNotifier === __WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */]) {
-                return this.error(__WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */].e);
-            }
-            else {
-                var window_1 = new __WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]();
-                var subscription = new __WEBPACK_IMPORTED_MODULE_2__Subscription__["a" /* Subscription */]();
-                var context_4 = { window: window_1, subscription: subscription };
-                this.contexts.push(context_4);
-                var innerSubscription = Object(__WEBPACK_IMPORTED_MODULE_6__util_subscribeToResult__["a" /* subscribeToResult */])(this, closingNotifier, context_4);
-                if (innerSubscription.closed) {
-                    this.closeWindow(this.contexts.length - 1);
-                }
-                else {
-                    innerSubscription.context = context_4;
-                    subscription.add(innerSubscription);
-                }
-                this.destination.next(window_1);
-            }
-        }
-        else {
-            this.closeWindow(this.contexts.indexOf(outerValue));
-        }
-    };
-    WindowToggleSubscriber.prototype.notifyError = function (err) {
-        this.error(err);
-    };
-    WindowToggleSubscriber.prototype.notifyComplete = function (inner) {
-        if (inner !== this.openSubscription) {
-            this.closeWindow(this.contexts.indexOf(inner.context));
-        }
-    };
-    WindowToggleSubscriber.prototype.closeWindow = function (index) {
-        if (index === -1) {
-            return;
-        }
-        var contexts = this.contexts;
-        var context = contexts[index];
-        var window = context.window, subscription = context.subscription;
-        contexts.splice(index, 1);
-        window.complete();
-        subscription.unsubscribe();
-    };
-    return WindowToggleSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_5__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=windowToggle.js.map
-
-
-/***/ }),
-
-/***/ 1250:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export windowWhen */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_Subject,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-
-function windowWhen(closingSelector) {
-    return function windowWhenOperatorFunction(source) {
-        return source.lift(new WindowOperator(closingSelector));
-    };
-}
-var WindowOperator = /*@__PURE__*/ (function () {
-    function WindowOperator(closingSelector) {
-        this.closingSelector = closingSelector;
-    }
-    WindowOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new WindowSubscriber(subscriber, this.closingSelector));
-    };
-    return WindowOperator;
-}());
-var WindowSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WindowSubscriber, _super);
-    function WindowSubscriber(destination, closingSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.destination = destination;
-        _this.closingSelector = closingSelector;
-        _this.openWindow();
-        return _this;
-    }
-    WindowSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.openWindow(innerSub);
-    };
-    WindowSubscriber.prototype.notifyError = function (error, innerSub) {
-        this._error(error);
-    };
-    WindowSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.openWindow(innerSub);
-    };
-    WindowSubscriber.prototype._next = function (value) {
-        this.window.next(value);
-    };
-    WindowSubscriber.prototype._error = function (err) {
-        this.window.error(err);
-        this.destination.error(err);
-        this.unsubscribeClosingNotification();
-    };
-    WindowSubscriber.prototype._complete = function () {
-        this.window.complete();
-        this.destination.complete();
-        this.unsubscribeClosingNotification();
-    };
-    WindowSubscriber.prototype.unsubscribeClosingNotification = function () {
-        if (this.closingNotification) {
-            this.closingNotification.unsubscribe();
-        }
-    };
-    WindowSubscriber.prototype.openWindow = function (innerSub) {
-        if (innerSub === void 0) {
-            innerSub = null;
-        }
-        if (innerSub) {
-            this.remove(innerSub);
-            innerSub.unsubscribe();
-        }
-        var prevWindow = this.window;
-        if (prevWindow) {
-            prevWindow.complete();
-        }
-        var window = this.window = new __WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]();
-        this.destination.next(window);
-        var closingNotifier = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(this.closingSelector)();
-        if (closingNotifier === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-            var err = __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */].e;
-            this.destination.error(err);
-            this.window.error(err);
-        }
-        else {
-            this.add(this.closingNotification = Object(__WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__["a" /* subscribeToResult */])(this, closingNotifier));
-        }
-    };
-    return WindowSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=windowWhen.js.map
-
-
-/***/ }),
-
-/***/ 1251:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export withLatestFrom */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-function withLatestFrom() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    return function (source) {
-        var project;
-        if (typeof args[args.length - 1] === 'function') {
-            project = args.pop();
-        }
-        var observables = args;
-        return source.lift(new WithLatestFromOperator(observables, project));
-    };
-}
-var WithLatestFromOperator = /*@__PURE__*/ (function () {
-    function WithLatestFromOperator(observables, project) {
-        this.observables = observables;
-        this.project = project;
-    }
-    WithLatestFromOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new WithLatestFromSubscriber(subscriber, this.observables, this.project));
-    };
-    return WithLatestFromOperator;
-}());
-var WithLatestFromSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](WithLatestFromSubscriber, _super);
-    function WithLatestFromSubscriber(destination, observables, project) {
-        var _this = _super.call(this, destination) || this;
-        _this.observables = observables;
-        _this.project = project;
-        _this.toRespond = [];
-        var len = observables.length;
-        _this.values = new Array(len);
-        for (var i = 0; i < len; i++) {
-            _this.toRespond.push(i);
-        }
-        for (var i = 0; i < len; i++) {
-            var observable = observables[i];
-            _this.add(Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(_this, observable, observable, i));
-        }
-        return _this;
-    }
-    WithLatestFromSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.values[outerIndex] = innerValue;
-        var toRespond = this.toRespond;
-        if (toRespond.length > 0) {
-            var found = toRespond.indexOf(outerIndex);
-            if (found !== -1) {
-                toRespond.splice(found, 1);
-            }
-        }
-    };
-    WithLatestFromSubscriber.prototype.notifyComplete = function () {
-    };
-    WithLatestFromSubscriber.prototype._next = function (value) {
-        if (this.toRespond.length === 0) {
-            var args = [value].concat(this.values);
-            if (this.project) {
-                this._tryProject(args);
-            }
-            else {
-                this.destination.next(args);
-            }
-        }
-    };
-    WithLatestFromSubscriber.prototype._tryProject = function (args) {
-        var result;
-        try {
-            result = this.project.apply(this, args);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.next(result);
-    };
-    return WithLatestFromSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=withLatestFrom.js.map
-
-
-/***/ }),
-
-/***/ 1252:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export zip */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_zip__ = __webpack_require__(548);
-/** PURE_IMPORTS_START _observable_zip PURE_IMPORTS_END */
-
-function zip() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    return function zipOperatorFunction(source) {
-        return source.lift.call(__WEBPACK_IMPORTED_MODULE_0__observable_zip__["b" /* zip */].apply(void 0, [source].concat(observables)));
-    };
-}
-//# sourceMappingURL=zip.js.map
-
-
-/***/ }),
-
-/***/ 1253:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export zipAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_zip__ = __webpack_require__(548);
-/** PURE_IMPORTS_START _observable_zip PURE_IMPORTS_END */
-
-function zipAll(project) {
-    return function (source) { return source.lift(new __WEBPACK_IMPORTED_MODULE_0__observable_zip__["a" /* ZipOperator */](project)); };
-}
-//# sourceMappingURL=zipAll.js.map
-
-
-/***/ }),
-
-/***/ 129:
+/***/ 150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8498,61 +3702,14 @@ let oldDb = {
 
 /***/ }),
 
-/***/ 131:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 18:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = from;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isPromise__ = __webpack_require__(739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isArrayLike__ = __webpack_require__(738);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isInteropObservable__ = __webpack_require__(1171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_isIterable__ = __webpack_require__(1172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fromArray__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fromPromise__ = __webpack_require__(1173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fromIterable__ = __webpack_require__(1174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fromObservable__ = __webpack_require__(1175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_subscribeTo__ = __webpack_require__(733);
-/** PURE_IMPORTS_START _Observable,_util_isPromise,_util_isArrayLike,_util_isInteropObservable,_util_isIterable,_fromArray,_fromPromise,_fromIterable,_fromObservable,_util_subscribeTo PURE_IMPORTS_END */
-
-
-
-
-
-
-
-
-
-
-function from(input, scheduler) {
-    if (!scheduler) {
-        if (input instanceof __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */]) {
-            return input;
-        }
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](Object(__WEBPACK_IMPORTED_MODULE_9__util_subscribeTo__["a" /* subscribeTo */])(input));
-    }
-    if (input != null) {
-        if (Object(__WEBPACK_IMPORTED_MODULE_3__util_isInteropObservable__["a" /* isInteropObservable */])(input)) {
-            return Object(__WEBPACK_IMPORTED_MODULE_8__fromObservable__["a" /* fromObservable */])(input, scheduler);
-        }
-        else if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isPromise__["a" /* isPromise */])(input)) {
-            return Object(__WEBPACK_IMPORTED_MODULE_6__fromPromise__["a" /* fromPromise */])(input, scheduler);
-        }
-        else if (Object(__WEBPACK_IMPORTED_MODULE_2__util_isArrayLike__["a" /* isArrayLike */])(input)) {
-            return Object(__WEBPACK_IMPORTED_MODULE_5__fromArray__["a" /* fromArray */])(input, scheduler);
-        }
-        else if (Object(__WEBPACK_IMPORTED_MODULE_4__util_isIterable__["a" /* isIterable */])(input) || typeof input === 'string') {
-            return Object(__WEBPACK_IMPORTED_MODULE_7__fromIterable__["a" /* fromIterable */])(input, scheduler);
-        }
-    }
-    throw new TypeError((input !== null && typeof input || input) + ' is not observable');
-}
-//# sourceMappingURL=from.js.map
-
+module.exports = require("electron");
 
 /***/ }),
 
-/***/ 147:
+/***/ 180:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8697,99 +3854,21 @@ function pushToSyncChangeSets(changesets, currentUser, sc, cb) {
 
 /***/ }),
 
-/***/ 150:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 20:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InnerSubscriber; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-var InnerSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](InnerSubscriber, _super);
-    function InnerSubscriber(parent, outerValue, outerIndex) {
-        var _this = _super.call(this) || this;
-        _this.parent = parent;
-        _this.outerValue = outerValue;
-        _this.outerIndex = outerIndex;
-        _this.index = 0;
-        return _this;
-    }
-    InnerSubscriber.prototype._next = function (value) {
-        this.parent.notifyNext(this.outerValue, value, this.outerIndex, this.index++, this);
-    };
-    InnerSubscriber.prototype._error = function (error) {
-        this.parent.notifyError(error, this);
-        this.unsubscribe();
-    };
-    InnerSubscriber.prototype._complete = function () {
-        this.parent.notifyComplete(this);
-        this.unsubscribe();
-    };
-    return InnerSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-
-//# sourceMappingURL=InnerSubscriber.js.map
-
+module.exports = require("path");
 
 /***/ }),
 
-/***/ 151:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = fromArray;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToArray__ = __webpack_require__(734);
-/** PURE_IMPORTS_START _Observable,_Subscription,_util_subscribeToArray PURE_IMPORTS_END */
-
-
-
-function fromArray(input, scheduler) {
-    if (!scheduler) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToArray__["a" /* subscribeToArray */])(input));
-    }
-    else {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var sub = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-            var i = 0;
-            sub.add(scheduler.schedule(function () {
-                if (i === input.length) {
-                    subscriber.complete();
-                    return;
-                }
-                subscriber.next(input[i++]);
-                if (!subscriber.closed) {
-                    sub.add(this.schedule());
-                }
-            }));
-            return sub;
-        });
-    }
-}
-//# sourceMappingURL=fromArray.js.map
-
-
-/***/ }),
-
-/***/ 178:
+/***/ 208:
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 19:
-/***/ (function(module, exports) {
-
-module.exports = require("electron");
-
-/***/ }),
-
-/***/ 199:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8867,14 +3946,7 @@ BaseConfigurationService = class BaseConfigurationService extends __WEBPACK_IMPO
 
 /***/ }),
 
-/***/ 20:
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-
-/***/ 202:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8884,11 +3956,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eachLimit = __webpack_require__(2514);
+var _eachLimit = __webpack_require__(2848);
 
 var _eachLimit2 = _interopRequireDefault(_eachLimit);
 
-var _doLimit = __webpack_require__(458);
+var _doLimit = __webpack_require__(495);
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
@@ -8918,539 +3990,24 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 227:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = multicast;
-/* unused harmony export MulticastOperator */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_ConnectableObservable__ = __webpack_require__(762);
-/** PURE_IMPORTS_START _observable_ConnectableObservable PURE_IMPORTS_END */
-
-function multicast(subjectOrSubjectFactory, selector) {
-    return function multicastOperatorFunction(source) {
-        var subjectFactory;
-        if (typeof subjectOrSubjectFactory === 'function') {
-            subjectFactory = subjectOrSubjectFactory;
-        }
-        else {
-            subjectFactory = function subjectFactory() {
-                return subjectOrSubjectFactory;
-            };
-        }
-        if (typeof selector === 'function') {
-            return source.lift(new MulticastOperator(subjectFactory, selector));
-        }
-        var connectable = Object.create(source, __WEBPACK_IMPORTED_MODULE_0__observable_ConnectableObservable__["a" /* connectableObservableDescriptor */]);
-        connectable.source = source;
-        connectable.subjectFactory = subjectFactory;
-        return connectable;
-    };
-}
-var MulticastOperator = /*@__PURE__*/ (function () {
-    function MulticastOperator(subjectFactory, selector) {
-        this.subjectFactory = subjectFactory;
-        this.selector = selector;
-    }
-    MulticastOperator.prototype.call = function (subscriber, source) {
-        var selector = this.selector;
-        var subject = this.subjectFactory();
-        var subscription = selector(subject).subscribe(subscriber);
-        subscription.add(source.subscribe(subject));
-        return subscription;
-    };
-    return MulticastOperator;
-}());
-
-//# sourceMappingURL=multicast.js.map
-
-
-/***/ }),
-
-/***/ 229:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return observable; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var observable = typeof Symbol === 'function' && Symbol.observable || '@@observable';
-//# sourceMappingURL=observable.js.map
-
-
-/***/ }),
-
-/***/ 231:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = identity;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function identity(x) {
-    return x;
-}
-//# sourceMappingURL=identity.js.map
-
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Subscriber; });
-/* unused harmony export SafeSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isFunction__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Observer__ = __webpack_require__(731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__internal_symbol_rxSubscriber__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config__ = __webpack_require__(438);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_hostReportError__ = __webpack_require__(532);
-/** PURE_IMPORTS_START tslib,_util_isFunction,_Observer,_Subscription,_internal_symbol_rxSubscriber,_config,_util_hostReportError PURE_IMPORTS_END */
-
-
-
-
-
-
-
-var Subscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](Subscriber, _super);
-    function Subscriber(destinationOrNext, error, complete) {
-        var _this = _super.call(this) || this;
-        _this.syncErrorValue = null;
-        _this.syncErrorThrown = false;
-        _this.syncErrorThrowable = false;
-        _this.isStopped = false;
-        _this._parentSubscription = null;
-        switch (arguments.length) {
-            case 0:
-                _this.destination = __WEBPACK_IMPORTED_MODULE_2__Observer__["a" /* empty */];
-                break;
-            case 1:
-                if (!destinationOrNext) {
-                    _this.destination = __WEBPACK_IMPORTED_MODULE_2__Observer__["a" /* empty */];
-                    break;
-                }
-                if (typeof destinationOrNext === 'object') {
-                    if (isTrustedSubscriber(destinationOrNext)) {
-                        var trustedSubscriber = destinationOrNext[__WEBPACK_IMPORTED_MODULE_4__internal_symbol_rxSubscriber__["a" /* rxSubscriber */]]();
-                        _this.syncErrorThrowable = trustedSubscriber.syncErrorThrowable;
-                        _this.destination = trustedSubscriber;
-                        trustedSubscriber._addParentTeardownLogic(_this);
-                    }
-                    else {
-                        _this.syncErrorThrowable = true;
-                        _this.destination = new SafeSubscriber(_this, destinationOrNext);
-                    }
-                    break;
-                }
-            default:
-                _this.syncErrorThrowable = true;
-                _this.destination = new SafeSubscriber(_this, destinationOrNext, error, complete);
-                break;
-        }
-        return _this;
-    }
-    Subscriber.prototype[__WEBPACK_IMPORTED_MODULE_4__internal_symbol_rxSubscriber__["a" /* rxSubscriber */]] = function () { return this; };
-    Subscriber.create = function (next, error, complete) {
-        var subscriber = new Subscriber(next, error, complete);
-        subscriber.syncErrorThrowable = false;
-        return subscriber;
-    };
-    Subscriber.prototype.next = function (value) {
-        if (!this.isStopped) {
-            this._next(value);
-        }
-    };
-    Subscriber.prototype.error = function (err) {
-        if (!this.isStopped) {
-            this.isStopped = true;
-            this._error(err);
-            this._unsubscribeParentSubscription();
-        }
-    };
-    Subscriber.prototype.complete = function () {
-        if (!this.isStopped) {
-            this.isStopped = true;
-            this._complete();
-            this._unsubscribeParentSubscription();
-        }
-    };
-    Subscriber.prototype.unsubscribe = function () {
-        if (this.closed) {
-            return;
-        }
-        this.isStopped = true;
-        _super.prototype.unsubscribe.call(this);
-    };
-    Subscriber.prototype._next = function (value) {
-        this.destination.next(value);
-    };
-    Subscriber.prototype._error = function (err) {
-        this.destination.error(err);
-        this.unsubscribe();
-    };
-    Subscriber.prototype._complete = function () {
-        this.destination.complete();
-        this.unsubscribe();
-    };
-    Subscriber.prototype._addParentTeardownLogic = function (parentTeardownLogic) {
-        if (parentTeardownLogic !== this) {
-            this._parentSubscription = this.add(parentTeardownLogic);
-        }
-    };
-    Subscriber.prototype._unsubscribeParentSubscription = function () {
-        if (this._parentSubscription !== null) {
-            this._parentSubscription.unsubscribe();
-        }
-    };
-    Subscriber.prototype._unsubscribeAndRecycle = function () {
-        var _a = this, _parent = _a._parent, _parents = _a._parents;
-        this._parent = null;
-        this._parents = null;
-        this.unsubscribe();
-        this.closed = false;
-        this.isStopped = false;
-        this._parent = _parent;
-        this._parents = _parents;
-        this._parentSubscription = null;
-        return this;
-    };
-    return Subscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__Subscription__["a" /* Subscription */]));
-
-var SafeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SafeSubscriber, _super);
-    function SafeSubscriber(_parentSubscriber, observerOrNext, error, complete) {
-        var _this = _super.call(this) || this;
-        _this._parentSubscriber = _parentSubscriber;
-        var next;
-        var context = _this;
-        if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isFunction__["a" /* isFunction */])(observerOrNext)) {
-            next = observerOrNext;
-        }
-        else if (observerOrNext) {
-            next = observerOrNext.next;
-            error = observerOrNext.error;
-            complete = observerOrNext.complete;
-            if (observerOrNext !== __WEBPACK_IMPORTED_MODULE_2__Observer__["a" /* empty */]) {
-                context = Object.create(observerOrNext);
-                if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isFunction__["a" /* isFunction */])(context.unsubscribe)) {
-                    _this.add(context.unsubscribe.bind(context));
-                }
-                context.unsubscribe = _this.unsubscribe.bind(_this);
-            }
-        }
-        _this._context = context;
-        _this._next = next;
-        _this._error = error;
-        _this._complete = complete;
-        return _this;
-    }
-    SafeSubscriber.prototype.next = function (value) {
-        if (!this.isStopped && this._next) {
-            var _parentSubscriber = this._parentSubscriber;
-            if (!__WEBPACK_IMPORTED_MODULE_5__config__["a" /* config */].useDeprecatedSynchronousErrorHandling || !_parentSubscriber.syncErrorThrowable) {
-                this.__tryOrUnsub(this._next, value);
-            }
-            else if (this.__tryOrSetError(_parentSubscriber, this._next, value)) {
-                this.unsubscribe();
-            }
-        }
-    };
-    SafeSubscriber.prototype.error = function (err) {
-        if (!this.isStopped) {
-            var _parentSubscriber = this._parentSubscriber;
-            var useDeprecatedSynchronousErrorHandling = __WEBPACK_IMPORTED_MODULE_5__config__["a" /* config */].useDeprecatedSynchronousErrorHandling;
-            if (this._error) {
-                if (!useDeprecatedSynchronousErrorHandling || !_parentSubscriber.syncErrorThrowable) {
-                    this.__tryOrUnsub(this._error, err);
-                    this.unsubscribe();
-                }
-                else {
-                    this.__tryOrSetError(_parentSubscriber, this._error, err);
-                    this.unsubscribe();
-                }
-            }
-            else if (!_parentSubscriber.syncErrorThrowable) {
-                this.unsubscribe();
-                if (useDeprecatedSynchronousErrorHandling) {
-                    throw err;
-                }
-                Object(__WEBPACK_IMPORTED_MODULE_6__util_hostReportError__["a" /* hostReportError */])(err);
-            }
-            else {
-                if (useDeprecatedSynchronousErrorHandling) {
-                    _parentSubscriber.syncErrorValue = err;
-                    _parentSubscriber.syncErrorThrown = true;
-                }
-                else {
-                    Object(__WEBPACK_IMPORTED_MODULE_6__util_hostReportError__["a" /* hostReportError */])(err);
-                }
-                this.unsubscribe();
-            }
-        }
-    };
-    SafeSubscriber.prototype.complete = function () {
-        var _this = this;
-        if (!this.isStopped) {
-            var _parentSubscriber = this._parentSubscriber;
-            if (this._complete) {
-                var wrappedComplete = function () { return _this._complete.call(_this._context); };
-                if (!__WEBPACK_IMPORTED_MODULE_5__config__["a" /* config */].useDeprecatedSynchronousErrorHandling || !_parentSubscriber.syncErrorThrowable) {
-                    this.__tryOrUnsub(wrappedComplete);
-                    this.unsubscribe();
-                }
-                else {
-                    this.__tryOrSetError(_parentSubscriber, wrappedComplete);
-                    this.unsubscribe();
-                }
-            }
-            else {
-                this.unsubscribe();
-            }
-        }
-    };
-    SafeSubscriber.prototype.__tryOrUnsub = function (fn, value) {
-        try {
-            fn.call(this._context, value);
-        }
-        catch (err) {
-            this.unsubscribe();
-            if (__WEBPACK_IMPORTED_MODULE_5__config__["a" /* config */].useDeprecatedSynchronousErrorHandling) {
-                throw err;
-            }
-            else {
-                Object(__WEBPACK_IMPORTED_MODULE_6__util_hostReportError__["a" /* hostReportError */])(err);
-            }
-        }
-    };
-    SafeSubscriber.prototype.__tryOrSetError = function (parent, fn, value) {
-        if (!__WEBPACK_IMPORTED_MODULE_5__config__["a" /* config */].useDeprecatedSynchronousErrorHandling) {
-            throw new Error('bad call');
-        }
-        try {
-            fn.call(this._context, value);
-        }
-        catch (err) {
-            if (__WEBPACK_IMPORTED_MODULE_5__config__["a" /* config */].useDeprecatedSynchronousErrorHandling) {
-                parent.syncErrorValue = err;
-                parent.syncErrorThrown = true;
-                return true;
-            }
-            else {
-                Object(__WEBPACK_IMPORTED_MODULE_6__util_hostReportError__["a" /* hostReportError */])(err);
-                return true;
-            }
-        }
-        return false;
-    };
-    SafeSubscriber.prototype._unsubscribe = function () {
-        var _parentSubscriber = this._parentSubscriber;
-        this._context = null;
-        this._parentSubscriber = null;
-        _parentSubscriber.unsubscribe();
-    };
-    return SafeSubscriber;
-}(Subscriber));
-
-function isTrustedSubscriber(obj) {
-    return obj instanceof Subscriber || ('_addParentTeardownLogic' in obj && obj[__WEBPACK_IMPORTED_MODULE_4__internal_symbol_rxSubscriber__["a" /* rxSubscriber */]]);
-}
-//# sourceMappingURL=Subscriber.js.map
-
-
-/***/ }),
-
-/***/ 251:
+/***/ 2844:
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * Expose `Emitter`.
- */
-
-if (true) {
-  module.exports = Emitter;
-}
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
-
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on =
-Emitter.prototype.addEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  function on() {
-    this.off(event, on);
-    fn.apply(this, arguments);
-  }
-
-  on.fn = fn;
-  this.on(event, on);
-  return this;
-};
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.off =
-Emitter.prototype.removeListener =
-Emitter.prototype.removeAllListeners =
-Emitter.prototype.removeEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-
-  // all
-  if (0 == arguments.length) {
-    this._callbacks = {};
-    return this;
-  }
-
-  // specific event
-  var callbacks = this._callbacks['$' + event];
-  if (!callbacks) return this;
-
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks['$' + event];
-    return this;
-  }
-
-  // remove specific handler
-  var cb;
-  for (var i = 0; i < callbacks.length; i++) {
-    cb = callbacks[i];
-    if (cb === fn || cb.fn === fn) {
-      callbacks.splice(i, 1);
-      break;
-    }
-  }
-  return this;
-};
-
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks['$' + event];
-
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
-
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks['$' + event] || [];
-};
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
-
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
+module.exports = __webpack_require__(2845);
 
 
 /***/ }),
 
-/***/ 2510:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(2511);
-
-
-/***/ }),
-
-/***/ 2511:
+/***/ 2845:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(2512);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_TelemetryHelpers__ = __webpack_require__(511);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__ = __webpack_require__(2604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(2846);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_TelemetryHelpers__ = __webpack_require__(570);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__ = __webpack_require__(2922);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(29);
 
 
 
@@ -9472,27 +4029,27 @@ __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */].init(err => {
 
 /***/ }),
 
-/***/ 2512:
+/***/ 2846:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_migrator_Migrate__ = __webpack_require__(2513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(460);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_migrator_Migrate__ = __webpack_require__(2847);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig__ = __webpack_require__(496);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__boot_bootConfig__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootMessaging__ = __webpack_require__(461);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootWLModels__ = __webpack_require__(462);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(479);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(509);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootShared__ = __webpack_require__(2537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_booted__ = __webpack_require__(510);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_initialize_db_initialize__ = __webpack_require__(2582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootConfigurations__ = __webpack_require__(408);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_initializeConfigurationsValues__ = __webpack_require__(2583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootSharedRuntimeListeners__ = __webpack_require__(2584);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootMessaging__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootWLModels__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(568);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootShared__ = __webpack_require__(2871);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_booted__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_initialize_db_initialize__ = __webpack_require__(2918);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootConfigurations__ = __webpack_require__(454);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_initializeConfigurationsValues__ = __webpack_require__(2919);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootSharedRuntimeListeners__ = __webpack_require__(2920);
 
 
 
@@ -9544,36 +4101,36 @@ pm.init = done => {
 
 /***/ }),
 
-/***/ 2513:
+/***/ 2847:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Migrate;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json__ = __webpack_require__(425);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_circular_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall__ = __webpack_require__(1075);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall__ = __webpack_require__(1200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async_waterfall__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__User__ = __webpack_require__(2516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__LocalChanges__ = __webpack_require__(2517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Collections__ = __webpack_require__(2518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SyncedSince__ = __webpack_require__(2523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Headerpreset__ = __webpack_require__(2524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Collectionrun__ = __webpack_require__(2525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__History__ = __webpack_require__(2526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Globals__ = __webpack_require__(2527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Workspace__ = __webpack_require__(2528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Environments__ = __webpack_require__(2529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__WorkspaceSession__ = __webpack_require__(2530);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Helpers__ = __webpack_require__(2531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__OAuth2AccessTokens__ = __webpack_require__(2532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__oldDb__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client__ = __webpack_require__(1077);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__User__ = __webpack_require__(2850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__LocalChanges__ = __webpack_require__(2851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Collections__ = __webpack_require__(2852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SyncedSince__ = __webpack_require__(2857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Headerpreset__ = __webpack_require__(2858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Collectionrun__ = __webpack_require__(2859);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__History__ = __webpack_require__(2860);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Globals__ = __webpack_require__(2861);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Workspace__ = __webpack_require__(2862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Environments__ = __webpack_require__(2863);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__WorkspaceSession__ = __webpack_require__(2864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Helpers__ = __webpack_require__(2865);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__OAuth2AccessTokens__ = __webpack_require__(2866);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client__ = __webpack_require__(1202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__postman_sync_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_DatabaseService__ = __webpack_require__(1078);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_DatabaseService__ = __webpack_require__(1203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__ = __webpack_require__(29);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -9836,7 +4393,7 @@ function Migrate(cb) {
 
 /***/ }),
 
-/***/ 2514:
+/***/ 2848:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9847,15 +4404,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = eachLimit;
 
-var _eachOfLimit = __webpack_require__(566);
+var _eachOfLimit = __webpack_require__(611);
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _withoutIndex = __webpack_require__(2515);
+var _withoutIndex = __webpack_require__(2849);
 
 var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
 
-var _wrapAsync = __webpack_require__(211);
+var _wrapAsync = __webpack_require__(172);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -9888,7 +4445,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2515:
+/***/ 2849:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9907,18 +4464,18 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 2516:
+/***/ 2850:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = User;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user__ = __webpack_require__(885);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user__ = __webpack_require__(942);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_user__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(180);
 
 
 
@@ -10018,14 +4575,14 @@ function User(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2517:
+/***/ 2851:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = LocalChanges;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MigratorUtil__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MigratorUtil__ = __webpack_require__(180);
 
 
 
@@ -10202,35 +4759,35 @@ function LocalChanges(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2518:
+/***/ 2852:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Collections;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall__ = __webpack_require__(1075);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall__ = __webpack_require__(1200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_waterfall__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_series__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_series__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async_mapSeries__ = __webpack_require__(2519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async_mapSeries__ = __webpack_require__(2853);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async_mapSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_async_mapSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_CollectionTreeOps__ = __webpack_require__(613);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__oldDb__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder__ = __webpack_require__(880);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_CollectionTreeOps__ = __webpack_require__(659);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder__ = __webpack_require__(937);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__models_folder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request__ = __webpack_require__(883);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request__ = __webpack_require__(940);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__models_request__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response__ = __webpack_require__(884);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response__ = __webpack_require__(941);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__models_response__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection__ = __webpack_require__(878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection__ = __webpack_require__(935);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__models_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_CollectionModelService__ = __webpack_require__(612);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_event_to_changesets__ = __webpack_require__(1076);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_CollectionModelService__ = __webpack_require__(970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_event_to_changesets__ = __webpack_require__(1201);
 
 
 
@@ -10249,8 +4806,8 @@ function LocalChanges(migrationContext, cb) {
 
 
 
-const cleanupRequestBody = __webpack_require__(594),
-addDbpToRequest = __webpack_require__(595);
+const cleanupRequestBody = __webpack_require__(640),
+addDbpToRequest = __webpack_require__(641);
 
 /**
                                                                           *
@@ -10868,7 +5425,7 @@ function Collections(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2519:
+/***/ 2853:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10878,11 +5435,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mapLimit = __webpack_require__(2520);
+var _mapLimit = __webpack_require__(2854);
 
 var _mapLimit2 = _interopRequireDefault(_mapLimit);
 
-var _doLimit = __webpack_require__(458);
+var _doLimit = __webpack_require__(495);
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
@@ -10911,619 +5468,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 252:
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Module dependencies.
- */
-
-var keys = __webpack_require__(2557);
-var hasBinary = __webpack_require__(1085);
-var sliceBuffer = __webpack_require__(2559);
-var after = __webpack_require__(2560);
-var utf8 = __webpack_require__(2561);
-
-var base64encoder;
-if (typeof ArrayBuffer !== 'undefined') {
-  base64encoder = __webpack_require__(640);
-}
-
-/**
- * Check if we are running an android browser. That requires us to use
- * ArrayBuffer with polling transports...
- *
- * http://ghinda.net/jpeg-blob-ajax-android/
- */
-
-var isAndroid = typeof navigator !== 'undefined' && /Android/i.test(navigator.userAgent);
-
-/**
- * Check if we are running in PhantomJS.
- * Uploading a Blob with PhantomJS does not work correctly, as reported here:
- * https://github.com/ariya/phantomjs/issues/11395
- * @type boolean
- */
-var isPhantomJS = typeof navigator !== 'undefined' && /PhantomJS/i.test(navigator.userAgent);
-
-/**
- * When true, avoids using Blobs to encode payloads.
- * @type boolean
- */
-var dontSendBlobs = isAndroid || isPhantomJS;
-
-/**
- * Current protocol version.
- */
-
-exports.protocol = 3;
-
-/**
- * Packet types.
- */
-
-var packets = exports.packets = {
-    open:     0    // non-ws
-  , close:    1    // non-ws
-  , ping:     2
-  , pong:     3
-  , message:  4
-  , upgrade:  5
-  , noop:     6
-};
-
-var packetslist = keys(packets);
-
-/**
- * Premade error packet.
- */
-
-var err = { type: 'error', data: 'parser error' };
-
-/**
- * Create a blob api even for blob builder when vendor prefixes exist
- */
-
-var Blob = __webpack_require__(2562);
-
-/**
- * Encodes a packet.
- *
- *     <packet type id> [ <data> ]
- *
- * Example:
- *
- *     5hello world
- *     3
- *     4
- *
- * Binary is encoded in an identical principle
- *
- * @api private
- */
-
-exports.encodePacket = function (packet, supportsBinary, utf8encode, callback) {
-  if (typeof supportsBinary === 'function') {
-    callback = supportsBinary;
-    supportsBinary = false;
-  }
-
-  if (typeof utf8encode === 'function') {
-    callback = utf8encode;
-    utf8encode = null;
-  }
-
-  var data = (packet.data === undefined)
-    ? undefined
-    : packet.data.buffer || packet.data;
-
-  if (typeof ArrayBuffer !== 'undefined' && data instanceof ArrayBuffer) {
-    return encodeArrayBuffer(packet, supportsBinary, callback);
-  } else if (typeof Blob !== 'undefined' && data instanceof Blob) {
-    return encodeBlob(packet, supportsBinary, callback);
-  }
-
-  // might be an object with { base64: true, data: dataAsBase64String }
-  if (data && data.base64) {
-    return encodeBase64Object(packet, callback);
-  }
-
-  // Sending data as a utf-8 string
-  var encoded = packets[packet.type];
-
-  // data fragment is optional
-  if (undefined !== packet.data) {
-    encoded += utf8encode ? utf8.encode(String(packet.data), { strict: false }) : String(packet.data);
-  }
-
-  return callback('' + encoded);
-
-};
-
-function encodeBase64Object(packet, callback) {
-  // packet data is an object { base64: true, data: dataAsBase64String }
-  var message = 'b' + exports.packets[packet.type] + packet.data.data;
-  return callback(message);
-}
-
-/**
- * Encode packet helpers for binary types
- */
-
-function encodeArrayBuffer(packet, supportsBinary, callback) {
-  if (!supportsBinary) {
-    return exports.encodeBase64Packet(packet, callback);
-  }
-
-  var data = packet.data;
-  var contentArray = new Uint8Array(data);
-  var resultBuffer = new Uint8Array(1 + data.byteLength);
-
-  resultBuffer[0] = packets[packet.type];
-  for (var i = 0; i < contentArray.length; i++) {
-    resultBuffer[i+1] = contentArray[i];
-  }
-
-  return callback(resultBuffer.buffer);
-}
-
-function encodeBlobAsArrayBuffer(packet, supportsBinary, callback) {
-  if (!supportsBinary) {
-    return exports.encodeBase64Packet(packet, callback);
-  }
-
-  var fr = new FileReader();
-  fr.onload = function() {
-    exports.encodePacket({ type: packet.type, data: fr.result }, supportsBinary, true, callback);
-  };
-  return fr.readAsArrayBuffer(packet.data);
-}
-
-function encodeBlob(packet, supportsBinary, callback) {
-  if (!supportsBinary) {
-    return exports.encodeBase64Packet(packet, callback);
-  }
-
-  if (dontSendBlobs) {
-    return encodeBlobAsArrayBuffer(packet, supportsBinary, callback);
-  }
-
-  var length = new Uint8Array(1);
-  length[0] = packets[packet.type];
-  var blob = new Blob([length.buffer, packet.data]);
-
-  return callback(blob);
-}
-
-/**
- * Encodes a packet with binary data in a base64 string
- *
- * @param {Object} packet, has `type` and `data`
- * @return {String} base64 encoded message
- */
-
-exports.encodeBase64Packet = function(packet, callback) {
-  var message = 'b' + exports.packets[packet.type];
-  if (typeof Blob !== 'undefined' && packet.data instanceof Blob) {
-    var fr = new FileReader();
-    fr.onload = function() {
-      var b64 = fr.result.split(',')[1];
-      callback(message + b64);
-    };
-    return fr.readAsDataURL(packet.data);
-  }
-
-  var b64data;
-  try {
-    b64data = String.fromCharCode.apply(null, new Uint8Array(packet.data));
-  } catch (e) {
-    // iPhone Safari doesn't let you apply with typed arrays
-    var typed = new Uint8Array(packet.data);
-    var basic = new Array(typed.length);
-    for (var i = 0; i < typed.length; i++) {
-      basic[i] = typed[i];
-    }
-    b64data = String.fromCharCode.apply(null, basic);
-  }
-  message += btoa(b64data);
-  return callback(message);
-};
-
-/**
- * Decodes a packet. Changes format to Blob if requested.
- *
- * @return {Object} with `type` and `data` (if any)
- * @api private
- */
-
-exports.decodePacket = function (data, binaryType, utf8decode) {
-  if (data === undefined) {
-    return err;
-  }
-  // String data
-  if (typeof data === 'string') {
-    if (data.charAt(0) === 'b') {
-      return exports.decodeBase64Packet(data.substr(1), binaryType);
-    }
-
-    if (utf8decode) {
-      data = tryDecode(data);
-      if (data === false) {
-        return err;
-      }
-    }
-    var type = data.charAt(0);
-
-    if (Number(type) != type || !packetslist[type]) {
-      return err;
-    }
-
-    if (data.length > 1) {
-      return { type: packetslist[type], data: data.substring(1) };
-    } else {
-      return { type: packetslist[type] };
-    }
-  }
-
-  var asArray = new Uint8Array(data);
-  var type = asArray[0];
-  var rest = sliceBuffer(data, 1);
-  if (Blob && binaryType === 'blob') {
-    rest = new Blob([rest]);
-  }
-  return { type: packetslist[type], data: rest };
-};
-
-function tryDecode(data) {
-  try {
-    data = utf8.decode(data, { strict: false });
-  } catch (e) {
-    return false;
-  }
-  return data;
-}
-
-/**
- * Decodes a packet encoded in a base64 string
- *
- * @param {String} base64 encoded message
- * @return {Object} with `type` and `data` (if any)
- */
-
-exports.decodeBase64Packet = function(msg, binaryType) {
-  var type = packetslist[msg.charAt(0)];
-  if (!base64encoder) {
-    return { type: type, data: { base64: true, data: msg.substr(1) } };
-  }
-
-  var data = base64encoder.decode(msg.substr(1));
-
-  if (binaryType === 'blob' && Blob) {
-    data = new Blob([data]);
-  }
-
-  return { type: type, data: data };
-};
-
-/**
- * Encodes multiple messages (payload).
- *
- *     <length>:data
- *
- * Example:
- *
- *     11:hello world2:hi
- *
- * If any contents are binary, they will be encoded as base64 strings. Base64
- * encoded strings are marked with a b before the length specifier
- *
- * @param {Array} packets
- * @api private
- */
-
-exports.encodePayload = function (packets, supportsBinary, callback) {
-  if (typeof supportsBinary === 'function') {
-    callback = supportsBinary;
-    supportsBinary = null;
-  }
-
-  var isBinary = hasBinary(packets);
-
-  if (supportsBinary && isBinary) {
-    if (Blob && !dontSendBlobs) {
-      return exports.encodePayloadAsBlob(packets, callback);
-    }
-
-    return exports.encodePayloadAsArrayBuffer(packets, callback);
-  }
-
-  if (!packets.length) {
-    return callback('0:');
-  }
-
-  function setLengthHeader(message) {
-    return message.length + ':' + message;
-  }
-
-  function encodeOne(packet, doneCallback) {
-    exports.encodePacket(packet, !isBinary ? false : supportsBinary, false, function(message) {
-      doneCallback(null, setLengthHeader(message));
-    });
-  }
-
-  map(packets, encodeOne, function(err, results) {
-    return callback(results.join(''));
-  });
-};
-
-/**
- * Async array map using after
- */
-
-function map(ary, each, done) {
-  var result = new Array(ary.length);
-  var next = after(ary.length, done);
-
-  var eachWithIndex = function(i, el, cb) {
-    each(el, function(error, msg) {
-      result[i] = msg;
-      cb(error, result);
-    });
-  };
-
-  for (var i = 0; i < ary.length; i++) {
-    eachWithIndex(i, ary[i], next);
-  }
-}
-
-/*
- * Decodes data when a payload is maybe expected. Possible binary contents are
- * decoded from their base64 representation
- *
- * @param {String} data, callback method
- * @api public
- */
-
-exports.decodePayload = function (data, binaryType, callback) {
-  if (typeof data !== 'string') {
-    return exports.decodePayloadAsBinary(data, binaryType, callback);
-  }
-
-  if (typeof binaryType === 'function') {
-    callback = binaryType;
-    binaryType = null;
-  }
-
-  var packet;
-  if (data === '') {
-    // parser error - ignoring payload
-    return callback(err, 0, 1);
-  }
-
-  var length = '', n, msg;
-
-  for (var i = 0, l = data.length; i < l; i++) {
-    var chr = data.charAt(i);
-
-    if (chr !== ':') {
-      length += chr;
-      continue;
-    }
-
-    if (length === '' || (length != (n = Number(length)))) {
-      // parser error - ignoring payload
-      return callback(err, 0, 1);
-    }
-
-    msg = data.substr(i + 1, n);
-
-    if (length != msg.length) {
-      // parser error - ignoring payload
-      return callback(err, 0, 1);
-    }
-
-    if (msg.length) {
-      packet = exports.decodePacket(msg, binaryType, false);
-
-      if (err.type === packet.type && err.data === packet.data) {
-        // parser error in individual packet - ignoring payload
-        return callback(err, 0, 1);
-      }
-
-      var ret = callback(packet, i + n, l);
-      if (false === ret) return;
-    }
-
-    // advance cursor
-    i += n;
-    length = '';
-  }
-
-  if (length !== '') {
-    // parser error - ignoring payload
-    return callback(err, 0, 1);
-  }
-
-};
-
-/**
- * Encodes multiple messages (payload) as binary.
- *
- * <1 = binary, 0 = string><number from 0-9><number from 0-9>[...]<number
- * 255><data>
- *
- * Example:
- * 1 3 255 1 2 3, if the binary contents are interpreted as 8 bit integers
- *
- * @param {Array} packets
- * @return {ArrayBuffer} encoded payload
- * @api private
- */
-
-exports.encodePayloadAsArrayBuffer = function(packets, callback) {
-  if (!packets.length) {
-    return callback(new ArrayBuffer(0));
-  }
-
-  function encodeOne(packet, doneCallback) {
-    exports.encodePacket(packet, true, true, function(data) {
-      return doneCallback(null, data);
-    });
-  }
-
-  map(packets, encodeOne, function(err, encodedPackets) {
-    var totalLength = encodedPackets.reduce(function(acc, p) {
-      var len;
-      if (typeof p === 'string'){
-        len = p.length;
-      } else {
-        len = p.byteLength;
-      }
-      return acc + len.toString().length + len + 2; // string/binary identifier + separator = 2
-    }, 0);
-
-    var resultArray = new Uint8Array(totalLength);
-
-    var bufferIndex = 0;
-    encodedPackets.forEach(function(p) {
-      var isString = typeof p === 'string';
-      var ab = p;
-      if (isString) {
-        var view = new Uint8Array(p.length);
-        for (var i = 0; i < p.length; i++) {
-          view[i] = p.charCodeAt(i);
-        }
-        ab = view.buffer;
-      }
-
-      if (isString) { // not true binary
-        resultArray[bufferIndex++] = 0;
-      } else { // true binary
-        resultArray[bufferIndex++] = 1;
-      }
-
-      var lenStr = ab.byteLength.toString();
-      for (var i = 0; i < lenStr.length; i++) {
-        resultArray[bufferIndex++] = parseInt(lenStr[i]);
-      }
-      resultArray[bufferIndex++] = 255;
-
-      var view = new Uint8Array(ab);
-      for (var i = 0; i < view.length; i++) {
-        resultArray[bufferIndex++] = view[i];
-      }
-    });
-
-    return callback(resultArray.buffer);
-  });
-};
-
-/**
- * Encode as Blob
- */
-
-exports.encodePayloadAsBlob = function(packets, callback) {
-  function encodeOne(packet, doneCallback) {
-    exports.encodePacket(packet, true, true, function(encoded) {
-      var binaryIdentifier = new Uint8Array(1);
-      binaryIdentifier[0] = 1;
-      if (typeof encoded === 'string') {
-        var view = new Uint8Array(encoded.length);
-        for (var i = 0; i < encoded.length; i++) {
-          view[i] = encoded.charCodeAt(i);
-        }
-        encoded = view.buffer;
-        binaryIdentifier[0] = 0;
-      }
-
-      var len = (encoded instanceof ArrayBuffer)
-        ? encoded.byteLength
-        : encoded.size;
-
-      var lenStr = len.toString();
-      var lengthAry = new Uint8Array(lenStr.length + 1);
-      for (var i = 0; i < lenStr.length; i++) {
-        lengthAry[i] = parseInt(lenStr[i]);
-      }
-      lengthAry[lenStr.length] = 255;
-
-      if (Blob) {
-        var blob = new Blob([binaryIdentifier.buffer, lengthAry.buffer, encoded]);
-        doneCallback(null, blob);
-      }
-    });
-  }
-
-  map(packets, encodeOne, function(err, results) {
-    return callback(new Blob(results));
-  });
-};
-
-/*
- * Decodes data when a payload is maybe expected. Strings are decoded by
- * interpreting each byte as a key code for entries marked to start with 0. See
- * description of encodePayloadAsBinary
- *
- * @param {ArrayBuffer} data, callback method
- * @api public
- */
-
-exports.decodePayloadAsBinary = function (data, binaryType, callback) {
-  if (typeof binaryType === 'function') {
-    callback = binaryType;
-    binaryType = null;
-  }
-
-  var bufferTail = data;
-  var buffers = [];
-
-  while (bufferTail.byteLength > 0) {
-    var tailArray = new Uint8Array(bufferTail);
-    var isString = tailArray[0] === 0;
-    var msgLength = '';
-
-    for (var i = 1; ; i++) {
-      if (tailArray[i] === 255) break;
-
-      // 310 = char length of Number.MAX_VALUE
-      if (msgLength.length > 310) {
-        return callback(err, 0, 1);
-      }
-
-      msgLength += tailArray[i];
-    }
-
-    bufferTail = sliceBuffer(bufferTail, 2 + msgLength.length);
-    msgLength = parseInt(msgLength);
-
-    var msg = sliceBuffer(bufferTail, 0, msgLength);
-    if (isString) {
-      try {
-        msg = String.fromCharCode.apply(null, new Uint8Array(msg));
-      } catch (e) {
-        // iPhone Safari doesn't let you apply to typed arrays
-        var typed = new Uint8Array(msg);
-        msg = '';
-        for (var i = 0; i < typed.length; i++) {
-          msg += String.fromCharCode(typed[i]);
-        }
-      }
-    }
-
-    buffers.push(msg);
-    bufferTail = sliceBuffer(bufferTail, msgLength);
-  }
-
-  var total = buffers.length;
-  buffers.forEach(function(buffer, i) {
-    callback(exports.decodePacket(buffer, binaryType, true), i, total);
-  });
-};
-
-
-/***/ }),
-
-/***/ 2520:
+/***/ 2854:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11533,11 +5478,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _doParallelLimit = __webpack_require__(2521);
+var _doParallelLimit = __webpack_require__(2855);
 
 var _doParallelLimit2 = _interopRequireDefault(_doParallelLimit);
 
-var _map = __webpack_require__(2522);
+var _map = __webpack_require__(2856);
 
 var _map2 = _interopRequireDefault(_map);
 
@@ -11567,7 +5512,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2521:
+/***/ 2855:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11578,11 +5523,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = doParallelLimit;
 
-var _eachOfLimit = __webpack_require__(566);
+var _eachOfLimit = __webpack_require__(611);
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _wrapAsync = __webpack_require__(211);
+var _wrapAsync = __webpack_require__(172);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -11597,7 +5542,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2522:
+/***/ 2856:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11608,11 +5553,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _asyncMap;
 
-var _noop = __webpack_require__(210);
+var _noop = __webpack_require__(188);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _wrapAsync = __webpack_require__(211);
+var _wrapAsync = __webpack_require__(172);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -11639,13 +5584,13 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2523:
+/***/ 2857:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = SyncedSince;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(150);
 
 
 
@@ -11705,18 +5650,18 @@ function SyncedSince(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2524:
+/***/ 2858:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Headerpreset;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset__ = __webpack_require__(881);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset__ = __webpack_require__(938);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_header_preset__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
 
 
 
@@ -11855,19 +5800,19 @@ function Headerpreset(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2525:
+/***/ 2859:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Collectionrun;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run__ = __webpack_require__(877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run__ = __webpack_require__(934);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_collection_run__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(116);
 
 
 
@@ -12060,19 +6005,19 @@ function Collectionrun(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2526:
+/***/ 2860:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = History;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history__ = __webpack_require__(882);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history__ = __webpack_require__(939);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_history__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(116);
 
 
 
@@ -12081,8 +6026,8 @@ function Collectionrun(migrationContext, cb) {
 
 
 
-const cleanupRequestBody = __webpack_require__(594),
-addDbpToRequest = __webpack_require__(595);
+const cleanupRequestBody = __webpack_require__(640),
+addDbpToRequest = __webpack_require__(641);
 
 /**
                                                                           * @param {Object} migrationContext
@@ -12226,14 +6171,14 @@ function History(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2527:
+/***/ 2861:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Globals;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_uuid_helper__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_uuid_helper__ = __webpack_require__(489);
 
 
 
@@ -12317,14 +6262,14 @@ function Globals(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2528:
+/***/ 2862:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Workspace;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(53);
 
 
 
@@ -12498,18 +6443,18 @@ function Workspace(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2529:
+/***/ 2863:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Environments;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment__ = __webpack_require__(879);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment__ = __webpack_require__(936);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_environment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
 
 
 
@@ -12650,20 +6595,20 @@ function Environments(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2530:
+/***/ 2864:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = WorkspaceSession;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_WorkspaceSessionController__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_WorkspaceSessionController__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__migration_helpers_workspace_session_tabs__ = __webpack_require__(867);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__migration_helpers_workspace_session_tabs__ = __webpack_require__(923);
 
 
 
@@ -12781,18 +6726,18 @@ function WorkspaceSession(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2531:
+/***/ 2865:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Helpers;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__ = __webpack_require__(876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__ = __webpack_require__(933);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
 
 
 
@@ -12922,18 +6867,18 @@ function Helpers(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2532:
+/***/ 2866:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = OAuth2AccessTokens;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__ = __webpack_require__(875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__ = __webpack_require__(932);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
 
 
 
@@ -13057,7 +7002,7 @@ function OAuth2AccessTokens(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2533:
+/***/ 2867:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -13174,7 +7119,7 @@ module.exports = collateChangesets;
 
 /***/ }),
 
-/***/ 2534:
+/***/ 2868:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -13182,9 +7127,9 @@ module.exports = collateChangesets;
  */
 
 const _ = __webpack_require__(0),
-  async = __webpack_require__(48),
-  Bucket = __webpack_require__(716),
-  BucketDB = __webpack_require__(2535),
+  async = __webpack_require__(47),
+  Bucket = __webpack_require__(800),
+  BucketDB = __webpack_require__(2869),
   REQUIRED_SERVICES = ['dbService'],
 
   ACTIVE_BUCKET_ID_SUFFIX = '.active',
@@ -13510,7 +7455,7 @@ module.exports = SyncClient;
 
 /***/ }),
 
-/***/ 2535:
+/***/ 2869:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -13518,9 +7463,9 @@ module.exports = SyncClient;
  */
 
 const _ = __webpack_require__(0),
-  async = __webpack_require__(48),
-  Bucket = __webpack_require__(716),
-  tsid = __webpack_require__(2536),
+  async = __webpack_require__(47),
+  Bucket = __webpack_require__(800),
+  tsid = __webpack_require__(2870),
 
   CONCURRENCY_BATCH_SIZE = 100,
   SEP = '__';
@@ -13699,7 +7644,7 @@ module.exports = BucketDB;
 
 /***/ }),
 
-/***/ 2536:
+/***/ 2870:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {/**
@@ -13707,7 +7652,7 @@ module.exports = BucketDB;
  * @module sync-client/timestamp-id
  */
 
-const async = __webpack_require__(48),
+const async = __webpack_require__(47),
 
   /**
    * This defines the right padding that is applied to timestamp. This is indicative of the total number of id that can
@@ -13921,25 +7866,31 @@ module.exports = {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24).setImmediate))
 
 /***/ }),
 
-/***/ 2537:
+/***/ 2871:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(115);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootSync__ = __webpack_require__(2538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_analyticsHandler__ = __webpack_require__(2575);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__ = __webpack_require__(620);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__ = __webpack_require__(2577);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_ConnectivityService__ = __webpack_require__(2578);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__ = __webpack_require__(2579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_SharedAlertProxy__ = __webpack_require__(2580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_NotificationPollingService__ = __webpack_require__(2581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootSync__ = __webpack_require__(2872);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_analyticsHandler__ = __webpack_require__(2912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__ = __webpack_require__(2914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_ConnectivityService__ = __webpack_require__(2915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__ = __webpack_require__(2916);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_SharedAlertProxy__ = __webpack_require__(2917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_NotificationPollingService__ = __webpack_require__(1276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_AccessControl_AccessControlService__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__ = __webpack_require__(1216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_AccessControl_PermissionService__ = __webpack_require__(446);
+
+
+
 
 
 
@@ -13952,9 +7903,9 @@ module.exports = {
 
 
 /**
-                                                                                             *
-                                                                                             * @param {*} cb
-                                                                                             */
+                                                                                                *
+                                                                                                * @param {*} cb
+                                                                                                */
 function bootShared(cb) {
   _.assign(window.pm, {
     connectivity: new __WEBPACK_IMPORTED_MODULE_5__modules_services_ConnectivityService__["a" /* default */](),
@@ -13969,13 +7920,17 @@ function bootShared(cb) {
 
     syncRemoteFetcherBus.subscribe(__WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__["d" /* scheduleFetch */]);
     modelEventBus.subscribe(__WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__["b" /* userFetch */]);
-
+    __WEBPACK_IMPORTED_MODULE_10__services_AccessControl_AccessControlService__["a" /* default */].init();
     __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__["a" /* default */].init();
     __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__["a" /* default */].init();
-    __WEBPACK_IMPORTED_MODULE_9__modules_services_NotificationPollingService__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].init();
 
     // Starts the user fetch and unlocks the session.
     Object(__WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__["a" /* initiateBoot */])();
+
+    // initialize permissions refetch handlers
+    Object(__WEBPACK_IMPORTED_MODULE_12__services_AccessControl_PermissionService__["b" /* initializePermissionsRefetch */])();
+
     pm.logger.info('Shared~boot - Success');
     return cb && cb(err);
   });
@@ -13986,23 +7941,28 @@ function bootShared(cb) {
 
 /***/ }),
 
-/***/ 2538:
+/***/ 2872:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_LocalChanges__ = __webpack_require__(2539);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_SyncManagerNew__ = __webpack_require__(2542);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_LocalChanges__ = __webpack_require__(2873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_SyncManagerNew__ = __webpack_require__(2875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers_BroadcastConnectivityStatus__ = __webpack_require__(2910);
+
 
 
 
 /**
-                                                                *
-                                                                */
+                                                                                                                          *
+                                                                                                                          */
 function bootSync(cb) {
   _.assign(window.pm, {
     localChanges: new __WEBPACK_IMPORTED_MODULE_0__models_sync_LocalChanges__["a" /* default */](),
     syncManager: new __WEBPACK_IMPORTED_MODULE_1__models_sync_SyncManagerNew__["a" /* default */]() });
 
+
+  // used to initialize broadcast of socket and timeline status
+  Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers_BroadcastConnectivityStatus__["a" /* initializeConnectivityStatusBroadcast */])();
   pm.logger.info('Sync~boot - Success');
   cb && cb(null);
 }
@@ -14012,15 +7972,15 @@ function bootSync(cb) {
 
 /***/ }),
 
-/***/ 2539:
+/***/ 2873:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConflictResolution__ = __webpack_require__(2540);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone__ = __webpack_require__(54);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConflictResolution__ = __webpack_require__(2874);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_backbone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SyncManagerHelper__ = __webpack_require__(486);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SyncManagerHelper__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_async__);
 
 
@@ -14229,7 +8189,7 @@ var LocalChanges = __WEBPACK_IMPORTED_MODULE_1_backbone___default.a.Model.extend
 
 /***/ }),
 
-/***/ 2540:
+/***/ 2874:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14239,11 +8199,11 @@ var LocalChanges = __WEBPACK_IMPORTED_MODULE_1_backbone___default.a.Model.extend
 /* harmony export (immutable) */ __webpack_exports__["a"] = applyUserResolution;
 /* harmony export (immutable) */ __webpack_exports__["b"] = deleteCRChangesetToServer;
 /* harmony export (immutable) */ __webpack_exports__["c"] = detectConflicts;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_workspace_helper__ = __webpack_require__(2541);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SyncManagerHelper__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_workspace_helper__ = __webpack_require__(1036);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SyncManagerHelper__ = __webpack_require__(431);
 
 
 
@@ -15187,107 +9147,58 @@ function detectConflicts(crState) {
 
 /***/ }),
 
-/***/ 2541:
+/***/ 2875:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = applyWorkspaceDependencyDiff;
-const ALLOWED_DEPENDENCIES = [
-'collections',
-'environments',
-'headerpresets',
-'mocks',
-'monitors'];
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sync_client__ = __webpack_require__(1202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_sync_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sails_io__ = __webpack_require__(2876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sails_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_sails_io__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__ = __webpack_require__(1282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_SyncService__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_DatabaseService__ = __webpack_require__(1203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__ = __webpack_require__(1023);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHandler__ = __webpack_require__(2906);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__SyncOutgoingHelpers__ = __webpack_require__(2907);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__ = __webpack_require__(1216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_AccessControl_DbRollbackService__ = __webpack_require__(757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_pipelines_app_action__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_sync_helpers_create_changeset__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_backbone__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_backbone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_sync_timeline_helpers_RealtimeSyncMessagesService__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_SyncWindowService__ = __webpack_require__(1217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_sync_helpers_SocketEventsService__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_ConflictResolutionHelpers__ = __webpack_require__(1035);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_sync_timeline_helpers_SocketStatusService__ = __webpack_require__(714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__constants_SyncStatusConstants__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncNotificationsService__ = __webpack_require__(2908);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncTeamEventsService__ = __webpack_require__(2909);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_sync_timeline_helpers_SyncClientService__ = __webpack_require__(1061);
 
 
 
-/**
-              * apply workspace deps diff on a snapshot
-              *
-              * @export
-              * @param {any} wsDepsSnapshot
-              * @param {any} wsDepsDiff
-              * @returns
-              */
-function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
-  if (!wsDepsSnapshot) {
-    return;
-  }
 
-  if (!wsDepsDiff) {
-    return wsDepsSnapshot;
-  }
 
-  // clone and initialize finalDepsSnapshot with initial snapshot
-  let finalDepsSnapshot = _.cloneDeep(wsDepsSnapshot);
 
-  _.forEach(ALLOWED_DEPENDENCIES, dependency => {
 
-    // --- DIFF VALIDATION ---
 
-    // early return if this dependency doesn't have $diff set
-    if (_.get(wsDepsDiff, [dependency, '$diff']) !== true) {
-      return;
-    }
 
-    let $add = _.get(wsDepsDiff, [dependency, '$add']),
-    $remove = _.get(wsDepsDiff, [dependency, '$remove']);
 
-    // early return if this dependency diff has $add/$remove but which is not an array
-    if ($add && !_.isArray($add) || $remove && !_.isArray($remove)) {
-      return;
-    }
 
-    // --- END OF DIFF VALIDATION ---
 
-    // if snapshot doesn't have a dependency, initialise it to empty array in final snapshot
-    let finalDepValue = _.has(wsDepsSnapshot, dependency) ? _.compact(finalDepsSnapshot[dependency]) : [];
 
-    // get the $add and remove for this dependency
-    let entitiesToBeAdded = _.get(wsDepsDiff, [dependency, '$add'], []),
-    entitiesToBeRemoved = _.get(wsDepsDiff, [dependency, '$remove'], []);
-
-    // apply the adds via a union
-    finalDepValue = _.union(finalDepValue, _.compact(entitiesToBeAdded));
-
-    // apply the removes via a difference
-    finalDepValue = _.difference(finalDepValue, _.compact(entitiesToBeRemoved));
-
-    finalDepsSnapshot[dependency] = finalDepValue;
-  });
-
-  return finalDepsSnapshot;
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2542:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_SyncIssueHelper__ = __webpack_require__(1156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_SyncService__ = __webpack_require__(487);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sync_client__ = __webpack_require__(1077);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_sync_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_sails_io__ = __webpack_require__(2543);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_sails_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__postman_sails_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_DatabaseService__ = __webpack_require__(1078);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__ = __webpack_require__(619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SyncOutgoingHandler__ = __webpack_require__(2573);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHelpers__ = __webpack_require__(2574);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_pipelines_app_action__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__ = __webpack_require__(486);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_sync_helpers_create_changeset__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_backbone__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_backbone__);
 
 
 
@@ -15338,7 +9249,7 @@ SYNC_CLIENT_ID = 'SYNC_CLIENT_DEFAULT';
  * @returns
  */
 function getClientStateFromDb() {
-  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
   findOne(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
   then(clientState => {
     if (!clientState) {
@@ -15359,7 +9270,7 @@ function getClientStateFromDb() {
    * @returns
    */
 function setClientRevisionInDb(revision) {
-  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
   update(
   SYNC_CLIENT_MODEL_NAME,
   { id: SYNC_CLIENT_ID, revision: revision }).
@@ -15375,7 +9286,7 @@ function setClientRevisionInDb(revision) {
    * @returns
    */
 function setClientTimestampInDb(timestamp) {
-  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
   update(
   SYNC_CLIENT_MODEL_NAME,
   { id: SYNC_CLIENT_ID, timestamp: timestamp }).
@@ -15404,16 +9315,16 @@ function getDefaultClientInDb() {
    * @returns
    */
 function resetClientInDb() {
-  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
   findOne(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
   then(client => {
     if (client) {
-      return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+      return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
       update(SYNC_CLIENT_MODEL_NAME, getDefaultClientInDb()).
       then(console.log.bind(console, 'Client reset in DB'));
     }
 
-    return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+    return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
     create(SYNC_CLIENT_MODEL_NAME, getDefaultClientInDb()).
     then(console.log.bind(console, 'Client reset in DB'));
   });
@@ -15425,14 +9336,14 @@ function resetClientInDb() {
    * @returns
    */
 function initializeClientInDbIfNeeded() {
-  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
   findOne(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
   then(client => {
     if (client) {
       return;
     }
 
-    return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
+    return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
     create(SYNC_CLIENT_MODEL_NAME, getDefaultClientInDb()).
     then(() => {
       // console.log.bind(console, 'Sync client initialized in DB')
@@ -15449,7 +9360,7 @@ function broadcastChangesetResponse(changeset, response) {
   let syncChangesetChannel = pm.eventBus.channel('sync-changeset-events');
 
   // @todo change to consistent event format
-  syncChangesetChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('sent-to-server', 'sync-changeset', {
+  syncChangesetChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('sent-to-server', 'sync-changeset', {
     changeset: changeset,
     response: response }));
 
@@ -15464,7 +9375,7 @@ function broadcastRealtimeEvent(changeset) {
   let syncIncomingChannel = pm.eventBus.channel('sync-realtime-events');
 
   // @todo change to consistent event format
-  syncIncomingChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('received', 'sync-realtime', { changeset: changeset }));
+  syncIncomingChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('received', 'sync-realtime', { changeset: changeset }));
 }
 
 /**
@@ -15472,7 +9383,7 @@ function broadcastRealtimeEvent(changeset) {
    *
    * @class SyncManager
    */
-var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.extend({
+var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.extend({
   sailsIO: null,
   defaults: function () {
     return {
@@ -15496,11 +9407,11 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     this.on('change:nextReconnectTime', this.handleReconnectTimeChange, this);
 
     this.on('change:timeTillReconnect', (model, value) => {
-      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('updated', 'timeTillReconnect', { timeTillReconnect: value }));
+      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('updated', 'timeTillReconnect', { timeTillReconnect: value }));
     });
 
     this.on('change:currentSyncStatus', (model, value) => {
-      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: value }));
+      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: value }));
     });
 
     // hacks
@@ -15511,7 +9422,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       this.hasReconnected = false;
     });
     this.on('syncStarting', () => {
-      this.set('currentSyncStatus', 'syncStarting');
+      // this.set('currentSyncStatus', 'syncStarting');
     });
     this.on('makeConnecting', () => {
       this.set('currentSyncStatus', 'makeConnecting');
@@ -15526,12 +9437,12 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
   attachSyncProxyEventHandlers: function () {
     this.syncManagerInternalDispose = this.syncInternalChannel.subscribe(event => {
-      let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["g" /* getEventNamespace */])(event),
-      eventName = Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["f" /* getEventName */])(event),
-      eventData = Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["d" /* getEventData */])(event);
+      let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["g" /* getEventNamespace */])(event),
+      eventName = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["f" /* getEventName */])(event),
+      eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
 
       if (eventName === 'hydrate' && eventNamespace === 'currentSyncStatus') {
-        this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: this.get('currentSyncStatus') }));
+        this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: this.get('currentSyncStatus') }));
         return;
       }
 
@@ -15572,51 +9483,72 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     });
   },
 
+  attachGateKeeperHandlers: function () {
+    let gatekeeperEvents = pm.eventBus.channel('gatekeeper');
+
+    gatekeeperEvents.subscribe(event => {
+      if (event.name === 'websocket') {
+        pm.logger.warn(`SyncManagerNew~attachGateKeeperHandlers: listening to ${event.name} event`, event);
+        let eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+        if (!eventData) {
+          pm.logger.error('SyncManagerNew~attachGateKeeperHandlers: gatekeeper event for websocket without a value', eventData);
+          return;
+        }
+        this.setSync(eventData.isEnabled);
+
+        // If it is a disabled websocket do better signout.
+        if (!eventData.isEnabled) {
+          this.signOut();
+        }
+      }
+
+      if (event.name === 'notification') {
+        pm.logger.warn(`SyncManagerNew~attachGateKeeperHandlers: listening to ${event.name} event`, event);
+        let eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+
+        if (!eventData) {
+          pm.logger.error('SyncManagerNew~attachGateKeeperHandlers: gatekeeper event for notification without a value', eventData);
+          return;
+        }
+
+        // disable notification handlers if notifications is turned off
+        if (!eventData.isEnabled) {
+          Object(__WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncNotificationsService__["b" /* unsubscribeNotificationsListeners */])();
+        }
+      }
+
+      if (event.name === 'sync') {
+        pm.logger.warn(`SyncManagerNew~attachGateKeeperHandlers: listening to ${event.name} event`, event);
+        let eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+
+        if (!eventData) {
+          pm.logger.error('SyncManagerNew~attachGateKeeperHandlers: gatekeeper event for sync without a value', eventData);
+          return;
+        }
+
+        // if sync status changes, also disconnect and reconnect websocket
+        // it is a simpler model to understand than enabling sync when socket is already connected
+        if (eventData.isEnabled) {
+          this.setSync(true);
+        }
+
+        // disable sync handlers if notifications is turned off
+        else {
+            Object(__WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers__["e" /* unsubscribeAllTimelines */])();
+          }
+      }
+    });
+  },
+
   attachModelEventsHandlers: function () {
     let modelEvents = pm.eventBus.channel('model-events');
 
     modelEvents.subscribe(payload => {
       if (payload.namespace === 'user') {
-        if (_.includes(['refreshUserData', 'bootstrapUser', 'enableSync', 'recreateSyncUser'], payload.name)) {
-          console.warn(`Sync manager listening to ${payload.name} event`, payload);
-
-          __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-          get().
-          then(userData => {
-            this.setSync(_.get(userData, 'syncEnabled', false));
-          }).
-          catch(e => {
-            console.log('Error in fetching userdata', e);
-          });
-        } else
         if (_.includes(['logout', 'disableSync'], payload.name)) {
           console.warn(`Sync manager listening to ${payload.name} event`, payload);
           this.signOut();
         }
-      } else
-      if (payload.namespace === 'team') {
-        let actions = ['activated', 'deactivated', 'planChanged'];
-        Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["i" /* processEvent */])(payload, actions, (event, cb) => {
-          let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["g" /* getEventNamespace */])(event),
-          eventName = Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["f" /* getEventName */])(event);
-
-          if (eventNamespace !== 'team') {
-            return cb();
-          }
-
-          console.log(`Sync manager listening to ${payload.name} event`, payload);
-
-          return __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-          get().
-          then(userData => {
-            this.setSync(_.get(userData, 'syncEnabled', false));
-            cb();
-          }).
-          catch(e => {
-            console.log('Error in fetching userdata', e);
-            cb();
-          });
-        });
       }
     });
   },
@@ -15624,17 +9556,18 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   attachSyncClientEventHandlers: function () {
     // @todo: is there are better way to add
     pm.eventBus.channel('sync-client').subscribe(event => {
-      if (Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["f" /* getEventName */])(event) === 'addChangesets') {
+      if (Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["f" /* getEventName */])(event) === 'addChangesets') {
         console.log('pushing changesets sync client');
-        return this.addChangesetsToSyncClient(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["d" /* getEventData */])(event), { process: false });
+        return this.addChangesetsToSyncClient(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event), { process: false });
       }
     });
   },
 
   // Fixed
   initialize: function () {
-    this.sailsIO = new __WEBPACK_IMPORTED_MODULE_4__postman_sails_io___default.a();
+    this.sailsIO = new __WEBPACK_IMPORTED_MODULE_3__postman_sails_io___default.a();
     this.syncInternalChannel = pm.eventBus.channel('sync-manager-internal');
+    this.attachGateKeeperHandlers();
     this.attachSyncStatusTriggers();
     this.attachSyncProxyEventHandlers();
     this.attachModelEventsHandlers();
@@ -15642,8 +9575,8 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
     initializeClientInDbIfNeeded();
 
-    this.markModelForForceSync = __WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */];
-    this.performPendingForceSyncs = __WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["e" /* performPendingForceSyncs */];
+    this.markModelForForceSync = __WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */];
+    this.performPendingForceSyncs = __WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["e" /* performPendingForceSyncs */];
     this.modelsToForceSync = [];
     this.modelsForceSyncedRecently = [];
     this.reconnectTimer = null;
@@ -15660,13 +9593,16 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     pm.mediator.on('appOffline', this.onAppOffline, this);
 
     this.initializeQueues();
+
+    Object(__WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_ConflictResolutionHelpers__["a" /* initialize */])();
     this.initializeSyncClient(err => {
       if (err) {
         console.error('Failed to initialize SyncClient', err);
         pm.logger.error('SyncManager: Could not initialize Sync Client.');
         return;
       }
-      this.outgoingHandler = new __WEBPACK_IMPORTED_MODULE_8__SyncOutgoingHandler__["a" /* SyncOutgoingHandler */]();
+
+      this.outgoingHandler = new __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHandler__["a" /* SyncOutgoingHandler */]();
 
       this.clientUserAgent = navigator.userAgent + ' ' + 'PostmanClient/' + pm.app.get('version') + ' (AppId=' + pm.app.get('installationId') + ')';
 
@@ -15681,17 +9617,16 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   initializeWatchdog() {
     // SOCKET RECONNECTION WATCHDOG
     this.onlineWatchdog = _.debounce(() => {
-      __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-      get().
-      then(user => {
-        if (user.syncEnabled &&
-        this.get('currentSyncStatus') === 'makeNotConnected' &&
+      __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+      then(isEnabled => {
+        if (isEnabled &&
+        Object(__WEBPACK_IMPORTED_MODULE_26__modules_sync_timeline_helpers_SocketStatusService__["a" /* getCurrentSocketStatus */])() === __WEBPACK_IMPORTED_MODULE_27__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */] &&
         pm.syncSocket && !pm.syncSocket.isBusy()) {
           this.createSocket({ connectionMode: 'watchdog' });
         }
       }).
       catch(e => {
-        console.error('Error in fetching user data', e);
+        console.error('Error in getting gatekeeper information', e);
       });
     }, 30 * 1000, {
       leading: true,
@@ -15705,8 +9640,8 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       * Initializes various queues used in sync
       */
   initializeQueues: function () {
-    this.ingressQueue = __WEBPACK_IMPORTED_MODULE_6_async___default.a.queue(this._processIngressChangeset.bind(this), 1);
-    this.syncIncomingChangesetQueue = __WEBPACK_IMPORTED_MODULE_6_async___default.a.queue(this._handleIncomingSyncChangeset.bind(this), 1);
+    this.ingressQueue = __WEBPACK_IMPORTED_MODULE_0_async___default.a.queue(this._processIngressChangeset.bind(this), 1);
+    this.syncIncomingChangesetQueue = __WEBPACK_IMPORTED_MODULE_0_async___default.a.queue(this._handleIncomingSyncChangeset.bind(this), 1);
   },
 
   _nukeQueues: function () {
@@ -15745,7 +9680,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     };
 
     try {
-      Object(__WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__["b" /* handleSyncMessage */])(changeset, function () {
+      Object(__WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__["b" /* handleSyncMessage */])(changeset, function () {
         pm.syncManager.updateSinceFromMessage(changeset, function (err) {
           // log errors but move on
           if (err) {
@@ -15812,7 +9747,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     };
 
     try {
-      Object(__WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__["a" /* handleSyncChangeset */])(changeset, doneCb);
+      Object(__WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__["a" /* handleSyncChangeset */])(changeset, doneCb);
     }
     catch (e) {
       watchdog && clearTimeout(watchdog);
@@ -15885,20 +9820,20 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
          * Initializes the sync client
          */
   initializeSyncClient: function (cb) {
-    this.syncClient = new __WEBPACK_IMPORTED_MODULE_3__postman_sync_client__["SyncClient"](SYNC_CLIENT_ID, { dbService: Object(__WEBPACK_IMPORTED_MODULE_5__services_DatabaseService__["a" /* getService */])() });
+    this.syncClient = new __WEBPACK_IMPORTED_MODULE_2__postman_sync_client__["SyncClient"](SYNC_CLIENT_ID, { dbService: Object(__WEBPACK_IMPORTED_MODULE_7__services_DatabaseService__["a" /* getService */])() });
     this.syncClient.initialize(err => {
       cb && cb(err);
     });
   },
 
   initializeSyncClientProcessor: function () {
-    this.syncClientProcessor = __WEBPACK_IMPORTED_MODULE_6_async___default.a.cargo(this.syncClientWorker.bind(this));
+    this.syncClientProcessor = __WEBPACK_IMPORTED_MODULE_0_async___default.a.cargo(this.syncClientWorker.bind(this));
   },
 
   syncClientWorker: function (tasks, done) {
     console.log('sync client process worker started', tasks);
 
-    if (!Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       console.log('sync client worker stopped because no authenticated socket available yet');
       done(new Error(NO_AUTHENTICATED_CONNECTION));
       return;
@@ -15930,22 +9865,22 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   processOfflineChanges: function (task, done) {
-    if (!this.syncClientProcessor) {
-      this.initializeSyncClientProcessor();
-    }
+    // if (!this.syncClientProcessor) {
+    //   this.initializeSyncClientProcessor();
+    // }
 
-    if (!task) {
-      task = { origin: 'unknown' };
-    }
+    // if (!task) {
+    //   task = { origin: 'unknown' };
+    // }
 
-    this.syncClientProcessor.push(task, done);
+    // this.syncClientProcessor.push(task, done);
   },
 
   onConflictResolutionError: function (err) {
     console.log('CR ABORTED', err);
     pm.localChanges.pendingResolution = null;
 
-    __WEBPACK_IMPORTED_MODULE_6_async___default.a.series([
+    __WEBPACK_IMPORTED_MODULE_0_async___default.a.series([
     next => {
       this.onAllClientChangesProcessed(next);
     },
@@ -15958,7 +9893,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   onConflictResolutionCompleted: function (crState, done) {
     console.log('CR DONE', crState);
 
-    __WEBPACK_IMPORTED_MODULE_6_async___default.a.series([
+    __WEBPACK_IMPORTED_MODULE_0_async___default.a.series([
     next => {
       if (!crState || _.isEmpty(crState.changesetsFromClient) || crState.source === 'force-sync') {
         return next();
@@ -15973,7 +9908,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       this.onAllClientChangesProcessed(next);
     },
     next => {
-      Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["h" /* performWorkspaceIntegrityCheck */])(function (err) {
+      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["h" /* performWorkspaceIntegrityCheck */])(function (err) {
         if (err) {
           console.warn('Could not complete workspace integrity check');
           return next();
@@ -15983,7 +9918,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       });
     },
     next => {
-      Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["g" /* performWorkspaceDependencyIntegrityCheck */])(function (err) {
+      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["g" /* performWorkspaceDependencyIntegrityCheck */])(function (err) {
         if (err) {
           console.warn('Could not complete workspace dependencies integrity check');
           return next();
@@ -15993,7 +9928,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       });
     },
     next => {
-      Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["f" /* performPendingIntegrityCheck */])();
+      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["f" /* performPendingIntegrityCheck */])();
       next();
     },
     next => {
@@ -16178,169 +10113,146 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     // Force disconnecting the existing socket.
     this.onAppOffline();
 
-    let recreateSyncUserEvent = Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('recreateSyncUser', 'user');
+    let recreateSyncUserEvent = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('recreateSyncUser', 'user');
 
     // No need to wait for response as of now, if we need to show something, we can show by listening to response.
-    Object(__WEBPACK_IMPORTED_MODULE_13__modules_pipelines_app_action__["a" /* default */])(recreateSyncUserEvent);
+    Object(__WEBPACK_IMPORTED_MODULE_16__modules_pipelines_app_action__["a" /* default */])(recreateSyncUserEvent);
   },
 
+  /**
+      * @method createSocket
+      * @param {Object} opts
+      * @param {String=''} opts.connectionMode
+      * @param {Boolean=false} opts.forceConnect
+      * @returns {Promise}
+      */
   createSocket: function (opts = {}) {
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-    get().
-    then(user => {
-      if (!user.syncEnabled) {
-        console.log('create socket bailed sync disabled');
+    return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    then(isEnabled => {
+      if (!isEnabled) {
+        pm.logger.info('SyncManagerNew~createSocket - Bailed out as websocket disabled');
         return;
       }
 
-      let {
-        connectionMode = 'regular',
-        forceConnect = false } =
-      opts;
+      return __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+      get().
+      then(user => {
+        let {
+          connectionMode = 'regular',
+          forceConnect = false } =
+        opts;
 
-      if (!forceConnect && (this.get('connectingToSocket') || this.get('socketConnected'))) {
-        return;
-      }
-
-      this.set('loggingIn', false);
-
-      if (pm.syncSocket) {
-        if (this.get('connectionMode') !== connectionMode) {
-          this.reconfigureSocket(connectionMode);
-          this.set('connectionMode', connectionMode);
+        if (!forceConnect && (this.get('connectingToSocket') || this.get('socketConnected'))) {
+          return;
         }
-        pm.syncSocket.forceReconnect();
-      } else
-      {
-        let syncserver_url = user.syncserver_url || postman_syncserver_url;
-        this.sailsIO.transports = ['websocket'];
-        this.sailsIO.autoConnect = false;
-        this.sailsIO.url = syncserver_url;
 
-        pm.syncSocket && this.destroySocket();
+        this.set('loggingIn', false);
 
-        this.set('connectionMode', connectionMode);
-        pm.syncSocket = this.sailsIO.connect(
-        syncserver_url,
-        _.merge({
-          forceNew: true,
-          multiplex: false },
-        SOCKET_IO_OPTS[connectionMode]),
-        this.getListeners());
+        if (pm.syncSocket) {
+          if (this.get('connectionMode') !== connectionMode) {
+            this.reconfigureSocket(connectionMode);
+            this.set('connectionMode', connectionMode);
+          }
+          pm.syncSocket.forceReconnect();
+        } else
+        {
+          let syncserver_url = user.syncserver_url || postman_syncserver_url;
+          this.sailsIO.transports = ['websocket'];
+          this.sailsIO.autoConnect = false;
+          this.sailsIO.url = syncserver_url;
 
-      }
-      this.set('connectingToSocket', true);
-      this.trigger('makeConnecting');
-      this.set('nextReconnectTime', null);
+          pm.syncSocket && this.destroySocket();
 
-      if (connectionMode === 'watchdog') {
-        __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_attempt', 'watchdog');
-      }
+          this.set('connectionMode', connectionMode);
+          pm.syncSocket = this.sailsIO.connect(
+          syncserver_url,
+          _.merge({
+            forceNew: true,
+            multiplex: false },
+          SOCKET_IO_OPTS[connectionMode]),
+          this.getListeners());
+
+        }
+        this.set('connectingToSocket', true);
+        this.trigger('makeConnecting');
+        this.set('nextReconnectTime', null);
+
+        if (connectionMode === 'watchdog') {
+          __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_attempt', 'watchdog');
+        }
+      });
     });
   },
 
   // call when and how - pass the model to some view.
   // or include this code there directly
   signIn: function (opts = {}) {
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-    get().
-    then(user => {
-      console.log('authenticating socket for', user.id, user.syncEnabled);
-
-
-      if (!user.syncEnabled || user.id === '0') {
-        console.log('sign in bailed. no user.');
-        return Promise.reject(new Error('Could not sign in. No user.'));
+    return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    then(isWebSocketEnabled => {
+      if (!isWebSocketEnabled) {
+        pm.logger.info('SyncManagerNew~createSocket - Bailed out as websocket disabled');
+        return Promise.reject(new Error('SyncManagerNew~createSocket - Bailed out as websocket disabled'));
       }
 
-      return user;
-    }).
-    then(user => {
+      return __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+      get().
+      then(user => {
+        if (user.id === '0') {
+          pm.logger.info('SyncManagerNew~signIn: Bailing out as this is not a valid user');
+          return Promise.reject(new Error('SyncManagerNew~signIn: Bailing out as this is not a valid user'));
+        }
+      }).
+      then(() => {
+        let { forceConnect = false } = opts;
 
-      let { forceConnect = false } = opts;
-
-      if (forceConnect) {
-        this.createSocket(opts);
-        console.log('sign in bailed. force connect.');
-        return;
-      }
-
-      // if the socket object doesn't exist
-      if (pm.syncSocket === null) {
-        this.createSocket(opts);
-        console.log('sign in bailed. no socket.');
-        return;
-      }
-
-      if (!this.get('connectingToSocket') && !this.get('socketConnected')) {
-        this.createSocket(opts);
-        console.log('sign in bailed. some state issue.');
-        return;
-      }
-
-      if (this.get('loggingIn') === true) {
-        // Session login is already in progress
-        setTimeout(() => {
-          if (this.get('loggingIn')) {
-            this.set('loggingIn', false);
-            this.signIn();
-          }
-        }, 3000);
-        console.log('sign in bailed. in progress.');
-        return;
-      }
-
-      var userId = user.id,
-      accessToken = _.get(user, 'auth.access_token');
-
-      this.set({
-        loggingIn: true,
-        isSyncCallRateLimited: false });
-
-      clearTimeout(this.timeOutRetrySyncCall);
-
-      console.log('session create');
-      __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
-        model: 'session',
-        action: 'create' },
-      resData => {
-        if (resData.error && _.includes(['authenticationError', 'tokenAuthError'], resData.error.name)) {
-          this.renewCount++;
-          if (this.renewCount > 2) {
-            pm.toasts.warn('There was a problem logging in to Sync. Please restart the app without logging out.', {
-              dedupeId: 'sync-connection-error',
-              persist: true });
-
-            return;
-          }
-
-          this.handleAuthenticationError();
+        if (forceConnect) {
+          this.createSocket(opts);
+          console.log('sign in bailed. force connect.');
           return;
         }
+
+        // if the socket object doesn't exist
+        if (pm.syncSocket === null) {
+          this.createSocket(opts);
+          console.log('sign in bailed. no socket.');
+          return;
+        }
+
+        if (!this.get('connectingToSocket') && !this.get('socketConnected')) {
+          this.createSocket(opts);
+          console.log('sign in bailed. some state issue.');
+          return;
+        }
+
+        if (this.get('loggingIn') === true) {
+          // Session login is already in progress
+          setTimeout(() => {
+            if (this.get('loggingIn')) {
+              this.set('loggingIn', false);
+              this.signIn();
+            }
+          }, 3000);
+          console.log('sign in bailed. in progress.');
+          return;
+        }
+
+        this.set({
+          loggingIn: true,
+          isSyncCallRateLimited: false });
+
+        clearTimeout(this.timeOutRetrySyncCall);
 
         pm.mediator.trigger('socketConnected');
-        this.renewCount = 0;
 
-        if (resData.error) {
-          this.set('loggingIn', false);
-          this.set('loggedIn', false);
-          return;
-        }
+        // socket is connected, reset retry count
+        this.renewCount = 0;
 
         pm.mediator.trigger('socket:connected');
         this.set('loggedIn', true);
         this.set('loggingIn', false);
 
-        __WEBPACK_IMPORTED_MODULE_6_async___default.a.series([
-        next => {
-          // This is here for < 6.0 to 6.0 migration
-          // @todo: remove this in 6.3
-          this.bootstrapWorkspaces({ userId }, next);
-        }],
-        err => {
-          err && console.error('Error during workspace bootstrap', err);
-          this.requestInitialSync();
-        });
+        // start syncing
+        this.requestInitialSync();
       });
     });
   },
@@ -16354,54 +10266,50 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
     this.didIntegrityCheckRecently = false;
     this._nukeQueues();
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-    get().
-    then(userData => {
-      if (!userData.syncEnabled || this.get('connectingToSocket') === true || this.get('loggedIn') === false || !pm.syncSocket) {
-        this.set('loggedIn', false);
-        this.set('socketConnected', false);
-        this.set('connectingToSocket', false);
+    if (this.get('connectingToSocket') === true || this.get('loggedIn') === false || !pm.syncSocket) {
+      this.set('loggedIn', false);
+      this.set('socketConnected', false);
+      this.set('connectingToSocket', false);
 
-        if (resetSyncProperties) {
-          __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].delete(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
-          then(() => {
-            this.onClearSystemValues();
-            this.trigger('disabledSync');
-          }).
-          catch(e => {
-            console.error('Error in deleting since', e);
-          });
-        }
-
-        if (pm.syncSocket) {
-          this.explicitLogout = resetSyncProperties;
-
-          // don't need to delete the socket because you were never logged in.
-          // check the `if` 2 levels above
-          this.destroySocket();
-        }
-        return;
+      if (resetSyncProperties) {
+        __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].delete(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
+        then(() => {
+          this.onClearSystemValues();
+          this.trigger('disabledSync');
+        }).
+        catch(e => {
+          console.error('Error in deleting since', e);
+        });
       }
 
-      __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
-        model: 'session',
-        action: 'destroy' },
-      resData => {
-        this.set('loggedIn', false);
-        this.set('socketConnected', false);
-        this.set('connectingToSocket', false);
-        this.trigger('disabledSync');
-        if (pm.syncSocket) {
-          this.explicitLogout = resetSyncProperties;
+      if (pm.syncSocket) {
+        this.explicitLogout = resetSyncProperties;
 
-          // no need to delete socket as the /session/destroy call ensures there are no cookie problems
-          this.destroySocket();
-        }
-        if (resetSyncProperties) {
-          resetClientInDb();
-        }
-        this.onClearSystemValues();
-      });
+        // don't need to delete the socket because you were never logged in.
+        // check the `if` 2 levels above
+        this.destroySocket();
+      }
+      return;
+    }
+
+    __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+      model: 'session',
+      action: 'destroy' },
+    resData => {
+      this.set('loggedIn', false);
+      this.set('socketConnected', false);
+      this.set('connectingToSocket', false);
+      this.trigger('disabledSync');
+      if (pm.syncSocket) {
+        this.explicitLogout = resetSyncProperties;
+
+        // no need to delete socket as the /session/destroy call ensures there are no cookie problems
+        this.destroySocket();
+      }
+      if (resetSyncProperties) {
+        resetClientInDb();
+      }
+      this.onClearSystemValues();
     });
   },
 
@@ -16426,87 +10334,53 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   /**
-      * Bootstraps default workspaces for a user. Postman 6.0 migration on Sync server.
-      *
-      * This routine calls a /workspace/bootstrap/user to trigger creation of "My Workspace" for a user on Sync.
-      * This workspace needs to be bootstrapped for a user before we start syncing any changes from the App. That's why
-      * this is here even before the /sync API call.
-      *
-      * This should be called once per user on an App. However, the call itself is idempotent on Sync. We put this behind
-      * a flag for additional safety.
-      *
-      * @note: remove this after default workspaces are bootstrapped for all users on Sync. Possibly 6.3/6.4.
-      */
-  bootstrapWorkspaces(options, cb) {
-    if (!options || !options.userId) {
-      return cb();
-    }
-
-    let userId = options.userId,
-    workspaceBootstrapStatus;
-
-    try {
-      workspaceBootstrapStatus = JSON.parse(localStorage.getItem('workspaceBootstrapStatus') || '{}');
-    }
-    catch (e) {
-      console.log('Could not bootstrap user workspace', e);
-
-      // swallow error and continue with /sync
-      return cb();
-    }
-
-    // if we've bootstrapped a workspace for this user already, stop here.
-    if (workspaceBootstrapStatus[userId]) {
-      console.log('already bootstrapped for this user. skipping bootstrap.');
-      return cb();
-    }
-
-    __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
-      model: 'workspace',
-      action: 'bootstrapuser' },
-    resData => {
-      let bootstrappedWorkspaceId;
-
-      if (resData.error) {
-        console.error('Error while bootstrapping user workspace ' + resData.error.message || resData.error);
-        return cb();
-      }
-
-      console.log('handling bootstrapped workspace for user from sync');
-
-      bootstrappedWorkspaceId = _.get(resData, 'model_id');
-
-      // this queues the new workspace response as a sync real time event which takes care of
-      // deep merging this sync workspace with the local version of the same workspace
-      Object(__WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__["b" /* handleSyncMessage */])(resData, function () {
-        // make sure we unblock the queue even for errors
-        workspaceBootstrapStatus[userId] = true;
-        localStorage.setItem('workspaceBootstrapStatus', JSON.stringify(workspaceBootstrapStatus));
-
-        console.log('successfully bootstrapped workspace for user. setting flag for skip.');
-
-        cb();
-      });
-    });
-  },
-
-  /**
       * @description called ONLY when signIn is successful
       */
   requestInitialSync: function () {
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-    get().
-    then(userData => {
-      if (!userData.syncEnabled) {return;}
+    return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    then(isEnabled => {
+      if (!isEnabled) {
+        pm.logger.info('SyncManagerNew~requestInitialSync: Bailing out since websocket is disabled');
+        return;
+      }
 
-      getClientStateFromDb().then(client => {
-        this._sendSyncRequest({
-          lastRevisionNumber: client.revision,
-          lastTimestamp: client.timestamp,
-          collectionId: null,
-          collectionsAsImports: true });
-
+      // subscribe to notification events
+      __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isNotificationEnabled().
+      then(isEnabled => {
+        return isEnabled && Object(__WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncNotificationsService__["a" /* subscribeToNotifications */])();
+      }).
+      catch(e => {
+        pm.logger.warn('onSocketConnected: Could not setup realtime event subscribers for notifications', e);
       });
+
+      Object(__WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncTeamEventsService__["a" /* subscribeToTeamEvents */])().
+      catch(e => {
+        pm.logger.warn('onSocketConnected: Could not setup realtime event subscribers for team events', e);
+      });
+
+      return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isSyncEnabled().
+      then(isSyncEnabled => {
+        if (!isSyncEnabled) {
+          return;
+        }
+
+        return __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+        get().
+        then(userData => {
+          if (!userData) {
+            pm.logger.error('SyncManagerNew~requestInitialSync: Could not connect to sync. User is missing.');
+            return;
+          }
+
+          return Object(__WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers__["c" /* syncAndSubscribeTimeline */])({ model: 'user', modelId: userData.id }).
+          then(() => {
+            // used to subscribe to the models stream
+            // which computes the models in view and subscribes to those entities
+            Object(__WEBPACK_IMPORTED_MODULE_23__services_SyncWindowService__["b" /* subscribeAddedModelsInWindowStream */])();
+          });
+        });
+      });
+
     });
   },
 
@@ -16522,17 +10396,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     var lastRevisionNumber = options.lastRevisionNumber,
     lastTimestamp = options.lastTimestamp;
 
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
-    get().
-    then(userData => {
-      if (!userData.syncEnabled) {return;}
-      this.trigger('syncStarting');
+    __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    then(isEnabled => {
+      if (!isEnabled) {
+        pm.logger.info('SyncManagerNew~_sendSyncRequest: Bailing out as websocket disabled');
+        return;
+      }
 
+      this.trigger('syncStarting');
       if (this.get('isSyncCallRateLimited')) {
         return;
       }
 
-      __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+      __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
         model: 'session',
         action: 'sync',
         meta: {
@@ -16542,10 +10418,6 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
 
       msg => {
-        if (!userData.syncEnabled) {
-          return;
-        }
-
         this._handleNewSyncResponse(msg, options);
       });
     });
@@ -16633,12 +10505,12 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
   forceSyncAllData() {
     getClientStateFromDb().then(client => {
-      Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["a" /* createChangesetsForForceSyncAllData */])((err, clientChangesets) => {
+      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["a" /* createChangesetsForForceSyncAllData */])((err, clientChangesets) => {
         if (err) {
           return;
         }
 
-        __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+        __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
           model: 'session',
           action: 'sync',
           meta: {
@@ -16665,7 +10537,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
           let clientModelIds = _.chain(clientChangesets).map('data.modelId').compact().value();
 
-          __WEBPACK_IMPORTED_MODULE_6_async___default.a.series([
+          __WEBPACK_IMPORTED_MODULE_0_async___default.a.series([
           next => {
             if (_.isEmpty(clientModelIds)) {
               next();
@@ -16747,35 +10619,66 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     }
   },
 
-  sendChangesetsToServer: function (changesets, done) {
-    __WEBPACK_IMPORTED_MODULE_6_async___default.a.eachSeries(changesets, (changeset, next) => {
-      if (!Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
-        next(new Error(NO_AUTHENTICATED_CONNECTION));
-        return;
-      }
+  sendChangesetToServer: function (changeset, done) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+      done(new Error(NO_AUTHENTICATED_CONNECTION));
+      return;
+    }
 
-      console.log(
-      `%c${changeset.model}:${changeset.action}:${changeset.model_id || changeset.data && changeset.data.modelId}`,
-      'font-weight: 800');
+    console.log(
+    `%c${changeset.model}:${changeset.action}:${changeset.model_id || changeset.data && changeset.data.modelId}`,
+    'font-weight: 800');
 
 
-      if (_.get(changeset, 'meta.sideEffect')) {
-        console.log('dropping sideEffect changeset', changeset);
+    if (_.get(changeset, 'meta.sideEffect')) {
+      console.log('dropping sideEffect changeset', changeset);
 
-        // hack to send changeset processed event for sideeffect changesets;
-        broadcastChangesetResponse(changeset, null);
+      // hack to send changeset processed event for sideeffect changesets;
+      broadcastChangesetResponse(changeset, null);
 
-        this.onClientChangeProcessed(changeset, () => {
-          next();
-        });
-        return;
-      }
-
-      this.sendChangesetToServerRetryable(changeset, () => {
-        // console.log('changeset sent to server', changeset);
-        next();
+      this.onClientChangeProcessed(changeset, () => {
+        done();
       });
-    }, done);
+      return;
+    }
+
+    this.sendChangesetToServerRetryable(changeset, (err, response) => {
+      // console.log('changeset sent to server', changeset);
+      return done(null, response);
+    });
+
+    // async.eachSeries(changesets, (changeset, next) => {
+    //   if (!isAuthenticatedSocketAvailable()) {
+    //     next(new Error(NO_AUTHENTICATED_CONNECTION));
+    //     return;
+    //   }
+
+    //   console.log(
+    //     `%c${changeset.model}:${changeset.action}:${changeset.model_id || (changeset.data && changeset.data.modelId)}`,
+    //     'font-weight: 800'
+    //   );
+
+    //   if (_.get(changeset, 'meta.sideEffect')) {
+    //     console.log('dropping sideEffect changeset', changeset);
+
+    //     // hack to send changeset processed event for sideeffect changesets;
+    //     broadcastChangesetResponse(changeset, null);
+
+    //     this.onClientChangeProcessed(changeset, () => {
+    //       next();
+    //     });
+    //     return;
+    //   }
+
+    //   this.sendChangesetToServerRetryable(changeset, timeline, (err, response) => {
+    //     // console.log('changeset sent to server', changeset);
+    //     return next(null, response);
+    //   });
+    // }, (err, response) => {
+    //   console.log(err);
+    //   console.log('Response in SYNCManager', response);
+    //   done(err, response);
+    // });
   },
 
   /**
@@ -16784,7 +10687,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       */
   saveProcessedServerChange: function (serverChangesets, done) {
     console.log('sending server changes', serverChangesets);
-    __WEBPACK_IMPORTED_MODULE_6_async___default.a.eachSeries(serverChangesets, (serverChangeset, next) => {
+    __WEBPACK_IMPORTED_MODULE_0_async___default.a.eachSeries(serverChangesets, (serverChangeset, next) => {
       this.saveServerChangeset(serverChangeset, next);
     }, () => {
       console.log('all server changes sent');
@@ -16803,7 +10706,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       return callback();
     }
 
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
+    __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
     get().
     then(user => {
 
@@ -16819,7 +10722,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         // console.log('formatted server changeset', message);
       }
 
-      Object(__WEBPACK_IMPORTED_MODULE_7__SyncIncomingHandler__["b" /* handleSyncMessage */])(message, () => {
+      Object(__WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__["b" /* handleSyncMessage */])(message, () => {
         this.updateSinceFromMessage(message, function (err) {
           // log errors but move on
           if (err) {
@@ -16836,9 +10739,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   onAllClientChangesProcessed: function (done) {
-    if (Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       this.trigger('syncFinished');
-      Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["e" /* performPendingForceSyncs */])();
+      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["e" /* performPendingForceSyncs */])();
     }
 
     done && done();
@@ -16868,16 +10771,22 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     if (connectionMode === 'watchdog') {
       this.reconfigureSocket('regular');
       this.set('connectionMode', 'regular');
-      __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_success', 'watchdog');
+      __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_success', 'watchdog');
     }
 
-    this.set('connectingToSocket', false);
-    this.set('socketConnected', true);
-    this.set('nextReconnectTime', null);
+    this.set({
+      connectingToSocket: false,
+      socketConnected: true,
+      nextReconnectTime: null });
+
+
+    // wait for the flags to be set because above flags are used to determine socket status
+    try {Object(__WEBPACK_IMPORTED_MODULE_24__modules_sync_helpers_SocketEventsService__["c" /* publishSocketConnect */])();}
+    catch (e) {pm.logger.error('BaseSyncTimeline~_onConnect: Could not publish socket connect message to socket observable', e);}
 
     // console.log('socket connected');
 
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
+    __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
     get().
     then(user => {
       if (user.id !== '0') {
@@ -16887,6 +10796,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   _onDisconnect: function () {
+    try {Object(__WEBPACK_IMPORTED_MODULE_24__modules_sync_helpers_SocketEventsService__["d" /* publishSocketDisconnect */])();}
+    catch (e) {pm.logger.error('BaseSyncTimeline~onDisconnect: Could not publish socket disconnect message to socket observable', e);}
+
     let logout = this.explicitLogout;
     if (typeof logout === 'undefined') {
       logout = false;
@@ -16963,11 +10875,14 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     //   return;
     // }
 
+    Object(__WEBPACK_IMPORTED_MODULE_22__modules_sync_timeline_helpers_RealtimeSyncMessagesService__["b" /* publishRealtimeMessage */])(message);
 
-    this.handleNewMessageFormat(message);
-    this.addChangesetToIngressQueue(message);
+    // @todo: windowed-syncing: remove legacy realtime events handler
+    // this.handleNewMessageFormat(message);
+    // this.addChangesetToIngressQueue(message);
 
-    broadcastRealtimeEvent(message);
+
+    // broadcastRealtimeEvent(message);
   },
 
   /* Socket IO Connection Events Reference
@@ -17003,6 +10918,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       import: this._onSyncChange.bind(this, 'import'),
       find: this._onSyncChange.bind(this, 'find'),
       update: this._onSyncChange.bind(this, 'update'),
+      update_roles: this._onSyncChange.bind(this, 'update_roles'),
       destroy: this._onSyncChange.bind(this, 'destroy'),
       history: this._onSyncChange.bind(this, 'history'),
       share: this._onSyncChange.bind(this, 'share'),
@@ -17010,6 +10926,8 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       favorite: this._onSyncChange.bind(this, 'favorite'),
       unfavorite: this._onSyncChange.bind(this, 'unfavorite'),
       transfer: this._onSyncChange.bind(this, 'transfer'),
+      join: this._onSyncChange.bind(this, 'join'),
+      leave: this._onSyncChange.bind(this, 'leave'),
       joining: this._onSyncChange.bind(this, 'joining'),
       leaving: this._onSyncChange.bind(this, 'leaving'),
       add_member: this._onSyncChange.bind(this, 'add_member'),
@@ -17027,7 +10945,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
   isErrorResponse: function (res, jwr) {
 
-    if (__WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].is3xxStatusCode(res && res.statusCode) || __WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].is3xxStatusCode(jwr && jwr.statusCode)) {
+    if (__WEBPACK_IMPORTED_MODULE_4__utils_util__["a" /* default */].is3xxStatusCode(res && res.statusCode) || __WEBPACK_IMPORTED_MODULE_4__utils_util__["a" /* default */].is3xxStatusCode(jwr && jwr.statusCode)) {
       return false;
     }
 
@@ -17039,11 +10957,11 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       return true;
     }
 
-    if (jwr && jwr.hasOwnProperty('statusCode') && !__WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].isStatusCode200(jwr.statusCode) && jwr.statusCode !== 304) {
+    if (jwr && jwr.hasOwnProperty('statusCode') && !__WEBPACK_IMPORTED_MODULE_4__utils_util__["a" /* default */].isStatusCode200(jwr.statusCode) && jwr.statusCode !== 304) {
       return true;
     }
 
-    if (res.hasOwnProperty('statusCode') && !__WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].isStatusCode200(res.statusCode) && res.statusCode !== 304) {
+    if (res.hasOwnProperty('statusCode') && !__WEBPACK_IMPORTED_MODULE_4__utils_util__["a" /* default */].isStatusCode200(res.statusCode) && res.statusCode !== 304) {
       return true;
     }
 
@@ -17067,6 +10985,12 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       data,
       meta } =
     changeset;
+
+    // If it errored out because of access-control, roll it back
+    // @TODO-rbac should we wait for this before moving onto next item?
+    if (res && res.jwr && res.error && res.jwr.statusCode === 403 && res.error.name === 'forbiddenError') {
+      __WEBPACK_IMPORTED_MODULE_13__services_AccessControl_DbRollbackService__["b" /* rollbackQueue */].push(changeset);
+    }
 
     try {
       if (res && res.error && res.error.name == 'instanceFoundError' &&
@@ -17097,7 +11021,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         {
           // don't resync for echo
           if (window.postman_predef_collections.indexOf(data.id) == -1) {
-            Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'collection',
               modelId: data.id });
 
@@ -17110,7 +11034,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
           clearChange = true;
         } else
         {
-          Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+          Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
             model: 'folder',
             modelId: data.id });
 
@@ -17192,7 +11116,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
             owner: data.owner };
 
 
-          this.addChangesetsToSyncClient([Object(__WEBPACK_IMPORTED_MODULE_16__modules_sync_helpers_create_changeset__["a" /* default */])(model, 'transfer', {
+          this.addChangesetsToSyncClient([Object(__WEBPACK_IMPORTED_MODULE_19__modules_sync_helpers_create_changeset__["a" /* default */])(model, 'transfer', {
             to: toLocation,
             from: oldLocation,
             owner: data.owner,
@@ -17209,13 +11133,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       } else
       if (res.error.name === 'orderUpdateError') {
         if (model === 'collection') {
-          Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+          Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
             model: 'collection',
             modelId: data.id });
 
         } else
         if (model === 'folder') {
-          Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+          Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
             model: 'folder',
             modelId: data.collection });
 
@@ -17240,19 +11164,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         {
           // start force sync for the collection here
           if (model === 'collection' && window.postman_predef_collections.indexOf(data.id) == -1) {
-            Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'collection',
               modelId: data.id });
 
           } else
           if (model === 'folder') {
-            Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'folder',
               modelId: data.id });
 
           } else
           if (model === 'request') {
-            Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'request',
               modelId: data.id });
 
@@ -17364,7 +11288,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         // console.log("Has reconnected already. clearing change");
         // already tried a socket reconnect
         this.hasReconnected = false;
-        var sanitizedChangeToSync = __WEBPACK_IMPORTED_MODULE_1__utils_SyncIssueHelper__["a" /* default */].sanitizedChangeSet(reason, changeToSync);
+        var sanitizedChangeToSync = __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__["a" /* default */].sanitizedChangeSet(reason, changeToSync);
         if (reason === 'timeout') {
           // Auto discarding of timeout errors
           // pm.localChanges.popChangeFromUnsyncedQueue();
@@ -17374,9 +11298,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
           // Sending any non-history related discards to analytics
           if (!(changeToSync.model === 'history' || changeToSync.action === 'history')) {
-            __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent(
+            __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent(
             'sync', 'discard_timeout', 'issue', null,
-            __WEBPACK_IMPORTED_MODULE_1__utils_SyncIssueHelper__["a" /* default */].constructLogToAnalytics(sanitizedChangeToSync));
+            __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__["a" /* default */].constructLogToAnalytics(sanitizedChangeToSync));
 
           }
         } else
@@ -17386,9 +11310,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
           // @todo numaan remove current changeset from client and resume
 
           clearChange = true;
-          __WEBPACK_IMPORTED_MODULE_14__modules_services_AnalyticsService__["a" /* default */].addEvent(
+          __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent(
           'sync', 'discard_unnamed', 'issue', null,
-          __WEBPACK_IMPORTED_MODULE_1__utils_SyncIssueHelper__["a" /* default */].constructLogToAnalytics(sanitizedChangeToSync));
+          __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__["a" /* default */].constructLogToAnalytics(sanitizedChangeToSync));
 
         } else
         {
@@ -17423,25 +11347,25 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
     switch (details.model) {
       case 'collection':
-        Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'collection',
           modelId: details.model_id });
 
         break;
       case 'folder':
-        Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'folder',
           modelId: details.model_id });
 
         break;
       case 'request':
-        Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'request',
           modelId: details.model_id });
 
         break;
       case 'environment':
-        Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'environment',
           modelId: details.model_id });
 
@@ -17452,7 +11376,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   forceSyncCollectionAndContinue: function (cid) {
-    Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["d" /* markModelForForceSync */])({
+    Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
       model: 'collection',
       modelId: cid });
 
@@ -17494,7 +11418,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   sendChangesetToServerRetryable: function (changeset, done) {
-    __WEBPACK_IMPORTED_MODULE_6_async___default.a.retry({
+    __WEBPACK_IMPORTED_MODULE_0_async___default.a.retry({
 
       // retry a changeset 3 times
       times: 3,
@@ -17506,7 +11430,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       errorFilter: this.retryChangesetErrorFilter.bind(this, changeset) },
 
     callback => {
-      this.sendChangesetToServer(changeset, callback);
+      this._sendChangesetToServer(changeset, callback);
     },
     (err, response) => {
       if (err) {
@@ -17520,20 +11444,20 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       // console.log('retryable changeset done', changeset);
 
       this.onClientChangeProcessed(changeset, () => {
-        this.updateSinceFromMessage(response, err => {
-          // log errors but move on
-          if (err) {
-            console.error('Could not update since id after processing client change', err);
-          }
-
-          done && done(null, response);
-        });
+        return done && done(null, response);
       });
     });
   },
 
-  sendChangesetToServer: function (changeset, callback) {
-    if (!Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+  /**
+      * Use `sendChangesetToServer`
+      * @private
+      *
+      * @param  {Object} changeset
+      * @param  {Function} callback
+      */
+  _sendChangesetToServer: function (changeset, callback) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       callback(new Error(NO_AUTHENTICATED_CONNECTION));
       return;
     }
@@ -17541,7 +11465,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     // sanitize data to be sent to sync
     // no need to sanitize for destroy changesets
 
-    Object(__WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHelpers__["a" /* sanitizeHydratedChangeset */])(changeset);
+    Object(__WEBPACK_IMPORTED_MODULE_10__SyncOutgoingHelpers__["a" /* sanitizeHydratedChangeset */])(changeset);
 
     let {
       model,
@@ -17557,7 +11481,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     data.owner && (query.owner = data.owner);
     meta && meta.workspace && (query.workspace = meta.workspace);
 
-    __WEBPACK_IMPORTED_MODULE_11__modules_controllers_UserController__["a" /* default */].
+    __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
     get().
     then(user => {
       var userId = user.id;
@@ -17568,10 +11492,10 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       switch (action) {
         case 'share':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: 'collection',
             action: 'share',
-            data: _.get(changeset, 'data.permissions'),
+            data: _.get(changeset, 'data.permissions'), // @TODO-permissions
             meta: { query, pathVariables: { id: _.get(changeset, ['data', 'modelId']) } } },
           (res, jwr) => {
             this.handleSyncResponseForChangeset(res, jwr, changeset, callback);
@@ -17580,7 +11504,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
         case 'unshare':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: 'collection',
             action: 'unshare',
             meta: { query, pathVariables: { id: _.get(changeset, ['data', 'modelId']) } } },
@@ -17595,7 +11519,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
           }
 
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: model,
             action: action,
             data: data.instance,
@@ -17610,7 +11534,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         case 'importRequest':
 
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: model,
             action: 'import',
             data: data.instance,
@@ -17634,7 +11558,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
           }
 
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: model,
             action: 'update',
             data: _.get(changeset, ['data', 'instance']),
@@ -17651,7 +11575,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
               return model.owner ? `${model.owner}-${model.modelId}` : model.modelId;
             });
 
-            !_.isEmpty(historyIds) && __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+            !_.isEmpty(historyIds) && __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
               model: model,
               action: 'destroyAll',
               data: { ids: historyIds } },
@@ -17660,7 +11584,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
             });
           } else
           {
-            __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+            __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
               model: model,
               action: action,
               meta: {
@@ -17682,7 +11606,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
               return;
             }
 
-            __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+            __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
               model: model,
               action: action,
               data: {
@@ -17709,7 +11633,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         case 'subscribe':
         case 'unsubscribe':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: model,
             action: action,
             data: data,
@@ -17725,7 +11649,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
         case 'favorite':
         case 'unfavorite':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
             model: model,
             action: action,
             meta: {
@@ -17773,9 +11697,10 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       return;
     }
 
-    this.syncClient.removeChangesets(syncClientChangesets, err => {
+    Object(__WEBPACK_IMPORTED_MODULE_30__modules_sync_timeline_helpers_SyncClientService__["c" /* removeChangesets */])(syncClientChangesets, err => {
       if (err) {
-        console.error('syncClient.removeChangesets err', err);
+        console.error('SyncManagerNew~removeChangesetsFromSyncClient: removeChangesets errored out', err);
+        pm.logger.error('SyncManagerNew~removeChangesetsFromSyncClient: removeChangesets errored out', err);
       }
 
       done && done();
@@ -17804,7 +11729,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     return true;
   },
 
-  addChangesetsToSyncClient: function (changesets, opts) {
+  addChangesetsToSyncClient: function (changesets, opts, callback) {
 
     // if (window.___dropout === true) {
     //   console.error('DEBUG: outgoing changesets blocked!', changesets);
@@ -17820,17 +11745,20 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
     if (_.isEmpty(changesets)) {
       console.log('no changesets to add to sync client');
 
+      callback && callback();
+
       // this is to check connection and reconnect if not connected
       this.onlineWatchdog && this.onlineWatchdog();
 
-      autoProcess && this.processOfflineChanges({ origin: 'new-client-changeset' });
+      // autoProcess && this.processOfflineChanges({ origin: 'new-client-changeset' });
       return;
     }
 
     this.syncClient.addChangesets(changesets, err => {
       if (err) {
-        console.error('Error adding to sync client', err);
-        return;
+        console.error('SyncManagerNew~addChangesetsToSyncClient: error in adding changesets to sync client', err);
+        pm.logger.error('SyncManagerNew~addChangesetsToSyncClient: error in adding changesets to sync client', err);
+        return callback && callback();
       }
 
       // console.log('syncClient.addChangesets done');
@@ -17843,7 +11771,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       // this is to check connection and reconnect if not connected
       this.onlineWatchdog && this.onlineWatchdog();
 
-      autoProcess && this.processOfflineChanges({ origin: 'new-client-changeset' });
+      callback && callback();
+
+      // autoProcess && this.processOfflineChanges({ origin: 'new-client-changeset' });
     });
   },
 
@@ -17854,11 +11784,11 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
       maxId } =
     restoreTarget;
 
-    if (!Object(__WEBPACK_IMPORTED_MODULE_15__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       return;
     }
 
-    __WEBPACK_IMPORTED_MODULE_2__services_SyncService__["request"](pm.syncSocket, {
+    __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
       model: 'collection',
       action: 'restore',
       meta: {
@@ -17877,15 +11807,15 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
   },
 
   showConflicts: function (conflicts) {
-    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts: conflicts }));
+    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts: conflicts }));
   },
 
   showSyncIssue: function (issue) {
-    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_12__modules_model_event__["a" /* createEvent */])('show', 'issue', { issue: issue }));
+    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('show', 'issue', { issue: issue }));
   },
 
   conflictsResolved: function (conflictResolution) {
-    pm.localChanges.onConflictsResolved(conflictResolution);
+    // pm.localChanges.onConflictsResolved(conflictResolution);
   },
 
   fetchPendingConflicts: function () {
@@ -17900,19 +11830,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_17_backbone___default.a.Model.ext
 
 /***/ }),
 
-/***/ 2543:
+/***/ 2876:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2544);
+module.exports = __webpack_require__(2877);
 
 
 /***/ }),
 
-/***/ 2544:
+/***/ 2877:
 /***/ (function(module, exports, __webpack_require__) {
 
-const io = __webpack_require__(2545),
-  Socket = __webpack_require__(2570),
+const io = __webpack_require__(2878),
+  Socket = __webpack_require__(2903),
   DEFAULT_OPTIONS = {
     environment: 'production',
     transports: ['websocket'],
@@ -18048,7 +11978,7 @@ module.exports = IOClient;
 
 /***/ }),
 
-/***/ 2545:
+/***/ 2878:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -18056,10 +11986,10 @@ module.exports = IOClient;
  * Module dependencies.
  */
 
-var url = __webpack_require__(2546);
-var parser = __webpack_require__(717);
-var Manager = __webpack_require__(1082);
-var debug = __webpack_require__(519)('socket.io-client');
+var url = __webpack_require__(2879);
+var parser = __webpack_require__(801);
+var Manager = __webpack_require__(1207);
+var debug = __webpack_require__(578)('socket.io-client');
 
 /**
  * Module exports.
@@ -18143,13 +12073,13 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(1082);
-exports.Socket = __webpack_require__(1088);
+exports.Manager = __webpack_require__(1207);
+exports.Socket = __webpack_require__(1213);
 
 
 /***/ }),
 
-/***/ 2546:
+/***/ 2879:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -18157,8 +12087,8 @@ exports.Socket = __webpack_require__(1088);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(1079);
-var debug = __webpack_require__(519)('socket.io-client:url');
+var parseuri = __webpack_require__(1204);
+var debug = __webpack_require__(578)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -18228,11 +12158,11 @@ function url (uri, loc) {
   return obj;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 2547:
+/***/ 2880:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -18248,7 +12178,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(2548);
+exports.humanize = __webpack_require__(2881);
 
 /**
  * Active `debug` instances.
@@ -18464,7 +12394,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 2548:
+/***/ 2881:
 /***/ (function(module, exports) {
 
 /**
@@ -18623,7 +12553,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 2549:
+/***/ 2882:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -18632,7 +12562,7 @@ function plural(ms, n, name) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(2550);
+exports = module.exports = __webpack_require__(2883);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -18822,11 +12752,11 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 2550:
+/***/ 2883:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -18842,7 +12772,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(2551);
+exports.humanize = __webpack_require__(2884);
 
 /**
  * Active `debug` instances.
@@ -19058,7 +12988,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 2551:
+/***/ 2884:
 /***/ (function(module, exports) {
 
 /**
@@ -19217,7 +13147,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 2552:
+/***/ 2885:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -19226,8 +13156,8 @@ function plural(ms, n, name) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(1080);
-var isBuf = __webpack_require__(1081);
+var isArray = __webpack_require__(1205);
+var isBuf = __webpack_require__(1206);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -19362,15 +13292,15 @@ exports.removeBlobs = function(data, callback) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 2553:
+/***/ 2886:
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(2554);
+module.exports = __webpack_require__(2887);
 
 /**
  * Exports parser
@@ -19378,25 +13308,25 @@ module.exports = __webpack_require__(2554);
  * @api public
  *
  */
-module.exports.parser = __webpack_require__(252);
+module.exports.parser = __webpack_require__(292);
 
 
 /***/ }),
 
-/***/ 2554:
+/***/ 2887:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var transports = __webpack_require__(1083);
-var Emitter = __webpack_require__(251);
-var debug = __webpack_require__(522)('engine.io-client:socket');
-var index = __webpack_require__(1087);
-var parser = __webpack_require__(252);
-var parseuri = __webpack_require__(1079);
-var parseqs = __webpack_require__(520);
+var transports = __webpack_require__(1208);
+var Emitter = __webpack_require__(291);
+var debug = __webpack_require__(581)('engine.io-client:socket');
+var index = __webpack_require__(1212);
+var parser = __webpack_require__(292);
+var parseuri = __webpack_require__(1204);
+var parseqs = __webpack_require__(579);
 
 /**
  * Module exports.
@@ -19529,9 +13459,9 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(719);
-Socket.transports = __webpack_require__(1083);
-Socket.parser = __webpack_require__(252);
+Socket.Transport = __webpack_require__(803);
+Socket.transports = __webpack_require__(1208);
+Socket.parser = __webpack_require__(292);
 
 /**
  * Creates transport of the given type.
@@ -20130,11 +14060,11 @@ Socket.prototype.filterUpgrades = function (upgrades) {
   return filteredUpgrades;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 2555:
+/***/ 2888:
 /***/ (function(module, exports) {
 
 
@@ -20158,18 +14088,18 @@ try {
 
 /***/ }),
 
-/***/ 2556:
+/***/ 2889:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(718);
-var Polling = __webpack_require__(1084);
-var Emitter = __webpack_require__(251);
-var inherit = __webpack_require__(521);
-var debug = __webpack_require__(522)('engine.io-client:polling-xhr');
+var XMLHttpRequest = __webpack_require__(802);
+var Polling = __webpack_require__(1209);
+var Emitter = __webpack_require__(291);
+var inherit = __webpack_require__(580);
+var debug = __webpack_require__(581)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -20574,11 +14504,11 @@ function unloadHandler () {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 2557:
+/***/ 2890:
 /***/ (function(module, exports) {
 
 
@@ -20604,7 +14534,7 @@ module.exports = Object.keys || function keys (obj){
 
 /***/ }),
 
-/***/ 2558:
+/***/ 2891:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -20616,7 +14546,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 2559:
+/***/ 2892:
 /***/ (function(module, exports) {
 
 /**
@@ -20652,28 +14582,7 @@ module.exports = function(arraybuffer, start, end) {
 
 /***/ }),
 
-/***/ 256:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export getSymbolIterator */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return iterator; });
-/* unused harmony export $$iterator */
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function getSymbolIterator() {
-    if (typeof Symbol !== 'function' || !Symbol.iterator) {
-        return '@@iterator';
-    }
-    return Symbol.iterator;
-}
-var iterator = /*@__PURE__*/ getSymbolIterator();
-var $$iterator = iterator;
-//# sourceMappingURL=iterator.js.map
-
-
-/***/ }),
-
-/***/ 2560:
+/***/ 2893:
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -20708,7 +14617,7 @@ function noop() {}
 
 /***/ }),
 
-/***/ 2561:
+/***/ 2894:
 /***/ (function(module, exports) {
 
 /*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -20925,7 +14834,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2562:
+/***/ 2895:
 /***/ (function(module, exports) {
 
 /**
@@ -21032,7 +14941,7 @@ module.exports = (function() {
 
 /***/ }),
 
-/***/ 2563:
+/***/ 2896:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -21048,7 +14957,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(2564);
+exports.humanize = __webpack_require__(2897);
 
 /**
  * Active `debug` instances.
@@ -21264,7 +15173,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 2564:
+/***/ 2897:
 /***/ (function(module, exports) {
 
 /**
@@ -21423,7 +15332,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 2565:
+/***/ 2898:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -21431,8 +15340,8 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(1084);
-var inherit = __webpack_require__(521);
+var Polling = __webpack_require__(1209);
+var inherit = __webpack_require__(580);
 
 /**
  * Module exports.
@@ -21658,28 +15567,28 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 2566:
+/***/ 2899:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(719);
-var parser = __webpack_require__(252);
-var parseqs = __webpack_require__(520);
-var inherit = __webpack_require__(521);
-var yeast = __webpack_require__(1086);
-var debug = __webpack_require__(522)('engine.io-client:websocket');
+var Transport = __webpack_require__(803);
+var parser = __webpack_require__(292);
+var parseqs = __webpack_require__(579);
+var inherit = __webpack_require__(580);
+var yeast = __webpack_require__(1211);
+var debug = __webpack_require__(581)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(2567);
+    NodeWebSocket = __webpack_require__(2900);
   } catch (e) { }
 }
 
@@ -21952,18 +15861,18 @@ WS.prototype.check = function () {
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 2567:
+/***/ 2900:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2568:
+/***/ 2901:
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -21983,7 +15892,7 @@ function toArray(list, index) {
 
 /***/ }),
 
-/***/ 2569:
+/***/ 2902:
 /***/ (function(module, exports) {
 
 
@@ -22075,126 +15984,11 @@ Backoff.prototype.setJitter = function(jitter){
 
 /***/ }),
 
-/***/ 257:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = mergeMap;
-/* unused harmony export MergeMapOperator */
-/* unused harmony export MergeMapSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__map__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__observable_from__ = __webpack_require__(131);
-/** PURE_IMPORTS_START tslib,_util_subscribeToResult,_OuterSubscriber,_InnerSubscriber,_map,_observable_from PURE_IMPORTS_END */
-
-
-
-
-
-
-function mergeMap(project, resultSelector, concurrent) {
-    if (concurrent === void 0) {
-        concurrent = Number.POSITIVE_INFINITY;
-    }
-    if (typeof resultSelector === 'function') {
-        return function (source) { return source.pipe(mergeMap(function (a, i) { return Object(__WEBPACK_IMPORTED_MODULE_5__observable_from__["a" /* from */])(project(a, i)).pipe(Object(__WEBPACK_IMPORTED_MODULE_4__map__["a" /* map */])(function (b, ii) { return resultSelector(a, b, i, ii); })); }, concurrent)); };
-    }
-    else if (typeof resultSelector === 'number') {
-        concurrent = resultSelector;
-    }
-    return function (source) { return source.lift(new MergeMapOperator(project, concurrent)); };
-}
-var MergeMapOperator = /*@__PURE__*/ (function () {
-    function MergeMapOperator(project, concurrent) {
-        if (concurrent === void 0) {
-            concurrent = Number.POSITIVE_INFINITY;
-        }
-        this.project = project;
-        this.concurrent = concurrent;
-    }
-    MergeMapOperator.prototype.call = function (observer, source) {
-        return source.subscribe(new MergeMapSubscriber(observer, this.project, this.concurrent));
-    };
-    return MergeMapOperator;
-}());
-
-var MergeMapSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](MergeMapSubscriber, _super);
-    function MergeMapSubscriber(destination, project, concurrent) {
-        if (concurrent === void 0) {
-            concurrent = Number.POSITIVE_INFINITY;
-        }
-        var _this = _super.call(this, destination) || this;
-        _this.project = project;
-        _this.concurrent = concurrent;
-        _this.hasCompleted = false;
-        _this.buffer = [];
-        _this.active = 0;
-        _this.index = 0;
-        return _this;
-    }
-    MergeMapSubscriber.prototype._next = function (value) {
-        if (this.active < this.concurrent) {
-            this._tryNext(value);
-        }
-        else {
-            this.buffer.push(value);
-        }
-    };
-    MergeMapSubscriber.prototype._tryNext = function (value) {
-        var result;
-        var index = this.index++;
-        try {
-            result = this.project(value, index);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.active++;
-        this._innerSub(result, value, index);
-    };
-    MergeMapSubscriber.prototype._innerSub = function (ish, value, index) {
-        var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_3__InnerSubscriber__["a" /* InnerSubscriber */](this, undefined, undefined);
-        this.add(innerSubscriber);
-        Object(__WEBPACK_IMPORTED_MODULE_1__util_subscribeToResult__["a" /* subscribeToResult */])(this, ish, value, index, innerSubscriber);
-    };
-    MergeMapSubscriber.prototype._complete = function () {
-        this.hasCompleted = true;
-        if (this.active === 0 && this.buffer.length === 0) {
-            this.destination.complete();
-        }
-    };
-    MergeMapSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.destination.next(innerValue);
-    };
-    MergeMapSubscriber.prototype.notifyComplete = function (innerSub) {
-        var buffer = this.buffer;
-        this.remove(innerSub);
-        this.active--;
-        if (buffer.length > 0) {
-            this._next(buffer.shift());
-        }
-        else if (this.active === 0 && this.hasCompleted) {
-            this.destination.complete();
-        }
-    };
-    return MergeMapSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_2__OuterSubscriber__["a" /* OuterSubscriber */]));
-
-//# sourceMappingURL=mergeMap.js.map
-
-
-/***/ }),
-
-/***/ 2570:
+/***/ 2903:
 /***/ (function(module, exports, __webpack_require__) {
 
-const JWR = __webpack_require__(2571),
-  { SDK_INFO, SOCKET_OPTIONS } = __webpack_require__(2572),
+const JWR = __webpack_require__(2904),
+  { SDK_INFO, SOCKET_OPTIONS } = __webpack_require__(2905),
 
   CONFIGURABLE_PROPS = ['reconnectionDelay', 'reconnectionDelayMax', 'reconnectionAttempts'];
 
@@ -23086,7 +16880,7 @@ module.exports = SailsSocket;
 
 /***/ }),
 
-/***/ 2571:
+/***/ 2904:
 /***/ (function(module, exports) {
 
 /**
@@ -23149,7 +16943,7 @@ module.exports = JWR;
 
 /***/ }),
 
-/***/ 2572:
+/***/ 2905:
 /***/ (function(module, exports) {
 
 /**
@@ -23219,7 +17013,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2573:
+/***/ 2906:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23228,15 +17022,23 @@ module.exports = {
 /* unused harmony export addChangesetsToSyncClient */
 /* unused harmony export addMetaToChangesets */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SyncOutgoingHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__ = __webpack_require__(1076);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CollectionController__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_EnvironmentController__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryController__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__ = __webpack_require__(1201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CollectionController__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_EnvironmentController__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryController__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__ = __webpack_require__(698);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_sync_timeline_helpers__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_SyncIncomingHandler__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_controllers_CurrentUserController__ = __webpack_require__(69);
+
+
+
+
 
 
 
@@ -23270,51 +17072,42 @@ HISTORY_MODEL_CHANGESETS = 'historyModelChangesets';
                                                       * filter non user events
                                                       *
                                                       * @param {any} event
-                                                      * @param {any} callback
+                                                      * @returns {Boolean}
                                                       */
-function filterUnsupportedEvents(event, callback) {
+function filterUnsupportedEvents(event) {
   let actor = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["c" /* getActor */])(event),
   actorType = actor && actor.type,
   eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["g" /* getEventNamespace */])(event);
 
   // whitelist only USER actions
   if (!_.includes(['USER'], actorType)) {
-    callback(new Error(ERROR_UNSUPPORTED_ACTOR));
-    return;
+    return false;
   }
 
   // whitelist only known models
   if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace]) {
-    callback(new Error(ERROR_UNSUPPORTED_MODEL + eventNamespace));
-    return;
+    return false;
   }
 
-  // check for sync enabled
-  __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__["a" /* default */].
-  get().
-  then(user => {
-    if (!user || !user.syncEnabled) {
-      return callback(new Error(ERROR_SYNC_DISABLED));
-    }
-    callback(null, event);
-  });
-
+  return true;
 }
 
 /**
    * build changeset from event
    *
-   * @param {any} event
-   * @param {any} callback
+   * @param {Object} event
+   * @returns {Promise}
    */
-function buildChangesetsFromEvent(event, callback) {
-  Object(__WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__["a" /* default */])(event, (err, changesets) => {
-    if (err) {
-      callback(err);
-      return;
-    }
+function buildChangesetsFromEvent(event) {
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__["a" /* default */])(event, (err, changesets) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
-    callback(null, event, changesets);
+      resolve(changesets);
+    });
   });
 }
 
@@ -23631,92 +17424,203 @@ function addOwnerToCollectionRunModels(changesets, callback) {
 /**
    * add missing meta information to changesets
    *
-   * @param {any} changesets
+   * @param {Array.<Object>} changesets
+   * @returns {Promise.<Array>}
    */
-function addMetaToChangesets(event, changesets, callback) {
-  let collectionModelsChangesets = _.filter(changesets, changeset => {
-    return _.includes([MODEL_COLLECTION, MODEL_FOLDER, MODEL_REQUEST, MODEL_RESPONSE], changeset.model);
-  }),
-  collectionRunModelChangesets = _.filter(changesets, { model: MODEL_COLLECTIONRUN }),
-  historyModelChangesets = _.filter(changesets, changeset => {
-    return _.includes([MODEL_HISTORY, MODEL_HISTORY_RESPONSE], changeset.model);
-  });
+function addMetaToChangesets(changesets) {
 
-  if (_.isEmpty(collectionRunModelChangesets) && _.isEmpty(collectionModelsChangesets) && _.isEmpty(historyModelChangesets)) {
-    callback(null, changesets);
-    return;
-  }
+  return new Promise(resolve => {
+    let collectionModelsChangesets = [],
+    collectionRunModelChangesets = [],
+    historyModelChangesets = [],
+    leftOverChangesets = [];
 
-  let argMap = {
-    [COLLECTION_MODELS_CHANGESETS]: collectionModelsChangesets,
-    [COLLECTIONRUN_MODEL_CHANGESETS]: collectionRunModelChangesets,
-    [HISTORY_MODEL_CHANGESETS]: historyModelChangesets };
+    let collectionModelsSet = new Set([MODEL_COLLECTION, MODEL_FOLDER, MODEL_REQUEST, MODEL_RESPONSE]);
 
+    // traverse all the changesets and push them into separate model based arrays
+    // and keep the other ones in leftOverChangesets so we dont end up loosing changesets
+    _.forEach(changesets, changeset => {
+      if (collectionModelsSet.has(changeset.model)) {
+        collectionModelsChangesets.push(changeset);
+        return;
+      }
 
-  __WEBPACK_IMPORTED_MODULE_0_async___default.a.mapValues(argMap, function (changesets, changesetModel, callback) {
-    if (changesetModel === COLLECTION_MODELS_CHANGESETS) {
-      addOwnerToCollectionModels(changesets, callback);
-    } else
-    if (changesetModel === COLLECTIONRUN_MODEL_CHANGESETS) {
-      addOwnerToCollectionRunModels(changesets, callback);
-    } else
-    if (changesetModel === HISTORY_MODEL_CHANGESETS) {
-      addOwnerToHistoryModels(changesets, callback);
+      if (changeset.model === MODEL_COLLECTIONRUN) {
+        collectionRunModelChangesets.push(changeset);
+        return;
+      }
+
+      if (changeset.model === MODEL_HISTORY || changeset.model === MODEL_HISTORY_RESPONSE) {
+        historyModelChangesets.push(changeset);
+        return;
+      }
+
+      leftOverChangesets.push(changeset);
+    });
+
+    if (_.isEmpty(collectionRunModelChangesets) && _.isEmpty(collectionModelsChangesets) && _.isEmpty(historyModelChangesets)) {
+      resolve(changesets);
+      return;
     }
-  }, function (err, changesets) {
-    err && console.error('Changeset meta correction failed!', err);
 
-    let unfilteredChangesets = _.concat(
-    changesets[COLLECTION_MODELS_CHANGESETS],
-    changesets[COLLECTIONRUN_MODEL_CHANGESETS],
-    changesets[HISTORY_MODEL_CHANGESETS]);
+    let argMap = {
+      [COLLECTION_MODELS_CHANGESETS]: collectionModelsChangesets,
+      [COLLECTIONRUN_MODEL_CHANGESETS]: collectionRunModelChangesets,
+      [HISTORY_MODEL_CHANGESETS]: historyModelChangesets };
 
 
-    let validChangesets = _.chain(unfilteredChangesets).
-    compact().
-    reject(['drop', true]).
-    value();
+    __WEBPACK_IMPORTED_MODULE_0_async___default.a.mapValues(argMap, function (changesets, changesetModel, callback) {
+      if (changesetModel === COLLECTION_MODELS_CHANGESETS) {
+        addOwnerToCollectionModels(changesets, callback);
+      } else
+      if (changesetModel === COLLECTIONRUN_MODEL_CHANGESETS) {
+        addOwnerToCollectionRunModels(changesets, callback);
+      } else
+      if (changesetModel === HISTORY_MODEL_CHANGESETS) {
+        addOwnerToHistoryModels(changesets, callback);
+      }
+    }, function (err, changesets) {
+      err && console.error('Changeset meta correction failed!', err);
 
-    callback(null, validChangesets);
+      let unfilteredChangesets = _.concat(
+      changesets[COLLECTION_MODELS_CHANGESETS],
+      changesets[COLLECTIONRUN_MODEL_CHANGESETS],
+      changesets[HISTORY_MODEL_CHANGESETS]);
+
+
+      let validChangesets = _.chain(unfilteredChangesets).
+      concat(leftOverChangesets).
+      compact().
+      reject(['drop', true]).
+      value();
+
+      return resolve(validChangesets);
+    });
   });
 }
 
 /**
    * adds changeset to sync client
    *
-   * @param {any} changesets
-   * @param {any} callback
+   * @param {Array} changesets
+   * @returns {Promise}
    */
-function addChangesetsToSyncClient(changesets, callback) {
+function addChangesetsToSyncClient(changesets) {
   // console.log('Sync.Outgoing: pushing changeset to sync client', changesets);
-  pm.syncManager.addChangesetsToSyncClient(changesets);
-  callback(null);
+  return new Promise(resolve => {
+    pm.syncManager.addChangesetsToSyncClient(changesets, {}, () => {
+      resolve();
+    });
+  });
 }
 
+/**
+   * Add timeline information to changeset meta
+   * @param  {Array} changesets
+   * @returns {Promise}
+   */
+async function addTimelineIdToChangesets(changesets) {
+  await Promise.all(_.map(changesets, changeset => {
+    if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][changeset.model] || !__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][changeset.model].addMetaTimelineId) {
+      return;
+    }
+
+    return __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][changeset.model].addMetaTimelineId(changeset, changesets).
+    catch(() => {
+      pm.logger.error('Could not add timeline info for changeset: ', changeset);
+    });
+  }));
+}
 
 /**
-   * handle broadcast bus event
+   * Returns timeline events
+   * @param  {Object} event
    *
-   * @param {any} event
+   * @returns {Array}
    */
-function handleBusEvent(event, done) {
-  __WEBPACK_IMPORTED_MODULE_0_async___default.a.waterfall([
-  function (callback) {
-    callback(null, event);
-  },
-  filterUnsupportedEvents,
-  buildChangesetsFromEvent,
-  addMetaToChangesets,
-  addChangesetsToSyncClient],
-  function (err) {
-    err &&
-    !_.includes([ERROR_UNSUPPORTED_ACTOR, ERROR_SYNC_DISABLED], err && err.message) &&
-    !_.startsWith(err && err.message, ERROR_UNSUPPORTED_MODEL) &&
-    console.error(err);
+function getTimelineEventsFromEvent(event) {
+  let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["g" /* getEventNamespace */])(event),
+  timelineEvents = [];
 
-    // always move on even if there are errors
-    done();
+  // whitelist only known models
+  if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace] || !__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace].toTimelineEvents) {
+    return [];
+  }
+
+  let lowLevelEvents = _.get(event, 'events');
+
+  _.forEach(lowLevelEvents, lowLevelEvent => {
+    let handler = __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace].toTimelineEvents[lowLevelEvent.name];
+
+    if (!handler) {
+      return;
+    }
+
+    timelineEvents = timelineEvents.concat(handler(lowLevelEvent));
   });
+
+  return timelineEvents;
+}
+
+/**
+   * Used to handle events for the sync outgoing process
+   *
+   * Filters
+   * Builds changeset from events
+   * Add Meta to Changesets
+   * Add timeline id info to changesets
+   * Adds to syncClient
+   *
+   */
+async function handleBusEvent(event, done) {
+  let user = await __WEBPACK_IMPORTED_MODULE_11__modules_controllers_CurrentUserController__["a" /* default */].get();
+
+  // if not signed in, bail out
+  if (!user || user.id === '0') {
+    return done();
+  }
+
+  if (!filterUnsupportedEvents(event)) {
+    return done();
+  }
+
+  // build changesets from events
+  let changesets = await buildChangesetsFromEvent(event);
+
+  // get timeline events used for deleting timelines
+  let timelineEvents = getTimelineEventsFromEvent(event);
+
+  if (!changesets) {
+    return done();
+  }
+
+  // handling meta for changesets
+  changesets = await addMetaToChangesets(changesets);
+
+  if (_.isEmpty(changesets)) {
+    return done();
+  }
+
+  // adding timeline id so they can mapped to the correct timeline and dispatched
+  await addTimelineIdToChangesets(changesets);
+
+  if (_.isEmpty(changesets)) {
+    return done();
+  }
+
+  // dispatch timeline events
+  if (!_.isEmpty(timelineEvents)) {
+    await Object(__WEBPACK_IMPORTED_MODULE_10__services_SyncIncomingHandler__["b" /* dispatchTimelineEvents */])(timelineEvents);
+  }
+
+  // push changes to sync client
+  await addChangesetsToSyncClient(changesets);
+
+  // publish the changeset after added to sync client
+  // for listeners to send to sync etc.
+  _.forEach(changesets, __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__["b" /* publishRealtimeOutgoingMessage */]);
+
+  done();
 }
 
 /**
@@ -23732,12 +17636,12 @@ function SyncOutgoingHandler() {
 
 /***/ }),
 
-/***/ 2574:
+/***/ 2907:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeHydratedChangeset; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_models__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_models__ = __webpack_require__(276);
 
 
 /**
@@ -23776,14 +17680,473 @@ function sanitizeHydratedChangeset(changeset) {
 
 /***/ }),
 
-/***/ 2575:
+/***/ 2908:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToNotifications;
+/* harmony export (immutable) */ __webpack_exports__["b"] = unsubscribeNotificationsListeners;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__ = __webpack_require__(538);
+
+
+
+
+
+
+let notificationsSubscription;
+
+const EVENT_CREATE = 'create',
+MODEL_NOTIFICATION = 'notification';
+
+/**
+                                      * Subscribe to realtime events from websocket and pipe them to the notification system.
+                                      */
+async function subscribeToNotifications() {
+  if (notificationsSubscription) {
+    return;
+  }
+
+  // subscribe to notifications first and then make the API call
+  // this is done so that we don't miss out events that come before the API response finishes
+  let notificationsObservable$ = Object(__WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__["a" /* getRealtimeMessagesObservable */])().
+  pipe(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs_operators__["d" /* filter */])(message => {
+    if (!message || !message.meta) {return false;}
+
+    if (message.meta.model === MODEL_NOTIFICATION) {
+      return true;
+    }
+
+    return false;
+  }));
+
+  notificationsSubscription = notificationsObservable$.
+  subscribe(message => {
+    message && Object(__WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE, MODEL_NOTIFICATION, message.data));
+  }, () => {
+    pm.logger.error('Notification subscription: Realtime notifications stream terminated due to an error.');
+    notificationsSubscription = null;
+  }, () => {
+    notificationsSubscription = null;
+  });
+
+  try {
+    let syncResponse = await Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["promisifiedRequest"])({ model: MODEL_NOTIFICATION, action: 'subscribe' });
+
+    if (!syncResponse || syncResponse.error) {
+      throw new Error(syncResponse && syncResponse.error ? syncResponse.error : 'subscribeToNotifications: Could not subscribe to notifications');
+    }
+  }
+  catch (e) {
+    unsubscribeNotificationsListeners();
+    throw e;
+  }
+
+}
+
+/**
+   * Unsubscribe to realtime events from websocket and pipe them to the notification system.
+   */
+function unsubscribeNotificationsListeners() {
+  if (!notificationsSubscription) {
+    return;
+  }
+
+  notificationsSubscription.unsubscribe();
+  notificationsSubscription = null;
+}
+
+/***/ }),
+
+/***/ 2909:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToTeamEvents;
+/* unused harmony export unsubscribeTeamEventsListeners */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CurrentUserController__ = __webpack_require__(69);
+
+
+
+
+
+
+
+let teamEventsSubscription;
+
+const MODEL_TEAM = 'team';
+
+/**
+                            * Subscribe to realtime events from websocket and pipe them to the team event handlers.
+                            */
+async function subscribeToTeamEvents() {
+  if (teamEventsSubscription) {
+    return;
+  }
+
+  let user = await __WEBPACK_IMPORTED_MODULE_5__controllers_CurrentUserController__["a" /* default */].get();
+
+  if (!user) {
+    pm.logger.error('subscribeToTeamEvents: Could not subscribe to team events, current user missing/invalid');
+    return;
+  }
+
+  let teamId = _.get(user, ['organizations', '0', 'id']);
+
+  if (!teamId) {
+    return;
+  }
+
+  let teamEventsObservable$ = Object(__WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__["a" /* getRealtimeMessagesObservable */])().
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_0_rxjs_operators__["d" /* filter */])(message => {
+    if (!message || !message.meta) {return false;}
+
+    if (message.meta.model !== MODEL_TEAM) {
+      return false;
+    }
+
+    if (!_.includes(['changePlan', 'add_member', 'remove_member'], message.meta.action)) {
+      return false;
+    }
+
+    return true;
+  }));
+
+
+  teamEventsSubscription = teamEventsObservable$.
+  subscribe(message => {
+    event && Object(__WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(message.meta.action, MODEL_TEAM, message.data));
+  }, () => {
+    pm.logger.error('Team events subscription: Realtime team events stream terminated due to an error.');
+    teamEventsSubscription = null;
+  }, () => {
+    teamEventsSubscription = null;
+  });
+
+  try {
+    let syncResponse = await Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["promisifiedRequest"])({ model: MODEL_TEAM, action: 'subscribe', meta: { pathVariables: { id: teamId } } });
+
+    if (!syncResponse || syncResponse.error) {
+      throw new Error(syncResponse && syncResponse.error ? syncResponse.error : 'subscribeToTeamEvents: Could not subscribe to team events');
+    }
+  }
+  catch (e) {
+    unsubscribeTeamEventsListeners();
+    throw e;
+  }
+
+}
+
+/**
+   * Unsubscribe to listening to realtime team events from websocket.
+   */
+function unsubscribeTeamEventsListeners() {
+  if (!teamEventsSubscription) {
+    return;
+  }
+
+  teamEventsSubscription.unsubscribe();
+  teamEventsSubscription = null;
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 291:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * Expose `Emitter`.
+ */
+
+if (true) {
+  module.exports = Emitter;
+}
+
+/**
+ * Initialize a new `Emitter`.
+ *
+ * @api public
+ */
+
+function Emitter(obj) {
+  if (obj) return mixin(obj);
+};
+
+/**
+ * Mixin the emitter properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  for (var key in Emitter.prototype) {
+    obj[key] = Emitter.prototype[key];
+  }
+  return obj;
+}
+
+/**
+ * Listen on the given `event` with `fn`.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.on =
+Emitter.prototype.addEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+    .push(fn);
+  return this;
+};
+
+/**
+ * Adds an `event` listener that will be invoked a single
+ * time then automatically removed.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.once = function(event, fn){
+  function on() {
+    this.off(event, on);
+    fn.apply(this, arguments);
+  }
+
+  on.fn = fn;
+  this.on(event, on);
+  return this;
+};
+
+/**
+ * Remove the given callback for `event` or all
+ * registered callbacks.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.off =
+Emitter.prototype.removeListener =
+Emitter.prototype.removeAllListeners =
+Emitter.prototype.removeEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+
+  // all
+  if (0 == arguments.length) {
+    this._callbacks = {};
+    return this;
+  }
+
+  // specific event
+  var callbacks = this._callbacks['$' + event];
+  if (!callbacks) return this;
+
+  // remove all handlers
+  if (1 == arguments.length) {
+    delete this._callbacks['$' + event];
+    return this;
+  }
+
+  // remove specific handler
+  var cb;
+  for (var i = 0; i < callbacks.length; i++) {
+    cb = callbacks[i];
+    if (cb === fn || cb.fn === fn) {
+      callbacks.splice(i, 1);
+      break;
+    }
+  }
+  return this;
+};
+
+/**
+ * Emit `event` with the given args.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Emitter}
+ */
+
+Emitter.prototype.emit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks['$' + event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      callbacks[i].apply(this, args);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return array of callbacks for `event`.
+ *
+ * @param {String} event
+ * @return {Array}
+ * @api public
+ */
+
+Emitter.prototype.listeners = function(event){
+  this._callbacks = this._callbacks || {};
+  return this._callbacks['$' + event] || [];
+};
+
+/**
+ * Check if this emitter has `event` handlers.
+ *
+ * @param {String} event
+ * @return {Boolean}
+ * @api public
+ */
+
+Emitter.prototype.hasListeners = function(event){
+  return !! this.listeners(event).length;
+};
+
+
+/***/ }),
+
+/***/ 2910:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = initializeConnectivityStatusBroadcast;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SocketStatusService__ = __webpack_require__(714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TimelinesStatusService__ = __webpack_require__(2911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_SyncStatusConstants__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(145);
+
+
+
+
+
+
+const BROADCAST_STATUS_THROTTLE_TIME = 300; // 300 ms
+
+/**
+ * Used to initialize both socket and timeline status broadcast
+ */
+function initializeConnectivityStatusBroadcast() {
+  let timelinesStatus$ = Object(__WEBPACK_IMPORTED_MODULE_1__TimelinesStatusService__["a" /* getTimelinesStatusObservable */])(),
+  socketStatus$ = Object(__WEBPACK_IMPORTED_MODULE_0__SocketStatusService__["b" /* getSocketStatusObservable */])();
+
+  // combine the latest values from both the timelines
+  return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs__["e" /* combineLatest */])(socketStatus$, timelinesStatus$).
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["l" /* throttleTime */])(BROADCAST_STATUS_THROTTLE_TIME, __WEBPACK_IMPORTED_MODULE_2_rxjs__["d" /* asyncScheduler */], { leading: true, trailing: true })).
+
+  subscribe(values => {
+
+    pm.eventBus.channel('sync-manager-internal').publish({
+      name: 'syncStatus',
+      namespace: 'sync',
+      data: {
+        syncStatus: values[1] || __WEBPACK_IMPORTED_MODULE_3__constants_SyncStatusConstants__["e" /* SYNC_STATUS_IN_SYNC */],
+        socketStatus: values[0] || __WEBPACK_IMPORTED_MODULE_3__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */] } });
+
+
+  });
+}
+
+/***/ }),
+
+/***/ 2911:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export getCurrentSyncStatus */
+/* harmony export (immutable) */ __webpack_exports__["a"] = getTimelinesStatusObservable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_sync_services_SyncWindowService__ = __webpack_require__(1217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__ = __webpack_require__(187);
+
+
+
+
+
+
+/**
+                                                                                                 * Used to get the current sync status
+                                                                                                 */
+function getCurrentSyncStatus() {
+  return getTimelinesStatusObservable().
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["j" /* take */])(1)).
+  toPromise();
+}
+
+/**
+   * Returns an observable for all the timelines latest status values
+   * @returns {Observable}
+   */
+function getTimelinesStatusObservable() {
+  // computes the overall status of all sync timelines
+  let timelineStatusObservable$ = __WEBPACK_IMPORTED_MODULE_2__models_sync_services_SyncWindowService__["a" /* modelsInSyncWindowObservable$ */].
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(modelIds => {
+    return _.map(modelIds, modelId => {
+      return Object(__WEBPACK_IMPORTED_MODULE_3__index__["b" /* getTimelineStatusObservable */])(modelId);
+    });
+  }),
+
+  // combine latest to get the latest values of all the observables
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["g" /* mergeMap */])(values => {
+    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["e" /* combineLatest */])(_.compact(values));
+  }),
+
+  // map cumulate the complete status and return a single value
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(values => {
+    let currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["e" /* SYNC_STATUS_IN_SYNC */];
+
+    _.includes(values, __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]) && (currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]);
+
+    return currentTimelinesStatus;
+  }));
+
+
+  // start with an initial value - syncing
+  return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["f" /* concat */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])(__WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]), timelineStatusObservable$);
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 2912:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = analyticsHandler;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_event_to_analytics__ = __webpack_require__(2576);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_event_to_analytics__ = __webpack_require__(2913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async__);
 
 
@@ -23878,12 +18241,12 @@ function analyticsHandler() {
 
 /***/ }),
 
-/***/ 2576:
+/***/ 2913:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(17);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(23);
 
 
 
@@ -24064,8 +18427,11 @@ analyticsEventHandlers = {
           return;
         }
 
-        let collections = _.get(eventProps, 'meta.collections', 0),
-        environments = _.get(eventProps, 'meta.environments', 0);
+        let dependencies = _.get(eventProps, 'data.dependencies', []),
+        modelCount = _.countBy(dependencies, dependency => dependency.model),
+        collections = _.get(modelCount, 'collection', 0),
+        environments = _.get(modelCount, 'environment', 0);
+
         return [createPayload('workspace', 'add_to_ws', 'browse', { collections, environments })];}
 
   } },
@@ -24280,17 +18646,17 @@ function eventToAnalytics(event, callback) {
 
 /***/ }),
 
-/***/ 2577:
+/***/ 2914:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return userFetch; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initiateBoot; });
 /* unused harmony export initializeUser */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_ConnectivityController__ = __webpack_require__(919);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_ConnectivityController__ = __webpack_require__(1064);
 
 
 
@@ -24352,13 +18718,13 @@ function initializeUser(connectivity = {}) {
 
 /***/ }),
 
-/***/ 2578:
+/***/ 2915:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(40);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(46);
 
 
 let
@@ -24390,15 +18756,15 @@ ConnectivityService = class ConnectivityService {
 
 /***/ }),
 
-/***/ 2579:
+/***/ 2916:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_theme_ThemeManager__ = __webpack_require__(454);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_TransformConfigurationsService__ = __webpack_require__(1091);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_pipelines_user_action__ = __webpack_require__(47);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_theme_ThemeManager__ = __webpack_require__(491);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_TransformConfigurationsService__ = __webpack_require__(1218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_pipelines_user_action__ = __webpack_require__(52);
 
 
 
@@ -24457,57 +18823,7 @@ ConnectivityService = class ConnectivityService {
 
 /***/ }),
 
-/***/ 258:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = defaultIfEmpty;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function defaultIfEmpty(defaultValue) {
-    if (defaultValue === void 0) {
-        defaultValue = null;
-    }
-    return function (source) { return source.lift(new DefaultIfEmptyOperator(defaultValue)); };
-}
-var DefaultIfEmptyOperator = /*@__PURE__*/ (function () {
-    function DefaultIfEmptyOperator(defaultValue) {
-        this.defaultValue = defaultValue;
-    }
-    DefaultIfEmptyOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DefaultIfEmptySubscriber(subscriber, this.defaultValue));
-    };
-    return DefaultIfEmptyOperator;
-}());
-var DefaultIfEmptySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DefaultIfEmptySubscriber, _super);
-    function DefaultIfEmptySubscriber(destination, defaultValue) {
-        var _this = _super.call(this, destination) || this;
-        _this.defaultValue = defaultValue;
-        _this.isEmpty = true;
-        return _this;
-    }
-    DefaultIfEmptySubscriber.prototype._next = function (value) {
-        this.isEmpty = false;
-        this.destination.next(value);
-    };
-    DefaultIfEmptySubscriber.prototype._complete = function () {
-        if (this.isEmpty) {
-            this.destination.next(this.defaultValue);
-        }
-        this.destination.complete();
-    };
-    return DefaultIfEmptySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=defaultIfEmpty.js.map
-
-
-/***/ }),
-
-/***/ 2580:
+/***/ 2917:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24597,243 +18913,7 @@ const warn = function (message, options) {
 
 /***/ }),
 
-/***/ 2581:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(489);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(5);
-
-
-
-
-
-const DEFAULT_LIMIT = 10,
-POLLING_HEADER_NAME = 'x-polling-interval',
-acceptedNotificationTypes = ['toast', 'banner', 'backgroundPush'];
-
-let alreadyInitialized = false;
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-  /**
-                 * Fetches the base URL from S3 bucket
-                 */
-  fetchBaseUrl() {
-    return __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(pm.notificationPollingConfigUrl).
-    then(({ body }) => {
-      if (body.config && body.config.notificationsUrl) {
-        return body.config.notificationsUrl;
-      }
-      return pm.notificationPollingBaseUrl;
-    }).
-    catch(({ error }) => {
-      return pm.notificationPollingBaseUrl;
-    });
-  },
-
-  /**
-     * Checks that the function was not already called. If not, attaches listeners and initializes variables
-     */
-  async init() {
-    if (alreadyInitialized) {
-      return;
-    }
-
-    const isUserSignedIn = await this.isUserSignedIn();
-
-    this.nextPolling = null;
-    this.nextPollInterval = 7200000; // 2HRS. FALLBACK INTERVAL IF THE API CALL FAILS FOR THE FIRST TIME
-
-    // This is called before so that we can initiate signed in user notification polling as soon as the user signs in
-    this.attachSyncFinishListener();
-
-    if (!isUserSignedIn) {
-      this.attachRequesterLoadListener();
-    }
-  },
-
-  /**
-      * Function to attach a requester load listener and trigger fetchNotifications for signed out users
-      */
-  attachRequesterLoadListener() {
-    let appEventsBus = pm.eventBus.channel('app-events');
-
-    let disposer = appEventsBus.subscribe(async (event = {}) => {
-      if (event.name === 'booted' && event.namespace === 'requester') {
-
-        // @HACK: This is to ensure that the Infobar component is mounted after the requester loads so that the notification is shown reliably
-        // Disposing the subscriber
-        setTimeout(() => {
-          this.attachListeners();
-          this.fetchNotifications();
-          disposer();
-        }, 5000);
-      }
-    });
-  },
-
-  /**
-      * Function to attach a sync finished listener and trigger fetchNotifications for signed in users
-      */
-  attachSyncFinishListener() {
-    let syncEventBus = pm.eventBus.channel('sync-manager-internal');
-
-    let disposer = syncEventBus.subscribe((syncEvent = {}) => {
-
-      let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["g" /* getEventNamespace */])(syncEvent),
-      eventName = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["f" /* getEventName */])(syncEvent),
-      eventData = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(syncEvent);
-
-      if (eventNamespace === 'currentSyncStatus' && eventName === 'updated' && eventData.currentSyncStatus === 'syncFinished') {
-        this.fetchNotifications();
-        disposer();
-      }
-
-    });
-  },
-
-  /**
-     * Attaches model listeners and listens to internet connectivity
-     */
-  attachListeners() {
-    pm.mediator.on('appOnline', async () => {
-      if (!alreadyInitialized) {
-        this.fetchNotifications();
-      }
-    });
-  },
-
-  /**
-     * Fetches notification from sync URL and sets the next polling interval - clears the poll interval previously set.
-     * Also computes headers and params based on user status (Signed in or not)
-     */
-  async fetchNotifications() {
-    const currentUser = await this.fetchCurrentUser();
-
-    pm.notificationPollingBaseUrl = await this.fetchBaseUrl();
-
-    let { notificationURL, headers } = this.computeNotificationURLAndHeaders(currentUser);
-
-    // If the user's status changes before the timeout is triggered, we unset the existing timer
-    this.nextPolling && clearTimeout(this.nextPolling);
-
-    __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(notificationURL, {
-      headers: headers }).
-    then(({ body, headers }) => {
-      let nextPoll = parseInt(headers.get(POLLING_HEADER_NAME));
-
-      if (!_.isNaN(nextPoll)) {
-        clearTimeout(this.nextPolling);
-
-        this.nextPollInterval = nextPoll; // Caching the poll interval
-        this.nextPolling = setTimeout(() => this.fetchNotifications(), nextPoll);
-      }
-
-      alreadyInitialized = true;
-      return this._dispatchUnreadNotifications(body);
-    }).
-    catch(({ error }) => {
-
-      // Incase the API fetch fails, we set timeout to the previously cached interval
-      this.nextPolling = setTimeout(() => this.fetchNotifications(), this.nextPollInterval);
-    });
-  },
-
-  /**
-     * Extracts notifications, filters unread
-     * @param { Object } notifications
-     */
-  _dispatchUnreadNotifications(notifications) {
-
-    _.chain(notifications).
-    filter(notification => {
-      return notification.data && notification.data.events && !_.some(notification.data.events, { key: 'viewed' });
-    }).
-    forEach(notification => {
-      return this._dispatchNotification(notification.data);
-    }).
-    value();
-  },
-
-  /**
-     * Creates the notification event and dispatches user action
-     * @param { Object } notification
-     */
-  async _dispatchNotification(notification) {
-
-    let isUserSignedIn = await this.isUserSignedIn(),
-    meta = {};
-
-    if (!isUserSignedIn) {
-      meta = { source: 'SignedOutUser' };
-    }
-
-    // Adding source in meta to distinguish who's triggering the event so that the logic is not dependent on checking if the user is signed in or not.
-    let notificationEvent = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["a" /* createEvent */])('create', 'notification', notification, null, meta);
-    return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(notificationEvent);
-  },
-
-  /**
-     * Returns user object from the controller
-     * @returns { Object } currentUser
-     */
-  fetchCurrentUser() {
-
-    return __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get().then(user => {
-      return user;
-    });
-  },
-
-  /**
-      * Checks if the user is signed
-      * @returns { Boolean } isUserSignedIn
-      */
-  async isUserSignedIn() {
-    let { id } = await this.fetchCurrentUser();
-    return id !== '0';
-  },
-
-  /**
-     * Checks if the user is offline
-     * @returns { Boolean } isUserOffline
-     */
-  isUserOffline() {
-    return !navigator.onLine;
-  },
-
-  /**
-      * Sets access token in the header if the user is signed in or app id in the params if the user is signed out
-      * @param { Object } currentUser
-      * @returns { Object }
-      */
-  computeNotificationURLAndHeaders(currentUser) {
-    let notificationURL = `${pm.notificationPollingBaseUrl}/notification?limit=${DEFAULT_LIMIT}&events=viewed`,
-    headers = {};
-
-    if (currentUser.id === '0') {
-      notificationURL += `&app_id=${pm.app.get('installationId')}`;
-    } else
-    {
-      const token = _.get(currentUser, 'auth.access_token');
-
-      // Add type filter with the notification type we want to show
-      notificationURL += `&type=${acceptedNotificationTypes.join('&type=')}&groupByType=true`;
-
-      headers = {
-        'x-access-token': token };
-
-    }
-
-    return { notificationURL, headers };
-  } });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2582:
+/***/ 2918:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24843,8 +18923,8 @@ let alreadyInitialized = false;
 /* unused harmony export pushPendingCommit */
 /* unused harmony export timeoutMigration */
 /* unused harmony export applyMigrations */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__migrations__ = __webpack_require__(866);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_dexie__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__migrations__ = __webpack_require__(922);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_dexie__ = __webpack_require__(925);
 
 
 
@@ -25207,12 +19287,12 @@ function applyMigrations(migrations, context, migrators, options) {
 
 /***/ }),
 
-/***/ 2583:
+/***/ 2919:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_UserConfigurationController__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_TransformConfigurationsService__ = __webpack_require__(1091);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_UserConfigurationController__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_TransformConfigurationsService__ = __webpack_require__(1218);
 
 
 
@@ -25242,7 +19322,7 @@ function getConfigurationsToUpdate() {
   // If the app is loading for the first time and not
   // updating to a newer version then we need to
   // turn off auto persistance of variables
-  const firstLoad = __webpack_require__(19).remote.app.firstLoad;
+  const firstLoad = __webpack_require__(18).remote.app.firstLoad;
   firstLoad && (configToUpdate['request.autoPersistVariables'] = false);
 
   return configToUpdate;
@@ -25269,12 +19349,624 @@ function initializeConfigurationsValues(cb) {
 
 /***/ }),
 
-/***/ 2584:
+/***/ 292:
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Module dependencies.
+ */
+
+var keys = __webpack_require__(2890);
+var hasBinary = __webpack_require__(1210);
+var sliceBuffer = __webpack_require__(2892);
+var after = __webpack_require__(2893);
+var utf8 = __webpack_require__(2894);
+
+var base64encoder;
+if (typeof ArrayBuffer !== 'undefined') {
+  base64encoder = __webpack_require__(720);
+}
+
+/**
+ * Check if we are running an android browser. That requires us to use
+ * ArrayBuffer with polling transports...
+ *
+ * http://ghinda.net/jpeg-blob-ajax-android/
+ */
+
+var isAndroid = typeof navigator !== 'undefined' && /Android/i.test(navigator.userAgent);
+
+/**
+ * Check if we are running in PhantomJS.
+ * Uploading a Blob with PhantomJS does not work correctly, as reported here:
+ * https://github.com/ariya/phantomjs/issues/11395
+ * @type boolean
+ */
+var isPhantomJS = typeof navigator !== 'undefined' && /PhantomJS/i.test(navigator.userAgent);
+
+/**
+ * When true, avoids using Blobs to encode payloads.
+ * @type boolean
+ */
+var dontSendBlobs = isAndroid || isPhantomJS;
+
+/**
+ * Current protocol version.
+ */
+
+exports.protocol = 3;
+
+/**
+ * Packet types.
+ */
+
+var packets = exports.packets = {
+    open:     0    // non-ws
+  , close:    1    // non-ws
+  , ping:     2
+  , pong:     3
+  , message:  4
+  , upgrade:  5
+  , noop:     6
+};
+
+var packetslist = keys(packets);
+
+/**
+ * Premade error packet.
+ */
+
+var err = { type: 'error', data: 'parser error' };
+
+/**
+ * Create a blob api even for blob builder when vendor prefixes exist
+ */
+
+var Blob = __webpack_require__(2895);
+
+/**
+ * Encodes a packet.
+ *
+ *     <packet type id> [ <data> ]
+ *
+ * Example:
+ *
+ *     5hello world
+ *     3
+ *     4
+ *
+ * Binary is encoded in an identical principle
+ *
+ * @api private
+ */
+
+exports.encodePacket = function (packet, supportsBinary, utf8encode, callback) {
+  if (typeof supportsBinary === 'function') {
+    callback = supportsBinary;
+    supportsBinary = false;
+  }
+
+  if (typeof utf8encode === 'function') {
+    callback = utf8encode;
+    utf8encode = null;
+  }
+
+  var data = (packet.data === undefined)
+    ? undefined
+    : packet.data.buffer || packet.data;
+
+  if (typeof ArrayBuffer !== 'undefined' && data instanceof ArrayBuffer) {
+    return encodeArrayBuffer(packet, supportsBinary, callback);
+  } else if (typeof Blob !== 'undefined' && data instanceof Blob) {
+    return encodeBlob(packet, supportsBinary, callback);
+  }
+
+  // might be an object with { base64: true, data: dataAsBase64String }
+  if (data && data.base64) {
+    return encodeBase64Object(packet, callback);
+  }
+
+  // Sending data as a utf-8 string
+  var encoded = packets[packet.type];
+
+  // data fragment is optional
+  if (undefined !== packet.data) {
+    encoded += utf8encode ? utf8.encode(String(packet.data), { strict: false }) : String(packet.data);
+  }
+
+  return callback('' + encoded);
+
+};
+
+function encodeBase64Object(packet, callback) {
+  // packet data is an object { base64: true, data: dataAsBase64String }
+  var message = 'b' + exports.packets[packet.type] + packet.data.data;
+  return callback(message);
+}
+
+/**
+ * Encode packet helpers for binary types
+ */
+
+function encodeArrayBuffer(packet, supportsBinary, callback) {
+  if (!supportsBinary) {
+    return exports.encodeBase64Packet(packet, callback);
+  }
+
+  var data = packet.data;
+  var contentArray = new Uint8Array(data);
+  var resultBuffer = new Uint8Array(1 + data.byteLength);
+
+  resultBuffer[0] = packets[packet.type];
+  for (var i = 0; i < contentArray.length; i++) {
+    resultBuffer[i+1] = contentArray[i];
+  }
+
+  return callback(resultBuffer.buffer);
+}
+
+function encodeBlobAsArrayBuffer(packet, supportsBinary, callback) {
+  if (!supportsBinary) {
+    return exports.encodeBase64Packet(packet, callback);
+  }
+
+  var fr = new FileReader();
+  fr.onload = function() {
+    exports.encodePacket({ type: packet.type, data: fr.result }, supportsBinary, true, callback);
+  };
+  return fr.readAsArrayBuffer(packet.data);
+}
+
+function encodeBlob(packet, supportsBinary, callback) {
+  if (!supportsBinary) {
+    return exports.encodeBase64Packet(packet, callback);
+  }
+
+  if (dontSendBlobs) {
+    return encodeBlobAsArrayBuffer(packet, supportsBinary, callback);
+  }
+
+  var length = new Uint8Array(1);
+  length[0] = packets[packet.type];
+  var blob = new Blob([length.buffer, packet.data]);
+
+  return callback(blob);
+}
+
+/**
+ * Encodes a packet with binary data in a base64 string
+ *
+ * @param {Object} packet, has `type` and `data`
+ * @return {String} base64 encoded message
+ */
+
+exports.encodeBase64Packet = function(packet, callback) {
+  var message = 'b' + exports.packets[packet.type];
+  if (typeof Blob !== 'undefined' && packet.data instanceof Blob) {
+    var fr = new FileReader();
+    fr.onload = function() {
+      var b64 = fr.result.split(',')[1];
+      callback(message + b64);
+    };
+    return fr.readAsDataURL(packet.data);
+  }
+
+  var b64data;
+  try {
+    b64data = String.fromCharCode.apply(null, new Uint8Array(packet.data));
+  } catch (e) {
+    // iPhone Safari doesn't let you apply with typed arrays
+    var typed = new Uint8Array(packet.data);
+    var basic = new Array(typed.length);
+    for (var i = 0; i < typed.length; i++) {
+      basic[i] = typed[i];
+    }
+    b64data = String.fromCharCode.apply(null, basic);
+  }
+  message += btoa(b64data);
+  return callback(message);
+};
+
+/**
+ * Decodes a packet. Changes format to Blob if requested.
+ *
+ * @return {Object} with `type` and `data` (if any)
+ * @api private
+ */
+
+exports.decodePacket = function (data, binaryType, utf8decode) {
+  if (data === undefined) {
+    return err;
+  }
+  // String data
+  if (typeof data === 'string') {
+    if (data.charAt(0) === 'b') {
+      return exports.decodeBase64Packet(data.substr(1), binaryType);
+    }
+
+    if (utf8decode) {
+      data = tryDecode(data);
+      if (data === false) {
+        return err;
+      }
+    }
+    var type = data.charAt(0);
+
+    if (Number(type) != type || !packetslist[type]) {
+      return err;
+    }
+
+    if (data.length > 1) {
+      return { type: packetslist[type], data: data.substring(1) };
+    } else {
+      return { type: packetslist[type] };
+    }
+  }
+
+  var asArray = new Uint8Array(data);
+  var type = asArray[0];
+  var rest = sliceBuffer(data, 1);
+  if (Blob && binaryType === 'blob') {
+    rest = new Blob([rest]);
+  }
+  return { type: packetslist[type], data: rest };
+};
+
+function tryDecode(data) {
+  try {
+    data = utf8.decode(data, { strict: false });
+  } catch (e) {
+    return false;
+  }
+  return data;
+}
+
+/**
+ * Decodes a packet encoded in a base64 string
+ *
+ * @param {String} base64 encoded message
+ * @return {Object} with `type` and `data` (if any)
+ */
+
+exports.decodeBase64Packet = function(msg, binaryType) {
+  var type = packetslist[msg.charAt(0)];
+  if (!base64encoder) {
+    return { type: type, data: { base64: true, data: msg.substr(1) } };
+  }
+
+  var data = base64encoder.decode(msg.substr(1));
+
+  if (binaryType === 'blob' && Blob) {
+    data = new Blob([data]);
+  }
+
+  return { type: type, data: data };
+};
+
+/**
+ * Encodes multiple messages (payload).
+ *
+ *     <length>:data
+ *
+ * Example:
+ *
+ *     11:hello world2:hi
+ *
+ * If any contents are binary, they will be encoded as base64 strings. Base64
+ * encoded strings are marked with a b before the length specifier
+ *
+ * @param {Array} packets
+ * @api private
+ */
+
+exports.encodePayload = function (packets, supportsBinary, callback) {
+  if (typeof supportsBinary === 'function') {
+    callback = supportsBinary;
+    supportsBinary = null;
+  }
+
+  var isBinary = hasBinary(packets);
+
+  if (supportsBinary && isBinary) {
+    if (Blob && !dontSendBlobs) {
+      return exports.encodePayloadAsBlob(packets, callback);
+    }
+
+    return exports.encodePayloadAsArrayBuffer(packets, callback);
+  }
+
+  if (!packets.length) {
+    return callback('0:');
+  }
+
+  function setLengthHeader(message) {
+    return message.length + ':' + message;
+  }
+
+  function encodeOne(packet, doneCallback) {
+    exports.encodePacket(packet, !isBinary ? false : supportsBinary, false, function(message) {
+      doneCallback(null, setLengthHeader(message));
+    });
+  }
+
+  map(packets, encodeOne, function(err, results) {
+    return callback(results.join(''));
+  });
+};
+
+/**
+ * Async array map using after
+ */
+
+function map(ary, each, done) {
+  var result = new Array(ary.length);
+  var next = after(ary.length, done);
+
+  var eachWithIndex = function(i, el, cb) {
+    each(el, function(error, msg) {
+      result[i] = msg;
+      cb(error, result);
+    });
+  };
+
+  for (var i = 0; i < ary.length; i++) {
+    eachWithIndex(i, ary[i], next);
+  }
+}
+
+/*
+ * Decodes data when a payload is maybe expected. Possible binary contents are
+ * decoded from their base64 representation
+ *
+ * @param {String} data, callback method
+ * @api public
+ */
+
+exports.decodePayload = function (data, binaryType, callback) {
+  if (typeof data !== 'string') {
+    return exports.decodePayloadAsBinary(data, binaryType, callback);
+  }
+
+  if (typeof binaryType === 'function') {
+    callback = binaryType;
+    binaryType = null;
+  }
+
+  var packet;
+  if (data === '') {
+    // parser error - ignoring payload
+    return callback(err, 0, 1);
+  }
+
+  var length = '', n, msg;
+
+  for (var i = 0, l = data.length; i < l; i++) {
+    var chr = data.charAt(i);
+
+    if (chr !== ':') {
+      length += chr;
+      continue;
+    }
+
+    if (length === '' || (length != (n = Number(length)))) {
+      // parser error - ignoring payload
+      return callback(err, 0, 1);
+    }
+
+    msg = data.substr(i + 1, n);
+
+    if (length != msg.length) {
+      // parser error - ignoring payload
+      return callback(err, 0, 1);
+    }
+
+    if (msg.length) {
+      packet = exports.decodePacket(msg, binaryType, false);
+
+      if (err.type === packet.type && err.data === packet.data) {
+        // parser error in individual packet - ignoring payload
+        return callback(err, 0, 1);
+      }
+
+      var ret = callback(packet, i + n, l);
+      if (false === ret) return;
+    }
+
+    // advance cursor
+    i += n;
+    length = '';
+  }
+
+  if (length !== '') {
+    // parser error - ignoring payload
+    return callback(err, 0, 1);
+  }
+
+};
+
+/**
+ * Encodes multiple messages (payload) as binary.
+ *
+ * <1 = binary, 0 = string><number from 0-9><number from 0-9>[...]<number
+ * 255><data>
+ *
+ * Example:
+ * 1 3 255 1 2 3, if the binary contents are interpreted as 8 bit integers
+ *
+ * @param {Array} packets
+ * @return {ArrayBuffer} encoded payload
+ * @api private
+ */
+
+exports.encodePayloadAsArrayBuffer = function(packets, callback) {
+  if (!packets.length) {
+    return callback(new ArrayBuffer(0));
+  }
+
+  function encodeOne(packet, doneCallback) {
+    exports.encodePacket(packet, true, true, function(data) {
+      return doneCallback(null, data);
+    });
+  }
+
+  map(packets, encodeOne, function(err, encodedPackets) {
+    var totalLength = encodedPackets.reduce(function(acc, p) {
+      var len;
+      if (typeof p === 'string'){
+        len = p.length;
+      } else {
+        len = p.byteLength;
+      }
+      return acc + len.toString().length + len + 2; // string/binary identifier + separator = 2
+    }, 0);
+
+    var resultArray = new Uint8Array(totalLength);
+
+    var bufferIndex = 0;
+    encodedPackets.forEach(function(p) {
+      var isString = typeof p === 'string';
+      var ab = p;
+      if (isString) {
+        var view = new Uint8Array(p.length);
+        for (var i = 0; i < p.length; i++) {
+          view[i] = p.charCodeAt(i);
+        }
+        ab = view.buffer;
+      }
+
+      if (isString) { // not true binary
+        resultArray[bufferIndex++] = 0;
+      } else { // true binary
+        resultArray[bufferIndex++] = 1;
+      }
+
+      var lenStr = ab.byteLength.toString();
+      for (var i = 0; i < lenStr.length; i++) {
+        resultArray[bufferIndex++] = parseInt(lenStr[i]);
+      }
+      resultArray[bufferIndex++] = 255;
+
+      var view = new Uint8Array(ab);
+      for (var i = 0; i < view.length; i++) {
+        resultArray[bufferIndex++] = view[i];
+      }
+    });
+
+    return callback(resultArray.buffer);
+  });
+};
+
+/**
+ * Encode as Blob
+ */
+
+exports.encodePayloadAsBlob = function(packets, callback) {
+  function encodeOne(packet, doneCallback) {
+    exports.encodePacket(packet, true, true, function(encoded) {
+      var binaryIdentifier = new Uint8Array(1);
+      binaryIdentifier[0] = 1;
+      if (typeof encoded === 'string') {
+        var view = new Uint8Array(encoded.length);
+        for (var i = 0; i < encoded.length; i++) {
+          view[i] = encoded.charCodeAt(i);
+        }
+        encoded = view.buffer;
+        binaryIdentifier[0] = 0;
+      }
+
+      var len = (encoded instanceof ArrayBuffer)
+        ? encoded.byteLength
+        : encoded.size;
+
+      var lenStr = len.toString();
+      var lengthAry = new Uint8Array(lenStr.length + 1);
+      for (var i = 0; i < lenStr.length; i++) {
+        lengthAry[i] = parseInt(lenStr[i]);
+      }
+      lengthAry[lenStr.length] = 255;
+
+      if (Blob) {
+        var blob = new Blob([binaryIdentifier.buffer, lengthAry.buffer, encoded]);
+        doneCallback(null, blob);
+      }
+    });
+  }
+
+  map(packets, encodeOne, function(err, results) {
+    return callback(new Blob(results));
+  });
+};
+
+/*
+ * Decodes data when a payload is maybe expected. Strings are decoded by
+ * interpreting each byte as a key code for entries marked to start with 0. See
+ * description of encodePayloadAsBinary
+ *
+ * @param {ArrayBuffer} data, callback method
+ * @api public
+ */
+
+exports.decodePayloadAsBinary = function (data, binaryType, callback) {
+  if (typeof binaryType === 'function') {
+    callback = binaryType;
+    binaryType = null;
+  }
+
+  var bufferTail = data;
+  var buffers = [];
+
+  while (bufferTail.byteLength > 0) {
+    var tailArray = new Uint8Array(bufferTail);
+    var isString = tailArray[0] === 0;
+    var msgLength = '';
+
+    for (var i = 1; ; i++) {
+      if (tailArray[i] === 255) break;
+
+      // 310 = char length of Number.MAX_VALUE
+      if (msgLength.length > 310) {
+        return callback(err, 0, 1);
+      }
+
+      msgLength += tailArray[i];
+    }
+
+    bufferTail = sliceBuffer(bufferTail, 2 + msgLength.length);
+    msgLength = parseInt(msgLength);
+
+    var msg = sliceBuffer(bufferTail, 0, msgLength);
+    if (isString) {
+      try {
+        msg = String.fromCharCode.apply(null, new Uint8Array(msg));
+      } catch (e) {
+        // iPhone Safari doesn't let you apply to typed arrays
+        var typed = new Uint8Array(msg);
+        msg = '';
+        for (var i = 0; i < typed.length; i++) {
+          msg += String.fromCharCode(typed[i]);
+        }
+      }
+    }
+
+    buffers.push(msg);
+    bufferTail = sliceBuffer(bufferTail, msgLength);
+  }
+
+  var total = buffers.length;
+  buffers.forEach(function(buffer, i) {
+    callback(exports.decodePacket(buffer, binaryType, true), i, total);
+  });
+};
+
+
+/***/ }),
+
+/***/ 2920:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = bootRuntimeListeners;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeVariableUpdatesListener__ = __webpack_require__(2585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeVariableUpdatesListener__ = __webpack_require__(2921);
 
 
 /**
@@ -25296,20 +19988,20 @@ function bootRuntimeListeners(cb) {
 
 /***/ }),
 
-/***/ 2585:
+/***/ 2921:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export getVariableUpdatesObservable */
 /* unused harmony export getUpdatesStream */
 /* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToUpdates;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(2586);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(1159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__ = __webpack_require__(778);
 
 
 
@@ -25365,12 +20057,12 @@ function getVariableUpdatesObservable() {
       observer.next(event);
     });
   }).
-  pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["b" /* filter */])(event => {
+  pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
     return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["g" /* getEventNamespace */])(event) === NAMESPACE_VARIABLE_UPDATES;
   }))
 
   // this is what actually makes this shareable
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* share */])());
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
 
   return variableUpdates$;
 }
@@ -25385,7 +20077,7 @@ function getVariableUpdatesObservable() {
    */
 function getUpdatesStream(type) {
   let variableUpdatesStream$ = getVariableUpdatesObservable(),
-  groupInterval$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["c" /* interval */])(BUFFER_DURATION).pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* share */])());
+  groupInterval$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["h" /* interval */])(BUFFER_DURATION).pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
 
   // stream of variable update events
   // e1---g1---e1---g1---e1---g1---e2---g2--->
@@ -25394,32 +20086,32 @@ function getUpdatesStream(type) {
   // stream of update events for a given type
   // from here on we use e representing environment, but similar is true for globals as well
   // e1--------e1--------e1------e2-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["b" /* filter */])(event => {
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
     return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["f" /* getEventName */])(event) === TYPE_NAME_MAP[type];
   }))
 
   // filters off invalid events
   // e1--------e1--------e1------e2-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["b" /* filter */])(event => {
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
     return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event) && Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type];
   }))
 
   // maps events to sessions
   // E1--------E1--------E1------E2-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* map */])(event => new __WEBPACK_IMPORTED_MODULE_2_postman_collection__["VariableScope"](Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type])))
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(event => new __WEBPACK_IMPORTED_MODULE_2_postman_collection__["VariableScope"](Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type])))
 
   // group updates by per session
   // ----------[E1, E1]$--------[E1]$-[E2]$-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* groupBy */])(session => {return session.id;}, null, () => groupInterval$))
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["e" /* groupBy */])(session => {return session.id;}, null, () => groupInterval$))
 
   // merges all items in a single group and flattens it
   // by merging we mean combining all mutations
   // note how after this each item is a session and not a group
   // ----------E1--------E1--E2-------->
   // concatMap makes sure the next update is not stated before the first update is completed
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["a" /* concatMap */])(sessions$ => {
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(sessions$ => {
     return sessions$.
-    pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["e" /* reduce */])((cumulative, session) => {
+    pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["h" /* reduce */])((cumulative, session) => {
 
       // accumulate all mutations
       Object(__WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__["a" /* mergeMutations */])(cumulative.mutations, session.mutations);
@@ -25430,12 +20122,12 @@ function getUpdatesStream(type) {
 
   // now save each update
   // concatMap makes sure the next update is not stated before the first update is completed
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["a" /* concatMap */])(session => {
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(session => {
 
     // update the session, or unblock the queue after timer
     // if one update doesn't finish
     // it can block the whole queue and prevent further updates, or cause memory leak
-    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["d" /* race */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["b" /* defer */])(() => persistSessionUpdate(session)), Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["e" /* timer */])(MAX_UPDATE_WAIT_TIME));
+    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["k" /* race */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["g" /* defer */])(() => persistSessionUpdate(session)), Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["l" /* timer */])(MAX_UPDATE_WAIT_TIME));
   }));
 }
 
@@ -25464,1315 +20156,7 @@ function subscribeToUpdates() {
 
 /***/ }),
 
-/***/ 2586:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__internal_Observable__ = __webpack_require__(34);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__internal_Observable__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__internal_observable_ConnectableObservable__ = __webpack_require__(762);
-/* unused harmony reexport ConnectableObservable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__internal_operators_groupBy__ = __webpack_require__(760);
-/* unused harmony reexport GroupedObservable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__internal_symbol_observable__ = __webpack_require__(229);
-/* unused harmony reexport observable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__internal_Subject__ = __webpack_require__(72);
-/* unused harmony reexport Subject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__internal_BehaviorSubject__ = __webpack_require__(763);
-/* unused harmony reexport BehaviorSubject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__internal_ReplaySubject__ = __webpack_require__(547);
-/* unused harmony reexport ReplaySubject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__internal_AsyncSubject__ = __webpack_require__(449);
-/* unused harmony reexport AsyncSubject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__internal_scheduler_asap__ = __webpack_require__(766);
-/* unused harmony reexport asapScheduler */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__internal_scheduler_async__ = __webpack_require__(78);
-/* unused harmony reexport asyncScheduler */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__internal_scheduler_queue__ = __webpack_require__(764);
-/* unused harmony reexport queueScheduler */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__internal_scheduler_animationFrame__ = __webpack_require__(2587);
-/* unused harmony reexport animationFrameScheduler */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__internal_scheduler_VirtualTimeScheduler__ = __webpack_require__(2590);
-/* unused harmony reexport VirtualTimeScheduler */
-/* unused harmony reexport VirtualAction */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__internal_Scheduler__ = __webpack_require__(758);
-/* unused harmony reexport Scheduler */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__internal_Subscription__ = __webpack_require__(62);
-/* unused harmony reexport Subscription */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__internal_Subscriber__ = __webpack_require__(24);
-/* unused harmony reexport Subscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__internal_Notification__ = __webpack_require__(441);
-/* unused harmony reexport Notification */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__internal_util_pipe__ = __webpack_require__(543);
-/* unused harmony reexport pipe */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__internal_util_noop__ = __webpack_require__(447);
-/* unused harmony reexport noop */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__internal_util_identity__ = __webpack_require__(231);
-/* unused harmony reexport identity */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__internal_util_isObservable__ = __webpack_require__(2591);
-/* unused harmony reexport isObservable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__internal_util_ArgumentOutOfRangeError__ = __webpack_require__(261);
-/* unused harmony reexport ArgumentOutOfRangeError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__internal_util_EmptyError__ = __webpack_require__(262);
-/* unused harmony reexport EmptyError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__internal_util_ObjectUnsubscribedError__ = __webpack_require__(442);
-/* unused harmony reexport ObjectUnsubscribedError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__internal_util_UnsubscriptionError__ = __webpack_require__(757);
-/* unused harmony reexport UnsubscriptionError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__internal_util_TimeoutError__ = __webpack_require__(767);
-/* unused harmony reexport TimeoutError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__internal_observable_bindCallback__ = __webpack_require__(2592);
-/* unused harmony reexport bindCallback */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__internal_observable_bindNodeCallback__ = __webpack_require__(2593);
-/* unused harmony reexport bindNodeCallback */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__internal_observable_combineLatest__ = __webpack_require__(544);
-/* unused harmony reexport combineLatest */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__internal_observable_concat__ = __webpack_require__(440);
-/* unused harmony reexport concat */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__internal_observable_defer__ = __webpack_require__(554);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_30__internal_observable_defer__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__internal_observable_empty__ = __webpack_require__(81);
-/* unused harmony reexport empty */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__internal_observable_forkJoin__ = __webpack_require__(2594);
-/* unused harmony reexport forkJoin */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__internal_observable_from__ = __webpack_require__(131);
-/* unused harmony reexport from */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__internal_observable_fromEvent__ = __webpack_require__(2595);
-/* unused harmony reexport fromEvent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__internal_observable_fromEventPattern__ = __webpack_require__(2596);
-/* unused harmony reexport fromEventPattern */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__internal_observable_generate__ = __webpack_require__(2597);
-/* unused harmony reexport generate */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__internal_observable_iif__ = __webpack_require__(2598);
-/* unused harmony reexport iif */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__internal_observable_interval__ = __webpack_require__(2599);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_38__internal_observable_interval__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__internal_observable_merge__ = __webpack_require__(761);
-/* unused harmony reexport merge */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__internal_observable_never__ = __webpack_require__(1092);
-/* unused harmony reexport never */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__internal_observable_of__ = __webpack_require__(545);
-/* unused harmony reexport of */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__internal_observable_onErrorResumeNext__ = __webpack_require__(2600);
-/* unused harmony reexport onErrorResumeNext */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__internal_observable_pairs__ = __webpack_require__(2601);
-/* unused harmony reexport pairs */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__internal_observable_race__ = __webpack_require__(765);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_44__internal_observable_race__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__internal_observable_range__ = __webpack_require__(2602);
-/* unused harmony reexport range */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__internal_observable_throwError__ = __webpack_require__(546);
-/* unused harmony reexport throwError */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__internal_observable_timer__ = __webpack_require__(759);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_47__internal_observable_timer__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__internal_observable_using__ = __webpack_require__(2603);
-/* unused harmony reexport using */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__internal_observable_zip__ = __webpack_require__(548);
-/* unused harmony reexport zip */
-/* unused harmony reexport EMPTY */
-/* unused harmony reexport NEVER */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__internal_config__ = __webpack_require__(438);
-/* unused harmony reexport config */
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=index.js.map
-
-
-/***/ }),
-
-/***/ 2587:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export animationFrame */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AnimationFrameAction__ = __webpack_require__(2588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AnimationFrameScheduler__ = __webpack_require__(2589);
-/** PURE_IMPORTS_START _AnimationFrameAction,_AnimationFrameScheduler PURE_IMPORTS_END */
-
-
-var animationFrame = /*@__PURE__*/ new __WEBPACK_IMPORTED_MODULE_1__AnimationFrameScheduler__["a" /* AnimationFrameScheduler */](__WEBPACK_IMPORTED_MODULE_0__AnimationFrameAction__["a" /* AnimationFrameAction */]);
-//# sourceMappingURL=animationFrame.js.map
-
-
-/***/ }),
-
-/***/ 2588:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnimationFrameAction; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncAction__ = __webpack_require__(265);
-/** PURE_IMPORTS_START tslib,_AsyncAction PURE_IMPORTS_END */
-
-
-var AnimationFrameAction = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnimationFrameAction, _super);
-    function AnimationFrameAction(scheduler, work) {
-        var _this = _super.call(this, scheduler, work) || this;
-        _this.scheduler = scheduler;
-        _this.work = work;
-        return _this;
-    }
-    AnimationFrameAction.prototype.requestAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (delay !== null && delay > 0) {
-            return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);
-        }
-        scheduler.actions.push(this);
-        return scheduler.scheduled || (scheduler.scheduled = requestAnimationFrame(function () { return scheduler.flush(null); }));
-    };
-    AnimationFrameAction.prototype.recycleAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if ((delay !== null && delay > 0) || (delay === null && this.delay > 0)) {
-            return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
-        }
-        if (scheduler.actions.length === 0) {
-            cancelAnimationFrame(id);
-            scheduler.scheduled = undefined;
-        }
-        return undefined;
-    };
-    return AnimationFrameAction;
-}(__WEBPACK_IMPORTED_MODULE_1__AsyncAction__["a" /* AsyncAction */]));
-
-//# sourceMappingURL=AnimationFrameAction.js.map
-
-
-/***/ }),
-
-/***/ 2589:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnimationFrameScheduler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__ = __webpack_require__(266);
-/** PURE_IMPORTS_START tslib,_AsyncScheduler PURE_IMPORTS_END */
-
-
-var AnimationFrameScheduler = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnimationFrameScheduler, _super);
-    function AnimationFrameScheduler() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    AnimationFrameScheduler.prototype.flush = function (action) {
-        this.active = true;
-        this.scheduled = undefined;
-        var actions = this.actions;
-        var error;
-        var index = -1;
-        var count = actions.length;
-        action = action || actions.shift();
-        do {
-            if (error = action.execute(action.state, action.delay)) {
-                break;
-            }
-        } while (++index < count && (action = actions.shift()));
-        this.active = false;
-        if (error) {
-            while (++index < count && (action = actions.shift())) {
-                action.unsubscribe();
-            }
-            throw error;
-        }
-    };
-    return AnimationFrameScheduler;
-}(__WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__["a" /* AsyncScheduler */]));
-
-//# sourceMappingURL=AnimationFrameScheduler.js.map
-
-
-/***/ }),
-
-/***/ 259:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = filter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function filter(predicate, thisArg) {
-    return function filterOperatorFunction(source) {
-        return source.lift(new FilterOperator(predicate, thisArg));
-    };
-}
-var FilterOperator = /*@__PURE__*/ (function () {
-    function FilterOperator(predicate, thisArg) {
-        this.predicate = predicate;
-        this.thisArg = thisArg;
-    }
-    FilterOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new FilterSubscriber(subscriber, this.predicate, this.thisArg));
-    };
-    return FilterOperator;
-}());
-var FilterSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](FilterSubscriber, _super);
-    function FilterSubscriber(destination, predicate, thisArg) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.thisArg = thisArg;
-        _this.count = 0;
-        return _this;
-    }
-    FilterSubscriber.prototype._next = function (value) {
-        var result;
-        try {
-            result = this.predicate.call(this.thisArg, value, this.count++);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        if (result) {
-            this.destination.next(value);
-        }
-    };
-    return FilterSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=filter.js.map
-
-
-/***/ }),
-
-/***/ 2590:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export VirtualTimeScheduler */
-/* unused harmony export VirtualAction */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncAction__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AsyncScheduler__ = __webpack_require__(266);
-/** PURE_IMPORTS_START tslib,_AsyncAction,_AsyncScheduler PURE_IMPORTS_END */
-
-
-
-var VirtualTimeScheduler = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](VirtualTimeScheduler, _super);
-    function VirtualTimeScheduler(SchedulerAction, maxFrames) {
-        if (SchedulerAction === void 0) {
-            SchedulerAction = VirtualAction;
-        }
-        if (maxFrames === void 0) {
-            maxFrames = Number.POSITIVE_INFINITY;
-        }
-        var _this = _super.call(this, SchedulerAction, function () { return _this.frame; }) || this;
-        _this.maxFrames = maxFrames;
-        _this.frame = 0;
-        _this.index = -1;
-        return _this;
-    }
-    VirtualTimeScheduler.prototype.flush = function () {
-        var _a = this, actions = _a.actions, maxFrames = _a.maxFrames;
-        var error, action;
-        while ((action = actions.shift()) && (this.frame = action.delay) <= maxFrames) {
-            if (error = action.execute(action.state, action.delay)) {
-                break;
-            }
-        }
-        if (error) {
-            while (action = actions.shift()) {
-                action.unsubscribe();
-            }
-            throw error;
-        }
-    };
-    VirtualTimeScheduler.frameTimeFactor = 10;
-    return VirtualTimeScheduler;
-}(__WEBPACK_IMPORTED_MODULE_2__AsyncScheduler__["a" /* AsyncScheduler */]));
-
-var VirtualAction = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](VirtualAction, _super);
-    function VirtualAction(scheduler, work, index) {
-        if (index === void 0) {
-            index = scheduler.index += 1;
-        }
-        var _this = _super.call(this, scheduler, work) || this;
-        _this.scheduler = scheduler;
-        _this.work = work;
-        _this.index = index;
-        _this.active = true;
-        _this.index = scheduler.index = index;
-        return _this;
-    }
-    VirtualAction.prototype.schedule = function (state, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (!this.id) {
-            return _super.prototype.schedule.call(this, state, delay);
-        }
-        this.active = false;
-        var action = new VirtualAction(this.scheduler, this.work);
-        this.add(action);
-        return action.schedule(state, delay);
-    };
-    VirtualAction.prototype.requestAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        this.delay = scheduler.frame + delay;
-        var actions = scheduler.actions;
-        actions.push(this);
-        actions.sort(VirtualAction.sortActions);
-        return true;
-    };
-    VirtualAction.prototype.recycleAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        return undefined;
-    };
-    VirtualAction.prototype._execute = function (state, delay) {
-        if (this.active === true) {
-            return _super.prototype._execute.call(this, state, delay);
-        }
-    };
-    VirtualAction.sortActions = function (a, b) {
-        if (a.delay === b.delay) {
-            if (a.index === b.index) {
-                return 0;
-            }
-            else if (a.index > b.index) {
-                return 1;
-            }
-            else {
-                return -1;
-            }
-        }
-        else if (a.delay > b.delay) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
-    };
-    return VirtualAction;
-}(__WEBPACK_IMPORTED_MODULE_1__AsyncAction__["a" /* AsyncAction */]));
-
-//# sourceMappingURL=VirtualTimeScheduler.js.map
-
-
-/***/ }),
-
-/***/ 2591:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export isObservable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
-
-function isObservable(obj) {
-    return !!obj && (obj instanceof __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */] || (typeof obj.lift === 'function' && typeof obj.subscribe === 'function'));
-}
-//# sourceMappingURL=isObservable.js.map
-
-
-/***/ }),
-
-/***/ 2592:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export bindCallback */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncSubject__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operators_map__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START _Observable,_AsyncSubject,_operators_map,_util_isArray,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-
-
-function bindCallback(callbackFunc, resultSelector, scheduler) {
-    if (resultSelector) {
-        if (Object(__WEBPACK_IMPORTED_MODULE_4__util_isScheduler__["a" /* isScheduler */])(resultSelector)) {
-            scheduler = resultSelector;
-        }
-        else {
-            return function () {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) {
-                    args[_i] = arguments[_i];
-                }
-                return bindCallback(callbackFunc, scheduler).apply(void 0, args).pipe(Object(__WEBPACK_IMPORTED_MODULE_2__operators_map__["a" /* map */])(function (args) { return Object(__WEBPACK_IMPORTED_MODULE_3__util_isArray__["a" /* isArray */])(args) ? resultSelector.apply(void 0, args) : resultSelector(args); }));
-            };
-        }
-    }
-    return function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        var context = this;
-        var subject;
-        var params = {
-            context: context,
-            subject: subject,
-            callbackFunc: callbackFunc,
-            scheduler: scheduler,
-        };
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            if (!scheduler) {
-                if (!subject) {
-                    subject = new __WEBPACK_IMPORTED_MODULE_1__AsyncSubject__["a" /* AsyncSubject */]();
-                    var handler = function () {
-                        var innerArgs = [];
-                        for (var _i = 0; _i < arguments.length; _i++) {
-                            innerArgs[_i] = arguments[_i];
-                        }
-                        subject.next(innerArgs.length <= 1 ? innerArgs[0] : innerArgs);
-                        subject.complete();
-                    };
-                    try {
-                        callbackFunc.apply(context, args.concat([handler]));
-                    }
-                    catch (err) {
-                        subject.error(err);
-                    }
-                }
-                return subject.subscribe(subscriber);
-            }
-            else {
-                var state = {
-                    args: args, subscriber: subscriber, params: params,
-                };
-                return scheduler.schedule(dispatch, 0, state);
-            }
-        });
-    };
-}
-function dispatch(state) {
-    var _this = this;
-    var self = this;
-    var args = state.args, subscriber = state.subscriber, params = state.params;
-    var callbackFunc = params.callbackFunc, context = params.context, scheduler = params.scheduler;
-    var subject = params.subject;
-    if (!subject) {
-        subject = params.subject = new __WEBPACK_IMPORTED_MODULE_1__AsyncSubject__["a" /* AsyncSubject */]();
-        var handler = function () {
-            var innerArgs = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                innerArgs[_i] = arguments[_i];
-            }
-            var value = innerArgs.length <= 1 ? innerArgs[0] : innerArgs;
-            _this.add(scheduler.schedule(dispatchNext, 0, { value: value, subject: subject }));
-        };
-        try {
-            callbackFunc.apply(context, args.concat([handler]));
-        }
-        catch (err) {
-            subject.error(err);
-        }
-    }
-    this.add(subject.subscribe(subscriber));
-}
-function dispatchNext(state) {
-    var value = state.value, subject = state.subject;
-    subject.next(value);
-    subject.complete();
-}
-function dispatchError(state) {
-    var err = state.err, subject = state.subject;
-    subject.error(err);
-}
-//# sourceMappingURL=bindCallback.js.map
-
-
-/***/ }),
-
-/***/ 2593:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export bindNodeCallback */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncSubject__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operators_map__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isScheduler__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_isArray__ = __webpack_require__(80);
-/** PURE_IMPORTS_START _Observable,_AsyncSubject,_operators_map,_util_isScheduler,_util_isArray PURE_IMPORTS_END */
-
-
-
-
-
-function bindNodeCallback(callbackFunc, resultSelector, scheduler) {
-    if (resultSelector) {
-        if (Object(__WEBPACK_IMPORTED_MODULE_3__util_isScheduler__["a" /* isScheduler */])(resultSelector)) {
-            scheduler = resultSelector;
-        }
-        else {
-            return function () {
-                var args = [];
-                for (var _i = 0; _i < arguments.length; _i++) {
-                    args[_i] = arguments[_i];
-                }
-                return bindNodeCallback(callbackFunc, scheduler).apply(void 0, args).pipe(Object(__WEBPACK_IMPORTED_MODULE_2__operators_map__["a" /* map */])(function (args) { return Object(__WEBPACK_IMPORTED_MODULE_4__util_isArray__["a" /* isArray */])(args) ? resultSelector.apply(void 0, args) : resultSelector(args); }));
-            };
-        }
-    }
-    return function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        var params = {
-            subject: undefined,
-            args: args,
-            callbackFunc: callbackFunc,
-            scheduler: scheduler,
-            context: this,
-        };
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var context = params.context;
-            var subject = params.subject;
-            if (!scheduler) {
-                if (!subject) {
-                    subject = params.subject = new __WEBPACK_IMPORTED_MODULE_1__AsyncSubject__["a" /* AsyncSubject */]();
-                    var handler = function () {
-                        var innerArgs = [];
-                        for (var _i = 0; _i < arguments.length; _i++) {
-                            innerArgs[_i] = arguments[_i];
-                        }
-                        var err = innerArgs.shift();
-                        if (err) {
-                            subject.error(err);
-                            return;
-                        }
-                        subject.next(innerArgs.length <= 1 ? innerArgs[0] : innerArgs);
-                        subject.complete();
-                    };
-                    try {
-                        callbackFunc.apply(context, args.concat([handler]));
-                    }
-                    catch (err) {
-                        subject.error(err);
-                    }
-                }
-                return subject.subscribe(subscriber);
-            }
-            else {
-                return scheduler.schedule(dispatch, 0, { params: params, subscriber: subscriber, context: context });
-            }
-        });
-    };
-}
-function dispatch(state) {
-    var _this = this;
-    var params = state.params, subscriber = state.subscriber, context = state.context;
-    var callbackFunc = params.callbackFunc, args = params.args, scheduler = params.scheduler;
-    var subject = params.subject;
-    if (!subject) {
-        subject = params.subject = new __WEBPACK_IMPORTED_MODULE_1__AsyncSubject__["a" /* AsyncSubject */]();
-        var handler = function () {
-            var innerArgs = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                innerArgs[_i] = arguments[_i];
-            }
-            var err = innerArgs.shift();
-            if (err) {
-                _this.add(scheduler.schedule(dispatchError, 0, { err: err, subject: subject }));
-            }
-            else {
-                var value = innerArgs.length <= 1 ? innerArgs[0] : innerArgs;
-                _this.add(scheduler.schedule(dispatchNext, 0, { value: value, subject: subject }));
-            }
-        };
-        try {
-            callbackFunc.apply(context, args.concat([handler]));
-        }
-        catch (err) {
-            this.add(scheduler.schedule(dispatchError, 0, { err: err, subject: subject }));
-        }
-    }
-    this.add(subject.subscribe(subscriber));
-}
-function dispatchNext(arg) {
-    var value = arg.value, subject = arg.subject;
-    subject.next(value);
-    subject.complete();
-}
-function dispatchError(arg) {
-    var err = arg.err, subject = arg.subject;
-    subject.error(err);
-}
-//# sourceMappingURL=bindNodeCallback.js.map
-
-
-/***/ }),
-
-/***/ 2594:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export forkJoin */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__empty__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operators_map__ = __webpack_require__(102);
-/** PURE_IMPORTS_START tslib,_Observable,_util_isArray,_empty,_util_subscribeToResult,_OuterSubscriber,_operators_map PURE_IMPORTS_END */
-
-
-
-
-
-
-
-function forkJoin() {
-    var sources = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        sources[_i] = arguments[_i];
-    }
-    var resultSelector;
-    if (typeof sources[sources.length - 1] === 'function') {
-        resultSelector = sources.pop();
-    }
-    if (sources.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_2__util_isArray__["a" /* isArray */])(sources[0])) {
-        sources = sources[0];
-    }
-    if (sources.length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_3__empty__["a" /* EMPTY */];
-    }
-    if (resultSelector) {
-        return forkJoin(sources).pipe(Object(__WEBPACK_IMPORTED_MODULE_6__operators_map__["a" /* map */])(function (args) { return resultSelector.apply(void 0, args); }));
-    }
-    return new __WEBPACK_IMPORTED_MODULE_1__Observable__["a" /* Observable */](function (subscriber) {
-        return new ForkJoinSubscriber(subscriber, sources);
-    });
-}
-var ForkJoinSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ForkJoinSubscriber, _super);
-    function ForkJoinSubscriber(destination, sources) {
-        var _this = _super.call(this, destination) || this;
-        _this.sources = sources;
-        _this.completed = 0;
-        _this.haveValues = 0;
-        var len = sources.length;
-        _this.values = new Array(len);
-        for (var i = 0; i < len; i++) {
-            var source = sources[i];
-            var innerSubscription = Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(_this, source, null, i);
-            if (innerSubscription) {
-                _this.add(innerSubscription);
-            }
-        }
-        return _this;
-    }
-    ForkJoinSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.values[outerIndex] = innerValue;
-        if (!innerSub._hasValue) {
-            innerSub._hasValue = true;
-            this.haveValues++;
-        }
-    };
-    ForkJoinSubscriber.prototype.notifyComplete = function (innerSub) {
-        var _a = this, destination = _a.destination, haveValues = _a.haveValues, values = _a.values;
-        var len = values.length;
-        if (!innerSub._hasValue) {
-            destination.complete();
-            return;
-        }
-        this.completed++;
-        if (this.completed !== len) {
-            return;
-        }
-        if (haveValues === len) {
-            destination.next(values);
-        }
-        destination.complete();
-    };
-    return ForkJoinSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_5__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=forkJoin.js.map
-
-
-/***/ }),
-
-/***/ 2595:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export fromEvent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isFunction__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operators_map__ = __webpack_require__(102);
-/** PURE_IMPORTS_START _Observable,_util_isArray,_util_isFunction,_operators_map PURE_IMPORTS_END */
-
-
-
-
-var toString = Object.prototype.toString;
-function fromEvent(target, eventName, options, resultSelector) {
-    if (Object(__WEBPACK_IMPORTED_MODULE_2__util_isFunction__["a" /* isFunction */])(options)) {
-        resultSelector = options;
-        options = undefined;
-    }
-    if (resultSelector) {
-        return fromEvent(target, eventName, options).pipe(Object(__WEBPACK_IMPORTED_MODULE_3__operators_map__["a" /* map */])(function (args) { return Object(__WEBPACK_IMPORTED_MODULE_1__util_isArray__["a" /* isArray */])(args) ? resultSelector.apply(void 0, args) : resultSelector(args); }));
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        function handler(e) {
-            if (arguments.length > 1) {
-                subscriber.next(Array.prototype.slice.call(arguments));
-            }
-            else {
-                subscriber.next(e);
-            }
-        }
-        setupSubscription(target, eventName, handler, subscriber, options);
-    });
-}
-function setupSubscription(sourceObj, eventName, handler, subscriber, options) {
-    var unsubscribe;
-    if (isEventTarget(sourceObj)) {
-        var source_1 = sourceObj;
-        sourceObj.addEventListener(eventName, handler, options);
-        unsubscribe = function () { return source_1.removeEventListener(eventName, handler, options); };
-    }
-    else if (isJQueryStyleEventEmitter(sourceObj)) {
-        var source_2 = sourceObj;
-        sourceObj.on(eventName, handler);
-        unsubscribe = function () { return source_2.off(eventName, handler); };
-    }
-    else if (isNodeStyleEventEmitter(sourceObj)) {
-        var source_3 = sourceObj;
-        sourceObj.addListener(eventName, handler);
-        unsubscribe = function () { return source_3.removeListener(eventName, handler); };
-    }
-    else if (sourceObj && sourceObj.length) {
-        for (var i = 0, len = sourceObj.length; i < len; i++) {
-            setupSubscription(sourceObj[i], eventName, handler, subscriber, options);
-        }
-    }
-    else {
-        throw new TypeError('Invalid event target');
-    }
-    subscriber.add(unsubscribe);
-}
-function isNodeStyleEventEmitter(sourceObj) {
-    return sourceObj && typeof sourceObj.addListener === 'function' && typeof sourceObj.removeListener === 'function';
-}
-function isJQueryStyleEventEmitter(sourceObj) {
-    return sourceObj && typeof sourceObj.on === 'function' && typeof sourceObj.off === 'function';
-}
-function isEventTarget(sourceObj) {
-    return sourceObj && typeof sourceObj.addEventListener === 'function' && typeof sourceObj.removeEventListener === 'function';
-}
-//# sourceMappingURL=fromEvent.js.map
-
-
-/***/ }),
-
-/***/ 2596:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export fromEventPattern */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isFunction__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operators_map__ = __webpack_require__(102);
-/** PURE_IMPORTS_START _Observable,_util_isArray,_util_isFunction,_operators_map PURE_IMPORTS_END */
-
-
-
-
-function fromEventPattern(addHandler, removeHandler, resultSelector) {
-    if (resultSelector) {
-        return fromEventPattern(addHandler, removeHandler).pipe(Object(__WEBPACK_IMPORTED_MODULE_3__operators_map__["a" /* map */])(function (args) { return Object(__WEBPACK_IMPORTED_MODULE_1__util_isArray__["a" /* isArray */])(args) ? resultSelector.apply(void 0, args) : resultSelector(args); }));
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var handler = function () {
-            var e = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                e[_i] = arguments[_i];
-            }
-            return subscriber.next(e.length === 1 ? e[0] : e);
-        };
-        var retValue;
-        try {
-            retValue = addHandler(handler);
-        }
-        catch (err) {
-            subscriber.error(err);
-            return undefined;
-        }
-        if (!Object(__WEBPACK_IMPORTED_MODULE_2__util_isFunction__["a" /* isFunction */])(removeHandler)) {
-            return undefined;
-        }
-        return function () { return removeHandler(handler, retValue); };
-    });
-}
-//# sourceMappingURL=fromEventPattern.js.map
-
-
-/***/ }),
-
-/***/ 2597:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export generate */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_identity__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START _Observable,_util_identity,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-function generate(initialStateOrOptions, condition, iterate, resultSelectorOrObservable, scheduler) {
-    var resultSelector;
-    var initialState;
-    if (arguments.length == 1) {
-        var options = initialStateOrOptions;
-        initialState = options.initialState;
-        condition = options.condition;
-        iterate = options.iterate;
-        resultSelector = options.resultSelector || __WEBPACK_IMPORTED_MODULE_1__util_identity__["a" /* identity */];
-        scheduler = options.scheduler;
-    }
-    else if (resultSelectorOrObservable === undefined || Object(__WEBPACK_IMPORTED_MODULE_2__util_isScheduler__["a" /* isScheduler */])(resultSelectorOrObservable)) {
-        initialState = initialStateOrOptions;
-        resultSelector = __WEBPACK_IMPORTED_MODULE_1__util_identity__["a" /* identity */];
-        scheduler = resultSelectorOrObservable;
-    }
-    else {
-        initialState = initialStateOrOptions;
-        resultSelector = resultSelectorOrObservable;
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var state = initialState;
-        if (scheduler) {
-            return scheduler.schedule(dispatch, 0, {
-                subscriber: subscriber,
-                iterate: iterate,
-                condition: condition,
-                resultSelector: resultSelector,
-                state: state
-            });
-        }
-        do {
-            if (condition) {
-                var conditionResult = void 0;
-                try {
-                    conditionResult = condition(state);
-                }
-                catch (err) {
-                    subscriber.error(err);
-                    return undefined;
-                }
-                if (!conditionResult) {
-                    subscriber.complete();
-                    break;
-                }
-            }
-            var value = void 0;
-            try {
-                value = resultSelector(state);
-            }
-            catch (err) {
-                subscriber.error(err);
-                return undefined;
-            }
-            subscriber.next(value);
-            if (subscriber.closed) {
-                break;
-            }
-            try {
-                state = iterate(state);
-            }
-            catch (err) {
-                subscriber.error(err);
-                return undefined;
-            }
-        } while (true);
-        return undefined;
-    });
-}
-function dispatch(state) {
-    var subscriber = state.subscriber, condition = state.condition;
-    if (subscriber.closed) {
-        return undefined;
-    }
-    if (state.needIterate) {
-        try {
-            state.state = state.iterate(state.state);
-        }
-        catch (err) {
-            subscriber.error(err);
-            return undefined;
-        }
-    }
-    else {
-        state.needIterate = true;
-    }
-    if (condition) {
-        var conditionResult = void 0;
-        try {
-            conditionResult = condition(state.state);
-        }
-        catch (err) {
-            subscriber.error(err);
-            return undefined;
-        }
-        if (!conditionResult) {
-            subscriber.complete();
-            return undefined;
-        }
-        if (subscriber.closed) {
-            return undefined;
-        }
-    }
-    var value;
-    try {
-        value = state.resultSelector(state.state);
-    }
-    catch (err) {
-        subscriber.error(err);
-        return undefined;
-    }
-    if (subscriber.closed) {
-        return undefined;
-    }
-    subscriber.next(value);
-    if (subscriber.closed) {
-        return undefined;
-    }
-    return this.schedule(state);
-}
-//# sourceMappingURL=generate.js.map
-
-
-/***/ }),
-
-/***/ 2598:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export iif */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__defer__ = __webpack_require__(554);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START _defer,_empty PURE_IMPORTS_END */
-
-
-function iif(condition, trueResult, falseResult) {
-    if (trueResult === void 0) {
-        trueResult = __WEBPACK_IMPORTED_MODULE_1__empty__["a" /* EMPTY */];
-    }
-    if (falseResult === void 0) {
-        falseResult = __WEBPACK_IMPORTED_MODULE_1__empty__["a" /* EMPTY */];
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_0__defer__["a" /* defer */])(function () { return condition() ? trueResult : falseResult; });
-}
-//# sourceMappingURL=iif.js.map
-
-
-/***/ }),
-
-/***/ 2599:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = interval;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isNumeric__ = __webpack_require__(439);
-/** PURE_IMPORTS_START _Observable,_scheduler_async,_util_isNumeric PURE_IMPORTS_END */
-
-
-
-function interval(period, scheduler) {
-    if (period === void 0) {
-        period = 0;
-    }
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_1__scheduler_async__["a" /* async */];
-    }
-    if (!Object(__WEBPACK_IMPORTED_MODULE_2__util_isNumeric__["a" /* isNumeric */])(period) || period < 0) {
-        period = 0;
-    }
-    if (!scheduler || typeof scheduler.schedule !== 'function') {
-        scheduler = __WEBPACK_IMPORTED_MODULE_1__scheduler_async__["a" /* async */];
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        subscriber.add(scheduler.schedule(dispatch, period, { subscriber: subscriber, counter: 0, period: period }));
-        return subscriber;
-    });
-}
-function dispatch(state) {
-    var subscriber = state.subscriber, counter = state.counter, period = state.period;
-    subscriber.next(counter);
-    this.schedule({ subscriber: subscriber, counter: counter + 1, period: period }, period);
-}
-//# sourceMappingURL=interval.js.map
-
-
-/***/ }),
-
-/***/ 2600:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export onErrorResumeNext */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__from__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START _Observable,_from,_util_isArray,_empty PURE_IMPORTS_END */
-
-
-
-
-function onErrorResumeNext() {
-    var sources = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        sources[_i] = arguments[_i];
-    }
-    if (sources.length === 0) {
-        return __WEBPACK_IMPORTED_MODULE_3__empty__["a" /* EMPTY */];
-    }
-    var first = sources[0], remainder = sources.slice(1);
-    if (sources.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_2__util_isArray__["a" /* isArray */])(first)) {
-        return onErrorResumeNext.apply(void 0, first);
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var subNext = function () { return subscriber.add(onErrorResumeNext.apply(void 0, remainder).subscribe(subscriber)); };
-        return Object(__WEBPACK_IMPORTED_MODULE_1__from__["a" /* from */])(first).subscribe({
-            next: function (value) { subscriber.next(value); },
-            error: subNext,
-            complete: subNext,
-        });
-    });
-}
-//# sourceMappingURL=onErrorResumeNext.js.map
-
-
-/***/ }),
-
-/***/ 2601:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export pairs */
-/* unused harmony export dispatch */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/** PURE_IMPORTS_START _Observable,_Subscription PURE_IMPORTS_END */
-
-
-function pairs(obj, scheduler) {
-    if (!scheduler) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var keys = Object.keys(obj);
-            for (var i = 0; i < keys.length && !subscriber.closed; i++) {
-                var key = keys[i];
-                if (obj.hasOwnProperty(key)) {
-                    subscriber.next([key, obj[key]]);
-                }
-            }
-            subscriber.complete();
-        });
-    }
-    else {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-            var keys = Object.keys(obj);
-            var subscription = new __WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]();
-            subscription.add(scheduler.schedule(dispatch, 0, { keys: keys, index: 0, subscriber: subscriber, subscription: subscription, obj: obj }));
-            return subscription;
-        });
-    }
-}
-function dispatch(state) {
-    var keys = state.keys, index = state.index, subscriber = state.subscriber, subscription = state.subscription, obj = state.obj;
-    if (!subscriber.closed) {
-        if (index < keys.length) {
-            var key = keys[index];
-            subscriber.next([key, obj[key]]);
-            subscription.add(this.schedule({ keys: keys, index: index + 1, subscriber: subscriber, subscription: subscription, obj: obj }));
-        }
-        else {
-            subscriber.complete();
-        }
-    }
-}
-//# sourceMappingURL=pairs.js.map
-
-
-/***/ }),
-
-/***/ 2602:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export range */
-/* unused harmony export dispatch */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
-
-function range(start, count, scheduler) {
-    if (start === void 0) {
-        start = 0;
-    }
-    if (count === void 0) {
-        count = 0;
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var index = 0;
-        var current = start;
-        if (scheduler) {
-            return scheduler.schedule(dispatch, 0, {
-                index: index, count: count, start: start, subscriber: subscriber
-            });
-        }
-        else {
-            do {
-                if (index++ >= count) {
-                    subscriber.complete();
-                    break;
-                }
-                subscriber.next(current++);
-                if (subscriber.closed) {
-                    break;
-                }
-            } while (true);
-        }
-        return undefined;
-    });
-}
-function dispatch(state) {
-    var start = state.start, index = state.index, count = state.count, subscriber = state.subscriber;
-    if (index >= count) {
-        subscriber.complete();
-        return;
-    }
-    subscriber.next(start);
-    if (subscriber.closed) {
-        return;
-    }
-    state.index = index + 1;
-    state.start = start + 1;
-    this.schedule(state);
-}
-//# sourceMappingURL=range.js.map
-
-
-/***/ }),
-
-/***/ 2603:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export using */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__from__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START _Observable,_from,_empty PURE_IMPORTS_END */
-
-
-
-function using(resourceFactory, observableFactory) {
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var resource;
-        try {
-            resource = resourceFactory();
-        }
-        catch (err) {
-            subscriber.error(err);
-            return undefined;
-        }
-        var result;
-        try {
-            result = observableFactory(resource);
-        }
-        catch (err) {
-            subscriber.error(err);
-            return undefined;
-        }
-        var source = result ? Object(__WEBPACK_IMPORTED_MODULE_1__from__["a" /* from */])(result) : __WEBPACK_IMPORTED_MODULE_2__empty__["a" /* EMPTY */];
-        var subscription = source.subscribe(subscriber);
-        return function () {
-            subscription.unsubscribe();
-            if (resource) {
-                resource.unsubscribe();
-            }
-        };
-    });
-}
-//# sourceMappingURL=using.js.map
-
-
-/***/ }),
-
-/***/ 2604:
+/***/ 2922:
 /***/ (function(module, exports) {
 
 let GoogleAnalytics = class GoogleAnalytics {
@@ -26860,355 +20244,6 @@ module.exports = GoogleAnalytics;
 
 /***/ }),
 
-/***/ 261:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArgumentOutOfRangeError; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function ArgumentOutOfRangeErrorImpl() {
-    Error.call(this);
-    this.message = 'argument out of range';
-    this.name = 'ArgumentOutOfRangeError';
-    return this;
-}
-ArgumentOutOfRangeErrorImpl.prototype = /*@__PURE__*/ Object.create(Error.prototype);
-var ArgumentOutOfRangeError = ArgumentOutOfRangeErrorImpl;
-//# sourceMappingURL=ArgumentOutOfRangeError.js.map
-
-
-/***/ }),
-
-/***/ 262:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmptyError; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function EmptyErrorImpl() {
-    Error.call(this);
-    this.message = 'no elements in sequence';
-    this.name = 'EmptyError';
-    return this;
-}
-EmptyErrorImpl.prototype = /*@__PURE__*/ Object.create(Error.prototype);
-var EmptyError = EmptyErrorImpl;
-//# sourceMappingURL=EmptyError.js.map
-
-
-/***/ }),
-
-/***/ 264:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isFunction;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function isFunction(x) {
-    return typeof x === 'function';
-}
-//# sourceMappingURL=isFunction.js.map
-
-
-/***/ }),
-
-/***/ 265:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsyncAction; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Action__ = __webpack_require__(1162);
-/** PURE_IMPORTS_START tslib,_Action PURE_IMPORTS_END */
-
-
-var AsyncAction = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AsyncAction, _super);
-    function AsyncAction(scheduler, work) {
-        var _this = _super.call(this, scheduler, work) || this;
-        _this.scheduler = scheduler;
-        _this.work = work;
-        _this.pending = false;
-        return _this;
-    }
-    AsyncAction.prototype.schedule = function (state, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (this.closed) {
-            return this;
-        }
-        this.state = state;
-        var id = this.id;
-        var scheduler = this.scheduler;
-        if (id != null) {
-            this.id = this.recycleAsyncId(scheduler, id, delay);
-        }
-        this.pending = true;
-        this.delay = delay;
-        this.id = this.id || this.requestAsyncId(scheduler, this.id, delay);
-        return this;
-    };
-    AsyncAction.prototype.requestAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        return setInterval(scheduler.flush.bind(scheduler, this), delay);
-    };
-    AsyncAction.prototype.recycleAsyncId = function (scheduler, id, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (delay !== null && this.delay === delay && this.pending === false) {
-            return id;
-        }
-        clearInterval(id);
-    };
-    AsyncAction.prototype.execute = function (state, delay) {
-        if (this.closed) {
-            return new Error('executing a cancelled action');
-        }
-        this.pending = false;
-        var error = this._execute(state, delay);
-        if (error) {
-            return error;
-        }
-        else if (this.pending === false && this.id != null) {
-            this.id = this.recycleAsyncId(this.scheduler, this.id, null);
-        }
-    };
-    AsyncAction.prototype._execute = function (state, delay) {
-        var errored = false;
-        var errorValue = undefined;
-        try {
-            this.work(state);
-        }
-        catch (e) {
-            errored = true;
-            errorValue = !!e && e || new Error(e);
-        }
-        if (errored) {
-            this.unsubscribe();
-            return errorValue;
-        }
-    };
-    AsyncAction.prototype._unsubscribe = function () {
-        var id = this.id;
-        var scheduler = this.scheduler;
-        var actions = scheduler.actions;
-        var index = actions.indexOf(this);
-        this.work = null;
-        this.state = null;
-        this.pending = false;
-        this.scheduler = null;
-        if (index !== -1) {
-            actions.splice(index, 1);
-        }
-        if (id != null) {
-            this.id = this.recycleAsyncId(scheduler, id, null);
-        }
-        this.delay = null;
-    };
-    return AsyncAction;
-}(__WEBPACK_IMPORTED_MODULE_1__Action__["a" /* Action */]));
-
-//# sourceMappingURL=AsyncAction.js.map
-
-
-/***/ }),
-
-/***/ 266:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsyncScheduler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Scheduler__ = __webpack_require__(758);
-/** PURE_IMPORTS_START tslib,_Scheduler PURE_IMPORTS_END */
-
-
-var AsyncScheduler = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AsyncScheduler, _super);
-    function AsyncScheduler(SchedulerAction, now) {
-        if (now === void 0) {
-            now = __WEBPACK_IMPORTED_MODULE_1__Scheduler__["a" /* Scheduler */].now;
-        }
-        var _this = _super.call(this, SchedulerAction, function () {
-            if (AsyncScheduler.delegate && AsyncScheduler.delegate !== _this) {
-                return AsyncScheduler.delegate.now();
-            }
-            else {
-                return now();
-            }
-        }) || this;
-        _this.actions = [];
-        _this.active = false;
-        _this.scheduled = undefined;
-        return _this;
-    }
-    AsyncScheduler.prototype.schedule = function (work, delay, state) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (AsyncScheduler.delegate && AsyncScheduler.delegate !== this) {
-            return AsyncScheduler.delegate.schedule(work, delay, state);
-        }
-        else {
-            return _super.prototype.schedule.call(this, work, delay, state);
-        }
-    };
-    AsyncScheduler.prototype.flush = function (action) {
-        var actions = this.actions;
-        if (this.active) {
-            actions.push(action);
-            return;
-        }
-        var error;
-        this.active = true;
-        do {
-            if (error = action.execute(action.state, action.delay)) {
-                break;
-            }
-        } while (action = actions.shift());
-        this.active = false;
-        if (error) {
-            while (action = actions.shift()) {
-                action.unsubscribe();
-            }
-            throw error;
-        }
-    };
-    return AsyncScheduler;
-}(__WEBPACK_IMPORTED_MODULE_1__Scheduler__["a" /* Scheduler */]));
-
-//# sourceMappingURL=AsyncScheduler.js.map
-
-
-/***/ }),
-
-/***/ 34:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Observable; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_toSubscriber__ = __webpack_require__(1160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__internal_symbol_observable__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_pipe__ = __webpack_require__(543);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(438);
-/** PURE_IMPORTS_START _util_toSubscriber,_internal_symbol_observable,_util_pipe,_config PURE_IMPORTS_END */
-
-
-
-
-var Observable = /*@__PURE__*/ (function () {
-    function Observable(subscribe) {
-        this._isScalar = false;
-        if (subscribe) {
-            this._subscribe = subscribe;
-        }
-    }
-    Observable.prototype.lift = function (operator) {
-        var observable = new Observable();
-        observable.source = this;
-        observable.operator = operator;
-        return observable;
-    };
-    Observable.prototype.subscribe = function (observerOrNext, error, complete) {
-        var operator = this.operator;
-        var sink = Object(__WEBPACK_IMPORTED_MODULE_0__util_toSubscriber__["a" /* toSubscriber */])(observerOrNext, error, complete);
-        if (operator) {
-            operator.call(sink, this.source);
-        }
-        else {
-            sink._addParentTeardownLogic(this.source || (__WEBPACK_IMPORTED_MODULE_3__config__["a" /* config */].useDeprecatedSynchronousErrorHandling && !sink.syncErrorThrowable) ?
-                this._subscribe(sink) :
-                this._trySubscribe(sink));
-        }
-        if (__WEBPACK_IMPORTED_MODULE_3__config__["a" /* config */].useDeprecatedSynchronousErrorHandling) {
-            if (sink.syncErrorThrowable) {
-                sink.syncErrorThrowable = false;
-                if (sink.syncErrorThrown) {
-                    throw sink.syncErrorValue;
-                }
-            }
-        }
-        return sink;
-    };
-    Observable.prototype._trySubscribe = function (sink) {
-        try {
-            return this._subscribe(sink);
-        }
-        catch (err) {
-            if (__WEBPACK_IMPORTED_MODULE_3__config__["a" /* config */].useDeprecatedSynchronousErrorHandling) {
-                sink.syncErrorThrown = true;
-                sink.syncErrorValue = err;
-            }
-            sink.error(err);
-        }
-    };
-    Observable.prototype.forEach = function (next, promiseCtor) {
-        var _this = this;
-        promiseCtor = getPromiseCtor(promiseCtor);
-        return new promiseCtor(function (resolve, reject) {
-            var subscription;
-            subscription = _this.subscribe(function (value) {
-                try {
-                    next(value);
-                }
-                catch (err) {
-                    reject(err);
-                    if (subscription) {
-                        subscription.unsubscribe();
-                    }
-                }
-            }, reject, resolve);
-        });
-    };
-    Observable.prototype._subscribe = function (subscriber) {
-        var source = this.source;
-        return source && source.subscribe(subscriber);
-    };
-    Observable.prototype[__WEBPACK_IMPORTED_MODULE_1__internal_symbol_observable__["a" /* observable */]] = function () {
-        return this;
-    };
-    Observable.prototype.pipe = function () {
-        var operations = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            operations[_i] = arguments[_i];
-        }
-        if (operations.length === 0) {
-            return this;
-        }
-        return Object(__WEBPACK_IMPORTED_MODULE_2__util_pipe__["b" /* pipeFromArray */])(operations)(this);
-    };
-    Observable.prototype.toPromise = function (promiseCtor) {
-        var _this = this;
-        promiseCtor = getPromiseCtor(promiseCtor);
-        return new promiseCtor(function (resolve, reject) {
-            var value;
-            _this.subscribe(function (x) { return value = x; }, function (err) { return reject(err); }, function () { return resolve(value); });
-        });
-    };
-    Observable.create = function (subscribe) {
-        return new Observable(subscribe);
-    };
-    return Observable;
-}());
-
-function getPromiseCtor(promiseCtor) {
-    if (!promiseCtor) {
-        promiseCtor = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* config */].Promise || Promise;
-    }
-    if (!promiseCtor) {
-        throw new Error('no Promise impl found');
-    }
-    return promiseCtor;
-}
-//# sourceMappingURL=Observable.js.map
-
-
-/***/ }),
-
 /***/ 35:
 /***/ (function(module, exports) {
 
@@ -27216,72 +20251,16 @@ module.exports = require("fs");
 
 /***/ }),
 
-/***/ 37:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OuterSubscriber; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-var OuterSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](OuterSubscriber, _super);
-    function OuterSubscriber() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    OuterSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.destination.next(innerValue);
-    };
-    OuterSubscriber.prototype.notifyError = function (error, innerSub) {
-        this.destination.error(error);
-    };
-    OuterSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.destination.complete();
-    };
-    return OuterSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-
-//# sourceMappingURL=OuterSubscriber.js.map
-
-
-/***/ }),
-
-/***/ 38:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToResult;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__subscribeTo__ = __webpack_require__(733);
-/** PURE_IMPORTS_START _InnerSubscriber,_subscribeTo PURE_IMPORTS_END */
-
-
-function subscribeToResult(outerSubscriber, result, outerValue, outerIndex, destination) {
-    if (destination === void 0) {
-        destination = new __WEBPACK_IMPORTED_MODULE_0__InnerSubscriber__["a" /* InnerSubscriber */](outerSubscriber, outerValue, outerIndex);
-    }
-    if (destination.closed) {
-        return;
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_1__subscribeTo__["a" /* subscribeTo */])(result)(destination);
-}
-//# sourceMappingURL=subscribeToResult.js.map
-
-
-/***/ }),
-
-/***/ 408:
+/***/ 454:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeConfigurations;
 /* unused harmony export initializeServices */
 /* unused harmony export subscribeToModelEvents */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(409);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(412);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(455);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
 
 
 
@@ -27359,13 +20338,13 @@ function subscribeToModelEvents(service, namespaces) {
 
 /***/ }),
 
-/***/ 409:
+/***/ 455:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(410);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(456);
 
 
 let
@@ -27390,11 +20369,11 @@ Configuration = class Configuration extends __WEBPACK_IMPORTED_MODULE_0__BaseCon
 
 /***/ }),
 
-/***/ 410:
+/***/ 456:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultConfiguration = __webpack_require__(411);
+let defaultConfiguration = __webpack_require__(457);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -27403,20 +20382,20 @@ let defaultConfiguration = __webpack_require__(411);
 
 /***/ }),
 
-/***/ 411:
+/***/ 457:
 /***/ (function(module, exports) {
 
 module.exports = {"editor.requestEditorLayoutName":"layout-1-column","request.autoPersistVariables":true,"user.plansToAllowUpgrade":[],"workspace.visibilityAvailablePlans":[],"editor.openInNew":false,"editor.skipConfirmationBeforeClose":false,"editor.showIcons":true}
 
 /***/ }),
 
-/***/ 412:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(398);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(430);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(459);
 
 
 let
@@ -27449,11 +20428,11 @@ FeatureFlags = class FeatureFlags extends __WEBPACK_IMPORTED_MODULE_0__BaseConfi
 
 /***/ }),
 
-/***/ 413:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultFeatureFlags = __webpack_require__(414);
+let defaultFeatureFlags = __webpack_require__(460);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -27462,329 +20441,21 @@ let defaultFeatureFlags = __webpack_require__(414);
 
 /***/ }),
 
-/***/ 414:
+/***/ 460:
 /***/ (function(module, exports) {
 
 module.exports = {"inviteByNonAdmin":false}
 
 /***/ }),
 
-/***/ 436:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return throwIfEmpty; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tap__ = __webpack_require__(744);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_EmptyError__ = __webpack_require__(262);
-/** PURE_IMPORTS_START _tap,_util_EmptyError PURE_IMPORTS_END */
-
-
-var throwIfEmpty = function (errorFactory) {
-    if (errorFactory === void 0) {
-        errorFactory = defaultErrorFactory;
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_0__tap__["a" /* tap */])({
-        hasValue: false,
-        next: function () { this.hasValue = true; },
-        complete: function () {
-            if (!this.hasValue) {
-                throw errorFactory();
-            }
-        }
-    });
-};
-function defaultErrorFactory() {
-    return new __WEBPACK_IMPORTED_MODULE_1__util_EmptyError__["a" /* EmptyError */]();
-}
-//# sourceMappingURL=throwIfEmpty.js.map
-
-
-/***/ }),
-
-/***/ 437:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = reduce;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scan__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__takeLast__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__defaultIfEmpty__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_pipe__ = __webpack_require__(543);
-/** PURE_IMPORTS_START _scan,_takeLast,_defaultIfEmpty,_util_pipe PURE_IMPORTS_END */
-
-
-
-
-function reduce(accumulator, seed) {
-    if (arguments.length >= 2) {
-        return function reduceOperatorFunctionWithSeed(source) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__util_pipe__["a" /* pipe */])(Object(__WEBPACK_IMPORTED_MODULE_0__scan__["a" /* scan */])(accumulator, seed), Object(__WEBPACK_IMPORTED_MODULE_1__takeLast__["a" /* takeLast */])(1), Object(__WEBPACK_IMPORTED_MODULE_2__defaultIfEmpty__["a" /* defaultIfEmpty */])(seed))(source);
-        };
-    }
-    return function reduceOperatorFunction(source) {
-        return Object(__WEBPACK_IMPORTED_MODULE_3__util_pipe__["a" /* pipe */])(Object(__WEBPACK_IMPORTED_MODULE_0__scan__["a" /* scan */])(function (acc, value, index) {
-            return accumulator(acc, value, index + 1);
-        }), Object(__WEBPACK_IMPORTED_MODULE_1__takeLast__["a" /* takeLast */])(1))(source);
-    };
-}
-//# sourceMappingURL=reduce.js.map
-
-
-/***/ }),
-
-/***/ 438:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return config; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var _enable_super_gross_mode_that_will_cause_bad_things = false;
-var config = {
-    Promise: undefined,
-    set useDeprecatedSynchronousErrorHandling(value) {
-        if (value) {
-            var error = /*@__PURE__*/ new Error();
-            /*@__PURE__*/ console.warn('DEPRECATED! RxJS was set to use deprecated synchronous error handling behavior by code at: \n' + error.stack);
-        }
-        else if (_enable_super_gross_mode_that_will_cause_bad_things) {
-            /*@__PURE__*/ console.log('RxJS: Back to a better error behavior. Thank you. <3');
-        }
-        _enable_super_gross_mode_that_will_cause_bad_things = value;
-    },
-    get useDeprecatedSynchronousErrorHandling() {
-        return _enable_super_gross_mode_that_will_cause_bad_things;
-    },
-};
-//# sourceMappingURL=config.js.map
-
-
-/***/ }),
-
-/***/ 439:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isNumeric;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArray__ = __webpack_require__(80);
-/** PURE_IMPORTS_START _isArray PURE_IMPORTS_END */
-
-function isNumeric(val) {
-    return !Object(__WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* isArray */])(val) && (val - parseFloat(val) + 1) >= 0;
-}
-//# sourceMappingURL=isNumeric.js.map
-
-
-/***/ }),
-
-/***/ 440:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = concat;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_isScheduler__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__of__ = __webpack_require__(545);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__from__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operators_concatAll__ = __webpack_require__(740);
-/** PURE_IMPORTS_START _util_isScheduler,_of,_from,_operators_concatAll PURE_IMPORTS_END */
-
-
-
-
-function concat() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    if (observables.length === 1 || (observables.length === 2 && Object(__WEBPACK_IMPORTED_MODULE_0__util_isScheduler__["a" /* isScheduler */])(observables[1]))) {
-        return Object(__WEBPACK_IMPORTED_MODULE_2__from__["a" /* from */])(observables[0]);
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_3__operators_concatAll__["a" /* concatAll */])()(__WEBPACK_IMPORTED_MODULE_1__of__["a" /* of */].apply(void 0, observables));
-}
-//# sourceMappingURL=concat.js.map
-
-
-/***/ }),
-
-/***/ 441:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Notification; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_empty__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_of__ = __webpack_require__(545);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__observable_throwError__ = __webpack_require__(546);
-/** PURE_IMPORTS_START _observable_empty,_observable_of,_observable_throwError PURE_IMPORTS_END */
-
-
-
-var Notification = /*@__PURE__*/ (function () {
-    function Notification(kind, value, error) {
-        this.kind = kind;
-        this.value = value;
-        this.error = error;
-        this.hasValue = kind === 'N';
-    }
-    Notification.prototype.observe = function (observer) {
-        switch (this.kind) {
-            case 'N':
-                return observer.next && observer.next(this.value);
-            case 'E':
-                return observer.error && observer.error(this.error);
-            case 'C':
-                return observer.complete && observer.complete();
-        }
-    };
-    Notification.prototype.do = function (next, error, complete) {
-        var kind = this.kind;
-        switch (kind) {
-            case 'N':
-                return next && next(this.value);
-            case 'E':
-                return error && error(this.error);
-            case 'C':
-                return complete && complete();
-        }
-    };
-    Notification.prototype.accept = function (nextOrObserver, error, complete) {
-        if (nextOrObserver && typeof nextOrObserver.next === 'function') {
-            return this.observe(nextOrObserver);
-        }
-        else {
-            return this.do(nextOrObserver, error, complete);
-        }
-    };
-    Notification.prototype.toObservable = function () {
-        var kind = this.kind;
-        switch (kind) {
-            case 'N':
-                return Object(__WEBPACK_IMPORTED_MODULE_1__observable_of__["a" /* of */])(this.value);
-            case 'E':
-                return Object(__WEBPACK_IMPORTED_MODULE_2__observable_throwError__["a" /* throwError */])(this.error);
-            case 'C':
-                return Object(__WEBPACK_IMPORTED_MODULE_0__observable_empty__["b" /* empty */])();
-        }
-        throw new Error('unexpected notification kind value');
-    };
-    Notification.createNext = function (value) {
-        if (typeof value !== 'undefined') {
-            return new Notification('N', value);
-        }
-        return Notification.undefinedValueNotification;
-    };
-    Notification.createError = function (err) {
-        return new Notification('E', undefined, err);
-    };
-    Notification.createComplete = function () {
-        return Notification.completeNotification;
-    };
-    Notification.completeNotification = new Notification('C');
-    Notification.undefinedValueNotification = new Notification('N', undefined);
-    return Notification;
-}());
-
-//# sourceMappingURL=Notification.js.map
-
-
-/***/ }),
-
-/***/ 442:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObjectUnsubscribedError; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function ObjectUnsubscribedErrorImpl() {
-    Error.call(this);
-    this.message = 'object unsubscribed';
-    this.name = 'ObjectUnsubscribedError';
-    return this;
-}
-ObjectUnsubscribedErrorImpl.prototype = /*@__PURE__*/ Object.create(Error.prototype);
-var ObjectUnsubscribedError = ObjectUnsubscribedErrorImpl;
-//# sourceMappingURL=ObjectUnsubscribedError.js.map
-
-
-/***/ }),
-
-/***/ 447:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = noop;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function noop() { }
-//# sourceMappingURL=noop.js.map
-
-
-/***/ }),
-
-/***/ 449:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsyncSubject; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subscription__ = __webpack_require__(62);
-/** PURE_IMPORTS_START tslib,_Subject,_Subscription PURE_IMPORTS_END */
-
-
-
-var AsyncSubject = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AsyncSubject, _super);
-    function AsyncSubject() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.value = null;
-        _this.hasNext = false;
-        _this.hasCompleted = false;
-        return _this;
-    }
-    AsyncSubject.prototype._subscribe = function (subscriber) {
-        if (this.hasError) {
-            subscriber.error(this.thrownError);
-            return __WEBPACK_IMPORTED_MODULE_2__Subscription__["a" /* Subscription */].EMPTY;
-        }
-        else if (this.hasCompleted && this.hasNext) {
-            subscriber.next(this.value);
-            subscriber.complete();
-            return __WEBPACK_IMPORTED_MODULE_2__Subscription__["a" /* Subscription */].EMPTY;
-        }
-        return _super.prototype._subscribe.call(this, subscriber);
-    };
-    AsyncSubject.prototype.next = function (value) {
-        if (!this.hasCompleted) {
-            this.value = value;
-            this.hasNext = true;
-        }
-    };
-    AsyncSubject.prototype.error = function (error) {
-        if (!this.hasCompleted) {
-            _super.prototype.error.call(this, error);
-        }
-    };
-    AsyncSubject.prototype.complete = function () {
-        this.hasCompleted = true;
-        if (this.hasNext) {
-            _super.prototype.next.call(this, this.value);
-        }
-        _super.prototype.complete.call(this);
-    };
-    return AsyncSubject;
-}(__WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]));
-
-//# sourceMappingURL=AsyncSubject.js.map
-
-
-/***/ }),
-
-/***/ 50:
+/***/ 55:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 519:
+/***/ 578:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -27793,7 +20464,7 @@ module.exports = require("os");
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(2547);
+exports = module.exports = __webpack_require__(2880);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -27983,11 +20654,11 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 520:
+/***/ 579:
 /***/ (function(module, exports) {
 
 /**
@@ -28031,7 +20702,7 @@ exports.decode = function(qs){
 
 /***/ }),
 
-/***/ 521:
+/***/ 580:
 /***/ (function(module, exports) {
 
 
@@ -28044,7 +20715,7 @@ module.exports = function(a, b){
 
 /***/ }),
 
-/***/ 522:
+/***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -28053,7 +20724,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(2563);
+exports = module.exports = __webpack_require__(2896);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -28243,1229 +20914,553 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 532:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = hostReportError;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function hostReportError(err) {
-    setTimeout(function () { throw err; });
-}
-//# sourceMappingURL=hostReportError.js.map
-
-
-/***/ }),
-
-/***/ 533:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return rxSubscriber; });
-/* unused harmony export $$rxSubscriber */
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function')
-    ? /*@__PURE__*/ Symbol.for('rxSubscriber')
-    : '@@rxSubscriber';
-var $$rxSubscriber = rxSubscriber;
-//# sourceMappingURL=rxSubscriber.js.map
-
-
-/***/ }),
-
-/***/ 534:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = scalar;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
-
-function scalar(value) {
-    var result = new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        subscriber.next(value);
-        subscriber.complete();
-    });
-    result._isScalar = true;
-    result.value = value;
-    return result;
-}
-//# sourceMappingURL=scalar.js.map
-
-
-/***/ }),
-
-/***/ 535:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = mergeAll;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mergeMap__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_identity__ = __webpack_require__(231);
-/** PURE_IMPORTS_START _mergeMap,_util_identity PURE_IMPORTS_END */
-
-
-function mergeAll(concurrent) {
-    if (concurrent === void 0) {
-        concurrent = Number.POSITIVE_INFINITY;
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_0__mergeMap__["a" /* mergeMap */])(__WEBPACK_IMPORTED_MODULE_1__util_identity__["a" /* identity */], concurrent);
-}
-//# sourceMappingURL=mergeAll.js.map
-
-
-/***/ }),
-
-/***/ 536:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = take;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_ArgumentOutOfRangeError__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_ArgumentOutOfRangeError,_observable_empty PURE_IMPORTS_END */
-
-
-
-
-function take(count) {
-    return function (source) {
-        if (count === 0) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_empty__["b" /* empty */])();
-        }
-        else {
-            return source.lift(new TakeOperator(count));
-        }
-    };
-}
-var TakeOperator = /*@__PURE__*/ (function () {
-    function TakeOperator(total) {
-        this.total = total;
-        if (this.total < 0) {
-            throw new __WEBPACK_IMPORTED_MODULE_2__util_ArgumentOutOfRangeError__["a" /* ArgumentOutOfRangeError */];
-        }
-    }
-    TakeOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new TakeSubscriber(subscriber, this.total));
-    };
-    return TakeOperator;
-}());
-var TakeSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TakeSubscriber, _super);
-    function TakeSubscriber(destination, total) {
-        var _this = _super.call(this, destination) || this;
-        _this.total = total;
-        _this.count = 0;
-        return _this;
-    }
-    TakeSubscriber.prototype._next = function (value) {
-        var total = this.total;
-        var count = ++this.count;
-        if (count <= total) {
-            this.destination.next(value);
-            if (count === total) {
-                this.destination.complete();
-                this.unsubscribe();
-            }
-        }
-    };
-    return TakeSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=take.js.map
-
-
-/***/ }),
-
-/***/ 537:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = takeLast;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_ArgumentOutOfRangeError__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_ArgumentOutOfRangeError,_observable_empty PURE_IMPORTS_END */
-
-
-
-
-function takeLast(count) {
-    return function takeLastOperatorFunction(source) {
-        if (count === 0) {
-            return Object(__WEBPACK_IMPORTED_MODULE_3__observable_empty__["b" /* empty */])();
-        }
-        else {
-            return source.lift(new TakeLastOperator(count));
-        }
-    };
-}
-var TakeLastOperator = /*@__PURE__*/ (function () {
-    function TakeLastOperator(total) {
-        this.total = total;
-        if (this.total < 0) {
-            throw new __WEBPACK_IMPORTED_MODULE_2__util_ArgumentOutOfRangeError__["a" /* ArgumentOutOfRangeError */];
-        }
-    }
-    TakeLastOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new TakeLastSubscriber(subscriber, this.total));
-    };
-    return TakeLastOperator;
-}());
-var TakeLastSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TakeLastSubscriber, _super);
-    function TakeLastSubscriber(destination, total) {
-        var _this = _super.call(this, destination) || this;
-        _this.total = total;
-        _this.ring = new Array();
-        _this.count = 0;
-        return _this;
-    }
-    TakeLastSubscriber.prototype._next = function (value) {
-        var ring = this.ring;
-        var total = this.total;
-        var count = this.count++;
-        if (ring.length < total) {
-            ring.push(value);
-        }
-        else {
-            var index = count % total;
-            ring[index] = value;
-        }
-    };
-    TakeLastSubscriber.prototype._complete = function () {
-        var destination = this.destination;
-        var count = this.count;
-        if (count > 0) {
-            var total = this.count >= this.total ? this.total : this.count;
-            var ring = this.ring;
-            for (var i = 0; i < total; i++) {
-                var idx = (count++) % total;
-                destination.next(ring[idx]);
-            }
-        }
-        destination.complete();
-    };
-    return TakeLastSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=takeLast.js.map
-
-
-/***/ }),
-
-/***/ 538:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = scan;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function scan(accumulator, seed) {
-    var hasSeed = false;
-    if (arguments.length >= 2) {
-        hasSeed = true;
-    }
-    return function scanOperatorFunction(source) {
-        return source.lift(new ScanOperator(accumulator, seed, hasSeed));
-    };
-}
-var ScanOperator = /*@__PURE__*/ (function () {
-    function ScanOperator(accumulator, seed, hasSeed) {
-        if (hasSeed === void 0) {
-            hasSeed = false;
-        }
-        this.accumulator = accumulator;
-        this.seed = seed;
-        this.hasSeed = hasSeed;
-    }
-    ScanOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ScanSubscriber(subscriber, this.accumulator, this.seed, this.hasSeed));
-    };
-    return ScanOperator;
-}());
-var ScanSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ScanSubscriber, _super);
-    function ScanSubscriber(destination, accumulator, _seed, hasSeed) {
-        var _this = _super.call(this, destination) || this;
-        _this.accumulator = accumulator;
-        _this._seed = _seed;
-        _this.hasSeed = hasSeed;
-        _this.index = 0;
-        return _this;
-    }
-    Object.defineProperty(ScanSubscriber.prototype, "seed", {
-        get: function () {
-            return this._seed;
-        },
-        set: function (value) {
-            this.hasSeed = true;
-            this._seed = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ScanSubscriber.prototype._next = function (value) {
-        if (!this.hasSeed) {
-            this.seed = value;
-            this.destination.next(value);
-        }
-        else {
-            return this._tryNext(value);
-        }
-    };
-    ScanSubscriber.prototype._tryNext = function (value) {
-        var index = this.index++;
-        var result;
-        try {
-            result = this.accumulator(this.seed, value, index);
-        }
-        catch (err) {
-            this.destination.error(err);
-        }
-        this.seed = result;
-        this.destination.next(result);
-    };
-    return ScanSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=scan.js.map
-
-
-/***/ }),
-
-/***/ 539:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = refCount;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function refCount() {
-    return function refCountOperatorFunction(source) {
-        return source.lift(new RefCountOperator(source));
-    };
-}
-var RefCountOperator = /*@__PURE__*/ (function () {
-    function RefCountOperator(connectable) {
-        this.connectable = connectable;
-    }
-    RefCountOperator.prototype.call = function (subscriber, source) {
-        var connectable = this.connectable;
-        connectable._refCount++;
-        var refCounter = new RefCountSubscriber(subscriber, connectable);
-        var subscription = source.subscribe(refCounter);
-        if (!refCounter.closed) {
-            refCounter.connection = connectable.connect();
-        }
-        return subscription;
-    };
-    return RefCountOperator;
-}());
-var RefCountSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RefCountSubscriber, _super);
-    function RefCountSubscriber(destination, connectable) {
-        var _this = _super.call(this, destination) || this;
-        _this.connectable = connectable;
-        return _this;
-    }
-    RefCountSubscriber.prototype._unsubscribe = function () {
-        var connectable = this.connectable;
-        if (!connectable) {
-            this.connection = null;
-            return;
-        }
-        this.connectable = null;
-        var refCount = connectable._refCount;
-        if (refCount <= 0) {
-            this.connection = null;
-            return;
-        }
-        connectable._refCount = refCount - 1;
-        if (refCount > 1) {
-            this.connection = null;
-            return;
-        }
-        var connection = this.connection;
-        var sharedConnection = connectable._connection;
-        this.connection = null;
-        if (sharedConnection && (!connection || sharedConnection === connection)) {
-            sharedConnection.unsubscribe();
-        }
-    };
-    return RefCountSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=refCount.js.map
-
-
-/***/ }),
-
-/***/ 540:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = switchMap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__map__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__observable_from__ = __webpack_require__(131);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_InnerSubscriber,_util_subscribeToResult,_map,_observable_from PURE_IMPORTS_END */
-
-
-
-
-
-
-function switchMap(project, resultSelector) {
-    if (typeof resultSelector === 'function') {
-        return function (source) { return source.pipe(switchMap(function (a, i) { return Object(__WEBPACK_IMPORTED_MODULE_5__observable_from__["a" /* from */])(project(a, i)).pipe(Object(__WEBPACK_IMPORTED_MODULE_4__map__["a" /* map */])(function (b, ii) { return resultSelector(a, b, i, ii); })); })); };
-    }
-    return function (source) { return source.lift(new SwitchMapOperator(project)); };
-}
-var SwitchMapOperator = /*@__PURE__*/ (function () {
-    function SwitchMapOperator(project) {
-        this.project = project;
-    }
-    SwitchMapOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new SwitchMapSubscriber(subscriber, this.project));
-    };
-    return SwitchMapOperator;
-}());
-var SwitchMapSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SwitchMapSubscriber, _super);
-    function SwitchMapSubscriber(destination, project) {
-        var _this = _super.call(this, destination) || this;
-        _this.project = project;
-        _this.index = 0;
-        return _this;
-    }
-    SwitchMapSubscriber.prototype._next = function (value) {
-        var result;
-        var index = this.index++;
-        try {
-            result = this.project(value, index);
-        }
-        catch (error) {
-            this.destination.error(error);
-            return;
-        }
-        this._innerSub(result, value, index);
-    };
-    SwitchMapSubscriber.prototype._innerSub = function (result, value, index) {
-        var innerSubscription = this.innerSubscription;
-        if (innerSubscription) {
-            innerSubscription.unsubscribe();
-        }
-        var innerSubscriber = new __WEBPACK_IMPORTED_MODULE_2__InnerSubscriber__["a" /* InnerSubscriber */](this, undefined, undefined);
-        this.add(innerSubscriber);
-        this.innerSubscription = Object(__WEBPACK_IMPORTED_MODULE_3__util_subscribeToResult__["a" /* subscribeToResult */])(this, result, value, index, innerSubscriber);
-    };
-    SwitchMapSubscriber.prototype._complete = function () {
-        var innerSubscription = this.innerSubscription;
-        if (!innerSubscription || innerSubscription.closed) {
-            _super.prototype._complete.call(this);
-        }
-    };
-    SwitchMapSubscriber.prototype._unsubscribe = function () {
-        this.innerSubscription = null;
-    };
-    SwitchMapSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.remove(innerSub);
-        this.innerSubscription = null;
-        if (this.isStopped) {
-            _super.prototype._complete.call(this);
-        }
-    };
-    SwitchMapSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.destination.next(innerValue);
-    };
-    return SwitchMapSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=switchMap.js.map
-
-
-/***/ }),
-
-/***/ 543:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = pipe;
-/* harmony export (immutable) */ __webpack_exports__["b"] = pipeFromArray;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop__ = __webpack_require__(447);
-/** PURE_IMPORTS_START _noop PURE_IMPORTS_END */
-
-function pipe() {
-    var fns = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        fns[_i] = arguments[_i];
-    }
-    return pipeFromArray(fns);
-}
-function pipeFromArray(fns) {
-    if (!fns) {
-        return __WEBPACK_IMPORTED_MODULE_0__noop__["a" /* noop */];
-    }
-    if (fns.length === 1) {
-        return fns[0];
-    }
-    return function piped(input) {
-        return fns.reduce(function (prev, fn) { return fn(prev); }, input);
-    };
-}
-//# sourceMappingURL=pipe.js.map
-
-
-/***/ }),
-
-/***/ 544:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export combineLatest */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CombineLatestOperator; });
-/* unused harmony export CombineLatestSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isScheduler__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__fromArray__ = __webpack_require__(151);
-/** PURE_IMPORTS_START tslib,_util_isScheduler,_util_isArray,_OuterSubscriber,_util_subscribeToResult,_fromArray PURE_IMPORTS_END */
-
-
-
-
-
-
-var NONE = {};
-function combineLatest() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    var resultSelector = null;
-    var scheduler = null;
-    if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isScheduler__["a" /* isScheduler */])(observables[observables.length - 1])) {
-        scheduler = observables.pop();
-    }
-    if (typeof observables[observables.length - 1] === 'function') {
-        resultSelector = observables.pop();
-    }
-    if (observables.length === 1 && Object(__WEBPACK_IMPORTED_MODULE_2__util_isArray__["a" /* isArray */])(observables[0])) {
-        observables = observables[0];
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_5__fromArray__["a" /* fromArray */])(observables, scheduler).lift(new CombineLatestOperator(resultSelector));
-}
-var CombineLatestOperator = /*@__PURE__*/ (function () {
-    function CombineLatestOperator(resultSelector) {
-        this.resultSelector = resultSelector;
-    }
-    CombineLatestOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new CombineLatestSubscriber(subscriber, this.resultSelector));
-    };
-    return CombineLatestOperator;
-}());
-
-var CombineLatestSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](CombineLatestSubscriber, _super);
-    function CombineLatestSubscriber(destination, resultSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.resultSelector = resultSelector;
-        _this.active = 0;
-        _this.values = [];
-        _this.observables = [];
-        return _this;
-    }
-    CombineLatestSubscriber.prototype._next = function (observable) {
-        this.values.push(NONE);
-        this.observables.push(observable);
-    };
-    CombineLatestSubscriber.prototype._complete = function () {
-        var observables = this.observables;
-        var len = observables.length;
-        if (len === 0) {
-            this.destination.complete();
-        }
-        else {
-            this.active = len;
-            this.toRespond = len;
-            for (var i = 0; i < len; i++) {
-                var observable = observables[i];
-                this.add(Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(this, observable, observable, i));
-            }
-        }
-    };
-    CombineLatestSubscriber.prototype.notifyComplete = function (unused) {
-        if ((this.active -= 1) === 0) {
-            this.destination.complete();
-        }
-    };
-    CombineLatestSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        var values = this.values;
-        var oldVal = values[outerIndex];
-        var toRespond = !this.toRespond
-            ? 0
-            : oldVal === NONE ? --this.toRespond : this.toRespond;
-        values[outerIndex] = innerValue;
-        if (toRespond === 0) {
-            if (this.resultSelector) {
-                this._tryResultSelector(values);
-            }
-            else {
-                this.destination.next(values.slice());
-            }
-        }
-    };
-    CombineLatestSubscriber.prototype._tryResultSelector = function (values) {
-        var result;
-        try {
-            result = this.resultSelector.apply(this, values);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.next(result);
-    };
-    return CombineLatestSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-
-//# sourceMappingURL=combineLatest.js.map
-
-
-/***/ }),
-
-/***/ 545:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = of;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_isScheduler__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fromArray__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__empty__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scalar__ = __webpack_require__(534);
-/** PURE_IMPORTS_START _util_isScheduler,_fromArray,_empty,_scalar PURE_IMPORTS_END */
-
-
-
-
-function of() {
-    var args = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    var scheduler = args[args.length - 1];
-    if (Object(__WEBPACK_IMPORTED_MODULE_0__util_isScheduler__["a" /* isScheduler */])(scheduler)) {
-        args.pop();
-    }
-    else {
-        scheduler = undefined;
-    }
-    switch (args.length) {
-        case 0:
-            return Object(__WEBPACK_IMPORTED_MODULE_2__empty__["b" /* empty */])(scheduler);
-        case 1:
-            return scheduler ? Object(__WEBPACK_IMPORTED_MODULE_1__fromArray__["a" /* fromArray */])(args, scheduler) : Object(__WEBPACK_IMPORTED_MODULE_3__scalar__["a" /* scalar */])(args[0]);
-        default:
-            return Object(__WEBPACK_IMPORTED_MODULE_1__fromArray__["a" /* fromArray */])(args, scheduler);
-    }
-}
-//# sourceMappingURL=of.js.map
-
-
-/***/ }),
-
-/***/ 546:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = throwError;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
-
-function throwError(error, scheduler) {
-    if (!scheduler) {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) { return subscriber.error(error); });
-    }
-    else {
-        return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) { return scheduler.schedule(dispatch, 0, { error: error, subscriber: subscriber }); });
-    }
-}
-function dispatch(_a) {
-    var error = _a.error, subscriber = _a.subscriber;
-    subscriber.error(error);
-}
-//# sourceMappingURL=throwError.js.map
-
-
-/***/ }),
-
-/***/ 547:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReplaySubject; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scheduler_queue__ = __webpack_require__(764);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operators_observeOn__ = __webpack_require__(747);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_ObjectUnsubscribedError__ = __webpack_require__(442);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SubjectSubscription__ = __webpack_require__(746);
-/** PURE_IMPORTS_START tslib,_Subject,_scheduler_queue,_Subscription,_operators_observeOn,_util_ObjectUnsubscribedError,_SubjectSubscription PURE_IMPORTS_END */
-
-
-
-
-
-
-
-var ReplaySubject = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ReplaySubject, _super);
-    function ReplaySubject(bufferSize, windowTime, scheduler) {
-        if (bufferSize === void 0) {
-            bufferSize = Number.POSITIVE_INFINITY;
-        }
-        if (windowTime === void 0) {
-            windowTime = Number.POSITIVE_INFINITY;
-        }
-        var _this = _super.call(this) || this;
-        _this.scheduler = scheduler;
-        _this._events = [];
-        _this._infiniteTimeWindow = false;
-        _this._bufferSize = bufferSize < 1 ? 1 : bufferSize;
-        _this._windowTime = windowTime < 1 ? 1 : windowTime;
-        if (windowTime === Number.POSITIVE_INFINITY) {
-            _this._infiniteTimeWindow = true;
-            _this.next = _this.nextInfiniteTimeWindow;
-        }
-        else {
-            _this.next = _this.nextTimeWindow;
-        }
-        return _this;
-    }
-    ReplaySubject.prototype.nextInfiniteTimeWindow = function (value) {
-        var _events = this._events;
-        _events.push(value);
-        if (_events.length > this._bufferSize) {
-            _events.shift();
-        }
-        _super.prototype.next.call(this, value);
-    };
-    ReplaySubject.prototype.nextTimeWindow = function (value) {
-        this._events.push(new ReplayEvent(this._getNow(), value));
-        this._trimBufferThenGetEvents();
-        _super.prototype.next.call(this, value);
-    };
-    ReplaySubject.prototype._subscribe = function (subscriber) {
-        var _infiniteTimeWindow = this._infiniteTimeWindow;
-        var _events = _infiniteTimeWindow ? this._events : this._trimBufferThenGetEvents();
-        var scheduler = this.scheduler;
-        var len = _events.length;
-        var subscription;
-        if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_5__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        else if (this.isStopped || this.hasError) {
-            subscription = __WEBPACK_IMPORTED_MODULE_3__Subscription__["a" /* Subscription */].EMPTY;
-        }
-        else {
-            this.observers.push(subscriber);
-            subscription = new __WEBPACK_IMPORTED_MODULE_6__SubjectSubscription__["a" /* SubjectSubscription */](this, subscriber);
-        }
-        if (scheduler) {
-            subscriber.add(subscriber = new __WEBPACK_IMPORTED_MODULE_4__operators_observeOn__["a" /* ObserveOnSubscriber */](subscriber, scheduler));
-        }
-        if (_infiniteTimeWindow) {
-            for (var i = 0; i < len && !subscriber.closed; i++) {
-                subscriber.next(_events[i]);
-            }
-        }
-        else {
-            for (var i = 0; i < len && !subscriber.closed; i++) {
-                subscriber.next(_events[i].value);
-            }
-        }
-        if (this.hasError) {
-            subscriber.error(this.thrownError);
-        }
-        else if (this.isStopped) {
-            subscriber.complete();
-        }
-        return subscription;
-    };
-    ReplaySubject.prototype._getNow = function () {
-        return (this.scheduler || __WEBPACK_IMPORTED_MODULE_2__scheduler_queue__["a" /* queue */]).now();
-    };
-    ReplaySubject.prototype._trimBufferThenGetEvents = function () {
-        var now = this._getNow();
-        var _bufferSize = this._bufferSize;
-        var _windowTime = this._windowTime;
-        var _events = this._events;
-        var eventsCount = _events.length;
-        var spliceCount = 0;
-        while (spliceCount < eventsCount) {
-            if ((now - _events[spliceCount].time) < _windowTime) {
-                break;
-            }
-            spliceCount++;
-        }
-        if (eventsCount > _bufferSize) {
-            spliceCount = Math.max(spliceCount, eventsCount - _bufferSize);
-        }
-        if (spliceCount > 0) {
-            _events.splice(0, spliceCount);
-        }
-        return _events;
-    };
-    return ReplaySubject;
-}(__WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]));
-
-var ReplayEvent = /*@__PURE__*/ (function () {
-    function ReplayEvent(time, value) {
-        this.time = time;
-        this.value = value;
-    }
-    return ReplayEvent;
-}());
-//# sourceMappingURL=ReplaySubject.js.map
-
-
-/***/ }),
-
-/***/ 548:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = zip;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ZipOperator; });
-/* unused harmony export ZipSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fromArray__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__internal_symbol_iterator__ = __webpack_require__(256);
-/** PURE_IMPORTS_START tslib,_fromArray,_util_isArray,_Subscriber,_OuterSubscriber,_util_subscribeToResult,_.._internal_symbol_iterator PURE_IMPORTS_END */
-
-
-
-
-
-
-
-function zip() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    var resultSelector = observables[observables.length - 1];
-    if (typeof resultSelector === 'function') {
-        observables.pop();
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_1__fromArray__["a" /* fromArray */])(observables, undefined).lift(new ZipOperator(resultSelector));
-}
-var ZipOperator = /*@__PURE__*/ (function () {
-    function ZipOperator(resultSelector) {
-        this.resultSelector = resultSelector;
-    }
-    ZipOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ZipSubscriber(subscriber, this.resultSelector));
-    };
-    return ZipOperator;
-}());
-
-var ZipSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ZipSubscriber, _super);
-    function ZipSubscriber(destination, resultSelector, values) {
-        if (values === void 0) {
-            values = Object.create(null);
-        }
-        var _this = _super.call(this, destination) || this;
-        _this.iterators = [];
-        _this.active = 0;
-        _this.resultSelector = (typeof resultSelector === 'function') ? resultSelector : null;
-        _this.values = values;
-        return _this;
-    }
-    ZipSubscriber.prototype._next = function (value) {
-        var iterators = this.iterators;
-        if (Object(__WEBPACK_IMPORTED_MODULE_2__util_isArray__["a" /* isArray */])(value)) {
-            iterators.push(new StaticArrayIterator(value));
-        }
-        else if (typeof value[__WEBPACK_IMPORTED_MODULE_6__internal_symbol_iterator__["a" /* iterator */]] === 'function') {
-            iterators.push(new StaticIterator(value[__WEBPACK_IMPORTED_MODULE_6__internal_symbol_iterator__["a" /* iterator */]]()));
-        }
-        else {
-            iterators.push(new ZipBufferIterator(this.destination, this, value));
-        }
-    };
-    ZipSubscriber.prototype._complete = function () {
-        var iterators = this.iterators;
-        var len = iterators.length;
-        if (len === 0) {
-            this.destination.complete();
-            return;
-        }
-        this.active = len;
-        for (var i = 0; i < len; i++) {
-            var iterator = iterators[i];
-            if (iterator.stillUnsubscribed) {
-                this.add(iterator.subscribe(iterator, i));
-            }
-            else {
-                this.active--;
-            }
-        }
-    };
-    ZipSubscriber.prototype.notifyInactive = function () {
-        this.active--;
-        if (this.active === 0) {
-            this.destination.complete();
-        }
-    };
-    ZipSubscriber.prototype.checkIterators = function () {
-        var iterators = this.iterators;
-        var len = iterators.length;
-        var destination = this.destination;
-        for (var i = 0; i < len; i++) {
-            var iterator = iterators[i];
-            if (typeof iterator.hasValue === 'function' && !iterator.hasValue()) {
-                return;
-            }
-        }
-        var shouldComplete = false;
-        var args = [];
-        for (var i = 0; i < len; i++) {
-            var iterator = iterators[i];
-            var result = iterator.next();
-            if (iterator.hasCompleted()) {
-                shouldComplete = true;
-            }
-            if (result.done) {
-                destination.complete();
-                return;
-            }
-            args.push(result.value);
-        }
-        if (this.resultSelector) {
-            this._tryresultSelector(args);
-        }
-        else {
-            destination.next(args);
-        }
-        if (shouldComplete) {
-            destination.complete();
-        }
-    };
-    ZipSubscriber.prototype._tryresultSelector = function (args) {
-        var result;
-        try {
-            result = this.resultSelector.apply(this, args);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.next(result);
-    };
-    return ZipSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__Subscriber__["a" /* Subscriber */]));
-
-var StaticIterator = /*@__PURE__*/ (function () {
-    function StaticIterator(iterator) {
-        this.iterator = iterator;
-        this.nextResult = iterator.next();
-    }
-    StaticIterator.prototype.hasValue = function () {
-        return true;
-    };
-    StaticIterator.prototype.next = function () {
-        var result = this.nextResult;
-        this.nextResult = this.iterator.next();
-        return result;
-    };
-    StaticIterator.prototype.hasCompleted = function () {
-        var nextResult = this.nextResult;
-        return nextResult && nextResult.done;
-    };
-    return StaticIterator;
-}());
-var StaticArrayIterator = /*@__PURE__*/ (function () {
-    function StaticArrayIterator(array) {
-        this.array = array;
-        this.index = 0;
-        this.length = 0;
-        this.length = array.length;
-    }
-    StaticArrayIterator.prototype[__WEBPACK_IMPORTED_MODULE_6__internal_symbol_iterator__["a" /* iterator */]] = function () {
-        return this;
-    };
-    StaticArrayIterator.prototype.next = function (value) {
-        var i = this.index++;
-        var array = this.array;
-        return i < this.length ? { value: array[i], done: false } : { value: null, done: true };
-    };
-    StaticArrayIterator.prototype.hasValue = function () {
-        return this.array.length > this.index;
-    };
-    StaticArrayIterator.prototype.hasCompleted = function () {
-        return this.array.length === this.index;
-    };
-    return StaticArrayIterator;
-}());
-var ZipBufferIterator = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ZipBufferIterator, _super);
-    function ZipBufferIterator(destination, parent, observable) {
-        var _this = _super.call(this, destination) || this;
-        _this.parent = parent;
-        _this.observable = observable;
-        _this.stillUnsubscribed = true;
-        _this.buffer = [];
-        _this.isComplete = false;
-        return _this;
-    }
-    ZipBufferIterator.prototype[__WEBPACK_IMPORTED_MODULE_6__internal_symbol_iterator__["a" /* iterator */]] = function () {
-        return this;
-    };
-    ZipBufferIterator.prototype.next = function () {
-        var buffer = this.buffer;
-        if (buffer.length === 0 && this.isComplete) {
-            return { value: null, done: true };
-        }
-        else {
-            return { value: buffer.shift(), done: false };
-        }
-    };
-    ZipBufferIterator.prototype.hasValue = function () {
-        return this.buffer.length > 0;
-    };
-    ZipBufferIterator.prototype.hasCompleted = function () {
-        return this.buffer.length === 0 && this.isComplete;
-    };
-    ZipBufferIterator.prototype.notifyComplete = function () {
-        if (this.buffer.length > 0) {
-            this.isComplete = true;
-            this.parent.notifyInactive();
-        }
-        else {
-            this.destination.complete();
-        }
-    };
-    ZipBufferIterator.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.buffer.push(innerValue);
-        this.parent.checkIterators();
-    };
-    ZipBufferIterator.prototype.subscribe = function (value, index) {
-        return Object(__WEBPACK_IMPORTED_MODULE_5__util_subscribeToResult__["a" /* subscribeToResult */])(this, this.observable, this, index);
-    };
-    return ZipBufferIterator;
-}(__WEBPACK_IMPORTED_MODULE_4__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=zip.js.map
-
-
-/***/ }),
-
-/***/ 554:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = defer;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__from__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__empty__ = __webpack_require__(81);
-/** PURE_IMPORTS_START _Observable,_from,_empty PURE_IMPORTS_END */
-
-
-
-function defer(observableFactory) {
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var input;
-        try {
-            input = observableFactory();
-        }
-        catch (err) {
-            subscriber.error(err);
-            return undefined;
-        }
-        var source = input ? Object(__WEBPACK_IMPORTED_MODULE_1__from__["a" /* from */])(input) : Object(__WEBPACK_IMPORTED_MODULE_2__empty__["b" /* empty */])();
-        return source.subscribe(subscriber);
-    });
-}
-//# sourceMappingURL=defer.js.map
-
-
-/***/ }),
-
-/***/ 561:
+/***/ 606:
 /***/ (function(module, exports) {
 
 module.exports = require("child_process");
 
 /***/ }),
 
-/***/ 62:
+/***/ 757:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Subscription; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isObject__ = __webpack_require__(732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isFunction__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_UnsubscriptionError__ = __webpack_require__(757);
-/** PURE_IMPORTS_START _util_isArray,_util_isObject,_util_isFunction,_util_tryCatch,_util_errorObject,_util_UnsubscriptionError PURE_IMPORTS_END */
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeRollbackNotifications;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(174);
 
 
 
 
 
 
-var Subscription = /*@__PURE__*/ (function () {
-    function Subscription(unsubscribe) {
-        this.closed = false;
-        this._parent = null;
-        this._parents = null;
-        this._subscriptions = null;
-        if (unsubscribe) {
-            this._unsubscribe = unsubscribe;
-        }
+
+
+
+
+
+
+
+let pendingNotifyChanges = [];
+
+const controllerMap = {
+  workspace: __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__["a" /* default */]),
+  globals: __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__["a" /* default */]),
+  environment: __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__["a" /* default */]),
+  headerpreset: __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__["a" /* default */]),
+  collection: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getCollection.bind(__WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */]),
+  folder: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getFolder.bind(__WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */]),
+  request: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getRequest.bind(__WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */]),
+  response: __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getResponse.bind(__WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */]),
+  history: __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__["a" /* default */]),
+  historyresponse: __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__["a" /* default */]),
+  collectionrun: __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__["a" /* default */].get.bind(__WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__["a" /* default */]) },
+
+SUPPORTED_MODELS = _.keys(controllerMap),
+SUPPORTED_ACTIONS = ['create', 'import', 'update', 'transfer', 'destroy'],
+COLLECTION_CHILDREN_MODELS = ['folder', 'request', 'response'],
+WS_DEPS_MODELS = new Set(['collection', 'environment', 'headerpreset']),
+COLLECTION_OR_ENVIRONMENT = new Set(['collection', 'environment']),
+
+TOAST_DEBOUNCE_TIME = 1000, // 1 sec
+TOAST_MAX_DEBOUNCE = 60 * 1000, // 1 min
+debouncedShowNotification = _.debounce(_showNotification, TOAST_DEBOUNCE_TIME, { 'maxWait': TOAST_MAX_DEBOUNCE }),
+TOAST_TITLE_SUFFIX = 'changes could not be saved',
+TOAST_MESSAGE = 'You don\'t seem to have the required permissions to perform these actions';
+
+/**
+                                                                                              * Rolls back the action performed by the changeset
+                                                                                              * @param {Object} changeset
+                                                                                              * @param {Function} callback
+                                                                                              */
+function rollbackWorker(changeset, callback = _.noop) {
+  pm.logger.info(`DbRollbackService~rollbackWorker: rollingback ${changeset.model}:${changeset.action}`);
+
+  let { model, action } = changeset;
+
+  if (!_.includes(SUPPORTED_MODELS, model) || !_.includes(SUPPORTED_ACTIONS, action)) {
+    pm.logger.warn('DbRollbackService~rollbackWorker: entity model/action not supported', { model, action });
+    return callback();
+  }
+
+  __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__["a" /* default */].addEvent(model, 'rollback', action);
+
+  Promise.resolve()
+
+  // get the remote entity
+  .then(() => {
+    // For the actions where an entity was created, it won't exist on remote
+    if (!_.includes(['import', 'create'], action)) {
+      return _getEntityFromRemote(changeset);
     }
-    Subscription.prototype.unsubscribe = function () {
-        var hasErrors = false;
-        var errors;
-        if (this.closed) {
-            return;
-        }
-        var _a = this, _parent = _a._parent, _parents = _a._parents, _unsubscribe = _a._unsubscribe, _subscriptions = _a._subscriptions;
-        this.closed = true;
-        this._parent = null;
-        this._parents = null;
-        this._subscriptions = null;
-        var index = -1;
-        var len = _parents ? _parents.length : 0;
-        while (_parent) {
-            _parent.remove(this);
-            _parent = ++index < len && _parents[index] || null;
-        }
-        if (Object(__WEBPACK_IMPORTED_MODULE_2__util_isFunction__["a" /* isFunction */])(_unsubscribe)) {
-            var trial = Object(__WEBPACK_IMPORTED_MODULE_3__util_tryCatch__["a" /* tryCatch */])(_unsubscribe).call(this);
-            if (trial === __WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */]) {
-                hasErrors = true;
-                errors = errors || (__WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */].e instanceof __WEBPACK_IMPORTED_MODULE_5__util_UnsubscriptionError__["a" /* UnsubscriptionError */] ?
-                    flattenUnsubscriptionErrors(__WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */].e.errors) : [__WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */].e]);
-            }
-        }
-        if (Object(__WEBPACK_IMPORTED_MODULE_0__util_isArray__["a" /* isArray */])(_subscriptions)) {
-            index = -1;
-            len = _subscriptions.length;
-            while (++index < len) {
-                var sub = _subscriptions[index];
-                if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isObject__["a" /* isObject */])(sub)) {
-                    var trial = Object(__WEBPACK_IMPORTED_MODULE_3__util_tryCatch__["a" /* tryCatch */])(sub.unsubscribe).call(sub);
-                    if (trial === __WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */]) {
-                        hasErrors = true;
-                        errors = errors || [];
-                        var err = __WEBPACK_IMPORTED_MODULE_4__util_errorObject__["a" /* errorObject */].e;
-                        if (err instanceof __WEBPACK_IMPORTED_MODULE_5__util_UnsubscriptionError__["a" /* UnsubscriptionError */]) {
-                            errors = errors.concat(flattenUnsubscriptionErrors(err.errors));
-                        }
-                        else {
-                            errors.push(err);
-                        }
-                    }
-                }
-            }
-        }
-        if (hasErrors) {
-            throw new __WEBPACK_IMPORTED_MODULE_5__util_UnsubscriptionError__["a" /* UnsubscriptionError */](errors);
-        }
-    };
-    Subscription.prototype.add = function (teardown) {
-        if (!teardown || (teardown === Subscription.EMPTY)) {
-            return Subscription.EMPTY;
-        }
-        if (teardown === this) {
-            return this;
-        }
-        var subscription = teardown;
-        switch (typeof teardown) {
-            case 'function':
-                subscription = new Subscription(teardown);
-            case 'object':
-                if (subscription.closed || typeof subscription.unsubscribe !== 'function') {
-                    return subscription;
-                }
-                else if (this.closed) {
-                    subscription.unsubscribe();
-                    return subscription;
-                }
-                else if (typeof subscription._addParent !== 'function') {
-                    var tmp = subscription;
-                    subscription = new Subscription();
-                    subscription._subscriptions = [tmp];
-                }
-                break;
-            default:
-                throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
-        }
-        var subscriptions = this._subscriptions || (this._subscriptions = []);
-        subscriptions.push(subscription);
-        subscription._addParent(this);
-        return subscription;
-    };
-    Subscription.prototype.remove = function (subscription) {
-        var subscriptions = this._subscriptions;
-        if (subscriptions) {
-            var subscriptionIndex = subscriptions.indexOf(subscription);
-            if (subscriptionIndex !== -1) {
-                subscriptions.splice(subscriptionIndex, 1);
-            }
-        }
-    };
-    Subscription.prototype._addParent = function (parent) {
-        var _a = this, _parent = _a._parent, _parents = _a._parents;
-        if (!_parent || _parent === parent) {
-            this._parent = parent;
-        }
-        else if (!_parents) {
-            this._parents = [parent];
-        }
-        else if (_parents.indexOf(parent) === -1) {
-            _parents.push(parent);
-        }
-    };
-    Subscription.EMPTY = (function (empty) {
-        empty.closed = true;
-        return empty;
-    }(new Subscription()));
-    return Subscription;
-}());
+  })
 
-function flattenUnsubscriptionErrors(errors) {
-    return errors.reduce(function (errs, err) { return errs.concat((err instanceof __WEBPACK_IMPORTED_MODULE_5__util_UnsubscriptionError__["a" /* UnsubscriptionError */]) ? err.errors : err); }, []);
+  // perform the rollback
+  .then(remoteEntitySyncMessage => {
+    return _rollback(changeset, remoteEntitySyncMessage);
+  })
+
+  // log and call the callback
+  .then(() => {
+    pm.logger.info(`DbRollbackService~rollbackWorker: completed rollback for ${changeset.model}:${changeset.action}`);
+    callback();
+  })
+
+  // on errors just log it and call the callback without error
+  .catch(err => {
+    pm.logger.error('DbRollbackService~rollbackWorker: error while processsing rollback', err);
+
+    // Do not bubble the error up
+    callback();
+  });
 }
-//# sourceMappingURL=Subscription.js.map
 
+/**
+   * For a given changeset, returns the remote entity
+   * For update/destroy operations: remote entity will be the same
+   *     transfer operations: remote entity will be a common ancestor of the source and destination
+   *     create operations: should not be called since it will not exist on remote (if called anyway, will return undefined)
+   * @param {Object} changeset
+   * @returns {Promise<Object>} Resolved value is the remote entity
+   */
+async function _getEntityFromRemote(changeset) {
+  let { action } = changeset,
+  data = changeset.data || {},
+  entityModel,
+
+  // Get the populated entity for actions: destroy and transfer
+  populate = _.includes(['destroy', 'transfer'], action),
+  query = {}, // will be using to pass `populate` & `owner` query params
+  criteria = {};
+
+  // For create operation, there cannot be an entity on remote
+  if (action === 'create') {
+    return;
+  }
+
+  populate && (query.populate = true);
+
+  if (action === 'transfer') {
+    let parent = await _getCommonAncestor(data.from, data.to);
+
+    if (!parent) {
+      return;
+    }
+
+    // for transfer changeset, the entity to fetch is the parent entity
+    entityModel = parent.type;
+
+    if (entityModel === 'collection') {
+      let collection = await __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getCollection({ id: parent.id });
+
+      if (!collection) {
+        return;
+      }
+
+      criteria.id = _getEntityUid(collection);
+    } else
+
+    if (entityModel === 'folder') {
+      let folder = await __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getFolder({ id: parent.id }),
+      collection = folder && (await __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getCollection({ id: folder.collection }));
+
+      if (!collection) {
+        return;
+      }
+
+      criteria.id = parent.id;
+      query.owner = collection.owner;
+    }
+  } else
+
+  {
+    entityModel = changeset.model;
+    criteria = _getCriteriaFromChangeset(changeset);
+
+    if (!criteria) {
+      return;
+    }
+
+    // for collection and environment, the id should be uid
+    if (entityModel === 'environment' || entityModel === 'collection') {
+      let entityUid = data.owner && data.modelId && _getEntityUid(data);
+
+      if (!entityUid) {
+        let entity = await controllerMap[entityModel]({ id: criteria.id });
+        entityUid = entity && _getEntityUid(entity);
+      }
+
+      if (!entityUid) {
+        return;
+      }
+
+      criteria.id = entityUid;
+    }
+
+    // for request/folder/response either id should be UID or query should have owner as the parent collection ID
+    // we are going with "adding the owner in query" approach
+    else if (_.includes(COLLECTION_CHILDREN_MODELS, entityModel)) {
+        let collectionId,
+        collection;
+
+        // when entity is deleted, first get the parent (can be request, folder or collection)
+        if (action === 'destroy') {
+          let parent = data.parent || {};
+
+          if (parent.model === 'collection') {
+            collectionId = parent.modelId;
+          } else {// folder or request
+            let requestOrFolder = await controllerMap[parent.model]({ id: parent.modelId });
+            collectionId = requestOrFolder && requestOrFolder.collection;
+          }
+        }
+
+        // otherwise get the entity first (request, response or folder) and get the collectionId from it
+        else {
+            let entity = await controllerMap[entityModel]({ id: criteria.id });
+            collectionId = entity && entity.collection;
+          }
+
+        if (!collectionId) {
+          return;
+        }
+
+        collection = await __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getCollection({ id: collectionId });
+
+        if (!collection) {
+          return;
+        }
+
+        query.owner = collection.owner;
+      }
+  }
+
+  return new Promise(resolve => {
+    __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__["b" /* findOne */](entityModel, criteria, query, (err, entitySyncMessageData, entitySyncMessage) => {
+      err ? resolve() : resolve(entitySyncMessage);
+    });
+  });
+}
+
+/**
+   * Returns the common ancestor for given two entities
+   * @param {Object} entity1 has model and modelId
+   * @param {Object} entity2 has model and modelId
+   * @returns {Promise<Object>} resolved value has type and id
+   */
+async function _getCommonAncestor(entity1, entity2) {
+  // if one of the two entities is collection, then that is the common ancestor
+  if (entity1.model === 'collection') {
+    return {
+      type: 'collection',
+      id: entity1.modelId };
+
+  }
+
+  if (entity2.model === 'collection') {
+    return {
+      type: 'collection',
+      id: entity2.modelId };
+
+  }
+
+  // Both the entities are folder: a request/folder was moved from a folder to another folder
+  // @TODO-rbac: for now we return the parent collection, but can be optimized to return the least common ancestor
+  let folder = await __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__["a" /* default */].getFolder({ id: entity1.modelId });
+
+  return folder && {
+    type: 'collection',
+    id: folder.collection };
+
+}
+
+/**
+   * Returns the criteria with which an entity can be queried from remote server (sync)
+   * @param {Object} changeset
+   * @returns {Object} criteria
+   */
+function _getCriteriaFromChangeset(changeset) {
+  switch (changeset.action) {
+    case 'import':
+    case 'create':
+      return; // for these actions no entity exists on remote
+
+    case 'destroy':
+      return {
+        id: _.get(changeset, 'data.modelId') // @TODO-rbac fix this for history destroy where there are multiple items
+      };
+
+    case 'update':{
+        // globals are fetched using the workspaceId
+        if (changeset.model === 'globals') {
+          return {
+            workspace: _.get(changeset, 'data.instance.workspace') };
+
+        }
+
+        return {
+          id: _.get(changeset, 'data.modelId') };
+
+      }}
+
+
+  pm.logger.warn('action not supported for getting entity id from changeset', changeset.action);
+}
+
+/**
+   * Returns the UID for an environment or a collection
+   * @param {Object} entity
+   */
+function _getEntityUid(entity = {}) {
+  return `${entity.owner}-${entity.id || entity.modelId}`;
+}
+
+/**
+   * Rollback the action performed by the changeset using the remote entity
+   * @param {Object} changeset
+   * @param {Object} remoteEntitySyncMessage
+   */
+async function _rollback(changeset, remoteEntitySyncMessage) {
+  let { model, action } = changeset,
+  data = changeset.data || {};
+
+  // If the entity does not exist on remote for the actions that needs it for reverting, bail out
+  // All actions expect where an entity was created needs the remote entity to revert
+  if (!_.includes(['create', 'import'], action) && !remoteEntitySyncMessage) {
+    pm.logger.warn(`DbRollbackService~_rollback: could not rollback ${model}:${action} since entity does not exist on remote`);
+    return;
+  }
+
+  switch (action) {
+
+    // if creating an entity failed, just delete it locally
+    case 'create':
+    case 'import':{
+        let entityDestroyChangeset = Object.assign({}, changeset, { action: _getActionForDestroy(model) });
+
+        pm.logger.info('DbRollbackService~_rollback: rolling back an import by deleting the entity');
+
+        await Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(entityDestroyChangeset);
+        _queueNotification(model, data.instance, action);
+        break;
+      }
+
+    // if updating an entity failed, update the skeleton locally
+    case 'update':{
+        _.set(remoteEntitySyncMessage, ['meta', 'action'], 'update');
+        let remoteEntityChangeset = Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(remoteEntitySyncMessage);
+
+        pm.logger.info('DbRollbackService~_rollback: rolling back an update by updating the entity');
+
+        await Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(remoteEntityChangeset);
+        _queueNotification(model, _.assign({ id: data.modelId }, data.instance), action);
+        break;
+      }
+
+    // if deleting an entity failed, import it back
+    case 'destroy':
+    case 'delete':{
+        let metaAction = _getActionForImport(model),
+        remoteEntityChangeset;
+
+        _.set(remoteEntitySyncMessage, ['meta', 'action'], metaAction);
+        remoteEntityChangeset = Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(remoteEntitySyncMessage);
+
+        pm.logger.info('DbRollbackService~_rollback: rolling back an destroy by #1 importing the entity');
+
+        // import the entity
+        await Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(remoteEntityChangeset);
+
+        // update the workspace dependencies: it was removed from all workspaces during the action we are rolling back
+        if (WS_DEPS_MODELS.has(remoteEntitySyncMessage.meta.model)) {
+          let uId = _getEntityUid(remoteEntitySyncMessage.data),
+          model = _.get(remoteEntitySyncMessage, 'meta.model');
+
+          pm.logger.info('DbRollbackService~_rollback: rolling back an destroy by #2 updating the ws dependencies', model, uId);
+          await _rollbackWorkspaceDependency(model, uId);
+        }
+
+        _queueNotification(model, { id: data.modelId }, action);
+        break;
+      }
+
+    // for transfer changeset, we need to drop and import the common ancestor
+    case 'transfer':{
+        let entityDestroySyncMessage = {
+          model: remoteEntitySyncMessage.meta.model,
+          model_id: remoteEntitySyncMessage.model_id,
+          action: _getActionForDestroy(model) },
+
+        entityDestroyChangeset = Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(entityDestroySyncMessage),
+        entityImportChangeset;
+
+
+        // delete the common ancestor
+        pm.logger.info('DbRollbackService~_rollback: rolling back a transfer by #1 deleting the common ancestor', entityDestroySyncMessage);
+        await Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(entityDestroyChangeset);
+
+        // import the common ancestor back
+        pm.logger.info('DbRollbackService~_rollback: rolling back a transfer by #2 importing the common ancestor');
+        _.set(remoteEntitySyncMessage, ['meta', 'action'], _getActionForImport(model));
+        entityImportChangeset = Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(remoteEntitySyncMessage);
+        await Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(entityImportChangeset);
+
+        // update the workspace dependencies: during the delete operation as part of rollback, this was removed from all workspaces
+        if (WS_DEPS_MODELS.has(remoteEntitySyncMessage.meta.model)) {
+          let uId = _getEntityUid(remoteEntitySyncMessage.data),
+          model = _.get(remoteEntitySyncMessage, 'meta.model');
+
+          pm.logger.info('DbRollbackService~_rollback: rolling back a transfer by #3 updating the ws dependencies', model, uId);
+
+          await _rollbackWorkspaceDependency(model, uId);
+        }
+
+        _queueNotification(model, { id: data.modelId }, action);
+        break;
+      }}
+
+}
+
+/**
+   * Returns the action to be used to create sync changeset for deleting an entity
+   * @param {String} model
+   */
+function _getActionForDestroy(model) {
+  return COLLECTION_OR_ENVIRONMENT.has(model) ? 'unsubscribe' : 'destroy';
+}
+
+/**
+   * Returns the action to be used to create sync changeset for importing an entity
+   * @param {String} model
+   */
+function _getActionForImport(model) {
+  return COLLECTION_OR_ENVIRONMENT.has(model) ? 'subscribe' : 'import';
+}
+
+/**
+   * Will update all the workspaces' dependencies for a given collection/environment
+   * @param {String} type collection or environment
+   * @param {String} uId
+   */
+async function _rollbackWorkspaceDependency(type, uId) {
+  let remoteWorkspaceMessages = await new Promise(resolve => {
+    __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__["a" /* find */]('workspace', { dependencies: true }, (err, data) => {
+      err ? resolve([]) : resolve(data);
+    });
+  }),
+  localWorkspacesById = _.keyBy((await __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__["a" /* default */].getAll()), 'id'),
+  wsUpdateChangesets = [];
+
+  // Generate the sync messages
+  _.each(remoteWorkspaceMessages, remoteWorkspaceMessage => {
+    let wsId = remoteWorkspaceMessage.data.id,
+    localWorkspace = localWorkspacesById[wsId],
+    remoteWsDeps = _.get(remoteWorkspaceMessage, ['data', 'dependencies', type + 's']),
+    localWsDeps = _.get(localWorkspace, ['dependencies', type + 's']),
+    wsUpdateChangeset;
+
+    // if the dependency exists on remote but not on local, update the workspace
+    if (_.includes(remoteWsDeps, uId) && !_.includes(localWsDeps, uId)) {
+      _.set(remoteWorkspaceMessage, ['meta', 'action'], 'update');
+      wsUpdateChangeset = Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(remoteWorkspaceMessage);
+      wsUpdateChangesets.push(wsUpdateChangeset);
+    }
+  });
+
+  console.log('DbRollbackService~_rollbackWorkspaceDependency: ws dependencies update changesets', wsUpdateChangesets);
+
+  // Apply the sync messages in parallel
+  return Promise.all(_.map(wsUpdateChangesets, wsUpdateChangeset => {
+    return Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(wsUpdateChangeset);
+  })).
+  catch(err => {
+    pm.logger.error('DbRollbackService~_rollbackWorkspaceDependency: error while updating workspace dependencies during rollback', err);
+  });
+}
+
+function _getRollbackNotificationChannel() {
+  return pm.eventBus.channel('rollback-notifications');
+}
+
+/**
+   * Queues a rollback notification
+   * Notifications are collated together based on time and then flushed
+   * @param {String} model
+   * @param {Object} entity
+   * @param {String} action
+   */
+function _queueNotification(model, entity, action) {
+  let rollbackChannel = _getRollbackNotificationChannel();
+
+  rollbackChannel.publish({ model, entity, action });
+}
+
+/**
+   * Subscribes to a channel to get the rollback notifications
+   * It will collate then collate those notifications and flush them later
+   */
+function initializeRollbackNotifications() {
+  let rollbackChannel = _getRollbackNotificationChannel();
+
+  rollbackChannel.subscribe((message = {}) => {
+    let { model, entity, action } = message;
+
+    if (!model || !action) {
+      return;
+    }
+
+    pendingNotifyChanges.push({ model, entity, action });
+    debouncedShowNotification();
+  });
+}
+
+/**
+   * Shows the notification for all the collated actions
+   */
+function _showNotification() {
+  if (_.isEmpty(pendingNotifyChanges)) {
+    return;
+  }
+
+  pm.toasts.error(TOAST_MESSAGE, {
+    persist: false,
+    title: `${pendingNotifyChanges.length} ${TOAST_TITLE_SUFFIX}`
+
+    // @TODO-rbac: Implement this
+    // primaryAction: {
+    //  label: 'See details',
+    //  onClick: _handleNotificationClickDetails.bind(null, pendingNotifyChanges)
+    // }
+  });
+
+  __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__["a" /* default */].addEvent('rollback', 'view_toast', _.length(pendingNotifyChanges));
+
+  pendingNotifyChanges = [];
+}
+
+const rollbackQueue = __WEBPACK_IMPORTED_MODULE_0_async___default.a.queue(rollbackWorker, 1);
+/* harmony export (immutable) */ __webpack_exports__["b"] = rollbackQueue;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 695:
+/***/ 778:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29488,220 +21483,7 @@ function mergeMutations(destination, source = {}) {
 
 /***/ }),
 
-/***/ 7:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = __extends;
-/* unused harmony export __assign */
-/* unused harmony export __rest */
-/* unused harmony export __decorate */
-/* unused harmony export __param */
-/* unused harmony export __metadata */
-/* unused harmony export __awaiter */
-/* unused harmony export __generator */
-/* unused harmony export __exportStar */
-/* unused harmony export __values */
-/* unused harmony export __read */
-/* unused harmony export __spread */
-/* unused harmony export __await */
-/* unused harmony export __asyncGenerator */
-/* unused harmony export __asyncDelegator */
-/* unused harmony export __asyncValues */
-/* unused harmony export __makeTemplateObject */
-/* unused harmony export __importStar */
-/* unused harmony export __importDefault */
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    }
-    return __assign.apply(this, arguments);
-}
-
-function __rest(s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
-    return t;
-}
-
-function __decorate(decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-}
-
-function __param(paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-}
-
-function __metadata(metadataKey, metadataValue) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
-}
-
-function __awaiter(thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-}
-
-function __generator(thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-}
-
-function __exportStar(m, exports) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-
-function __values(o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-    if (m) return m.call(o);
-    return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-}
-
-function __read(o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-}
-
-function __spread() {
-    for (var ar = [], i = 0; i < arguments.length; i++)
-        ar = ar.concat(__read(arguments[i]));
-    return ar;
-}
-
-function __await(v) {
-    return this instanceof __await ? (this.v = v, this) : new __await(v);
-}
-
-function __asyncGenerator(thisArg, _arguments, generator) {
-    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-    var g = generator.apply(thisArg, _arguments || []), i, q = [];
-    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
-    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
-    function fulfill(value) { resume("next", value); }
-    function reject(value) { resume("throw", value); }
-    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
-}
-
-function __asyncDelegator(o) {
-    var i, p;
-    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
-    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
-}
-
-function __asyncValues(o) {
-    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-    var m = o[Symbol.asyncIterator], i;
-    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
-}
-
-function __makeTemplateObject(cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
-
-function __importStar(mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result.default = mod;
-    return result;
-}
-
-function __importDefault(mod) {
-    return (mod && mod.__esModule) ? mod : { default: mod };
-}
-
-
-/***/ }),
-
-/***/ 716:
+/***/ 800:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable
@@ -29716,9 +21498,9 @@ function __importDefault(mod) {
  */
 
 const _ = __webpack_require__(0),
-  async = __webpack_require__(48),
-  uuid = __webpack_require__(232),
-  collate = __webpack_require__(2533),
+  async = __webpack_require__(47),
+  uuid = __webpack_require__(243),
+  collate = __webpack_require__(2867),
 
   ACTIONS = ['import', 'transfer', 'destroy', 'update'],
   IMPORT_ACTIONS = ['importCollection', 'importFolder', 'importRequest', 'import', 'create'],
@@ -30880,7 +22662,7 @@ module.exports = Bucket;
 
 /***/ }),
 
-/***/ 717:
+/***/ 801:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -30888,11 +22670,11 @@ module.exports = Bucket;
  * Module dependencies.
  */
 
-var debug = __webpack_require__(2549)('socket.io-parser');
-var Emitter = __webpack_require__(251);
-var binary = __webpack_require__(2552);
-var isArray = __webpack_require__(1080);
-var isBuf = __webpack_require__(1081);
+var debug = __webpack_require__(2882)('socket.io-parser');
+var Emitter = __webpack_require__(291);
+var binary = __webpack_require__(2885);
+var isArray = __webpack_require__(1205);
+var isBuf = __webpack_require__(1206);
 
 /**
  * Protocol version.
@@ -31304,12 +23086,12 @@ function error(msg) {
 
 /***/ }),
 
-/***/ 718:
+/***/ 802:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(2555);
+var hasCORS = __webpack_require__(2888);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -31345,19 +23127,19 @@ module.exports = function (opts) {
   }
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 
-/***/ 719:
+/***/ 803:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var parser = __webpack_require__(252);
-var Emitter = __webpack_require__(251);
+var parser = __webpack_require__(292);
+var Emitter = __webpack_require__(291);
 
 /**
  * Module exports.
@@ -31511,1853 +23293,6 @@ Transport.prototype.onClose = function () {
 };
 
 
-/***/ }),
-
-/***/ 72:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SubjectSubscriber; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Subject; });
-/* unused harmony export AnonymousSubject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_ObjectUnsubscribedError__ = __webpack_require__(442);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__SubjectSubscription__ = __webpack_require__(746);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__internal_symbol_rxSubscriber__ = __webpack_require__(533);
-/** PURE_IMPORTS_START tslib,_Observable,_Subscriber,_Subscription,_util_ObjectUnsubscribedError,_SubjectSubscription,_internal_symbol_rxSubscriber PURE_IMPORTS_END */
-
-
-
-
-
-
-
-var SubjectSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SubjectSubscriber, _super);
-    function SubjectSubscriber(destination) {
-        var _this = _super.call(this, destination) || this;
-        _this.destination = destination;
-        return _this;
-    }
-    return SubjectSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_2__Subscriber__["a" /* Subscriber */]));
-
-var Subject = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](Subject, _super);
-    function Subject() {
-        var _this = _super.call(this) || this;
-        _this.observers = [];
-        _this.closed = false;
-        _this.isStopped = false;
-        _this.hasError = false;
-        _this.thrownError = null;
-        return _this;
-    }
-    Subject.prototype[__WEBPACK_IMPORTED_MODULE_6__internal_symbol_rxSubscriber__["a" /* rxSubscriber */]] = function () {
-        return new SubjectSubscriber(this);
-    };
-    Subject.prototype.lift = function (operator) {
-        var subject = new AnonymousSubject(this, this);
-        subject.operator = operator;
-        return subject;
-    };
-    Subject.prototype.next = function (value) {
-        if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_4__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        if (!this.isStopped) {
-            var observers = this.observers;
-            var len = observers.length;
-            var copy = observers.slice();
-            for (var i = 0; i < len; i++) {
-                copy[i].next(value);
-            }
-        }
-    };
-    Subject.prototype.error = function (err) {
-        if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_4__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        this.hasError = true;
-        this.thrownError = err;
-        this.isStopped = true;
-        var observers = this.observers;
-        var len = observers.length;
-        var copy = observers.slice();
-        for (var i = 0; i < len; i++) {
-            copy[i].error(err);
-        }
-        this.observers.length = 0;
-    };
-    Subject.prototype.complete = function () {
-        if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_4__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        this.isStopped = true;
-        var observers = this.observers;
-        var len = observers.length;
-        var copy = observers.slice();
-        for (var i = 0; i < len; i++) {
-            copy[i].complete();
-        }
-        this.observers.length = 0;
-    };
-    Subject.prototype.unsubscribe = function () {
-        this.isStopped = true;
-        this.closed = true;
-        this.observers = null;
-    };
-    Subject.prototype._trySubscribe = function (subscriber) {
-        if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_4__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        else {
-            return _super.prototype._trySubscribe.call(this, subscriber);
-        }
-    };
-    Subject.prototype._subscribe = function (subscriber) {
-        if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_4__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        else if (this.hasError) {
-            subscriber.error(this.thrownError);
-            return __WEBPACK_IMPORTED_MODULE_3__Subscription__["a" /* Subscription */].EMPTY;
-        }
-        else if (this.isStopped) {
-            subscriber.complete();
-            return __WEBPACK_IMPORTED_MODULE_3__Subscription__["a" /* Subscription */].EMPTY;
-        }
-        else {
-            this.observers.push(subscriber);
-            return new __WEBPACK_IMPORTED_MODULE_5__SubjectSubscription__["a" /* SubjectSubscription */](this, subscriber);
-        }
-    };
-    Subject.prototype.asObservable = function () {
-        var observable = new __WEBPACK_IMPORTED_MODULE_1__Observable__["a" /* Observable */]();
-        observable.source = this;
-        return observable;
-    };
-    Subject.create = function (destination, source) {
-        return new AnonymousSubject(destination, source);
-    };
-    return Subject;
-}(__WEBPACK_IMPORTED_MODULE_1__Observable__["a" /* Observable */]));
-
-var AnonymousSubject = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AnonymousSubject, _super);
-    function AnonymousSubject(destination, source) {
-        var _this = _super.call(this) || this;
-        _this.destination = destination;
-        _this.source = source;
-        return _this;
-    }
-    AnonymousSubject.prototype.next = function (value) {
-        var destination = this.destination;
-        if (destination && destination.next) {
-            destination.next(value);
-        }
-    };
-    AnonymousSubject.prototype.error = function (err) {
-        var destination = this.destination;
-        if (destination && destination.error) {
-            this.destination.error(err);
-        }
-    };
-    AnonymousSubject.prototype.complete = function () {
-        var destination = this.destination;
-        if (destination && destination.complete) {
-            this.destination.complete();
-        }
-    };
-    AnonymousSubject.prototype._subscribe = function (subscriber) {
-        var source = this.source;
-        if (source) {
-            return this.source.subscribe(subscriber);
-        }
-        else {
-            return __WEBPACK_IMPORTED_MODULE_3__Subscription__["a" /* Subscription */].EMPTY;
-        }
-    };
-    return AnonymousSubject;
-}(Subject));
-
-//# sourceMappingURL=Subject.js.map
-
-
-/***/ }),
-
-/***/ 730:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = audit;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_errorObject__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_util_tryCatch,_util_errorObject,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-function audit(durationSelector) {
-    return function auditOperatorFunction(source) {
-        return source.lift(new AuditOperator(durationSelector));
-    };
-}
-var AuditOperator = /*@__PURE__*/ (function () {
-    function AuditOperator(durationSelector) {
-        this.durationSelector = durationSelector;
-    }
-    AuditOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new AuditSubscriber(subscriber, this.durationSelector));
-    };
-    return AuditOperator;
-}());
-var AuditSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](AuditSubscriber, _super);
-    function AuditSubscriber(destination, durationSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.durationSelector = durationSelector;
-        _this.hasValue = false;
-        return _this;
-    }
-    AuditSubscriber.prototype._next = function (value) {
-        this.value = value;
-        this.hasValue = true;
-        if (!this.throttled) {
-            var duration = Object(__WEBPACK_IMPORTED_MODULE_1__util_tryCatch__["a" /* tryCatch */])(this.durationSelector)(value);
-            if (duration === __WEBPACK_IMPORTED_MODULE_2__util_errorObject__["a" /* errorObject */]) {
-                this.destination.error(__WEBPACK_IMPORTED_MODULE_2__util_errorObject__["a" /* errorObject */].e);
-            }
-            else {
-                var innerSubscription = Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(this, duration);
-                if (!innerSubscription || innerSubscription.closed) {
-                    this.clearThrottle();
-                }
-                else {
-                    this.add(this.throttled = innerSubscription);
-                }
-            }
-        }
-    };
-    AuditSubscriber.prototype.clearThrottle = function () {
-        var _a = this, value = _a.value, hasValue = _a.hasValue, throttled = _a.throttled;
-        if (throttled) {
-            this.remove(throttled);
-            this.throttled = null;
-            throttled.unsubscribe();
-        }
-        if (hasValue) {
-            this.value = null;
-            this.hasValue = false;
-            this.destination.next(value);
-        }
-    };
-    AuditSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex) {
-        this.clearThrottle();
-    };
-    AuditSubscriber.prototype.notifyComplete = function () {
-        this.clearThrottle();
-    };
-    return AuditSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=audit.js.map
-
-
-/***/ }),
-
-/***/ 731:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return empty; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(438);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_hostReportError__ = __webpack_require__(532);
-/** PURE_IMPORTS_START _config,_util_hostReportError PURE_IMPORTS_END */
-
-
-var empty = {
-    closed: true,
-    next: function (value) { },
-    error: function (err) {
-        if (__WEBPACK_IMPORTED_MODULE_0__config__["a" /* config */].useDeprecatedSynchronousErrorHandling) {
-            throw err;
-        }
-        else {
-            Object(__WEBPACK_IMPORTED_MODULE_1__util_hostReportError__["a" /* hostReportError */])(err);
-        }
-    },
-    complete: function () { }
-};
-//# sourceMappingURL=Observer.js.map
-
-
-/***/ }),
-
-/***/ 732:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isObject;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function isObject(x) {
-    return x != null && typeof x === 'object';
-}
-//# sourceMappingURL=isObject.js.map
-
-
-/***/ }),
-
-/***/ 733:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return subscribeTo; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__subscribeToArray__ = __webpack_require__(734);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subscribeToPromise__ = __webpack_require__(735);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__subscribeToIterable__ = __webpack_require__(736);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__subscribeToObservable__ = __webpack_require__(737);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isArrayLike__ = __webpack_require__(738);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isPromise__ = __webpack_require__(739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__isObject__ = __webpack_require__(732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__symbol_iterator__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__symbol_observable__ = __webpack_require__(229);
-/** PURE_IMPORTS_START _Observable,_subscribeToArray,_subscribeToPromise,_subscribeToIterable,_subscribeToObservable,_isArrayLike,_isPromise,_isObject,_symbol_iterator,_symbol_observable PURE_IMPORTS_END */
-
-
-
-
-
-
-
-
-
-
-var subscribeTo = function (result) {
-    if (result instanceof __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */]) {
-        return function (subscriber) {
-            if (result._isScalar) {
-                subscriber.next(result.value);
-                subscriber.complete();
-                return undefined;
-            }
-            else {
-                return result.subscribe(subscriber);
-            }
-        };
-    }
-    else if (result && typeof result[__WEBPACK_IMPORTED_MODULE_9__symbol_observable__["a" /* observable */]] === 'function') {
-        return Object(__WEBPACK_IMPORTED_MODULE_4__subscribeToObservable__["a" /* subscribeToObservable */])(result);
-    }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_5__isArrayLike__["a" /* isArrayLike */])(result)) {
-        return Object(__WEBPACK_IMPORTED_MODULE_1__subscribeToArray__["a" /* subscribeToArray */])(result);
-    }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_6__isPromise__["a" /* isPromise */])(result)) {
-        return Object(__WEBPACK_IMPORTED_MODULE_2__subscribeToPromise__["a" /* subscribeToPromise */])(result);
-    }
-    else if (result && typeof result[__WEBPACK_IMPORTED_MODULE_8__symbol_iterator__["a" /* iterator */]] === 'function') {
-        return Object(__WEBPACK_IMPORTED_MODULE_3__subscribeToIterable__["a" /* subscribeToIterable */])(result);
-    }
-    else {
-        var value = Object(__WEBPACK_IMPORTED_MODULE_7__isObject__["a" /* isObject */])(result) ? 'an invalid object' : "'" + result + "'";
-        var msg = "You provided " + value + " where a stream was expected."
-            + ' You can provide an Observable, Promise, Array, or Iterable.';
-        throw new TypeError(msg);
-    }
-};
-//# sourceMappingURL=subscribeTo.js.map
-
-
-/***/ }),
-
-/***/ 734:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return subscribeToArray; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var subscribeToArray = function (array) {
-    return function (subscriber) {
-        for (var i = 0, len = array.length; i < len && !subscriber.closed; i++) {
-            subscriber.next(array[i]);
-        }
-        if (!subscriber.closed) {
-            subscriber.complete();
-        }
-    };
-};
-//# sourceMappingURL=subscribeToArray.js.map
-
-
-/***/ }),
-
-/***/ 735:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return subscribeToPromise; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__hostReportError__ = __webpack_require__(532);
-/** PURE_IMPORTS_START _hostReportError PURE_IMPORTS_END */
-
-var subscribeToPromise = function (promise) {
-    return function (subscriber) {
-        promise.then(function (value) {
-            if (!subscriber.closed) {
-                subscriber.next(value);
-                subscriber.complete();
-            }
-        }, function (err) { return subscriber.error(err); })
-            .then(null, __WEBPACK_IMPORTED_MODULE_0__hostReportError__["a" /* hostReportError */]);
-        return subscriber;
-    };
-};
-//# sourceMappingURL=subscribeToPromise.js.map
-
-
-/***/ }),
-
-/***/ 736:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return subscribeToIterable; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__symbol_iterator__ = __webpack_require__(256);
-/** PURE_IMPORTS_START _symbol_iterator PURE_IMPORTS_END */
-
-var subscribeToIterable = function (iterable) {
-    return function (subscriber) {
-        var iterator = iterable[__WEBPACK_IMPORTED_MODULE_0__symbol_iterator__["a" /* iterator */]]();
-        do {
-            var item = iterator.next();
-            if (item.done) {
-                subscriber.complete();
-                break;
-            }
-            subscriber.next(item.value);
-            if (subscriber.closed) {
-                break;
-            }
-        } while (true);
-        if (typeof iterator.return === 'function') {
-            subscriber.add(function () {
-                if (iterator.return) {
-                    iterator.return();
-                }
-            });
-        }
-        return subscriber;
-    };
-};
-//# sourceMappingURL=subscribeToIterable.js.map
-
-
-/***/ }),
-
-/***/ 737:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return subscribeToObservable; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__symbol_observable__ = __webpack_require__(229);
-/** PURE_IMPORTS_START _symbol_observable PURE_IMPORTS_END */
-
-var subscribeToObservable = function (obj) {
-    return function (subscriber) {
-        var obs = obj[__WEBPACK_IMPORTED_MODULE_0__symbol_observable__["a" /* observable */]]();
-        if (typeof obs.subscribe !== 'function') {
-            throw new TypeError('Provided object does not correctly implement Symbol.observable');
-        }
-        else {
-            return obs.subscribe(subscriber);
-        }
-    };
-};
-//# sourceMappingURL=subscribeToObservable.js.map
-
-
-/***/ }),
-
-/***/ 738:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return isArrayLike; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var isArrayLike = (function (x) { return x && typeof x.length === 'number' && typeof x !== 'function'; });
-//# sourceMappingURL=isArrayLike.js.map
-
-
-/***/ }),
-
-/***/ 739:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isPromise;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function isPromise(value) {
-    return value && typeof value.subscribe !== 'function' && typeof value.then === 'function';
-}
-//# sourceMappingURL=isPromise.js.map
-
-
-/***/ }),
-
-/***/ 740:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = concatAll;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mergeAll__ = __webpack_require__(535);
-/** PURE_IMPORTS_START _mergeAll PURE_IMPORTS_END */
-
-function concatAll() {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__mergeAll__["a" /* mergeAll */])(1);
-}
-//# sourceMappingURL=concatAll.js.map
-
-
-/***/ }),
-
-/***/ 741:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = concatMap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mergeMap__ = __webpack_require__(257);
-/** PURE_IMPORTS_START _mergeMap PURE_IMPORTS_END */
-
-function concatMap(project, resultSelector) {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__mergeMap__["a" /* mergeMap */])(project, resultSelector, 1);
-}
-//# sourceMappingURL=concatMap.js.map
-
-
-/***/ }),
-
-/***/ 742:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = isDate;
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function isDate(value) {
-    return value instanceof Date && !isNaN(+value);
-}
-//# sourceMappingURL=isDate.js.map
-
-
-/***/ }),
-
-/***/ 743:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = distinctUntilChanged;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_tryCatch__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_errorObject__ = __webpack_require__(99);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_tryCatch,_util_errorObject PURE_IMPORTS_END */
-
-
-
-
-function distinctUntilChanged(compare, keySelector) {
-    return function (source) { return source.lift(new DistinctUntilChangedOperator(compare, keySelector)); };
-}
-var DistinctUntilChangedOperator = /*@__PURE__*/ (function () {
-    function DistinctUntilChangedOperator(compare, keySelector) {
-        this.compare = compare;
-        this.keySelector = keySelector;
-    }
-    DistinctUntilChangedOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new DistinctUntilChangedSubscriber(subscriber, this.compare, this.keySelector));
-    };
-    return DistinctUntilChangedOperator;
-}());
-var DistinctUntilChangedSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](DistinctUntilChangedSubscriber, _super);
-    function DistinctUntilChangedSubscriber(destination, compare, keySelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.keySelector = keySelector;
-        _this.hasKey = false;
-        if (typeof compare === 'function') {
-            _this.compare = compare;
-        }
-        return _this;
-    }
-    DistinctUntilChangedSubscriber.prototype.compare = function (x, y) {
-        return x === y;
-    };
-    DistinctUntilChangedSubscriber.prototype._next = function (value) {
-        var keySelector = this.keySelector;
-        var key = value;
-        if (keySelector) {
-            key = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(this.keySelector)(value);
-            if (key === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-                return this.destination.error(__WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */].e);
-            }
-        }
-        var result = false;
-        if (this.hasKey) {
-            result = Object(__WEBPACK_IMPORTED_MODULE_2__util_tryCatch__["a" /* tryCatch */])(this.compare)(this.key, key);
-            if (result === __WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */]) {
-                return this.destination.error(__WEBPACK_IMPORTED_MODULE_3__util_errorObject__["a" /* errorObject */].e);
-            }
-        }
-        else {
-            this.hasKey = true;
-        }
-        if (Boolean(result) === false) {
-            this.key = key;
-            this.destination.next(value);
-        }
-    };
-    return DistinctUntilChangedSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=distinctUntilChanged.js.map
-
-
-/***/ }),
-
-/***/ 744:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = tap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_noop__ = __webpack_require__(447);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isFunction__ = __webpack_require__(264);
-/** PURE_IMPORTS_START tslib,_Subscriber,_util_noop,_util_isFunction PURE_IMPORTS_END */
-
-
-
-
-function tap(nextOrObserver, error, complete) {
-    return function tapOperatorFunction(source) {
-        return source.lift(new DoOperator(nextOrObserver, error, complete));
-    };
-}
-var DoOperator = /*@__PURE__*/ (function () {
-    function DoOperator(nextOrObserver, error, complete) {
-        this.nextOrObserver = nextOrObserver;
-        this.error = error;
-        this.complete = complete;
-    }
-    DoOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new TapSubscriber(subscriber, this.nextOrObserver, this.error, this.complete));
-    };
-    return DoOperator;
-}());
-var TapSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TapSubscriber, _super);
-    function TapSubscriber(destination, observerOrNext, error, complete) {
-        var _this = _super.call(this, destination) || this;
-        _this._tapNext = __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-        _this._tapError = __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-        _this._tapComplete = __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-        _this._tapError = error || __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-        _this._tapComplete = complete || __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-        if (Object(__WEBPACK_IMPORTED_MODULE_3__util_isFunction__["a" /* isFunction */])(observerOrNext)) {
-            _this._context = _this;
-            _this._tapNext = observerOrNext;
-        }
-        else if (observerOrNext) {
-            _this._context = observerOrNext;
-            _this._tapNext = observerOrNext.next || __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-            _this._tapError = observerOrNext.error || __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-            _this._tapComplete = observerOrNext.complete || __WEBPACK_IMPORTED_MODULE_2__util_noop__["a" /* noop */];
-        }
-        return _this;
-    }
-    TapSubscriber.prototype._next = function (value) {
-        try {
-            this._tapNext.call(this._context, value);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.next(value);
-    };
-    TapSubscriber.prototype._error = function (err) {
-        try {
-            this._tapError.call(this._context, err);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        this.destination.error(err);
-    };
-    TapSubscriber.prototype._complete = function () {
-        try {
-            this._tapComplete.call(this._context);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return;
-        }
-        return this.destination.complete();
-    };
-    return TapSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=tap.js.map
-
-
-/***/ }),
-
-/***/ 745:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export find */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindValueOperator; });
-/* unused harmony export FindValueSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/** PURE_IMPORTS_START tslib,_Subscriber PURE_IMPORTS_END */
-
-
-function find(predicate, thisArg) {
-    if (typeof predicate !== 'function') {
-        throw new TypeError('predicate is not a function');
-    }
-    return function (source) { return source.lift(new FindValueOperator(predicate, source, false, thisArg)); };
-}
-var FindValueOperator = /*@__PURE__*/ (function () {
-    function FindValueOperator(predicate, source, yieldIndex, thisArg) {
-        this.predicate = predicate;
-        this.source = source;
-        this.yieldIndex = yieldIndex;
-        this.thisArg = thisArg;
-    }
-    FindValueOperator.prototype.call = function (observer, source) {
-        return source.subscribe(new FindValueSubscriber(observer, this.predicate, this.source, this.yieldIndex, this.thisArg));
-    };
-    return FindValueOperator;
-}());
-
-var FindValueSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](FindValueSubscriber, _super);
-    function FindValueSubscriber(destination, predicate, source, yieldIndex, thisArg) {
-        var _this = _super.call(this, destination) || this;
-        _this.predicate = predicate;
-        _this.source = source;
-        _this.yieldIndex = yieldIndex;
-        _this.thisArg = thisArg;
-        _this.index = 0;
-        return _this;
-    }
-    FindValueSubscriber.prototype.notifyComplete = function (value) {
-        var destination = this.destination;
-        destination.next(value);
-        destination.complete();
-        this.unsubscribe();
-    };
-    FindValueSubscriber.prototype._next = function (value) {
-        var _a = this, predicate = _a.predicate, thisArg = _a.thisArg;
-        var index = this.index++;
-        try {
-            var result = predicate.call(thisArg || this, value, index, this.source);
-            if (result) {
-                this.notifyComplete(this.yieldIndex ? index : value);
-            }
-        }
-        catch (err) {
-            this.destination.error(err);
-        }
-    };
-    FindValueSubscriber.prototype._complete = function () {
-        this.notifyComplete(this.yieldIndex ? -1 : undefined);
-    };
-    return FindValueSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-
-//# sourceMappingURL=find.js.map
-
-
-/***/ }),
-
-/***/ 746:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SubjectSubscription; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscription__ = __webpack_require__(62);
-/** PURE_IMPORTS_START tslib,_Subscription PURE_IMPORTS_END */
-
-
-var SubjectSubscription = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](SubjectSubscription, _super);
-    function SubjectSubscription(subject, subscriber) {
-        var _this = _super.call(this) || this;
-        _this.subject = subject;
-        _this.subscriber = subscriber;
-        _this.closed = false;
-        return _this;
-    }
-    SubjectSubscription.prototype.unsubscribe = function () {
-        if (this.closed) {
-            return;
-        }
-        this.closed = true;
-        var subject = this.subject;
-        var observers = subject.observers;
-        this.subject = null;
-        if (!observers || observers.length === 0 || subject.isStopped || subject.closed) {
-            return;
-        }
-        var subscriberIndex = observers.indexOf(this.subscriber);
-        if (subscriberIndex !== -1) {
-            observers.splice(subscriberIndex, 1);
-        }
-    };
-    return SubjectSubscription;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscription__["a" /* Subscription */]));
-
-//# sourceMappingURL=SubjectSubscription.js.map
-
-
-/***/ }),
-
-/***/ 747:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export observeOn */
-/* unused harmony export ObserveOnOperator */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObserveOnSubscriber; });
-/* unused harmony export ObserveOnMessage */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Notification__ = __webpack_require__(441);
-/** PURE_IMPORTS_START tslib,_Subscriber,_Notification PURE_IMPORTS_END */
-
-
-
-function observeOn(scheduler, delay) {
-    if (delay === void 0) {
-        delay = 0;
-    }
-    return function observeOnOperatorFunction(source) {
-        return source.lift(new ObserveOnOperator(scheduler, delay));
-    };
-}
-var ObserveOnOperator = /*@__PURE__*/ (function () {
-    function ObserveOnOperator(scheduler, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        this.scheduler = scheduler;
-        this.delay = delay;
-    }
-    ObserveOnOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ObserveOnSubscriber(subscriber, this.scheduler, this.delay));
-    };
-    return ObserveOnOperator;
-}());
-
-var ObserveOnSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ObserveOnSubscriber, _super);
-    function ObserveOnSubscriber(destination, scheduler, delay) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        var _this = _super.call(this, destination) || this;
-        _this.scheduler = scheduler;
-        _this.delay = delay;
-        return _this;
-    }
-    ObserveOnSubscriber.dispatch = function (arg) {
-        var notification = arg.notification, destination = arg.destination;
-        notification.observe(destination);
-        this.unsubscribe();
-    };
-    ObserveOnSubscriber.prototype.scheduleMessage = function (notification) {
-        this.add(this.scheduler.schedule(ObserveOnSubscriber.dispatch, this.delay, new ObserveOnMessage(notification, this.destination)));
-    };
-    ObserveOnSubscriber.prototype._next = function (value) {
-        this.scheduleMessage(__WEBPACK_IMPORTED_MODULE_2__Notification__["a" /* Notification */].createNext(value));
-    };
-    ObserveOnSubscriber.prototype._error = function (err) {
-        this.scheduleMessage(__WEBPACK_IMPORTED_MODULE_2__Notification__["a" /* Notification */].createError(err));
-    };
-    ObserveOnSubscriber.prototype._complete = function () {
-        this.scheduleMessage(__WEBPACK_IMPORTED_MODULE_2__Notification__["a" /* Notification */].createComplete());
-    };
-    return ObserveOnSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-
-var ObserveOnMessage = /*@__PURE__*/ (function () {
-    function ObserveOnMessage(notification, destination) {
-        this.notification = notification;
-        this.destination = destination;
-    }
-    return ObserveOnMessage;
-}());
-
-//# sourceMappingURL=observeOn.js.map
-
-
-/***/ }),
-
-/***/ 748:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return defaultThrottleConfig; });
-/* unused harmony export throttle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-var defaultThrottleConfig = {
-    leading: true,
-    trailing: false
-};
-function throttle(durationSelector, config) {
-    if (config === void 0) {
-        config = defaultThrottleConfig;
-    }
-    return function (source) { return source.lift(new ThrottleOperator(durationSelector, config.leading, config.trailing)); };
-}
-var ThrottleOperator = /*@__PURE__*/ (function () {
-    function ThrottleOperator(durationSelector, leading, trailing) {
-        this.durationSelector = durationSelector;
-        this.leading = leading;
-        this.trailing = trailing;
-    }
-    ThrottleOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new ThrottleSubscriber(subscriber, this.durationSelector, this.leading, this.trailing));
-    };
-    return ThrottleOperator;
-}());
-var ThrottleSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ThrottleSubscriber, _super);
-    function ThrottleSubscriber(destination, durationSelector, _leading, _trailing) {
-        var _this = _super.call(this, destination) || this;
-        _this.destination = destination;
-        _this.durationSelector = durationSelector;
-        _this._leading = _leading;
-        _this._trailing = _trailing;
-        _this._hasValue = false;
-        return _this;
-    }
-    ThrottleSubscriber.prototype._next = function (value) {
-        this._hasValue = true;
-        this._sendValue = value;
-        if (!this._throttled) {
-            if (this._leading) {
-                this.send();
-            }
-            else {
-                this.throttle(value);
-            }
-        }
-    };
-    ThrottleSubscriber.prototype.send = function () {
-        var _a = this, _hasValue = _a._hasValue, _sendValue = _a._sendValue;
-        if (_hasValue) {
-            this.destination.next(_sendValue);
-            this.throttle(_sendValue);
-        }
-        this._hasValue = false;
-        this._sendValue = null;
-    };
-    ThrottleSubscriber.prototype.throttle = function (value) {
-        var duration = this.tryDurationSelector(value);
-        if (duration) {
-            this.add(this._throttled = Object(__WEBPACK_IMPORTED_MODULE_2__util_subscribeToResult__["a" /* subscribeToResult */])(this, duration));
-        }
-    };
-    ThrottleSubscriber.prototype.tryDurationSelector = function (value) {
-        try {
-            return this.durationSelector(value);
-        }
-        catch (err) {
-            this.destination.error(err);
-            return null;
-        }
-    };
-    ThrottleSubscriber.prototype.throttlingDone = function () {
-        var _a = this, _throttled = _a._throttled, _trailing = _a._trailing;
-        if (_throttled) {
-            _throttled.unsubscribe();
-        }
-        this._throttled = null;
-        if (_trailing) {
-            this.send();
-        }
-    };
-    ThrottleSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.throttlingDone();
-    };
-    ThrottleSubscriber.prototype.notifyComplete = function () {
-        this.throttlingDone();
-    };
-    return ThrottleSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=throttle.js.map
-
-
-/***/ }),
-
-/***/ 749:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = timeoutWith;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isDate__ = __webpack_require__(742);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_scheduler_async,_util_isDate,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-function timeoutWith(due, withObservable, scheduler) {
-    if (scheduler === void 0) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_1__scheduler_async__["a" /* async */];
-    }
-    return function (source) {
-        var absoluteTimeout = Object(__WEBPACK_IMPORTED_MODULE_2__util_isDate__["a" /* isDate */])(due);
-        var waitFor = absoluteTimeout ? (+due - scheduler.now()) : Math.abs(due);
-        return source.lift(new TimeoutWithOperator(waitFor, absoluteTimeout, withObservable, scheduler));
-    };
-}
-var TimeoutWithOperator = /*@__PURE__*/ (function () {
-    function TimeoutWithOperator(waitFor, absoluteTimeout, withObservable, scheduler) {
-        this.waitFor = waitFor;
-        this.absoluteTimeout = absoluteTimeout;
-        this.withObservable = withObservable;
-        this.scheduler = scheduler;
-    }
-    TimeoutWithOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new TimeoutWithSubscriber(subscriber, this.absoluteTimeout, this.waitFor, this.withObservable, this.scheduler));
-    };
-    return TimeoutWithOperator;
-}());
-var TimeoutWithSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](TimeoutWithSubscriber, _super);
-    function TimeoutWithSubscriber(destination, absoluteTimeout, waitFor, withObservable, scheduler) {
-        var _this = _super.call(this, destination) || this;
-        _this.absoluteTimeout = absoluteTimeout;
-        _this.waitFor = waitFor;
-        _this.withObservable = withObservable;
-        _this.scheduler = scheduler;
-        _this.action = null;
-        _this.scheduleTimeout();
-        return _this;
-    }
-    TimeoutWithSubscriber.dispatchTimeout = function (subscriber) {
-        var withObservable = subscriber.withObservable;
-        subscriber._unsubscribeAndRecycle();
-        subscriber.add(Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(subscriber, withObservable));
-    };
-    TimeoutWithSubscriber.prototype.scheduleTimeout = function () {
-        var action = this.action;
-        if (action) {
-            this.action = action.schedule(this, this.waitFor);
-        }
-        else {
-            this.add(this.action = this.scheduler.schedule(TimeoutWithSubscriber.dispatchTimeout, this.waitFor, this));
-        }
-    };
-    TimeoutWithSubscriber.prototype._next = function (value) {
-        if (!this.absoluteTimeout) {
-            this.scheduleTimeout();
-        }
-        _super.prototype._next.call(this, value);
-    };
-    TimeoutWithSubscriber.prototype._unsubscribe = function () {
-        this.action = null;
-        this.scheduler = null;
-        this.withObservable = null;
-    };
-    return TimeoutWithSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-//# sourceMappingURL=timeoutWith.js.map
-
-
-/***/ }),
-
-/***/ 757:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UnsubscriptionError; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function UnsubscriptionErrorImpl(errors) {
-    Error.call(this);
-    this.message = errors ?
-        errors.length + " errors occurred during unsubscription:\n" + errors.map(function (err, i) { return i + 1 + ") " + err.toString(); }).join('\n  ') : '';
-    this.name = 'UnsubscriptionError';
-    this.errors = errors;
-    return this;
-}
-UnsubscriptionErrorImpl.prototype = /*@__PURE__*/ Object.create(Error.prototype);
-var UnsubscriptionError = UnsubscriptionErrorImpl;
-//# sourceMappingURL=UnsubscriptionError.js.map
-
-
-/***/ }),
-
-/***/ 758:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Scheduler; });
-var Scheduler = /*@__PURE__*/ (function () {
-    function Scheduler(SchedulerAction, now) {
-        if (now === void 0) {
-            now = Scheduler.now;
-        }
-        this.SchedulerAction = SchedulerAction;
-        this.now = now;
-    }
-    Scheduler.prototype.schedule = function (work, delay, state) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        return new this.SchedulerAction(this, work).schedule(state, delay);
-    };
-    Scheduler.now = function () { return Date.now(); };
-    return Scheduler;
-}());
-
-//# sourceMappingURL=Scheduler.js.map
-
-
-/***/ }),
-
-/***/ 759:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = timer;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scheduler_async__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_isNumeric__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_isScheduler__ = __webpack_require__(100);
-/** PURE_IMPORTS_START _Observable,_scheduler_async,_util_isNumeric,_util_isScheduler PURE_IMPORTS_END */
-
-
-
-
-function timer(dueTime, periodOrScheduler, scheduler) {
-    if (dueTime === void 0) {
-        dueTime = 0;
-    }
-    var period = -1;
-    if (Object(__WEBPACK_IMPORTED_MODULE_2__util_isNumeric__["a" /* isNumeric */])(periodOrScheduler)) {
-        period = Number(periodOrScheduler) < 1 && 1 || Number(periodOrScheduler);
-    }
-    else if (Object(__WEBPACK_IMPORTED_MODULE_3__util_isScheduler__["a" /* isScheduler */])(periodOrScheduler)) {
-        scheduler = periodOrScheduler;
-    }
-    if (!Object(__WEBPACK_IMPORTED_MODULE_3__util_isScheduler__["a" /* isScheduler */])(scheduler)) {
-        scheduler = __WEBPACK_IMPORTED_MODULE_1__scheduler_async__["a" /* async */];
-    }
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) {
-        var due = Object(__WEBPACK_IMPORTED_MODULE_2__util_isNumeric__["a" /* isNumeric */])(dueTime)
-            ? dueTime
-            : (+dueTime - scheduler.now());
-        return scheduler.schedule(dispatch, due, {
-            index: 0, period: period, subscriber: subscriber
-        });
-    });
-}
-function dispatch(state) {
-    var index = state.index, period = state.period, subscriber = state.subscriber;
-    subscriber.next(index);
-    if (subscriber.closed) {
-        return;
-    }
-    else if (period === -1) {
-        return subscriber.complete();
-    }
-    state.index = index + 1;
-    this.schedule(state, period);
-}
-//# sourceMappingURL=timer.js.map
-
-
-/***/ }),
-
-/***/ 760:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = groupBy;
-/* unused harmony export GroupedObservable */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Subject__ = __webpack_require__(72);
-/** PURE_IMPORTS_START tslib,_Subscriber,_Subscription,_Observable,_Subject PURE_IMPORTS_END */
-
-
-
-
-
-function groupBy(keySelector, elementSelector, durationSelector, subjectSelector) {
-    return function (source) {
-        return source.lift(new GroupByOperator(keySelector, elementSelector, durationSelector, subjectSelector));
-    };
-}
-var GroupByOperator = /*@__PURE__*/ (function () {
-    function GroupByOperator(keySelector, elementSelector, durationSelector, subjectSelector) {
-        this.keySelector = keySelector;
-        this.elementSelector = elementSelector;
-        this.durationSelector = durationSelector;
-        this.subjectSelector = subjectSelector;
-    }
-    GroupByOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new GroupBySubscriber(subscriber, this.keySelector, this.elementSelector, this.durationSelector, this.subjectSelector));
-    };
-    return GroupByOperator;
-}());
-var GroupBySubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](GroupBySubscriber, _super);
-    function GroupBySubscriber(destination, keySelector, elementSelector, durationSelector, subjectSelector) {
-        var _this = _super.call(this, destination) || this;
-        _this.keySelector = keySelector;
-        _this.elementSelector = elementSelector;
-        _this.durationSelector = durationSelector;
-        _this.subjectSelector = subjectSelector;
-        _this.groups = null;
-        _this.attemptedToUnsubscribe = false;
-        _this.count = 0;
-        return _this;
-    }
-    GroupBySubscriber.prototype._next = function (value) {
-        var key;
-        try {
-            key = this.keySelector(value);
-        }
-        catch (err) {
-            this.error(err);
-            return;
-        }
-        this._group(value, key);
-    };
-    GroupBySubscriber.prototype._group = function (value, key) {
-        var groups = this.groups;
-        if (!groups) {
-            groups = this.groups = new Map();
-        }
-        var group = groups.get(key);
-        var element;
-        if (this.elementSelector) {
-            try {
-                element = this.elementSelector(value);
-            }
-            catch (err) {
-                this.error(err);
-            }
-        }
-        else {
-            element = value;
-        }
-        if (!group) {
-            group = (this.subjectSelector ? this.subjectSelector() : new __WEBPACK_IMPORTED_MODULE_4__Subject__["a" /* Subject */]());
-            groups.set(key, group);
-            var groupedObservable = new GroupedObservable(key, group, this);
-            this.destination.next(groupedObservable);
-            if (this.durationSelector) {
-                var duration = void 0;
-                try {
-                    duration = this.durationSelector(new GroupedObservable(key, group));
-                }
-                catch (err) {
-                    this.error(err);
-                    return;
-                }
-                this.add(duration.subscribe(new GroupDurationSubscriber(key, group, this)));
-            }
-        }
-        if (!group.closed) {
-            group.next(element);
-        }
-    };
-    GroupBySubscriber.prototype._error = function (err) {
-        var groups = this.groups;
-        if (groups) {
-            groups.forEach(function (group, key) {
-                group.error(err);
-            });
-            groups.clear();
-        }
-        this.destination.error(err);
-    };
-    GroupBySubscriber.prototype._complete = function () {
-        var groups = this.groups;
-        if (groups) {
-            groups.forEach(function (group, key) {
-                group.complete();
-            });
-            groups.clear();
-        }
-        this.destination.complete();
-    };
-    GroupBySubscriber.prototype.removeGroup = function (key) {
-        this.groups.delete(key);
-    };
-    GroupBySubscriber.prototype.unsubscribe = function () {
-        if (!this.closed) {
-            this.attemptedToUnsubscribe = true;
-            if (this.count === 0) {
-                _super.prototype.unsubscribe.call(this);
-            }
-        }
-    };
-    return GroupBySubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-var GroupDurationSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](GroupDurationSubscriber, _super);
-    function GroupDurationSubscriber(key, group, parent) {
-        var _this = _super.call(this, group) || this;
-        _this.key = key;
-        _this.group = group;
-        _this.parent = parent;
-        return _this;
-    }
-    GroupDurationSubscriber.prototype._next = function (value) {
-        this.complete();
-    };
-    GroupDurationSubscriber.prototype._unsubscribe = function () {
-        var _a = this, parent = _a.parent, key = _a.key;
-        this.key = this.parent = null;
-        if (parent) {
-            parent.removeGroup(key);
-        }
-    };
-    return GroupDurationSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subscriber__["a" /* Subscriber */]));
-var GroupedObservable = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](GroupedObservable, _super);
-    function GroupedObservable(key, groupSubject, refCountSubscription) {
-        var _this = _super.call(this) || this;
-        _this.key = key;
-        _this.groupSubject = groupSubject;
-        _this.refCountSubscription = refCountSubscription;
-        return _this;
-    }
-    GroupedObservable.prototype._subscribe = function (subscriber) {
-        var subscription = new __WEBPACK_IMPORTED_MODULE_2__Subscription__["a" /* Subscription */]();
-        var _a = this, refCountSubscription = _a.refCountSubscription, groupSubject = _a.groupSubject;
-        if (refCountSubscription && !refCountSubscription.closed) {
-            subscription.add(new InnerRefCountSubscription(refCountSubscription));
-        }
-        subscription.add(groupSubject.subscribe(subscriber));
-        return subscription;
-    };
-    return GroupedObservable;
-}(__WEBPACK_IMPORTED_MODULE_3__Observable__["a" /* Observable */]));
-
-var InnerRefCountSubscription = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](InnerRefCountSubscription, _super);
-    function InnerRefCountSubscription(parent) {
-        var _this = _super.call(this) || this;
-        _this.parent = parent;
-        parent.count++;
-        return _this;
-    }
-    InnerRefCountSubscription.prototype.unsubscribe = function () {
-        var parent = this.parent;
-        if (!parent.closed && !this.closed) {
-            _super.prototype.unsubscribe.call(this);
-            parent.count -= 1;
-            if (parent.count === 0 && parent.attemptedToUnsubscribe) {
-                parent.unsubscribe();
-            }
-        }
-    };
-    return InnerRefCountSubscription;
-}(__WEBPACK_IMPORTED_MODULE_2__Subscription__["a" /* Subscription */]));
-//# sourceMappingURL=groupBy.js.map
-
-
-/***/ }),
-
-/***/ 761:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = merge;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isScheduler__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operators_mergeAll__ = __webpack_require__(535);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fromArray__ = __webpack_require__(151);
-/** PURE_IMPORTS_START _Observable,_util_isScheduler,_operators_mergeAll,_fromArray PURE_IMPORTS_END */
-
-
-
-
-function merge() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    var concurrent = Number.POSITIVE_INFINITY;
-    var scheduler = null;
-    var last = observables[observables.length - 1];
-    if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isScheduler__["a" /* isScheduler */])(last)) {
-        scheduler = observables.pop();
-        if (observables.length > 1 && typeof observables[observables.length - 1] === 'number') {
-            concurrent = observables.pop();
-        }
-    }
-    else if (typeof last === 'number') {
-        concurrent = observables.pop();
-    }
-    if (scheduler === null && observables.length === 1 && observables[0] instanceof __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */]) {
-        return observables[0];
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_2__operators_mergeAll__["a" /* mergeAll */])(concurrent)(Object(__WEBPACK_IMPORTED_MODULE_3__fromArray__["a" /* fromArray */])(observables, scheduler));
-}
-//# sourceMappingURL=merge.js.map
-
-
-/***/ }),
-
-/***/ 762:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export ConnectableObservable */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return connectableObservableDescriptor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Observable__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Subscriber__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Subscription__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operators_refCount__ = __webpack_require__(539);
-/** PURE_IMPORTS_START tslib,_Subject,_Observable,_Subscriber,_Subscription,_operators_refCount PURE_IMPORTS_END */
-
-
-
-
-
-
-var ConnectableObservable = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ConnectableObservable, _super);
-    function ConnectableObservable(source, subjectFactory) {
-        var _this = _super.call(this) || this;
-        _this.source = source;
-        _this.subjectFactory = subjectFactory;
-        _this._refCount = 0;
-        _this._isComplete = false;
-        return _this;
-    }
-    ConnectableObservable.prototype._subscribe = function (subscriber) {
-        return this.getSubject().subscribe(subscriber);
-    };
-    ConnectableObservable.prototype.getSubject = function () {
-        var subject = this._subject;
-        if (!subject || subject.isStopped) {
-            this._subject = this.subjectFactory();
-        }
-        return this._subject;
-    };
-    ConnectableObservable.prototype.connect = function () {
-        var connection = this._connection;
-        if (!connection) {
-            this._isComplete = false;
-            connection = this._connection = new __WEBPACK_IMPORTED_MODULE_4__Subscription__["a" /* Subscription */]();
-            connection.add(this.source
-                .subscribe(new ConnectableSubscriber(this.getSubject(), this)));
-            if (connection.closed) {
-                this._connection = null;
-                connection = __WEBPACK_IMPORTED_MODULE_4__Subscription__["a" /* Subscription */].EMPTY;
-            }
-            else {
-                this._connection = connection;
-            }
-        }
-        return connection;
-    };
-    ConnectableObservable.prototype.refCount = function () {
-        return Object(__WEBPACK_IMPORTED_MODULE_5__operators_refCount__["a" /* refCount */])()(this);
-    };
-    return ConnectableObservable;
-}(__WEBPACK_IMPORTED_MODULE_2__Observable__["a" /* Observable */]));
-
-var connectableProto = ConnectableObservable.prototype;
-var connectableObservableDescriptor = {
-    operator: { value: null },
-    _refCount: { value: 0, writable: true },
-    _subject: { value: null, writable: true },
-    _connection: { value: null, writable: true },
-    _subscribe: { value: connectableProto._subscribe },
-    _isComplete: { value: connectableProto._isComplete, writable: true },
-    getSubject: { value: connectableProto.getSubject },
-    connect: { value: connectableProto.connect },
-    refCount: { value: connectableProto.refCount }
-};
-var ConnectableSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](ConnectableSubscriber, _super);
-    function ConnectableSubscriber(destination, connectable) {
-        var _this = _super.call(this, destination) || this;
-        _this.connectable = connectable;
-        return _this;
-    }
-    ConnectableSubscriber.prototype._error = function (err) {
-        this._unsubscribe();
-        _super.prototype._error.call(this, err);
-    };
-    ConnectableSubscriber.prototype._complete = function () {
-        this.connectable._isComplete = true;
-        this._unsubscribe();
-        _super.prototype._complete.call(this);
-    };
-    ConnectableSubscriber.prototype._unsubscribe = function () {
-        var connectable = this.connectable;
-        if (connectable) {
-            this.connectable = null;
-            var connection = connectable._connection;
-            connectable._refCount = 0;
-            connectable._subject = null;
-            connectable._connection = null;
-            if (connection) {
-                connection.unsubscribe();
-            }
-        }
-    };
-    return ConnectableSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_1__Subject__["b" /* SubjectSubscriber */]));
-var RefCountOperator = /*@__PURE__*/ (function () {
-    function RefCountOperator(connectable) {
-        this.connectable = connectable;
-    }
-    RefCountOperator.prototype.call = function (subscriber, source) {
-        var connectable = this.connectable;
-        connectable._refCount++;
-        var refCounter = new RefCountSubscriber(subscriber, connectable);
-        var subscription = source.subscribe(refCounter);
-        if (!refCounter.closed) {
-            refCounter.connection = connectable.connect();
-        }
-        return subscription;
-    };
-    return RefCountOperator;
-}());
-var RefCountSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RefCountSubscriber, _super);
-    function RefCountSubscriber(destination, connectable) {
-        var _this = _super.call(this, destination) || this;
-        _this.connectable = connectable;
-        return _this;
-    }
-    RefCountSubscriber.prototype._unsubscribe = function () {
-        var connectable = this.connectable;
-        if (!connectable) {
-            this.connection = null;
-            return;
-        }
-        this.connectable = null;
-        var refCount = connectable._refCount;
-        if (refCount <= 0) {
-            this.connection = null;
-            return;
-        }
-        connectable._refCount = refCount - 1;
-        if (refCount > 1) {
-            this.connection = null;
-            return;
-        }
-        var connection = this.connection;
-        var sharedConnection = connectable._connection;
-        this.connection = null;
-        if (sharedConnection && (!connection || sharedConnection === connection)) {
-            sharedConnection.unsubscribe();
-        }
-    };
-    return RefCountSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__Subscriber__["a" /* Subscriber */]));
-//# sourceMappingURL=ConnectableObservable.js.map
-
-
-/***/ }),
-
-/***/ 763:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BehaviorSubject; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Subject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_ObjectUnsubscribedError__ = __webpack_require__(442);
-/** PURE_IMPORTS_START tslib,_Subject,_util_ObjectUnsubscribedError PURE_IMPORTS_END */
-
-
-
-var BehaviorSubject = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BehaviorSubject, _super);
-    function BehaviorSubject(_value) {
-        var _this = _super.call(this) || this;
-        _this._value = _value;
-        return _this;
-    }
-    Object.defineProperty(BehaviorSubject.prototype, "value", {
-        get: function () {
-            return this.getValue();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    BehaviorSubject.prototype._subscribe = function (subscriber) {
-        var subscription = _super.prototype._subscribe.call(this, subscriber);
-        if (subscription && !subscription.closed) {
-            subscriber.next(this._value);
-        }
-        return subscription;
-    };
-    BehaviorSubject.prototype.getValue = function () {
-        if (this.hasError) {
-            throw this.thrownError;
-        }
-        else if (this.closed) {
-            throw new __WEBPACK_IMPORTED_MODULE_2__util_ObjectUnsubscribedError__["a" /* ObjectUnsubscribedError */]();
-        }
-        else {
-            return this._value;
-        }
-    };
-    BehaviorSubject.prototype.next = function (value) {
-        _super.prototype.next.call(this, this._value = value);
-    };
-    return BehaviorSubject;
-}(__WEBPACK_IMPORTED_MODULE_1__Subject__["a" /* Subject */]));
-
-//# sourceMappingURL=BehaviorSubject.js.map
-
-
-/***/ }),
-
-/***/ 764:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return queue; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__QueueAction__ = __webpack_require__(1214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__QueueScheduler__ = __webpack_require__(1215);
-/** PURE_IMPORTS_START _QueueAction,_QueueScheduler PURE_IMPORTS_END */
-
-
-var queue = /*@__PURE__*/ new __WEBPACK_IMPORTED_MODULE_1__QueueScheduler__["a" /* QueueScheduler */](__WEBPACK_IMPORTED_MODULE_0__QueueAction__["a" /* QueueAction */]);
-//# sourceMappingURL=queue.js.map
-
-
-/***/ }),
-
-/***/ 765:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = race;
-/* unused harmony export RaceOperator */
-/* unused harmony export RaceSubscriber */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_isArray__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fromArray__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__ = __webpack_require__(38);
-/** PURE_IMPORTS_START tslib,_util_isArray,_fromArray,_OuterSubscriber,_util_subscribeToResult PURE_IMPORTS_END */
-
-
-
-
-
-function race() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i] = arguments[_i];
-    }
-    if (observables.length === 1) {
-        if (Object(__WEBPACK_IMPORTED_MODULE_1__util_isArray__["a" /* isArray */])(observables[0])) {
-            observables = observables[0];
-        }
-        else {
-            return observables[0];
-        }
-    }
-    return Object(__WEBPACK_IMPORTED_MODULE_2__fromArray__["a" /* fromArray */])(observables, undefined).lift(new RaceOperator());
-}
-var RaceOperator = /*@__PURE__*/ (function () {
-    function RaceOperator() {
-    }
-    RaceOperator.prototype.call = function (subscriber, source) {
-        return source.subscribe(new RaceSubscriber(subscriber));
-    };
-    return RaceOperator;
-}());
-
-var RaceSubscriber = /*@__PURE__*/ (function (_super) {
-    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](RaceSubscriber, _super);
-    function RaceSubscriber(destination) {
-        var _this = _super.call(this, destination) || this;
-        _this.hasFirst = false;
-        _this.observables = [];
-        _this.subscriptions = [];
-        return _this;
-    }
-    RaceSubscriber.prototype._next = function (observable) {
-        this.observables.push(observable);
-    };
-    RaceSubscriber.prototype._complete = function () {
-        var observables = this.observables;
-        var len = observables.length;
-        if (len === 0) {
-            this.destination.complete();
-        }
-        else {
-            for (var i = 0; i < len && !this.hasFirst; i++) {
-                var observable = observables[i];
-                var subscription = Object(__WEBPACK_IMPORTED_MODULE_4__util_subscribeToResult__["a" /* subscribeToResult */])(this, observable, observable, i);
-                if (this.subscriptions) {
-                    this.subscriptions.push(subscription);
-                }
-                this.add(subscription);
-            }
-            this.observables = null;
-        }
-    };
-    RaceSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        if (!this.hasFirst) {
-            this.hasFirst = true;
-            for (var i = 0; i < this.subscriptions.length; i++) {
-                if (i !== outerIndex) {
-                    var subscription = this.subscriptions[i];
-                    subscription.unsubscribe();
-                    this.remove(subscription);
-                }
-            }
-            this.subscriptions = null;
-        }
-        this.destination.next(innerValue);
-    };
-    return RaceSubscriber;
-}(__WEBPACK_IMPORTED_MODULE_3__OuterSubscriber__["a" /* OuterSubscriber */]));
-
-//# sourceMappingURL=race.js.map
-
-
-/***/ }),
-
-/***/ 766:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return asap; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AsapAction__ = __webpack_require__(1234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsapScheduler__ = __webpack_require__(1236);
-/** PURE_IMPORTS_START _AsapAction,_AsapScheduler PURE_IMPORTS_END */
-
-
-var asap = /*@__PURE__*/ new __WEBPACK_IMPORTED_MODULE_1__AsapScheduler__["a" /* AsapScheduler */](__WEBPACK_IMPORTED_MODULE_0__AsapAction__["a" /* AsapAction */]);
-//# sourceMappingURL=asap.js.map
-
-
-/***/ }),
-
-/***/ 767:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TimeoutError; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-function TimeoutErrorImpl() {
-    Error.call(this);
-    this.message = 'Timeout has occurred';
-    this.name = 'TimeoutError';
-    return this;
-}
-TimeoutErrorImpl.prototype = /*@__PURE__*/ Object.create(Error.prototype);
-var TimeoutError = TimeoutErrorImpl;
-//# sourceMappingURL=TimeoutError.js.map
-
-
-/***/ }),
-
-/***/ 78:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return async; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AsyncAction__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__ = __webpack_require__(266);
-/** PURE_IMPORTS_START _AsyncAction,_AsyncScheduler PURE_IMPORTS_END */
-
-
-var async = /*@__PURE__*/ new __WEBPACK_IMPORTED_MODULE_1__AsyncScheduler__["a" /* AsyncScheduler */](__WEBPACK_IMPORTED_MODULE_0__AsyncAction__["a" /* AsyncAction */]);
-//# sourceMappingURL=async.js.map
-
-
-/***/ }),
-
-/***/ 80:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return isArray; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var isArray = Array.isArray || (function (x) { return x && typeof x.length === 'number'; });
-//# sourceMappingURL=isArray.js.map
-
-
-/***/ }),
-
-/***/ 81:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EMPTY; });
-/* harmony export (immutable) */ __webpack_exports__["b"] = empty;
-/* unused harmony export emptyScheduled */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__(34);
-/** PURE_IMPORTS_START _Observable PURE_IMPORTS_END */
-
-var EMPTY = /*@__PURE__*/ new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) { return subscriber.complete(); });
-function empty(scheduler) {
-    return scheduler ? emptyScheduled(scheduler) : EMPTY;
-}
-function emptyScheduled(scheduler) {
-    return new __WEBPACK_IMPORTED_MODULE_0__Observable__["a" /* Observable */](function (subscriber) { return scheduler.schedule(function () { return subscriber.complete(); }); });
-}
-//# sourceMappingURL=empty.js.map
-
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return errorObject; });
-/** PURE_IMPORTS_START  PURE_IMPORTS_END */
-var errorObject = { e: {} };
-//# sourceMappingURL=errorObject.js.map
-
-
 /***/ })
 
-},[2510]);
+},[2844]);

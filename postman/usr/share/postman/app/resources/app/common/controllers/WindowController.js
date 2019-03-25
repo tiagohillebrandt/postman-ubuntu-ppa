@@ -40,6 +40,10 @@ module.exports = {
   },
 
   getCurrentWindow () {
-    return this.get({ id: pm.window && pm.window.id });
+    if (!pm.window || !pm.window.id) {
+      return Promise.resolve();
+    }
+
+    return this.get({ id: pm.window.id });
   }
 };

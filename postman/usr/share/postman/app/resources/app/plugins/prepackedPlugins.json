@@ -1,3 +1,4 @@
 {
-  "postman.openApi": "0.0.9"
+  "postman.openApi": "0.0.10",
+  "postman.sample": "0.0.1"
 }

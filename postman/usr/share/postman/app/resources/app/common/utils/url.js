@@ -32,6 +32,7 @@ module.exports = {
    */
   getURLProps: function getURLProps (url) {
     let urlInstance;
+
     try {
       // browser
       urlInstance = new URL(url);

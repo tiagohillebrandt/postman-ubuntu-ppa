@@ -9,7 +9,29 @@ let ipc = require('electron').ipcMain,
       CLIENT_CREDENTIALS: 'client_credentials'
     },
     OAuth2WindowManager = require('./OAuth2WindowManager'),
-    runtimeUtils = require('../utils/runtime');
+    fs = require('fs'),
+    getSystemProxy = require('../utils/getSystemProxy');
+
+/**
+ * Populating runOptions
+ * @param {Object} runOptions
+ * @param {Object} runMetaData
+ */
+  function populateRunOptions (runOptions, runMetaData) {
+    runOptions.fileResolver = fs;
+
+    if (runMetaData.useSystemProxy) {
+      runOptions.systemProxy = getSystemProxy;
+    }
+
+    if (runMetaData.proxies) {
+      runOptions.proxies = new sdk.ProxyConfigList({}, runMetaData.proxies);
+    }
+
+    runOptions.certificates = new sdk.CertificateList({}, runMetaData.certificates);
+
+    runOptions.requester = runMetaData.requester;
+  }
 
 /**
  * This handles bulk of the OAuth 2.0 authentication flows. The end goal is to move this into postman-runtime
@@ -305,8 +327,7 @@ class OAuth2TokenRequester {
         collection = new sdk.Collection(collectionDefinition),
         runOptions = {};
 
-    runtimeUtils.populateProxyAndCertificateOptions(runOptions, this.runMetaData || {});
-
+    populateRunOptions(runOptions, this.runMetaData || {});
     pm.logger.info('OAuth2TokenRequester~requestAccessToken - Requesting OAuth 2.0 access token');
     runner.run(collection, runOptions, (err, run) => {
       if (err) {
@@ -366,7 +387,7 @@ module.exports = function () {
    * @fires IPC#oauth2TokenRequestCallback
    */
   ipc.on('oauth2GetNewToken', function (event, params, runMetaData, contextOptions) {
-    let windowManager = new OAuth2WindowManager({ cookiePartitionId: contextOptions.cookiePartitionId }),
+    let windowManager = new OAuth2WindowManager({ cookiePartitionId: contextOptions.cookiePartitionId, strictSSL: contextOptions.strictSSL }),
         oAuth2TokenRequester = new OAuth2TokenRequester({
           runMetaData,
 

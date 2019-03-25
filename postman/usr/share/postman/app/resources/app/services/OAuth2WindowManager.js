@@ -14,6 +14,7 @@ class OAuth2WindowManager {
 
   constructor (options = {}) {
     this.cookiePartitionId = options.cookiePartitionId;
+    this.strictSSL = options.strictSSL;
   }
 
   /**
@@ -105,6 +106,13 @@ class OAuth2WindowManager {
         };
 
     authWindow.on('close', function () {
+      /* calling clearAuthCache() to close all open connections and not to clear any cached auth data
+         Here is the link to the exact line in electron repository
+         https://github.com/electron/electron/blob/1918e76913ed550a3b2738ac541de48cb9db4afa/atom/browser/api/atom_api_session.cc#L313
+         that needs to get executed when a window get closed so that any session tickets related to previous sessions is removed
+      */
+      authWindow.webContents.session.clearAuthCache({ type: '', origin: '' });
+
       // do not leak memory
       authWindow = null;
     }, false);
@@ -138,6 +146,16 @@ class OAuth2WindowManager {
         return;
       }
       handleUrlChange(newUrl);
+    });
+
+    authWindow.webContents.on('certificate-error', (event, url, error, certificate, callback) => {
+      if (!this.strictSSL) {
+        event.preventDefault();
+        callback(true);
+      }
+      else {
+        callback(false);
+      }
     });
 
     pm.logger.info('OAuth2WindowManager~startLoginWith - Opening auth login window', url.toString());

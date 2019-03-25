@@ -7,10 +7,14 @@ var electron = require('electron'),
   BrowserWindow = electron.BrowserWindow,
   WindowController = require('../common/controllers/WindowController'),
   uuidV4 = require('uuid/v4'),
+  { getValue } = require('../utils/processArg'),
   _ = require('lodash').noConflict();
 
 const SHELL_PARTITION_NAME = 'persist:postman_shell';
 const MAX_WINDOW_RESTORE_COUNT = 4;
+
+const ALL_DEV_TOOLS = ['requester', 'runner', 'console', 'shared'];
+const devtools = getValue('dev-tools') === true ? ALL_DEV_TOOLS : getValue('dev-tools').split(',');
 
 exports.windowManager = {
   primaryId: '1',
@@ -245,6 +249,7 @@ exports.windowManager = {
       window.webContents.send('shell-loaded', {
         id: window.id,
         type: 'shared',
+        devtools: _.includes(devtools, 'shared'),
         startTime,
         sessionId,
         logPath
@@ -386,6 +391,7 @@ exports.windowManager = {
       mainWindow.webContents.send('shell-loaded', {
         id: mainWindow.id,
         type: 'requester',
+        devtools: _.includes(devtools, 'requester'),
         primaryId: this.primaryId,
         allIds: this.openWindowIds,
         startTime,
@@ -481,6 +487,7 @@ exports.windowManager = {
     this.openWindowIds.push(windowId);
     this.loaderWindowId = windowId;
     window.loadURL(this.loaderWindowPath);
+    _.includes(devtools, 'loader') && window.openDevTools({ mode: 'detach' });
 
     return window;
   },
@@ -534,6 +541,7 @@ exports.windowManager = {
       mainWindow.webContents.send('shell-loaded', {
         id: mainWindow.id,
         type: 'runner',
+        devtools: _.includes(devtools, 'runner'),
         startTime,
         sessionId,
         logPath
@@ -641,6 +649,7 @@ exports.windowManager = {
         mainWindow.webContents.send('shell-loaded', {
           id: mainWindow.id,
           type: 'console',
+          devtools: _.includes(devtools, 'console'),
           startTime,
           sessionId,
           logPath
@@ -694,6 +703,16 @@ exports.windowManager = {
       })
       .catch((e) => {
         pm.logger.error('WindowManager~newConsoleWindow - Error in loading console window from db', e);
+      });
+
+      // Reset console ID when 'closed' is emitted.
+      // 'close' not used as it is not emitted when destroy() is called.
+      // This makes sure console can be launched after switching accounts while it is open.
+      // Github issue - https://github.com/postmanlabs/postman-app-support/issues/5409
+      mainWindow.on('closed', () => {
+        if (this.consoleWindowId) {
+          this.consoleWindowId = null;
+        }
       });
 
       this.addListeners(mainWindow);
@@ -794,9 +813,6 @@ exports.windowManager = {
 
     this.removeListeners(window);
     this.removeWindowId(windowId);
-    if (this.consoleWindowId === windowId) {
-      this.consoleWindowId = null;
-    }
 
     this.deleteWindowFromDB(window)
       .then(() => {

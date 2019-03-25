@@ -25,7 +25,7 @@ module.exports = (() => {
   let locals = {
     adapter: null,
     window: null,
-    isLockedSession: false
+    initiatedUserId: null
   };
 
   const authEvents = (() => {
@@ -79,7 +79,7 @@ module.exports = (() => {
         *   cancel: false,
         *   authData: {
         *     userData: {
-        *       user_id: number,
+        *       id: string,
         *       name: string,
         *       email: string,
         *       access_token: string
@@ -90,11 +90,26 @@ module.exports = (() => {
         * }
         */
 
-        let responseData = event.data || {};
+        let responseData = event.data || {},
 
-        responseData.isLockedSession = locals.isLockedSession;
+          // It is a locked session only if it is initiated from signed in user
+          initiatedUserId = locals.initiatedUserId,
+          isLockedSession = initiatedUserId && initiatedUserId !== '0',
+          authenticatedUserId = _.get(event, 'data.authData.userData.id');
 
-        authEvents.send(responseData);
+        /**
+         * Cancel the authentication process if
+         * 1. It was a locked session and
+         * 2. The initiated user is not the one got authenticated.
+         */
+        if (isLockedSession && initiatedUserId !== authenticatedUserId) {
+
+          // We are cancelling the auth which will take to the same revoked session user partition.
+          authEvents.send({ cancel: true });
+        } else {
+          responseData.isLockedSession = isLockedSession;
+          authEvents.send(responseData);
+        }
 
         // Close the authWindow
         destroy();
@@ -109,7 +124,7 @@ module.exports = (() => {
      *
      * @param {Boolean} hasAccounts
      * @param {Boolean} isSignup
-     * @param {Number} userID
+     * @param {String} userID
      */
     function open ({ hasAccounts, isSignup, userID }) {
 
@@ -118,7 +133,7 @@ module.exports = (() => {
 
       if (locals.window) destroy();
 
-      locals.isLockedSession = userID && userID !== '0';
+      locals.initiatedUserId = userID;
 
       locals.window = new BrowserWindow({
         width: 1280,

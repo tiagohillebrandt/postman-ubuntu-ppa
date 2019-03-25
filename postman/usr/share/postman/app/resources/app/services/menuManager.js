@@ -412,12 +412,21 @@ var electron = require('electron'),
 menuManager = {
   dockMenuTemplate: dockMenuTemplate,
 
-  createMenu: function () {
+  createMenu: function (shortcutsDisabled = false) {
     Menu.setApplicationMenu(
       Menu.buildFromTemplate(
-        this.getMenuBarTemplate()
+        shortcutsDisabled ? this.removeShortcuts(this.getMenuBarTemplate()) : this.getMenuBarTemplate()
       )
     );
+  },
+
+  removeShortcuts: function (menu) {
+    return _.map(menu, (menuItem) => {
+      if (_.has(menuItem, 'submenu')) {
+        _.set(menuItem, 'submenu', this.removeShortcuts(menuItem.submenu));
+      }
+      return _.omit(menuItem, ['accelerator']);
+    });
   },
 
   getMenuBarTemplate: function () {

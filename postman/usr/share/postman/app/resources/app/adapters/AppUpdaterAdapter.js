@@ -1,8 +1,8 @@
 const electron = require('electron'),
       path = require('path'),
 
-      appSettings = require('../services/appSettings').appSettings,
-      windowManager = require('../services/windowManager').windowManager;
+      appSettings = require('../services/appSettings').appSettings;
+
 
 /**
  * AppUpdaterAdapter is a bridge between the updater and the electron app.
@@ -86,12 +86,21 @@ let AppUpdaterAdapter = {
     },
 
     /**
+     * @method setDownloadVersion
+     * @description This helps in setting the download version to app settings
+     * @param {String} downloadVersion
+     */
+    setDownloadedVersion (version) {
+      appSettings.set('downloadedVersion', version);
+    },
+
+    /**
      * @method quitApp
      * @description It returns the electron function to quit the app
-     * @returns {Object} electron.app.quitApp
+     * @returns {Object} electron.app.quit
      */
     quitApp () {
-      return electron.app.quitApp;
+      return electron.app.quit;
     }
 };
 

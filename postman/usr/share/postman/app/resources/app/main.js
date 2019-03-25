@@ -22,7 +22,7 @@ var electron = require('electron'),
     myWindow = null,
     sharedWindow = null,
     bootstrapModels = require('./bootstrap-models'),
-    initializeUpdaterHandler = require('./services/UpdaterHandler').init,
+    updaterHandler = require('./services/UpdaterHandler'),
     RuntimeExecutionService = require('./services/RuntimeExecutionService'),
     ProtocolHandler = require('./services/ProtocolHandler'),
     initializeLogger = require('./services/Logger').init,
@@ -87,7 +87,7 @@ async.series([
    * It initialize the updateHandler and assigns the updaterInstance to the app object
    */
   (cb) => {
-    initializeUpdaterHandler((err, updaterInstance) => {
+    updaterHandler.init((err, updaterInstance) => {
       app.updaterInstance = updaterInstance;
       cb(err);
     });
@@ -149,6 +149,7 @@ async.series([
         // Here there is a problem in booting shared process
         if (process === 'shared') {
           if (err) {
+            pm.logger.error('Main~AppEvents - Shared window boot failed', err);
             dialog.showErrorBox('Could not open Postman', 'Please contact help@getpostman.com');
             return;
           }
@@ -347,6 +348,16 @@ async.series([
       var win = BrowserWindow.fromId(parseInt(arg));
       win && win.close();
     });
+
+    ipc.on('enableShortcuts', () => {
+      menuManager.createMenu(false);
+      appSettings.set('shortcutsDisabled', false);
+    });
+
+    ipc.on('disableShortcuts', () => {
+      menuManager.createMenu(true);
+      appSettings.set('shortcutsDisabled', true);
+    });
   }
 
   process.on('uncaughtException', function (e) {
@@ -410,14 +421,41 @@ async.series([
     }
   });
 
-  app.on('before-quit', function () {
-    pm.logger.info('Qitting app');
+  app.on('before-quit', function (event) {
+    pm.logger.info('Quitting app');
     app.quittingApp = true;
     let sharedWindow = windowManager.getSharedWindow();
     sharedWindow && sharedWindow.show();
-    app.updaterInstance = null; // clear the updater instance
     pm.pluginHost.terminate();
     pm.logger.info(pm.pluginHost.host);
+
+    if (os.type() !== 'Linux') {
+      app.updaterInstance = null;
+    }
+    else {
+      event.preventDefault();
+      appSettings.get('downloadedVersion', (err, downloadedVersion) => {
+        if (!err) {
+          let currentVersion = app.getVersion();
+
+          // Update has been downloaded if `downloadedVersion` exists
+          // Update the app and quit
+          if (_.isNil(downloadedVersion) === false && currentVersion !== downloadedVersion) {
+
+            // applyUpdateAndQuit() internally calls swapAndRelaunch.sh
+            // Which servers the purpose of applying update & quit the app by killing the parent process
+            // If called, any statement after this function call in `before-quit` event will be skipped.
+            pm.logger.info('Applying update and quit the app');
+            updaterHandler.applyUpdateAndQuit(app.updaterInstance);
+          }
+
+          // if there is no new downloaded updates to apply
+          else {
+            app.exit();
+          }
+        }
+      });
+    }
   });
 
   /**
@@ -526,6 +564,20 @@ async.series([
   }
 
   /**
+   * Determines whether to shortcuts should be removed from menu.
+   */
+  function shouldHaveShortcuts (cb) {
+    appSettings.get('shortcutsDisabled', (err, shortcutsDisabled) => {
+      if (err) {
+        pm.logger.error('Main~shouldHaveShortcuts - Error while trying to get "shortcutsDisabled" from appSettings. Assuming shortcuts are enabled.', err);
+        return cb(err, false);
+      }
+
+      return cb(null, shortcutsDisabled);
+    });
+  }
+
+  /**
    * This will be called when app is ready
    */
   function onAppReady () {
@@ -535,12 +587,16 @@ async.series([
       populateUpdateSettings();
       windowManager.newLoaderWindow();
       sharedWindow = windowManager.newSharedWindow();
-
+      appSettings.set('downloadedVersion', null);
       if (process.env.SKIP_SIGNIN !== 'true') {
         authHandler.init(authHandlerAdapter);
       }
 
-      menuManager.createMenu();
+      shouldHaveShortcuts((err, shortcutsDisabled) => {
+        app.shortcutsDisabled = shortcutsDisabled;
+        menuManager.createMenu(shortcutsDisabled);
+      });
+
       if (app.dock) { // app.dock is only available on OSX
         app.dock.setMenu(dockMenu);
       }

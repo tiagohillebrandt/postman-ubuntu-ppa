@@ -1,19 +1,20 @@
 webpackJsonp([28],{
 
-/***/ 2837:
+/***/ 3158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserFolderListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_pureRenderDecorator__ = __webpack_require__(2725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_InlineInput__ = __webpack_require__(1099);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__ = __webpack_require__(2697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_FolderIcon__ = __webpack_require__(2729);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderItemActions__ = __webpack_require__(3169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(2651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_pureRenderDecorator__ = __webpack_require__(3047);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_InlineInput__ = __webpack_require__(1225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__ = __webpack_require__(3017);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_FolderIcon__ = __webpack_require__(3051);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderItemActions__ = __webpack_require__(3493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(2969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(6);
 var _dec, _class;
 
 
@@ -22,7 +23,10 @@ var _dec, _class;
 
 
 
-let
+
+
+
+const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('PermissionStore');let
 
 
 
@@ -60,8 +64,7 @@ let
 
 
 
-
-CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return permissionStore.can('edit', 'folder', props.folder.id);}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return permissionStore.can('edit', 'folder', props.folder.id);}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return permissionStore.can('duplicate', 'folder', props.folder.id);}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return permissionStore.can('delete', 'folder', props.folder.id);}, onClick(props, component) {component.handleActionTrigger(__WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["e" /* ACTION_TARGET_FOLDER */], props.folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
@@ -131,7 +134,6 @@ CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__co
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderItemActions__["a" /* default */], {
             folder: folder,
-            isEditable: this.props.isEditable,
             showRename: this.state.showRename,
             onActionTriggered: this.handleActionTrigger }))));
 
@@ -142,27 +144,28 @@ CollectionBrowserFolderListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_3__co
 
 /***/ }),
 
-/***/ 2838:
+/***/ 3159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserRequestListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineInput__ = __webpack_require__(1099);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__ = __webpack_require__(1106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_ContextMenu__ = __webpack_require__(2697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_EditIcon__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Icons_RenameIcon__ = __webpack_require__(2696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_base_Icons_DeleteIcon__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Icons_CopyIcon__ = __webpack_require__(1096);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_request_RequestIcon__ = __webpack_require__(1121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__ = __webpack_require__(2651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineInput__ = __webpack_require__(1225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__ = __webpack_require__(1231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_ContextMenu__ = __webpack_require__(3017);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_EditIcon__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Icons_RenameIcon__ = __webpack_require__(3016);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_base_Icons_DeleteIcon__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_base_Icons_CopyIcon__ = __webpack_require__(1221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_request_RequestIcon__ = __webpack_require__(1245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__ = __webpack_require__(2969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__stores_get_store__ = __webpack_require__(6);
 var _dec, _class;
 
 
@@ -179,7 +182,10 @@ var _dec, _class;
 
 
 
-let
+
+
+
+const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_14__stores_get_store__["a" /* getStore */])('PermissionStore');let
 
 
 
@@ -217,8 +223,7 @@ let
 
 
 
-
-CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return props.isEditable;}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_12_mobx_react__["a" /* observer */])(_class = class CollectionBrowserRequestListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__components_base_ContextMenu__["a" /* default */])([{ label: 'Rename', shortcut: 'rename', isVisible(props) {return permissionStore.can('edit', 'request', props.request.id);}, onClick(props, component) {component.toggleEditName();} }, { label: 'Edit', isVisible(props) {return permissionStore.can('edit', 'request', props.request.id);}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]);} }, { label: 'Duplicate', shortcut: 'duplicate', isVisible(props) {return permissionStore.can('duplicate', 'request', props.request.id);}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]);} }, { label: 'Delete', shortcut: 'delete', isVisible(props) {return permissionStore.can('delete', 'request', props.request.id);}, onClick(props, component) {component.handleActionTrigger(props.request.id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]);} }], monitor => {return { isContextMenuOpen: monitor.isOpen };}), _dec(_class = Object(__WEBPACK_IMPORTED_MODULE_12_mobx_react__["a" /* observer */])(_class = class CollectionBrowserRequestListItem extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
 
@@ -295,11 +300,21 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
     }
   }
 
+  getTooltipText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    }
+  }
+
   render() {
 
     let descriptionClasses = this.getDescriptionClasses();
 
-    const { name, description, method, id } = this.props.request;
+    const { name, description, method, id } = this.props.request,
+    permissionStore = Object(__WEBPACK_IMPORTED_MODULE_14__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canEditRequest = permissionStore.can('edit', 'request', id),
+    canDuplicateRequest = permissionStore.can('duplicate', 'request', id),
+    canDeleteRequest = permissionStore.can('delete', 'request', id);
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-list-item__request-wrapper' },
@@ -318,8 +333,6 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
                 onToggleEdit: this.handleToggleEditName })),
 
 
-
-            this.props.isEditable &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-list-item__request__actions collection-browser-actions-wrapper' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["b" /* ButtonGroup */], null,
 
@@ -327,7 +340,9 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["v" /* ACTION_TYPE_RENAME_TOGGLE */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["v" /* ACTION_TYPE_RENAME_TOGGLE */]),
+                    disabled: !canEditRequest,
+                    tooltip: this.getTooltipText(!canEditRequest) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__["a" /* default */], { identifier: 'rename' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_base_Icons_RenameIcon__["a" /* default */], { className: 'collection-browser-collection-rename-icon' }))),
@@ -337,7 +352,9 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]),
+                    disabled: !canEditRequest,
+                    tooltip: this.getTooltipText(!canEditRequest) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__["a" /* default */], { identifier: 'edit' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_base_Icons_EditIcon__["a" /* default */], { className: 'collection-browser-collection-edit-icon' }))),
@@ -345,7 +362,9 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]),
+                    disabled: !canDuplicateRequest,
+                    tooltip: this.getTooltipText(!canDuplicateRequest) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__["a" /* default */], { identifier: 'copy' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-collection-duplicate-icon' }))),
@@ -353,11 +372,12 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__["a" /* Button */], {
                     type: 'icon',
-                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) },
+                    onClick: this.handleActionClick.bind(this, id, __WEBPACK_IMPORTED_MODULE_11__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]),
+                    disabled: !canDeleteRequest,
+                    tooltip: this.getTooltipText(!canDeleteRequest) },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__["a" /* default */], { identifier: 'delete' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-collection-delete-icon' }))))))),
-
 
 
 
@@ -368,7 +388,7 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_XPaths_XPath__["a" /* default */], { identifier: 'requestDescription', isVisible: this.state.showDescription },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__["a" /* default */], {
               className: 'collection-browser-request-description-wrapper',
-              editable: this.props.isEditable,
+              editable: Object(__WEBPACK_IMPORTED_MODULE_14__stores_get_store__["a" /* getStore */])('PermissionStore').can('edit', 'request', id),
               fontSize: 11,
               placeholder: 'Adding a description makes your docs better',
               ref: 'inlineEditor',
@@ -393,7 +413,7 @@ CollectionBrowserRequestListItem = (_dec = Object(__WEBPACK_IMPORTED_MODULE_5__c
 
 /***/ }),
 
-/***/ 2839:
+/***/ 3160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -406,7 +426,7 @@ const MONITOR_RUNS = 'monitor_request_runs';
 
 /***/ }),
 
-/***/ 3165:
+/***/ 3489:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -414,22 +434,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CollectionBrowserContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_draggable__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_draggable__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_draggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_collections_browser_CollectionBrowser__ = __webpack_require__(3166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_AppSettingsDefaults__ = __webpack_require__(446);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_pipelines_user_action__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_collections_browser_CollectionBrowser__ = __webpack_require__(3490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_AppSettingsDefaults__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_pipelines_user_action__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_services_DocumenterService__ = __webpack_require__(2698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_model_event__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_CollectionSidebarService__ = __webpack_require__(2760);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_CollectionActionsUtil__ = __webpack_require__(2761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_services_AuthHandlerService__ = __webpack_require__(721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_XPaths_XPath__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__ = __webpack_require__(2651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_services_DocumenterService__ = __webpack_require__(3018);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_CollectionSidebarService__ = __webpack_require__(3082);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_CollectionActionsUtil__ = __webpack_require__(3083);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_services_AuthHandlerService__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__constants_CollectionActionsConstants__ = __webpack_require__(2969);
 var _class;
 
 
@@ -919,7 +939,7 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
     currentUser = Object(__WEBPACK_IMPORTED_MODULE_7__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
     isLoggedIn = currentUser && currentUser.isLoggedIn,
-    isProUser = currentUser && currentUser.teamSyncEnabled && currentUser.syncEnabled;
+    isProUser = currentUser && currentUser.teamSyncEnabled;
 
     // Additonal 5px to avoid clicking outside browser on drag end
     return (
@@ -968,22 +988,26 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
 /***/ }),
 
-/***/ 3166:
+/***/ 3490:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CollectionBrowserCollectionDetails__ = __webpack_require__(3167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderDetails__ = __webpack_require__(3202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CollectionBrowserCollectionDetails__ = __webpack_require__(3491);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserFolderDetails__ = __webpack_require__(3525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_CollectionActionsConstants__ = __webpack_require__(2651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_CollectionActionsConstants__ = __webpack_require__(2969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(15);
+var _class;
+
 
 
 
@@ -995,7 +1019,8 @@ CollectionBrowserContainer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx_react__["a"
 
 let
 
-CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+CollectionBrowser = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["a" /* observer */])(_class = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
@@ -1149,9 +1174,11 @@ CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_
     this.toggleCollectionView();
   }
 
-  componentDidMount() {
-    this.collectionBrowserNode = this.collectionBrowser && Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["findDOMNode"])(this.collectionBrowser);
-    this.collectionBrowserNode && this.collectionBrowserNode.addEventListener('scroll', this.handleScroll);
+  componentDidUpdate() {
+    if (!this.collectionBrowserNode && this.collectionBrowser) {
+      this.collectionBrowserNode = this.collectionBrowser && Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["findDOMNode"])(this.collectionBrowser);
+      this.collectionBrowserNode && this.collectionBrowserNode.addEventListener('scroll', this.handleScroll);
+    }
   }
 
   componentWillUnmount() {
@@ -1172,7 +1199,14 @@ CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_
 
     let collectionDetailsClasses = this.getCollectionDetailsWrapperClasses(),
     folderDetailsClasses = this.getFolderDetailsWrapperClasses(),
-    collection = this.props.collection || {};
+    collection = this.props.collection,
+    canRestore;
+
+    if (!collection || !collection.id) {
+      return null;
+    }
+
+    canRestore = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('PermissionStore').can('restore', 'collection', collection.id);
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.props.className },
@@ -1199,7 +1233,7 @@ CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_
 
             activityFeed: this.props.activityFeed,
             collectionRestoreTarget: this.props.collectionRestoreTarget,
-            enableRestore: this.props.isProUser && collection.isEditable,
+            enableRestore: this.props.isProUser && canRestore,
             isLoggedIn: this.props.isLoggedIn,
             onLoadMore: this.props.onLoadMoreActivityFeed,
             onSignIn: this.props.onSignIn,
@@ -1223,7 +1257,7 @@ CollectionBrowser = class CollectionBrowser extends __WEBPACK_IMPORTED_MODULE_0_
 
 
 
-  }};
+  }}) || _class;
 
 
 CollectionBrowser.defaultProps = { selectedFolder: {} };
@@ -1231,30 +1265,30 @@ CollectionBrowser.defaultProps = { selectedFolder: {} };
 
 /***/ }),
 
-/***/ 3167:
+/***/ 3491:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserCollectionDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper__ = __webpack_require__(586);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_date_helper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineInput__ = __webpack_require__(1099);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_EditIcon__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_CloseIcon__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__CollectionBrowserCollectionContents__ = __webpack_require__(3168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__containers_collections_browser_CollectionBrowserMocksContainer__ = __webpack_require__(3170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__containers_collections_browser_CollectionBrowserMonitorListContainer__ = __webpack_require__(3175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CollectionBrowserActivityfeed__ = __webpack_require__(3181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__CollectionBrowserCollectionAction__ = __webpack_require__(3201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineInput__ = __webpack_require__(1225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_EditIcon__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_base_Icons_CloseIcon__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__CollectionBrowserCollectionContents__ = __webpack_require__(3492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__containers_collections_browser_CollectionBrowserMocksContainer__ = __webpack_require__(3494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__containers_collections_browser_CollectionBrowserMonitorListContainer__ = __webpack_require__(3499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__CollectionBrowserActivityfeed__ = __webpack_require__(3504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__CollectionBrowserCollectionAction__ = __webpack_require__(3524);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
 
 
@@ -1302,7 +1336,7 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
     return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({
       'collection-browser-details-header': true,
       'collection-browser-details-header--edit': !this.state.showEditNameToggle,
-      'editable': this.props.collection.isEditable });
+      'editable': Object(__WEBPACK_IMPORTED_MODULE_13__stores_get_store__["a" /* getStore */])('PermissionStore').can('edit', 'collection', this.props.collection.id) });
 
   }
 
@@ -1312,21 +1346,6 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
 
   getTabContentClass(tab) {
     return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ 'is-hidden': tab !== this.props.activeTab });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const inlineEditor = this.refs.inlineEditor;
-    if (inlineEditor) {
-      if (nextProps.isEditingDescription && !this.props.isEditingDescription) {
-        inlineEditor.startEditing();
-      } else
-      if (!nextProps.isEditingDescription && this.props.isEditingDescription) {
-        inlineEditor.reset();
-      } else
-      if (nextProps.browserWidth !== this.props.browserWidth) {
-        inlineEditor.refresh();
-      }
-    }
   }
 
   handleToggleEditName(isEditing) {
@@ -1370,7 +1389,7 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
               onToggleEdit: this.handleToggleEditName }),
 
 
-            this.state.showEditNameToggle && collection.isEditable &&
+            this.state.showEditNameToggle && Object(__WEBPACK_IMPORTED_MODULE_13__stores_get_store__["a" /* getStore */])('PermissionStore').can('edit', 'collection', this.props.collection.id) &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
                 className: 'collection-browser-details-header__edit-icon-wrapper',
                 onClick: this.handleEditName },
@@ -1406,20 +1425,7 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
 
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'collection-browser-meta-value' },
-                  collection.owner === (currentUser && currentUser.id) ? 'You' : this.getUsername(collection.owner, currentUser))),
-
-
-
-
-              collection.owner !== (currentUser && currentUser.id) &&
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-meta__field collection-browser-meta--owner' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'collection-browser-meta-label' }, 'Permissions'),
-
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'collection-browser-meta-value' },
-                  collection.isEditable ? 'View & Edit' : 'View Only'))))),
-
-
+                  collection.owner === (currentUser && currentUser.id) ? 'You' : this.getUsername(collection.owner, currentUser)))))),
 
 
 
@@ -1427,7 +1433,7 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__CollectionBrowserCollectionAction__["a" /* default */], {
           collection: collection,
-          isPRO: currentUser && currentUser.syncEnabled && currentUser.isLoggedIn && currentUser.teamSyncEnabled,
+          isPRO: currentUser && currentUser.isLoggedIn && currentUser.teamSyncEnabled,
           onActionTriggered: this.handleActionTrigger }),
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_Tabs__["b" /* Tabs */], {
@@ -1446,7 +1452,6 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__CollectionBrowserCollectionContents__["a" /* default */], {
             className: this.getTabContentClass(TABS.DOCUMENTATION),
             collection: collection,
-            isEditable: collection.isEditable,
             isOpen: this.props.isOpen,
             onActionTriggered: this.handleActionTrigger,
             onAddRequest: this.props.onAddRequest,
@@ -1490,25 +1495,29 @@ CollectionBrowserCollectionDetails = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_rea
 
 /***/ }),
 
-/***/ 3168:
+/***/ 3492:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserCollectionContents; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserFolderListItem__ = __webpack_require__(2837);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserRequestListItem__ = __webpack_require__(2838);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__ = __webpack_require__(1106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_PublishIcon__ = __webpack_require__(2664);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserFolderListItem__ = __webpack_require__(3158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserRequestListItem__ = __webpack_require__(3159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__ = __webpack_require__(1231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_PublishIcon__ = __webpack_require__(2982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__external_navigation_ExternalNavigationService__ = __webpack_require__(70);
 var _class;
+
+
 
 
 
@@ -1530,6 +1539,13 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
     this.handleFolderSelect = this.handleFolderSelect.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const inlineEditor = this.refs.inlineEditor;
+    if (inlineEditor && nextProps.browserWidth !== this.props.browserWidth) {
+      inlineEditor.refresh();
+    }
+  }
+
   handleFolderSelect(folder) {
     this.props.onFolderSelect && this.props.onFolderSelect(folder);
   }
@@ -1539,7 +1555,7 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
   }
 
   handleDocumentationLearnmore() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["k" /* DOCUMENTATION_LINK */]);
+    Object(__WEBPACK_IMPORTED_MODULE_12__external_navigation_ExternalNavigationService__["a" /* openExternalLink */])(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["l" /* DOCUMENTATION_LINK */]);
     __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__["a" /* default */].addEvent('onboarding', 'view_documentation_intro_documentation', 'collection_browser');
   }
   getClasses() {
@@ -1566,8 +1582,9 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'divider' }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__["a" /* default */], { identifier: 'collectionDescription' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_InlineEditor__["a" /* default */], {
+            key: _.get(this.props, 'collection.id'),
             className: 'collection-browser-details-description-wrapper',
-            editable: _.get(this.props, 'collection.isEditable'),
+            editable: Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('PermissionStore').can('edit', 'collection', this.props.collection.id),
             placeholder: 'Adding a description makes your docs better',
             ref: 'inlineEditor',
             value: _.get(this.props, 'collection.description'),
@@ -1581,7 +1598,7 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-sidebar-list-item__body--empty' }, 'This collection is empty.\xA0',
 
 
-            this.props.collection.isEditable &&
+            Object(__WEBPACK_IMPORTED_MODULE_11__stores_get_store__["a" /* getStore */])('PermissionStore').can('addRequest', 'collection', this.props.collection.id) &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_Buttons__["a" /* Button */], {
                   type: 'text',
@@ -1603,7 +1620,6 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__["a" /* default */], { identifier: `folder/${index}`, key: folder.id },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CollectionBrowserFolderListItem__["a" /* default */], {
                   folder: folder,
-                  isEditable: _.get(this.props, 'collection.isEditable'),
                   key: folder.id,
                   onActionTriggered: this.handleActionTrigger,
                   onFolderSelect: this.handleFolderSelect })));
@@ -1619,7 +1635,6 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionBrowserRequestListItem__["a" /* default */], {
                   request: request,
                   isOpen: this.props.isOpen,
-                  isEditable: _.get(this.props, 'collection.isEditable'),
                   onActionTriggered: this.handleActionTrigger,
                   browserWidth: this.props.browserWidth })));
 
@@ -1635,20 +1650,24 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
 
 /***/ }),
 
-/***/ 3169:
+/***/ 3493:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserFolderItemActions; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Icons_RenameIcon__ = __webpack_require__(2696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_EditIcon__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_CopyIcon__ = __webpack_require__(1096);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_DeleteIcon__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(2651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_base_Icons_RenameIcon__ = __webpack_require__(3016);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_base_Icons_EditIcon__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_Icons_CopyIcon__ = __webpack_require__(1221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_base_Icons_DeleteIcon__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__ = __webpack_require__(2969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(15);
+var _class;
+
 
 
 
@@ -1658,7 +1677,8 @@ CollectionBrowserCollectionContents = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_re
 
 let
 
-CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+
+CollectionBrowserFolderItemActions = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["a" /* observer */])(_class = class CollectionBrowserFolderItemActions extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
   }
@@ -1669,19 +1689,30 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
     e.nativeEvent.stopImmediatePropagation();
   }
 
-  render() {
+  getTooltipText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    }
+  }
 
+  render() {
     let { folder, showRename } = this.props;
+
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canEditFolder = permissionStore.can('edit', 'folder', folder.id),
+    canDuplicate = permissionStore.can('duplicate', 'folder', folder.id),
+    canDeleteFolder = permissionStore.can('delete', 'folder', folder.id);
+
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-list-item__folder__head__actions collection-browser-actions-wrapper' },
-
-        this.props.isEditable &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["b" /* ButtonGroup */], null,
 
           showRename &&
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["v" /* ACTION_TYPE_RENAME_TOGGLE */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["v" /* ACTION_TYPE_RENAME_TOGGLE */]),
+              disabled: !canEditFolder,
+              tooltip: this.getTooltipText(!canEditFolder) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'rename' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_base_Icons_RenameIcon__["a" /* default */], { className: 'collection-browser-collection-rename-icon' }))),
@@ -1689,7 +1720,9 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]),
+              disabled: !canEditFolder,
+              tooltip: this.getTooltipText(!canEditFolder) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'edit' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_base_Icons_EditIcon__["a" /* default */], { className: 'collection-browser-collection-edit-icon' }))),
@@ -1697,7 +1730,9 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]),
+              disabled: !canDuplicate,
+              tooltip: this.getTooltipText(!canDuplicate) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'copy' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-collection-duplicate-icon' }))),
@@ -1705,7 +1740,9 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
               type: 'icon',
-              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) },
+              onClick: this.handleActionTrigger.bind(this, folder.id, __WEBPACK_IMPORTED_MODULE_6__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]),
+              disabled: !canDeleteFolder,
+              tooltip: this.getTooltipText(!canDeleteFolder) },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_XPaths_XPath__["a" /* default */], { identifier: 'delete' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-collection-delete-icon' }))))));
@@ -1714,30 +1751,29 @@ CollectionBrowserFolderItemActions = class CollectionBrowserFolderItemActions ex
 
 
 
-
-  }};
+  }}) || _class;
 
 /***/ }),
 
-/***/ 3170:
+/***/ 3494:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMocksContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_collections_browser_mocks_CollectionBrowserMockHeader__ = __webpack_require__(3171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_mocks_CollectionBrowserMockList__ = __webpack_require__(3172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_LimitServiceConstants__ = __webpack_require__(2839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_MockController__ = __webpack_require__(1133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_collections_browser_mocks_CollectionBrowserMockHeader__ = __webpack_require__(3495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_mocks_CollectionBrowserMockList__ = __webpack_require__(3496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_LimitServiceConstants__ = __webpack_require__(3160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_MockController__ = __webpack_require__(1257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_XPaths_XPath__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__new_button_CreateNewXService__ = __webpack_require__(2682);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__new_button_CreateNewXService__ = __webpack_require__(3002);
 var _class;
 
 
@@ -1771,6 +1807,10 @@ CollectionBrowserMocksContainer = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react_
       this.detachModelListeners();
       this.initializeModel(nextProps.collection);
     }
+  }
+
+  componentDidMount() {
+    this.initializeModel(this.props.collection);
   }
 
   componentWillUnmount() {
@@ -1855,7 +1895,8 @@ CollectionBrowserMocksContainer = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react_
             mocks: this.state.mocks,
             onAddMock: this.handleAddMock,
             onMessageClose: this.handleCloseWarning,
-            onRefresh: this.handleRefreshMocks })),
+            onRefresh: this.handleRefreshMocks,
+            collection: this.props.collection })),
 
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_base_XPaths_XPath__["a" /* default */], { identifier: 'list' },
@@ -1864,7 +1905,8 @@ CollectionBrowserMocksContainer = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react_
             mocks: this.state.mocks,
             onAddMock: this.handleAddMock,
             onDelete: this.handleDelete,
-            onSignIn: this.handleSignIn }))));
+            onSignIn: this.handleSignIn,
+            collection: this.props.collection }))));
 
 
 
@@ -1874,24 +1916,30 @@ CollectionBrowserMocksContainer = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react_
 
 /***/ }),
 
-/***/ 3171:
+/***/ 3495:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockHeader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messaging_Alert__ = __webpack_require__(2659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_RefreshIcon__ = __webpack_require__(1107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_AddIcon__ = __webpack_require__(1097);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_PublishIcon__ = __webpack_require__(2664);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messaging_Alert__ = __webpack_require__(2977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_RefreshIcon__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_AddIcon__ = __webpack_require__(1223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_PublishIcon__ = __webpack_require__(2982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_uid_helper__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__external_navigation_ExternalNavigationService__ = __webpack_require__(70);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
+
+
 
 
 
@@ -1911,7 +1959,7 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
   }
 
   handleMockLearn() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["A" /* MOCK_DOCS */]);
+    Object(__WEBPACK_IMPORTED_MODULE_12__external_navigation_ExternalNavigationService__["a" /* openExternalLink */])(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["B" /* MOCK_DOCS */]);
     __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('onboarding', 'view_documentation_intro_mock', 'collection_browser');
   }
 
@@ -1930,6 +1978,13 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
 
   render() {
     let alertMessage = _.get(this.props, 'message.message');
+
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    collectionId = this.props.collection && this.props.collection.id,
+    workspaceId = Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id;
+
+    const canAddMock = collectionId && permissionStore.can('addMock', 'collection', collectionId) &&
+    permissionStore.can('addMock', 'workspace', workspaceId);
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
@@ -1967,6 +2022,8 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
         !_.isEmpty(this.props.mocks) &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__["a" /* default */], { identifier: 'addMock' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-learn-more-header' },
+
+            canAddMock &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
                 className: 'collection-browser-learn-more-header__text',
                 onClick: this.handleAddMock },
@@ -1982,22 +2039,23 @@ CollectionBrowserMockHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a
 
 
 
+
   }}) || _class;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 3172:
+/***/ 3496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockList; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMockItem__ = __webpack_require__(3173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMockEmptyListItem__ = __webpack_require__(3174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMockItem__ = __webpack_require__(3497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMockEmptyListItem__ = __webpack_require__(3498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_XPaths_XPath__ = __webpack_require__(27);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -2011,7 +2069,6 @@ CollectionBrowserMockList = class CollectionBrowserMockList extends __WEBPACK_IM
   }
 
   render() {
-    let currentUserId = _.get(Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('CurrentUserStore'), 'id');
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-mock-lists' },
 
@@ -2024,15 +2081,15 @@ CollectionBrowserMockList = class CollectionBrowserMockList extends __WEBPACK_IM
         !this.props.isLoading && _.isEmpty(this.props.mocks) &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMockEmptyListItem__["a" /* default */], {
           onAddMock: this.props.onAddMock,
-          onSignIn: this.props.onSignIn }),
+          onSignIn: this.props.onSignIn,
+          collection: this.props.collection }),
 
 
 
         _.map(this.props.mocks, mock => {
           return (
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_XPaths_XPath__["a" /* default */], { identifier: mock.id, key: mock.id },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMockItem__["a" /* default */], _extends({
-                isDeletable: _.get(mock, 'createdBy') === currentUserId },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMockItem__["a" /* default */], _extends({},
               mock,
               this.props))));
 
@@ -2047,22 +2104,22 @@ CollectionBrowserMockList = class CollectionBrowserMockList extends __WEBPACK_IM
 
 /***/ }),
 
-/***/ 3173:
+/***/ 3497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ClipboardHelper__ = __webpack_require__(724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MockIcon__ = __webpack_require__(2665);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1096);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DeleteIcon__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ClipboardHelper__ = __webpack_require__(808);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MockIcon__ = __webpack_require__(2983);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DeleteIcon__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
 
 
@@ -2095,8 +2152,20 @@ CollectionBrowserMockItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" 
     this.props.onDelete && this.props.onDelete(this.props.id);
   }
 
+  getTooltipText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    } else
+    {
+      return 'Delete Mock';
+    }
+  }
+
   render() {
     let currentUser = Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('CurrentUserStore');
+
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_6__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canDeleteMock = permissionStore.can('deleteMock', 'collection', this.props.collection.id);
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-mock-list-item__container', 'data-mock-id': this.props.id },
@@ -2122,17 +2191,15 @@ CollectionBrowserMockItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" 
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__["a" /* default */], { className: 'collection-browser-mock-list-item__actions-copy-icon' }))),
 
 
-
-          this.props.isDeletable &&
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
               className: 'collection-browser-mock-list-item__button-delete',
-              tooltip: 'Delete Mock',
+              tooltip: this.getTooltipText(!canDeleteMock),
               type: 'icon',
-              onClick: this.handleDelete },
+              onClick: this.handleDelete,
+              disabled: !canDeleteMock },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__["a" /* default */], { identifier: 'delete' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-mock-list-item__actions-delete-icon' }))))));
-
 
 
 
@@ -2146,20 +2213,20 @@ CollectionBrowserMockItem.defaultProps = { onDelete: _.noop };
 
 /***/ }),
 
-/***/ 3174:
+/***/ 3498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMockEmptyListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_MouseClickIcon__ = __webpack_require__(1104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__lessons_LessonManager__ = __webpack_require__(726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_LessonAPIService__ = __webpack_require__(529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_LessonTags__ = __webpack_require__(1115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_MouseClickIcon__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__lessons_LessonManager__ = __webpack_require__(588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_LessonAPIService__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_LessonTags__ = __webpack_require__(1239);
 var _class;
 
 
@@ -2193,7 +2260,16 @@ CollectionBrowserMockEmptyListItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_rea
     });
   }
 
+  getTooltipText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    }
+  }
+
   render() {
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canAddMock = permissionStore.can('addMock', 'collection', this.props.collection.id);
+
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-empty-block' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
@@ -2212,7 +2288,9 @@ CollectionBrowserMockEmptyListItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_rea
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty__action' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], {
                   type: 'secondary',
-                  onClick: this.handleAddMock }, 'Create a mock server')),
+                  onClick: this.handleAddMock,
+                  disabled: !canAddMock,
+                  tooltip: this.getTooltipText(!canAddMock) }, 'Create a mock server')),
 
 
 
@@ -2245,27 +2323,27 @@ CollectionBrowserMockEmptyListItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_rea
 
 /***/ }),
 
-/***/ 3175:
+/***/ 3499:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorListContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_monitors_CollectionBrowserMonitorHeader__ = __webpack_require__(3176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_collections_browser_monitors_CollectionBrowserMonitorList__ = __webpack_require__(3177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_LimitServiceConstants__ = __webpack_require__(2839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_services_DashboardService__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_MonitorController__ = __webpack_require__(1132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collections_browser_monitors_CollectionBrowserMonitorHeader__ = __webpack_require__(3500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_collections_browser_monitors_CollectionBrowserMonitorList__ = __webpack_require__(3501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_InfobarConstants__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_LimitServiceConstants__ = __webpack_require__(3160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_services_DashboardService__ = __webpack_require__(583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_MonitorController__ = __webpack_require__(1256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__new_button_CreateNewXService__ = __webpack_require__(2682);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_AuthHandlerService__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__new_button_CreateNewXService__ = __webpack_require__(3002);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
 
 
@@ -2281,6 +2359,7 @@ var _class;
 
 
 let
+
 
 CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx_react__["a" /* observer */])(_class = class CollectionBrowserMonitorListContainer extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
@@ -2302,6 +2381,10 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
       this.detachModelListeners();
       this.initializeModel(nextProps.collection);
     }
+  }
+
+  componentDidMount() {
+    this.initializeModel(this.props.collection);
   }
 
   componentWillUnmount() {
@@ -2373,11 +2456,6 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
 
   }
 
-  isEditable() {
-    let collection = this.props.collection;
-    return collection.isEditable;
-  }
-
   getClasses() {
     return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({ 'collection-browser-monitor': true }, this.props.className);
   }
@@ -2390,25 +2468,25 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClasses() },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__components_base_XPaths_XPath__["a" /* default */], { identifier: 'header' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_collections_browser_monitors_CollectionBrowserMonitorHeader__["a" /* default */], {
-            isEditable: this.isEditable(),
             isLoggedIn: currentUser && currentUser.isLoggedIn,
             isRefreshing: this.state.refreshing,
             message: message,
             monitors: this.state.monitors,
             onAddMonitor: this.handleAddMonitor,
             onMessageClose: this.handleCloseWarning,
-            onRefresh: this.handleRefreshMonitors })),
+            onRefresh: this.handleRefreshMonitors,
+            collection: this.props.collection })),
 
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__components_base_XPaths_XPath__["a" /* default */], { identifier: 'list' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_collections_browser_monitors_CollectionBrowserMonitorList__["a" /* default */], {
-            isEditable: this.isEditable(),
             isLoading: this.state.refreshing,
             monitors: this.state.monitors,
             onAddMonitor: this.handleAddMonitor,
             onDelete: this.handleDelete,
             onEdit: this.handleEdit,
-            onSignIn: this.handleSignIn }))));
+            onSignIn: this.handleSignIn,
+            collection: this.props.collection }))));
 
 
 
@@ -2418,24 +2496,28 @@ CollectionBrowserMonitorListContainer = Object(__WEBPACK_IMPORTED_MODULE_11_mobx
 
 /***/ }),
 
-/***/ 3176:
+/***/ 3500:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorHeader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messaging_Alert__ = __webpack_require__(2659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_PublishIcon__ = __webpack_require__(2664);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_RefreshIcon__ = __webpack_require__(1107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_AddIcon__ = __webpack_require__(1097);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__messaging_Alert__ = __webpack_require__(2977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_PublishIcon__ = __webpack_require__(2982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_RefreshIcon__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_AddIcon__ = __webpack_require__(1223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__external_navigation_ExternalNavigationService__ = __webpack_require__(70);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
+
 
 
 
@@ -2456,7 +2538,7 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
   }
 
   handleMonitorLearn() {
-    pm.app.openExternalLink(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["B" /* MONITORING_DOCS */]);
+    Object(__WEBPACK_IMPORTED_MODULE_11__external_navigation_ExternalNavigationService__["a" /* openExternalLink */])(__WEBPACK_IMPORTED_MODULE_6__constants_AppUrlConstants__["C" /* MONITORING_DOCS */]);
     __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('onboarding', 'view_documentation_intro_monitors', 'collection_browser');
   }
 
@@ -2475,6 +2557,13 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
   render() {
     let alertMessage = _.get(this.props, 'message.message');
+
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    collectionId = this.props.collection.id,
+    workspaceId = Object(__WEBPACK_IMPORTED_MODULE_10__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id;
+
+    const canAddMonitor = collectionId && permissionStore.can('addMonitor', 'collection', collectionId) &&
+    permissionStore.can('addMonitor', 'workspace', workspaceId);
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
@@ -2509,7 +2598,7 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 
 
-        !_.isEmpty(this.props.monitors) && this.props.isEditable &&
+        !_.isEmpty(this.props.monitors) && canAddMonitor &&
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_XPaths_XPath__["a" /* default */], { identifier: 'addMonitor' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-learn-more-header' },
@@ -2533,16 +2622,16 @@ CollectionBrowserMonitorHeader = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 /***/ }),
 
-/***/ 3177:
+/***/ 3501:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorList; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMonitorListItem__ = __webpack_require__(3178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMonitorEmptyItem__ = __webpack_require__(3179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMonitorListItem__ = __webpack_require__(3502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMonitorEmptyItem__ = __webpack_require__(3503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_XPaths_XPath__ = __webpack_require__(27);
 
 
 
@@ -2566,9 +2655,9 @@ CollectionBrowserMonitorList = class CollectionBrowserMonitorList extends __WEBP
 
         !this.props.isLoading && _.isEmpty(this.props.monitors) &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionBrowserMonitorEmptyItem__["a" /* default */], {
-          isEditable: this.props.isEditable,
           onAddMonitor: this.props.onAddMonitor,
-          onSignIn: this.props.onSignIn }),
+          onSignIn: this.props.onSignIn,
+          collection: this.props.collection }),
 
 
 
@@ -2579,11 +2668,11 @@ CollectionBrowserMonitorList = class CollectionBrowserMonitorList extends __WEBP
                 key: monitor.id },
 
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__CollectionBrowserMonitorListItem__["a" /* default */], {
-                isEditable: this.props.isEditable,
                 monitor: monitor,
                 onDelete: this.props.onDelete,
                 onEdit: this.props.onEdit,
-                id: monitor.id })));
+                id: monitor.id,
+                collection: this.props.collection })));
 
 
 
@@ -2596,23 +2685,23 @@ CollectionBrowserMonitorList = class CollectionBrowserMonitorList extends __WEBP
 
 /***/ }),
 
-/***/ 3178:
+/***/ 3502:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorListItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_MonitorIcon__ = __webpack_require__(2666);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_EditIcon__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DeleteIcon__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_util__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Icons_MonitorIcon__ = __webpack_require__(2984);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_EditIcon__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DeleteIcon__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__ = __webpack_require__(583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
 
 
@@ -2652,9 +2741,20 @@ CollectionBrowserMonitorListItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react
     Object(__WEBPACK_IMPORTED_MODULE_5__models_services_DashboardService__["k" /* openEntity */])('monitors', this.props.monitor.id, Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id);
   }
 
+  getTooltipText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    } else
+    {
+      return 'Delete Monitor';
+    }
+  }
+
   render() {
     let currentUser = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('CurrentUserStore');
 
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canDeleteMonitor = permissionStore.can('deleteMonitor', 'collection', this.props.collection.id);
 
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-monitor-list-item', 'data-monitor-id': this.props.id },
@@ -2672,7 +2772,6 @@ CollectionBrowserMonitorListItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react
 
 
 
-        this.props.isEditable &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-monitor-list-item__actions' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
               className: 'collection-browser-monitor-dropdown-menu-item__button--edit',
@@ -2686,9 +2785,10 @@ CollectionBrowserMonitorListItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
               className: 'collection-browser-monitor-dropdown-menu-item__button--delete',
-              tooltip: 'Delete Monitor',
+              tooltip: this.getTooltipText(!canDeleteMonitor),
               type: 'icon',
-              onClick: this.handleDelete },
+              onClick: this.handleDelete,
+              disabled: !canDeleteMonitor },
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__["a" /* default */], { identifier: 'delete' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_DeleteIcon__["a" /* default */], { className: 'collection-browser-monitor-dropdown-menu-item__icon--delete' }))))));
@@ -2703,23 +2803,21 @@ CollectionBrowserMonitorListItem = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react
 
 /***/ }),
 
-/***/ 3179:
+/***/ 3503:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserMonitorEmptyItem; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__empty_states_PermissionDenied__ = __webpack_require__(3180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_MouseClickIcon__ = __webpack_require__(1104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__lessons_LessonManager__ = __webpack_require__(726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_LessonAPIService__ = __webpack_require__(529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_LessonTags__ = __webpack_require__(1115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MouseClickIcon__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__lessons_LessonManager__ = __webpack_require__(588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_LessonAPIService__ = __webpack_require__(483);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_LessonTags__ = __webpack_require__(1239);
 var _class;
-
 
 
 
@@ -2740,19 +2838,28 @@ CollectionBrowserMonitorEmptyItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_reac
   }
 
   handleShowMeHow() {
-    if (!Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('CurrentUserStore').isLoggedIn) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('CurrentUserStore').isLoggedIn) {
       pm.mediator.trigger('showSignInModal');
       return;
     }
-    Object(__WEBPACK_IMPORTED_MODULE_7__modules_services_LessonAPIService__["d" /* fetchTaggedLesson */])(__WEBPACK_IMPORTED_MODULE_8__constants_LessonTags__["c" /* MONITORING */], lesson => {
+    Object(__WEBPACK_IMPORTED_MODULE_6__modules_services_LessonAPIService__["d" /* fetchTaggedLesson */])(__WEBPACK_IMPORTED_MODULE_7__constants_LessonTags__["c" /* MONITORING */], lesson => {
       if (_.isEmpty(lesson)) {
         return;
       }
-      __WEBPACK_IMPORTED_MODULE_6__lessons_LessonManager__["a" /* default */].startLesson(lesson);
+      __WEBPACK_IMPORTED_MODULE_5__lessons_LessonManager__["a" /* default */].startLesson(lesson);
     });
   }
 
+  getTooltipText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    }
+  }
+
   getEmptyState() {
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canAddMock = permissionStore.can('addMonitor', 'collection', this.props.collection.id);
+
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty' },
@@ -2768,9 +2875,11 @@ CollectionBrowserMonitorEmptyItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_reac
 
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty__action' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
                 type: 'secondary',
-                onClick: this.handleAddMonitor }, 'Create a monitor')),
+                onClick: this.handleAddMonitor,
+                disabled: !canAddMock,
+                tooltip: this.getTooltipText(!canAddMock) }, 'Create a monitor')),
 
 
 
@@ -2782,11 +2891,11 @@ CollectionBrowserMonitorEmptyItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_reac
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'separator' })),
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'entity-empty__learn' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
                   type: 'secondary',
                   onClick: this.handleShowMeHow },
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_MouseClickIcon__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_MouseClickIcon__["a" /* default */], {
                   style: 'secondary',
                   className: 'entity-empty__learn__mouse-click-icon' }), 'Show me how'))))));
 
@@ -2799,15 +2908,7 @@ CollectionBrowserMonitorEmptyItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_reac
 
   }
 
-  getPermissionDeniedEmptyState() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__empty_states_PermissionDenied__["a" /* default */], null);
-  }
-
   getContents() {
-    if (!this.props.isEditable) {
-      return this.getPermissionDeniedEmptyState();
-    }
-
     return this.getEmptyState();
   }
 
@@ -2822,37 +2923,15 @@ CollectionBrowserMonitorEmptyItem = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_reac
 
 /***/ }),
 
-/***/ 3180:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-
-
-const PermissionDenied = props => {
-  return (
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'permission-denied' },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'permission-denied--img' }),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'permission-denied--title' }, 'You do not have permissions'),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'permission-denied--subtitle' }, 'You do not have necessary permissions to view this list.')));
-
-
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (PermissionDenied);
-
-/***/ }),
-
-/***/ 3181:
+/***/ 3504:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserActivityfeed; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activity_feed_ActivityFeed__ = __webpack_require__(2840);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__activity_feed_ActivityFeed__ = __webpack_require__(3161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 
 
@@ -2886,38 +2965,38 @@ CollectionBrowserActivityfeed = class CollectionBrowserActivityfeed extends __WE
 
 /***/ }),
 
-/***/ 3201:
+/***/ 3524:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserCollectionAction; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MoreIcon__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1096);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__ = __webpack_require__(1112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__ = __webpack_require__(2665);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Icons_ForkIcon__ = __webpack_require__(2726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_Icons_MergeIcon__ = __webpack_require__(2834);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_Icons_LockedIcon__ = __webpack_require__(1111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_Icons_NewFolderIcon__ = __webpack_require__(2728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_Icons_MonitorIcon__ = __webpack_require__(2666);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_Icons_PublishIcon__ = __webpack_require__(2664);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_Icons_DeleteIcon__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__base_Icons_RequestIcon__ = __webpack_require__(2680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_MoreIcon__ = __webpack_require__(584);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__ = __webpack_require__(1221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownloadIcon__ = __webpack_require__(1236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__ = __webpack_require__(2983);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Icons_ForkIcon__ = __webpack_require__(3048);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_Icons_MergeIcon__ = __webpack_require__(3155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_Icons_LockedIcon__ = __webpack_require__(1235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_Icons_NewFolderIcon__ = __webpack_require__(3050);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_Icons_MonitorIcon__ = __webpack_require__(2984);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_Icons_PublishIcon__ = __webpack_require__(2982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_Icons_DeleteIcon__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__base_Icons_RequestIcon__ = __webpack_require__(3001);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__models_services_DocumenterService__ = __webpack_require__(2698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_services_APIService__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__models_services_DocumenterService__ = __webpack_require__(3018);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_services_APIService__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__ = __webpack_require__(2651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_mobx_react__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__base_XPaths_XPath__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__ = __webpack_require__(2969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_mobx_react__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__base_XPaths_XPath__ = __webpack_require__(27);
 var _class;
 
 
@@ -2965,7 +3044,7 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
         return;
       }
       __WEBPACK_IMPORTED_MODULE_21__modules_services_AnalyticsService__["a" /* default */].addEvent('documentation', 'view', 'collection_browser');
-      Object(__WEBPACK_IMPORTED_MODULE_19__modules_services_APIService__["u" /* openAuthenticatedRoute */])(documentUrl);
+      Object(__WEBPACK_IMPORTED_MODULE_19__modules_services_APIService__["v" /* openAuthenticatedRoute */])(documentUrl);
     });
   }
 
@@ -2982,21 +3061,19 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
   }
 
   getActions() {
-    const currentUser = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
-    isLoggedIn = currentUser && currentUser.isLoggedIn,
-    {
-      isEditable,
-      isDeletable,
-      isForked,
-      shared } =
-    this.props.collection;
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    currentUser = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
+    collectionId = this.props.collection.id,
+    workspaceId = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id,
+    isShared = _.get(this.props.collection, 'isShared', false),
+    isForked = _.get(this.props.collection, 'isForked', false);
 
     return [
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */],
       label: 'Edit',
       shortcut: 'edit',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('edit', 'collection', collectionId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_Icons_EditIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) }) },
 
     {
@@ -3012,28 +3089,28 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Icons_MergeIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_MERGE */]) }) },
 
     {
-      type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */],
-      label: 'Modify permissions',
-      isEnabled: isLoggedIn && isDeletable && shared,
-      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Icons_LockedIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["b" /* ACTION_MODIFY_PERMISSIONS */]) }) },
+      type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["b" /* ACTION_MANAGE_ROLES */],
+      label: 'Manage Roles',
+      isEnabled: !!currentUser.team, // Enable it if the user belongs to a team
+      icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Icons_LockedIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["b" /* ACTION_MANAGE_ROLES */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */],
       label: 'Add Request',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('addRequest', 'collection', collectionId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__base_Icons_RequestIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */],
       label: 'Add Folder',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('addFolder', 'collection', collectionId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__base_Icons_NewFolderIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */],
       label: 'Duplicate',
       shortcut: 'duplicate',
-      isEnabled: true,
+      isEnabled: permissionStore.can('addCollection', 'workspace', workspaceId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CopyIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) }) },
 
     {
@@ -3045,32 +3122,32 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */],
       label: 'Monitor Collection',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('addMonitor', 'collection', collectionId) && permissionStore.can('addMonitor', 'workspace', workspaceId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__base_Icons_MonitorIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["i" /* ACTION_TYPE_ADD_MONITOR */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */],
       label: 'Mock Collection',
-      isEnabled: true,
+      isEnabled: permissionStore.can('addMock', 'collection', collectionId) && permissionStore.can('addMock', 'workspace', workspaceId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_MockIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["h" /* ACTION_TYPE_ADD_MOCK */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_PUBLISH_DOCS */],
       label: 'Publish Docs',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('publish', 'collection', collectionId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_14__base_Icons_PublishIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["t" /* ACTION_TYPE_PUBLISH_DOCS */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */],
       label: 'Remove from workspace',
-      isEnabled: isLoggedIn,
+      isEnabled: permissionStore.can('removeCollection', 'workspace', workspaceId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_CloseIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["c" /* ACTION_REMOVE_FROM_WORKSPACE */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */],
       label: 'Delete',
       shortcut: 'delete',
-      isEnabled: isDeletable,
+      isEnabled: permissionStore.can('delete', 'collection', collectionId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_15__base_Icons_DeleteIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) }) }];
 
 
@@ -3088,9 +3165,24 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
     return __WEBPACK_IMPORTED_MODULE_17_classnames___default()({ 'dropdown-menu-item--pro-disabled': isPro });
   }
 
+  getDisabledText(isDisabled, actionType) {
+    if (isDisabled) {
+      let defaultMessage = 'You do not have permissions to perform this action.',
+      manageRolesMessage = 'You need to be signed-in to a team to perform this action';
+
+      switch (actionType) {
+        case __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["b" /* ACTION_MANAGE_ROLES */]:
+          return manageRolesMessage;
+        case __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["q" /* ACTION_TYPE_MERGE */]:
+          return 'This collection is not a fork';
+        default:
+          return defaultMessage;}
+
+    }
+  }
+
   getMenuItems() {
     return _.chain(this.getActions()).
-    filter('isEnabled').
     map(action => {
       const modifierLabel = action.modifier && action.modifier(this.props.isPRO);
 
@@ -3098,7 +3190,9 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], {
             className: this.getMenuItemClasses(modifierLabel),
             key: action.type,
-            refKey: action.type },
+            refKey: action.type,
+            disabled: !action.isEnabled,
+            disabledText: this.getDisabledText(!action.isEnabled, action.type) },
 
           action.icon,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'dropdown-menu-item-label' }, action.label),
@@ -3115,12 +3209,20 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
 
     let collection = this.props.collection;
 
-    if (!collection) {
+    if (!collection || !collection.id) {
       return null;
     }
-    let currentUser = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
+
+    let permissionStore = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    currentUser = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
+    gatekeeperStore = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('GateKeeperStore'),
+    workspaceId = Object(__WEBPACK_IMPORTED_MODULE_20__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id,
+    canShare = permissionStore.can('share', 'collection', collection.id),
+    canRunCollection = permissionStore.can('addCollectionrun', 'workspace', workspaceId),
+    shareButtonTooltip = canShare ? null : 'You do not have permissions to perform this action.',
+    runButtonTooltip = canRunCollection ? null : 'You do not have permissions to perform this action.',
     isLoggedIn = currentUser && currentUser.isLoggedIn,
-    isSyncEnabled = currentUser && currentUser.syncEnabled,
+    isSyncEnabled = gatekeeperStore.isSyncEnabled,
     menuItems = this.getMenuItems();
 
     return (
@@ -3133,6 +3235,8 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
                 className: 'collection-browser-collection-action-share-button',
                 size: 'small',
                 type: 'primary',
+                disabled: !canShare,
+                tooltip: shareButtonTooltip,
                 onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["y" /* ACTION_TYPE_SHARE */]) }, 'Share')),
 
 
@@ -3144,6 +3248,8 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
                 className: 'collection-browser-collection-action-run-button',
                 size: 'small',
                 type: 'primary',
+                disabled: !canRunCollection,
+                tooltip: runButtonTooltip,
                 onClick: this.handleActionTrigger.bind(this, __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["d" /* ACTION_TARGET_COLLECTION */], collection.id, __WEBPACK_IMPORTED_MODULE_22__constants_CollectionActionsConstants__["w" /* ACTION_TYPE_RUN */]) }, 'Run')),
 
 
@@ -3190,31 +3296,31 @@ CollectionBrowserCollectionAction = Object(__WEBPACK_IMPORTED_MODULE_23_mobx_rea
 
 /***/ }),
 
-/***/ 3202:
+/***/ 3525:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionBrowserFolderDetails; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__ = __webpack_require__(1106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserRequestListItem__ = __webpack_require__(2838);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__CollectionBrowserFolderListItem__ = __webpack_require__(2837);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Breadcrumb__ = __webpack_require__(3203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__ = __webpack_require__(1231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__CollectionBrowserRequestListItem__ = __webpack_require__(3159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__CollectionBrowserFolderListItem__ = __webpack_require__(3158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_base_Breadcrumb__ = __webpack_require__(3526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Icons_EditIcon__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_Icons_NewFolderIcon__ = __webpack_require__(2728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_base_Icons_DeleteIcon__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_Icons_CopyIcon__ = __webpack_require__(1096);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_base_Icons_CloseIcon__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_Icons_RequestIcon__ = __webpack_require__(2680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__base_Icons_MoreIcon__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__ = __webpack_require__(2651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_Icons_EditIcon__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_Icons_NewFolderIcon__ = __webpack_require__(3050);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_base_Icons_DeleteIcon__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_base_Icons_CopyIcon__ = __webpack_require__(1221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_base_Icons_CloseIcon__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__base_Icons_RequestIcon__ = __webpack_require__(3001);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__base_Icons_MoreIcon__ = __webpack_require__(584);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__ = __webpack_require__(2969);
 var _class;
 
 
@@ -3260,7 +3366,7 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
   getCollectionHeaderClasses() {
     return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({
       'collection-browser-folder-details-header': true,
-      'collection-browser-folder-details-header--padded-below': _.isEmpty(_.get(this.props.folder, 'description')) && !this.props.collection.isEditable });
+      'collection-browser-folder-details-header--padded-below': _.isEmpty(_.get(this.props.folder, 'description')) && !Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('PermissionStore').can('edit', 'collection', this.props.collection.id) });
 
   }
 
@@ -3316,44 +3422,40 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
   }
 
   getActions() {
-    const {
-      isEditable,
-      isDeletable,
-      shared } =
-    this.props.collection;
-
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    folderId = this.props.folder.id;
     return [
     {
       type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */],
       label: 'Edit',
       shortcut: 'edit',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('edit', 'folder', folderId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_base_Icons_EditIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["o" /* ACTION_TYPE_EDIT */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */],
       label: 'Add Request',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('addRequest', 'folder', folderId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_15__base_Icons_RequestIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["j" /* ACTION_TYPE_ADD_REQUEST */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */],
       label: 'Add Folder',
-      isEnabled: isEditable,
+      isEnabled: permissionStore.can('addFolder', 'folder', folderId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__components_base_Icons_NewFolderIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["g" /* ACTION_TYPE_ADD_FOLDER */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */],
       label: 'Duplicate',
       shortcut: 'duplicate',
-      isEnabled: true,
+      isEnabled: permissionStore.can('duplicate', 'folder', folderId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_13__components_base_Icons_CopyIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["n" /* ACTION_TYPE_DUPLICATE */]) }) },
 
     {
       type: __WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */],
       label: 'Delete',
       shortcut: 'delete',
-      isEnabled: isDeletable,
+      isEnabled: permissionStore.can('delete', 'folder', folderId),
       icon: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__components_base_Icons_DeleteIcon__["a" /* default */], { className: this.getMenuItemIconClasses(__WEBPACK_IMPORTED_MODULE_17__constants_CollectionActionsConstants__["k" /* ACTION_TYPE_DELETE */]) }) }];
 
 
@@ -3371,9 +3473,14 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
     return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({ 'dropdown-menu-item--pro-disabled': isPro });
   }
 
+  getDisabledText(isDisabled) {
+    if (isDisabled) {
+      return 'You do not have permissions to perform this action.';
+    }
+  }
+
   getMenuItems() {
     return _.chain(this.getActions()).
-    filter('isEnabled').
     map(action => {
       const modifierLabel = action.modifier && action.modifier(this.props.isPRO);
 
@@ -3381,7 +3488,9 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["d" /* MenuItem */], {
             className: this.getMenuItemClasses(modifierLabel),
             key: action.type,
-            refKey: action.type },
+            refKey: action.type,
+            disabled: !action.isEnabled,
+            disabledText: this.getDisabledText(!action.isEnabled) },
 
           action.icon,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'dropdown-menu-item-label' }, action.label),
@@ -3395,12 +3504,15 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
   }
 
   render() {
-
     let { collection, folder } = this.props;
 
-    if (!folder) {
+    if (!folder || !folder.id) {
       return null;
     }
+
+    const permissionStore = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["a" /* getStore */])('PermissionStore'),
+    canEditFolder = permissionStore.can('edit', 'folder', folder.id),
+    canAddRequestToFolder = permissionStore.can('addRequest', 'folder', folder.id);
 
     let ownFolders = _.get(folder, 'ownFolders', []),
     ownRequests = _.get(folder, 'ownRequests', []),
@@ -3434,7 +3546,7 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_base_InlineEditor__["a" /* default */], {
             className: 'collection-browser-folder-description-wrapper',
-            editable: collection.isEditable,
+            editable: canEditFolder,
             placeholder: 'Adding a description makes your docs better',
             ref: 'inlineEditor',
             value: folder.description,
@@ -3454,8 +3566,6 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 
 
-
-            collection.isEditable &&
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Dropdowns__["a" /* Dropdown */], {
                 onSelect: this.handleSelect,
                 onToggle: this.handleToggle,
@@ -3477,7 +3587,6 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 
 
-
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'divider' })),
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-folder-list-wrapper' },
@@ -3486,13 +3595,12 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-browser-empty-folder' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collection-sidebar-list-item__body--empty' }, 'This folder is empty.\xA0',
 
-
-              this.props.folder.isEditable &&
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_base_Buttons__["a" /* Button */], {
                     type: 'text',
-                    onClick: () => this.props.onAddRequest(this.props.folder) }, 'Add requests'), 'to this folder and create subfolders to organize them'))) :
-
+                    onClick: () => this.props.onAddRequest(this.props.folder),
+                    disabled: !canAddRequestToFolder,
+                    tooltip: this.getDisabledText(!canAddRequestToFolder) }, 'Add requests'), 'to this folder and create subfolders to organize them'))) :
 
 
 
@@ -3507,7 +3615,6 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
               return (
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__CollectionBrowserFolderListItem__["a" /* default */], {
                   folder: folder,
-                  isEditable: _.get(this.props, 'collection.isEditable'),
                   key: folder.id,
                   onActionTriggered: this.handleActionTrigger,
                   onFolderSelect: this.handleFolderSelect }));
@@ -3522,7 +3629,6 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
                   request: request,
                   browserWidth: this.props.browserWidth,
                   isOpen: this.props.isOpen,
-                  isEditable: collection.isEditable,
                   key: request.id,
                   onActionTriggered: this.handleActionTrigger,
                   browserWidth: this.props.browserWidth }));
@@ -3542,23 +3648,23 @@ CollectionBrowserFolderDetails = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__
 
 /***/ }),
 
-/***/ 3203:
+/***/ 3526:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Breadcrumb; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Buttons__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Dropdowns__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_FolderIcon__ = __webpack_require__(2729);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_DownSolidIcon__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icons_CollectionIcon__ = __webpack_require__(1095);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Dropdowns__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Icons_FolderIcon__ = __webpack_require__(3051);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icons_DownSolidIcon__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icons_CollectionIcon__ = __webpack_require__(1220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_prop_types__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_prop_types__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_prop_types__);
 
 
