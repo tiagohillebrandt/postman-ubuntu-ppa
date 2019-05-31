@@ -31,6 +31,7 @@ const os = require('os'),
         sentry.init({
           dsn: sentryDsn,
           environment,
+          maxBreadcrumbs: 0,
           release: appVersion
         });
 

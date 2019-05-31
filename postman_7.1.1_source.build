@@ -1,0 +1,127 @@
+ dpkg-buildpackage -rfakeroot -d -us -uc -S -sa
+dpkg-buildpackage: source package postman
+dpkg-buildpackage: source version 7.1.1
+dpkg-buildpackage: source distribution xenial
+dpkg-buildpackage: source changed by Tiago Hillebrandt <tiago@tiagohillebrandt.com>
+ dpkg-source --before-build postman
+ fakeroot debian/rules clean
+dh clean
+   dh_testdir
+   dh_auto_clean
+   dh_clean
+ dpkg-source -b postman
+dpkg-source: warning: no source format specified in debian/source/format, see dpkg-source(1)
+dpkg-source: warning: source directory 'postman' is not <sourcepackage>-<upstreamversion> 'postman-7.1.1'
+dpkg-source: info: using source format '1.0'
+dpkg-source: info: building postman in postman_7.1.1.tar.gz
+dpkg-source: info: building postman in postman_7.1.1.dsc
+ dpkg-genchanges -S -sa >../postman_7.1.1_source.changes
+dpkg-genchanges: including full source code in upload
+ dpkg-source --after-build postman
+dpkg-buildpackage: source-only upload: Debian-native package
+Now running lintian...
+E: postman source: source-is-missing usr/share/postman/app/Postman
+E: postman source: source-is-missing usr/share/postman/app/libffmpeg.so
+E: postman source: source-is-missing usr/share/postman/app/libnode.so
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/CollectionBrowserContainer.js line length is 1577 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/RequesterBuilderContainer.js line length is 258 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/RequesterInit.js line length is 555 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/WorkspaceBrowser.js line length is 258 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-c_cpp.js line length is 2679 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-csharp.js line length is 525 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-html.js line length is 1787 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-java.js line length is 1787 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-javascript.js line length is 1787 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-json.js line length is 22681 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-markdown.js line length is 1787 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-objectivec.js line length is 2679 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-php.js line length is 2482 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-postman_json.js line length is 8896 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-powershell.js line length is 677 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/brace-xml.js line length is 8977 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/postman-converters.js line length is 287 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/requester.js line length is 269 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/vendor-shared.js line length is 738 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/vendor-ui.js line length is 691 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/libs/request-snippet-generator.js line length is 505 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/js/libs/ucsv-1.1.0-min.js
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/crypto-js/index.js line length is 803 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/file-type/index.js line length is 637 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/flatted/min.js line length is 983 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/marked/marked.min.js
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/yauzl/index.js line length is 530 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/dist/ajv.bundle.js line length is 860 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/dist/ajv.min.js
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/circular-json/build/circular-json.js line length is 1405 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/debug/dist/debug.js line length is 854 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/debug/src/browser.js line length is 854 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/diagnostics/dist/diagnostics.js line length is 663 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/iconv-lite/encodings/sbcs-data-generated.js line length is 633 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/immediate/dist/immediate.js line length is 849 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/lie/dist/lie.js line length is 847 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/lie/dist/lie.polyfill.js line length is 480 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/liquid-json/vendor/unicode.js line length is 4241 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/localforage/dist/localforage.nopromises.js line length is 854 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/object-hash/dist/object_hash.js line length is 32007 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/object-hash/dist/object_hash_test.js line length is 32007 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postcss/lib/container.js line length is 317 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postcss/lib/css-syntax-error.js line length is 759 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postcss/lib/input.js line length is 317 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postcss/lib/lazy-result.js line length is 317 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postcss/lib/result.js line length is 317 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postcss/lib/rule.js line length is 317 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-sandbox/.cache/bootcode.browser.js line length is 32768 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-sandbox/.cache/bootcode.js line length is 32768 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/psl/dist/psl.js line length is 860 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/qs/dist/qs.js line length is 859 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/sanitize-html/dist/sanitize-html.js line length is 852 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/tough-cookie/lib/pubsuffix.js line length is 29445 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/url-parse/dist/url-parse.js line length is 865 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/lib/compile/formats.js line length is 1161 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/lib/dotjs/_limit.js line length is 614 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/lib/dotjs/custom.js line length is 383 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/lib/dotjs/format.js line length is 326 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/lib/dotjs/properties.js line length is 264 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/ajv/lib/dotjs/propertyNames.js line length is 264 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/bluebird/js/browser/bluebird.js line length is 805 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/charset/coverage/lcov-report/prettify.js line length is 17568 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/electron-json-storage/node_modules/async/index.js line length is 1927 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/nedb/browser-version/out/nedb.js line length is 357 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/nedb/browser-version/test/async.js line length is 12338 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/node_modules/async/index.js line length is 1927 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/abort-on-error-request-spec.test.js line length is 309 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/abort-on-error-script-spec.test.js line length is 309 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/abort-on-failure-script-spec.test.js line length is 335 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/delay-spec.test.js line length is 309 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/runner-spec.test.js line length is 621 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/stop-on-error-request-spec.test.js line length is 309 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/stop-on-error-script-spec.test.js line length is 309 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/test/integration-legacy/stop-on-failure-spec.test.js line length is 335 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-sandbox/lib/vendor/sugar.js line length is 810 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/uri-js/dist/es5/uri.all.js line length is 397 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/uri-js/dist/esnext/regexps-uri.js line length is 586 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/uvm/lib/uvm/bridge-client.js line length is 983 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/waterline-schema/lib/waterline-schema/schema.js line length is 940 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/waterline-utils/node_modules/async/index.js line length is 1822 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/waterline/node_modules/async/index.js line length is 1822 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/winston-transport/coverage/lcov-report/prettify.js line length is 17568 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/winston/node_modules/async/index.js line length is 1927 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/localforage/bower_components/modernizr/feature-detects/css-hyphens.js line length is 2333 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/localforage/bower_components/modernizr/feature-detects/exif-orientation.js line length is 928 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/postman-runtime/node_modules/eventemitter3/umd/eventemitter3.js line length is 870 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/waterline-utils/node_modules/qs/dist/qs.js line length is 842 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/@postman/app-logger/node_modules/circular-json/build/circular-json.js line length is 3042 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/@postman/app-plugins-host/node_modules/circular-json/build/circular-json.js line length is 3042 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/parley/node_modules/bluebird/js/browser/bluebird.core.js line length is 805 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/parley/node_modules/bluebird/js/browser/bluebird.js line length is 805 characters (>512)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/htmlparser2/node_modules/readable-stream/lib/internal/streams/buffer_list.js line length is 481 characters (>256)
+E: postman source: source-is-missing usr/share/postman/app/resources/app/node_modules/waterline/lib/waterline/utils/query/private/is-valid-attribute-name.js line length is 11279 characters (>512)
+Finished running lintian.
+Now signing changes and any dsc files...
+ signfile postman_7.1.1.dsc Tiago Hillebrandt <tiago@tiagohillebrandt.com>
+gpg: gpg-agent is not available in this session
+
+ signfile postman_7.1.1_source.changes Tiago Hillebrandt <tiago@tiagohillebrandt.com>
+gpg: gpg-agent is not available in this session
+
+Successfully signed dsc and changes files

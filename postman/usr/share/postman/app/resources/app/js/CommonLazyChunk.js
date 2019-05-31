@@ -1,6 +1,30 @@
-webpackJsonp([19],{
+webpackJsonp([20],{
 
-/***/ 2992:
+/***/ 3412:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoResultFound; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+let
+
+NoResultFound = class NoResultFound extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+  render() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'no-result' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'no-result-image-wrapper' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'no-result-image' })),
+
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'label' }, 'Nothing here, Houston!'),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'subtext' }, 'We couldn\'t find anything matching that. Check the spelling or try using a different query.')));
+
+
+  }};
+
+/***/ }),
+
+/***/ 3414:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -235,42 +259,18 @@ function clonePath(path) {
 
 /***/ }),
 
-/***/ 2993:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoResultFound; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-let
-
-NoResultFound = class NoResultFound extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'no-result' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'no-result-image-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'no-result-image' })),
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'label' }, 'Nothing here, Houston!'),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'subtext' }, 'We couldn\'t find anything matching that. Check the spelling or try using a different query.')));
-
-
-  }};
-
-/***/ }),
-
-/***/ 3019:
+/***/ 3427:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VariableAlertWrapper; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_SettingsTypeConstants__ = __webpack_require__(1234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_SettingsTypeConstants__ = __webpack_require__(1403);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Alert__ = __webpack_require__(2977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Alert__ = __webpack_require__(3407);
 var _class;
 
 
@@ -282,9 +282,9 @@ const OPEN_SETTINGS_ANCHOR = '#openSettings',
 alertMessageWithAutoPersist = 'Use variables to reuse values in different places. ' +
 'The current value is used while sending a request and is never synced to Postman\'s servers. ' +
 `The initial value is auto-updated to reflect the current value. [Change this](${OPEN_SETTINGS_ANCHOR}) behaviour from Settings. ` +
-`[Learn more about variable values](${__WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["P" /* SESSION_VARIABLE_DOCS */]})`,
+`[Learn more about variable values](${__WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["Z" /* SESSION_VARIABLE_DOCS */]})`,
 alertMessageWithoutAutoPersist = 'Use variables to reuse values in different places. Work with the current value of a variable' +
-` to prevent sharing sensitive values with your team. [Learn more about variable values](${__WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["P" /* SESSION_VARIABLE_DOCS */]})`;let
+` to prevent sharing sensitive values with your team. [Learn more about variable values](${__WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["Z" /* SESSION_VARIABLE_DOCS */]})`;let
 
 
 VariableAlertWrapper = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* observer */])(_class = class VariableAlertWrapper extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
@@ -342,399 +342,44 @@ VariableAlertWrapper = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["a" /* ob
 
 /***/ }),
 
-/***/ 3053:
+/***/ 3449:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Header; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return Heading; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return ProfilePic; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return Meta; });
-/* unused harmony export Body */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return User; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Folder; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return Request; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return Response; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Collection; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return Time; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Details; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return Restore; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper__ = __webpack_require__(586);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_date_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_date_helper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_postman_collection__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Avatar__ = __webpack_require__(806);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_ActivityFeedDetailsMapConstant__ = __webpack_require__(3163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ActivityFeedDetailsComponents__ = __webpack_require__(3506);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_mobx_react__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(6);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_ActivityFeedDetailsMapConstant__ = __webpack_require__(3468);
 let
 
-Header = class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+ActivityFeedHelper = class ActivityFeedHelper {
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-header' },
-        this.props.children));
-
-
-  }};let
-
-
-Heading = class Heading extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-heading' },
-        this.props.children));
-
-
-  }};let
-
-
-ProfilePic = class ProfilePic extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-profile-pic-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Avatar__["a" /* default */], { type: 'user', userId: this.props.id })));
-
-
-  }};let
-
-
-Meta = class Meta extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-meta' },
-        this.props.children));
-
-
-  }};let
-
-
-Body = class Body extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-body' },
-        this.props.children));
-
-
-  }};let
-
-
-Folder = class Folder extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    let payload = {
-      type: 'folder',
-      id: this.props.id };
-
-    if (this.props.actionHandler) {
-      this.props.actionHandler(payload);
+  getWhiteListedActivitiesCount(activity) {
+    let changesCount = 0;
+    if (activity.rollback && activity.input) {
+      _.forEach(__WEBPACK_IMPORTED_MODULE_0__constants_ActivityFeedDetailsMapConstant__["a" /* default */], supportedActivity => {
+        let entity = supportedActivity.entity;
+        if (activity.rollback[entity] || activity.input[entity]) {
+          ++changesCount;
+        }
+      });
     }
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-folder',
-          onClick: this.handleClick },
-        this.props.name));
-
-  }};let
-
-
-Response = class Response extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    let payload = {
-      type: 'response',
-      id: this.props.id };
-
-    if (this.props.actionHandler) {
-      this.props.actionHandler(payload);
-    }
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-response',
-          onClick: this.handleClick },
-        this.props.name));
-
-  }};let
-
-
-Request = class Request extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    let payload = {
-      type: '`request`',
-      id: this.props.id };
-
-    if (this.props.actionHandler) {
-      this.props.actionHandler(payload);
-    }
-  }
-
-  render() {
-    let methodClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(
-    'activity-item-request-method',
-    `method-${this.props.method}`);
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-request-name', onClick: this.handleClick },
-        this.props.name));
-
-
-  }};let
-
-
-Collection = class Collection extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    let payload = {
-      type: 'collection',
-      id: this.props.id };
-
-    if (this.props.actionHandler) {
-      this.props.actionHandler(payload);
-    }
-  }
-
-  render() {
-    let methodClasses = __WEBPACK_IMPORTED_MODULE_1_classnames___default()(
-    'activity-item-collection-method',
-    `method-${this.props.method}`),
-
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-        meta.model === 'collection' ?
-        ' this ' :
-        !_.isEmpty(this.props.name) ?
-        ' the ' :
-        ' a ',
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'collection '),
-
-        meta.model === 'workspace' &&
-        !_.isEmpty(this.props.name) &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-collection-name', onClick: this.handleClick }, this.props.name)));
-
-
-
-  }};let
-
-
-
-User = Object(__WEBPACK_IMPORTED_MODULE_7_mobx_react__["a" /* observer */])(_class = class User extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let currentUser = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["a" /* getStore */])('CurrentUserStore');
-
-    let displayName = currentUser.id === this.props.id ? 'You' : this.props.name || this.props.username;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-user' }, displayName, ','));
-
-  }}) || _class;let
-
-
-Time = class Time extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let formattedTime = __WEBPACK_IMPORTED_MODULE_2__postman_date_helper___default.a.getFormattedTime(this.props.timestamp);
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-time' }, formattedTime));
-
-  }};let
-
-
-Details = class Details extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  filterEntity(entity, data) {
-    if (_.includes(['test', 'prerequest'], entity)) {
-      return this.processEvents(entity, data);
-    }
-    return data;
-  }
-
-  processEvents(processDataType, data) {
-    let sdkEvents = new __WEBPACK_IMPORTED_MODULE_3_postman_collection__["EventList"]({}, data),
-    entityEvent = _.head(sdkEvents.listenersOwn(processDataType));
-
-    return _.invoke(entityEvent, 'script.toSource');
-  }
-
-  render() {
-    let {
-      input = {},
-      rollback = {},
-      model,
-      instance,
-      detailsError = false } =
-    this.props;
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-details-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-details' },
-
-          _.map(__WEBPACK_IMPORTED_MODULE_5__constants_ActivityFeedDetailsMapConstant__["a" /* default */], (activity, index) => {
-            let entity = activity.entity,
-            previous = rollback[entity],
-            current = input[entity],
-            filterEntity = activity.filterEntity,
-            isChangeSetAvailable = false;
-
-            if (filterEntity) {
-              previous = this.filterEntity(filterEntity, previous);
-              current = this.filterEntity(filterEntity, current);
-            }
-
-            isChangeSetAvailable = previous || current;
-
-            if (isChangeSetAvailable && entity === 'order') {
-              previous = null;
-              current = 'Changed';
-            }
-            if (isChangeSetAvailable) {
-              return (
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__ActivityFeedDetailsComponents__["a" /* DetailsItem */], _extends({
-                  key: activity.entity + index,
-                  previous: previous || '',
-                  current: current || '',
-                  model: model,
-                  name: instance.name || '' },
-                activity)));
-
-
-            }
-            return false;
-          }))));
-
-
-
-
-  }};let
-
-
-Restore = class Restore extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.onRestore && this.props.onRestore(this.props.id);
-  }
-
-  getClasses() {
-    return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({
-      'activity-item-restore': true,
-      'activity-item-restore--is-restoring': this.props.isRestoring });
-
-  }
-
-  render() {
-    if (_.isNil(this.props.id) ||
-    _.isNil(this.props.rollback_from) ||
-    this.props.id < this.props.rollback_from) {
-      return false;
-    }
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: this.getClasses(), onClick: this.handleClick },
-        this.props.isRestoring ? 'Restoring...' : 'Restore'));
-
-
+    return changesCount;
   }};
 
 
-
+/* harmony default export */ __webpack_exports__["a"] = (new ActivityFeedHelper());
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 3054:
+/***/ 3451:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionsEmpty; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__external_navigation_ExternalNavigationService__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__external_navigation_ExternalNavigationService__ = __webpack_require__(72);
 
 
 
@@ -789,7 +434,7 @@ CollectionsEmpty = class CollectionsEmpty extends __WEBPACK_IMPORTED_MODULE_0_re
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
               type: 'text',
               className: 'learn-more-link',
-              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["g" /* COLLECTION_DOCS */]) }, 'Collections'),
+              onClick: this.openLink.bind(this, __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__["p" /* COLLECTION_DOCS */]) }, 'Collections'),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, '. Collections make it easier to organize, test, document and monitor requests. Save some requests in a collection to get started.')),
 
@@ -816,1218 +461,7 @@ CollectionsEmpty = class CollectionsEmpty extends __WEBPACK_IMPORTED_MODULE_0_re
 
 /***/ }),
 
-/***/ 3077:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = sanitizeVariableValue;
-const allowedVariableFieldKeys = ['key', 'value', 'type', 'contentType', 'description', 'enabled'];
-
-/**
-                                                                                                     * Sanitizes the environment/globals values
-                                                                                                     * @TODO Update this to follow the schema
-                                                                                                     * @param {Array<Object>} values
-                                                                                                     * @returns {Object} sanitized variable value
-                                                                                                     */
-function sanitizeVariableValue(value) {
-  return _.pick(value, allowedVariableFieldKeys);
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3086:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*istanbul ignore start*/
-
-exports.__esModule = true;
-exports.lineDiff = undefined;
-exports. /*istanbul ignore end*/diffLines = diffLines;
-/*istanbul ignore start*/exports. /*istanbul ignore end*/diffTrimmedLines = diffTrimmedLines;
-
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
-
-/*istanbul ignore start*/
-var _base2 = _interopRequireDefault(_base);
-
-/*istanbul ignore end*/
-var /*istanbul ignore start*/_params = __webpack_require__(3165) /*istanbul ignore end*/;
-
-/*istanbul ignore start*/
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*istanbul ignore end*/var lineDiff = /*istanbul ignore start*/exports. /*istanbul ignore end*/lineDiff = new /*istanbul ignore start*/_base2.default() /*istanbul ignore end*/;
-lineDiff.tokenize = function (value) {
-  var retLines = [],
-      linesAndNewlines = value.split(/(\n|\r\n)/);
-
-  // Ignore the final empty token that occurs if the string ends with a new line
-  if (!linesAndNewlines[linesAndNewlines.length - 1]) {
-    linesAndNewlines.pop();
-  }
-
-  // Merge the content and line separators into single tokens
-  for (var i = 0; i < linesAndNewlines.length; i++) {
-    var line = linesAndNewlines[i];
-
-    if (i % 2 && !this.options.newlineIsToken) {
-      retLines[retLines.length - 1] += line;
-    } else {
-      if (this.options.ignoreWhitespace) {
-        line = line.trim();
-      }
-      retLines.push(line);
-    }
-  }
-
-  return retLines;
-};
-
-function diffLines(oldStr, newStr, callback) {
-  return lineDiff.diff(oldStr, newStr, callback);
-}
-function diffTrimmedLines(oldStr, newStr, callback) {
-  var options = /*istanbul ignore start*/(0, _params.generateOptions) /*istanbul ignore end*/(callback, { ignoreWhitespace: true });
-  return lineDiff.diff(oldStr, newStr, options);
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9kaWZmL2xpbmUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztnQ0E4QmdCO3lEQUNBOztBQS9CaEI7Ozs7OztBQUNBOzs7Ozt1QkFFTyxJQUFNLCtFQUFXLHFFQUFYO0FBQ2IsU0FBUyxRQUFULEdBQW9CLFVBQVMsS0FBVCxFQUFnQjtBQUNsQyxNQUFJLFdBQVcsRUFBWDtNQUNBLG1CQUFtQixNQUFNLEtBQU4sQ0FBWSxXQUFaLENBQW5COzs7QUFGOEIsTUFLOUIsQ0FBQyxpQkFBaUIsaUJBQWlCLE1BQWpCLEdBQTBCLENBQTFCLENBQWxCLEVBQWdEO0FBQ2xELHFCQUFpQixHQUFqQixHQURrRDtHQUFwRDs7O0FBTGtDLE9BVTdCLElBQUksSUFBSSxDQUFKLEVBQU8sSUFBSSxpQkFBaUIsTUFBakIsRUFBeUIsR0FBN0MsRUFBa0Q7QUFDaEQsUUFBSSxPQUFPLGlCQUFpQixDQUFqQixDQUFQLENBRDRDOztBQUdoRCxRQUFJLElBQUksQ0FBSixJQUFTLENBQUMsS0FBSyxPQUFMLENBQWEsY0FBYixFQUE2QjtBQUN6QyxlQUFTLFNBQVMsTUFBVCxHQUFrQixDQUFsQixDQUFULElBQWlDLElBQWpDLENBRHlDO0tBQTNDLE1BRU87QUFDTCxVQUFJLEtBQUssT0FBTCxDQUFhLGdCQUFiLEVBQStCO0FBQ2pDLGVBQU8sS0FBSyxJQUFMLEVBQVAsQ0FEaUM7T0FBbkM7QUFHQSxlQUFTLElBQVQsQ0FBYyxJQUFkLEVBSks7S0FGUDtHQUhGOztBQWFBLFNBQU8sUUFBUCxDQXZCa0M7Q0FBaEI7O0FBMEJiLFNBQVMsU0FBVCxDQUFtQixNQUFuQixFQUEyQixNQUEzQixFQUFtQyxRQUFuQyxFQUE2QztBQUFFLFNBQU8sU0FBUyxJQUFULENBQWMsTUFBZCxFQUFzQixNQUF0QixFQUE4QixRQUE5QixDQUFQLENBQUY7Q0FBN0M7QUFDQSxTQUFTLGdCQUFULENBQTBCLE1BQTFCLEVBQWtDLE1BQWxDLEVBQTBDLFFBQTFDLEVBQW9EO0FBQ3pELE1BQUksVUFBVSw4RUFBZ0IsUUFBaEIsRUFBMEIsRUFBQyxrQkFBa0IsSUFBbEIsRUFBM0IsQ0FBVixDQURxRDtBQUV6RCxTQUFPLFNBQVMsSUFBVCxDQUFjLE1BQWQsRUFBc0IsTUFBdEIsRUFBOEIsT0FBOUIsQ0FBUCxDQUZ5RDtDQUFwRCIsImZpbGUiOiJsaW5lLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IERpZmYgZnJvbSAnLi9iYXNlJztcbmltcG9ydCB7Z2VuZXJhdGVPcHRpb25zfSBmcm9tICcuLi91dGlsL3BhcmFtcyc7XG5cbmV4cG9ydCBjb25zdCBsaW5lRGlmZiA9IG5ldyBEaWZmKCk7XG5saW5lRGlmZi50b2tlbml6ZSA9IGZ1bmN0aW9uKHZhbHVlKSB7XG4gIGxldCByZXRMaW5lcyA9IFtdLFxuICAgICAgbGluZXNBbmROZXdsaW5lcyA9IHZhbHVlLnNwbGl0KC8oXFxufFxcclxcbikvKTtcblxuICAvLyBJZ25vcmUgdGhlIGZpbmFsIGVtcHR5IHRva2VuIHRoYXQgb2NjdXJzIGlmIHRoZSBzdHJpbmcgZW5kcyB3aXRoIGEgbmV3IGxpbmVcbiAgaWYgKCFsaW5lc0FuZE5ld2xpbmVzW2xpbmVzQW5kTmV3bGluZXMubGVuZ3RoIC0gMV0pIHtcbiAgICBsaW5lc0FuZE5ld2xpbmVzLnBvcCgpO1xuICB9XG5cbiAgLy8gTWVyZ2UgdGhlIGNvbnRlbnQgYW5kIGxpbmUgc2VwYXJhdG9ycyBpbnRvIHNpbmdsZSB0b2tlbnNcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBsaW5lc0FuZE5ld2xpbmVzLmxlbmd0aDsgaSsrKSB7XG4gICAgbGV0IGxpbmUgPSBsaW5lc0FuZE5ld2xpbmVzW2ldO1xuXG4gICAgaWYgKGkgJSAyICYmICF0aGlzLm9wdGlvbnMubmV3bGluZUlzVG9rZW4pIHtcbiAgICAgIHJldExpbmVzW3JldExpbmVzLmxlbmd0aCAtIDFdICs9IGxpbmU7XG4gICAgfSBlbHNlIHtcbiAgICAgIGlmICh0aGlzLm9wdGlvbnMuaWdub3JlV2hpdGVzcGFjZSkge1xuICAgICAgICBsaW5lID0gbGluZS50cmltKCk7XG4gICAgICB9XG4gICAgICByZXRMaW5lcy5wdXNoKGxpbmUpO1xuICAgIH1cbiAgfVxuXG4gIHJldHVybiByZXRMaW5lcztcbn07XG5cbmV4cG9ydCBmdW5jdGlvbiBkaWZmTGluZXMob2xkU3RyLCBuZXdTdHIsIGNhbGxiYWNrKSB7IHJldHVybiBsaW5lRGlmZi5kaWZmKG9sZFN0ciwgbmV3U3RyLCBjYWxsYmFjayk7IH1cbmV4cG9ydCBmdW5jdGlvbiBkaWZmVHJpbW1lZExpbmVzKG9sZFN0ciwgbmV3U3RyLCBjYWxsYmFjaykge1xuICBsZXQgb3B0aW9ucyA9IGdlbmVyYXRlT3B0aW9ucyhjYWxsYmFjaywge2lnbm9yZVdoaXRlc3BhY2U6IHRydWV9KTtcbiAgcmV0dXJuIGxpbmVEaWZmLmRpZmYob2xkU3RyLCBuZXdTdHIsIG9wdGlvbnMpO1xufVxuIl19
-
-
-/***/ }),
-
-/***/ 3087:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_ActivityFeedDetailsMapConstant__ = __webpack_require__(3163);
-let
-
-ActivityFeedHelper = class ActivityFeedHelper {
-
-  getWhiteListedActivitiesCount(activity) {
-    let changesCount = 0;
-    if (activity.rollback && activity.input) {
-      _.forEach(__WEBPACK_IMPORTED_MODULE_0__constants_ActivityFeedDetailsMapConstant__["a" /* default */], supportedActivity => {
-        let entity = supportedActivity.entity;
-        if (activity.rollback[entity] || activity.input[entity]) {
-          ++changesCount;
-        }
-      });
-    }
-    return changesCount;
-  }};
-
-
-/* harmony default export */ __webpack_exports__["a"] = (new ActivityFeedHelper());
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeSwitcher; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_RequesterTabConstants__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx_react__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mobx__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_AppUrlConstants_js__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceTypeSwitcherIntro__ = __webpack_require__(3221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Tooltips__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__ = __webpack_require__(27);
-
-
-
-
-
-
-
-
-
-
-let
-
-TypeSwitcher = class TypeSwitcher extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { isTooltipVisible: false };
-
-    this.showTooltip = this.showTooltip.bind(this);
-    this.hideTooltip = this.hideTooltip.bind(this);
-  }
-
-  getSwitchClasses(viewMode) {
-    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
-      'plugin__workspace-view-switcher__switch': true,
-      left: viewMode === this.props.items[0].key,
-      right: viewMode === this.props.items[1].key });
-
-  }
-
-  getActiveItemClasses(position) {
-    let positionClass = `plugin__workspace-view-switcher__switch__item--${position}`;
-
-    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
-      'plugin__workspace-view-switcher__switch__item': true,
-      [positionClass]: true });
-
-  }
-
-  getWrapperClasses() {
-    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
-      'plugin__workspace-view-switcher__wrapper': true,
-      'disabled': this.props.disabled });
-
-  }
-
-  getActiveItemLabel() {
-    let activeItem = _.find(this.props.items, ['key', this.props.activeItem]);
-
-    if (activeItem) {
-      return activeItem.label;
-    }
-
-    return '';
-  }
-
-  handleSelect(item) {
-    !this.props.disabled && this.props.onSelect && this.props.onSelect(item);
-  }
-
-  showTooltip() {
-    this.setState({ isTooltipVisible: true });
-  }
-
-  hideTooltip() {
-    this.setState({ isTooltipVisible: false });
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__["a" /* default */], { identifier: 'workspaceViewToggle' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-            ref: 'tooltipTarget',
-            onMouseEnter: this.props.isTooltipEnabled && this.showTooltip || _.noop,
-            onMouseLeave: this.props.isTooltipEnabled && this.hideTooltip || _.noop },
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getWrapperClasses() },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getSwitchClasses(this.props.activeItem) },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
-                  className: 'plugin__workspace-view-active-item' },
-
-                this.getActiveItemLabel())),
-
-
-
-            _.map(this.props.items, item => {
-              return (
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
-                    key: item.key,
-                    onClick: this.handleSelect.bind(this, item.key),
-                    className: this.getActiveItemClasses(item.position) },
-
-                  item.label));
-
-
-            })),
-
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_Tooltips__["a" /* Tooltip */], {
-              show: this.state.isTooltipVisible,
-              target: this.refs.tooltipTarget,
-              placement: this.props.placement,
-              immediate: true },
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_Tooltips__["b" /* TooltipBody */], null,
-              this.props.tooltipText)))));
-
-
-
-
-
-  }};
-
-
-TypeSwitcher.defaultProps = {
-  isTooltipEnabled: false,
-  placement: 'right',
-  tooltipText: '' };
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3144:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__export_single__ = __webpack_require__(3145);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({ exportSingle: __WEBPACK_IMPORTED_MODULE_0__export_single__["a" /* default */] });
-
-/***/ }),
-
-/***/ 3145:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(3409);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__environment__ = __webpack_require__(3146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globals__ = __webpack_require__(3410);
-
-
-
-
-const COLLECTION = 'collection',
-ENVIRONMENT = 'environment',
-GLOBALS = 'globals',
-TYPE_JSON = 'json',
-DEFAULT_FILE_NAME_EXT = '.json',
-exportModels = {
-  [COLLECTION]: __WEBPACK_IMPORTED_MODULE_0__collection__["a" /* default */],
-  [ENVIRONMENT]: __WEBPACK_IMPORTED_MODULE_1__environment__["a" /* default */],
-  [GLOBALS]: __WEBPACK_IMPORTED_MODULE_2__globals__["a" /* default */] };
-
-
-/**
-                         * Exports a model (collection, environment or globals)
-                         * @param {String} model
-                         * @param {Object} criteria
-                         * @param {Object} exportOptions
-                         * @returns {Promise} which resolves in an object having name, type and data
-                         */
-/* harmony default export */ __webpack_exports__["a"] = (function (model, criteria, exportOptions) {
-  let populatedEntity,
-  entityName,
-  fileName,
-  exportModel = exportModels[model],
-  context = {
-    appVersion: pm.app.get('info').version,
-    exportOptions };
-
-
-  if (!exportModel) {
-    return Promise.reject(new Error(`Export: unsupported model: '${model}'`));
-  }
-
-  return Promise.resolve()
-
-  // Fetch the model from db
-  .then(() => {
-    return exportModel.getFromDb(criteria);
-  })
-
-  // Fetch the context (optional step)
-  .then(entity => {
-    if (!entity) {
-      return Promise.reject(new Error(`Export: received empty entity for model: ${model} for criteria ${JSON.stringify(criteria)}`));
-    }
-
-    populatedEntity = entity;
-
-    if (exportModel.getContext) {
-      return exportModel.getContext(criteria);
-    }
-  })
-
-  // cache the context
-  .then(ctx => {
-    _.merge(context, ctx);
-  })
-
-  // get the entity name and file name to be exported
-  .then(() => {
-    exportModel.getEntityName ?
-    entityName = exportModel.getEntityName(populatedEntity, context) :
-    entityName = model;
-    exportModel.getFileName ?
-    fileName = exportModel.getFileName(populatedEntity, context) :
-    fileName = model + DEFAULT_FILE_NAME_EXT;
-  })
-
-  // sanitize the entity
-  // this step MUST not mutate the entity
-  .then(() => {
-    if (exportModel.sanitize) {
-      return exportModel.sanitize(populatedEntity, context);
-    }
-    return populatedEntity;
-  })
-
-  // transform the data to the exportable format
-  // for collection it will first convert to v1 format then optionally to v2/v.2.1
-  // for environment/globals it will add the extra meta properties
-  .then(sanitizedEntity => {
-    if (!exportModel.transform) {
-      return sanitizedEntity;
-    }
-
-    return exportModel.transform(sanitizedEntity, context);
-  })
-
-  // return the data
-  .then(transformedData => {
-    return {
-      type: TYPE_JSON,
-      json: transformedData,
-      meta: {
-        name: entityName,
-        fileName: fileName } };
-
-
-  });
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3146:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_EnvironmentController__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(3077);
-
-
-
-const ENVIRONMENT = 'environment',
-EXPORTED_USING_PREFIX = 'Postman/',
-FILE_NAME_EXT = '.postman_environment.json',
-TAB = '\t',
-allowedEnvFields = ['id', 'name', 'values', 'timestamp', '_postman_variable_scope'];
-
-/**
-                                                                                      * Gets the environment from the db
-                                                                                      * @param {Object} criteria
-                                                                                      */
-function getFromDb(criteria) {
-  return __WEBPACK_IMPORTED_MODULE_0__modules_controllers_EnvironmentController__["a" /* default */].get(criteria);
-}
-
-/**
-   * Sanitizes the environment before exporting
-   * @param {Object} environment
-   */
-function sanitize(environment) {
-  let sanitizedEnv = _.pick(environment, allowedEnvFields);
-  sanitizedEnv.values = _.map(sanitizedEnv.values, __WEBPACK_IMPORTED_MODULE_1__util__["a" /* sanitizeVariableValue */]);
-
-  return sanitizedEnv;
-}
-
-/**
-   * This transforms the environment into the exportable format
-   * It adds few meta properties
-   * @param {Object} environment
-   * @returns {Promise} Which resolves in the transformed environment
-   */
-function transform(environment, context = {}) {
-  return Promise.resolve(
-  _.merge({}, environment, {
-    _postman_variable_scope: ENVIRONMENT,
-    _postman_exported_at: new Date().toISOString(),
-    _postman_exported_using: EXPORTED_USING_PREFIX + context.appVersion }));
-
-
-}
-
-/**
-   * Returns the entity name
-   * @param {Object} environment
-   */
-function getEntityName(environment) {
-  return environment.name || ENVIRONMENT;
-}
-
-/**
-   * Returns the fileName that can be used if exporting to a file
-   * @param {Object} environment
-   */
-function getFileName(environment) {
-  return this.getEntityName(environment) + FILE_NAME_EXT;
-}
-
-/**
-   * Serializes the environment
-   * @param {Object} environment
-   * @returns {String} Stringified environment
-   */
-function serialize(environment) {
-  return JSON.stringify(environment, null, TAB);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  getFromDb,
-  sanitize,
-  transform,
-  getEntityName,
-  getFileName,
-  serialize });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3147:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_EnvironmentController__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_GlobalsController__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_export_environment__ = __webpack_require__(3146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_export_header_preset__ = __webpack_require__(3411);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_services_filesystem__ = __webpack_require__(595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_util__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_export_export_single__ = __webpack_require__(3145);
-
-
-
-
-
-
-
-
-
-
-
-
-const COLLECTION = 'collection',
-DEFAULT_WORKSPACE_NAME = 'Workspace',
-GLOBALS_NAME_SUFFIX = ' - globals',
-TAB = '\t',
-EXPORTED_FILENAME = 'Backup.postman_dump.json',
-EXPORTED_FILETYPE = 'application/json';
-
-const EXPORT_STATE = {
-  SUCCESS: __WEBPACK_IMPORTED_MODULE_8__models_services_filesystem__["a" /* STATE */].SUCCESS,
-  ABORTED: __WEBPACK_IMPORTED_MODULE_8__models_services_filesystem__["a" /* STATE */].ABORTED };
-/* harmony export (immutable) */ __webpack_exports__["a"] = EXPORT_STATE;
-
-
-
-/**
-                             * Exports a model (collection, environment or globals)
-                             * @param {Object} options
-                             * @param {String} options.exportLevel One of 'all' or 'user'
-                             * @returns {Promise<Object>} which resolves in an object having version, collections, environments, globals and headerPresets
-                             */
-/* harmony default export */ __webpack_exports__["b"] = (function (options = {}) {
-  let userId,
-  dump = {
-    version: 1,
-    collections: [],
-    environments: [],
-    headerPresets: [],
-    globals: [] },
-
-  workspaces,
-  dumpCollections,
-  dumpEnvironments,
-  dumpGlobals,
-  dumpHeaderPresets;
-
-  dumpCollections = function () {
-    return Promise.resolve()
-
-    // Get all the collections from db
-    .then(() => {
-      return __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__["a" /* default */].getCollections();
-    })
-
-    // filter the collection for the user (only if the exportLevel is user)
-    .then(collections => {
-      if (options.exportLevel !== 'user') {
-        return collections;
-      }
-
-      return _.filter(collections, ['owner', userId]);
-    })
-
-    // Populate individual collections
-    .then(collections => {
-      return Promise.all(_.map(collections, collection => {
-        return Object(__WEBPACK_IMPORTED_MODULE_10__modules_export_export_single__["a" /* default */])(COLLECTION, { id: collection.id });
-      }));
-    })
-
-    // map the output of exportSingle into array of collections
-    .then(exportedCollections => {
-      return _(exportedCollections).map(data => {
-        return data && data.json;
-      }).compact().value();
-    })
-
-    // Put the collections in the data-dump
-    .then(collections => {
-      dump.collections = collections;
-    });
-  };
-
-  dumpEnvironments = function () {
-    return Promise.resolve()
-
-    // Get all the environments from db
-    .then(() => {
-      return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_EnvironmentController__["a" /* default */].getAll();
-    })
-
-    // filter the environments for the user (only if the exportLevel is user)
-    .then(environments => {
-      if (options.exportLevel !== 'user') {
-        return environments;
-      }
-
-      return _.filter(environments, ['owner', userId]);
-    })
-
-    // sanitize the environments
-    .then(environments => {
-      return _.map(environments, env => {
-        return __WEBPACK_IMPORTED_MODULE_6__modules_export_environment__["a" /* default */].sanitize(env);
-      });
-    })
-
-    // Put the environments in the data-dump
-    .then(environments => {
-      dump.environments = environments;
-    });
-  };
-
-  dumpGlobals = function () {
-    return Promise.resolve()
-
-    // Get all the globals from db
-    .then(() => {
-      return __WEBPACK_IMPORTED_MODULE_2__modules_controllers_GlobalsController__["a" /* default */].getAll();
-    })
-
-    // Convert globals to environments
-    .then(globals => {
-      return _.map(globals, globalsRecord => {
-        let workspace = _.find(workspaces, ['id', globalsRecord.workspace]),
-        workspaceName = _.get(workspace, 'name') || DEFAULT_WORKSPACE_NAME,
-        environmentName = workspaceName + GLOBALS_NAME_SUFFIX;
-
-        return {
-          id: __WEBPACK_IMPORTED_MODULE_9__utils_util__["a" /* default */].guid(),
-          name: environmentName,
-          values: globalsRecord.values };
-
-      });
-    })
-
-    // Sanitize the globals but using environmentModel
-    // since the globals were converted to environments
-    .then(globals => {
-      return _.map(globals, globalsRecord => {
-        return __WEBPACK_IMPORTED_MODULE_6__modules_export_environment__["a" /* default */].sanitize(globalsRecord);
-      });
-    })
-
-    // Put the globals in the data-dump
-    .then(globals => {
-      dump.globals = globals;
-    });
-  };
-
-  dumpHeaderPresets = function () {
-    return Promise.resolve()
-
-    // Get all the headerPresets from db
-    .then(() => {
-      return __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__["a" /* default */].getAll();
-    })
-
-    // filter the headerPresets for the user (only if the exportLevel is user)
-    .then(headerPresets => {
-      if (options.exportLevel !== 'user') {
-        return headerPresets;
-      }
-
-      return _.filter(headerPresets, ['owner', userId]);
-    })
-
-    // sanitize the headerPresets
-    .then(headerPresets => {
-      return _.map(headerPresets, headerPreset => {
-        return __WEBPACK_IMPORTED_MODULE_7__modules_export_header_preset__["a" /* default */].sanitize(headerPreset);
-      });
-    })
-
-    // Put the headerPresets in the data-dump
-    .then(headerPresets => {
-      dump.headerPresets = headerPresets;
-    });
-  };
-
-  return Promise.resolve()
-
-  // Get the user info
-  .then(() => {
-    return __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__["a" /* default */].get();
-  })
-
-  // Cache the userId
-  .then(user => {
-    userId = user.id;
-  })
-
-  // Get the workspaces
-  .then(() => {
-    return __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__["a" /* default */].getAll();
-  })
-
-  // Cache the workspaces
-  .then(workspacesFromDb => {
-    workspaces = workspacesFromDb;
-  })
-
-  // Wait for all the exports to finish
-  .then(() => {
-    return Promise.all([dumpCollections(), dumpEnvironments(), dumpGlobals(), dumpHeaderPresets()]);
-  })
-
-  // Move globals from dump.globals to dump.environments
-  .then(() => {
-    dump.environments = _.concat(dump.environments, dump.globals);
-    dump.globals = [];
-  })
-
-  // Show a native prompt to save the file
-  .then(() => {
-    let serializedData = JSON.stringify(dump, null, TAB);
-
-    return new Promise((resolve, reject) => {
-      Object(__WEBPACK_IMPORTED_MODULE_8__models_services_filesystem__["b" /* saveAndOpenFile */])(EXPORTED_FILENAME, serializedData, EXPORTED_FILETYPE, (err, state) => {
-        if (err) {
-          console.warn('Error while saving the data-dump', err);
-          reject(err);
-          return;
-        }
-
-        resolve(state);
-      });
-    });
-  });
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3161:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityFeed; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_LoadingIndicator__ = __webpack_require__(475);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ActivityItem__ = __webpack_require__(3505);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_date_helper__ = __webpack_require__(586);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_date_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_date_helper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pure_render_decorator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_prop_types__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__CollectionActivity__ = __webpack_require__(3162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_mobx_react__ = __webpack_require__(15);
-var _class;
-
-
-
-
-
-
-
-
-
-let
-
-
-ActivityFeed = Object(__WEBPACK_IMPORTED_MODULE_8_mobx_react__["a" /* observer */])(_class = class ActivityFeed extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleScrollDebounced = _.debounce(this.handleScroll, 100);
-    this.handleSignIn = this.handleSignIn.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.activityFeed &&
-    this.props.activityFeed &&
-    nextProps.activityFeed.id &&
-    nextProps.activityFeed.id !== this.props.activityFeed.id) {
-      this.refs.activity_feed && (this.refs.activity_feed.scrollTop = 0);
-    }
-  }
-
-  handleSignIn() {
-    this.props.onSignIn && this.props.onSignIn();
-  }
-
-  handleScroll() {
-    let node = this.refs.activity_feed;
-    if (node.scrollHeight - (node.scrollTop + node.offsetHeight) <= 5) {
-      this.props.onLoadMore && this.props.onLoadMore();
-    }
-  }
-
-  getClasses() {
-    return __WEBPACK_IMPORTED_MODULE_7_classnames___default()({ 'activity-feed-container': true }, this.props.className);
-  }
-
-  render() {
-    let props = this.props,
-    activities = _.get(props, 'activityFeed.feeds', []),
-    meta = _.get(props, 'activityFeed.meta', {}),
-    isActivityFeedFetchError = _.get(props, 'activityFeed.error', false);
-    if (!props.isLoggedIn) {
-      return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClasses() },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-empty-container' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
-                className: 'activity-feed-empty-signin-link',
-                onClick: this.handleSignIn }, 'Sign in'), ' to track changes to your collection.')));
-
-
-
-
-
-
-    }
-
-    // Don't show subscribe / Unsubscribe event in collection activity feed
-    let filteredActivities = _.filter(activities, activity => {
-      return !(meta.model === 'collection' && _.includes(['subscribe', 'unsubscribe'], activity.action));
-    }),
-    groupedActivities = _.isEmpty(filteredActivities) ? [] : __WEBPACK_IMPORTED_MODULE_3__postman_date_helper___default.a.getDateGroups(filteredActivities, 'createdAt', 'MMMM D, YYYY'),
-    latestActivity = _.maxBy(filteredActivities, 'id');
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClasses() },
-
-        props.activityName &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-name-header' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-name-header-content' },
-            props.activityName)),
-
-
-
-
-        props.activityFeed.isLoading &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-loading-container' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_LoadingIndicator__["a" /* default */], null)),
-
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-            className: 'activity-feed',
-            ref: 'activity_feed',
-            onScroll: this.handleScrollDebounced },
-
-
-          _.map(groupedActivities, subActivities => {
-            if (_.isEmpty(subActivities)) {
-              return false;
-            }
-
-            return (
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-                  className: 'activity-feed-date-group-wrapper',
-                  key: subActivities.name },
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-date-group' }, ' ', subActivities.name, ' '),
-
-                _.map(subActivities.items, activity => {
-                  return (
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ActivityItem__["a" /* default */], {
-                      activity: activity,
-                      enableRestore: !!(this.props.enableRestore && latestActivity && latestActivity.id !== activity.id),
-                      isRestoring: _.get(this.props, 'collectionRestoreTarget.maxId') === activity.id,
-                      key: activity.id,
-                      meta: meta,
-                      onRestore: this.props.onRestore }));
-
-
-                })));
-
-
-
-          }),
-
-
-          !props.activityFeed.isLoading && _.isEmpty(groupedActivities) && !isActivityFeedFetchError &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: props.className },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-loading-container ' }, 'No activities yet')),
-
-
-
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__CollectionActivity__["c" /* LoadFeed */], {
-            error: isActivityFeedFetchError,
-            key: 'loading-more',
-            loading: props.activityFeed.isLoadingMore }))));
-
-
-
-
-  }}) || _class;
-
-
-ActivityFeed.propTypes = {
-  activityFeed: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object.isRequired,
-  activityName: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
-  className: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.string,
-  onLoadMore: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.func.isRequired };
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3162:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Create; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return Update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Delete; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Share; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return Unshare; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return Subscribe; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return Unsubscribe; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return LoadFeed; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__ = __webpack_require__(3053);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_ActivityFeedHelper__ = __webpack_require__(3087);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_PluralizeHelper__ = __webpack_require__(805);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_LoadingIndicator__ = __webpack_require__(475);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
-
-
-
-let
-
-Create = class Create extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Created '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                activity.instance, {
-                  meta: meta }))),
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Update = class Update extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta,
-    trigger = activity.trigger,
-    changesCount = __WEBPACK_IMPORTED_MODULE_2__utils_ActivityFeedHelper__["a" /* default */].getWhiteListedActivitiesCount(activity),
-    pluralizedChangeText = __WEBPACK_IMPORTED_MODULE_3__utils_PluralizeHelper__["a" /* default */].pluralize({
-      count: changesCount,
-      singular: 'change',
-      plural: 'changes' });
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head-content' },
-
-                  changesCount > 0 &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' ', changesCount, ' ', pluralizedChangeText, ' to '),
-
-
-                  changesCount === 0 &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' ', trigger === 'restore' ? 'Restored' : 'Modified', ' '),
-
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                  activity.instance, {
-                    meta: meta })))),
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))),
-
-
-
-
-
-          changesCount > 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["b" /* Details */], activity))));
-
-
-
-  }};let
-
-
-Delete = class Delete extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Deleted'),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                activity.instance, {
-                  meta: meta }))),
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Share = class Share extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Modified access to '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                activity.instance, {
-                  meta: meta }))),
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt })))))));
-
-
-
-
-
-
-  }};let
-
-
-Unshare = class Unshare extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Modified access to '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                activity.instance, {
-                  meta: meta }))),
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt })))))));
-
-
-
-
-
-
-  }};let
-
-
-Subscribe = class Subscribe extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Subscribed to'),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                activity.instance, {
-                  meta: meta }))),
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt })))))));
-
-
-
-
-
-
-  }};let
-
-
-Unsubscribe = class Unsubscribe extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Unsubscribed from'),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({},
-                activity.instance, {
-                  meta: meta }))),
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt })))))));
-
-
-
-
-
-
-  }};let
-
-
-LoadFeed = class LoadFeed extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper activity-item-loadfeed' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-loadmore-container' },
-
-          this.props.error ?
-          'Something went wrong while fetching the activity feed' :
-          this.props.loading ?
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_LoadingIndicator__["a" /* default */], null) : '')));
-
-
-
-
-  }};
-
-
-
-
-/***/ }),
-
-/***/ 3163:
+/***/ 3468:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2114,14 +548,14 @@ const ActivityFeedDetailsMapConstant = [
 
 /***/ }),
 
-/***/ 3164:
+/***/ 3469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Diff; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_diff__ = __webpack_require__(3507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_diff__ = __webpack_require__(3686);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_diff___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_diff__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_dom__);
@@ -2129,8 +563,8 @@ const ActivityFeedDetailsMapConstant = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DiffLine__ = __webpack_require__(3518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__DiffTextView__ = __webpack_require__(3520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DiffLine__ = __webpack_require__(3697);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__DiffTextView__ = __webpack_require__(3699);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -2258,7 +692,219 @@ Diff.defaultProps = {
 
 /***/ }),
 
-/***/ 3165:
+/***/ 3470:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*istanbul ignore start*/
+
+exports.__esModule = true;
+exports.lineDiff = undefined;
+exports. /*istanbul ignore end*/diffLines = diffLines;
+/*istanbul ignore start*/exports. /*istanbul ignore end*/diffTrimmedLines = diffTrimmedLines;
+
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
+
+/*istanbul ignore start*/
+var _base2 = _interopRequireDefault(_base);
+
+/*istanbul ignore end*/
+var /*istanbul ignore start*/_params = __webpack_require__(3494) /*istanbul ignore end*/;
+
+/*istanbul ignore start*/
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*istanbul ignore end*/var lineDiff = /*istanbul ignore start*/exports. /*istanbul ignore end*/lineDiff = new /*istanbul ignore start*/_base2.default() /*istanbul ignore end*/;
+lineDiff.tokenize = function (value) {
+  var retLines = [],
+      linesAndNewlines = value.split(/(\n|\r\n)/);
+
+  // Ignore the final empty token that occurs if the string ends with a new line
+  if (!linesAndNewlines[linesAndNewlines.length - 1]) {
+    linesAndNewlines.pop();
+  }
+
+  // Merge the content and line separators into single tokens
+  for (var i = 0; i < linesAndNewlines.length; i++) {
+    var line = linesAndNewlines[i];
+
+    if (i % 2 && !this.options.newlineIsToken) {
+      retLines[retLines.length - 1] += line;
+    } else {
+      if (this.options.ignoreWhitespace) {
+        line = line.trim();
+      }
+      retLines.push(line);
+    }
+  }
+
+  return retLines;
+};
+
+function diffLines(oldStr, newStr, callback) {
+  return lineDiff.diff(oldStr, newStr, callback);
+}
+function diffTrimmedLines(oldStr, newStr, callback) {
+  var options = /*istanbul ignore start*/(0, _params.generateOptions) /*istanbul ignore end*/(callback, { ignoreWhitespace: true });
+  return lineDiff.diff(oldStr, newStr, options);
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9kaWZmL2xpbmUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztnQ0E4QmdCO3lEQUNBOztBQS9CaEI7Ozs7OztBQUNBOzs7Ozt1QkFFTyxJQUFNLCtFQUFXLHFFQUFYO0FBQ2IsU0FBUyxRQUFULEdBQW9CLFVBQVMsS0FBVCxFQUFnQjtBQUNsQyxNQUFJLFdBQVcsRUFBWDtNQUNBLG1CQUFtQixNQUFNLEtBQU4sQ0FBWSxXQUFaLENBQW5COzs7QUFGOEIsTUFLOUIsQ0FBQyxpQkFBaUIsaUJBQWlCLE1BQWpCLEdBQTBCLENBQTFCLENBQWxCLEVBQWdEO0FBQ2xELHFCQUFpQixHQUFqQixHQURrRDtHQUFwRDs7O0FBTGtDLE9BVTdCLElBQUksSUFBSSxDQUFKLEVBQU8sSUFBSSxpQkFBaUIsTUFBakIsRUFBeUIsR0FBN0MsRUFBa0Q7QUFDaEQsUUFBSSxPQUFPLGlCQUFpQixDQUFqQixDQUFQLENBRDRDOztBQUdoRCxRQUFJLElBQUksQ0FBSixJQUFTLENBQUMsS0FBSyxPQUFMLENBQWEsY0FBYixFQUE2QjtBQUN6QyxlQUFTLFNBQVMsTUFBVCxHQUFrQixDQUFsQixDQUFULElBQWlDLElBQWpDLENBRHlDO0tBQTNDLE1BRU87QUFDTCxVQUFJLEtBQUssT0FBTCxDQUFhLGdCQUFiLEVBQStCO0FBQ2pDLGVBQU8sS0FBSyxJQUFMLEVBQVAsQ0FEaUM7T0FBbkM7QUFHQSxlQUFTLElBQVQsQ0FBYyxJQUFkLEVBSks7S0FGUDtHQUhGOztBQWFBLFNBQU8sUUFBUCxDQXZCa0M7Q0FBaEI7O0FBMEJiLFNBQVMsU0FBVCxDQUFtQixNQUFuQixFQUEyQixNQUEzQixFQUFtQyxRQUFuQyxFQUE2QztBQUFFLFNBQU8sU0FBUyxJQUFULENBQWMsTUFBZCxFQUFzQixNQUF0QixFQUE4QixRQUE5QixDQUFQLENBQUY7Q0FBN0M7QUFDQSxTQUFTLGdCQUFULENBQTBCLE1BQTFCLEVBQWtDLE1BQWxDLEVBQTBDLFFBQTFDLEVBQW9EO0FBQ3pELE1BQUksVUFBVSw4RUFBZ0IsUUFBaEIsRUFBMEIsRUFBQyxrQkFBa0IsSUFBbEIsRUFBM0IsQ0FBVixDQURxRDtBQUV6RCxTQUFPLFNBQVMsSUFBVCxDQUFjLE1BQWQsRUFBc0IsTUFBdEIsRUFBOEIsT0FBOUIsQ0FBUCxDQUZ5RDtDQUFwRCIsImZpbGUiOiJsaW5lLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IERpZmYgZnJvbSAnLi9iYXNlJztcbmltcG9ydCB7Z2VuZXJhdGVPcHRpb25zfSBmcm9tICcuLi91dGlsL3BhcmFtcyc7XG5cbmV4cG9ydCBjb25zdCBsaW5lRGlmZiA9IG5ldyBEaWZmKCk7XG5saW5lRGlmZi50b2tlbml6ZSA9IGZ1bmN0aW9uKHZhbHVlKSB7XG4gIGxldCByZXRMaW5lcyA9IFtdLFxuICAgICAgbGluZXNBbmROZXdsaW5lcyA9IHZhbHVlLnNwbGl0KC8oXFxufFxcclxcbikvKTtcblxuICAvLyBJZ25vcmUgdGhlIGZpbmFsIGVtcHR5IHRva2VuIHRoYXQgb2NjdXJzIGlmIHRoZSBzdHJpbmcgZW5kcyB3aXRoIGEgbmV3IGxpbmVcbiAgaWYgKCFsaW5lc0FuZE5ld2xpbmVzW2xpbmVzQW5kTmV3bGluZXMubGVuZ3RoIC0gMV0pIHtcbiAgICBsaW5lc0FuZE5ld2xpbmVzLnBvcCgpO1xuICB9XG5cbiAgLy8gTWVyZ2UgdGhlIGNvbnRlbnQgYW5kIGxpbmUgc2VwYXJhdG9ycyBpbnRvIHNpbmdsZSB0b2tlbnNcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBsaW5lc0FuZE5ld2xpbmVzLmxlbmd0aDsgaSsrKSB7XG4gICAgbGV0IGxpbmUgPSBsaW5lc0FuZE5ld2xpbmVzW2ldO1xuXG4gICAgaWYgKGkgJSAyICYmICF0aGlzLm9wdGlvbnMubmV3bGluZUlzVG9rZW4pIHtcbiAgICAgIHJldExpbmVzW3JldExpbmVzLmxlbmd0aCAtIDFdICs9IGxpbmU7XG4gICAgfSBlbHNlIHtcbiAgICAgIGlmICh0aGlzLm9wdGlvbnMuaWdub3JlV2hpdGVzcGFjZSkge1xuICAgICAgICBsaW5lID0gbGluZS50cmltKCk7XG4gICAgICB9XG4gICAgICByZXRMaW5lcy5wdXNoKGxpbmUpO1xuICAgIH1cbiAgfVxuXG4gIHJldHVybiByZXRMaW5lcztcbn07XG5cbmV4cG9ydCBmdW5jdGlvbiBkaWZmTGluZXMob2xkU3RyLCBuZXdTdHIsIGNhbGxiYWNrKSB7IHJldHVybiBsaW5lRGlmZi5kaWZmKG9sZFN0ciwgbmV3U3RyLCBjYWxsYmFjayk7IH1cbmV4cG9ydCBmdW5jdGlvbiBkaWZmVHJpbW1lZExpbmVzKG9sZFN0ciwgbmV3U3RyLCBjYWxsYmFjaykge1xuICBsZXQgb3B0aW9ucyA9IGdlbmVyYXRlT3B0aW9ucyhjYWxsYmFjaywge2lnbm9yZVdoaXRlc3BhY2U6IHRydWV9KTtcbiAgcmV0dXJuIGxpbmVEaWZmLmRpZmYob2xkU3RyLCBuZXdTdHIsIG9wdGlvbnMpO1xufVxuIl19
+
+
+/***/ }),
+
+/***/ 3476:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeSwitcher; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_RequesterTabConstants__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx_react__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_mobx__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_AppUrlConstants_js__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceTypeSwitcherIntro__ = __webpack_require__(3532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_Tooltips__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__ = __webpack_require__(29);
+
+
+
+
+
+
+
+
+
+
+let
+
+TypeSwitcher = class TypeSwitcher extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isTooltipVisible: false };
+
+    this.showTooltip = this.showTooltip.bind(this);
+    this.hideTooltip = this.hideTooltip.bind(this);
+  }
+
+  getSwitchClasses(viewMode) {
+    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
+      'plugin__workspace-view-switcher__switch': true,
+      left: viewMode === this.props.items[0].key,
+      right: viewMode === this.props.items[1].key });
+
+  }
+
+  getActiveItemClasses(position) {
+    let positionClass = `plugin__workspace-view-switcher__switch__item--${position}`;
+
+    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
+      'plugin__workspace-view-switcher__switch__item': true,
+      [positionClass]: true });
+
+  }
+
+  getWrapperClasses() {
+    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
+      'plugin__workspace-view-switcher__wrapper': true,
+      'disabled': this.props.disabled });
+
+  }
+
+  getActiveItemLabel() {
+    let activeItem = _.find(this.props.items, ['key', this.props.activeItem]);
+
+    if (activeItem) {
+      return activeItem.label;
+    }
+
+    return '';
+  }
+
+  handleSelect(item) {
+    !this.props.disabled && this.props.onSelect && this.props.onSelect(item);
+  }
+
+  showTooltip() {
+    this.setState({ isTooltipVisible: true });
+  }
+
+  hideTooltip() {
+    this.setState({ isTooltipVisible: false });
+  }
+
+  render() {
+    return (
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_XPaths_XPath__["a" /* default */], { identifier: 'workspaceViewToggle' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
+            ref: 'tooltipTarget',
+            onMouseEnter: this.props.isTooltipEnabled && this.showTooltip || _.noop,
+            onMouseLeave: this.props.isTooltipEnabled && this.hideTooltip || _.noop },
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getWrapperClasses() },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getSwitchClasses(this.props.activeItem) },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
+                  className: 'plugin__workspace-view-active-item' },
+
+                this.getActiveItemLabel())),
+
+
+
+            _.map(this.props.items, item => {
+              return (
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', {
+                    key: item.key,
+                    onClick: this.handleSelect.bind(this, item.key),
+                    className: this.getActiveItemClasses(item.position) },
+
+                  item.label));
+
+
+            })),
+
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_Tooltips__["a" /* Tooltip */], {
+              show: this.state.isTooltipVisible,
+              target: this.refs.tooltipTarget,
+              placement: this.props.placement,
+              immediate: true },
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__base_Tooltips__["b" /* TooltipBody */], null,
+              this.props.tooltipText)))));
+
+
+
+
+
+  }};
+
+
+TypeSwitcher.defaultProps = {
+  isTooltipEnabled: false,
+  placement: 'right',
+  tooltipText: '' };
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 3484:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__export_single__ = __webpack_require__(1512);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({ exportSingle: __WEBPACK_IMPORTED_MODULE_0__export_single__["a" /* default */] });
+
+/***/ }),
+
+/***/ 3494:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2284,7 +930,7 @@ function generateOptions(options, defaults) {
 
 /***/ }),
 
-/***/ 3166:
+/***/ 3495:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2426,13 +1072,15 @@ function parsePatch(uniDiff) {
 
 /***/ }),
 
-/***/ 3167:
+/***/ 3496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(6);
+
 
 
 
@@ -2466,24 +1114,26 @@ function parsePatch(uniDiff) {
     pm.mediator.trigger('showEnvironmentDeleteModal', id, { origin: options.origin }, callback);
   } else
   if (action === 'add-to-workspace') {
-    pm.mediator.trigger('openAddToWorkspaceModal', id, 'environment', { origin: options.origin });
+    let uid = _.get(Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('EnvironmentStore').find(id), 'uid');
+    pm.mediator.trigger('openAddToWorkspaceModal', uid, 'environment', { origin: options.origin });
   } else
   if (action === 'remove-from-workspace') {
     pm.mediator.trigger('showRemoveEnvironmentWorkspaceModal', id, { origin: options.origin }, callback);
   }
 });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 3221:
+/***/ 3532:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceTypeSwitcherIntro; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Tooltips__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Tooltips__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(15);
 
 
 let
@@ -2530,747 +1180,7 @@ WorkspaceTypeSwitcherIntro = class WorkspaceTypeSwitcherIntro extends __WEBPACK_
 
 /***/ }),
 
-/***/ 3409:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__ = __webpack_require__(480);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_CollectionController__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_RequestConstants__ = __webpack_require__(1255);
-
-
-
-
-
-const DEPRECATED_PROPS = [
-'currentHelper',
-'helperAttributes',
-'tests',
-'preRequestScript'],
-
-TAB = '\t',
-COLLECTION = 'collection',
-FILE_NAME_EXT = '.postman_collection.json',
-ARRAY_BODY_TYPES = ['params', 'urlencoded'],
-ALLOWED_VARIABLE_FIELDS = ['id', 'key', 'value', 'type', 'disabled', 'description'],
-ALLOWED_DATA_FIELDS = ['key', 'value', 'contentType', 'description', 'type', 'enabled'],
-ALLOWED_QUERY_PARAMS_FIELDS = ['key', 'value', 'equals', 'description', 'enabled'],
-ALLOWED_RESPONSE_HEADER_FIELDS = ['key', 'value', 'name', 'description', 'type'],
-COLLECTION_META_PROPS = ['owner', 'permissions', 'shared', 'favorite'],
-
-METHOD_GET = 'GET',
-DBP_FLAG = 'protocolProfileBehavior.disableBodyPruning',
-NO_BODY_METHODS_SET = new Set(__WEBPACK_IMPORTED_MODULE_3__constants_RequestConstants__["a" /* NO_BODY_METHODS */]);
-
-/**
-                                                 * Gets the populated collection from the db
-                                                 * @param {Object} criteria
-                                                 * @returns {Promise} Which resolves in the populated collection
-                                                 */
-function getFromDb(criteria) {
-  return __WEBPACK_IMPORTED_MODULE_1__controllers_CollectionController__["a" /* default */].getCollection(criteria, { populate: true });
-}
-
-/**
-   * Sanitizes the collection-request and example-request fields
-   * 1. Remove the timestamps
-   * 2. Sanitize the body (convert the types)
-   * 3. Sanitize the query params
-   * 4. Remove unnecessary (but valid) fields
-   * @param {Object} request
-   */
-function _sanitizeRequestFields(request) {
-  // Bail out when request is falsy or is string (possible for example requests)
-  if (!request || typeof request === 'string') {
-    return;
-  }
-
-  let sanitizedRequest = _.clone(request);
-
-  // remove the timestamps
-  delete sanitizedRequest.createdAt;
-  delete sanitizedRequest.updatedAt;
-
-  // Body of type form and urlencoded are only stored as array.
-  // Do not sanitize body of type raw and binary
-  let shouldSanitizeBody = _.includes(ARRAY_BODY_TYPES, sanitizedRequest.dataMode) && !_.isEmpty(sanitizedRequest.data),
-  shouldSanitizeParams = _.isArray(sanitizedRequest.queryParams) && !_.isEmpty(sanitizedRequest.queryParams);
-
-  if (shouldSanitizeBody) {
-    if (_.isArray(sanitizedRequest.data)) {
-      sanitizedRequest.data = _.map(sanitizedRequest.data, value => {
-        return _.pick(value, ALLOWED_DATA_FIELDS);
-      });
-    } else {
-      // It's possible that a request was saved with body type form/url-encoded and then later the type was changed to raw/binary.
-      // In that case if the actual data wasn't reset we do it now to avoid exporting incorrect data
-      sanitizedRequest.data = [];
-    }
-  }
-
-  if (shouldSanitizeParams) {
-    sanitizedRequest.queryParams = _.map(sanitizedRequest.queryParams, value => {
-      return _.pick(value, ALLOWED_QUERY_PARAMS_FIELDS);
-    });
-  }
-
-  let methodAllowsAllowBody = !NO_BODY_METHODS_SET.has(sanitizedRequest.method || METHOD_GET),
-  noBodyPresent = !sanitizedRequest.dataMode,
-  isDbpFalsy = !_.get(sanitizedRequest, DBP_FLAG);
-
-  // remove DBP flag if it's unnecessary
-  if (methodAllowsAllowBody || noBodyPresent || isDbpFalsy) {
-    _.unset(sanitizedRequest, 'protocolProfileBehavior.disableBodyPruning');
-  }
-
-  // remove protocolProfileBehavior if it's unnecessary (even if DBP is removed, there can be other flags here in future)
-  _.isEmpty(sanitizedRequest.protocolProfileBehavior) && _.unset(sanitizedRequest, 'protocolProfileBehavior');
-
-  return sanitizedRequest;
-}
-
-/**
-   * Sanitizes the response fields
-   * @param {Object} request
-   */
-function _sanitizeResponseFields(response) {
-  if (!response) {
-    return;
-  }
-
-  let sanitizedResponse = _.clone(response),
-  shouldSanitizeHeaders = _.isArray(response.headers) && !_.isEmpty(response.headers);
-
-  sanitizedResponse.requestObject && (sanitizedResponse.requestObject = _sanitizeRequestFields(sanitizedResponse.requestObject));
-
-  delete sanitizedResponse.createdAt;
-  delete sanitizedResponse.updatedAt;
-
-  if (!shouldSanitizeHeaders) {
-    return sanitizedResponse;
-  }
-
-  sanitizedResponse.headers = _.map(sanitizedResponse.headers, value => {
-    return _.pick(value, ALLOWED_RESPONSE_HEADER_FIELDS);
-  });
-
-
-  return sanitizedResponse;
-}
-
-/**
-   * Sanitizes the collection variables.
-   * @param {Array<Object>} variables
-   * @returns {Array<Object>} Sanitized collection variables
-   */
-function _sanitizeVariables(variables) {
-  if (_.isEmpty(variables)) {
-    return [];
-  }
-
-  return _.map(variables, variable => {
-    let disabled = false;
-
-    // While exporting, we give more preference to enabled field (unlike while importing)
-    // since we are exporting from app format in which enabled is the valid field
-    if (typeof variable.enabled !== 'undefined') {
-      disabled = !variable.enabled;
-    } else
-    if (typeof variable.disabled !== 'undefined') {
-      disabled = Boolean(variable.disabled);
-    }
-
-    return _.pick(_.merge({}, variable, { disabled }), ALLOWED_VARIABLE_FIELDS);
-  });
-}
-
-/**
-   * Sanitizes the collection object recursively for exporting
-   * @param {Object} collection
-   * @returns {Object} The sanitized collection
-   */
-function sanitize(collection) {
-  let sanitizedCollection = _.cloneDeep(collection);
-
-  sanitizedCollection.requests = _.map(sanitizedCollection.requests, request => {
-    // sanitize the request
-    let sanitizedRequest = _sanitizeRequestFields(request);
-
-    // sanitize its responses
-    if (_.isArray(sanitizedRequest.responses) && !_.isEmpty(sanitizedRequest.responses)) {
-      sanitizedRequest.responses = _.map(sanitizedRequest.responses, _sanitizeResponseFields);
-    }
-
-    return sanitizedRequest;
-  });
-
-  return sanitizedCollection;
-}
-
-/**
-   * This converts the collection from app-format to v1 format
-   * @param {Object} collection
-   * @param {Object} options - Additional options for the export
-   * @returns {Object} The collection in v1 format
-   */
-function _transformToV1(collection, options) {
-  let requests = collection.requests,
-  requestIdsAdded = [];
-
-  // sanitize the variables
-  collection.variables = _sanitizeVariables(collection.variables);
-
-  // sort data.folders
-  collection.folders = _.sortBy(collection.folders, 'name');
-
-  for (let i = 0, count = requests.length; i < count; i++) {
-    if (requestIdsAdded.indexOf(requests[i].id) !== -1) {
-      // this request is already there
-      continue;
-    }
-
-    requests[i] = _.omit(requests[i], DEPRECATED_PROPS);
-
-    // At present this code is not needed as anyway db will have both old and new props,
-    // But when we remove the old props support, still we need to support them in v1 export
-    // thus the reason for using denormalize is
-    // When we remove the properties from DB itself means, still this code needs to work.
-    // This means it is v1 format
-    if (!options) {
-      __WEBPACK_IMPORTED_MODULE_2__utils_util__["a" /* default */].denormalizeRequest(requests[i]);
-      requests[i].collectionId = collection.id;
-    }
-
-    requestIdsAdded.push(requests[i].id);
-    requests[i].synced = false;
-
-    if (requests[i].dataMode === 'raw') {
-      requests[i].rawModeData = requests[i].data;
-      requests[i].data = [];
-    } else
-    if (requests[i].dataMode === 'params') {
-      // file formData rows should be exported with value=filename of the first file
-      _.each(requests[i].data, function (dataRow) {
-        if (dataRow.type === 'file') {
-          dataRow.value = '';
-        }
-      });
-    }
-
-    if (requests[i].rawModeData) {
-      // to prevent rawModeData being sent as ["text"] instead of "text"
-      if (requests[i].rawModeData instanceof Array &&
-      requests[i].rawModeData.length == 1) {
-        requests[i].rawModeData = requests[i].rawModeData[0];
-      }
-      if (typeof requests[i].rawModeData !== 'string') {
-        requests[i].rawModeData = '';
-      }
-    }
-
-    // delete duplicate responses while exporting
-    if (requests[i].responses instanceof Array) {
-      requests[i].responses = _.uniqBy(requests[i].responses, 'id');
-    }
-
-    if (_.isArray(requests[i].headerData)) {
-      requests[i].headers = __WEBPACK_IMPORTED_MODULE_2__utils_util__["a" /* default */].packHeaders(requests[i].headerData);
-    }
-
-    if (_.isArray(requests[i].pathVariableData)) {
-      let pathVariables = {};
-      _.forEach(requests[i].pathVariableData, datum => {
-        pathVariables[datum.key] = datum.value;
-      });
-      requests[i].pathVariables = pathVariables;
-    }
-
-    var propsToRemove = ['write', 'synced', 'collectionOwner', 'createdAt', 'updatedAt', 'owner', 'lastUpdatedBy', 'lastRevision', 'history', 'collection'];
-    _.each(propsToRemove, function (prop) {
-      delete requests[i][prop];
-    });
-  }
-
-  if (!options) {
-    let numFolders = collection.folders && collection.folders instanceof Array ? collection.folders.length : 0;
-
-    for (let i = 0; i < numFolders; i++) {
-      // V1 format support
-      collection.folders[i].collectionId = collection.folders[i].collection;
-      collection.folders[i].folderId = collection.folders[i].id;
-    }
-  }
-
-  // remove all meta properties from collection
-  // instead of deleting all the meta properties, we should whitelist collection V1 schema properties
-  _.forEach(COLLECTION_META_PROPS, function (metaProp) {
-    delete collection[metaProp];
-  });
-
-  collection.requests = requests;
-  return collection;
-}
-
-/**
-   * This transforms the collection into the exportable format
-   * First it converts the collection to v1 format, then optionally to v2/v2.1 format
-   * @param {Object} collection
-   * @param {Object} context
-   * @returns {Promise} Which resolves in the transformed collection
-   */
-function transform(collection, context) {
-  let options = context.exportOptions,
-  collectionV1 = _transformToV1(collection, options);
-
-  if (!(options && options.outputVersion && options.inputVersion && options.outputVersion !== '1.0.0')) {
-    return Promise.resolve(collectionV1);
-  }
-
-  return new Promise((resolve, reject) => {
-    __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer___default.a.convert(collectionV1, options, (err, response) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(response);
-    });
-  });
-}
-
-/**
-   * Returns the entity name
-   * @param {Object} collection
-   */
-function getEntityName(collection) {
-  return collection.name || COLLECTION;
-}
-
-/**
-   * Returns the fileName that can be used if exporting to a file
-   * @param {Object} collection
-   */
-function getFileName(collection) {
-  return this.getEntityName(collection) + FILE_NAME_EXT;
-}
-
-/**
-   * Serializes the collection
-   * @param {Object} collection
-   * @returns {String} Stringified collection
-   */
-function serialize(collection) {
-  return JSON.stringify(collection, null, TAB);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  getFromDb,
-  sanitize,
-  transform,
-  getEntityName,
-  getFileName,
-  serialize });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3410:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_GlobalsController__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceController__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util__ = __webpack_require__(3077);
-
-
-
-
-const GLOBALS = 'globals',
-GLOBALS_NAME_SUFFIX = 'Globals',
-EXPORTED_USING_PREFIX = 'Postman/',
-FILE_NAME_EXT = '.postman_globals.json',
-TAB = '\t',
-allowedGlobalsFields = ['id', 'values'];
-
-/**
-                                          * Gets the context which will be used by other steps in exporting the globals
-                                          * @param {Object} criteria
-                                          * @returns {Promise} which resolves into the context
-                                          */
-function getContext(criteria) {
-  let workspaceId = criteria.workspace;
-
-  return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceController__["a" /* default */].get({ id: workspaceId }).
-  then(workspace => {
-    return workspace;
-  })
-
-  // Do not crash the export even if we couldn't get the workspace
-  .catch(err => {
-    console.error('Could not get workspace while exporting globals', err);
-    return {}; // if workspace was not found we store empty object
-  }).
-
-  then(workspace => {
-    return {
-      modelId: workspaceId,
-      workspace: workspace || {} };
-
-  });
-}
-
-/**
-   * Gets the globals from the db
-   * @param {Object} criteria
-   */
-function getFromDb(criteria) {
-  return __WEBPACK_IMPORTED_MODULE_0__modules_controllers_GlobalsController__["a" /* default */].get(criteria);
-}
-
-/**
-   * Sanitizes the globals before exporting
-   * @param {Object} globals
-   */
-function sanitize(globals) {
-  let sanitizedGlobals = _.pick(globals, allowedGlobalsFields);
-  sanitizedGlobals.values = _.map(sanitizedGlobals.values, __WEBPACK_IMPORTED_MODULE_2__util__["a" /* sanitizeVariableValue */]);
-
-  return sanitizedGlobals;
-}
-
-
-/**
-   * This transforms the globals into the exportable format
-   * It adds few meta properties
-   * @param {Object} globals
-   * @param {Object} context
-   * @returns {Object} Transformed globals
-   */
-function transform(globals, context = {}) {
-  let workspaceName = _.get(context, 'workspace.name', ''),
-  globalsName = _.trim(`${workspaceName} ${GLOBALS_NAME_SUFFIX}`);
-
-  return _.merge({}, globals, {
-    name: globalsName,
-    _postman_variable_scope: GLOBALS,
-    _postman_exported_at: new Date().toISOString(),
-    _postman_exported_using: EXPORTED_USING_PREFIX + context.appVersion });
-
-}
-
-/**
-   * Returns the entity name
-   * @param {Object} globals
-   * @param {Object} context
-   */
-function getEntityName(globals, context) {
-  return _.get(context, 'workspace.name', 'workspace');
-}
-
-/**
-   * Returns the fileName that can be used if exporting to a file
-   * @param {Object} globals
-   * @param {Object} context
-   */
-function getFileName(globals, context) {
-  return this.getEntityName(globals, context) + FILE_NAME_EXT;
-}
-
-/**
-   * Serializes the globals
-   * @param {Object} globals
-   * @returns {String} Stringified globals
-   */
-function serialize(globals) {
-  return JSON.stringify(globals, null, TAB);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  getContext,
-  getFromDb,
-  sanitize,
-  transform,
-  getEntityName,
-  getFileName,
-  serialize });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3411:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_HeaderPresetController__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(3077);
-
-
-
-const TAB = '\t',
-FILE_NAME_EXT = '.postman_headerpreset.json',
-allowedHeaderPresetFields = ['id', 'name', 'headers'];
-
-/**
-                                                        * Gets the headerPreset from the db
-                                                        * @param {Object} criteria
-                                                        */
-function getFromDb(criteria) {
-  return __WEBPACK_IMPORTED_MODULE_0__controllers_HeaderPresetController__["a" /* default */].get(criteria);
-}
-
-/**
-   * Sanitizes the headerPreset before exporting
-   * @param {Object} headerPreset
-   */
-function sanitize(headerPreset) {
-  let sanitizedHeaderPreset = _.pick(headerPreset, allowedHeaderPresetFields);
-  sanitizedHeaderPreset.headers = _.map(sanitizedHeaderPreset.headers, __WEBPACK_IMPORTED_MODULE_1__util__["a" /* sanitizeVariableValue */]);
-
-  return sanitizedHeaderPreset;
-}
-
-/**
-   * Returns the entity name
-   * @param {Object} headerPreset
-   */
-function getEntityName(headerPreset) {
-  return headerPreset.name;
-}
-
-/**
-   * Returns the fileName that can be used if exporting to a file
-   * @param {Object} globals
-   */
-function getFileName(globals) {
-  return this.getEntityName(globals) + FILE_NAME_EXT;
-}
-
-/**
-   * Serializes the headerPreset
-   * @param {Object} headerPreset
-   * @returns {String} Stringified headerPreset
-   */
-function serialize(headerPreset) {
-  return JSON.stringify(headerPreset, null, TAB);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  getFromDb,
-  sanitize,
-  getEntityName,
-  getFileName,
-  serialize });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3505:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityItem; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CollectionActivity__ = __webpack_require__(3162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RequestActivity__ = __webpack_require__(3521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FolderActivity__ = __webpack_require__(3522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ResponseActivity__ = __webpack_require__(3523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mobx_react__ = __webpack_require__(15);
-var _class;
-
-
-
-
-
-
-let
-
-
-ActivityItem = Object(__WEBPACK_IMPORTED_MODULE_6_mobx_react__["a" /* observer */])(_class = class ActivityItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let defaultActivityProps = _.pick(this.props, [
-    'activity',
-    'meta']),
-
-    restorableActivityProps = _.assign({}, defaultActivityProps, _.pick(this.props, [
-    'enableRestore',
-    'isRestoring',
-    'onRestore']));
-
-
-    switch (`${defaultActivityProps.activity.model}:${defaultActivityProps.activity.action}`) {
-      case 'collection:create':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["a" /* Create */], restorableActivityProps);
-      case 'collection:update':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["h" /* Update */], restorableActivityProps);
-      case 'collection:destroy':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["b" /* Delete */], restorableActivityProps);
-      case 'collection:share':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["d" /* Share */], defaultActivityProps);
-      case 'collection:unshare':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["f" /* Unshare */], defaultActivityProps);
-      case 'collection:subscribe':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["e" /* Subscribe */], defaultActivityProps);
-      case 'collection:unsubscribe':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__CollectionActivity__["g" /* Unsubscribe */], defaultActivityProps);
-      case 'request:create':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RequestActivity__["a" /* Create */], restorableActivityProps);
-      case 'request:update':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RequestActivity__["d" /* Update */], restorableActivityProps);
-      case 'request:destroy':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RequestActivity__["b" /* Delete */], restorableActivityProps);
-      case 'request:transfer':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__RequestActivity__["c" /* Transfer */], restorableActivityProps);
-      case 'folder:create':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FolderActivity__["a" /* Create */], restorableActivityProps);
-      case 'folder:update':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FolderActivity__["c" /* Update */], restorableActivityProps);
-      case 'folder:destroy':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FolderActivity__["b" /* Delete */], restorableActivityProps);
-      case 'response:create':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__ResponseActivity__["a" /* Create */], restorableActivityProps);
-      case 'response:update':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__ResponseActivity__["c" /* Update */], restorableActivityProps);
-      case 'response:destroy':
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__ResponseActivity__["b" /* Delete */], restorableActivityProps);
-      default:
-        return false;}
-
-  }}) || _class;
-
-
-ActivityItem.propTypes = {
-  activity: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object.isRequired,
-  enableRestore: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired,
-  meta: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object.isRequired };
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3506:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsItem; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_diff_Diff__ = __webpack_require__(3164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_util__ = __webpack_require__(23);
-
-
-
-let
-
-NormalView = class NormalView extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    let {
-      previous,
-      current } =
-    this.props;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-details-content-right' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-details-content-data' }, previous),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, previous ? ' to ' : ' '),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'activity-item-details-content-data' }, current)));
-
-
-  }};let
-
-
-DiffView = class DiffView extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    let {
-      type = 'chars',
-      previous,
-      current,
-      modalHeader } =
-    this.props;
-    previous = type === 'lines' ? __WEBPACK_IMPORTED_MODULE_3__utils_util__["a" /* default */].beautifyJs(previous) : previous;
-    current = type === 'lines' ? __WEBPACK_IMPORTED_MODULE_3__utils_util__["a" /* default */].beautifyJs(current) : current;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-details-content-right activity-item-details-diff-view' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_diff_Diff__["a" /* default */], {
-          modalHeader: modalHeader,
-          previous: previous,
-          current: current,
-          type: type })));
-
-
-
-  }};let
-
-
-DetailsItem = class DetailsItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  getClasses() {
-    return __WEBPACK_IMPORTED_MODULE_1_classnames___default()({
-      'activity-item-details-content': true,
-      'normal-view': this.props.view === 'normal' });
-
-  }
-
-  render() {
-    let {
-      previous,
-      current,
-      label,
-      model,
-      name,
-      diffType } =
-    this.props,
-    modalHeader = 'Change to ' + label + ' for ' + model + ' ' + name;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClasses() },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-details-content-left' },
-          label),
-
-
-        this.props.view === 'normal' &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(NormalView, {
-          previous: previous,
-          current: current }),
-
-
-
-        this.props.view === 'diff' &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(DiffView, {
-          modalHeader: modalHeader,
-          previous: previous,
-          current: current,
-          type: diffType })));
-
-
-
-
-  }};
-
-
-
-
-/***/ }),
-
-/***/ 3507:
+/***/ 3686:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3279,33 +1189,33 @@ DetailsItem = class DetailsItem extends __WEBPACK_IMPORTED_MODULE_0_react___defa
 exports.__esModule = true;
 exports.canonicalize = exports.convertChangesToXML = exports.convertChangesToDMP = exports.parsePatch = exports.applyPatches = exports.applyPatch = exports.createPatch = exports.createTwoFilesPatch = exports.structuredPatch = exports.diffJson = exports.diffCss = exports.diffSentences = exports.diffTrimmedLines = exports.diffLines = exports.diffWordsWithSpace = exports.diffWords = exports.diffChars = exports.Diff = undefined;
 /*istanbul ignore end*/
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _base2 = _interopRequireDefault(_base);
 
 /*istanbul ignore end*/
-var /*istanbul ignore start*/_character = __webpack_require__(3508) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_character = __webpack_require__(3687) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_word = __webpack_require__(3509) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_word = __webpack_require__(3688) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_line = __webpack_require__(3086) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_line = __webpack_require__(3470) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_sentence = __webpack_require__(3510) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_sentence = __webpack_require__(3689) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_css = __webpack_require__(3511) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_css = __webpack_require__(3690) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_json = __webpack_require__(3512) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_json = __webpack_require__(3691) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_apply = __webpack_require__(3513) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_apply = __webpack_require__(3692) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_parse = __webpack_require__(3166) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_parse = __webpack_require__(3495) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_create = __webpack_require__(3515) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_create = __webpack_require__(3694) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_dmp = __webpack_require__(3516) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_dmp = __webpack_require__(3695) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_xml = __webpack_require__(3517) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_xml = __webpack_require__(3696) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3349,7 +1259,7 @@ exports. /*istanbul ignore end*/Diff = _base2.default;
 
 /***/ }),
 
-/***/ 3508:
+/***/ 3687:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3359,7 +1269,7 @@ exports.__esModule = true;
 exports.characterDiff = undefined;
 exports. /*istanbul ignore end*/diffChars = diffChars;
 
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _base2 = _interopRequireDefault(_base);
@@ -3375,7 +1285,7 @@ function diffChars(oldStr, newStr, callback) {
 
 /***/ }),
 
-/***/ 3509:
+/***/ 3688:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3386,13 +1296,13 @@ exports.wordDiff = undefined;
 exports. /*istanbul ignore end*/diffWords = diffWords;
 /*istanbul ignore start*/exports. /*istanbul ignore end*/diffWordsWithSpace = diffWordsWithSpace;
 
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _base2 = _interopRequireDefault(_base);
 
 /*istanbul ignore end*/
-var /*istanbul ignore start*/_params = __webpack_require__(3165) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_params = __webpack_require__(3494) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3453,7 +1363,7 @@ function diffWordsWithSpace(oldStr, newStr, callback) {
 
 /***/ }),
 
-/***/ 3510:
+/***/ 3689:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3463,7 +1373,7 @@ exports.__esModule = true;
 exports.sentenceDiff = undefined;
 exports. /*istanbul ignore end*/diffSentences = diffSentences;
 
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _base2 = _interopRequireDefault(_base);
@@ -3483,7 +1393,7 @@ function diffSentences(oldStr, newStr, callback) {
 
 /***/ }),
 
-/***/ 3511:
+/***/ 3690:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3493,7 +1403,7 @@ exports.__esModule = true;
 exports.cssDiff = undefined;
 exports. /*istanbul ignore end*/diffCss = diffCss;
 
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _base2 = _interopRequireDefault(_base);
@@ -3513,7 +1423,7 @@ function diffCss(oldStr, newStr, callback) {
 
 /***/ }),
 
-/***/ 3512:
+/***/ 3691:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3527,13 +1437,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports. /*istanbul ignore end*/diffJson = diffJson;
 /*istanbul ignore start*/exports. /*istanbul ignore end*/canonicalize = canonicalize;
 
-var /*istanbul ignore start*/_base = __webpack_require__(2992) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_base = __webpack_require__(3414) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _base2 = _interopRequireDefault(_base);
 
 /*istanbul ignore end*/
-var /*istanbul ignore start*/_line = __webpack_require__(3086) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_line = __webpack_require__(3470) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -3621,7 +1531,7 @@ function canonicalize(obj, stack, replacementStack) {
 
 /***/ }),
 
-/***/ 3513:
+/***/ 3692:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3631,9 +1541,9 @@ exports.__esModule = true;
 exports. /*istanbul ignore end*/applyPatch = applyPatch;
 /*istanbul ignore start*/exports. /*istanbul ignore end*/applyPatches = applyPatches;
 
-var /*istanbul ignore start*/_parse = __webpack_require__(3166) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_parse = __webpack_require__(3495) /*istanbul ignore end*/;
 
-var /*istanbul ignore start*/_distanceIterator = __webpack_require__(3514) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_distanceIterator = __webpack_require__(3693) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 var _distanceIterator2 = _interopRequireDefault(_distanceIterator);
@@ -3793,7 +1703,7 @@ function applyPatches(uniDiff, options) {
 
 /***/ }),
 
-/***/ 3514:
+/***/ 3693:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3848,7 +1758,7 @@ exports.default = /*istanbul ignore end*/function (start, minLine, maxLine) {
 
 /***/ }),
 
-/***/ 3515:
+/***/ 3694:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3859,7 +1769,7 @@ exports. /*istanbul ignore end*/structuredPatch = structuredPatch;
 /*istanbul ignore start*/exports. /*istanbul ignore end*/createTwoFilesPatch = createTwoFilesPatch;
 /*istanbul ignore start*/exports. /*istanbul ignore end*/createPatch = createPatch;
 
-var /*istanbul ignore start*/_line = __webpack_require__(3086) /*istanbul ignore end*/;
+var /*istanbul ignore start*/_line = __webpack_require__(3470) /*istanbul ignore end*/;
 
 /*istanbul ignore start*/
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -4009,7 +1919,7 @@ function createPatch(fileName, oldStr, newStr, oldHeader, newHeader, options) {
 
 /***/ }),
 
-/***/ 3516:
+/***/ 3695:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4041,7 +1951,7 @@ function convertChangesToDMP(changes) {
 
 /***/ }),
 
-/***/ 3517:
+/***/ 3696:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4084,14 +1994,14 @@ function escapeHTML(s) {
 
 /***/ }),
 
-/***/ 3518:
+/***/ 3697:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiffLine; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DiffLineNumbers__ = __webpack_require__(3519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DiffLineNumbers__ = __webpack_require__(3698);
 
 let
 
@@ -4148,7 +2058,7 @@ DiffLine = class DiffLine extends __WEBPACK_IMPORTED_MODULE_0_react__["Component
 
 /***/ }),
 
-/***/ 3519:
+/***/ 3698:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4191,7 +2101,7 @@ DiffLineNumbers = class DiffLineNumbers extends __WEBPACK_IMPORTED_MODULE_0_reac
 
 /***/ }),
 
-/***/ 3520:
+/***/ 3699:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4306,621 +2216,6 @@ DiffTexView = class DiffTexView extends __WEBPACK_IMPORTED_MODULE_0_react__["Com
 
 
   }};
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3521:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Create; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Delete; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Transfer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__ = __webpack_require__(3053);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_ActivityFeedHelper__ = __webpack_require__(3087);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_PluralizeHelper__ = __webpack_require__(805);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
-
-
-let
-
-Create = class Create extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper request-create' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Added ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' request '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["h" /* Request */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' to',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Update = class Update extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta,
-    changesCount = __WEBPACK_IMPORTED_MODULE_2__utils_ActivityFeedHelper__["a" /* default */].getWhiteListedActivitiesCount(activity),
-    pluralizedChangeText = __WEBPACK_IMPORTED_MODULE_3__utils_PluralizeHelper__["a" /* default */].pluralize({
-      count: changesCount,
-      singular: 'change',
-      plural: 'changes' });
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper request-update' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-
-                changesCount > 0 &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' ', changesCount, ' ', pluralizedChangeText, ' to '),
-
-
-                changesCount === 0 &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Modified '),
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' request '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["h" /* Request */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], { meta: meta })))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))),
-
-
-
-
-
-
-          !_.isEmpty(activity.input) && !_.isEmpty(activity.rollback) &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["b" /* Details */], activity))));
-
-
-
-
-  }};let
-
-
-Delete = class Delete extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper request-delete' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Deleted ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' request '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["h" /* Request */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Transfer = class Transfer extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta,
-    source,
-    destination;
-    if (activity.from && activity.from.model === 'folder') {
-      source =
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' from the folder '),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["c" /* Folder */], _extends({}, activity.to.instance, {
-          actionHandler: this.props.actionHandler })));
-
-
-
-    }
-
-    if (activity.to && activity.to.model === 'folder') {
-      destination =
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' to the folder '),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["c" /* Folder */], _extends({}, activity.to.instance, {
-          actionHandler: this.props.actionHandler })));
-
-
-
-    }
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper request-transfer' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Moved ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' request '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["h" /* Request */], activity.instance),
-                source,
-                destination,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};
-
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3522:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Create; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Delete; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__ = __webpack_require__(3053);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_ActivityFeedHelper__ = __webpack_require__(3087);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_PluralizeHelper__ = __webpack_require__(805);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
-
-
-let
-
-Create = class Create extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper folder-create' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Created ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' folder '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["c" /* Folder */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Update = class Update extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta,
-    changesCount = __WEBPACK_IMPORTED_MODULE_2__utils_ActivityFeedHelper__["a" /* default */].getWhiteListedActivitiesCount(activity),
-    pluralizedChangeText = __WEBPACK_IMPORTED_MODULE_3__utils_PluralizeHelper__["a" /* default */].pluralize({
-      count: changesCount,
-      singular: 'change',
-      plural: 'changes' });
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper folder-update' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-
-                changesCount > 0 &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' ', changesCount, ' ', pluralizedChangeText, ' to '),
-
-
-                changesCount === 0 &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Modified '),
-
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' folder '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["c" /* Folder */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))),
-
-
-
-
-
-
-          !_.isEmpty(activity.input) && !_.isEmpty(activity.rollback) &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["b" /* Details */], activity))));
-
-
-
-
-  }};let
-
-
-Delete = class Delete extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper folder-delete' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Deleted ', !_.isEmpty(activity.instance) ? 'the' : 'a', ' folder '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["c" /* Folder */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};
-
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3523:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Create; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Update; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Delete; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__ = __webpack_require__(3053);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
-let
-
-Create = class Create extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper response-create' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Created ', !_.isEmpty(activity.instance) ? 'the' : 'an', ' example '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["i" /* Response */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Update = class Update extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper response-update' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Modified ', !_.isEmpty(activity.instance) ? 'the' : 'an', ' example '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["i" /* Response */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};let
-
-
-Delete = class Delete extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let activity = this.props.activity,
-    meta = this.props.meta;
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-wrapper response-delete' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-feed-connect-line' }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-content' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["d" /* Header */], null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["g" /* ProfilePic */], activity.user),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'activity-item-head' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["e" /* Heading */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' Deleted ', !_.isEmpty(activity.instance) ? 'the' : 'an', ' example '),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["i" /* Response */], activity.instance),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-
-                  this.props.meta.model === 'team' &&
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, ' in',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["a" /* Collection */], _extends({ meta: meta }, activity.collection))))),
-
-
-
-
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["f" /* Meta */], null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["l" /* User */], activity.user),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["k" /* Time */], { timestamp: activity.createdAt }),
-
-                this.props.enableRestore &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ActivityItemComponents__["j" /* Restore */], {
-                  id: activity.id,
-                  isRestoring: this.props.isRestoring,
-                  rollback_from: meta.rollback_from,
-                  onRestore: this.props.onRestore })))))));
-
-
-
-
-
-
-
-
-  }};
-
-
-
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ })

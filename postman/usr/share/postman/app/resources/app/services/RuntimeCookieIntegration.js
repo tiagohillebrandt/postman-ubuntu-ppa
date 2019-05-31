@@ -1,6 +1,6 @@
 var _ = require('lodash'),
-    { stringifyCookieObject } = require('../common/utils/cookie'),
-    { ensureProperUrl, getURLProps } = require('../common/utils/url');
+  { stringifyCookieObject } = require('../common/utils/cookie'),
+  { ensureProperUrl, getURLProps } = require('../common/utils/url');
 
 /**
  * Gets cookies from a cookieManager instance and adds them to a cookieJar
@@ -16,14 +16,19 @@ function putCookiesInTheJar (cookiePartitionId, cookieManager, cookieJar) {
     if (err) { return; }
     _.forEach(cookies, (cookie) => {
       var domain = cookie.domain,
-          url,
-          cookieString;
+        url,
+        cookieString;
 
       if (domain[0] === '.') {
         domain = domain.substring(1);
       }
 
       url = 'http://' + domain + cookie.path;
+
+      // If cookie is stored as hostOnly in electron cookie store, remove domain before setting cookie in cookieJar to set it as hostOnly.
+      if (cookie && cookie.domain && cookie.hostOnly) {
+        delete cookie.domain;
+      }
       cookieString = stringifyCookieObject(cookie);
 
       try {
@@ -49,8 +54,16 @@ function putCookiesInTheJar (cookiePartitionId, cookieManager, cookieJar) {
 */
 function addCookiesFromJarToCookieManager (cookiePartitionId, cookieJar, cookieManager, transformedUrl, cb) {
   var sentUrl = getURLProps(ensureProperUrl(transformedUrl)),
-      domain = sentUrl.hostname,
-      path = sentUrl.pathname;
+    domain = sentUrl.hostname,
+    path = sentUrl.pathname,
+    cookiesForDomain = [];
+
+  // Remove `[]` from IPv6 domain as workaround of following issue in tough-cookie.
+  // Issue: https://github.com/salesforce/tough-cookie/issues/153
+  // todo: remove this once the issue is solved in tough-cookie
+  if (domain[0] === '[' && domain[domain.length - 1] === ']') {
+    domain = domain.substring(1, domain.length - 1);
+  }
 
   // todo: we're using a private object here (hence the crazy number of checks),
   // because the API provided by the cookieJar is not good enough. Need to submit a PR
@@ -59,12 +72,21 @@ function addCookiesFromJarToCookieManager (cookiePartitionId, cookieJar, cookieM
   cookieJar._jar.store &&
   cookieJar._jar.store.findCookies &&
   cookieJar._jar.store.findCookies(domain, path, (error, cookiesFromJar) => {
-    cookieManager.pushCookies(cookiePartitionId, cookiesFromJar, transformedUrl, (cookies) => {
+    cookiesFromJar.forEach((cookie) => {
+      let cookieObj = cookie.toJSON();
+      if (!cookieObj.hostOnly) {
+        cookiesForDomain.push(cookie);
+      } else if (domain === cookieObj.domain) {
+        cookiesForDomain.push(cookie);
+      }
+    });
+
+    // Push cookies to electron session store
+    cookieManager.pushCookies(cookiePartitionId, cookiesForDomain, transformedUrl, (cookies) => {
       cb(null, cookies);
     });
   });
 }
-
 
 module.exports = {
   putCookiesInTheJar: putCookiesInTheJar,

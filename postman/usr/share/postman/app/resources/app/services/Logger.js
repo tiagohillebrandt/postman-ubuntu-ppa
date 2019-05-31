@@ -52,7 +52,7 @@ const os = require('os'),
             global.pm.logger = console; // defaults to console
 
             // Don't fail the boot if logger fails
-            console.error('Logger initialization failed', e);
+            pm.logger.error('Logger initialization failed', e);
           }
           finally {
             // Initial logger

@@ -1,6 +1,6 @@
-webpackJsonp([23],{
+webpackJsonp([24],{
 
-/***/ 1200:
+/***/ 1339:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32,27 +32,27 @@ exports.default = function (tasks, callback) {
     nextTask([]);
 };
 
-var _isArray = __webpack_require__(168);
+var _isArray = __webpack_require__(49);
 
 var _isArray2 = _interopRequireDefault(_isArray);
 
-var _noop = __webpack_require__(188);
+var _noop = __webpack_require__(89);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(612);
+var _once = __webpack_require__(175);
 
 var _once2 = _interopRequireDefault(_once);
 
-var _slice = __webpack_require__(494);
+var _slice = __webpack_require__(140);
 
 var _slice2 = _interopRequireDefault(_slice);
 
-var _onlyOnce = __webpack_require__(613);
+var _onlyOnce = __webpack_require__(176);
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(172);
+var _wrapAsync = __webpack_require__(66);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -120,106 +120,30 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 1201:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(276);
-
-
-
-/**
-                                                  * Extracts all the events which have convertors. This is used as the reference list for `processEvent`.
-                                                  * All events, not part of this list are ignored.
-                                                  *
-                                                  * @param {Object} models
-                                                  * @returns {Array<String>}
-                                                  */
-function extractEventsWithListeners(models) {
-  // 1. for each sync model
-  return _.reduce(models, function (activeListeners, syncModel) {
-    let convertors = _.get(syncModel, ['toChangesets']);
-
-    // 1.a. if the model has convertors defined
-    // 1.b. accumulate the convertors
-    convertors && (activeListeners = activeListeners.concat(_.keys(convertors)));
-
-    return activeListeners;
-  }, []);
-}
-
-// extract a list of all event listeners from all sync models
-let interestedEvents = extractEventsWithListeners(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */]);
-
-/**
-                                                                *
-                                                                */
-function eventToChangesets(event, callback) {
-  if (!event) {
-    return callback(null, []);
-  }
-
-  let changesets = [];
-
-  Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["i" /* processEvent */])(event, interestedEvents, function (childEvent, cb) {
-    let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["g" /* getEventNamespace */])(childEvent),
-    eventName = Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["f" /* getEventName */])(childEvent),
-    handler;
-
-    // unsupported model
-    if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace]) {
-      return cb();
-    }
-
-    // 1. find handler in sync-models
-    // 2. if not found, find handler in default sync-model
-    handler = _.get(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace], ['toChangesets', eventName]) ||
-    _.get(__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */].default, ['toChangesets', eventName]);
-
-    // this should never happen
-    if (!handler) {
-      return cb();
-    }
-
-    // convert events to changesets and accumulate
-    changesets = changesets.concat(handler(childEvent, event));
-
-    return cb();
-  }, function () {
-    callback && callback(null, changesets);
-  });
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (eventToChangesets);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 1202:
+/***/ 1340:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  Bucket: __webpack_require__(800),
-  SyncClient: __webpack_require__(2868)
+  Bucket: __webpack_require__(856),
+  SyncClient: __webpack_require__(3111)
 };
 
 
 /***/ }),
 
-/***/ 1203:
+/***/ 1341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_HeaderPresetController__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_HistoryController__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HistoryResponseController__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_EnvironmentController__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_WorkspaceController__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_CollectionRunController__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_HeaderPresetController__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_HistoryController__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HistoryResponseController__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_EnvironmentController__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_WorkspaceController__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_CollectionRunController__ = __webpack_require__(339);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -346,7 +270,7 @@ function getWorkspaceInstance(id, opts, cb) {
   __WEBPACK_IMPORTED_MODULE_6__modules_controllers_WorkspaceController__["a" /* default */].get({ id }, getControllerOptions(opts)).
   then(workspace => {
     if (!workspace) {
-      console.error('DBS.getInstance err');
+      pm.logger.error('DBS.getInstance err');
       cb(null);
       return;
     }
@@ -356,7 +280,7 @@ function getWorkspaceInstance(id, opts, cb) {
     cb(null, sanitized);
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
   });
 }
@@ -377,7 +301,7 @@ function getCollectionInstance(id, opts, cb) {
     cb(null, sanitized);
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
   });
 }
@@ -398,7 +322,7 @@ function getFolderInstance(id, opts, cb) {
     cb(null, sanitized);
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
   });
 }
@@ -419,7 +343,7 @@ function getRequestInstance(id, opts, cb) {
     cb(null, sanitized);
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
   });
 }
@@ -440,7 +364,7 @@ function getResponseInstance(id, opts, cb) {
     cb(null, sanitized);
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
   });
 }
@@ -476,7 +400,7 @@ function getGlobalsInstance(id, opts, cb) {
     cb(null, sanitizedGlobals);
     return;
   }).catch(error => {
-    console.error('Error getting globals instance. Check `getGlobalsInstance` in DatabaseService', error);
+    pm.logger.error('Error getting globals instance. Check `getGlobalsInstance` in DatabaseService', error);
     cb(null);
   });
 }
@@ -512,7 +436,7 @@ function getEnvironmentInstance(id, opts, cb) {
     cb(null, sanitizedEnvironment);
     return;
   }).catch(error => {
-    console.error('Error getting environment instance. Check `getEnvironmentInstance` in DatabaseService', error);
+    pm.logger.error('Error getting environment instance. Check `getEnvironmentInstance` in DatabaseService', error);
     cb(null);
   });
 }
@@ -531,14 +455,14 @@ function getUserInstance(id, opts, cb) {
   get({ workspace: 'personal' }).
   then(function (globals) {
     if (!globals) {
-      console.error('DBS.getInstance err');
+      pm.logger.error('DBS.getInstance err');
       return cb(null);
     }
 
     return cb(null, { globals: globals.values });
   }).
   catch(function (e) {
-    console.error('DBS.getInstance err', e);
+    pm.logger.error('DBS.getInstance err', e);
     cb(null);
   });
 }
@@ -555,7 +479,7 @@ function getHeaderPresetInstance(id, opts, cb) {
   __WEBPACK_IMPORTED_MODULE_1__modules_controllers_HeaderPresetController__["a" /* default */].
   get({ id }).then(headerPreset => {
     if (!headerPreset) {
-      console.error('DBS.getInstance err');
+      pm.logger.error('DBS.getInstance err');
       cb(null);
       return;
     }
@@ -566,7 +490,7 @@ function getHeaderPresetInstance(id, opts, cb) {
     return;
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
     return;
   });
@@ -584,7 +508,7 @@ function getHistoryInstance(id, opts, cb) {
   __WEBPACK_IMPORTED_MODULE_2__modules_controllers_HistoryController__["a" /* default */].
   get({ id }, getControllerOptions(opts)).then(history => {
     if (!history) {
-      console.error('DBS.getInstance err');
+      pm.logger.error('DBS.getInstance err');
       cb(null);
       return;
     }
@@ -595,7 +519,7 @@ function getHistoryInstance(id, opts, cb) {
     return;
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
     return;
   });
@@ -613,7 +537,7 @@ function getHistoryResponseInstance(id, opts, cb) {
   __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HistoryResponseController__["a" /* default */].
   get({ id }).then(historyResponse => {
     if (!historyResponse) {
-      console.error('DBS.getInstance err');
+      pm.logger.error('DBS.getInstance err');
       cb(null);
       return;
     }
@@ -624,7 +548,7 @@ function getHistoryResponseInstance(id, opts, cb) {
     return;
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
     return;
   });
@@ -678,7 +602,7 @@ function getCollectionRunInstance(id, opts, cb) {
   __WEBPACK_IMPORTED_MODULE_7__modules_controllers_CollectionRunController__["a" /* default */].
   get({ id }).then(collectionRun => {
     if (!collectionRun) {
-      console.error('DBS.getInstance err');
+      pm.logger.error('DBS.getInstance err');
       cb(null);
       return;
     }
@@ -689,7 +613,7 @@ function getCollectionRunInstance(id, opts, cb) {
     return;
   }).
   catch(err => {
-    console.error('DBS.getInstance err', err);
+    pm.logger.error('DBS.getInstance err', err);
     cb(null);
     return;
   });
@@ -712,7 +636,7 @@ function getService() {
 
 /***/ }),
 
-/***/ 1204:
+/***/ 1342:
 /***/ (function(module, exports) {
 
 /**
@@ -758,7 +682,7 @@ module.exports = function parseuri(str) {
 
 /***/ }),
 
-/***/ 1205:
+/***/ 1343:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -770,7 +694,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 1206:
+/***/ 1344:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -802,7 +726,7 @@ function isBuf(obj) {
 
 /***/ }),
 
-/***/ 1207:
+/***/ 1345:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -810,15 +734,15 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(2886);
-var Socket = __webpack_require__(1213);
-var Emitter = __webpack_require__(291);
-var parser = __webpack_require__(801);
-var on = __webpack_require__(1214);
-var bind = __webpack_require__(1215);
-var debug = __webpack_require__(578)('socket.io-client:manager');
-var indexOf = __webpack_require__(1212);
-var Backoff = __webpack_require__(2902);
+var eio = __webpack_require__(3127);
+var Socket = __webpack_require__(1351);
+var Emitter = __webpack_require__(349);
+var parser = __webpack_require__(857);
+var on = __webpack_require__(1352);
+var bind = __webpack_require__(1353);
+var debug = __webpack_require__(632)('socket.io-client:manager');
+var indexOf = __webpack_require__(1350);
+var Backoff = __webpack_require__(3143);
 
 /**
  * IE6+ hasOwnProperty
@@ -1382,17 +1306,17 @@ Manager.prototype.onreconnect = function () {
 
 /***/ }),
 
-/***/ 1208:
+/***/ 1346:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(802);
-var XHR = __webpack_require__(2889);
-var JSONP = __webpack_require__(2898);
-var websocket = __webpack_require__(2899);
+var XMLHttpRequest = __webpack_require__(858);
+var XHR = __webpack_require__(3130);
+var JSONP = __webpack_require__(3139);
+var websocket = __webpack_require__(3140);
 
 /**
  * Export transports.
@@ -1443,19 +1367,19 @@ function polling (opts) {
 
 /***/ }),
 
-/***/ 1209:
+/***/ 1347:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(803);
-var parseqs = __webpack_require__(579);
-var parser = __webpack_require__(292);
-var inherit = __webpack_require__(580);
-var yeast = __webpack_require__(1211);
-var debug = __webpack_require__(581)('engine.io-client:polling');
+var Transport = __webpack_require__(859);
+var parseqs = __webpack_require__(633);
+var parser = __webpack_require__(350);
+var inherit = __webpack_require__(634);
+var yeast = __webpack_require__(1349);
+var debug = __webpack_require__(635)('engine.io-client:polling');
 
 /**
  * Module exports.
@@ -1468,7 +1392,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(802);
+  var XMLHttpRequest = __webpack_require__(858);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -1695,7 +1619,7 @@ Polling.prototype.uri = function () {
 
 /***/ }),
 
-/***/ 1210:
+/***/ 1348:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/* global Blob File */
@@ -1704,7 +1628,7 @@ Polling.prototype.uri = function () {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(2891);
+var isArray = __webpack_require__(3132);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof Blob === 'function' ||
@@ -1763,11 +1687,11 @@ function hasBinary (obj) {
   return false;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).Buffer))
 
 /***/ }),
 
-/***/ 1211:
+/***/ 1349:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1843,7 +1767,7 @@ module.exports = yeast;
 
 /***/ }),
 
-/***/ 1212:
+/***/ 1350:
 /***/ (function(module, exports) {
 
 
@@ -1859,7 +1783,7 @@ module.exports = function(arr, obj){
 
 /***/ }),
 
-/***/ 1213:
+/***/ 1351:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1867,14 +1791,14 @@ module.exports = function(arr, obj){
  * Module dependencies.
  */
 
-var parser = __webpack_require__(801);
-var Emitter = __webpack_require__(291);
-var toArray = __webpack_require__(2901);
-var on = __webpack_require__(1214);
-var bind = __webpack_require__(1215);
-var debug = __webpack_require__(578)('socket.io-client:socket');
-var parseqs = __webpack_require__(579);
-var hasBin = __webpack_require__(1210);
+var parser = __webpack_require__(857);
+var Emitter = __webpack_require__(349);
+var toArray = __webpack_require__(3142);
+var on = __webpack_require__(1352);
+var bind = __webpack_require__(1353);
+var debug = __webpack_require__(632)('socket.io-client:socket');
+var parseqs = __webpack_require__(633);
+var hasBin = __webpack_require__(1348);
 
 /**
  * Module exports.
@@ -2304,7 +2228,7 @@ Socket.prototype.binary = function (binary) {
 
 /***/ }),
 
-/***/ 1214:
+/***/ 1352:
 /***/ (function(module, exports) {
 
 
@@ -2335,7 +2259,7 @@ function on (obj, ev, fn) {
 
 /***/ }),
 
-/***/ 1215:
+/***/ 1353:
 /***/ (function(module, exports) {
 
 /**
@@ -2365,12 +2289,12 @@ module.exports = function(obj, fn){
 
 /***/ }),
 
-/***/ 1216:
+/***/ 1354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process, _) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_GateKeeperController__ = __webpack_require__(716);
+/* WEBPACK VAR INJECTION */(function(process, _) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_GateKeeperController__ = __webpack_require__(793);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
 
 
@@ -2458,8 +2382,7 @@ function handleGateKeeperRefreshedEvent(event, cb) {
     return;
   }
 
-  let meta = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["e" /* getEventMeta */])(event) || {},
-  previousKeys = meta.previousKeys || [];
+  let meta = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["e" /* getEventMeta */])(event) || {};
 
   __WEBPACK_IMPORTED_MODULE_1__controllers_GateKeeperController__["a" /* default */].getAll({}).
   then(currentKeys => {
@@ -2469,15 +2392,15 @@ function handleGateKeeperRefreshedEvent(event, cb) {
       return;
     }
 
-    _.map(currentKeys, key => {
-      let previousKey = _.find(previousKeys, { type: key.type });
-
-      // This should call the toggle
-      // 1. If the key is not there previously
-      // 2. If the pervious value is different from the current value
-      if (!previousKey || key.value !== previousKey.value) {
-        _handleKeyToggler(key);
-      }
+    // For each updated value broadcast the new value to the handlers
+    // Do not swallow any events here
+    // Sometimes even when the values have not changed, the flow might have to be restarted
+    // for e.g. when sync is enabled, it can mean changing from disabled to enabled
+    // or that sync system has to be restarted
+    // until we have a clear distinction between the responsibilities of control flags
+    // and system flows we must not do any optimizations here
+    _.forEach(currentKeys, key => {
+      _handleKeyUpdate(key);
     });
   });
 
@@ -2520,11 +2443,11 @@ function setRetryTimeout(options = {}) {
 
 /**
    * @private
-   * @method _handleKeyToggler
+   * @method _handleKeyUpdate
    * @param {Object} key
    * It calls the appropriate toggle functions for key type
    */
-function _handleKeyToggler(key = {}) {
+function _handleKeyUpdate(key = {}) {
   switch (key.type) {
     case WEBSOCKET:
       return onWebsocketToggle(key.value);
@@ -2533,7 +2456,7 @@ function _handleKeyToggler(key = {}) {
     case NOTIFICATION:
       return onNotificationToggle(key.value);
     default:
-      pm.logger.warn('GateKeeperService~_handleKeyToggler: Invalid key type provided', key);}
+      pm.logger.warn('GateKeeperService~_handleKeyUpdate: Invalid key type provided', key);}
 
 }
 
@@ -2615,24 +2538,24 @@ function _getGateKeeperValue(type) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = ({ init, isWebSocketEnabled, isSyncEnabled, isNotificationEnabled });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4), __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 1217:
+/***/ 1355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subscribeAddedModelsInWindowStream; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_sync_helpers_SocketEventsService__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceSessionController__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_WorkspaceController__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CurrentUserController__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_sync_helpers_SocketEventsService__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceSessionController__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_WorkspaceController__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_CurrentUserController__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__ = __webpack_require__(698);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__ = __webpack_require__(774);
 
 
 
@@ -2738,7 +2661,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => 
       * Note that this is listening to changesets created on sync client instead of models created on DB.
       * This makes sure that when we attempt syncing, the item is present on the sync client.
       */
-let localModelCreates$ = Object(__WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__["a" /* getRealtimeOutgoingMessagesObservable */])().
+let localModelCreates$ = __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__["b" /* realtimeOutgoingMessages$ */].
 pipe(
 Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(changeset => {
   if (!changeset) {
@@ -2793,7 +2716,7 @@ function syncAndSubscribeTimelineSubscription() {
   modelsInSyncWindowWithComplete$.
   subscribe(modelsInWindow => {
     _.forEach(modelsInWindow, timelineId => {
-      Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["c" /* syncAndSubscribeTimeline */])(timelineId);
+      Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["d" /* syncAndSubscribeTimeline */])(timelineId);
     });
   }, () => {
     pm.logger.error('SyncWindowService~syncAndSubscribeTimelineSubscription: Error in the active models in window stream');
@@ -2820,14 +2743,14 @@ function unsubscribeTimelineSubscription() {
   Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["l" /* throttleTime */])(UNSUBSCRIBE_INTERVAL, __WEBPACK_IMPORTED_MODULE_0_rxjs__["d" /* asyncScheduler */], { leading: false, trailing: true })).
 
   subscribe(modelsInSyncWindow => {
-    let subscribedModels = Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["a" /* getSubscribedTimelines */])();
+    let subscribedModels = Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["b" /* getSubscribedTimelines */])();
 
     let timelinesToUnsubscribe = _.differenceWith(subscribedModels, modelsInSyncWindow, (item1, item2) => {
       return item1.model === item2.model && item1.modelId === item2.modelId;
     });
 
     _.forEach(timelinesToUnsubscribe, timelineId => {
-      Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["f" /* unsubscribeTimeline */])(timelineId);
+      Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers__["g" /* unsubscribeTimeline */])(timelineId);
     });
   }, () => {
     pm.logger.error('SyncWindowService~unsubscribeTimelineSubscription: Error in the active models in window stream');
@@ -2854,7 +2777,77 @@ function subscribeAddedModelsInWindowStream() {
 
 /***/ }),
 
-/***/ 1218:
+/***/ 1356:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export getCurrentSyncStatus */
+/* harmony export (immutable) */ __webpack_exports__["a"] = getTimelinesStatusObservable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_sync_services_SyncWindowService__ = __webpack_require__(1355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__ = __webpack_require__(255);
+
+
+
+
+
+
+/**
+                                                                                                                   * Used to get the current sync status
+                                                                                                                   */
+function getCurrentSyncStatus() {
+  return getTimelinesStatusObservable().
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["j" /* take */])(1)).
+  toPromise();
+}
+
+/**
+   * Returns an observable for all the timelines latest status values
+   * @returns {Observable}
+   */
+function getTimelinesStatusObservable() {
+  // computes the overall status of all sync timelines
+  let timelineStatusObservable$ = __WEBPACK_IMPORTED_MODULE_2__models_sync_services_SyncWindowService__["a" /* modelsInSyncWindowObservable$ */].
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(modelIds => {
+    return _.map(modelIds, modelId => {
+      return Object(__WEBPACK_IMPORTED_MODULE_3__index__["c" /* getTimelineStatusObservable */])(modelId);
+    });
+  }),
+
+  // combine latest to get the latest values of all the observables
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["g" /* mergeMap */])(values => {
+    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["e" /* combineLatest */])(_.compact(values));
+  }),
+
+  // map cumulate the complete status and return a single value
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(values => {
+
+    // may be a case where there are no timelines, then status should be in syncing
+    if (_.isEmpty(values)) {
+      return __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */];
+    }
+
+    let currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["e" /* SYNC_STATUS_IN_SYNC */];
+
+    _.includes(values, __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]) && (currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]);
+    _.includes(values, __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["d" /* SYNC_STATUS_IDLE */]) && (currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]);
+
+    return currentTimelinesStatus;
+  }));
+
+
+  // start with an initial value - syncing
+  return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["f" /* concat */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])(__WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]), timelineStatusObservable$);
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 1357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2888,19 +2881,15 @@ function transformLayout(config) {
 
 /***/ }),
 
-/***/ 1276:
+/***/ 1443:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(46);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_mobx__ = __webpack_require__(7);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(6);
 
 
 
@@ -2911,210 +2900,205 @@ const DEFAULT_LIMIT = 10,
 POLLING_HEADER_NAME = 'x-polling-interval',
 acceptedNotificationTypes = ['toast', 'banner', 'backgroundPush', 'modal'];
 
-let alreadyInitialized = false;
+let alreadyInitialized = false,
+nextPolling = null,
+nextPollInterval = null;
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+/**
+                         * Fetches notifications for signed in users
+                         *
+                         * @private
+                         */
+async function _fetchSignedInNotifications() {
+  let currentUser = await __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get();
+
+  pm.notificationPollingBaseUrl = currentUser.syncserver_url;
+
+  // If the user is signed out and signs back in, we call fetchNotifications
+  return _fetchNotifications();
+}
+
+/**
+  * Attaches online listener
+  */
+function _attachOnlineListener() {
+  pm.mediator.off('appOnline', _fetchSignedInNotifications);
+  pm.mediator.on('appOnline', _fetchSignedInNotifications);
+}
+
+/**
+  * Extracts notifications, filters unread
+  * @param { Object } notifications
+  */
+function _dispatchUnreadNotifications(notifications) {
+
+  _.chain(notifications).
+  filter(notification => {
+    return notification.data && notification.data.events && !_.some(notification.data.events, { key: 'viewed' });
+  }).
+  forEach(notification => {
+    return _dispatchNotification(notification.data);
+  }).
+  value();
+}
+
+/**
+  * Creates the notification event and dispatches user action
+  * @param { Object } notification
+  */
+async function _dispatchNotification(notification) {
+
+  let isUserSignedIn = await _isUserSignedIn(),
+  meta = {};
+
+  if (!isUserSignedIn) {
+    meta = { source: 'SignedOutUser' };
+  }
+
+  // Adding source in meta to distinguish who's triggering the event so that the logic is not dependent on checking if the user is signed in or not.
+  let notificationEvent = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["a" /* createEvent */])('create', 'notification', notification, null, meta);
+
+  return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(notificationEvent);
+}
+
+/**
+  * Checks if the user is signed
+  * @returns { Boolean } isUserSignedIn
+  */
+async function _isUserSignedIn() {
+  let { id } = await __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get();
+
+  return id !== '0';
+}
+
+/**
+  * Fetches the base URL from S3 bucket
+  */
+function _fetchBaseUrl() {
+  return __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(pm.notificationPollingConfigUrl).
+  then(({ body }) => {
+    if (body.config && body.config.notificationsUrl) {
+      return body.config.notificationsUrl;
+    }
+
+    return pm.notificationPollingBaseUrl;
+  }).
+  catch(({ error }) => {
+    return pm.notificationPollingBaseUrl;
+  });
+}
+
+/**
+  * Function to attach a bootstrap finish listener and trigger fetchNotifications for signed in users
+  */
+function _attachSyncFinishListener() {
+  let syncStatusStore = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('SyncStatusStore');
+
+  syncStatusStore.onSyncAvailable().
+  then(() => {
+    _attachOnlineListener();
+
+    return _fetchSignedInNotifications();
+  });
+}
+
+/**
+    * Fetches notification from sync URL and sets the next polling interval - clears the poll interval previously set.
+    * Also computes headers and params based on user status (Signed in or not)
+    */
+async function _fetchNotifications() {
+  const currentUser = await __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get();
+
+  let { notificationURL, headers } = _computeNotificationURLAndHeaders(currentUser);
+
+  // If the user's status changes before the timeout is triggered, we unset the existing timer
+  nextPolling && clearTimeout(nextPolling);
+
+  __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(notificationURL, {
+    headers: headers }).
+  then(({ body, headers }) => {
+    let nextPoll = parseInt(headers.get(POLLING_HEADER_NAME));
+
+    if (!_.isNaN(nextPoll)) {
+      clearTimeout(nextPolling);
+
+      nextPollInterval = nextPoll; // Caching the poll interval
+      nextPolling = setTimeout(_fetchNotifications, nextPollInterval);
+    }
+
+    alreadyInitialized = true;
+    return _dispatchUnreadNotifications(body);
+  }).
+  catch(({ error }) => {
+
+    // Incase the API fetch fails, we set timeout to the previously cached interval
+    clearTimeout(nextPolling);
+    nextPolling = setTimeout(NotificationPollingService.init, nextPollInterval);
+  });
+}
+
+/**
+  * Sets access token in the header if the user is signed in or app id in the params if the user is signed out
+  * @param { Object } currentUser
+  * @returns { Object }
+  */
+function _computeNotificationURLAndHeaders(currentUser) {
+  let notificationURL = `${pm.notificationPollingBaseUrl}/notification?limit=${DEFAULT_LIMIT}&events=viewed`,
+  headers = {};
+
+  if (currentUser.id === '0') {
+    notificationURL += `&app_id=${pm.app.get('installationId')}`;
+  } else
+  {
+    const token = _.get(currentUser, 'auth.access_token');
+
+    // Add type filter with the notification type we want to show
+    notificationURL += `&type=${acceptedNotificationTypes.join('&type=')}&groupByType=true`;
+
+    headers = {
+      'x-access-token': token };
+
+  }
+
+  return { notificationURL, headers };
+}
+
+const NotificationPollingService = {
 
   /**
-                 * Fetches the base URL from S3 bucket
-                 */
-  fetchBaseUrl() {
-    return __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(pm.notificationPollingConfigUrl).
-    then(({ body }) => {
-      if (body.config && body.config.notificationsUrl) {
-        return body.config.notificationsUrl;
-      }
-      return pm.notificationPollingBaseUrl;
-    }).
-    catch(({ error }) => {
-      return pm.notificationPollingBaseUrl;
-    });
-  },
-
-  /**
-     * Checks that the function was not already called. If not, attaches listeners and initializes variables
-     */
+                                     * Checks that the function was not already called. If not, attaches listeners and initializes variables
+                                     */
   async init() {
     if (alreadyInitialized) {
       return;
     }
 
-    const isUserSignedIn = await this.isUserSignedIn();
+    const isUserSignedIn = await _isUserSignedIn();
 
-    this.nextPolling = null;
-    this.nextPollInterval = 7200000; // 2HRS. FALLBACK INTERVAL IF THE API CALL FAILS FOR THE FIRST TIME
+    nextPolling = null;
+    nextPollInterval = 7200000; // 2hrs. Fallback interval if the API call fails for the first time
 
     // This is called before so that we can initiate signed in user notification polling as soon as the user signs in
-    this.attachSyncFinishListener();
+    _attachSyncFinishListener();
 
     if (!isUserSignedIn) {
-      pm.notificationPollingBaseUrl = await this.fetchBaseUrl();
-      this.fetchNotifications();
+      pm.notificationPollingBaseUrl = await _fetchBaseUrl();
+
+      return _fetchNotifications();
     }
-  },
+  } };
 
-  /**
-      * Function to attach a bootstrap finish listener and trigger fetchNotifications for signed in users
-      */
-  async attachSyncFinishListener() {
-    let syncStatusStore = Object(__WEBPACK_IMPORTED_MODULE_5__stores_get_store__["a" /* getStore */])('SyncStatusStore');
 
-    syncStatusStore.onSyncAvailable().
-    then(() => {
-      this._fetchSignedInNotifications();
-    });
-  },
-
-  async _fetchSignedInNotifications() {
-    let currentUser = await this.fetchCurrentUser();
-
-    pm.notificationPollingBaseUrl = currentUser.syncserver_url;
-
-    // If the user is signed out and signs back in, we call fetchNotifications
-    this.fetchNotifications();
-  },
-
-  /**
-     * Attaches model listeners and listens to internet connectivity
-     */
-  attachListeners() {
-    pm.mediator.on('appOnline', async () => {
-      if (!alreadyInitialized) {
-        this.fetchNotifications();
-      }
-    });
-  },
-
-  /**
-     * Fetches notification from sync URL and sets the next polling interval - clears the poll interval previously set.
-     * Also computes headers and params based on user status (Signed in or not)
-     */
-  async fetchNotifications() {
-    const currentUser = await this.fetchCurrentUser();
-
-    let { notificationURL, headers } = this.computeNotificationURLAndHeaders(currentUser);
-
-    // If the user's status changes before the timeout is triggered, we unset the existing timer
-    this.nextPolling && clearTimeout(this.nextPolling);
-
-    __WEBPACK_IMPORTED_MODULE_0__utils_HttpService__["a" /* default */].request(notificationURL, {
-      headers: headers }).
-    then(({ body, headers }) => {
-      let nextPoll = parseInt(headers.get(POLLING_HEADER_NAME));
-
-      if (!_.isNaN(nextPoll)) {
-        clearTimeout(this.nextPolling);
-
-        this.nextPollInterval = nextPoll; // Caching the poll interval
-        this.nextPolling = setTimeout(() => this.fetchNotifications(), nextPoll);
-      }
-
-      alreadyInitialized = true;
-      return this._dispatchUnreadNotifications(body);
-    }).
-    catch(({ error }) => {
-
-      // Incase the API fetch fails, we set timeout to the previously cached interval
-      this.nextPolling = setTimeout(() => this.fetchNotifications(), this.nextPollInterval);
-    });
-  },
-
-  /**
-     * Extracts notifications, filters unread
-     * @param { Object } notifications
-     */
-  _dispatchUnreadNotifications(notifications) {
-
-    _.chain(notifications).
-    filter(notification => {
-      return notification.data && notification.data.events && !_.some(notification.data.events, { key: 'viewed' });
-    }).
-    forEach(notification => {
-      return this._dispatchNotification(notification.data);
-    }).
-    value();
-  },
-
-  /**
-     * Creates the notification event and dispatches user action
-     * @param { Object } notification
-     */
-  async _dispatchNotification(notification) {
-
-    let isUserSignedIn = await this.isUserSignedIn(),
-    meta = {};
-
-    if (!isUserSignedIn) {
-      meta = { source: 'SignedOutUser' };
-    }
-
-    // Adding source in meta to distinguish who's triggering the event so that the logic is not dependent on checking if the user is signed in or not.
-    let notificationEvent = Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["a" /* createEvent */])('create', 'notification', notification, null, meta);
-    return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(notificationEvent);
-  },
-
-  /**
-     * Returns user object from the controller
-     * @returns { Object } currentUser
-     */
-  fetchCurrentUser() {
-
-    return __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__["a" /* default */].get().then(user => {
-      return user;
-    });
-  },
-
-  /**
-      * Checks if the user is signed
-      * @returns { Boolean } isUserSignedIn
-      */
-  async isUserSignedIn() {
-    let { id } = await this.fetchCurrentUser();
-    return id !== '0';
-  },
-
-  /**
-     * Checks if the user is offline
-     * @returns { Boolean } isUserOffline
-     */
-  isUserOffline() {
-    return !navigator.onLine;
-  },
-
-  /**
-      * Sets access token in the header if the user is signed in or app id in the params if the user is signed out
-      * @param { Object } currentUser
-      * @returns { Object }
-      */
-  computeNotificationURLAndHeaders(currentUser) {
-    let notificationURL = `${pm.notificationPollingBaseUrl}/notification?limit=${DEFAULT_LIMIT}&events=viewed`,
-    headers = {};
-
-    if (currentUser.id === '0') {
-      notificationURL += `&app_id=${pm.app.get('installationId')}`;
-    } else
-    {
-      const token = _.get(currentUser, 'auth.access_token');
-
-      // Add type filter with the notification type we want to show
-      notificationURL += `&type=${acceptedNotificationTypes.join('&type=')}&groupByType=true`;
-
-      headers = {
-        'x-access-token': token };
-
-    }
-
-    return { notificationURL, headers };
-  } });
+/* harmony default export */ __webpack_exports__["a"] = (NotificationPollingService);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 1282:
+/***/ 1449:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(23);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(20);
 let
 
 SyncIssueHelper = class SyncIssueHelper {
@@ -3159,7 +3143,14 @@ SyncIssueHelper = class SyncIssueHelper {
 
 /***/ }),
 
-/***/ 150:
+/***/ 16:
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+
+/***/ 171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3702,14 +3693,14 @@ let oldDb = {
 
 /***/ }),
 
-/***/ 18:
+/***/ 21:
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
 
-/***/ 180:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3854,26 +3845,19 @@ function pushToSyncChangeSets(changesets, currentUser, sc, cb) {
 
 /***/ }),
 
-/***/ 20:
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-
-/***/ 208:
+/***/ 231:
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 234:
+/***/ 263:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseConfigurationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_events__);
 let
 
@@ -3946,7 +3930,7 @@ BaseConfigurationService = class BaseConfigurationService extends __WEBPACK_IMPO
 
 /***/ }),
 
-/***/ 237:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3956,11 +3940,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eachLimit = __webpack_require__(2848);
+var _eachLimit = __webpack_require__(3092);
 
 var _eachLimit2 = _interopRequireDefault(_eachLimit);
 
-var _doLimit = __webpack_require__(495);
+var _doLimit = __webpack_require__(156);
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
@@ -3990,24 +3974,31 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2844:
+/***/ 28:
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 3088:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2845);
+module.exports = __webpack_require__(3089);
 
 
 /***/ }),
 
-/***/ 2845:
+/***/ 3089:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(2846);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_TelemetryHelpers__ = __webpack_require__(570);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__ = __webpack_require__(2922);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__init__ = __webpack_require__(3090);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_TelemetryHelpers__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__ = __webpack_require__(3165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_telemetry_GoogleAnalytics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(30);
 
 
 
@@ -4029,27 +4020,31 @@ __WEBPACK_IMPORTED_MODULE_0__init__["a" /* default */].init(err => {
 
 /***/ }),
 
-/***/ 2846:
+/***/ 3090:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_migrator_Migrate__ = __webpack_require__(2847);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_migrator_Migrate__ = __webpack_require__(3091);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig__ = __webpack_require__(546);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__boot_bootConfig__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootMessaging__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootWLModels__ = __webpack_require__(499);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(567);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(568);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootShared__ = __webpack_require__(2871);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_booted__ = __webpack_require__(569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_initialize_db_initialize__ = __webpack_require__(2918);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootConfigurations__ = __webpack_require__(454);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_initializeConfigurationsValues__ = __webpack_require__(2919);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootSharedRuntimeListeners__ = __webpack_require__(2920);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootMessaging__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootWLModels__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootCrashReporter__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootTelemetry__ = __webpack_require__(627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_bootShared__ = __webpack_require__(3114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_booted__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_verifyApplicationDowngrade__ = __webpack_require__(3159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_initialize_db_initialize__ = __webpack_require__(3161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootConfigurations__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__boot_initializeConfigurationsValues__ = __webpack_require__(3162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__boot_bootSharedRuntimeListeners__ = __webpack_require__(3163);
+
+
 
 
 
@@ -4076,22 +4071,24 @@ window.pm = {};
 pm.init = done => {
   __WEBPACK_IMPORTED_MODULE_0_async_series___default()([
   __WEBPACK_IMPORTED_MODULE_3__boot_bootConfig___default.a.init(windowConfig),
+  __WEBPACK_IMPORTED_MODULE_12__boot_verifyApplicationDowngrade__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_4__boot_bootMessaging__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_12__boot_bootConfigurations__["a" /* initializeConfigurations */],
+  __WEBPACK_IMPORTED_MODULE_8__boot_bootCrashReporter__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_9__boot_bootTelemetry__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_14__boot_bootConfigurations__["a" /* initializeConfigurations */],
   __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_11__modules_initialize_db_initialize__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_13__modules_initialize_db_initialize__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_5__boot_bootWLModels__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_13__boot_initializeConfigurationsValues__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_15__boot_initializeConfigurationsValues__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_1__modules_migrator_Migrate__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_14__boot_bootSharedRuntimeListeners__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_9__boot_bootShared__["a" /* default */]],
+  __WEBPACK_IMPORTED_MODULE_16__boot_bootSharedRuntimeListeners__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_10__boot_bootShared__["a" /* default */]],
   err => {
-    Object(__WEBPACK_IMPORTED_MODULE_10__boot_booted__["a" /* default */])(err);
+    Object(__WEBPACK_IMPORTED_MODULE_11__boot_booted__["a" /* default */])(err);
     if (err) {
-      console.error('Error in the app boot sequence', err);
+      pm.logger.error('Error in the app boot sequence', err);
     }
     done && done(err);
   });
@@ -4101,36 +4098,36 @@ pm.init = done => {
 
 /***/ }),
 
-/***/ 2847:
+/***/ 3091:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Migrate;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json__ = __webpack_require__(425);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json__ = __webpack_require__(467);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_circular_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_circular_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall__ = __webpack_require__(1200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall__ = __webpack_require__(1339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_waterfall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async_waterfall__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__User__ = __webpack_require__(2850);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__LocalChanges__ = __webpack_require__(2851);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Collections__ = __webpack_require__(2852);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SyncedSince__ = __webpack_require__(2857);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Headerpreset__ = __webpack_require__(2858);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Collectionrun__ = __webpack_require__(2859);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__History__ = __webpack_require__(2860);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Globals__ = __webpack_require__(2861);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Workspace__ = __webpack_require__(2862);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Environments__ = __webpack_require__(2863);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__WorkspaceSession__ = __webpack_require__(2864);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Helpers__ = __webpack_require__(2865);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__OAuth2AccessTokens__ = __webpack_require__(2866);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__oldDb__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client__ = __webpack_require__(1202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__User__ = __webpack_require__(3093);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__LocalChanges__ = __webpack_require__(3094);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Collections__ = __webpack_require__(3095);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__SyncedSince__ = __webpack_require__(3100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Headerpreset__ = __webpack_require__(3101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Collectionrun__ = __webpack_require__(3102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__History__ = __webpack_require__(3103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Globals__ = __webpack_require__(3104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Workspace__ = __webpack_require__(3105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Environments__ = __webpack_require__(3106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__WorkspaceSession__ = __webpack_require__(3107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Helpers__ = __webpack_require__(3108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__OAuth2AccessTokens__ = __webpack_require__(3109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__oldDb__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client__ = __webpack_require__(1340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__postman_sync_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_DatabaseService__ = __webpack_require__(1203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_DatabaseService__ = __webpack_require__(1341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_services_AnalyticsService__ = __webpack_require__(30);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -4207,7 +4204,7 @@ function CommitMigrationContext(migrationContext = {}, cb) {
         tags.migration_6_0_repaired = 'collection';
       }
 
-      pm.crashReporter.report(sentryHeader, {
+      pm.logger.error(sentryHeader, {
         extra: _extends({},
         unMigratedEntities, {
           user: migrationContext.user,
@@ -4221,7 +4218,7 @@ function CommitMigrationContext(migrationContext = {}, cb) {
     localStorage.setItem('migrationContext', stringifiedMigrationContext);
   }
   catch (e) {
-    pm.crashReporter.report(e);
+    pm.logger.error(e);
   } finally
   {
     cb && cb(null, migrationContext);
@@ -4259,7 +4256,7 @@ function AssignSyncClient(migrationContext, cb) {
 
   sc.initialize(err => {
     if (err) {
-      console.error('Failed to initialize SyncClient', err);
+      pm.logger.error('Failed to initialize SyncClient', err);
     } else {
       migrationContext.sc = sc;
     }
@@ -4277,7 +4274,7 @@ function AssignSyncClient(migrationContext, cb) {
 function OpenOldDb(migrationContext, cb) {
   __WEBPACK_IMPORTED_MODULE_17__oldDb__["a" /* default */].open((err, db) => {
     if (err) {
-      console.error('Error:', err);
+      pm.logger.error('Error:', err);
       return cb(err, migrationContext);
     }
 
@@ -4318,8 +4315,7 @@ function Migrate(cb) {
   let migrationTimer = setTimeout(() => {
     // If the timer is not cleared before 2mins then we should be knowing
     // Property id is already attached with reporter, provides us the user info.
-    pm.crashReporter.report('Migration timed out');
-    pm.logger.error('Migrate - timed out');
+    pm.logger.error('Migration timed out');
   }, 120000),
   migrationStartTime = Date.now();
 
@@ -4370,7 +4366,7 @@ function Migrate(cb) {
     catch (e) {
       // auto reports to sentry.
       pm.logger.error('Migrate - Adding event to sentry failed', err);
-      console.error(e);
+      pm.logger.error(e);
     }
 
 
@@ -4378,7 +4374,6 @@ function Migrate(cb) {
       localStorage.setItem('migrationFinished', false);
 
       // Report it if migrator module crashed
-      pm.crashReporter.report(err);
       pm.logger.error('Migrate ~ InComplete', { err, result });
     } else
     {
@@ -4393,7 +4388,7 @@ function Migrate(cb) {
 
 /***/ }),
 
-/***/ 2848:
+/***/ 3092:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4404,15 +4399,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = eachLimit;
 
-var _eachOfLimit = __webpack_require__(611);
+var _eachOfLimit = __webpack_require__(281);
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _withoutIndex = __webpack_require__(2849);
+var _withoutIndex = __webpack_require__(318);
 
 var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
 
-var _wrapAsync = __webpack_require__(172);
+var _wrapAsync = __webpack_require__(66);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -4445,37 +4440,18 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2849:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = _withoutIndex;
-function _withoutIndex(iteratee) {
-    return function (value, index, callback) {
-        return iteratee(value, callback);
-    };
-}
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ 2850:
+/***/ 3093:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = User;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user__ = __webpack_require__(942);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user__ = __webpack_require__(1053);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_user___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_user__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(211);
 
 
 
@@ -4575,14 +4551,14 @@ function User(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2851:
+/***/ 3094:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = LocalChanges;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MigratorUtil__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MigratorUtil__ = __webpack_require__(211);
 
 
 
@@ -4759,35 +4735,35 @@ function LocalChanges(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2852:
+/***/ 3095:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Collections;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall__ = __webpack_require__(1200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall__ = __webpack_require__(1339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_waterfall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_waterfall__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_series__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_series__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async_mapSeries__ = __webpack_require__(2853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async_mapSeries__ = __webpack_require__(3096);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async_mapSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_async_mapSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_CollectionTreeOps__ = __webpack_require__(659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_util__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__oldDb__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder__ = __webpack_require__(937);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_CollectionTreeOps__ = __webpack_require__(728);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__oldDb__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder__ = __webpack_require__(1048);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__models_folder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request__ = __webpack_require__(940);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request__ = __webpack_require__(1051);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__models_request__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response__ = __webpack_require__(941);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response__ = __webpack_require__(1052);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__models_response___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__models_response__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection__ = __webpack_require__(935);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection__ = __webpack_require__(1046);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__models_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_CollectionModelService__ = __webpack_require__(970);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_event_to_changesets__ = __webpack_require__(1201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_CollectionModelService__ = __webpack_require__(1081);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_event_to_changesets__ = __webpack_require__(1174);
 
 
 
@@ -4806,8 +4782,8 @@ function LocalChanges(migrationContext, cb) {
 
 
 
-const cleanupRequestBody = __webpack_require__(640),
-addDbpToRequest = __webpack_require__(641);
+const cleanupRequestBody = __webpack_require__(702),
+addDbpToRequest = __webpack_require__(703);
 
 /**
                                                                           *
@@ -4924,13 +4900,13 @@ function __migrateCollection(collection, currentUser, db, sc, cb) {
             }, (err, changesets) => {
               if (err) {
                 // Error out and go ahead
-                console.error(err);
+                pm.logger.error(err);
                 return resolve();
               }
               Object(__WEBPACK_IMPORTED_MODULE_6__MigratorUtil__["c" /* pushToSyncChangeSets */])(_.flatten(_.compact(changesets)), currentUser, sc, err => {
                 if (err) {
                   // Error out and go ahead
-                  console.error(err);
+                  pm.logger.error(err);
                   return resolve();
                 }
                 return resolve();
@@ -5425,7 +5401,7 @@ function Collections(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2853:
+/***/ 3096:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5435,11 +5411,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mapLimit = __webpack_require__(2854);
+var _mapLimit = __webpack_require__(3097);
 
 var _mapLimit2 = _interopRequireDefault(_mapLimit);
 
-var _doLimit = __webpack_require__(495);
+var _doLimit = __webpack_require__(156);
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
@@ -5468,7 +5444,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2854:
+/***/ 3097:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5478,11 +5454,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _doParallelLimit = __webpack_require__(2855);
+var _doParallelLimit = __webpack_require__(3098);
 
 var _doParallelLimit2 = _interopRequireDefault(_doParallelLimit);
 
-var _map = __webpack_require__(2856);
+var _map = __webpack_require__(3099);
 
 var _map2 = _interopRequireDefault(_map);
 
@@ -5512,7 +5488,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2855:
+/***/ 3098:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5523,11 +5499,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = doParallelLimit;
 
-var _eachOfLimit = __webpack_require__(611);
+var _eachOfLimit = __webpack_require__(281);
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _wrapAsync = __webpack_require__(172);
+var _wrapAsync = __webpack_require__(66);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -5542,7 +5518,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2856:
+/***/ 3099:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5553,11 +5529,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _asyncMap;
 
-var _noop = __webpack_require__(188);
+var _noop = __webpack_require__(89);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _wrapAsync = __webpack_require__(172);
+var _wrapAsync = __webpack_require__(66);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -5584,13 +5560,13 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2857:
+/***/ 3100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = SyncedSince;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oldDb__ = __webpack_require__(171);
 
 
 
@@ -5650,18 +5626,18 @@ function SyncedSince(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2858:
+/***/ 3101:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Headerpreset;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset__ = __webpack_require__(938);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset__ = __webpack_require__(1049);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_header_preset___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_header_preset__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(171);
 
 
 
@@ -5800,19 +5776,19 @@ function Headerpreset(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2859:
+/***/ 3102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Collectionrun;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run__ = __webpack_require__(934);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run__ = __webpack_require__(1045);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_collection_run___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_collection_run__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(154);
 
 
 
@@ -6005,19 +5981,19 @@ function Collectionrun(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2860:
+/***/ 3103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = History;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history__ = __webpack_require__(939);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__oldDb__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history__ = __webpack_require__(1050);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_history___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_history__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(154);
 
 
 
@@ -6026,8 +6002,8 @@ function Collectionrun(migrationContext, cb) {
 
 
 
-const cleanupRequestBody = __webpack_require__(640),
-addDbpToRequest = __webpack_require__(641);
+const cleanupRequestBody = __webpack_require__(702),
+addDbpToRequest = __webpack_require__(703);
 
 /**
                                                                           * @param {Object} migrationContext
@@ -6171,14 +6147,14 @@ function History(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2861:
+/***/ 3104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Globals;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_uuid_helper__ = __webpack_require__(489);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_uuid_helper__ = __webpack_require__(538);
 
 
 
@@ -6262,14 +6238,14 @@ function Globals(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2862:
+/***/ 3105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Workspace;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_default_workspace__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(54);
 
 
 
@@ -6443,18 +6419,18 @@ function Workspace(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2863:
+/***/ 3106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Environments;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment__ = __webpack_require__(936);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment__ = __webpack_require__(1047);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_environment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_environment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(171);
 
 
 
@@ -6595,20 +6571,20 @@ function Environments(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2864:
+/***/ 3107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = WorkspaceSession;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_WorkspaceSessionController__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_WorkspaceSessionController__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__migration_helpers_workspace_session_tabs__ = __webpack_require__(923);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__migration_helpers_workspace_session_tabs__ = __webpack_require__(1035);
 
 
 
@@ -6726,18 +6702,18 @@ function WorkspaceSession(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2865:
+/***/ 3108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = Helpers;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__ = __webpack_require__(933);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__ = __webpack_require__(1044);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_auth_helper_state__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(171);
 
 
 
@@ -6867,18 +6843,18 @@ function Helpers(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2866:
+/***/ 3109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = OAuth2AccessTokens;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_eachSeries___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_eachSeries__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__ = __webpack_require__(932);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__ = __webpack_require__(1043);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_auth_access_token___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__models_auth_access_token__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MigratorUtil__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__oldDb__ = __webpack_require__(171);
 
 
 
@@ -7002,7 +6978,7 @@ function OAuth2AccessTokens(migrationContext, cb) {
 
 /***/ }),
 
-/***/ 2867:
+/***/ 3110:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -7119,7 +7095,7 @@ module.exports = collateChangesets;
 
 /***/ }),
 
-/***/ 2868:
+/***/ 3111:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -7127,9 +7103,9 @@ module.exports = collateChangesets;
  */
 
 const _ = __webpack_require__(0),
-  async = __webpack_require__(47),
-  Bucket = __webpack_require__(800),
-  BucketDB = __webpack_require__(2869),
+  async = __webpack_require__(55),
+  Bucket = __webpack_require__(856),
+  BucketDB = __webpack_require__(3112),
   REQUIRED_SERVICES = ['dbService'],
 
   ACTIVE_BUCKET_ID_SUFFIX = '.active',
@@ -7455,7 +7431,7 @@ module.exports = SyncClient;
 
 /***/ }),
 
-/***/ 2869:
+/***/ 3112:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -7463,9 +7439,9 @@ module.exports = SyncClient;
  */
 
 const _ = __webpack_require__(0),
-  async = __webpack_require__(47),
-  Bucket = __webpack_require__(800),
-  tsid = __webpack_require__(2870),
+  async = __webpack_require__(55),
+  Bucket = __webpack_require__(856),
+  tsid = __webpack_require__(3113),
 
   CONCURRENCY_BATCH_SIZE = 100,
   SEP = '__';
@@ -7644,7 +7620,7 @@ module.exports = BucketDB;
 
 /***/ }),
 
-/***/ 2870:
+/***/ 3113:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {/**
@@ -7652,7 +7628,7 @@ module.exports = BucketDB;
  * @module sync-client/timestamp-id
  */
 
-const async = __webpack_require__(47),
+const async = __webpack_require__(55),
 
   /**
    * This defines the right padding that is applied to timestamp. This is indicative of the total number of id that can
@@ -7870,24 +7846,26 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2871:
+/***/ 3114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(129);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootSync__ = __webpack_require__(2872);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_analyticsHandler__ = __webpack_require__(2912);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__ = __webpack_require__(533);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__ = __webpack_require__(2914);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_ConnectivityService__ = __webpack_require__(2915);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__ = __webpack_require__(804);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__ = __webpack_require__(2916);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_SharedAlertProxy__ = __webpack_require__(2917);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_NotificationPollingService__ = __webpack_require__(1276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_AccessControl_AccessControlService__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__ = __webpack_require__(1216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_AccessControl_PermissionService__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootSync__ = __webpack_require__(3115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_telemetry_analyticsHandler__ = __webpack_require__(3152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__ = __webpack_require__(768);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_SyncRequestService__ = __webpack_require__(3154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_UserFetcherService__ = __webpack_require__(3155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_ConnectivityService__ = __webpack_require__(3156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AuthHandlerService__ = __webpack_require__(902);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_OnBoardingService__ = __webpack_require__(3157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_SharedAlertProxy__ = __webpack_require__(3158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_NotificationPollingService__ = __webpack_require__(1443);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_AccessControl_AccessControlService__ = __webpack_require__(794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__ = __webpack_require__(1354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_AccessControl_PermissionService__ = __webpack_require__(486);
+
 
 
 
@@ -7908,28 +7886,30 @@ module.exports = {
                                                                                                 */
 function bootShared(cb) {
   _.assign(window.pm, {
-    connectivity: new __WEBPACK_IMPORTED_MODULE_5__modules_services_ConnectivityService__["a" /* default */](),
-    toasts: __WEBPACK_IMPORTED_MODULE_8__models_SharedAlertProxy__ });
+    connectivity: new __WEBPACK_IMPORTED_MODULE_6__modules_services_ConnectivityService__["a" /* default */](),
+    toasts: __WEBPACK_IMPORTED_MODULE_9__models_SharedAlertProxy__ });
 
   __WEBPACK_IMPORTED_MODULE_0_async_series___default()([
   __WEBPACK_IMPORTED_MODULE_1__bootSync__["a" /* default */]],
   err => {
     Object(__WEBPACK_IMPORTED_MODULE_2__models_telemetry_analyticsHandler__["a" /* default */])();
     let syncRemoteFetcherBus = pm.eventBus.channel('sync-remote-fetch'),
-    modelEventBus = pm.eventBus.channel('model-events');
+    modelEventBus = pm.eventBus.channel('model-events'),
+    socketRequestBus = pm.eventBus.channel('socket-requests');
 
-    syncRemoteFetcherBus.subscribe(__WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__["d" /* scheduleFetch */]);
-    modelEventBus.subscribe(__WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__["b" /* userFetch */]);
-    __WEBPACK_IMPORTED_MODULE_10__services_AccessControl_AccessControlService__["a" /* default */].init();
-    __WEBPACK_IMPORTED_MODULE_6__modules_services_AuthHandlerService__["a" /* default */].init();
-    __WEBPACK_IMPORTED_MODULE_7__services_OnBoardingService__["a" /* default */].init();
-    __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].init();
+    syncRemoteFetcherBus.subscribe(__WEBPACK_IMPORTED_MODULE_3__modules_services_SyncFetcherService__["c" /* scheduleFetch */]);
+    socketRequestBus.subscribe(__WEBPACK_IMPORTED_MODULE_4__modules_services_SyncRequestService__["a" /* requestListener */]);
+    modelEventBus.subscribe(__WEBPACK_IMPORTED_MODULE_5__modules_services_UserFetcherService__["b" /* userFetch */]);
+    __WEBPACK_IMPORTED_MODULE_11__services_AccessControl_AccessControlService__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_7__modules_services_AuthHandlerService__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_8__services_OnBoardingService__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].init();
 
     // Starts the user fetch and unlocks the session.
-    Object(__WEBPACK_IMPORTED_MODULE_4__modules_services_UserFetcherService__["a" /* initiateBoot */])();
+    Object(__WEBPACK_IMPORTED_MODULE_5__modules_services_UserFetcherService__["a" /* initiateBoot */])();
 
     // initialize permissions refetch handlers
-    Object(__WEBPACK_IMPORTED_MODULE_12__services_AccessControl_PermissionService__["b" /* initializePermissionsRefetch */])();
+    Object(__WEBPACK_IMPORTED_MODULE_13__services_AccessControl_PermissionService__["b" /* initializePermissionsRefetch */])();
 
     pm.logger.info('Shared~boot - Success');
     return cb && cb(err);
@@ -7941,14 +7921,12 @@ function bootShared(cb) {
 
 /***/ }),
 
-/***/ 2872:
+/***/ 3115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_LocalChanges__ = __webpack_require__(2873);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_SyncManagerNew__ = __webpack_require__(2875);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers_BroadcastConnectivityStatus__ = __webpack_require__(2910);
-
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerNew__ = __webpack_require__(3116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_timeline_helpers_BroadcastConnectivityStatus__ = __webpack_require__(3151);
 
 
 
@@ -7957,12 +7935,11 @@ function bootShared(cb) {
                                                                                                                           */
 function bootSync(cb) {
   _.assign(window.pm, {
-    localChanges: new __WEBPACK_IMPORTED_MODULE_0__models_sync_LocalChanges__["a" /* default */](),
-    syncManager: new __WEBPACK_IMPORTED_MODULE_1__models_sync_SyncManagerNew__["a" /* default */]() });
+    syncManager: new __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerNew__["a" /* default */]() });
 
 
   // used to initialize broadcast of socket and timeline status
-  Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_timeline_helpers_BroadcastConnectivityStatus__["a" /* initializeConnectivityStatusBroadcast */])();
+  Object(__WEBPACK_IMPORTED_MODULE_1__modules_sync_timeline_helpers_BroadcastConnectivityStatus__["a" /* initializeConnectivityStatusBroadcast */])();
   pm.logger.info('Sync~boot - Success');
   cb && cb(null);
 }
@@ -7972,1220 +7949,49 @@ function bootSync(cb) {
 
 /***/ }),
 
-/***/ 2873:
+/***/ 3116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConflictResolution__ = __webpack_require__(2874);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_backbone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SyncManagerHelper__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_async__);
-
-
-
-
-
-
-/**
-                            * Handles the queue
-                            * @private
-                            * @module sync/LocalChanges
-                            * @see module:sync/SyncManager
-                            */
-var LocalChanges = __WEBPACK_IMPORTED_MODULE_1_backbone___default.a.Model.extend({
-  /**
-                                            * Functions:
-                                            * add an unsynced change
-                                            * check for conflicts - this will show a modal even if a single server change has a conflict. if not, callback
-                                            */
-
-  initialize: function () {
-  },
-
-  /**
-      * Called when server changes are queued, and have to be conflict-resolved with current unsynced changes
-      */
-  resolveConflicts: function (crState, opts) {
-    pm.localChanges.pendingResolution = null;
-
-    var crState = {
-      // pre-detection
-      changesetsFromServer: crState.changesetsFromServer || [],
-      changesetsFromClient: crState.changesetsFromClient || [],
-
-      // detection and sanitization
-      conflicts: [],
-      clientChangesetsToBeDropped: [],
-      clientModelTreesToBeDropped: [],
-
-      // user-resolution
-      userResolution: [],
-
-      // final system resolution
-      changesetsToClient: [],
-      changesetsToServer: [],
-
-      source: opts.source };
-
-
-    __WEBPACK_IMPORTED_MODULE_3_async___default.a.series([
-    // fetch local changes
-    function (callback) {
-      // do not fetch if the flow is session/sync
-      if (opts.source !== 'session-sync') {
-        console.log('bailing fetch from sync client');
-        return callback();
-      }
-
-      pm.syncManager.syncClient.getAllChangesets((err, changesets) => {
-        if (err) {
-          return callback(err);
-        }
-
-        crState.changesetsFromClient = changesets;
-        return callback(null);
-      });
-    },
-
-    function (callback) {
-      crState.changesetsToServer = _.cloneDeep(crState.changesetsFromClient);
-      return callback(null);
-    },
-
-    // legacy handling of conflicts
-    function (callback) {
-      Object(__WEBPACK_IMPORTED_MODULE_0__ConflictResolution__["c" /* detectConflicts */])(crState);
-      return callback(null);
-    },
-
-    function (callback) {
-      // drop client changesets marked to be dropped
-      _.forEach(crState.clientChangesetsToBeDropped, clientChangesetToBeDropped => {
-        Object(__WEBPACK_IMPORTED_MODULE_0__ConflictResolution__["b" /* deleteCRChangesetToServer */])(clientChangesetToBeDropped, crState);
-      });
-
-      crState.clientChangesetsToBeDropped = [];
-
-      return callback(null);
-    },
-
-    function (callback) {
-      if (_.isEmpty(crState.clientModelTreesToBeDropped)) {
-        callback(null);
-        return;
-      }
-
-      // drop clientModelTreesToBeDropped from sync client and changesetsToServer
-      Object(__WEBPACK_IMPORTED_MODULE_2__SyncManagerHelper__["i" /* removeModelTreesFromClientChanges */])(crState, () => {
-        callback(null);
-      });
-    }],
-
-
-    // handle resolution
-    function (err) {
-      if (_.isEmpty(crState.changesetsFromServer) &&
-      _.isEmpty(crState.changesetsFromClient)) {
-        // console.log('No conflicts, server and client empty');
-        pm.syncManager.onConflictResolutionCompleted(crState);
-        return;
-      }
-
-      if (_.isEmpty(crState.changesetsFromServer)) {
-        // console.log('No conflicts, server empty');
-        pm.syncManager.sendChangesetsToServer(crState.changesetsToServer, err => {
-          if (err) {
-            pm.syncManager.onConflictResolutionError(err);
-            return;
-          }
-
-          pm.syncManager.onConflictResolutionCompleted(crState);
-        });
-        return;
-      }
-
-      if (_.isEmpty(crState.changesetsFromClient)) {
-        // console.log('No conflicts, client empty');
-
-        // no client changes, process server changes
-        pm.syncManager.saveProcessedServerChange(crState.changesetsToClient, () => {
-          pm.syncManager.onConflictResolutionCompleted(crState);
-        });
-        return;
-      }
-
-      if (_.isEmpty(crState.conflicts)) {
-        // console.log('No conflicts');
-
-        // write server and client changes
-        pm.syncManager.saveProcessedServerChange(crState.changesetsToClient, () => {
-          pm.syncManager.sendChangesetsToServer(crState.changesetsToServer, err => {
-            if (err) {
-              pm.syncManager.onConflictResolutionError(err);
-              return;
-            }
-
-            pm.syncManager.onConflictResolutionCompleted(crState);
-          });
-        });
-        return;
-      }
-
-      console.log('CONFLICTS:', crState.conflicts);
-
-      // cache the current conflict resolution data and show UI
-      pm.localChanges.pendingResolution = crState;
-      pm.syncManager.showConflicts(crState.conflicts);
-    });
-  },
-
-  /**
-      * Called when the "Re-sync" button in the conflict modal is clicked
-      * @param radioArray - array of objects. each object contains the conflicting entity, server change, local change, and the selected change
-      */
-  onConflictsResolved: function (userResolution) {
-    let crState = this.pendingResolution;
-
-    this.pendingResolution = null;
-
-    if (!crState) {
-      pm.syncManager.onConflictResolutionError(new Error('NO_PENDING_RESOLUTION'));
-      return;
-    }
-
-    crState.userResolution = userResolution;
-
-    Object(__WEBPACK_IMPORTED_MODULE_0__ConflictResolution__["a" /* applyUserResolution */])(crState);
-
-    pm.syncManager.saveProcessedServerChange(crState.changesetsToClient, () => {
-      pm.syncManager.sendChangesetsToServer(crState.changesetsToServer, err => {
-        if (err) {
-          pm.syncManager.onConflictResolutionError(err);
-          return;
-        }
-
-        pm.syncManager.onConflictResolutionCompleted(crState);
-      });
-    });
-  },
-
-  /**
-      * Creates create changesets for all entites owned by the user. Used during initial sync. Any changes added to the queue will be conflict-resolved with anything in the server changes queue
-      * if collection dump is true, all the user's collections are sent as /importCollection requests, not as separate changesets
-      * @param syncImmediately
-      * @param collectionDump
-      * @param collectionId
-      */
-  syncAllObjects: function (syncImmediately, collectionDump, collectionId) {
-    console.log('SM.syncAllObjects');
-    return;
-  } });
-
-
-/* harmony default export */ __webpack_exports__["a"] = (LocalChanges);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2874:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export findIdenticalChangeset */
-/* unused harmony export addConflictRows */
-/* unused harmony export getConflictRows */
-/* harmony export (immutable) */ __webpack_exports__["a"] = applyUserResolution;
-/* harmony export (immutable) */ __webpack_exports__["b"] = deleteCRChangesetToServer;
-/* harmony export (immutable) */ __webpack_exports__["c"] = detectConflicts;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_workspace_helper__ = __webpack_require__(1036);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SyncManagerHelper__ = __webpack_require__(431);
-
-
-
-
-
-/**
-                                                              * identifier used to detect conflicting changesets
-                                                              *
-                                                              * @param {any} changeset
-                                                              * @returns
-                                                              */
-function getChangesetIdentifier(changeset) {
-  let action = changeset.action || _.get(changeset, ['meta', 'action']),
-  model = changeset.model || _.get(changeset, ['meta', 'model']),
-  modelId = changeset.model_id || _.get(changeset, ['data', 'modelId']);
-
-  let identifier = model + ':' + modelId;
-
-  if (_.includes(['share', 'unshare', 'transfer', 'favorite', 'unfavorite'])) {
-    return identifier + ':' + action;
-  }
-
-  return identifier;
-}
-
-/**
-   * are two changesets identical
-   *
-   * @param {any} src
-   * @param {any} dest
-   * @returns
-   */
-function isIdenticalChangeset(src, dest) {
-  return getChangesetIdentifier(src) === getChangesetIdentifier(dest);
-}
-
-/**
-   * find index of identical changeset
-   *
-   * @param {any} changeset
-   * @param {any} changesets
-   * @returns
-   */
-function findIndexIndenticalChangeset(changeset, changesets) {
-  let changesetIdentifier = getChangesetIdentifier(changeset);
-
-  return _.findIndex(changesets, eachChangeset => {
-    let eachChangesetIdentifier = getChangesetIdentifier(eachChangeset);
-    return changesetIdentifier === eachChangesetIdentifier;
-  });
-}
-
-/**
-   * find identical changeset
-   * @param id
-   * @returns {*}
-   * @private
-   */
-function findIdenticalChangeset(changeset, changesets) {
-  let changesetIdentifier = getChangesetIdentifier(changeset);
-
-  let changesetFound = _.find(changesets, eachChangeset => {
-    let eachChangesetIdentifier = getChangesetIdentifier(eachChangeset);
-    return changesetIdentifier === eachChangesetIdentifier;
-  });
-
-  if (!changesetFound) {
-    return null;
-  }
-
-  return changesetFound;
-}
-
-/**
-   * Add a row to the current set of conflicts. One row contains entityKey/serverChange/localChange. Once all rows have been added, the modal is shown
-   * @param rows
-   * @private
-   */
-function addConflictRows(rows, currentRows) {
-  _.forEach(rows, row => {
-    row.isLocalSelected = true;
-    row.isServerSelected = false;
-    currentRows.push(row);
-  });
-}
-
-/**
-  * Given two changes, one local (from unsynced), one remote (from server queue), generates a set of conflict rows
-  * that the user must choose from, and deletes unsynced changes that were used to generate the conflict. The unsynced changes are re-added after resolution
-  * If n>0 rows are added, the modal is shown
-  */
-function getConflictRows(localChange, remoteChange, crState) {
-  // these fields are not filled by the user / are redundant. Don't need to be shown in the conflict screen
-  var fieldsToIgnore = {
-    'response': ['responseCode', 'state', 'headers', 'write', 'requestId', 'collection', 'collectionId', 'collectonId', 'time', 'searchResultScrolledTo', 'forceNoPretty', 'runTests', 'request', 'requestObject'],
-    'request': ['write', 'responses', 'collectionOwner', 'folder', 'collection', 'tests', 'preRequestScript', 'currentHelper', 'helperAttributes'],
-    'folder': ['write', 'collection_name', 'collection_owner', 'order', 'folders_order', 'folder', 'collection'],
-    'collection': ['folders', 'subscribed', 'public', 'write', 'shared', 'order', 'folders_order'],
-    'environment': ['syncedFilename'] };
-
-  var genericFieldsToIgnore = ['owner', 'timestamp', 'synced', 'createdAt', 'updatedAt', 'time', 'lastRevision', 'lastUpdatedBy', 'version'];
-
-  var model = localChange.model;
-  var model_id = localChange.data.modelId;
-  var localAction; // string
-  var remoteAction; // string
-
-  if (remoteChange.meta) {
-    remoteChange.action = remoteChange.meta.action;
-    remoteChange.model = remoteChange.meta.model;
-  }
-
-  var localNameOrId = _.get(localChange, 'data.instance.name') || _.get(localChange, 'data.modelId');
-
-  var ret = [];
-  var ret_template = {};
-
-  ret_template.localChange = _.cloneDeep(localChange);
-  ret_template.remoteChange = _.cloneDeep(remoteChange);
-  ret_template.model = model;
-  ret_template.model_id = model_id;
-  ret_template.nameOrId = localNameOrId;
-  ret_template.id = model_id;
-  ret_template.key = '';
-  ret_template.revision = remoteChange.revision;
-  ret_template.showRow = true;
-
-  if (localChange.action === 'destroy' && remoteChange.action === 'destroy') {
-    crState.clientChangesetsToBeDropped.push(localChange);
-    return null;
-  }
-
-  // drop all conflicts in history and collectionrun
-  if (localChange.model === 'history' || localChange.model === 'collectionrun') {
-    crState.clientChangesetsToBeDropped.push(localChange);
-    return null;
-  }
-
-  if (_.includes(['create', 'import'], localChange.action) && remoteChange.action === 'create') {
-    // two creates should still be merged
-    localAction = 'Created';
-    remoteAction = 'Created';
-    let ret_template_temp = _.clone(ret_template);
-
-    ret_template_temp.localAction = localAction;
-    ret_template_temp.remoteAction = remoteAction;
-
-    // get changed keys
-    let localUpdates = _.get(localChange, 'data.instance');
-    let subRevision = 0.001;
-    var anyRowConflicting = false;
-    if (!localUpdates.hasOwnProperty('folder') && remoteChange.data.folder) {
-      localUpdates.folder = null;
-    }
-    remoteChange.data = sanitizeRemoteChangeData(remoteChange);
-    for (let pKey in localUpdates) {
-      if (localUpdates.hasOwnProperty(pKey) && remoteChange.data && remoteChange.data.hasOwnProperty(pKey)) {
-
-        ret_template_temp.showRow = true;
-        if (pKey === 'sharedWithTeam') {
-          pKey = 'shared';
-          localUpdates.shared = localUpdates.sharedWithTeam;
-        }
-        if (genericFieldsToIgnore.indexOf(pKey) !== -1) {
-          ret_template_temp.key = pKey;
-          ret_template_temp.revision = remoteChange.revision + subRevision;
-          ret_template_temp.showRow = false;
-
-          // ret.push(_.clone(ret_template_temp));
-        } else
-        if (model === 'user' && pKey !== 'globals') {
-          // nothing to do here
-        } else
-        if (pKey === 'events') {
-          let diffObj = getEventsDiff(localUpdates.events, remoteChange.data.events);
-          if (!_.isEmpty(diffObj.key)) {
-            ret_template_temp.key = diffObj.key.join('&');
-            ret_template_temp.serverValue = JSON.stringify(diffObj.remoteChange);
-            ret_template_temp.localValue = JSON.stringify(diffObj.localChange);
-          }
-        } else
-        if (fieldsToIgnore[model] && fieldsToIgnore[model].indexOf(pKey) !== -1) {
-          // else if(model==="folder" && pKey==="collection") {
-          ret_template_temp.key = pKey;
-          ret_template_temp.revision = remoteChange.revision + subRevision;
-          ret_template_temp.showRow = false;
-
-          // ret.push(_.clone(ret_template_temp));
-        } else
-        if (pKey !== 'folder' && (remoteChange.data[pKey] == 'null' && localUpdates[pKey] == null || remoteChange.data[pKey] == null && localUpdates[pKey] == 'null')) {
-          // do nothing
-        } else
-        if (model === 'request' &&
-        pKey === 'data' && remoteChange.data.dataMode === 'raw') {
-
-          // data field only matters if dataMode!=raw
-        } else
-        if (model === 'request' &&
-        pKey === 'rawModeData' && remoteChange.data.dataMode !== 'raw') {
-
-          // rawModeData field only matters if dataMode==raw
-        } else
-        if (!areChangeSetsEqual(localUpdates[pKey], remoteChange.data[pKey])) {
-          anyRowConflicting = true;
-          ret_template_temp.key = pKey;
-          let localChangeToShow = localUpdates[pKey];
-          let remoteChangeToShow = remoteChange.data[pKey];
-          if (pKey == 'data' && remoteChange.data.dataMode == 'raw') {
-            // change
-            localChangeToShow = localUpdates.rawModeData;
-            remoteChangeToShow = remoteChangeToShow[0];
-            remoteChange.data[pKey] = remoteChangeToShow;
-            localUpdates[pKey] = localChangeToShow;
-          }
-          let oldLocalChange = _.cloneDeep(localChangeToShow);
-
-          if (pKey === 'folder') {
-            // Custom value shown for a transfer conflict (request.folder is conflicting)
-            // @todo numaan read and fill in folder name
-            // var targetFolder = pm.collections.getFolderById(localChangeToShow);
-            if (localChangeToShow) {
-              localChangeToShow = '[In another folder]';
-            } else
-            {
-              localChangeToShow = '[Not in a folder]';
-            }
-
-            // @todo numaan read and fill in folder name
-            // targetFolder = pm.collections.getFolderById(remoteChangeToShow);
-            if (remoteChangeToShow) {
-              remoteChangeToShow = '[In another folder]';
-            } else
-            {
-              remoteChangeToShow = '[Not in a folder]';
-            }
-          } else
-          {
-            if (_.isArray(localChangeToShow)) {
-              localChangeToShow = JSON.stringify(localChangeToShow).replace(/":"/g, '": "').replace(/","/g, '", "');
-            } else
-            if (_.isObject(localChangeToShow)) {
-              localChangeToShow = JSON.stringify(__WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].objectDiff(remoteChangeToShow, localChangeToShow)).replace(/":"/g, '": "').replace(/","/g, '", "');
-            }
-
-            if (_.isArray(remoteChangeToShow)) {
-              remoteChangeToShow = JSON.stringify(remoteChangeToShow).replace(/":"/g, '": "').replace(/","/g, '", "');
-            } else
-            if (_.isObject(remoteChangeToShow)) {
-              remoteChangeToShow = JSON.stringify(__WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].objectDiff(oldLocalChange, remoteChangeToShow)).replace(/":"/g, '": "').replace(/","/g, '", "');
-            }
-          }
-
-          // ret_template_temp.serverValue = "Set to: " + remoteChangeToShow;
-          // ret_template_temp.localValue = "Set to: " + localChangeToShow;
-          ret_template_temp.serverValue = remoteChangeToShow;
-          ret_template_temp.localValue = localChangeToShow;
-
-          ret_template_temp.revision = remoteChange.revision + subRevision;
-          subRevision += 0.001;
-
-          // Hack if the key is globals
-          if (pKey === 'globals' && model === 'user') {
-            setGlobalConflictMessage(ret_template_temp, JSON.stringify(localUpdates.globals), JSON.stringify(remoteChange.data.globals));
-          }
-
-          // remove all unnessecary keys from the change
-          /* for(var key1 in ret_template_temp.localChange.data) {
-              if(key1!=="id" && key1!==pKey && !(model=="folder" && key1==="collection")) {
-                  delete ret_template_temp.localChange.data[key1];
-                  delete ret_template_temp.remoteChange.data[key1];
-              }
-          }*/
-
-          ret.push(_.clone(ret_template_temp));
-        }
-      }
-    }
-
-    // if there's no row conflicting with this change
-    if (anyRowConflicting === false) {
-      crState.clientChangesetsToBeDropped.push(localChange);
-      return null;
-    }
-  }
-
-  if (localChange.action === 'update' && remoteChange.action === 'update') {
-    localAction = 'Updated';
-    remoteAction = 'Updated';
-
-    let localUpdates = _.cloneDeep(_.get(localChange, 'data.instance'));
-
-    var pKeys = [];
-    for (var pKeysIterator in localUpdates) {
-      if (localUpdates.hasOwnProperty(pKeysIterator)) {
-        pKeys.push(pKeysIterator);
-      }
-    }
-    var numKeys = pKeys.length;
-
-    // get changed keys
-
-    let subRevision = 0.001;
-
-    // for(var pKey in localUpdates) {
-    for (var i = 0; i < numKeys; i++) {
-      let ret_template_temp = _.cloneDeep(ret_template);
-      ret_template_temp.localAction = localAction;
-      ret_template_temp.remoteAction = remoteAction;
-
-      let pKey = pKeys[i];
-
-      // if same key exists on both sides
-      if (localUpdates.hasOwnProperty(pKey) && remoteChange.data && remoteChange.data.hasOwnProperty(pKey)) {
-        ret_template_temp.showRow = true;
-        if (genericFieldsToIgnore.indexOf(pKey) !== -1) {
-          ret_template_temp.key = pKey;
-          ret_template_temp.revision = remoteChange.revision + subRevision;
-          ret_template_temp.showRow = false;
-
-          // ret.push(_.clone(ret_template_temp));
-        } else
-        if (fieldsToIgnore[model] && fieldsToIgnore[model].indexOf(pKey) !== -1) {
-          ret_template_temp.key = pKey;
-          ret_template_temp.revision = remoteChange.revision + subRevision;
-          ret_template_temp.showRow = false;
-
-          // ret.push(_.clone(ret_template_temp));
-        } else
-        if (remoteChange.data[pKey] == 'null' && localUpdates[pKey] == null || remoteChange.data[pKey] == null && localUpdates[pKey] == 'null') {
-          // do nothing
-        } else
-        if (model === 'request' &&
-        pKey === 'data' && remoteChange.data.dataMode === 'raw') {
-
-          // data field only matters if dataMode!=raw
-        } else
-        if (model === 'request' &&
-        pKey === 'rawModeData' && remoteChange.data.dataMode !== 'raw') {
-
-          // rawModeData field only matters if dataMode==raw
-        } else
-        if (model === 'workspace' && _.includes(['dependencies', 'members'], pKey)) {
-          // dont show conflicts for workspace.dependencies/members
-        } else
-        if (!areChangeSetsEqual(localUpdates[pKey], remoteChange.data[pKey])) {
-          ret_template_temp.key = pKey;
-
-          // Replace so that word-break works correctly
-          let localChangeToShow = localUpdates[pKey];
-          let remoteChangeToShow = remoteChange.data[pKey];
-
-          if (pKey == 'data' && remoteChange.data.dataMode == 'raw') {
-            // change
-            localChangeToShow = localUpdates.rawModeData;
-            remoteChangeToShow = remoteChangeToShow[0];
-          }
-
-          let oldLocalChange = _.cloneDeep(localChangeToShow);
-
-          if (pKey === 'folder') {
-            // Custom value shown for a transfer conflict (request.folder is conflicting)
-            // @todo numaan change this to read folder name
-            // var targetFolder = pm.collections.getFolderById(localChangeToShow);
-            if (localChangeToShow) {
-              localChangeToShow = '[In another folder]';
-            } else
-            {
-              localChangeToShow = '[Not in a folder]';
-            }
-
-            // targetFolder = pm.collections.getFolderById(remoteChangeToShow);
-            // @todo numaan change this to read folder name
-            if (remoteChangeToShow) {
-              remoteChangeToShow = '[In another folder]';
-            } else
-            {
-              remoteChangeToShow = '[Not in a folder]';
-            }
-          } else
-
-          if (pKey === 'events') {
-            let diffObj = getEventsDiff(localUpdates.events, remoteChange.data.events);
-            if (!_.isEmpty(diffObj.key)) {
-              ret_template_temp.key = diffObj.key.join('&');
-              localChangeToShow = JSON.stringify(diffObj.localChange);
-              remoteChangeToShow = JSON.stringify(diffObj.remoteChange);
-            }
-          } else
-          {
-            if (_.isArray(localChangeToShow)) {
-              localChangeToShow = JSON.stringify(localChangeToShow).replace(/":"/g, '": "').replace(/","/g, '", "');
-            } else
-            if (_.isObject(localChangeToShow)) {
-              localChangeToShow = JSON.stringify(__WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].objectDiff(remoteChangeToShow, localChangeToShow)).replace(/":"/g, '": "').replace(/","/g, '", "');
-            }
-
-            if (_.isArray(remoteChangeToShow)) {
-              remoteChangeToShow = JSON.stringify(remoteChangeToShow).replace(/":"/g, '": "').replace(/","/g, '", "');
-            } else
-            if (_.isObject(remoteChangeToShow)) {
-              remoteChangeToShow = JSON.stringify(__WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].objectDiff(oldLocalChange, remoteChangeToShow)).replace(/":"/g, '": "').replace(/","/g, '", "');
-            }
-          }
-
-
-          ret_template_temp.serverValue = 'Updated to: ' + remoteChangeToShow;
-          ret_template_temp.localValue = 'Updated to: ' + localChangeToShow;
-
-          ret_template_temp.revision = remoteChange.revision + subRevision;
-          subRevision += 0.001;
-
-          // Hack if the key is globals
-          if (pKey === 'globals' && model === 'user') {
-            setGlobalConflictMessage(ret_template_temp, localUpdates.globals, remoteChange.data.globals);
-          }
-
-          ret.push(_.clone(ret_template_temp));
-        }
-      }
-    }
-  } else
-  if (localChange.action === 'destroy' && remoteChange.action === 'update') {
-    localAction = 'Deleted';
-    remoteAction = 'Updated';
-    let ret_template_temp = _.clone(ret_template);
-    ret_template_temp.localAction = localAction;
-    ret_template_temp.serverValue = 'Updated to: ' + JSON.stringify(remoteChange.data);
-    ret_template_temp.localValue = 'Deleted';
-    ret_template_temp.remoteAction = remoteAction;
-    ret_template_temp.key = 'Whole ' + model; // "Whole collection"
-    ret.push(ret_template_temp);
-  } else
-  if (localChange.action === 'update' && remoteChange.action === 'destroy') {
-    localAction = 'Updated';
-    remoteAction = 'Deleted';
-    let ret_template_temp = _.clone(ret_template);
-    ret_template_temp.localAction = localAction;
-    ret_template_temp.remoteAction = remoteAction;
-    ret_template_temp.serverValue = 'Deleted';
-    ret_template_temp.localValue = 'Updated to: ' + JSON.stringify(_.get(localChange, 'data.instance'));
-    ret_template_temp.key = 'Whole ' + model; // "Whole collection"
-    ret.push(ret_template_temp);
-  } else
-  if (localChange.action === 'transfer' && remoteChange.action === 'transfer') {
-    localAction = 'Moved';
-    remoteAction = 'Moved';
-    let ret_template_temp = _.clone(ret_template);
-    ret_template_temp.key = 'Destination';
-
-    ret_template_temp.localAction = localAction;
-    ret_template_temp.remoteAction = remoteAction;
-    ret_template_temp.serverValue = 'Moved to: ' + remoteChange.data.to.model + ':' + remoteChange.data.to.model_id;
-    ret_template_temp.localValue = 'Moved to: ' + localChange.data.to.model + ':' + localChange.data.to.modelId;
-    ret.push(ret_template_temp);
-  } else
-  if (localChange.action === 'share' && remoteChange.action === 'share') {
-    localAction = 'Permissions Updated';
-    remoteAction = 'Permissions Updated';
-    let ret_template_temp = _.clone(ret_template);
-    ret_template_temp.key = 'Permissions';
-
-    ret_template_temp.localAction = localAction;
-    ret_template_temp.remoteAction = remoteAction;
-    ret_template_temp.serverValue = JSON.stringify({
-      team: remoteChange.data.team,
-      users: remoteChange.data.users },
-    null, 2);
-    ret_template_temp.localValue = JSON.stringify({
-      team: localChange.data.team,
-      users: localChange.data.users },
-    null, 2);
-    ret.push(ret_template_temp);
-  }
-
-  return ret;
-}
-
-/**
-   * For any given two changesets it look for equality,
-   * The only exception is it will treat all the falsy values equally.
-   * @param {*} LocalChangeset to compare.
-   * @param {*} RemoteChangeset to compare.
-   * @returns {Boolean} Whether the given two changesets are equal or not.
-   */
-function areChangeSetsEqual(local, remote) {
-  return _.isEqualWith(local, remote, (obj, other) => {
-    // Checks for all empty values ("", null, undefined, {}, []), will be treated equally
-    if (_.isEmpty(obj) && _.isEmpty(other)) {
-      return true;
-    }
-    return; // This means equality will be taken care by default isEqual methods.
-  });
-}
-
-/**
-   * This will sanitize the remotechangeset data.
-   * @param {*} remoteChange to sanitize.
-   * @returns {*} the sanitized data of the remoteChange provided.
-   */
-function sanitizeRemoteChangeData(remoteChange) {
-  let model = _.get(remoteChange, 'meta.model');
-
-  // we are sanitizing the environment values coming from the sync server
-  // As, we figured out in some cases of the app, there is an extra property hovered went along with the data.
-  if (model === 'environment' && _.isArray(_.get(remoteChange, 'data.values'))) {
-
-    remoteChange.data.values = _.map(remoteChange.data.values, value => {
-      return _.pick(value, ['enabled', 'key', 'type', 'value']);
-    });
-  }
-  return remoteChange.data;
-}
-
-/**
-   * create diff for events
-   *
-   * @param {any} localData
-   * @param {any} remoteData
-   * @returns
-   */
-function getEventsDiff(localData, remoteData) {
-  let localEvents = new __WEBPACK_IMPORTED_MODULE_0_postman_collection__["EventList"]({}, localData),
-  localPrScript = _.invoke(_.head(localEvents.listenersOwn('prerequest')), 'script.toSource'),
-  localTests = _.invoke(_.head(localEvents.listenersOwn('test')), 'script.toSource'),
-  remoteEvents = new __WEBPACK_IMPORTED_MODULE_0_postman_collection__["EventList"]({}, remoteData),
-  remotePrScript = _.invoke(_.head(remoteEvents.listenersOwn('prerequest')), 'script.toSource'),
-  remoteTests = _.invoke(_.head(remoteEvents.listenersOwn('test')), 'script.toSource'),
-  changesObj = {
-    key: [],
-    localChange: {},
-    remoteChange: {} };
-
-
-  if (!_.isEqual(_.trim(localPrScript), _.trim(remotePrScript))) {
-    changesObj.key.push('Pre-request Script');
-    changesObj.localChange['Pre-request Script'] = localPrScript;
-    changesObj.remoteChange['Pre-request Script'] = remotePrScript;
-  }
-  if (!_.isEqual(_.trim(localTests), _.trim(remoteTests))) {
-    changesObj.key.push('Tests');
-    changesObj.localChange['tests'] = localTests;
-    changesObj.remoteChange['tests'] = remoteTests;
-  }
-  return changesObj;
-}
-
-/**
-   * JSON string to show in the conflict modal (because globals are a property of the user)
-   * @param global
-   * @returns {Array}
-   * @private
-   */
-function getJsonStringFromGlobal(global) {
-  if (!(global instanceof Array)) {
-    return [];
-  }
-  var numGlobals = global.length;
-  var obj = [];
-  for (var i = 0; i < numGlobals; i++) {
-    var thisObj = {};
-    thisObj[global[i].key] = global[i].value;
-    obj.push(thisObj);
-  }
-  return obj;
-}
-
-/**
-   * Get conflict message for globals. (Has to be different since it's part of the users object)
-   * @param ret_template_temp
-   * @param localGlobals
-   * @param remoteGlobals
-   * @private
-   */
-function setGlobalConflictMessage(ret_template_temp, localGlobals, remoteGlobals) {
-  var localValue = 'Updated to ' + JSON.stringify(getJsonStringFromGlobal(localGlobals), null, 2);
-  var serverValue = 'Updated to ' + JSON.stringify(getJsonStringFromGlobal(remoteGlobals), null, 2);
-  ret_template_temp.serverValue = serverValue;
-  ret_template_temp.localValue = localValue;
-}
-
-/**
-   * apply user resolution;
-   *
-   * @param {any} crState
-   */
-function applyUserResolution(crState) {
-  _.forEach(crState.userResolution, resolution => {
-    var model = resolution.model,
-    model_id = resolution.model_id,
-    key = resolution.key,
-    remoteAction = resolution.remoteAction,
-    localAction = resolution.localAction,
-    choseLocal = resolution.isLocalSelected,
-    changeToSync,value;
-
-    if (choseLocal) {
-      changeToSync = resolution.localChange;
-      value = resolution.localValue;
-    } else
-    {
-      changeToSync = resolution.remoteChange,
-      value = resolution.serverValue;
-    }
-
-    if (remoteAction === 'Updated' && localAction === 'Updated') {
-      // id enetity verb data timestamp
-      if (choseLocal) {
-        updateCRChangesetToServerProp(resolution.localChange, key, _.get(changeToSync, ['data', 'instance', key]), changeToSync, crState);
-        createOrUpdateCRChangesetsToClient(changeToSync, key, _.get(changeToSync, ['data', 'instance', key]), crState);
-      } else
-      {
-        // Add changeToSync to the serverChangesReadyToBeProcessedQueue
-        // this should contain a revision!
-        // this.serverChangesReadyToBeSaved.push(changeToSync);
-        createOrUpdateCRChangesetsToClient(changeToSync, key, _.get(changeToSync, ['data', key]), crState);
-
-        // don't delete the local change
-        updateCRChangesetToServerProp(resolution.localChange, key, _.get(changeToSync, ['data', key]), changeToSync, crState);
-      }
-    } else
-    if (remoteAction === 'Created' && localAction === 'Created') {
-      if (choseLocal) {
-        // change update to create. (the entity needs to be recreated on the server)
-        // if the local change is selected, only the update needs to be sent to the server
-        changeToSync.action = 'update';
-
-        if (key === 'folder' && _.includes(['folder', 'request'], model)) {
-          // transfer to folder
-          let destFolder = _.get(changeToSync, 'data.instance.folder'),
-          owner = changeToSync.data.owner,
-          entityId = changeToSync.data.modelId,
-          collectionId = _.get(changeToSync, 'data.instance.collection');
-
-          changeToSync.action = 'transfer';
-          if (destFolder) {
-            // transferring to a folder
-            changeToSync.data = {
-              to: {
-                model: 'folder',
-                modelId: destFolder,
-                owner: owner },
-
-              modelId: entityId,
-              owner: owner };
-
-          } else
-          {
-            // transfer to the collection
-            changeToSync.data = {
-              to: {
-                model: 'collection',
-                modelId: collectionId,
-                owner: owner },
-
-              modelId: entityId,
-              owner: owner };
-
-          }
-          updateCRChangesetsToServer(resolution.localChange, changeToSync, crState);
-        } else
-        {
-          updateCRChangesetToServerProp(resolution.localChange, key, _.get(changeToSync, ['data', 'instance', key]), changeToSync, crState);
-        }
-
-        createOrUpdateCRChangesetsToClient(changeToSync, key, _.get(changeToSync, ['data', 'instance', key]), crState);
-      } else
-      {
-        // you choose the server. In this case, no need to send the local change.
-        if (changeToSync.meta) {
-          changeToSync.meta.action = 'update';
-        }
-        changeToSync.action = 'update';
-        changeToSync.model = model;
-        changeToSync.model_id = model_id;
-
-        // handle transfer conflicts
-        if (key === 'folder' && model === 'request') {
-          // transfer to folder
-          let destFolder = changeToSync.data.folder,
-          owner = changeToSync.data.owner,
-          rid = changeToSync.data.id,
-          rCollection = changeToSync.data.collection;
-          changeToSync.action = 'transfer';
-          if (destFolder) {
-            // transferring to a folder
-            changeToSync.verb = 'transfer';
-            changeToSync.data = {
-              to: {
-                model: 'folder',
-                modelId: destFolder,
-                owner: owner },
-
-              from: {
-                model: 'collection',
-                modelId: rCollection,
-                owner: owner },
-
-              modelId: rCollection,
-              owner: owner };
-
-          } else
-          {
-            // transfer to the collection
-            changeToSync.verb = 'transfer';
-            changeToSync.data = {
-              to: {
-                model: 'collection',
-                model_id: rCollection,
-                owner: owner },
-
-              id: rid,
-              collectionId: rCollection,
-              owner: owner };
-
-          }
-
-          if (changeToSync.meta) {
-            changeToSync.meta.action = 'transfer';
-          }
-        }
-
-        createOrUpdateCRChangesetsToClient(changeToSync, key, _.get(changeToSync, ['data', key]), crState);
-        updateCRChangesetToServerProp(resolution.localChange, key, _.get(changeToSync, ['data', key]), changeToSync, crState);
-      }
-    } else
-    if (remoteAction === 'Deleted' && localAction === 'Updated') {
-      if (choseLocal) {
-        // change update to create. (the entity needs to be recreated on the server)
-        changeToSync.verb = 'create';
-        updateCRChangesetsToServer(resolution.localChange, changeToSync, crState);
-      } else
-      {
-        // you choose the server. In this case, no need to send the local change.
-        crState.changesetsToClient.push(changeToSync);
-
-        deleteCRChangesetToServer(resolution.localChange, crState);
-      }
-    } else
-    if (remoteAction === 'Updated' && localAction === 'Deleted') {
-      if (choseLocal) {
-        // don't do anything - the local unsyncedChange is still there
-      } else
-      {
-        crState.changesetsToClient.push(changeToSync);
-        deleteCRChangesetToServer(resolution.localChange, crState);
-      }
-    } else
-    if (remoteAction === 'Moved' && localAction === 'Moved') {
-      if (choseLocal) {
-        updateCRChangesetsToServer(resolution.localChange, changeToSync, crState);
-      } else
-      {
-        crState.changesetsToClient.push(changeToSync);
-        deleteCRChangesetToServer(resolution.localChange, crState);
-      }
-    }
-  });
-}
-
-/**
-   * Create-or-updates a change in the server queue. Create when they come in for the first time. Update after conflict resolution
-   * @param resolutionChangeset
-   * @param key
-   * @param value
-   */
-function createOrUpdateCRChangesetsToClient(resolutionChangeset, key, value, crState) {
-  let changesetsToClient = crState.changesetsToClient,
-  changesetToBeUpdated = findIdenticalChangeset(resolutionChangeset, changesetsToClient);
-
-  if (changesetToBeUpdated) {
-    changesetToBeUpdated.data[key] = value;
-  } else
-  {
-    crState.changesetsToClient.push(resolutionChangeset);
-  }
-}
-
-/**
-   * Called during conflict-resolution, when an unsynced change in the queue has to be updated because
-   * a different value was chosen in the modal
-   * @param clientChangeset
-   * @param key
-   * @param value
-   * @param resolutionChangeset
-   * @private
-   */
-function updateCRChangesetToServerProp(clientChangeset, key, value, resolutionChangeset, crState) {
-  if (resolutionChangeset.action === 'transfer') {
-    updateCRChangesetsToServer(clientChangeset, resolutionChangeset, crState);
-    return;
-  }
-
-  let changesetToBeUpdated = findIdenticalChangeset(clientChangeset, crState.changesetsToServer);
-
-  if (!changesetToBeUpdated) {
-    updateCRChangesetsToServer(clientChangeset, resolutionChangeset, crState);
-    return;
-  }
-
-  if (changesetToBeUpdated.hasOwnProperty('data')) {
-    _.set(changesetToBeUpdated, ['data', 'instance', key], value);
-
-    if (key !== 'folder') {
-      changesetToBeUpdated.action = 'update';
-    }
-  }
-}
-
-/**
-   * Called during the conflict resolution process, when an existing unsynced change (in the queue) must be updated with new values
-   * @param changeId
-   * @param newChange
-   * @returns {number}
-   * @private
-   */
-function updateCRChangesetsToServer(clientChangeset, resolutionChangeset, crState) {
-  if (resolutionChangeset.action === 'transfer') {
-    crState.changesetsToServer.push(resolutionChangeset);
-    return;
-  }
-
-  let changesetToBeUpdated = findIdenticalChangeset(clientChangeset, crState.changesetsToServer);
-
-  if (!changesetToBeUpdated) {
-    crState.changesetsToServer.push(resolutionChangeset);
-    return;
-  }
-
-  let changesetIndex = findIndexIndenticalChangeset(clientChangeset, crState.changesetsToServer);
-  if (changesetIndex === -1) {
-    crState.changesetsToServer.push(resolutionChangeset);
-    return;
-  }
-
-  crState.changesetsToServer.splice(changesetIndex, 1, resolutionChangeset);
-}
-
-/**
-   * Deleting an unsynced change during conflict resolution
-   * @param changeId
-   * @returns {number}
-   */
-function deleteCRChangesetToServer(clientChangeset, crState) {
-  crState.changesetsToServer = _.reject(crState.changesetsToServer, changesetToServer => {
-    return isIdenticalChangeset(clientChangeset, changesetToServer);
-  });
-}
-
-/**
-   * detect conflicts
-   *
-   * @export
-   * @param {any} crState
-   */
-function detectConflicts(crState) {
-  _.forEach(crState.changesetsFromServer, serverChangeset => {
-    if (serverChangeset.meta.model === 'user') {
-      serverChangeset.model_id = 'NOID';
-    }
-
-    if (serverChangeset.meta.action === 'create' && serverChangeset.meta.model === 'collection') {
-      let clientChangeForCreateCollection = _.find(crState.changesetsFromClient,
-      clientChangeset => {
-        return _.includes(['create', 'import'], _.get(clientChangeset, 'action')) &&
-        _.get(clientChangeset, 'data.modelId') === serverChangeset.model_id;
-      });
-
-      if (clientChangeForCreateCollection) {
-        Object(__WEBPACK_IMPORTED_MODULE_3__SyncManagerHelper__["d" /* markModelForForceSync */])({
-          model: 'collection',
-          modelId: _.get(clientChangeForCreateCollection, 'data.modelId') });
-
-        crState.clientChangesetsToBeDropped.push(clientChangeForCreateCollection);
-      }
-    }
-
-    // check for conflicts
-    var clientChange = findIdenticalChangeset(serverChangeset, crState.changesetsFromClient);
-    if (clientChange) {
-      /* -- FOR POSTMAN DEMO COLLECTION CONFLICTS, DELETE LOCAL CHANGES AND DON'T SHOW CONFLICTS--*/
-
-      // for conflicts in the folders, requests, or responses
-      if (window.postman_predef_collections.indexOf(_.get(clientChange, 'data.instance.collection')) !== -1) {
-        console.log('Echo collection conflict', clientChange);
-        crState.clientChangesetsToBeDropped.push(clientChange);
-        crState.clientModelTreesToBeDropped.push({
-          model: 'collection',
-          modelId: _.get(clientChange, 'data.instance.collection') });
-
-        clientChange = null;
-      }
-
-      // for conflicts in the collection itself
-      else if (window.postman_predef_collections.indexOf(_.get(clientChange, 'data.modelId')) !== -1) {
-          console.log('Echo collection conflict', clientChange);
-          crState.clientChangesetsToBeDropped.push(clientChange);
-          crState.clientModelTreesToBeDropped.push({
-            model: 'collection',
-            modelId: _.get(clientChange, 'data.modelId') });
-
-          clientChange = null;
-        }
-
-      // HACK TO AUTO RESOLVE WORKSPACE DEP UPDATE CHANGESETS
-      // 1. Merge client diff on server snapshot
-      // 2. Run them through update-update detection
-      // 3. Skip dependencies key check in update-update conflicts
-      if (clientChange && clientChange.model === 'workspace' && clientChange.action === 'update') {
-        if (_.has(clientChange, 'data.instance.dependencies') || _.has(clientChange, 'data.instance.members')) {
-          let clientDepsDiff = _.get(clientChange, 'data.instance.dependencies'),
-          serverDepsSnapshot = _.get(serverChangeset, 'data.dependencies'),
-          modifiedServerDeps = Object(__WEBPACK_IMPORTED_MODULE_2__utils_workspace_helper__["a" /* applyWorkspaceDependencyDiff */])(serverDepsSnapshot, clientDepsDiff);
-
-          _.set(serverChangeset, 'data.dependencies', modifiedServerDeps);
-
-          // @todo: members conflicts
-
-          crState.changesetsToClient.push(serverChangeset);
-          return;
-        }
-      }
-    }
-
-    if (clientChange === null) {
-      crState.changesetsToClient.push(serverChangeset);
-      return;
-    }
-
-    var conflictRows = getConflictRows(clientChange, serverChangeset, crState);
-
-    // getConflictRows returns an array of rows to be displayed in the conflict resolver table
-    if (conflictRows !== null && conflictRows.length > 0) {
-      // make sure there's a row with showRow==true
-      if (_.some(conflictRows, 'showRow')) {
-        addConflictRows(conflictRows, crState.conflicts);
-      }
-    }
-  });
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2875:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(47);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sync_client__ = __webpack_require__(1202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sync_client__ = __webpack_require__(1340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sync_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_sync_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sails_io__ = __webpack_require__(2876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sails_io__ = __webpack_require__(3117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_sails_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_sails_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__ = __webpack_require__(1282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_SyncService__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_DatabaseService__ = __webpack_require__(1203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__ = __webpack_require__(1023);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHandler__ = __webpack_require__(2906);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__SyncOutgoingHelpers__ = __webpack_require__(2907);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__ = __webpack_require__(1216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_AccessControl_DbRollbackService__ = __webpack_require__(757);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_pipelines_app_action__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_sync_helpers_create_changeset__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_backbone__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_backbone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_sync_timeline_helpers_RealtimeSyncMessagesService__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_SyncWindowService__ = __webpack_require__(1217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_sync_helpers_SocketEventsService__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_ConflictResolutionHelpers__ = __webpack_require__(1035);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_sync_timeline_helpers_SocketStatusService__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__constants_SyncStatusConstants__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncNotificationsService__ = __webpack_require__(2908);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncTeamEventsService__ = __webpack_require__(2909);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_sync_timeline_helpers_SyncClientService__ = __webpack_require__(1061);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__ = __webpack_require__(1449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_SyncService__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_DatabaseService__ = __webpack_require__(1341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__SyncOutgoingHandler__ = __webpack_require__(1138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHelpers__ = __webpack_require__(3147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__ = __webpack_require__(1354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_AccessControl_DbRollbackService__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_pipelines_app_action__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__ = __webpack_require__(752);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_sync_helpers_create_changeset__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_backbone__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_backbone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_sync_timeline_helpers__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers_RealtimeSyncMessagesService__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_SyncWindowService__ = __webpack_require__(1355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_sync_helpers_SocketEventsService__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_sync_timeline_helpers_ConflictResolutionHelpers__ = __webpack_require__(1148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_SocketStatusService__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__constants_SyncStatusConstants__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_sync_timeline_helpers_SyncNotificationsService__ = __webpack_require__(3148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncTeamEventsService__ = __webpack_require__(3149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncClientService__ = __webpack_require__(1173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_sync_timeline_helpers_TimelinesStatusService__ = __webpack_require__(1356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_sync_timeline_helpers_index__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_services_DataIntegrityService__ = __webpack_require__(3150);
+
+
 
 
 
@@ -9249,7 +8055,7 @@ SYNC_CLIENT_ID = 'SYNC_CLIENT_DEFAULT';
  * @returns
  */
 function getClientStateFromDb() {
-  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
   findOne(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
   then(clientState => {
     if (!clientState) {
@@ -9270,7 +8076,7 @@ function getClientStateFromDb() {
    * @returns
    */
 function setClientRevisionInDb(revision) {
-  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
   update(
   SYNC_CLIENT_MODEL_NAME,
   { id: SYNC_CLIENT_ID, revision: revision }).
@@ -9286,7 +8092,7 @@ function setClientRevisionInDb(revision) {
    * @returns
    */
 function setClientTimestampInDb(timestamp) {
-  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
   update(
   SYNC_CLIENT_MODEL_NAME,
   { id: SYNC_CLIENT_ID, timestamp: timestamp }).
@@ -9315,16 +8121,16 @@ function getDefaultClientInDb() {
    * @returns
    */
 function resetClientInDb() {
-  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
   findOne(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
   then(client => {
     if (client) {
-      return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+      return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
       update(SYNC_CLIENT_MODEL_NAME, getDefaultClientInDb()).
       then(console.log.bind(console, 'Client reset in DB'));
     }
 
-    return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+    return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
     create(SYNC_CLIENT_MODEL_NAME, getDefaultClientInDb()).
     then(console.log.bind(console, 'Client reset in DB'));
   });
@@ -9336,14 +8142,14 @@ function resetClientInDb() {
    * @returns
    */
 function initializeClientInDbIfNeeded() {
-  return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+  return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
   findOne(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
   then(client => {
     if (client) {
       return;
     }
 
-    return __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].
+    return __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].
     create(SYNC_CLIENT_MODEL_NAME, getDefaultClientInDb()).
     then(() => {
       // console.log.bind(console, 'Sync client initialized in DB')
@@ -9360,7 +8166,7 @@ function broadcastChangesetResponse(changeset, response) {
   let syncChangesetChannel = pm.eventBus.channel('sync-changeset-events');
 
   // @todo change to consistent event format
-  syncChangesetChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('sent-to-server', 'sync-changeset', {
+  syncChangesetChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('sent-to-server', 'sync-changeset', {
     changeset: changeset,
     response: response }));
 
@@ -9375,7 +8181,7 @@ function broadcastRealtimeEvent(changeset) {
   let syncIncomingChannel = pm.eventBus.channel('sync-realtime-events');
 
   // @todo change to consistent event format
-  syncIncomingChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('received', 'sync-realtime', { changeset: changeset }));
+  syncIncomingChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('received', 'sync-realtime', { changeset: changeset }));
 }
 
 /**
@@ -9383,7 +8189,7 @@ function broadcastRealtimeEvent(changeset) {
    *
    * @class SyncManager
    */
-var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.extend({
+var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_19_backbone___default.a.Model.extend({
   sailsIO: null,
   defaults: function () {
     return {
@@ -9407,11 +8213,11 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     this.on('change:nextReconnectTime', this.handleReconnectTimeChange, this);
 
     this.on('change:timeTillReconnect', (model, value) => {
-      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('updated', 'timeTillReconnect', { timeTillReconnect: value }));
+      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('updated', 'timeTillReconnect', { timeTillReconnect: value }));
     });
 
     this.on('change:currentSyncStatus', (model, value) => {
-      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: value }));
+      this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: value }));
     });
 
     // hacks
@@ -9437,12 +8243,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
   attachSyncProxyEventHandlers: function () {
     this.syncManagerInternalDispose = this.syncInternalChannel.subscribe(event => {
-      let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["g" /* getEventNamespace */])(event),
-      eventName = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["f" /* getEventName */])(event),
-      eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+      let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["g" /* getEventNamespace */])(event),
+      eventName = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["f" /* getEventName */])(event),
+      eventData = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["d" /* getEventData */])(event);
+
+      if (eventName === 'verify' && eventNamespace === 'sync-data-integrity') {
+        __WEBPACK_IMPORTED_MODULE_32__modules_services_DataIntegrityService__["a" /* default */].verifyUnsyncedLocalData().
+        then(data => {
+          this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('verified', 'sync-data-integrity', data));
+        });
+      }
 
       if (eventName === 'hydrate' && eventNamespace === 'currentSyncStatus') {
-        this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: this.get('currentSyncStatus') }));
+        this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('updated', 'currentSyncStatus', { currentSyncStatus: this.get('currentSyncStatus') }));
         return;
       }
 
@@ -9489,7 +8302,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     gatekeeperEvents.subscribe(event => {
       if (event.name === 'websocket') {
         pm.logger.warn(`SyncManagerNew~attachGateKeeperHandlers: listening to ${event.name} event`, event);
-        let eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+        let eventData = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["d" /* getEventData */])(event);
         if (!eventData) {
           pm.logger.error('SyncManagerNew~attachGateKeeperHandlers: gatekeeper event for websocket without a value', eventData);
           return;
@@ -9504,7 +8317,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
       if (event.name === 'notification') {
         pm.logger.warn(`SyncManagerNew~attachGateKeeperHandlers: listening to ${event.name} event`, event);
-        let eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+        let eventData = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["d" /* getEventData */])(event);
 
         if (!eventData) {
           pm.logger.error('SyncManagerNew~attachGateKeeperHandlers: gatekeeper event for notification without a value', eventData);
@@ -9513,13 +8326,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
         // disable notification handlers if notifications is turned off
         if (!eventData.isEnabled) {
-          Object(__WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncNotificationsService__["b" /* unsubscribeNotificationsListeners */])();
+          Object(__WEBPACK_IMPORTED_MODULE_27__modules_sync_timeline_helpers_SyncNotificationsService__["b" /* unsubscribeNotificationsListeners */])();
         }
       }
 
       if (event.name === 'sync') {
         pm.logger.warn(`SyncManagerNew~attachGateKeeperHandlers: listening to ${event.name} event`, event);
-        let eventData = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event);
+        let eventData = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["d" /* getEventData */])(event);
 
         if (!eventData) {
           pm.logger.error('SyncManagerNew~attachGateKeeperHandlers: gatekeeper event for sync without a value', eventData);
@@ -9534,7 +8347,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
         // disable sync handlers if notifications is turned off
         else {
-            Object(__WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers__["e" /* unsubscribeAllTimelines */])();
+            Object(__WEBPACK_IMPORTED_MODULE_20__modules_sync_timeline_helpers__["f" /* unsubscribeAllTimelines */])();
           }
       }
     });
@@ -9556,9 +8369,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   attachSyncClientEventHandlers: function () {
     // @todo: is there are better way to add
     pm.eventBus.channel('sync-client').subscribe(event => {
-      if (Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["f" /* getEventName */])(event) === 'addChangesets') {
+      if (Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["f" /* getEventName */])(event) === 'addChangesets') {
         console.log('pushing changesets sync client');
-        return this.addChangesetsToSyncClient(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["d" /* getEventData */])(event), { process: false });
+        return this.addChangesetsToSyncClient(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["d" /* getEventData */])(event), { process: false });
       }
     });
   },
@@ -9575,8 +8388,8 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
     initializeClientInDbIfNeeded();
 
-    this.markModelForForceSync = __WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */];
-    this.performPendingForceSyncs = __WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["e" /* performPendingForceSyncs */];
+    this.markModelForForceSync = __WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */];
+    this.performPendingForceSyncs = __WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["e" /* performPendingForceSyncs */];
     this.modelsToForceSync = [];
     this.modelsForceSyncedRecently = [];
     this.reconnectTimer = null;
@@ -9594,15 +8407,15 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
     this.initializeQueues();
 
-    Object(__WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_ConflictResolutionHelpers__["a" /* initialize */])();
+    Object(__WEBPACK_IMPORTED_MODULE_24__modules_sync_timeline_helpers_ConflictResolutionHelpers__["a" /* initialize */])();
     this.initializeSyncClient(err => {
       if (err) {
-        console.error('Failed to initialize SyncClient', err);
+        pm.logger.error('Failed to initialize SyncClient', err);
         pm.logger.error('SyncManager: Could not initialize Sync Client.');
         return;
       }
 
-      this.outgoingHandler = new __WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHandler__["a" /* SyncOutgoingHandler */]();
+      this.outgoingHandler = new __WEBPACK_IMPORTED_MODULE_8__SyncOutgoingHandler__["a" /* SyncOutgoingHandler */]();
 
       this.clientUserAgent = navigator.userAgent + ' ' + 'PostmanClient/' + pm.app.get('version') + ' (AppId=' + pm.app.get('installationId') + ')';
 
@@ -9617,16 +8430,16 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   initializeWatchdog() {
     // SOCKET RECONNECTION WATCHDOG
     this.onlineWatchdog = _.debounce(() => {
-      __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+      __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
       then(isEnabled => {
         if (isEnabled &&
-        Object(__WEBPACK_IMPORTED_MODULE_26__modules_sync_timeline_helpers_SocketStatusService__["a" /* getCurrentSocketStatus */])() === __WEBPACK_IMPORTED_MODULE_27__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */] &&
+        Object(__WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_SocketStatusService__["a" /* getCurrentSocketStatus */])() === __WEBPACK_IMPORTED_MODULE_26__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */] &&
         pm.syncSocket && !pm.syncSocket.isBusy()) {
           this.createSocket({ connectionMode: 'watchdog' });
         }
       }).
       catch(e => {
-        console.error('Error in getting gatekeeper information', e);
+        pm.logger.error('Error in getting gatekeeper information', e);
       });
     }, 30 * 1000, {
       leading: true,
@@ -9680,15 +8493,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     };
 
     try {
-      Object(__WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__["b" /* handleSyncMessage */])(changeset, function () {
-        pm.syncManager.updateSinceFromMessage(changeset, function (err) {
-          // log errors but move on
-          if (err) {
-            console.error('Could not update since id after processing realtime incoming changeset', err);
-          }
-          doneCb && doneCb();
-        });
-      });
+      // @todo: remove this function as part of sync manager new cleanup
     }
     catch (e) {
       ingressWatchdog && clearTimeout(ingressWatchdog);
@@ -9706,7 +8511,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     let watchdog = setTimeout(() => {
       !done && _.isFunction(cb) && cb();
       done = true;
-      console.error('SyncClient command queue recovered by watchdog: ' + command.name);
+      pm.logger.error('SyncClient command queue recovered by watchdog: ' + command.name);
     }, 60 * 1000);
 
     const doneCb = () => {
@@ -9737,7 +8542,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     let watchdog = setTimeout(() => {
       !done && _.isFunction(cb) && cb();
       done = true;
-      console.error('Sync changeset queue recovered by watchdog: ', changeset);
+      pm.logger.error('Sync changeset queue recovered by watchdog: ', changeset);
     }, 60 * 1000);
 
     const doneCb = () => {
@@ -9747,7 +8552,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     };
 
     try {
-      Object(__WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__["a" /* handleSyncChangeset */])(changeset, doneCb);
+      // @todo: remove this complete function as part of SyncManagerNew cleanup
     }
     catch (e) {
       watchdog && clearTimeout(watchdog);
@@ -9807,7 +8612,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       syncClientCommand.apply(this.syncClient, args);
     }
     catch (e) {
-      console.error('SyncClient command execution failed', e);
+      pm.logger.error('SyncClient command execution failed', e);
       cb();
     }
   },
@@ -9833,7 +8638,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   syncClientWorker: function (tasks, done) {
     console.log('sync client process worker started', tasks);
 
-    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       console.log('sync client worker stopped because no authenticated socket available yet');
       done(new Error(NO_AUTHENTICATED_CONNECTION));
       return;
@@ -9878,7 +8683,6 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
   onConflictResolutionError: function (err) {
     console.log('CR ABORTED', err);
-    pm.localChanges.pendingResolution = null;
 
     __WEBPACK_IMPORTED_MODULE_0_async___default.a.series([
     next => {
@@ -9908,27 +8712,6 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       this.onAllClientChangesProcessed(next);
     },
     next => {
-      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["h" /* performWorkspaceIntegrityCheck */])(function (err) {
-        if (err) {
-          console.warn('Could not complete workspace integrity check');
-          return next();
-        }
-
-        next();
-      });
-    },
-    next => {
-      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["g" /* performWorkspaceDependencyIntegrityCheck */])(function (err) {
-        if (err) {
-          console.warn('Could not complete workspace dependencies integrity check');
-          return next();
-        }
-
-        next();
-      });
-    },
-    next => {
-      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["f" /* performPendingIntegrityCheck */])();
       next();
     },
     next => {
@@ -9963,15 +8746,16 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     this.trigger('makeNotConnected');
   },
 
+  /**
+      * Used to trigger request initial sync for a user again if socket is connected
+      * This is triggered when the user presses the sync icon on the top bar
+      */
   _syncIconClick: function () {
-    var currentStatus = this.get('currentSyncStatus');
-    if (currentStatus === 'syncFinished') {
+    let currentSocketStatus = Object(__WEBPACK_IMPORTED_MODULE_25__modules_sync_timeline_helpers_SocketStatusService__["a" /* getCurrentSocketStatus */])();
+
+    if (currentSocketStatus === 'connected') {
+      pm.logger.info('SyncManagerNew~_syncIconClick: Requesting initial sync again');
       this.requestInitialSync();
-    } else
-    if (!this.get('connectingToSocket')) {
-      this.trigger('makeNotConnected');
-      this.set('socketConnected', false);
-      this.createSocket();
     }
   },
 
@@ -10030,16 +8814,8 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       * @param syncEnabled
       */
   setSync: function (syncEnabled) {
-    if (syncEnabled && this.get('currentSyncStatus') == 'disabledSync') {
-      this.set('currentSyncStatus', 'makeNotConnected');
-    }
-
-    if (syncEnabled == true) {
-      // this.set("loggingIn", false);
+    if (syncEnabled) {
       this.signIn({ forceConnect: true });
-    } else
-    {
-      this.trigger('disabledSync');
     }
   },
 
@@ -10074,7 +8850,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     //   delete pm.syncSocket;
     // }
     // catch (e) {
-    //   console.error('Error cleaning up existing socket', e);
+    //   pm.logger.error('Error cleaning up existing socket', e);
     // }
   },
 
@@ -10113,10 +8889,10 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     // Force disconnecting the existing socket.
     this.onAppOffline();
 
-    let recreateSyncUserEvent = Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('recreateSyncUser', 'user');
+    let recreateSyncUserEvent = Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('recreateSyncUser', 'user');
 
     // No need to wait for response as of now, if we need to show something, we can show by listening to response.
-    Object(__WEBPACK_IMPORTED_MODULE_16__modules_pipelines_app_action__["a" /* default */])(recreateSyncUserEvent);
+    Object(__WEBPACK_IMPORTED_MODULE_15__modules_pipelines_app_action__["a" /* default */])(recreateSyncUserEvent);
   },
 
   /**
@@ -10127,14 +8903,14 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       * @returns {Promise}
       */
   createSocket: function (opts = {}) {
-    return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    return __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
     then(isEnabled => {
       if (!isEnabled) {
         pm.logger.info('SyncManagerNew~createSocket - Bailed out as websocket disabled');
         return;
       }
 
-      return __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+      return __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__["a" /* default */].
       get().
       then(user => {
         let {
@@ -10178,7 +8954,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         this.set('nextReconnectTime', null);
 
         if (connectionMode === 'watchdog') {
-          __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_attempt', 'watchdog');
+          __WEBPACK_IMPORTED_MODULE_16__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_attempt', 'watchdog');
         }
       });
     });
@@ -10187,14 +8963,14 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   // call when and how - pass the model to some view.
   // or include this code there directly
   signIn: function (opts = {}) {
-    return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    return __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
     then(isWebSocketEnabled => {
       if (!isWebSocketEnabled) {
         pm.logger.info('SyncManagerNew~createSocket - Bailed out as websocket disabled');
         return Promise.reject(new Error('SyncManagerNew~createSocket - Bailed out as websocket disabled'));
       }
 
-      return __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+      return __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__["a" /* default */].
       get().
       then(user => {
         if (user.id === '0') {
@@ -10272,13 +9048,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       this.set('connectingToSocket', false);
 
       if (resetSyncProperties) {
-        __WEBPACK_IMPORTED_MODULE_11__modules_services_ModelService__["a" /* default */].delete(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
+        __WEBPACK_IMPORTED_MODULE_10__modules_services_ModelService__["a" /* default */].delete(SYNC_CLIENT_MODEL_NAME, { id: SYNC_CLIENT_ID }).
         then(() => {
           this.onClearSystemValues();
           this.trigger('disabledSync');
         }).
         catch(e => {
-          console.error('Error in deleting since', e);
+          pm.logger.error('Error in deleting since', e);
         });
       }
 
@@ -10292,7 +9068,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       return;
     }
 
-    __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+    __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
       model: 'session',
       action: 'destroy' },
     resData => {
@@ -10325,7 +9101,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         done && done();
       } catch (e) {
         // do not let errors in `done` callback go through the catch and call `done` again
-        console.error(e);
+        pm.logger.error(e);
       }
     }).
     catch(error => {
@@ -10337,7 +9113,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       * @description called ONLY when signIn is successful
       */
   requestInitialSync: function () {
-    return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    // force stop all the timelines before subscribing again
+    //  else if we dont stop all timelines,
+    // all timelines will indicate they are syncing and will skip subscribing again
+    Object(__WEBPACK_IMPORTED_MODULE_31__modules_sync_timeline_helpers_index__["a" /* forceStopAllTimelines */])();
+
+    // subscribe tot timelines
+    return __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
     then(isEnabled => {
       if (!isEnabled) {
         pm.logger.info('SyncManagerNew~requestInitialSync: Bailing out since websocket is disabled');
@@ -10345,26 +9127,26 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       }
 
       // subscribe to notification events
-      __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isNotificationEnabled().
+      __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isNotificationEnabled().
       then(isEnabled => {
-        return isEnabled && Object(__WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncNotificationsService__["a" /* subscribeToNotifications */])();
+        return isEnabled && Object(__WEBPACK_IMPORTED_MODULE_27__modules_sync_timeline_helpers_SyncNotificationsService__["a" /* subscribeToNotifications */])();
       }).
       catch(e => {
         pm.logger.warn('onSocketConnected: Could not setup realtime event subscribers for notifications', e);
       });
 
-      Object(__WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncTeamEventsService__["a" /* subscribeToTeamEvents */])().
+      Object(__WEBPACK_IMPORTED_MODULE_28__modules_sync_timeline_helpers_SyncTeamEventsService__["a" /* subscribeToTeamEvents */])().
       catch(e => {
         pm.logger.warn('onSocketConnected: Could not setup realtime event subscribers for team events', e);
       });
 
-      return __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isSyncEnabled().
+      return __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isSyncEnabled().
       then(isSyncEnabled => {
         if (!isSyncEnabled) {
           return;
         }
 
-        return __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+        return __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__["a" /* default */].
         get().
         then(userData => {
           if (!userData) {
@@ -10372,13 +9154,17 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
             return;
           }
 
-          return Object(__WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers__["c" /* syncAndSubscribeTimeline */])({ model: 'user', modelId: userData.id }).
+          return Object(__WEBPACK_IMPORTED_MODULE_20__modules_sync_timeline_helpers__["d" /* syncAndSubscribeTimeline */])({ model: 'user', modelId: userData.id }).
           then(() => {
             // used to subscribe to the models stream
             // which computes the models in view and subscribes to those entities
-            Object(__WEBPACK_IMPORTED_MODULE_23__services_SyncWindowService__["b" /* subscribeAddedModelsInWindowStream */])();
+            Object(__WEBPACK_IMPORTED_MODULE_22__services_SyncWindowService__["b" /* subscribeAddedModelsInWindowStream */])();
           });
         });
+      }).
+
+      catch(() => {
+        pm.logger.warn('SyncManagerNew:startSync: Could not start user timeline. Retry\'s over');
       });
 
     });
@@ -10396,7 +9182,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     var lastRevisionNumber = options.lastRevisionNumber,
     lastTimestamp = options.lastTimestamp;
 
-    __WEBPACK_IMPORTED_MODULE_12__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
+    __WEBPACK_IMPORTED_MODULE_11__modules_services_GateKeeperService__["a" /* default */].isWebSocketEnabled().
     then(isEnabled => {
       if (!isEnabled) {
         pm.logger.info('SyncManagerNew~_sendSyncRequest: Bailing out as websocket disabled');
@@ -10408,7 +9194,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         return;
       }
 
-      __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+      __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
         model: 'session',
         action: 'sync',
         meta: {
@@ -10471,7 +9257,6 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
           serverChanges.push(changes[i]);
         }
 
-        pm.localChanges.resolveConflicts({ changesetsFromServer: serverChanges }, { source: 'session-sync' });
         return;
       }
 
@@ -10493,7 +9278,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         return;
       }
 
-      console.error('Failure to sync.');
+      pm.logger.error('Failure to sync.');
       pm.toasts.error('There was an error while syncing. Please force sync after some time (<i>Settings > Sync > Force Sync</i>).', {
         timeout: 5000,
         dedupeId: 'failure-to-sync',
@@ -10505,12 +9290,12 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
   forceSyncAllData() {
     getClientStateFromDb().then(client => {
-      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["a" /* createChangesetsForForceSyncAllData */])((err, clientChangesets) => {
+      Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["a" /* createChangesetsForForceSyncAllData */])((err, clientChangesets) => {
         if (err) {
           return;
         }
 
-        __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+        __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
           model: 'session',
           action: 'sync',
           meta: {
@@ -10558,10 +9343,6 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
               return;
             }
 
-            pm.localChanges.resolveConflicts({
-              changesetsFromServer: filteredServerChangesets,
-              changesetsFromClient: clientChangesets },
-            { source: 'force-sync-all' });
           });
         });
       });
@@ -10595,7 +9376,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     try {
       this.syncClient.getChangesets((err, changesets) => {
         if (err) {
-          console.error('syncClient.getChangesets error', err);
+          pm.logger.error('syncClient.getChangesets error', err);
           done && done();
           return;
         }
@@ -10614,13 +9395,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       });
     }
     catch (e) {
-      console.error('SyncClient.getChangesets crash!', e);
+      pm.logger.error('SyncClient.getChangesets crash!', e);
       done && done();
     }
   },
 
   sendChangesetToServer: function (changeset, done) {
-    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       done(new Error(NO_AUTHENTICATED_CONNECTION));
       return;
     }
@@ -10706,7 +9487,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       return callback();
     }
 
-    __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+    __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__["a" /* default */].
     get().
     then(user => {
 
@@ -10722,16 +9503,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         // console.log('formatted server changeset', message);
       }
 
-      Object(__WEBPACK_IMPORTED_MODULE_8__SyncIncomingHandler__["b" /* handleSyncMessage */])(message, () => {
-        this.updateSinceFromMessage(message, function (err) {
-          // log errors but move on
-          if (err) {
-            console.error('Could not update since id from server changesets', err);
-          }
-
-          callback && callback();
-        });
-      });
+      // @todo: remove this function as part of SyncManagerNew cleanup
     }).
     catch(err => {
       callback && callback();
@@ -10739,9 +9511,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   },
 
   onAllClientChangesProcessed: function (done) {
-    if (Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       this.trigger('syncFinished');
-      Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["e" /* performPendingForceSyncs */])();
+      Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["e" /* performPendingForceSyncs */])();
     }
 
     done && done();
@@ -10766,12 +9538,24 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   },
 
   _onConnect: function () {
+    /**
+                            * Send a socket disconnect event first before sending a socket connect event
+                            *
+                            * This is done because when the socket force connects it does not call the onDisconnect callback
+                            * and hence disconnect event will not be published.
+                            *
+                            * This is done so that all in-flight requests and subscriptions are cleaned up
+                            * when the socket force connects.
+                            */
+    try {Object(__WEBPACK_IMPORTED_MODULE_23__modules_sync_helpers_SocketEventsService__["d" /* publishSocketDisconnect */])();}
+    catch (e) {pm.logger.error('BaseSyncTimeline~_onConnect: Could not publish socket disconnect message to socket observable', e);}
+
     let connectionMode = this.get('connectionMode');
 
     if (connectionMode === 'watchdog') {
       this.reconfigureSocket('regular');
       this.set('connectionMode', 'regular');
-      __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_success', 'watchdog');
+      __WEBPACK_IMPORTED_MODULE_16__modules_services_AnalyticsService__["a" /* default */].addEvent('sync', 'reconnect_success', 'watchdog');
     }
 
     this.set({
@@ -10781,12 +9565,12 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
 
     // wait for the flags to be set because above flags are used to determine socket status
-    try {Object(__WEBPACK_IMPORTED_MODULE_24__modules_sync_helpers_SocketEventsService__["c" /* publishSocketConnect */])();}
+    try {Object(__WEBPACK_IMPORTED_MODULE_23__modules_sync_helpers_SocketEventsService__["c" /* publishSocketConnect */])();}
     catch (e) {pm.logger.error('BaseSyncTimeline~_onConnect: Could not publish socket connect message to socket observable', e);}
 
     // console.log('socket connected');
 
-    __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+    __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__["a" /* default */].
     get().
     then(user => {
       if (user.id !== '0') {
@@ -10796,7 +9580,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   },
 
   _onDisconnect: function () {
-    try {Object(__WEBPACK_IMPORTED_MODULE_24__modules_sync_helpers_SocketEventsService__["d" /* publishSocketDisconnect */])();}
+    try {Object(__WEBPACK_IMPORTED_MODULE_23__modules_sync_helpers_SocketEventsService__["d" /* publishSocketDisconnect */])();}
     catch (e) {pm.logger.error('BaseSyncTimeline~onDisconnect: Could not publish socket disconnect message to socket observable', e);}
 
     let logout = this.explicitLogout;
@@ -10871,11 +9655,11 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
   _onSyncChange: function (action, message) {
     // if (window.___dropin === true) {
-    //   console.error('Incoming message dropped', action, message);
+    //   pm.logger.error('Incoming message dropped', action, message);
     //   return;
     // }
 
-    Object(__WEBPACK_IMPORTED_MODULE_22__modules_sync_timeline_helpers_RealtimeSyncMessagesService__["b" /* publishRealtimeMessage */])(message);
+    Object(__WEBPACK_IMPORTED_MODULE_21__modules_sync_timeline_helpers_RealtimeSyncMessagesService__["b" /* publishRealtimeMessage */])(message);
 
     // @todo: windowed-syncing: remove legacy realtime events handler
     // this.handleNewMessageFormat(message);
@@ -10989,7 +9773,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     // If it errored out because of access-control, roll it back
     // @TODO-rbac should we wait for this before moving onto next item?
     if (res && res.jwr && res.error && res.jwr.statusCode === 403 && res.error.name === 'forbiddenError') {
-      __WEBPACK_IMPORTED_MODULE_13__services_AccessControl_DbRollbackService__["b" /* rollbackQueue */].push(changeset);
+      __WEBPACK_IMPORTED_MODULE_12__services_AccessControl_DbRollbackService__["b" /* rollbackQueue */].push(changeset);
     }
 
     try {
@@ -11021,7 +9805,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         {
           // don't resync for echo
           if (window.postman_predef_collections.indexOf(data.id) == -1) {
-            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'collection',
               modelId: data.id });
 
@@ -11034,7 +9818,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
           clearChange = true;
         } else
         {
-          Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+          Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
             model: 'folder',
             modelId: data.id });
 
@@ -11116,7 +9900,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
             owner: data.owner };
 
 
-          this.addChangesetsToSyncClient([Object(__WEBPACK_IMPORTED_MODULE_19__modules_sync_helpers_create_changeset__["a" /* default */])(model, 'transfer', {
+          this.addChangesetsToSyncClient([Object(__WEBPACK_IMPORTED_MODULE_18__modules_sync_helpers_create_changeset__["a" /* default */])(model, 'transfer', {
             to: toLocation,
             from: oldLocation,
             owner: data.owner,
@@ -11133,13 +9917,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       } else
       if (res.error.name === 'orderUpdateError') {
         if (model === 'collection') {
-          Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+          Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
             model: 'collection',
             modelId: data.id });
 
         } else
         if (model === 'folder') {
-          Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+          Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
             model: 'folder',
             modelId: data.collection });
 
@@ -11164,19 +9948,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         {
           // start force sync for the collection here
           if (model === 'collection' && window.postman_predef_collections.indexOf(data.id) == -1) {
-            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'collection',
               modelId: data.id });
 
           } else
           if (model === 'folder') {
-            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'folder',
               modelId: data.id });
 
           } else
           if (model === 'request') {
-            Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+            Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
               model: 'request',
               modelId: data.id });
 
@@ -11265,9 +10049,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     }
     catch (e) {
       // Exception while handling error. Have to clear the change. No other alternative :(
-      console.error('Could not handle error object for ' + action + ' ' + model, e);
+      pm.logger.error('Could not handle error object for ' + action + ' ' + model, e);
       pm.bulkAnalytics.addCurrentSyncDiscarded(action, model, data, res);
-      pm.crashReporter.report(e);
+      pm.logger.error(e);
       clearChange = true;
     }
 
@@ -11291,14 +10075,13 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         var sanitizedChangeToSync = __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__["a" /* default */].sanitizedChangeSet(reason, changeToSync);
         if (reason === 'timeout') {
           // Auto discarding of timeout errors
-          // pm.localChanges.popChangeFromUnsyncedQueue();
           // @todo numaan: remove current changeset from sync client and resume
 
           clearChange = true;
 
           // Sending any non-history related discards to analytics
           if (!(changeToSync.model === 'history' || changeToSync.action === 'history')) {
-            __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent(
+            __WEBPACK_IMPORTED_MODULE_16__modules_services_AnalyticsService__["a" /* default */].addEvent(
             'sync', 'discard_timeout', 'issue', null,
             __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__["a" /* default */].constructLogToAnalytics(sanitizedChangeToSync));
 
@@ -11306,11 +10089,10 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         } else
         if (reason === 'error' && !_.get(changeToSync, 'res.error')) {
           // Auto discarding of error responses without res.error object
-          // pm.localChanges.popChangeFromUnsyncedQueue();
           // @todo numaan remove current changeset from client and resume
 
           clearChange = true;
-          __WEBPACK_IMPORTED_MODULE_17__modules_services_AnalyticsService__["a" /* default */].addEvent(
+          __WEBPACK_IMPORTED_MODULE_16__modules_services_AnalyticsService__["a" /* default */].addEvent(
           'sync', 'discard_unnamed', 'issue', null,
           __WEBPACK_IMPORTED_MODULE_5__utils_SyncIssueHelper__["a" /* default */].constructLogToAnalytics(sanitizedChangeToSync));
 
@@ -11347,25 +10129,25 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
     switch (details.model) {
       case 'collection':
-        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'collection',
           modelId: details.model_id });
 
         break;
       case 'folder':
-        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'folder',
           modelId: details.model_id });
 
         break;
       case 'request':
-        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'request',
           modelId: details.model_id });
 
         break;
       case 'environment':
-        Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+        Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
           model: 'environment',
           modelId: details.model_id });
 
@@ -11376,7 +10158,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   },
 
   forceSyncCollectionAndContinue: function (cid) {
-    Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["d" /* markModelForForceSync */])({
+    Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["d" /* markModelForForceSync */])({
       model: 'collection',
       modelId: cid });
 
@@ -11457,7 +10239,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       * @param  {Function} callback
       */
   _sendChangesetToServer: function (changeset, callback) {
-    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       callback(new Error(NO_AUTHENTICATED_CONNECTION));
       return;
     }
@@ -11465,7 +10247,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     // sanitize data to be sent to sync
     // no need to sanitize for destroy changesets
 
-    Object(__WEBPACK_IMPORTED_MODULE_10__SyncOutgoingHelpers__["a" /* sanitizeHydratedChangeset */])(changeset);
+    Object(__WEBPACK_IMPORTED_MODULE_9__SyncOutgoingHelpers__["a" /* sanitizeHydratedChangeset */])(changeset);
 
     let {
       model,
@@ -11481,7 +10263,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
     data.owner && (query.owner = data.owner);
     meta && meta.workspace && (query.workspace = meta.workspace);
 
-    __WEBPACK_IMPORTED_MODULE_14__modules_controllers_UserController__["a" /* default */].
+    __WEBPACK_IMPORTED_MODULE_13__modules_controllers_UserController__["a" /* default */].
     get().
     then(user => {
       var userId = user.id;
@@ -11492,7 +10274,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       switch (action) {
         case 'share':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: 'collection',
             action: 'share',
             data: _.get(changeset, 'data.permissions'), // @TODO-permissions
@@ -11504,7 +10286,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
         case 'unshare':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: 'collection',
             action: 'unshare',
             meta: { query, pathVariables: { id: _.get(changeset, ['data', 'modelId']) } } },
@@ -11519,7 +10301,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
           }
 
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: model,
             action: action,
             data: data.instance,
@@ -11534,7 +10316,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         case 'importRequest':
 
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: model,
             action: 'import',
             data: data.instance,
@@ -11558,7 +10340,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
           }
 
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: model,
             action: 'update',
             data: _.get(changeset, ['data', 'instance']),
@@ -11575,7 +10357,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
               return model.owner ? `${model.owner}-${model.modelId}` : model.modelId;
             });
 
-            !_.isEmpty(historyIds) && __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+            !_.isEmpty(historyIds) && __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
               model: model,
               action: 'destroyAll',
               data: { ids: historyIds } },
@@ -11584,7 +10366,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
             });
           } else
           {
-            __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+            __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
               model: model,
               action: action,
               meta: {
@@ -11606,7 +10388,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
               return;
             }
 
-            __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+            __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
               model: model,
               action: action,
               data: {
@@ -11633,7 +10415,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         case 'subscribe':
         case 'unsubscribe':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: model,
             action: action,
             data: data,
@@ -11649,7 +10431,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
         case 'favorite':
         case 'unfavorite':
           this.trigger('syncStarting');
-          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+          __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
             model: model,
             action: action,
             meta: {
@@ -11697,9 +10479,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       return;
     }
 
-    Object(__WEBPACK_IMPORTED_MODULE_30__modules_sync_timeline_helpers_SyncClientService__["c" /* removeChangesets */])(syncClientChangesets, err => {
+    Object(__WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncClientService__["c" /* removeChangesets */])(syncClientChangesets, err => {
       if (err) {
-        console.error('SyncManagerNew~removeChangesetsFromSyncClient: removeChangesets errored out', err);
+        pm.logger.error('SyncManagerNew~removeChangesetsFromSyncClient: removeChangesets errored out', err);
         pm.logger.error('SyncManagerNew~removeChangesetsFromSyncClient: removeChangesets errored out', err);
       }
 
@@ -11732,7 +10514,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   addChangesetsToSyncClient: function (changesets, opts, callback) {
 
     // if (window.___dropout === true) {
-    //   console.error('DEBUG: outgoing changesets blocked!', changesets);
+    //   pm.logger.error('DEBUG: outgoing changesets blocked!', changesets);
     //   return;
     // }
 
@@ -11754,9 +10536,9 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       return;
     }
 
-    this.syncClient.addChangesets(changesets, err => {
+    Object(__WEBPACK_IMPORTED_MODULE_29__modules_sync_timeline_helpers_SyncClientService__["a" /* addChangesets */])(changesets, err => {
       if (err) {
-        console.error('SyncManagerNew~addChangesetsToSyncClient: error in adding changesets to sync client', err);
+        pm.logger.error('SyncManagerNew~addChangesetsToSyncClient: error in adding changesets to sync client', err);
         pm.logger.error('SyncManagerNew~addChangesetsToSyncClient: error in adding changesets to sync client', err);
         return callback && callback();
       }
@@ -11764,7 +10546,7 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
       // console.log('syncClient.addChangesets done');
 
       // if (window.___blockprocess === true) {
-      //   console.error('DEBUG: outgoing changesets blocked!', changesets);
+      //   pm.logger.error('DEBUG: outgoing changesets blocked!', changesets);
       //   return;
       // }
 
@@ -11779,26 +10561,25 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
   restoreCollection: function (restoreTarget) {
     let {
-      collectionId,
-      ownerId,
+      collectionUid,
       maxId } =
     restoreTarget;
 
-    if (!Object(__WEBPACK_IMPORTED_MODULE_18__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_17__SyncManagerHelper__["c" /* isAuthenticatedSocketAvailable */])()) {
       return;
     }
 
-    __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["request"](pm.syncSocket, {
+    __WEBPACK_IMPORTED_MODULE_6__services_SyncService__["d" /* request */](pm.syncSocket, {
       model: 'collection',
       action: 'restore',
       meta: {
         query: { max_id: maxId },
-        pathVariables: { id: `${ownerId}-${collectionId}` } } },
+        pathVariables: { id: `${collectionUid}` } } },
 
     res => {
       let error = _.get(res, 'error');
       if (error) {
-        console.error('Error while restoring collection', error);
+        pm.logger.error('Error while restoring collection', error);
         return;
       }
 
@@ -11807,21 +10588,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
   },
 
   showConflicts: function (conflicts) {
-    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts: conflicts }));
+    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts: conflicts }));
   },
 
   showSyncIssue: function (issue) {
-    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_15__modules_model_event__["a" /* createEvent */])('show', 'issue', { issue: issue }));
+    this.syncInternalChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_14__modules_model_event__["a" /* createEvent */])('show', 'issue', { issue: issue }));
   },
 
   conflictsResolved: function (conflictResolution) {
-    // pm.localChanges.onConflictsResolved(conflictResolution);
+    // todo: remove on cleanup of SyncManagerNew
   },
 
   fetchPendingConflicts: function () {
-    if (pm.localChanges.pendingResolution && pm.localChanges.pendingResolution.conflicts) {
-      this.showConflicts(pm.localChanges.pendingResolution.conflicts);
-    }
+    // todo: remove on cleanup of SyncManagerNew
   } });
 
 
@@ -11830,19 +10609,19 @@ var SyncManagerNew = __WEBPACK_IMPORTED_MODULE_20_backbone___default.a.Model.ext
 
 /***/ }),
 
-/***/ 2876:
+/***/ 3117:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2877);
+module.exports = __webpack_require__(3118);
 
 
 /***/ }),
 
-/***/ 2877:
+/***/ 3118:
 /***/ (function(module, exports, __webpack_require__) {
 
-const io = __webpack_require__(2878),
-  Socket = __webpack_require__(2903),
+const io = __webpack_require__(3119),
+  Socket = __webpack_require__(3144),
   DEFAULT_OPTIONS = {
     environment: 'production',
     transports: ['websocket'],
@@ -11978,7 +10757,7 @@ module.exports = IOClient;
 
 /***/ }),
 
-/***/ 2878:
+/***/ 3119:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -11986,10 +10765,10 @@ module.exports = IOClient;
  * Module dependencies.
  */
 
-var url = __webpack_require__(2879);
-var parser = __webpack_require__(801);
-var Manager = __webpack_require__(1207);
-var debug = __webpack_require__(578)('socket.io-client');
+var url = __webpack_require__(3120);
+var parser = __webpack_require__(857);
+var Manager = __webpack_require__(1345);
+var debug = __webpack_require__(632)('socket.io-client');
 
 /**
  * Module exports.
@@ -12073,13 +10852,13 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(1207);
-exports.Socket = __webpack_require__(1213);
+exports.Manager = __webpack_require__(1345);
+exports.Socket = __webpack_require__(1351);
 
 
 /***/ }),
 
-/***/ 2879:
+/***/ 3120:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -12087,8 +10866,8 @@ exports.Socket = __webpack_require__(1213);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(1204);
-var debug = __webpack_require__(578)('socket.io-client:url');
+var parseuri = __webpack_require__(1342);
+var debug = __webpack_require__(632)('socket.io-client:url');
 
 /**
  * Module exports.
@@ -12162,7 +10941,7 @@ function url (uri, loc) {
 
 /***/ }),
 
-/***/ 2880:
+/***/ 3121:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -12178,7 +10957,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(2881);
+exports.humanize = __webpack_require__(3122);
 
 /**
  * Active `debug` instances.
@@ -12394,7 +11173,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 2881:
+/***/ 3122:
 /***/ (function(module, exports) {
 
 /**
@@ -12553,7 +11332,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 2882:
+/***/ 3123:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -12562,7 +11341,7 @@ function plural(ms, n, name) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(2883);
+exports = module.exports = __webpack_require__(3124);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -12752,11 +11531,11 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 
-/***/ 2883:
+/***/ 3124:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -12772,7 +11551,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(2884);
+exports.humanize = __webpack_require__(3125);
 
 /**
  * Active `debug` instances.
@@ -12988,7 +11767,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 2884:
+/***/ 3125:
 /***/ (function(module, exports) {
 
 /**
@@ -13147,7 +11926,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 2885:
+/***/ 3126:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -13156,8 +11935,8 @@ function plural(ms, n, name) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(1205);
-var isBuf = __webpack_require__(1206);
+var isArray = __webpack_require__(1343);
+var isBuf = __webpack_require__(1344);
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof global.Blob === 'function' || toString.call(global.Blob) === '[object BlobConstructor]';
 var withNativeFile = typeof global.File === 'function' || toString.call(global.File) === '[object FileConstructor]';
@@ -13296,11 +12075,11 @@ exports.removeBlobs = function(data, callback) {
 
 /***/ }),
 
-/***/ 2886:
+/***/ 3127:
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(2887);
+module.exports = __webpack_require__(3128);
 
 /**
  * Exports parser
@@ -13308,25 +12087,25 @@ module.exports = __webpack_require__(2887);
  * @api public
  *
  */
-module.exports.parser = __webpack_require__(292);
+module.exports.parser = __webpack_require__(350);
 
 
 /***/ }),
 
-/***/ 2887:
+/***/ 3128:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var transports = __webpack_require__(1208);
-var Emitter = __webpack_require__(291);
-var debug = __webpack_require__(581)('engine.io-client:socket');
-var index = __webpack_require__(1212);
-var parser = __webpack_require__(292);
-var parseuri = __webpack_require__(1204);
-var parseqs = __webpack_require__(579);
+var transports = __webpack_require__(1346);
+var Emitter = __webpack_require__(349);
+var debug = __webpack_require__(635)('engine.io-client:socket');
+var index = __webpack_require__(1350);
+var parser = __webpack_require__(350);
+var parseuri = __webpack_require__(1342);
+var parseqs = __webpack_require__(633);
 
 /**
  * Module exports.
@@ -13459,9 +12238,9 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(803);
-Socket.transports = __webpack_require__(1208);
-Socket.parser = __webpack_require__(292);
+Socket.Transport = __webpack_require__(859);
+Socket.transports = __webpack_require__(1346);
+Socket.parser = __webpack_require__(350);
 
 /**
  * Creates transport of the given type.
@@ -14064,7 +12843,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 
 /***/ }),
 
-/***/ 2888:
+/***/ 3129:
 /***/ (function(module, exports) {
 
 
@@ -14088,18 +12867,18 @@ try {
 
 /***/ }),
 
-/***/ 2889:
+/***/ 3130:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(802);
-var Polling = __webpack_require__(1209);
-var Emitter = __webpack_require__(291);
-var inherit = __webpack_require__(580);
-var debug = __webpack_require__(581)('engine.io-client:polling-xhr');
+var XMLHttpRequest = __webpack_require__(858);
+var Polling = __webpack_require__(1347);
+var Emitter = __webpack_require__(349);
+var inherit = __webpack_require__(634);
+var debug = __webpack_require__(635)('engine.io-client:polling-xhr');
 
 /**
  * Module exports.
@@ -14508,7 +13287,7 @@ function unloadHandler () {
 
 /***/ }),
 
-/***/ 2890:
+/***/ 3131:
 /***/ (function(module, exports) {
 
 
@@ -14534,7 +13313,7 @@ module.exports = Object.keys || function keys (obj){
 
 /***/ }),
 
-/***/ 2891:
+/***/ 3132:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -14546,7 +13325,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 2892:
+/***/ 3133:
 /***/ (function(module, exports) {
 
 /**
@@ -14582,7 +13361,7 @@ module.exports = function(arraybuffer, start, end) {
 
 /***/ }),
 
-/***/ 2893:
+/***/ 3134:
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -14617,7 +13396,7 @@ function noop() {}
 
 /***/ }),
 
-/***/ 2894:
+/***/ 3135:
 /***/ (function(module, exports) {
 
 /*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -14834,7 +13613,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2895:
+/***/ 3136:
 /***/ (function(module, exports) {
 
 /**
@@ -14941,7 +13720,7 @@ module.exports = (function() {
 
 /***/ }),
 
-/***/ 2896:
+/***/ 3137:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -14957,7 +13736,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(2897);
+exports.humanize = __webpack_require__(3138);
 
 /**
  * Active `debug` instances.
@@ -15173,7 +13952,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 2897:
+/***/ 3138:
 /***/ (function(module, exports) {
 
 /**
@@ -15332,7 +14111,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 2898:
+/***/ 3139:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -15340,8 +14119,8 @@ function plural(ms, n, name) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(1209);
-var inherit = __webpack_require__(580);
+var Polling = __webpack_require__(1347);
+var inherit = __webpack_require__(634);
 
 /**
  * Module exports.
@@ -15571,24 +14350,24 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 /***/ }),
 
-/***/ 2899:
+/***/ 3140:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(803);
-var parser = __webpack_require__(292);
-var parseqs = __webpack_require__(579);
-var inherit = __webpack_require__(580);
-var yeast = __webpack_require__(1211);
-var debug = __webpack_require__(581)('engine.io-client:websocket');
+var Transport = __webpack_require__(859);
+var parser = __webpack_require__(350);
+var parseqs = __webpack_require__(633);
+var inherit = __webpack_require__(634);
+var yeast = __webpack_require__(1349);
+var debug = __webpack_require__(635)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(2900);
+    NodeWebSocket = __webpack_require__(3141);
   } catch (e) { }
 }
 
@@ -15865,14 +14644,14 @@ WS.prototype.check = function () {
 
 /***/ }),
 
-/***/ 2900:
+/***/ 3141:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2901:
+/***/ 3142:
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -15892,7 +14671,7 @@ function toArray(list, index) {
 
 /***/ }),
 
-/***/ 2902:
+/***/ 3143:
 /***/ (function(module, exports) {
 
 
@@ -15984,11 +14763,11 @@ Backoff.prototype.setJitter = function(jitter){
 
 /***/ }),
 
-/***/ 2903:
+/***/ 3144:
 /***/ (function(module, exports, __webpack_require__) {
 
-const JWR = __webpack_require__(2904),
-  { SDK_INFO, SOCKET_OPTIONS } = __webpack_require__(2905),
+const JWR = __webpack_require__(3145),
+  { SDK_INFO, SOCKET_OPTIONS } = __webpack_require__(3146),
 
   CONFIGURABLE_PROPS = ['reconnectionDelay', 'reconnectionDelayMax', 'reconnectionAttempts'];
 
@@ -16880,7 +15659,7 @@ module.exports = SailsSocket;
 
 /***/ }),
 
-/***/ 2904:
+/***/ 3145:
 /***/ (function(module, exports) {
 
 /**
@@ -16943,7 +15722,7 @@ module.exports = JWR;
 
 /***/ }),
 
-/***/ 2905:
+/***/ 3146:
 /***/ (function(module, exports) {
 
 /**
@@ -17013,649 +15792,26 @@ module.exports = {
 
 /***/ }),
 
-/***/ 2906:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export filterUnsupportedEvents */
-/* unused harmony export buildChangesetsFromEvent */
-/* unused harmony export addChangesetsToSyncClient */
-/* unused harmony export addMetaToChangesets */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SyncOutgoingHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__ = __webpack_require__(1201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CollectionController__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_EnvironmentController__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryController__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__ = __webpack_require__(698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_sync_timeline_helpers__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_SyncIncomingHandler__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_controllers_CurrentUserController__ = __webpack_require__(69);
-
-
-
-
-
-
-
-
-
-
-
-
-
-const ERROR_UNSUPPORTED_ACTOR = 'UNSUPPORTED_ACTOR',
-ERROR_UNSUPPORTED_MODEL = 'UNSUPPORTED_MODEL: ',
-ERROR_SYNC_DISABLED = 'SYNC_DISABLED',
-
-MODEL_COLLECTION = 'collection',
-MODEL_FOLDER = 'folder',
-MODEL_REQUEST = 'request',
-MODEL_RESPONSE = 'response',
-MODEL_COLLECTIONRUN = 'collectionrun',
-MODEL_HISTORY = 'history',
-MODEL_HISTORY_RESPONSE = 'historyresponse',
-
-ACTION_TRANSFER = 'transfer',
-
-SYNC_OUTGOING_HANDLER_TIMEOUT = 15 * 1000, // 15 seconds
-
-COLLECTION_MODELS_CHANGESETS = 'collectionModelChangesets',
-COLLECTIONRUN_MODEL_CHANGESETS = 'collectionRunModelChangesets',
-HISTORY_MODEL_CHANGESETS = 'historyModelChangesets';
-
-/**
-                                                      * filter non user events
-                                                      *
-                                                      * @param {any} event
-                                                      * @returns {Boolean}
-                                                      */
-function filterUnsupportedEvents(event) {
-  let actor = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["c" /* getActor */])(event),
-  actorType = actor && actor.type,
-  eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["g" /* getEventNamespace */])(event);
-
-  // whitelist only USER actions
-  if (!_.includes(['USER'], actorType)) {
-    return false;
-  }
-
-  // whitelist only known models
-  if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace]) {
-    return false;
-  }
-
-  return true;
-}
-
-/**
-   * build changeset from event
-   *
-   * @param {Object} event
-   * @returns {Promise}
-   */
-function buildChangesetsFromEvent(event) {
-  return new Promise((resolve, reject) => {
-    Object(__WEBPACK_IMPORTED_MODULE_2__services_event_to_changesets__["a" /* default */])(event, (err, changesets) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(changesets);
-    });
-  });
-}
-
-/**
-   * Finds collection id given a model.
-   *
-   * @param {Object} definition
-   * @param {String} type
-   */
-function getCollectionIdFor(definition, type) {
-  if (type === MODEL_COLLECTION) {
-    return Promise.resolve(definition.id);
-  }
-
-  if (definition.collection) {
-    return Promise.resolve(definition.collection);
-  }
-
-  return __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CollectionController__["a" /* default */].
-  _getModelByType({ model: type, modelId: definition.id }).
-  then(collectionModel => {
-    if (!collectionModel) {
-      return;
-    }
-
-    return collectionModel.collection;
-  });
-}
-
-
-/**
-   * Adds owner to a model definition.
-   *
-   * @param {Object} definition
-   * @param {String} model
-   * @param {Array<Object>} changesets
-   * @param {Object} collectionMetaCache
-   */
-function getOwnerFor(definition, model, changesets, collectionMetaCache) {
-  if (!definition) {
-    return Promise.resolve();
-  }
-
-  let collectionModelId;
-
-  return getCollectionIdFor(definition, model)
-
-  // get collection id
-  .then(collectionId => {
-    if (!collectionId) {
-      return;
-    }
-
-    collectionModelId = collectionId;
-
-    // look in cache
-    if (collectionMetaCache[collectionId]) {
-      return _.pick(collectionMetaCache[collectionId], ['owner']);
-    }
-
-    // cache miss, look in DB
-    return __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CollectionController__["a" /* default */].
-    getCollection({ id: collectionId }).
-    then(collection => {
-      if (!collection) {
-        return;
-      }
-
-      collectionMetaCache[collectionId] = _.pick(collection, ['owner']);
-
-      return collectionMetaCache[collectionId];
-    });
-  }).
-  then(dbResults => {
-    if (dbResults && dbResults.owner) {
-      return dbResults;
-    }
-
-    // miss in DB also
-    else {
-        // look ahead in the changesets array just as a last resort
-        let collectionChangeset = _.find(changesets, changeset => {
-          return (
-            changeset.model === MODEL_COLLECTION &&
-            changeset.modelId === collectionModelId);
-
-        });
-
-        // found in changesets array
-        if (collectionChangeset) {
-          let collectionOwner = _.get(collectionChangeset, ['data', 'owner']);
-
-          // add to cache
-          _.assign(collectionMetaCache, { [collectionModelId]: { owner: collectionOwner } });
-
-          // add to changeset
-          return { owner: collectionOwner };
-        }
-
-        return;
-      }
-  });
-}
-
-function addOwnerToHistoryModels(changesets, callback) {
-  // pass through if there are no history models events
-  if (_.isEmpty(changesets)) {
-    callback(null, changesets);
-    return;
-  }
-
-  let historyMetaCache = {};
-
-  __WEBPACK_IMPORTED_MODULE_0_async___default.a.eachSeries(changesets, (changeset, next) => {
-    let modelId = _.get(changeset, ['data', 'modelId']),
-    instance = _.get(changeset, ['data', 'instance']),
-    historyId = changeset.model === MODEL_HISTORY ? modelId : _.get(instance, 'history');
-
-    // changeset has owner
-    if (_.has(changeset, ['data', 'owner'])) {
-      historyId && _.assign(historyMetaCache, { [historyId]: { owner: _.get(changeset, ['data', 'owner']) } });
-      return next();
-    }
-
-    // instance has owner
-    if (instance.owner) {
-      // store in cache
-      historyId && _.assign(historyMetaCache, { [historyId]: { owner: instance.owner } });
-
-      // set owner in changeset
-      _.set(changeset, ['data', 'owner'], instance.owner);
-
-      return next();
-    }
-
-    // changeset has no owner and history reference, drop
-    if (!historyId) {
-      changeset.drop = true;
-      return next();
-    }
-
-    Promise.resolve().
-    then(() => {
-      if (historyMetaCache[historyId]) {
-        return historyMetaCache[historyId].owner;
-      }
-
-      return __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryController__["a" /* default */].get({ id: historyId }).
-      then(function (history) {
-        return history && history.owner;
-      });
-    }).
-
-    then(owner => {
-      // store in cache
-      _.assign(historyMetaCache, { [historyId]: { owner: owner } });
-
-      // set owner in changeset
-      _.set(changeset, ['data', 'owner'], owner);
-    }).
-
-    then(() => {
-      next();
-    }).
-    catch(err => {
-      next();
-    });
-  }, function (err) {
-    if (err) {
-      return callback(err);
-    }
-
-    callback(null, changesets);
-  });
-}
-
-function addOwnerToCollectionModels(changesets, callback) {
-
-  // pass through if there are no collection models events
-  if (_.isEmpty(changesets)) {
-    callback(null, changesets);
-    return;
-  }
-
-  let collectionMetaCache = {};
-  __WEBPACK_IMPORTED_MODULE_0_async___default.a.eachSeries(changesets, (changeset, next) => {
-    let modelId = _.get(changeset, ['data', 'modelId']),
-    instance = _.get(changeset, ['data', 'instance']);
-
-    // changeset has owner
-    if (_.has(changeset, ['data', 'owner'])) {
-      _.assign(collectionMetaCache, { [modelId]: { owner: _.get(changeset, ['data', 'owner']) } });
-      return next(null);
-    }
-
-    // for delete, favorite changeset
-    if (!instance) {
-      instance = { id: modelId };
-    }
-
-    getOwnerFor(instance, changeset.model, changesets, collectionMetaCache).
-    then(function (findings) {
-      if (findings && findings.owner) {
-        if (changeset.model === MODEL_COLLECTIONRUN) {
-          _.set(changeset, ['meta', 'collectionOwner', findings.owner]);
-        } else
-        {
-          _.set(changeset, ['data', 'owner'], findings.owner);
-        }
-      } else
-      {
-        // mark the changeset to be dropped
-        changeset.drop = true;
-      }
-    })
-
-    // for transfer changesets, add owner in `to` as well
-    .then(function () {
-      if (changeset.action === ACTION_TRANSFER) {
-        let to = _.get(changeset, ['data', 'to']),
-        from = _.get(changeset, ['data', 'from']);
-
-        // transfer is within the same collection, so owner should be the same as the to level entity
-        to && (to.owner = _.get(changeset, ['data', 'owner']));
-        from && (from.owner = _.get(changeset, ['data', 'owner']));
-
-        return;
-      }
-    }).
-    then(() => {
-      next();
-    }).
-    catch(err => {
-      next();
-    });
-  }, function (err) {
-    if (err) {
-      return callback(err);
-    }
-
-    callback(null, changesets);
-  });
-}
-
-function addOwnerToCollectionRunModels(changesets, callback) {
-
-  // pass through if there are no collectionrun models events
-  if (_.isEmpty(changesets)) {
-    callback(null, changesets);
-    return;
-  }
-
-  __WEBPACK_IMPORTED_MODULE_0_async___default.a.eachSeries(changesets, (changeset, next) => {
-    let instance = _.get(changeset, ['data', 'instance']);
-
-    // For runs models that are meant to be destroyed
-    if (!instance) {
-      changeset.drop = true;
-      return next();
-    }
-
-    if (_.get(instance, ['owner'])) {
-      // Set the owner of the collection run
-      _.set(changeset, ['data', 'owner'], instance.owner);
-    }
-
-    // Finding owner for collection
-    getOwnerFor({ id: instance.collection }, 'collection', changesets, {}).
-    then(function (findings) {
-      if (findings && findings.owner) {
-        _.set(changeset, ['meta', 'collectionOwner'], findings.owner);
-      } else
-      {
-        // mark the changeset to be dropped
-        changeset.drop = true;
-      }
-    }).
-    then(() => {
-
-      // Set the owner of the environment if it was selected
-      let environmentId = _.get(instance, ['environment']);
-
-      if (environmentId) {
-        return __WEBPACK_IMPORTED_MODULE_6__modules_controllers_EnvironmentController__["a" /* default */].get({ id: environmentId }).
-        then(environment => {
-          if (environment) {
-            _.set(changeset, ['meta', 'environmentOwner'], environment.owner);
-          } else
-          {
-            changeset.drop = true;
-          }
-          next();
-        }).
-        catch(err => {
-          next();
-        });
-      } else
-      {
-        next();
-      }
-    }).
-    catch(err => {
-      changeset.drop = true;
-      next();
-    });
-  }, function (err) {
-
-    err && console.error(err);
-
-    callback(null, changesets);
-  });
-}
-
-/**
-   * add missing meta information to changesets
-   *
-   * @param {Array.<Object>} changesets
-   * @returns {Promise.<Array>}
-   */
-function addMetaToChangesets(changesets) {
-
-  return new Promise(resolve => {
-    let collectionModelsChangesets = [],
-    collectionRunModelChangesets = [],
-    historyModelChangesets = [],
-    leftOverChangesets = [];
-
-    let collectionModelsSet = new Set([MODEL_COLLECTION, MODEL_FOLDER, MODEL_REQUEST, MODEL_RESPONSE]);
-
-    // traverse all the changesets and push them into separate model based arrays
-    // and keep the other ones in leftOverChangesets so we dont end up loosing changesets
-    _.forEach(changesets, changeset => {
-      if (collectionModelsSet.has(changeset.model)) {
-        collectionModelsChangesets.push(changeset);
-        return;
-      }
-
-      if (changeset.model === MODEL_COLLECTIONRUN) {
-        collectionRunModelChangesets.push(changeset);
-        return;
-      }
-
-      if (changeset.model === MODEL_HISTORY || changeset.model === MODEL_HISTORY_RESPONSE) {
-        historyModelChangesets.push(changeset);
-        return;
-      }
-
-      leftOverChangesets.push(changeset);
-    });
-
-    if (_.isEmpty(collectionRunModelChangesets) && _.isEmpty(collectionModelsChangesets) && _.isEmpty(historyModelChangesets)) {
-      resolve(changesets);
-      return;
-    }
-
-    let argMap = {
-      [COLLECTION_MODELS_CHANGESETS]: collectionModelsChangesets,
-      [COLLECTIONRUN_MODEL_CHANGESETS]: collectionRunModelChangesets,
-      [HISTORY_MODEL_CHANGESETS]: historyModelChangesets };
-
-
-    __WEBPACK_IMPORTED_MODULE_0_async___default.a.mapValues(argMap, function (changesets, changesetModel, callback) {
-      if (changesetModel === COLLECTION_MODELS_CHANGESETS) {
-        addOwnerToCollectionModels(changesets, callback);
-      } else
-      if (changesetModel === COLLECTIONRUN_MODEL_CHANGESETS) {
-        addOwnerToCollectionRunModels(changesets, callback);
-      } else
-      if (changesetModel === HISTORY_MODEL_CHANGESETS) {
-        addOwnerToHistoryModels(changesets, callback);
-      }
-    }, function (err, changesets) {
-      err && console.error('Changeset meta correction failed!', err);
-
-      let unfilteredChangesets = _.concat(
-      changesets[COLLECTION_MODELS_CHANGESETS],
-      changesets[COLLECTIONRUN_MODEL_CHANGESETS],
-      changesets[HISTORY_MODEL_CHANGESETS]);
-
-
-      let validChangesets = _.chain(unfilteredChangesets).
-      concat(leftOverChangesets).
-      compact().
-      reject(['drop', true]).
-      value();
-
-      return resolve(validChangesets);
-    });
-  });
-}
-
-/**
-   * adds changeset to sync client
-   *
-   * @param {Array} changesets
-   * @returns {Promise}
-   */
-function addChangesetsToSyncClient(changesets) {
-  // console.log('Sync.Outgoing: pushing changeset to sync client', changesets);
-  return new Promise(resolve => {
-    pm.syncManager.addChangesetsToSyncClient(changesets, {}, () => {
-      resolve();
-    });
-  });
-}
-
-/**
-   * Add timeline information to changeset meta
-   * @param  {Array} changesets
-   * @returns {Promise}
-   */
-async function addTimelineIdToChangesets(changesets) {
-  await Promise.all(_.map(changesets, changeset => {
-    if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][changeset.model] || !__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][changeset.model].addMetaTimelineId) {
-      return;
-    }
-
-    return __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][changeset.model].addMetaTimelineId(changeset, changesets).
-    catch(() => {
-      pm.logger.error('Could not add timeline info for changeset: ', changeset);
-    });
-  }));
-}
-
-/**
-   * Returns timeline events
-   * @param  {Object} event
-   *
-   * @returns {Array}
-   */
-function getTimelineEventsFromEvent(event) {
-  let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["g" /* getEventNamespace */])(event),
-  timelineEvents = [];
-
-  // whitelist only known models
-  if (!__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace] || !__WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace].toTimelineEvents) {
-    return [];
-  }
-
-  let lowLevelEvents = _.get(event, 'events');
-
-  _.forEach(lowLevelEvents, lowLevelEvent => {
-    let handler = __WEBPACK_IMPORTED_MODULE_1__modules_sync_models__["a" /* default */][eventNamespace].toTimelineEvents[lowLevelEvent.name];
-
-    if (!handler) {
-      return;
-    }
-
-    timelineEvents = timelineEvents.concat(handler(lowLevelEvent));
-  });
-
-  return timelineEvents;
-}
-
-/**
-   * Used to handle events for the sync outgoing process
-   *
-   * Filters
-   * Builds changeset from events
-   * Add Meta to Changesets
-   * Add timeline id info to changesets
-   * Adds to syncClient
-   *
-   */
-async function handleBusEvent(event, done) {
-  let user = await __WEBPACK_IMPORTED_MODULE_11__modules_controllers_CurrentUserController__["a" /* default */].get();
-
-  // if not signed in, bail out
-  if (!user || user.id === '0') {
-    return done();
-  }
-
-  if (!filterUnsupportedEvents(event)) {
-    return done();
-  }
-
-  // build changesets from events
-  let changesets = await buildChangesetsFromEvent(event);
-
-  // get timeline events used for deleting timelines
-  let timelineEvents = getTimelineEventsFromEvent(event);
-
-  if (!changesets) {
-    return done();
-  }
-
-  // handling meta for changesets
-  changesets = await addMetaToChangesets(changesets);
-
-  if (_.isEmpty(changesets)) {
-    return done();
-  }
-
-  // adding timeline id so they can mapped to the correct timeline and dispatched
-  await addTimelineIdToChangesets(changesets);
-
-  if (_.isEmpty(changesets)) {
-    return done();
-  }
-
-  // dispatch timeline events
-  if (!_.isEmpty(timelineEvents)) {
-    await Object(__WEBPACK_IMPORTED_MODULE_10__services_SyncIncomingHandler__["b" /* dispatchTimelineEvents */])(timelineEvents);
-  }
-
-  // push changes to sync client
-  await addChangesetsToSyncClient(changesets);
-
-  // publish the changeset after added to sync client
-  // for listeners to send to sync etc.
-  _.forEach(changesets, __WEBPACK_IMPORTED_MODULE_8__modules_sync_timeline_helpers_RealtimeOutgoingSyncMessageService__["b" /* publishRealtimeOutgoingMessage */]);
-
-  done();
-}
-
-/**
-   * Bus subscription handler for sync outgoing
-   *
-  */
-function SyncOutgoingHandler() {
-  this.__disposeSubscription = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["j" /* subscribeToQueue */])(handleBusEvent, SYNC_OUTGOING_HANDLER_TIMEOUT);
-}
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2907:
+/***/ 3147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeHydratedChangeset; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_models__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_outgoing_models__ = __webpack_require__(766);
 
 
 /**
-                                                     * sanitize hydrated changeset
-                                                     *
-                                                     * @param {any} changeset
-                                                     */
+                                                              * sanitize hydrated changeset
+                                                              *
+                                                              * @param {any} changeset
+                                                              */
 function sanitizeHydratedChangeset(changeset) {
   let {
     model,
     action,
     data } =
   changeset,
-  syncModel = __WEBPACK_IMPORTED_MODULE_0__modules_sync_models__["a" /* default */][model],
+  syncModel = __WEBPACK_IMPORTED_MODULE_0__modules_sync_outgoing_models__["a" /* default */][model],
   instance;
 
   if (!data || !data.instance) {
@@ -17680,17 +15836,17 @@ function sanitizeHydratedChangeset(changeset) {
 
 /***/ }),
 
-/***/ 2908:
+/***/ 3148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToNotifications;
 /* harmony export (immutable) */ __webpack_exports__["b"] = unsubscribeNotificationsListeners;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operators__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operators__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__ = __webpack_require__(589);
 
 
 
@@ -17734,7 +15890,7 @@ async function subscribeToNotifications() {
   });
 
   try {
-    let syncResponse = await Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["promisifiedRequest"])({ model: MODEL_NOTIFICATION, action: 'subscribe' });
+    let syncResponse = await Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["c" /* promisifiedRequest */])({ model: MODEL_NOTIFICATION, action: 'subscribe' });
 
     if (!syncResponse || syncResponse.error) {
       throw new Error(syncResponse && syncResponse.error ? syncResponse.error : 'subscribeToNotifications: Could not subscribe to notifications');
@@ -17761,18 +15917,18 @@ function unsubscribeNotificationsListeners() {
 
 /***/ }),
 
-/***/ 2909:
+/***/ 3149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToTeamEvents;
 /* unused harmony export unsubscribeTeamEventsListeners */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operators__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operators__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CurrentUserController__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_sync_action__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RealtimeSyncMessagesService__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CurrentUserController__ = __webpack_require__(62);
 
 
 
@@ -17833,7 +15989,7 @@ async function subscribeToTeamEvents() {
   });
 
   try {
-    let syncResponse = await Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["promisifiedRequest"])({ model: MODEL_TEAM, action: 'subscribe', meta: { pathVariables: { id: teamId } } });
+    let syncResponse = await Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["c" /* promisifiedRequest */])({ model: MODEL_TEAM, action: 'subscribe', meta: { pathVariables: { id: teamId } } });
 
     if (!syncResponse || syncResponse.error) {
       throw new Error(syncResponse && syncResponse.error ? syncResponse.error : 'subscribeToTeamEvents: Could not subscribe to team events');
@@ -17861,186 +16017,165 @@ function unsubscribeTeamEventsListeners() {
 
 /***/ }),
 
-/***/ 291:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 3150:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_utils_collection_tree__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AnalyticsService__ = __webpack_require__(30);
+
+
+
 
 
 /**
- * Expose `Emitter`.
- */
+                                                    * Used to get all the collections for a user from remote
+                                                    *
+                                                    * @returns {Array.<Object>}
+                                                    */
+function getAllCollectionSkeletonsFromSync() {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__services_SyncService__["c" /* promisifiedRequest */])({
+    model: 'collection',
+    action: 'find',
+    meta: {
+      query: {
+        ids: true,
+        populate: true } } }).
 
-if (true) {
-  module.exports = Emitter;
+
+  then(resData => {
+    if (!resData || resData.error) {
+      throw new Error(resData ? resData.error : 'DataIntegrityService~getAllCollectionSkeletonsFromSync: Could not get collections from sync');
+    }
+
+    return _.map(resData, 'data');
+  });
 }
 
 /**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
+   * Verify collection model for all its children
+   * This checks only for the ids and not for the exact content
+   *
+   * @return {Promise.<Boolean>}
+   */
+async function verifyCollectionModel() {
+  let faultyCollectionId = '';
 
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
+  // get all the collection from remote and local collections
+  let [remoteCollections, localCollections] = await Promise.all([getAllCollectionSkeletonsFromSync(), __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionController__["a" /* default */].getCollections({})]);
 
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
+  // accumulate all the local and remote collection ids
+  let remoteCollectionIds = _.map(remoteCollections, 'id'),
+  localCollectionIds = _.map(localCollections, 'id');
 
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
+  // find if there are any extra collection on either remote or local
+  let unSyncedCollectionIdsOnLocal = _.difference(localCollectionIds, remoteCollectionIds);
 
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on =
-Emitter.prototype.addEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  function on() {
-    this.off(event, on);
-    fn.apply(this, arguments);
+  if (!_.isEmpty(unSyncedCollectionIdsOnLocal)) {
+    // if there are extra collections either on remote or on local return false
+    pm.logger.warn('DataIntegrityService~verifyCollectionModel: Collections missing on sync ', unSyncedCollectionIdsOnLocal);
+    return true;
   }
 
-  on.fn = fn;
-  this.on(event, on);
-  return this;
-};
+  // this is the place where number of collections on remote and local are same and now we check the children
+  let hasUnsyncedChanges = false;
 
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
+  for (let collectionIndex = 0; collectionIndex < _.size(remoteCollections); collectionIndex++) {
+    let collection = remoteCollections[collectionIndex],
+    collectionId = collection && collection.id;
 
-Emitter.prototype.off =
-Emitter.prototype.removeListener =
-Emitter.prototype.removeAllListeners =
-Emitter.prototype.removeEventListener = function(event, fn){
-  this._callbacks = this._callbacks || {};
+    if (!collectionId) {
+      return;
+    }
 
-  // all
-  if (0 == arguments.length) {
-    this._callbacks = {};
-    return this;
-  }
+    let localCollection = await __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionController__["a" /* default */].getCollection({ id: collectionId }, { populate: true }),
+    remoteCollectionElements = new Set();
 
-  // specific event
-  var callbacks = this._callbacks['$' + event];
-  if (!callbacks) return this;
+    // walk the complete server collection and all the ids
+    Object(__WEBPACK_IMPORTED_MODULE_2__common_utils_collection_tree__["c" /* walkCollectionTree */])(collection, 'collection', (node, { type }) => {
+      // walk the server collection and add all the ids
+      remoteCollectionElements.add(`${type}:${node.id}`);
+    });
 
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks['$' + event];
-    return this;
-  }
+    // walk the complete local collection and check whether they are present in the server ids or not
+    Object(__WEBPACK_IMPORTED_MODULE_2__common_utils_collection_tree__["c" /* walkCollectionTree */])(localCollection, 'collection', (node, { type }) => {
+      /**
+                                                                            * All elements on the local should be on the collection set
+                                                                            * if any value is not there hence it means that collection is faulty and all the data
+                                                                            * is not synced for that collection
+                                                                            */
+      if (!remoteCollectionElements.has(`${type}:${node.id}`)) {
+        pm.logger.warn(`DataIntegrityService~verifyCollectionModel: Missing on sync ${type}:${node.id}`);
+        faultyCollectionId = collectionId;
+        hasUnsyncedChanges = true;
+      }
+    });
 
-  // remove specific handler
-  var cb;
-  for (var i = 0; i < callbacks.length; i++) {
-    cb = callbacks[i];
-    if (cb === fn || cb.fn === fn) {
-      callbacks.splice(i, 1);
+    // if faulty collection id break the loop
+    if (faultyCollectionId) {
       break;
     }
   }
-  return this;
-};
 
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
+  return hasUnsyncedChanges;
+}
 
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks['$' + event];
+let DataIntegrityService = {
+  /**
+                              * Used to verify whether all data of the user is synced or not
+                              * Used in the sign out flow whether all data is synced or not
+                              *
+                              *
+                              * @returns {Promise}
+                              */
+  verifyUnsyncedLocalData: async function () {
+    let hasUnsyncedData = true,
+    didFinishVerification = true;
 
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
+    try {
+      pm.logger.info('DataIntegrityService~verifyUnsyncedLocalData: Starting to verify whether user has unsynced local data');
+      hasUnsyncedData = await verifyCollectionModel();
+      pm.logger.info(`DataIntegrityService~verifyUnsyncedLocalData: Finished verification. User has unsynced data: ${hasUnsyncedData}`);
+
+      // send analytics event because collection missing and warning shown to user
+      hasUnsyncedData && __WEBPACK_IMPORTED_MODULE_3__AnalyticsService__["a" /* default */].addEvent('sync', 'signOutWarning', 'collection');
     }
-  }
 
-  return this;
-};
 
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
+    catch (e) {
+      pm.logger.warn('DataIntegrityService~verify: Could not verify whether all data is synced or not ', e);
 
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks['$' + event] || [];
-};
+      // send analytics event because we could not verify and warning shown to user
+      __WEBPACK_IMPORTED_MODULE_3__AnalyticsService__["a" /* default */].addEvent('sync', 'signOutWarning', 'error');
 
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
+      // if it errors, we could not reliably find that data is in sync or not hence set isAllDataInSync flag to false
+      didFinishVerification = false;
+    } finally
 
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
+    {
 
+      return { hasUnsyncedData, didFinishVerification };
+    }
+  } };
+
+
+/* harmony default export */ __webpack_exports__["a"] = (DataIntegrityService);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 2910:
+/***/ 3151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = initializeConnectivityStatusBroadcast;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SocketStatusService__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TimelinesStatusService__ = __webpack_require__(2911);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_SyncStatusConstants__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SocketStatusService__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TimelinesStatusService__ = __webpack_require__(1356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_SyncStatusConstants__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(166);
 
 
 
@@ -18076,77 +16211,14 @@ function initializeConnectivityStatusBroadcast() {
 
 /***/ }),
 
-/***/ 2911:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export getCurrentSyncStatus */
-/* harmony export (immutable) */ __webpack_exports__["a"] = getTimelinesStatusObservable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_sync_services_SyncWindowService__ = __webpack_require__(1217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__ = __webpack_require__(187);
-
-
-
-
-
-
-/**
-                                                                                                 * Used to get the current sync status
-                                                                                                 */
-function getCurrentSyncStatus() {
-  return getTimelinesStatusObservable().
-  pipe(
-  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["j" /* take */])(1)).
-  toPromise();
-}
-
-/**
-   * Returns an observable for all the timelines latest status values
-   * @returns {Observable}
-   */
-function getTimelinesStatusObservable() {
-  // computes the overall status of all sync timelines
-  let timelineStatusObservable$ = __WEBPACK_IMPORTED_MODULE_2__models_sync_services_SyncWindowService__["a" /* modelsInSyncWindowObservable$ */].
-  pipe(
-  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(modelIds => {
-    return _.map(modelIds, modelId => {
-      return Object(__WEBPACK_IMPORTED_MODULE_3__index__["b" /* getTimelineStatusObservable */])(modelId);
-    });
-  }),
-
-  // combine latest to get the latest values of all the observables
-  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["g" /* mergeMap */])(values => {
-    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["e" /* combineLatest */])(_.compact(values));
-  }),
-
-  // map cumulate the complete status and return a single value
-  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(values => {
-    let currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["e" /* SYNC_STATUS_IN_SYNC */];
-
-    _.includes(values, __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]) && (currentTimelinesStatus = __WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]);
-
-    return currentTimelinesStatus;
-  }));
-
-
-  // start with an initial value - syncing
-  return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["f" /* concat */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])(__WEBPACK_IMPORTED_MODULE_4__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]), timelineStatusObservable$);
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 2912:
+/***/ 3152:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = analyticsHandler;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_event_to_analytics__ = __webpack_require__(2913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_event_to_analytics__ = __webpack_require__(3153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async__);
 
 
@@ -18225,7 +16297,7 @@ function handleBusEvent(event) {
   function (err) {
     err &&
     !_.includes([ERROR_UNSUPPORTED_ACTOR], err && err.message) &&
-    console.error(err);
+    pm.logger.error(err);
   });
 }
 
@@ -18241,12 +16313,12 @@ function analyticsHandler() {
 
 /***/ }),
 
-/***/ 2913:
+/***/ 3153:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(20);
 
 
 
@@ -18646,17 +16718,134 @@ function eventToAnalytics(event, callback) {
 
 /***/ }),
 
-/***/ 2914:
+/***/ 3154:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return requestListener; });
+/* unused harmony export request */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_SocketStatusService__ = __webpack_require__(602);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_SyncService__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_serialize_error__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_serialize_error___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_serialize_error__);
+
+
+
+
+
+
+
+const TYPE_REQUEST = 'REQUEST',
+TYPE_RESPONSE = 'RESPONSE';
+
+/**
+                             * Attaches a listener that listens to socket-request bus for request events from requester process
+                             * and makes requests to sync socket from shared process.
+                             *
+                             * @param {Object} event
+                             * @param {String} event.name - The type of event i.e. TYPE_REQUEST, TYPE_RESPONSE
+                             * @param {String} event.namespace - socketRequest
+                             * @param {Object} [event.data]
+                             * @param {String} [event.data.id] - The id of the request
+                             * @param {Object} [event.data.requestObject] - The data for making the request
+                             * @param {String} [event.data.requestObject.url] - The path to make the request
+                             * @param {String} [event.data.requestObject.requestOptions] - The data for the request i.e. headers, method, data
+                             */
+function requestListener(event) {
+  if (!event || Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(event) !== TYPE_REQUEST) {
+    return;
+  }
+
+  let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+  currentSocketStatus = Object(__WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_SocketStatusService__["a" /* getCurrentSocketStatus */])();
+
+  if (!pm || !pm.eventBus) {
+    pm.logger.error('SyncRequestService~requestListener: Could not fetch. Missing event bus.');
+    return;
+  }
+
+  if (currentSocketStatus === __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */] || currentSocketStatus === __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["b" /* SOCKET_CONNECTING */]) {
+    return pm.eventBus.channel('socket-requests').publish(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(TYPE_RESPONSE, 'socketRequest', { id: eventData.id, response: { error: { message: 'SyncRequestService~requestListener: Could not fetch from sync. Socket not connected.' } } }));
+  }
+
+  request(eventData.requestObject.url, eventData.requestObject.requestOptions).
+  then(response => {
+    pm.eventBus.channel('socket-requests').publish(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(TYPE_RESPONSE, 'socketRequest', { id: eventData.id, response: response }));
+  }).
+  catch(error => {
+    pm.eventBus.channel('socket-requests').publish(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(TYPE_RESPONSE, 'socketRequest', { id: eventData.id, response: __WEBPACK_IMPORTED_MODULE_5_serialize_error___default()(error) }));
+  });
+}
+
+/**
+   * Makes a request to the path given through socket
+   *
+   * @param {String} url - The path to make the request
+   * @param {Object} [requestOptions] - Options for the request
+   * @param {Object} [requestOptions.method] - The type of request, Ex - get, post, put, etc.
+   * @param {Object} [requestOptions.headers] - Headers for the request
+   * @param {Object} [requestOptions.data] - Body for the request
+   */
+function request(url, requestOptions = {}) {
+  return __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__["a" /* default */].get().
+  then(userData => {
+    let socket = pm.syncSocket;
+
+    if (!socket || !socket.request || !_.isFunction(socket.request)) {
+      return Promise.reject({ error: { message: 'SyncRequestService~request: Socket not available' } });
+    }
+
+    return new Promise((resolve, reject) => {
+      let requestObj = {},
+      defaultOptions = {
+        url: '',
+        method: 'get',
+        headers: { 'x-access-token': _.get(userData, 'auth.access_token'), 'user-agent': Object(__WEBPACK_IMPORTED_MODULE_4__services_SyncService__["a" /* generateUserAgent */])() },
+        data: {} };
+
+
+      /**
+                     * Assign url value and request options to requestObj. If they don't exist, the following
+                     * defaults are assigned -
+                     * url = '', method = 'get', headers = { access_token, user_agent }, data = {}
+                     */
+
+      _.defaultsDeep(requestObj, { url: url }, requestOptions, defaultOptions);
+
+      socket.request(requestObj, (res, jwr) => {
+        if (!res) {
+          return reject({ error: { message: 'SyncRequestService~request: Undefined response returned' }, status: jwr && jwr.statusCode, headers: jwr && jwr.headers });
+        }
+
+        if (res && res.error) {
+          return reject({ error: res.error, status: jwr && jwr.statusCode, headers: jwr && jwr.headers });
+        }
+
+        return resolve({ body: res, status: jwr && jwr.statusCode, headers: jwr && jwr.headers });
+      });
+    });
+  });
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 3155:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return userFetch; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initiateBoot; });
 /* unused harmony export initializeUser */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_ConnectivityController__ = __webpack_require__(1064);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_ConnectivityController__ = __webpack_require__(1178);
 
 
 
@@ -18718,13 +16907,13 @@ function initializeUser(connectivity = {}) {
 
 /***/ }),
 
-/***/ 2915:
+/***/ 3156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(240);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipelines_app_action__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_UserController__ = __webpack_require__(50);
 
 
 let
@@ -18756,15 +16945,15 @@ ConnectivityService = class ConnectivityService {
 
 /***/ }),
 
-/***/ 2916:
+/***/ 3157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_theme_ThemeManager__ = __webpack_require__(491);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_theme_ThemeManager__ = __webpack_require__(541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_TransformConfigurationsService__ = __webpack_require__(1218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_pipelines_user_action__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_TransformConfigurationsService__ = __webpack_require__(1357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_pipelines_user_action__ = __webpack_require__(48);
 
 
 
@@ -18823,7 +17012,7 @@ ConnectivityService = class ConnectivityService {
 
 /***/ }),
 
-/***/ 2917:
+/***/ 3158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18913,7 +17102,111 @@ const warn = function (message, options) {
 
 /***/ }),
 
-/***/ 2918:
+/***/ 3159:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__boot_verifyIndexedDbDowngrade__ = __webpack_require__(3160);
+
+
+let electron = __webpack_require__(21).remote,
+dialog = electron.dialog;
+
+/**
+                           * Used to verify application status
+                           * Check for application downgrade etc
+                           *
+                           * @param {Function} cb
+                           *
+                           */
+function verifyApplicationDowngrade(cb) {
+
+  // check whether indexeddb is downgraded or not
+  return Object(__WEBPACK_IMPORTED_MODULE_0__boot_verifyIndexedDbDowngrade__["a" /* default */])().
+  then(isApplicationDowngraded => {
+    if (isApplicationDowngraded) {
+      pm.logger.warn('VerifyApplicationStatus: Downgrade detected.');
+      dialog.showErrorBox('Version mismatch detected',
+      'Looks like you\'ve used a newer version of the Postman app on this system. Please download the latest app and try again.');
+
+      // don't call the callback here and make the series blocked, the app is anyway unusable at this point
+      return;
+    }
+
+    return cb && cb();
+  });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (verifyApplicationDowngrade);
+
+/***/ }),
+
+/***/ 3160:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dexie__ = __webpack_require__(564);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__migrations__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_initialize_db_indexeddb_helpers__ = __webpack_require__(1034);
+
+
+
+
+const DB_DOES_NOT_EXIST_ERROR = 'NoSuchDatabaseError';
+
+/**
+                                                        * Used to check whether the db version is correct or not
+                                                        *
+                                                        * @returns {Promise<Boolean>}
+                                                        */
+function isIndexedDbDowngraded() {
+  let compatibleIDBVersionForCurrentVersion = Object(__WEBPACK_IMPORTED_MODULE_2__modules_initialize_db_indexeddb_helpers__["b" /* getIndexedVersion */])();
+
+  let dexie = new __WEBPACK_IMPORTED_MODULE_0_dexie__["default"](__WEBPACK_IMPORTED_MODULE_1__migrations__["a" /* default */].indexedDbName),
+  currentDbVersion;
+
+  return Promise.resolve()
+
+  // open a new dexie connection
+  .then(() => {
+    return dexie.open(__WEBPACK_IMPORTED_MODULE_1__migrations__["a" /* default */].indexedDbName);
+  })
+
+  // close the dexie connection
+  .then(db => {
+    currentDbVersion = db.verno;
+    return dexie.close();
+  })
+
+  // verify that the version is correct, else error
+  .then(() => {
+    if (compatibleIDBVersionForCurrentVersion < currentDbVersion) {
+      pm.logger.warn(`VerifyDbVersion: Downgrading not supported. CurrentDbVersion: ${currentDbVersion}. CompatibleIDBVersionForCurrentVersion: ${compatibleIDBVersionForCurrentVersion}`);
+      return true;
+    }
+
+    return false;
+  }).
+
+  catch(e => {
+    // this be the case where db does not exist hence swallow this error and allow booting.
+    // db will be initialized in the later step if it is not done yet
+    if (e && e.name === DB_DOES_NOT_EXIST_ERROR) {
+      return false;
+    }
+
+    // ideally should not happen, returning false here
+    // so that the boot sequence is not blocked and continues for other steps
+    pm.logger.error('isIndexedDbDowngraded: Errored out', e);
+    return false;
+  });
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isIndexedDbDowngraded);
+
+/***/ }),
+
+/***/ 3161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18923,8 +17216,8 @@ const warn = function (message, options) {
 /* unused harmony export pushPendingCommit */
 /* unused harmony export timeoutMigration */
 /* unused harmony export applyMigrations */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__migrations__ = __webpack_require__(922);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_dexie__ = __webpack_require__(925);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__migrations__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_dexie__ = __webpack_require__(564);
 
 
 
@@ -19109,7 +17402,7 @@ function applyMigrations(migrations, context, migrators, options) {
       // bail out if both the following conditions are met
       // 1. This migration can be skipped
       // 2. This migration has been applied before
-      if (!(migrator.alwaysProcess || context[migration.key] !== MIGRATION_STATUS.FINISHED)) {
+      if (context[migration.key] === MIGRATION_STATUS.FINISHED) {
         pm.logger.info('Migrations: Bailing out migration, because it is finished', migration && migration.key);
         return;
       }
@@ -19126,6 +17419,11 @@ function applyMigrations(migrations, context, migrators, options) {
 
       // set migration status in context
       .then(() => {
+        // do not mark completed migrations as incomplete
+        if (context[migration.key] === MIGRATION_STATUS.FINISHED) {
+          return;
+        }
+
         startMigration(context, migration);
         pm.logger.info('Migrations: Setting context before starting migration', migration && migration.key, context);
         saveMigrationContext(context);
@@ -19202,8 +17500,6 @@ function applyMigrations(migrations, context, migrators, options) {
 
   migrationConfiguration = {
     IndexeddbSchemaMigration: {
-      alwaysProcess: true,
-
       process(migration) {
         lastIDBVersion += 1;
 
@@ -19260,6 +17556,23 @@ function applyMigrations(migrations, context, migrators, options) {
 
 
 
+  // prepare dexie instance by loading schemas from previous completed migrations
+  // this is needed because subsequent migrations depend on the previous schemas to set up
+  // dexie instance before starting
+  // use for loop here to ensure ordering
+  for (let i = 0; i < __WEBPACK_IMPORTED_MODULE_0__migrations__["a" /* default */].migrations.length; i++) {
+    let migration = __WEBPACK_IMPORTED_MODULE_0__migrations__["a" /* default */].migrations[i];
+
+    // for every completed migration
+    if (migration && migration.type === 'IndexeddbSchemaMigration' && context[migration.key] === MIGRATION_STATUS.FINISHED) {
+      // updated the expected indexedDB version
+      lastIDBVersion++;
+
+      // and load the schema for the version into dexie
+      dexie.version(lastIDBVersion).stores(migration.indexeddbSchema);
+    }
+  }
+
   pm.logger.info('Migrations: Starting migrations');
 
   return applyMigrations(__WEBPACK_IMPORTED_MODULE_0__migrations__["a" /* default */].migrations, context, migrationConfiguration, { timeout: __WEBPACK_IMPORTED_MODULE_0__migrations__["a" /* default */].timeout }).
@@ -19277,7 +17590,7 @@ function applyMigrations(migrations, context, migrators, options) {
 
     // Logging it on console as well to track on sentry
     // @todo: remove this once logger.error reports to sentry
-    console.error('Could not complete migration.', e, context);
+    pm.logger.error('Could not complete migration.', e, context);
 
     pm.logger.error('Migration: Could not complete migration.', e, context);
     cb(e);
@@ -19287,12 +17600,12 @@ function applyMigrations(migrations, context, migrators, options) {
 
 /***/ }),
 
-/***/ 2919:
+/***/ 3162:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_UserConfigurationController__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_TransformConfigurationsService__ = __webpack_require__(1218);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_controllers_UserConfigurationController__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_TransformConfigurationsService__ = __webpack_require__(1357);
 
 
 
@@ -19322,7 +17635,7 @@ function getConfigurationsToUpdate() {
   // If the app is loading for the first time and not
   // updating to a newer version then we need to
   // turn off auto persistance of variables
-  const firstLoad = __webpack_require__(18).remote.app.firstLoad;
+  const firstLoad = __webpack_require__(21).remote.app.firstLoad;
   firstLoad && (configToUpdate['request.autoPersistVariables'] = false);
 
   return configToUpdate;
@@ -19349,22 +17662,502 @@ function initializeConfigurationsValues(cb) {
 
 /***/ }),
 
-/***/ 292:
+/***/ 3163:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = bootRuntimeListeners;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeVariableUpdatesListener__ = __webpack_require__(3164);
+
+
+/**
+                                                                                             *
+                                                                                             *
+                                                                                             * @export
+                                                                                             */
+function bootRuntimeListeners(cb) {
+  if (!(pm && pm.eventBus)) {
+    pm.logger.info('SharedRuntimeListeners~boot - Failed', new Error('Could not initialize runtime listeners. Event bus not initialized'));
+    cb();
+    return;
+  }
+
+  Object(__WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeVariableUpdatesListener__["a" /* subscribeToUpdates */])();
+  pm.logger.info('SharedRuntimeListeners~boot - Success');
+  cb();
+}
+
+/***/ }),
+
+/***/ 3164:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export getVariableUpdatesObservable */
+/* unused harmony export getUpdatesStream */
+/* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToUpdates;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_postman_collection__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__ = __webpack_require__(860);
+
+
+
+
+
+
+
+
+const TYPE_NAME_MAP = {
+  globals: 'globalsUpdated',
+  environment: 'environmentUpdated' },
+
+
+NAMESPACE_VARIABLE_UPDATES = 'variableupdates',
+BUFFER_DURATION = 1 * 1000, // 1 second
+MAX_UPDATE_WAIT_TIME = 60 * 1000; // 1 minute
+
+let variableUpdates$,
+environmentUpdates$,
+globalsUpdates$,
+executionFinishes$;
+
+executionFinishes$ = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](function (observer) {
+  let unsubscribe = pm.eventBus.channel('postman-runtime').subscribe(event => {
+    observer.next(event);
+  });
+
+  return () => {
+    // unsubscribe from event bus when observable completes or all subscribers unsubscribe
+    // this stream is probably not unsubscribed in the normal app execution
+    // still here for testing and sanity
+    unsubscribe && unsubscribe();
+  };
+}).
+pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
+  return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["g" /* getEventNamespace */])(event) === 'requestexecution' && Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["f" /* getEventName */])(event) === 'finished';
+}))
+
+// this is what actually makes this shareable
+.pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
+
+/**
+                 * Persists a session with its corresponding entity on DB
+                 *
+                 * @param {Object} session
+                 *
+                 * @returns {Promise}
+                 */
+function persistSessionUpdate(session) {
+  return Object(__WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__["f" /* updateEntityWithSession */])(session.id, session)
+
+  // important catch all errors here
+  // otherwise any error event on the stream will terminate the stream
+  // and no new events will be pushed further on
+  .catch(e => {pm.logger.error('Could not sync session updates from runtime', e);});
+}
+
+/**
+   * Returns an observable with variable update events from postman-runtime channel.
+   *
+   * @returns {Observable}
+   */
+function getVariableUpdatesObservable() {
+  // if there is a variable updates observable return that
+  if (variableUpdates$) {
+    return variableUpdates$;
+  }
+
+  // otherwise create a new one and cache it locally
+  // this makes sure we don't create multiple observables to the event bus
+  variableUpdates$ = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](function (observer) {
+    pm.eventBus.channel('postman-runtime').subscribe(event => {
+      observer.next(event);
+    });
+  }).
+  pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
+    return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["g" /* getEventNamespace */])(event) === NAMESPACE_VARIABLE_UPDATES;
+  }))
+
+  // this is what actually makes this shareable
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
+
+  return variableUpdates$;
+}
+
+/**
+   * Returns an observable that takes a variable update for a type and persists it to DB.
+   * Also takes care of batching events.
+   *
+   * @param {String} type
+   *
+   * @returns {Observable}
+   */
+function getUpdatesStream(type) {
+  let variableUpdatesStream$ = getVariableUpdatesObservable(),
+  groupInterval$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["h" /* interval */])(BUFFER_DURATION).pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])()),
+
+  // create an observable that combines events from the interval and execution finishes
+  // this is used as trigger to flush pending variable updates to DB
+  // we merge the execution finishes to make sure that any pending variable updates
+  // are flushed to DB immediately, so that next execution always uses the latest values
+  // https://github.com/postmanlabs/postman-app-support/issues/6144
+  flushGroup$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["i" /* merge */])(groupInterval$, executionFinishes$);
+
+  // stream of variable update events
+  // e1---g1---e1---g1---e1---g1---e2---g2--->
+  return variableUpdatesStream$
+
+  // stream of update events for a given type
+  // from here on we use e representing environment, but similar is true for globals as well
+  // e1--------e1--------e1------e2-------->
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
+    return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["f" /* getEventName */])(event) === TYPE_NAME_MAP[type];
+  }))
+
+  // filters off invalid events
+  // e1--------e1--------e1------e2-------->
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
+    return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event) && Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type];
+  }))
+
+  // maps events to sessions
+  // E1--------E1--------E1------E2-------->
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(event => new __WEBPACK_IMPORTED_MODULE_2_postman_collection__["VariableScope"](Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type])))
+
+  // group updates by per session
+  // ----------[E1, E1]$--------[E1]$-[E2]$-------->
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["e" /* groupBy */])(session => {return session.id;}, null, () => flushGroup$))
+
+  // merges all items in a single group and flattens it
+  // by merging we mean combining all mutations
+  // note how after this each item is a session and not a group
+  // ----------E1--------E1--E2-------->
+  // concatMap makes sure the next update is not stated before the first update is completed
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(sessions$ => {
+    return sessions$.
+    pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["h" /* reduce */])((cumulative, session) => {
+
+      // accumulate all mutations
+      Object(__WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__["a" /* mergeMutations */])(cumulative.mutations, session.mutations);
+
+      return cumulative;
+    }));
+  }))
+
+  // now save each update
+  // concatMap makes sure the next update is not stated before the first update is completed
+  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(session => {
+
+    // update the session, or unblock the queue after timer
+    // if one update doesn't finish
+    // it can block the whole queue and prevent further updates, or cause memory leak
+    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["k" /* race */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["g" /* defer */])(() => persistSessionUpdate(session)), Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["l" /* timer */])(MAX_UPDATE_WAIT_TIME));
+  }));
+}
+
+
+/**
+   * Subscribes to variable update event processors.
+   *
+   * By nature, observables are idle until they are subscribed. Once subscribed all the stream starts to react.
+   */
+function subscribeToUpdates() {
+
+  // bail out if listeners have been initialized before
+  if (environmentUpdates$ || environmentUpdates$) {
+    return;
+  }
+
+  environmentUpdates$ = getUpdatesStream('environment');
+  globalsUpdates$ = getUpdatesStream('globals');
+
+  // we create two separate streams for environment and globals
+  // we guarantee that only one update is being applied at any given time for a given stream
+  // that means across streams there can be concurrent updates, and we're okay with that
+  environmentUpdates$.subscribe();
+  globalsUpdates$.subscribe();
+}
+
+/***/ }),
+
+/***/ 3165:
+/***/ (function(module, exports) {
+
+let GoogleAnalytics = class GoogleAnalytics {
+  constructor() {
+    this.apiVersion = 1;
+    this.trackID = null;
+    this.clientID = null;
+    this.appName = 'Postman';
+    this.screenName = 'MainView';
+    this.screenRes = [window.screen.width, window.screen.height].join('x');
+    this.viewport = [window.innerWidth, window.innerHeight].join('x');
+
+    this.initialize();
+  }
+
+  initialize() {
+    this.trackID = window.postman_ga_tracking_id;
+    this.clientID = pm.app.get('installationId');
+
+    // since pm.appWindow.isPrimaryWindow() takes time to become valid
+    setTimeout(() => {
+      if (!this.isEnabled()) {
+        return;
+      }
+
+      this.sendAppView('MainView');
+    }, 5000);
+  }
+
+  isEnabled() {
+    return Boolean(
+    !window.DISABLE_ANALYTICS &&
+    pm.settings.getSetting('googleAnalytics') &&
+    this.clientID &&
+    this.trackID);
+
+  }
+
+  _sendRequest(data, cb) {
+    if (!this.isEnabled()) {
+      return;
+    }
+
+    var payload = [
+    '_v=ca1',
+    'ul=en-US',
+    'sd=24-bit',
+    'v=' + this.apiVersion,
+    'tid=' + this.trackID,
+    'cid=' + this.clientID,
+    'an=' + this.appName,
+    'av=' + pm.app.get('version'),
+    'cd=' + this.screenName,
+    'sr=' + this.screenRes,
+    'vp=' + this.viewport];
+
+
+    Object.keys(data).forEach(function (key) {
+      var val = data[key];
+      if (typeof val !== 'undefined') {
+        payload.push(key + '=' + val);
+      }
+    });
+
+    var serializedPayload = payload.join('&');
+
+    var xhr = new XMLHttpRequest();
+    var url = 'https://www.google-analytics.com/collect';
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('authority', 'www.google-analytics.com');
+    xhr.send(serializedPayload);
+  }
+
+  sendAppView(screenName) {
+    var data = { 't': 'appview' };
+    this.screenName = screenName;
+    this._sendRequest(data);
+  }};
+
+
+
+module.exports = GoogleAnalytics;
+
+/***/ }),
+
+/***/ 349:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/**
+ * Expose `Emitter`.
+ */
+
+if (true) {
+  module.exports = Emitter;
+}
+
+/**
+ * Initialize a new `Emitter`.
+ *
+ * @api public
+ */
+
+function Emitter(obj) {
+  if (obj) return mixin(obj);
+};
+
+/**
+ * Mixin the emitter properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  for (var key in Emitter.prototype) {
+    obj[key] = Emitter.prototype[key];
+  }
+  return obj;
+}
+
+/**
+ * Listen on the given `event` with `fn`.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.on =
+Emitter.prototype.addEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+    .push(fn);
+  return this;
+};
+
+/**
+ * Adds an `event` listener that will be invoked a single
+ * time then automatically removed.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.once = function(event, fn){
+  function on() {
+    this.off(event, on);
+    fn.apply(this, arguments);
+  }
+
+  on.fn = fn;
+  this.on(event, on);
+  return this;
+};
+
+/**
+ * Remove the given callback for `event` or all
+ * registered callbacks.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.off =
+Emitter.prototype.removeListener =
+Emitter.prototype.removeAllListeners =
+Emitter.prototype.removeEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+
+  // all
+  if (0 == arguments.length) {
+    this._callbacks = {};
+    return this;
+  }
+
+  // specific event
+  var callbacks = this._callbacks['$' + event];
+  if (!callbacks) return this;
+
+  // remove all handlers
+  if (1 == arguments.length) {
+    delete this._callbacks['$' + event];
+    return this;
+  }
+
+  // remove specific handler
+  var cb;
+  for (var i = 0; i < callbacks.length; i++) {
+    cb = callbacks[i];
+    if (cb === fn || cb.fn === fn) {
+      callbacks.splice(i, 1);
+      break;
+    }
+  }
+  return this;
+};
+
+/**
+ * Emit `event` with the given args.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Emitter}
+ */
+
+Emitter.prototype.emit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks['$' + event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      callbacks[i].apply(this, args);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return array of callbacks for `event`.
+ *
+ * @param {String} event
+ * @return {Array}
+ * @api public
+ */
+
+Emitter.prototype.listeners = function(event){
+  this._callbacks = this._callbacks || {};
+  return this._callbacks['$' + event] || [];
+};
+
+/**
+ * Check if this emitter has `event` handlers.
+ *
+ * @param {String} event
+ * @return {Boolean}
+ * @api public
+ */
+
+Emitter.prototype.hasListeners = function(event){
+  return !! this.listeners(event).length;
+};
+
+
+/***/ }),
+
+/***/ 350:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var keys = __webpack_require__(2890);
-var hasBinary = __webpack_require__(1210);
-var sliceBuffer = __webpack_require__(2892);
-var after = __webpack_require__(2893);
-var utf8 = __webpack_require__(2894);
+var keys = __webpack_require__(3131);
+var hasBinary = __webpack_require__(1348);
+var sliceBuffer = __webpack_require__(3133);
+var after = __webpack_require__(3134);
+var utf8 = __webpack_require__(3135);
 
 var base64encoder;
 if (typeof ArrayBuffer !== 'undefined') {
-  base64encoder = __webpack_require__(720);
+  base64encoder = __webpack_require__(791);
 }
 
 /**
@@ -19422,7 +18215,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(2895);
+var Blob = __webpack_require__(3136);
 
 /**
  * Encodes a packet.
@@ -19961,305 +18754,15 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 
-/***/ 2920:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = bootRuntimeListeners;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeVariableUpdatesListener__ = __webpack_require__(2921);
-
-
-/**
-                                                                                             *
-                                                                                             *
-                                                                                             * @export
-                                                                                             */
-function bootRuntimeListeners(cb) {
-  if (!(pm && pm.eventBus)) {
-    pm.logger.info('SharedRuntimeListeners~boot - Failed', new Error('Could not initialize runtime listeners. Event bus not initialized'));
-    cb();
-    return;
-  }
-
-  Object(__WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeVariableUpdatesListener__["a" /* subscribeToUpdates */])();
-  pm.logger.info('SharedRuntimeListeners~boot - Success');
-  cb();
-}
-
-/***/ }),
-
-/***/ 2921:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export getVariableUpdatesObservable */
-/* unused harmony export getUpdatesStream */
-/* harmony export (immutable) */ __webpack_exports__["a"] = subscribeToUpdates;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__ = __webpack_require__(778);
-
-
-
-
-
-
-
-
-const TYPE_NAME_MAP = {
-  globals: 'globalsUpdated',
-  environment: 'environmentUpdated' },
-
-
-NAMESPACE_VARIABLE_UPDATES = 'variableupdates',
-BUFFER_DURATION = 1 * 1000, // 1 second
-MAX_UPDATE_WAIT_TIME = 60 * 1000; // 1 minute
-
-let variableUpdates$,
-environmentUpdates$,
-globalsUpdates$;
-
-/**
-                  * Persists a session with its corresponding entity on DB
-                  *
-                  * @param {Object} session
-                  *
-                  * @returns {Promise}
-                  */
-function persistSessionUpdate(session) {
-  return Object(__WEBPACK_IMPORTED_MODULE_4__modules_services_VariableSessionService__["f" /* updateEntityWithSession */])(session.id, session)
-
-  // important catch all errors here
-  // otherwise any error event on the stream will terminate the stream
-  // and no new events will be pushed further on
-  .catch(e => {console.error('Could not sync session updates from runtime', e);});
-}
-
-/**
-   * Returns an observable with variable update events from postman-runtime channel.
-   *
-   * @returns {Observable}
-   */
-function getVariableUpdatesObservable() {
-  // if there is a variable updates observable return that
-  if (variableUpdates$) {
-    return variableUpdates$;
-  }
-
-  // otherwise create a new one and cache it locally
-  // this makes sure we don't create multiple observables to the event bus
-  variableUpdates$ = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](function (observer) {
-    pm.eventBus.channel('postman-runtime').subscribe(event => {
-      observer.next(event);
-    });
-  }).
-  pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
-    return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["g" /* getEventNamespace */])(event) === NAMESPACE_VARIABLE_UPDATES;
-  }))
-
-  // this is what actually makes this shareable
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
-
-  return variableUpdates$;
-}
-
-/**
-   * Returns an observable that takes a variable update for a type and persists it to DB.
-   * Also takes care of batching events.
-   *
-   * @param {String} type
-   *
-   * @returns {Observable}
-   */
-function getUpdatesStream(type) {
-  let variableUpdatesStream$ = getVariableUpdatesObservable(),
-  groupInterval$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["h" /* interval */])(BUFFER_DURATION).pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["i" /* share */])());
-
-  // stream of variable update events
-  // e1---g1---e1---g1---e1---g1---e2---g2--->
-  return variableUpdatesStream$
-
-  // stream of update events for a given type
-  // from here on we use e representing environment, but similar is true for globals as well
-  // e1--------e1--------e1------e2-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
-    return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["f" /* getEventName */])(event) === TYPE_NAME_MAP[type];
-  }))
-
-  // filters off invalid events
-  // e1--------e1--------e1------e2-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(event => {
-    return Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event) && Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type];
-  }))
-
-  // maps events to sessions
-  // E1--------E1--------E1------E2-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(event => new __WEBPACK_IMPORTED_MODULE_2_postman_collection__["VariableScope"](Object(__WEBPACK_IMPORTED_MODULE_3__model_event__["d" /* getEventData */])(event)[type])))
-
-  // group updates by per session
-  // ----------[E1, E1]$--------[E1]$-[E2]$-------->
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["e" /* groupBy */])(session => {return session.id;}, null, () => groupInterval$))
-
-  // merges all items in a single group and flattens it
-  // by merging we mean combining all mutations
-  // note how after this each item is a session and not a group
-  // ----------E1--------E1--E2-------->
-  // concatMap makes sure the next update is not stated before the first update is completed
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(sessions$ => {
-    return sessions$.
-    pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["h" /* reduce */])((cumulative, session) => {
-
-      // accumulate all mutations
-      Object(__WEBPACK_IMPORTED_MODULE_5__utils_RequestUtil__["a" /* mergeMutations */])(cumulative.mutations, session.mutations);
-
-      return cumulative;
-    }));
-  }))
-
-  // now save each update
-  // concatMap makes sure the next update is not stated before the first update is completed
-  .pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(session => {
-
-    // update the session, or unblock the queue after timer
-    // if one update doesn't finish
-    // it can block the whole queue and prevent further updates, or cause memory leak
-    return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["k" /* race */])(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["g" /* defer */])(() => persistSessionUpdate(session)), Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["l" /* timer */])(MAX_UPDATE_WAIT_TIME));
-  }));
-}
-
-
-/**
-   * Subscribes to variable update event processors.
-   *
-   * By nature, observables are idle until they are subscribed. Once subscribed all the stream starts to react.
-   */
-function subscribeToUpdates() {
-
-  // bail out if listeners have been initialized before
-  if (environmentUpdates$ || environmentUpdates$) {
-    return;
-  }
-
-  environmentUpdates$ = getUpdatesStream('environment');
-  globalsUpdates$ = getUpdatesStream('globals');
-
-  // we create two separate streams for environment and globals
-  // we guarantee that only one update is being applied at any given time for a given stream
-  // that means across streams there can be concurrent updates, and we're okay with that
-  environmentUpdates$.subscribe();
-  globalsUpdates$.subscribe();
-}
-
-/***/ }),
-
-/***/ 2922:
-/***/ (function(module, exports) {
-
-let GoogleAnalytics = class GoogleAnalytics {
-  constructor() {
-    this.apiVersion = 1;
-    this.trackID = null;
-    this.clientID = null;
-    this.appName = 'Postman';
-    this.screenName = 'MainView';
-    this.screenRes = [window.screen.width, window.screen.height].join('x');
-    this.viewport = [window.innerWidth, window.innerHeight].join('x');
-
-    this.initialize();
-  }
-
-  initialize() {
-    this.trackID = window.postman_ga_tracking_id;
-    this.clientID = pm.app.get('installationId');
-
-    // since pm.appWindow.isPrimaryWindow() takes time to become valid
-    setTimeout(() => {
-      if (!this.isEnabled()) {
-        return;
-      }
-
-      this.sendAppView('MainView');
-    }, 5000);
-  }
-
-  isEnabled() {
-    return Boolean(
-    !window.DISABLE_ANALYTICS &&
-    pm.settings.getSetting('googleAnalytics') &&
-    this.clientID &&
-    this.trackID);
-
-  }
-
-  _sendRequest(data, cb) {
-    if (!this.isEnabled()) {
-      return;
-    }
-
-    var payload = [
-    '_v=ca1',
-    'ul=en-US',
-    'sd=24-bit',
-    'v=' + this.apiVersion,
-    'tid=' + this.trackID,
-    'cid=' + this.clientID,
-    'an=' + this.appName,
-    'av=' + pm.app.get('version'),
-    'cd=' + this.screenName,
-    'sr=' + this.screenRes,
-    'vp=' + this.viewport];
-
-
-    Object.keys(data).forEach(function (key) {
-      var val = data[key];
-      if (typeof val !== 'undefined') {
-        payload.push(key + '=' + val);
-      }
-    });
-
-    var serializedPayload = payload.join('&');
-
-    var xhr = new XMLHttpRequest();
-    var url = 'https://www.google-analytics.com/collect';
-
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.setRequestHeader('authority', 'www.google-analytics.com');
-    xhr.send(serializedPayload);
-  }
-
-  sendAppView(screenName) {
-    var data = { 't': 'appview' };
-    this.screenName = screenName;
-    this._sendRequest(data);
-  }};
-
-
-
-module.exports = GoogleAnalytics;
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ 454:
+/***/ 503:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeConfigurations;
 /* unused harmony export initializeServices */
 /* unused harmony export subscribeToModelEvents */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(455);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(507);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
 
 
@@ -20338,13 +18841,13 @@ function subscribeToModelEvents(service, namespaces) {
 
 /***/ }),
 
-/***/ 455:
+/***/ 504:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(456);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(505);
 
 
 let
@@ -20369,11 +18872,11 @@ Configuration = class Configuration extends __WEBPACK_IMPORTED_MODULE_0__BaseCon
 
 /***/ }),
 
-/***/ 456:
+/***/ 505:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultConfiguration = __webpack_require__(457);
+let defaultConfiguration = __webpack_require__(506);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -20382,20 +18885,20 @@ let defaultConfiguration = __webpack_require__(457);
 
 /***/ }),
 
-/***/ 457:
+/***/ 506:
 /***/ (function(module, exports) {
 
 module.exports = {"editor.requestEditorLayoutName":"layout-1-column","request.autoPersistVariables":true,"user.plansToAllowUpgrade":[],"workspace.visibilityAvailablePlans":[],"editor.openInNew":false,"editor.skipConfirmationBeforeClose":false,"editor.showIcons":true}
 
 /***/ }),
 
-/***/ 458:
+/***/ 507:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(430);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(508);
 
 
 let
@@ -20428,11 +18931,11 @@ FeatureFlags = class FeatureFlags extends __WEBPACK_IMPORTED_MODULE_0__BaseConfi
 
 /***/ }),
 
-/***/ 459:
+/***/ 508:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultFeatureFlags = __webpack_require__(460);
+let defaultFeatureFlags = __webpack_require__(509);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -20441,21 +18944,28 @@ let defaultFeatureFlags = __webpack_require__(460);
 
 /***/ }),
 
-/***/ 460:
+/***/ 509:
 /***/ (function(module, exports) {
 
 module.exports = {"inviteByNonAdmin":false}
 
 /***/ }),
 
-/***/ 55:
+/***/ 56:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 578:
+/***/ 605:
+/***/ (function(module, exports) {
+
+module.exports = require("child_process");
+
+/***/ }),
+
+/***/ 632:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20464,7 +18974,7 @@ module.exports = require("os");
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(2880);
+exports = module.exports = __webpack_require__(3121);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -20654,11 +19164,11 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 
-/***/ 579:
+/***/ 633:
 /***/ (function(module, exports) {
 
 /**
@@ -20702,7 +19212,7 @@ exports.decode = function(qs){
 
 /***/ }),
 
-/***/ 580:
+/***/ 634:
 /***/ (function(module, exports) {
 
 
@@ -20715,7 +19225,7 @@ module.exports = function(a, b){
 
 /***/ }),
 
-/***/ 581:
+/***/ 635:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20724,7 +19234,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(2896);
+exports = module.exports = __webpack_require__(3137);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -20914,35 +19424,28 @@ function localstorage() {
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
 
-/***/ 606:
-/***/ (function(module, exports) {
-
-module.exports = require("child_process");
-
-/***/ }),
-
-/***/ 757:
+/***/ 854:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeRollbackNotifications;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(534);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(203);
 
 
 
@@ -21448,7 +19951,7 @@ function _showNotification() {
     // }
   });
 
-  __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__["a" /* default */].addEvent('rollback', 'view_toast', _.length(pendingNotifyChanges));
+  __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__["a" /* default */].addEvent('rollback', 'view_toast', _.toString(_.size(pendingNotifyChanges)));
 
   pendingNotifyChanges = [];
 }
@@ -21460,30 +19963,7 @@ const rollbackQueue = __WEBPACK_IMPORTED_MODULE_0_async___default.a.queue(rollba
 
 /***/ }),
 
-/***/ 778:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = mergeMutations;
-/**
- * Imports mutations from source to destination
- * @param {Object} destination
- * @param {Object} source
- */
-function mergeMutations(destination, source = {}) {
-  _.forEach(source.compacted, mutation => {
-    destination.addMutation(mutation);
-  });
-  _.forEach(source.stream, mutation => {
-    destination.addMutation(mutation);
-  });
-  return destination;
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 800:
+/***/ 856:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable
@@ -21498,9 +19978,9 @@ function mergeMutations(destination, source = {}) {
  */
 
 const _ = __webpack_require__(0),
-  async = __webpack_require__(47),
-  uuid = __webpack_require__(243),
-  collate = __webpack_require__(2867),
+  async = __webpack_require__(55),
+  uuid = __webpack_require__(200),
+  collate = __webpack_require__(3110),
 
   ACTIONS = ['import', 'transfer', 'destroy', 'update'],
   IMPORT_ACTIONS = ['importCollection', 'importFolder', 'importRequest', 'import', 'create'],
@@ -22479,6 +20959,13 @@ class Bucket {
               (err, instance) => {
                 if (err) { return cb(err); }
 
+                // instance not found in database
+                if (_.isUndefined(instance)) {
+                  // @todo: log this to sentry through reporting service once it is ready.
+                  removeChangesets(bucket, changeset.data.modelId, 'update');
+                  return cb(null, changesets);
+                }
+
                 changesets.push(_.assign({}, changeset, {
                   data: _.assign(_.pick(changeset.data, ['modelId', 'owner']), { instance: instance })
                 }));
@@ -22492,6 +20979,13 @@ class Bucket {
             db.getInstance(changeset.model, changeset.data.modelId, { populateAll: true },
               (err, instance) => {
                 if (err) { return cb(err); }
+
+                // instance not found in database
+                if (_.isUndefined(instance)) {
+                  // @todo: log this to sentry through reporting service once it is ready.
+                  removeChangesets(bucket, changeset.data.modelId, 'update');
+                  return cb(null, changesets);
+                }
 
                 let keys = _.get(changeset, 'data.keys'),
                   diffs = _.get(changeset, 'data.diff'),
@@ -22662,7 +21156,7 @@ module.exports = Bucket;
 
 /***/ }),
 
-/***/ 801:
+/***/ 857:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -22670,11 +21164,11 @@ module.exports = Bucket;
  * Module dependencies.
  */
 
-var debug = __webpack_require__(2882)('socket.io-parser');
-var Emitter = __webpack_require__(291);
-var binary = __webpack_require__(2885);
-var isArray = __webpack_require__(1205);
-var isBuf = __webpack_require__(1206);
+var debug = __webpack_require__(3123)('socket.io-parser');
+var Emitter = __webpack_require__(349);
+var binary = __webpack_require__(3126);
+var isArray = __webpack_require__(1343);
+var isBuf = __webpack_require__(1344);
 
 /**
  * Protocol version.
@@ -23086,12 +21580,12 @@ function error(msg) {
 
 /***/ }),
 
-/***/ 802:
+/***/ 858:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(2888);
+var hasCORS = __webpack_require__(3129);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -23131,15 +21625,15 @@ module.exports = function (opts) {
 
 /***/ }),
 
-/***/ 803:
+/***/ 859:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var parser = __webpack_require__(292);
-var Emitter = __webpack_require__(291);
+var parser = __webpack_require__(350);
+var Emitter = __webpack_require__(349);
 
 /**
  * Module exports.
@@ -23293,6 +21787,29 @@ Transport.prototype.onClose = function () {
 };
 
 
+/***/ }),
+
+/***/ 860:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = mergeMutations;
+/**
+ * Imports mutations from source to destination
+ * @param {Object} destination
+ * @param {Object} source
+ */
+function mergeMutations(destination, source = {}) {
+  _.forEach(source.compacted, mutation => {
+    destination.addMutation(mutation);
+  });
+  _.forEach(source.stream, mutation => {
+    destination.addMutation(mutation);
+  });
+  return destination;
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
 /***/ })
 
-},[2844]);
+},[3088]);

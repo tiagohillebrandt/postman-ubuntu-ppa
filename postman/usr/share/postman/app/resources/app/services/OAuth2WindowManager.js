@@ -71,7 +71,7 @@ class OAuth2WindowManager {
             };
 
           if (!urlMatched) {
-            actualUrl.host.join('.') === expectedHost && (urlMatched = true);
+            actualUrl.host && actualUrl.host.join('.') === expectedHost && (urlMatched = true);
           }
 
           if (!urlMatched) {

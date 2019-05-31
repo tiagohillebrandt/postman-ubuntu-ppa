@@ -6,14 +6,14 @@ class Evaluator {
 
     shimWindowFunctions () {
       window.open = function () {
-        console.error('window.open is not allowed from script sandbox');
+        pm.logger.error('window.open is not allowed from script sandbox');
       };
     }
 
     setupListener () {
         var oldThis = this;
         var oldJsonParser = JSON.parse;
-        console.fileLog = function (fileName, message) {
+        console.fileLog = function (fileName, message) { // eslint-disable-line no-console
             console.log(fileName + ': ' + message);
         };
 

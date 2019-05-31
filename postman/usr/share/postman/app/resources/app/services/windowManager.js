@@ -33,19 +33,20 @@ exports.windowManager = {
       // url.format helps in encoding any not allowed special characters in the path
       // The fix has been added where it was not possible to load the url for case below,
       // if user name contains #, creates # in the path, which is delimiter breaking the url.
-      this.webViewPath = url.format({ protocol: 'file', pathname: shellPath });
+      this._webViewPath = url.format({ protocol: 'file', pathname: shellPath });
       this.loaderWindowPath = url.format({ protocol: 'file', pathname: loaderPath });
     }
     else {
-      this.webViewPath = 'http://localhost:8777/build/html/shell.html';
+      this._webViewPath = 'http://localhost:8777/build/html/shell.html';
       this.loaderWindowPath = 'http://localhost:8777/build/html/loader.html';
     }
     this.closedHandler = this.closedHandler.bind(this);
     this.debouncedStateChangeHandler = _.debounce(this.stateChangeHandler.bind(this), 100);
+    this.windowBoundsHandler = this.windowBoundsHandler.bind(this);
   },
 
   getWebviewPath () {
-    return `${this.webViewPath}?sessionId=${app.sessionId}&logPath=${app.logPath}`;
+    return `${this._webViewPath}?sessionId=${app.sessionId}&logPath=${app.logPath}`;
   },
 
   hideAllWindows () {
@@ -234,8 +235,7 @@ exports.windowManager = {
 
   newSharedWindow () {
     let startTime = Date.now(),
-      { sessionId, logPath } = app,
-      window = new BrowserWindow(Object.assign(
+        window = new BrowserWindow(Object.assign(
         this.getWindowPref('Shared'), {
           width: 0,
           height: 0,
@@ -249,10 +249,8 @@ exports.windowManager = {
       window.webContents.send('shell-loaded', {
         id: window.id,
         type: 'shared',
-        devtools: _.includes(devtools, 'shared'),
         startTime,
-        sessionId,
-        logPath
+        devtools: _.includes(devtools, 'shared')
       });
     });
 
@@ -347,12 +345,11 @@ exports.windowManager = {
 
   newRequesterWindow (window = {}, params = {}) {
     let startTime = Date.now(),
-      { sessionId, logPath } = app,
-      windowName = 'requester',
-      sanitizedBounds = this.sanitizeBounds({
-        x: _.get(window, 'position.x'),
-        y: _.get(window, 'position.y')
-      });
+        windowName = 'requester',
+        sanitizedBounds = this.sanitizeBounds({
+          x: _.get(window, 'position.x'),
+          y: _.get(window, 'position.y')
+        });
 
     if (!global.isSharedBooted) {
       pm.logger.warn('WindowManager~newRequesterWindow - Bailing requester window creation as shared is not booted!');
@@ -374,8 +371,8 @@ exports.windowManager = {
     this.windowState[windowName] = window;
 
     this.setWindowMode({
-      isFullScreen: window.isFullScreen,
-      maximized: window.maximized
+      isFullScreen: window.visibility && window.visibility.isFullScreen,
+      maximized: window.visibility && window.visibility.maximized
     }, mainWindow);
 
     this.attachDevToolsExtensions(mainWindow);
@@ -388,15 +385,14 @@ exports.windowManager = {
     let windowId = window.id || uuidV4();
 
     mainWindow.webContents.on('dom-ready', () => {
+      mainWindow.webContents.setVisualZoomLevelLimits(1, 1);
       mainWindow.webContents.send('shell-loaded', {
         id: mainWindow.id,
         type: 'requester',
+        startTime,
         devtools: _.includes(devtools, 'requester'),
         primaryId: this.primaryId,
-        allIds: this.openWindowIds,
-        startTime,
-        sessionId,
-        logPath
+        allIds: this.openWindowIds
       });
       if (this.initUrl) {
         this.listenForRequesterWindow = true;
@@ -489,6 +485,10 @@ exports.windowManager = {
     window.loadURL(this.loaderWindowPath);
     _.includes(devtools, 'loader') && window.openDevTools({ mode: 'detach' });
 
+    window.webContents.on('dom-ready', () => {
+      window.webContents.setVisualZoomLevelLimits(1, 1);
+    });
+
     return window;
   },
 
@@ -506,12 +506,11 @@ exports.windowManager = {
 
   newRunnerWindow (window = {}, params = {}) {
     let startTime = Date.now(),
-      { sessionId, logPath } = app,
-      windowName = 'runner',
-      sanitizedBounds = this.sanitizeBounds({
-        x: _.get(window, 'position.x'),
-        y: _.get(window, 'position.y')
-      });
+        windowName = 'runner',
+        sanitizedBounds = this.sanitizeBounds({
+          x: _.get(window, 'position.x'),
+          y: _.get(window, 'position.y')
+        });
 
     if (!global.isSharedBooted) {
       pm.logger.warn('WindowManager~newRunnerWindow - Bailing requester window creation as shared is not booted!');
@@ -533,18 +532,17 @@ exports.windowManager = {
     this.windowState[windowName] = window;
 
     this.setWindowMode({
-      isFullScreen: window.isFullScreen,
-      maximized: window.maximized
+      isFullScreen: window.visibility && window.visibility.isFullScreen,
+      maximized: window.visibility && window.visibility.maximized
     }, mainWindow);
 
     mainWindow.webContents.on('dom-ready', () => {
+      mainWindow.webContents.setVisualZoomLevelLimits(1, 1);
       mainWindow.webContents.send('shell-loaded', {
         id: mainWindow.id,
         type: 'runner',
-        devtools: _.includes(devtools, 'runner'),
         startTime,
-        sessionId,
-        logPath
+        devtools: _.includes(devtools, 'runner')
       });
     });
 
@@ -598,7 +596,7 @@ exports.windowManager = {
         }
       })
       .then(() => {
-        mainWindow.loadURL(this.webViewPath);
+        mainWindow.loadURL(this.getWebviewPath());
       })
       .catch((e) => {
         pm.logger.error('WindowManager~newRunnerWindow - Error in loading window from db', e);
@@ -610,12 +608,11 @@ exports.windowManager = {
 
   newConsoleWindow (window = {}, params = {}) {
     let startTime = Date.now(),
-      { sessionId, logPath } = app,
-      windowName = 'console',
-      sanitizedBounds = this.sanitizeBounds({
-        x: _.get(window, 'position.x'),
-        y: _.get(window, 'position.y')
-      });
+        windowName = 'console',
+        sanitizedBounds = this.sanitizeBounds({
+          x: _.get(window, 'position.x'),
+          y: _.get(window, 'position.y')
+        });
 
     if (!global.isSharedBooted) {
       pm.logger.warn('WindowManager~newConsoleWindow - Bailing requester window creation as shared is not booted!');
@@ -638,21 +635,20 @@ exports.windowManager = {
       this.windowState[windowName] = window;
 
       this.setWindowMode({
-        isFullScreen: window.isFullScreen,
-        maximized: window.maximized
+        isFullScreen: window.visibility && window.visibility.isFullScreen,
+        maximized: window.visibility && window.visibility.maximized
       }, mainWindow);
 
       this.consoleWindowId = mainWindow.id;
       this.openWindowIds.push(this.consoleWindowId);
 
       mainWindow.webContents.on('dom-ready', () => {
+        mainWindow.webContents.setVisualZoomLevelLimits(1, 1);
         mainWindow.webContents.send('shell-loaded', {
           id: mainWindow.id,
           type: 'console',
-          devtools: _.includes(devtools, 'console'),
           startTime,
-          sessionId,
-          logPath
+          devtools: _.includes(devtools, 'console')
         });
       });
 
@@ -731,6 +727,7 @@ exports.windowManager = {
     activeWindow.on('close', this.closedHandler);
     activeWindow.on('move', this.debouncedStateChangeHandler);
     activeWindow.on('resize', this.debouncedStateChangeHandler);
+    activeWindow.on('restore', this.windowBoundsHandler);
   },
 
   updateWindowState (windowName, activeWindow) {
@@ -747,6 +744,11 @@ exports.windowManager = {
 
   stateChangeHandler (e) {
     const activeWindow = e.sender;
+
+    if (!activeWindow) {
+      return Promise.resolve();
+    }
+
     const bounds = activeWindow.getBounds();
 
     this.updateWindowState(activeWindow.windowName, e.sender);
@@ -764,7 +766,7 @@ exports.windowManager = {
             width: bounds.width,
             height: bounds.height
           },
-          meta: {
+          visibility: {
             maximized: activeWindow.isMaximized(),
             isFullScreen: activeWindow.isFullScreen()
           }
@@ -833,6 +835,7 @@ exports.windowManager = {
     activeWindow.removeListener('close', this.closedHandler);
     activeWindow.removeListener('resize', this.debouncedStateChangeHandler);
     activeWindow.removeListener('move', this.debouncedStateChangeHandler);
+    activeWindow.removeListener('restore', this.windowBoundsHandler);
   },
 
   getFirstRequesterWindow () {
@@ -939,7 +942,7 @@ exports.windowManager = {
       });
   },
 
-  forceCloseAllWindows () {
+  closeAllWindows () {
     _.each(this.openWindowIds, (windowId) => {
       let window = BrowserWindow.fromId(parseInt(windowId));
       window && this.removeListeners(window);
@@ -947,7 +950,83 @@ exports.windowManager = {
     });
 
     this.openWindowIds = [];
-    return WindowController
-      .delete({});
+
+    /**
+     * Earlier there was a windowController.delete() which used to wipe out the complete window file,
+     * so on restore actions it never used to find any window and would open a new one.
+     * Case where user does a add new account, cancels that operation and clicks take me back to signed in account
+     *
+     * Also, when the shared process is booted that calls windowManager.restoreWindows, which keeps the
+     * MAX_WINDOW_RESTORE_COUNT number of windows and clears the rest of them. Hence clean up is done on
+     * every shared booted.
+     */
+  },
+
+  /**
+   * This function handles the case when the position at which the window is to be restored is outside
+   * the bounds of the current display configuration. This causes the bug where the app is loaded off-screen.
+   * If this case arises, this function displays the window on the primary display.
+   *
+   * NOTE: This function is triggered by the 'restore' event emitted by the window on being restored from a minimized state.
+   * The 'show' event would have been more appropriate but 'restore' is used because the 'show' event is inconsistent
+   * across different platforms. So it would have worked well on macOS but not on Windows and Linux.
+   *
+   * Electron issue - https://github.com/electron/electron/issues/8664
+   */
+  windowBoundsHandler (e) {
+    let window = e.sender;
+    if (!window) {
+      return;
+    }
+
+    let primaryDisplay = electron.screen.getPrimaryDisplay(),
+        sanitizedBounds = this.sanitizeBounds({ x: window.getBounds().x, y: window.getBounds().y }),
+        finalBounds = { x: sanitizedBounds && sanitizedBounds.x,
+                        y: sanitizedBounds && sanitizedBounds.y,
+                        width: window.getBounds().width,
+                        height: window.getBounds().height
+                      };
+
+    // Case where the sanitized bounds returns null i.e. the bounds were outside the current display
+    if (_.isNull(finalBounds.x) || _.isNull(finalBounds.y)) {
+      finalBounds = primaryDisplay.bounds;
+    }
+
+    window.setBounds(finalBounds);
+
+  },
+
+  /**
+   * Function to bring the requester window in focus
+   *
+   * If no requester window is open, a new requester window is opened with state of the last closed requester window
+   * else the existing requester window in brought in focus
+   */
+  focusRequesterWindow () {
+    let window;
+    return this.getOpenWindows('requester')
+      .then((allOpenRequesterWindows) => {
+        if (_.isEmpty(allOpenRequesterWindows)) {
+          return WindowController.getAll({ type: 'requester' })
+            .then((allRequesterWindows) => {
+              if (!_.isEmpty(allRequesterWindows)) {
+                window = this.newRequesterWindow(allRequesterWindows[0]);
+              }
+              if (!window) {
+                return Promise.reject(new Error('windowManager~focusRequesterWindow: Unable to restore the last closed requester window'));
+              }
+              return window;
+            });
+        }
+        else {
+          window = BrowserWindow.fromId(allOpenRequesterWindows[0]);
+          if (!window) {
+            return Promise.reject(new Error('windowManager~focusRequesterWindow: Unable to focus the existing requester window'));
+          }
+          if (window.isMinimized()) { window.restore(); }
+          window.focus();
+          return window;
+        }
+      });
   }
 };

@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 2956:
+/***/ 3396:
 /***/ (function(module, exports, __webpack_require__) {
 
 ace.define('ace/mode/json_highlight_rules', ['require', 'exports', 'module', 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function (acequire, exports, module) {
@@ -712,7 +712,7 @@ ace.define('ace/mode/postman_json', ['require', 'exports', 'module', 'ace/lib/oo
     };
 
     this.createWorker = function (session) {
-      var worker = new WorkerClient(['ace'], __webpack_require__(3420), 'JsonWorker');
+      var worker = new WorkerClient(['ace'], __webpack_require__(3598), 'JsonWorker');
       worker.attachToDocument(session.getDocument());
 
       worker.on('annotate', function (e) {
@@ -735,7 +735,7 @@ ace.define('ace/mode/postman_json', ['require', 'exports', 'module', 'ace/lib/oo
 
 /***/ }),
 
-/***/ 3420:
+/***/ 3598:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/postman_json_worker';

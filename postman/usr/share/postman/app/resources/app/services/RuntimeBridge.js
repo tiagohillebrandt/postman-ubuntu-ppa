@@ -7,6 +7,7 @@ var ipcMain = require('electron').ipcMain,
     getSystemProxy = require('../utils/getSystemProxy'),
     cookieManagerInstance = require('./CookieManager'),
     fs = require('fs'),
+    PostmanFs = require('../common/utils/postmanFs'),
     cookieIntegration = require('./RuntimeCookieIntegration'),
     putCookiesInTheJar = cookieIntegration.putCookiesInTheJar,
     addCookiesFromJarToCookieManager = cookieIntegration.addCookiesFromJarToCookieManager,
@@ -154,24 +155,37 @@ function disposeRun (runId) {
  *
  * @param {Object} event                     - The IPC event that invoked this function
  * @param {UUID} id                          - ID of the new run so it can be added to the run pool
- * @param {Object} runnerOptions             - Options for new Runner
+ * @param {Object} options.runnerOptions     - Options for new Runner
  * @param {Object} runOptions                - Options for runtime's run function
  * @param {Object} runMetaData               - Extra data about the run, for example, certificates
  * @param {Collection~definition} collection - The collection to run
  */
-function handleRunCreate (event, id, runnerOptions = {}, runOptions, runMetaData = {}, collection) {
+function handleRunCreate (event, id, { runnerOptions = {}, fileResolver }, runOptions, runMetaData = {}, collection) {
   var options = _.clone(runnerOptions),
       cookiePartitionId = runMetaData.cookiePartitionId,
+      runWithEmptyCookieJar = runMetaData.runWithEmptyCookieJar,
+      saveCookiesAfterRun = runMetaData.saveCookiesAfterRun,
       cookieJar = require('./cookieJar').cookieJar.create(),
       runner, sender, sdkCollection;
 
   options.run = options.run || {};
 
-  // Add cookies from cookieManager to the cookieJar
-  putCookiesInTheJar(cookiePartitionId, cookieManagerInstance, cookieJar);
+  if (!runWithEmptyCookieJar) {
+    // Add cookies from cookieManager to the cookieJar
+    putCookiesInTheJar(cookiePartitionId, cookieManagerInstance, cookieJar);
+  }
+
   _.set(runnerOptions, 'run.requester.cookieJar', cookieJar);
 
-  runOptions.fileResolver = fs;
+
+  // fileResolver
+  if (fileResolver) {
+    let { workingDir, insecureFileRead, fileWhitelist } = fileResolver;
+
+    runOptions.fileResolver = new PostmanFs(workingDir, insecureFileRead, fileWhitelist);
+  } else {
+    runOptions.fileResolver = fs;
+  }
 
   if (runOptions.useSystemProxy) {
     runOptions.systemProxy = getSystemProxy;
@@ -252,6 +266,21 @@ function handleRunCreate (event, id, runnerOptions = {}, runOptions, runMetaData
 
       request (err, cursor, responseObj, requestObj, item, cookies) {
         sender.send('RUNTIME_CALLBACK_REQUEST', id, wrapError(err), cursor, serializeSDKObject(responseObj), serializeSDKObject(requestObj), serializeSDKObject(item), cookies);
+
+        if (saveCookiesAfterRun) {
+          // to make sure the run instance is not disposed before completing the callback
+          runPool[id] && runPool[id].pendingCallbacks++;
+
+          // Setting and deleting cookies
+          // this flow is included for each request in a collection run.
+          // need to evaluate whether using the same flow for both is justified
+          addCookiesFromJarToCookieManager(cookiePartitionId, cookieJar, cookieManagerInstance, transformedUrl, (addCookiesError, cookies) => {
+            // custom callback - not part of runtime - to handle cookies.
+            // @todo remove after adding a cookie store to runtime
+            sender.send('RUNTIME_CALLBACK_COOKIES', id, wrapError(addCookiesError), cookies);
+            runPool[id] && runPool[id].pendingCallbacks--;
+          });
+        }
       },
 
       response (err, cursor, responseObj, requestObj, item, cookies) {
@@ -268,19 +297,6 @@ function handleRunCreate (event, id, runnerOptions = {}, runOptions, runMetaData
 
       test: (err, cursor, testResults, item) => {
         sender.send('RUNTIME_CALLBACK_TEST', id, wrapError(err), cursor, JSON.stringify(testResults), serializeSDKObject(item));
-
-        // to make sure the run instance is not disposed before completing the callback
-        runPool[id] && runPool[id].pendingCallbacks++;
-
-        // Setting and deleting cookies
-        // this flow is included for each request in a collection run.
-        // need to evaluate whether using the same flow for both is justified
-        addCookiesFromJarToCookieManager(cookiePartitionId, cookieJar, cookieManagerInstance, transformedUrl, (addCookiesError, cookies) => {
-          // custom callback - not part of runtime - to handle cookies.
-          // @todo remove after adding a cookie store to runtime
-          sender.send('RUNTIME_CALLBACK_COOKIES', id, wrapError(addCookiesError), cookies);
-          runPool[id] && runPool[id].pendingCallbacks--;
-        });
       },
 
       item (err, cursor, item) {

@@ -1,0 +1,40 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.8
+Date: Fri, 31 May 2019 16:14:44 +0000
+Source: postman
+Binary: postman
+Architecture: source
+Version: 7.1.1
+Distribution: xenial
+Urgency: medium
+Maintainer: Tiago Hillebrandt <tiago@tiagohillebrandt.com>
+Changed-By: Tiago Hillebrandt <tiago@tiagohillebrandt.com>
+Description:
+ postman    - Postman is the most complete API Development
+Changes:
+ postman (7.1.1) xenial; urgency=medium
+ .
+   * Postman 7.1.1.
+Checksums-Sha1:
+ 490cfeb5fb1064c786f76c69aae577f749bde8ad 1074 postman_7.1.1.dsc
+ a117746e53fef63f84df027aea54d6d9247cc2b4 69054330 postman_7.1.1.tar.gz
+Checksums-Sha256:
+ ff28d5800fc9b4d4eb7eae9e796249dc148fcc16adb9a303a1ee9ee2220f48cc 1074 postman_7.1.1.dsc
+ d5ce4f7f250ed2009f202c5b7845b3938e7f4853f82c0d5ae3a2b6fb025eee49 69054330 postman_7.1.1.tar.gz
+Files:
+ 0f64bf1d279f7ab465c11383b7acd0a7 1074 web optional postman_7.1.1.dsc
+ 6cccab2ec7c351b947dbfe30a463386f 69054330 web optional postman_7.1.1.tar.gz
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJc8VMuAAoJEHoPGf+ZYt9nv9kH/3/PDzZ4s06xgYFdRYAAui3m
+VWEsf8K8jkpLVLktiAgZ4d3ebn2Bu+9kBWwMx3F6R18gch+2+9lG/KEGNrmf4mc5
+Mp71oYk/OSEMv19OJt1mrBrHanaRLFREEk+NzAJH4+DcYqZwqXB5bq2INVIlXXYF
+oSb3cfZpKrwFlA88gqryhFvSpm6ErBbtW43gHEL2gWUQK41KsutK7KVYeUAYyfgg
+Fw5FoyclkLEWfNKj2YD+0z26hXVlSFQbXZ1tOFmpQ3jJx/RMFuMO9YUSwzQir2gh
+zH7wq3CSvmVpTaaJfGc2XZzEjFCCfXB/sDX0CQBGWs5NZTVoi7amkhMFynVuopc=
+=beUI
+-----END PGP SIGNATURE-----

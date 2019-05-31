@@ -10,6 +10,7 @@ var _ = require('lodash'),
     addCookiesFromJarToCookieManager = cookieIntegration.addCookiesFromJarToCookieManager,
     collectionRunner = new postmanRuntime.Runner(),
     getSystemProxy = require('../utils/getSystemProxy'),
+    PostmanFs = require('../common/utils/postmanFs'),
     SerializedError = require('serialised-error'),
 
     // Runner level options
@@ -138,6 +139,12 @@ var RuntimeExecutionService = {
     // sanitize
     sanitizeRunOptions(finalOptions);
 
+    // fileResolver
+    if (info.fileResolver) {
+      let { workingDir, insecureFileRead, fileWhitelist } = info.fileResolver;
+
+      finalOptions.fileResolver = new PostmanFs(workingDir, insecureFileRead, fileWhitelist);
+    }
 
     // add variables
     variables.environment && (finalOptions.environment = new postmanCollectionSdk.VariableScope(variables.environment));
@@ -303,7 +310,35 @@ var RuntimeExecutionService = {
           });
         },
 
-        response (err, cursor, response, request) {
+        request (err) {
+          if (err) {
+            /**
+             * Note: The error is not being handled here.
+             * All the existing error flow have already been handled so handling this error might
+             * break some flow or lead the app to an unstable state.
+             *
+             * @todo: Review this decision of not handling the error when re-factoring the request
+             * handling flow
+             */
+            return;
+          }
+
+          addCookiesFromJarToCookieManager(cookiePartitionId, cookieJar, cookieManager, transformedUrl.getRemote(), (addCookiesError, cookies) => {
+            // send cookies
+            pm.eventBus.channel('postman-runtime').publish({
+              name: 'cookiesReceived',
+              namespace: 'requestexecution',
+              data: {
+                id: info.id,
+                cookies: cookies
+              }
+            });
+          });
+        },
+
+        response (err, cursor, response, request, item, cookies, history) {
+          let timings;
+
           removeAborter(info.id);
 
           // send the actual request that was sent over network
@@ -313,7 +348,8 @@ var RuntimeExecutionService = {
             namespace: 'requestexecution',
             data: {
               id: info.id,
-              request: request.toJSON()
+              request: request.toJSON(),
+              requestSize: request.size()
             }
           });
 
@@ -335,6 +371,10 @@ var RuntimeExecutionService = {
             return;
           }
 
+          // if there are redirects, get timings for the last request sent
+          timings = _.last(_.get(history, 'execution.data'));
+          timings = timings && timings.timings;
+
           // send meta data
           pm.eventBus.channel('postman-runtime').publish({
             name: 'responseMetaReceived',
@@ -345,6 +385,7 @@ var RuntimeExecutionService = {
                 code: response.code,
                 status: response.status,
                 responseTime: response.responseTime,
+                timingPhases: timings && postmanCollectionSdk.Response.timingPhases(timings),
                 responseSize: response.size()
               }
             }
@@ -370,18 +411,6 @@ var RuntimeExecutionService = {
               // Passing down the encoded body will prevent from getting access to the raw stream if we want to write to image files etc.
               responseBody: response.stream.toJSON()
             }
-          });
-
-          addCookiesFromJarToCookieManager(cookiePartitionId, cookieJar, cookieManager, transformedUrl.getRemote(), (addCookiesError, cookies) => {
-             // send cookies
-             pm.eventBus.channel('postman-runtime').publish({
-              name: 'cookiesReceived',
-              namespace: 'requestexecution',
-              data: {
-                id: info.id,
-                cookies: cookies
-              }
-            });
           });
         },
 

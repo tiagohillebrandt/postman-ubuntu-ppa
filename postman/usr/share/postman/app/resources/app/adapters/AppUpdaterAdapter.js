@@ -67,6 +67,14 @@ let AppUpdaterAdapter = {
     },
 
     /**
+     * @method getOriginalFs
+     * @description It provides the original-fs available in electron
+     */
+    getOriginalFs () {
+      return require('original-fs');
+    },
+
+    /**
      * @method setLastKnownVersion
      * @description This helps in setting the last known version to app settings
      * @param {String} version

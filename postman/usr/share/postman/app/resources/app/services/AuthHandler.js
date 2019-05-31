@@ -145,6 +145,10 @@ module.exports = (() => {
 
       locals.window.loadURL(config.getAuthHTML());
 
+      locals.window.webContents.on('dom-ready', () => {
+        locals.window.webContents.setVisualZoomLevelLimits(1, 1);
+      });
+
       locals.window.webContents.on('did-finish-load', () => {
         let queryParams = _.merge(locals.adapter.getAppInfo(), locals.adapter.getSystemInfo());
 

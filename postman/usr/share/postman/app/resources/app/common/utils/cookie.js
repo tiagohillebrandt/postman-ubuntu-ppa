@@ -13,7 +13,22 @@ function stringifyCookieObject (cookieObj) {
   if (cookieObj === '') {
     return cookieObj;
   }
-  var retVal = cookieObj.name + '=' + cookieObj.value + '; path=' + cookieObj.path + '; domain=' + cookieObj.domain + ';';
+  var retVal = cookieObj.name + '=' + cookieObj.value + '; path=' + cookieObj.path + '; ';
+
+  // Safety check before adding cookie to cookieString
+  if (cookieObj.domain) {
+    var domain = cookieObj.domain;
+
+    // Remove `[]` from IPv6 domain as workaround of following issue in tough-cookie.
+    // Issue: https://github.com/salesforce/tough-cookie/issues/153
+    // todo: remove this once the issue is solved in tough-cookie
+    if (domain[0] === '[' && domain[domain.length - 1] === ']') {
+      domain = domain.substring(1, domain.length - 1);
+    }
+
+    retVal += 'domain=' + cookieObj.domain + ';';
+  }
+
   if (cookieObj.secure) {
     retVal += ' Secure;';
   }
@@ -140,7 +155,7 @@ function _parseSingleCookieString (host, cookieString) {
       retVal[propName] = propVal;
     }
     catch (e) {
-      console.error('Could not save property for cookie: ', thisCookieParts[i]);
+      pm.logger.error('Could not save property for cookie: ', thisCookieParts[i]);
     }
   }
 

@@ -19,7 +19,6 @@ var electron = require('electron'),
     os = require('os'),
     initializeEventBus = require('./common/initializeEventBus'),
     { isAppUpdateEnabled } = require('./services/AutoUpdaterService'),
-    myWindow = null,
     sharedWindow = null,
     bootstrapModels = require('./bootstrap-models'),
     updaterHandler = require('./services/UpdaterHandler'),
@@ -28,7 +27,8 @@ var electron = require('electron'),
     initializeLogger = require('./services/Logger').init,
     initializePluginsHostHandler = require('./services/PluginsHostHandler').init,
     CrashReporter = require('./services/CrashReporter'),
-    { getValue } = require('./utils/processArg');
+    { getValue } = require('./utils/processArg'),
+    { createDefaultDir } = require('./services/workingDirManager');
 
 const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
       MOVE_DIALOG_ACTION_BUTTON = 'Move to Applications Folder',
@@ -36,18 +36,19 @@ const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
       MOVE_DIALOG_CHECKBOX_MESSAGE = 'Do not remind me again',
       MOVE_DIALOG_DETAILS = 'I can move myself to the Applications folder if you\'d like. This will ensure that future updates will be installed correctly.';
 
+global.pm = global.pm || {};
+
+pm.logger = console; // Default it to console.
 
 try {
   // set the path for the directory storing app's configuration files
   getValue('user-data-path') && app.setPath('userData', getValue('user-data-path'));
 }
 catch (e) {
-  console.error(e);
+  pm.logger.error(e);
 }
 
 app.sessionId = process.pid; // set the current process id as sessionId
-
-global.pm = global.pm || {};
 
 async.series([
 
@@ -58,9 +59,43 @@ async.series([
     // https://postman.zendesk.com/agent/tickets/19959
     // This has to be called before app is ready https://github.com/electron/electron/blob/master/docs/api/app.md#appdisablehardwareacceleration
     if (process.env.POSTMAN_DISABLE_GPU === 'true') {
+      pm.logger.info('Disabling GPU');
       app.disableHardwareAcceleration();
+    } else {
+      pm.logger.info('Not disabling GPU');
     }
     cb(null);
+  },
+
+  /**
+   * Try creating the default working directory if running for the first time
+   */
+  (cb) => {
+    appSettings.get('createdDefaultWorkingDir', (err, created) => {
+      if (err) {
+        pm.logger.error('Main~createDefaultWorkingDir - Error while trying to get from appSettings', err);
+      }
+
+      if (created) {
+        pm.logger.info('Main~createDefaultWorkingDir - Default working dir creation already attempted');
+        return cb();
+      }
+
+      // Record the attempt regardless of success of the creation. Prevents unnecessary attempts in
+      // future.
+      // @todo update the only update once successfull when robust file system API's are in place
+      appSettings.set('createdDefaultWorkingDir', true);
+
+      createDefaultDir((err) => {
+        // Ignore any errors, this is single attempt flow
+        if (err) {
+          // Logging just for debugging
+          pm.logger.error('Main~createDefaultWorkingDir - Error while creating default working dir', err);
+        }
+
+        return cb();
+      });
+    });
   },
 
   /**
@@ -105,7 +140,7 @@ async.series([
    * Initialize protocolHandler
    */
   (cb) => {
-    ProtocolHandler.init(app);
+    ProtocolHandler.init();
     cb();
   },
 
@@ -163,9 +198,7 @@ async.series([
             .getOpenWindows('requester')
             .then((openRequesterWindows) => {
               if (_.size(openRequesterWindows) === 0) {
-                windowManager.restoreWindows().then((window) => {
-                  myWindow = window;
-                });
+                windowManager.restoreWindows();
               }
             });
         }
@@ -332,12 +365,8 @@ async.series([
 
     ipc.on('openLoaderWindow', function () {
       global.isSharedBooted = false;
-      myWindow = null;
-      windowManager
-        .forceCloseAllWindows()
-        .then(() => {
-          windowManager.newLoaderWindow();
-        });
+      windowManager.closeAllWindows();
+      windowManager.newLoaderWindow();
     });
 
     ipc.on('closeRequesterWindow', function (event, arg) {
@@ -369,10 +398,9 @@ async.series([
    * @param {*} e
    */
   function handleUncaughtError (e) {
-    console.error('Main~handleUncaughtError - Uncaught errors', e);
-
     // Logger might not be there in this state, hence the safe check
-    pm.logger && pm.logger.error('Main~handleUncaughtError - Uncaught errors', e);
+    pm.logger && pm.logger.error('Main~handleUncaughtError - Uncaught errors', e) ||
+      console.error('Main~handleUncaughtError - Uncaught errors', e); // eslint-disable-line no-console
   }
 
   /**
@@ -549,13 +577,40 @@ async.series([
 
   // app.makeSingleInstance will be deprecated in 3.x in-favour of 'second-instance' event
   var shouldQuit = app.makeSingleInstance((commandLine) => {
-    if (myWindow) {
-      ProtocolHandler.processArg(commandLine);
+    /**
+     * bringing requester window in focus when an user tries to create another instance of the app.
+     */
+    windowManager.focusRequesterWindow()
+      .then(() => {
+        ProtocolHandler.processArg(commandLine);
+      })
+      .catch((error) => {
+        /**
+         * Fallback step, if in  windowManager.focusRequesterWindow():
+         * 1. openRequesterWindows has an id which actually does not exists.
+         * 2. BrowserWindow.fromId() receives an argument which is not a number.
+         * 3. openRequesterWindows does not contains the id of an already opened requester window.
+         * 4. there is a failure while restoring the last closed requester window, when there are no open requester windows.
+         */
 
-      // Someone tried to run a second instance, we should focus our window.
-      if (myWindow.isMinimized()) { myWindow.restore(); }
-      myWindow.focus();
-    }
+        let window,
+          errorMessage = error ? error.message : 'windowManager~focusRequesterWindow: Something went wrong while creating/focussing requester window';
+        pm.logger.error(`main~makeSingleInstance: ${errorMessage}`);
+
+        try {
+         window = windowManager.newRequesterWindow();
+        }
+        catch (e) {
+          pm.logger.error('main~makeSingleInstance: Error while creating a new Requester window', e);
+          return;
+        }
+        if (!window) {
+          pm.logger.error('main~makeSingleInstance: New Requester window instance not found');
+          return;
+        }
+
+        ProtocolHandler.processArg(commandLine);
+      });
   });
 
   if (shouldQuit) {
@@ -626,4 +681,3 @@ async.series([
       });
   });
 });
-

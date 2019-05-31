@@ -82,6 +82,8 @@ class CookieManager {
       // copy over any cookies that were set during the run
       // todo: is it better to set them _during_ the run?
       // convert the cookie to a format the App uses internally.
+
+      // capture host only property from cookieJar.
       responseCookies.push({
         url: `${cookie.secure ? 'https' : 'http'}://${url}`,
         name: cookie.key,
@@ -89,6 +91,7 @@ class CookieManager {
         domain: cookie.domain,
         secure: cookie.secure,
         httpOnly: cookie.httpOnly,
+        hostOnly: cookie.hostOnly,
         expirationDate: cookie.expiryDate(),
         path: cookie.path
       });
@@ -106,7 +109,8 @@ class CookieManager {
             if (cookieDomain[0] === '.') {
               cookieDomain = cookieDomain.slice(1);
             }
-            return cookieDomain === domain;
+
+            return (cookieDomain === domain || (!cookie.hostOnly && domain.endsWith(cookie.domain)));
           });
 
           let removedCookies = _.difference(
@@ -131,6 +135,23 @@ class CookieManager {
         async.each(responseCookies, (cookie, cb) => {
           if (cookie.expirationDate) {
             cookie.expirationDate = Math.floor((new Date(cookie.expirationDate)).getTime() / 1000);
+          }
+
+
+          /* Electron set cookies api ignores the hostOnly property passed in the cookie Object
+            and decides if the cookie is host only based on the domain property.
+            HostOnly property should be set to true if no domain is passed or if the domain doesn't start with a '.'
+            Electron normalizes the domain of the cookie with a preceding dot so that it's also valid for subdomains. Hence even if the domain doesn't start with a leading '.' ,
+            hostOnly property is set to false.
+
+            Fix:
+            If cookie is stored as hostOnly in cookieJar,
+            delete the domain from cookie and save cookie in electron.
+            As domain property is missing , electron sets the cookie as HostOnly.
+          */
+
+          if (cookie && cookie.domain && cookie.hostOnly) {
+            delete cookie.domain;
           }
 
           this.cookieStore.set(cookie, (err) => {
