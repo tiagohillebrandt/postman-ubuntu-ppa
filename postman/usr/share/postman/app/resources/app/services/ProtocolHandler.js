@@ -3,6 +3,7 @@ const os = require('os'),
       exec = require('child_process').exec,
       windowManager = require('./windowManager').windowManager,
       { app } = require('electron'),
+      appStatus = require('../common/services/AppStatus'),
 
       DARWIN = 'Darwin',
       POSTMAN = 'postman',
@@ -15,8 +16,13 @@ const os = require('os'),
  */
 function handleOpenUrl (url) {
   pm.logger.info(`ProtocolHandler~handleOpenUrl: ${url}`);
-  windowManager.initUrl = url;
-  windowManager.openUrl(url);
+
+  // Waiting for requester to boot before we open the URL
+  appStatus.onRequesterBooted()
+    .then(() => {
+      windowManager.initUrl = url;
+      windowManager.openUrl(url);
+    });
 }
 
 /**
@@ -76,12 +82,12 @@ function setDefaultProtocolClient (args) {
         pm.logger.error(`ProtocolHandler~setDefaultProtocolClient: ${error.message}`);
 
         // Fallback in case xdg-mime gives an error
-        app.setAsDefaultProtocolClient(POSTMAN, process.execPath, args);
+        app.setAsDefaultProtocolClient(POSTMAN, process.execPath);
       }
     });
   }
   else {
-    let isCustomProtocolAssigned = app.setAsDefaultProtocolClient(POSTMAN, process.execPath, args);
+    let isCustomProtocolAssigned = app.setAsDefaultProtocolClient(POSTMAN, process.execPath);
 
     pm.logger.info(`ProtocolHandler~init - Success with status: ${isCustomProtocolAssigned}]`);
   }

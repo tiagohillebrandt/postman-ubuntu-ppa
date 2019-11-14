@@ -31,6 +31,7 @@ This repo will only be updated when there are immediate, material issues affecti
 
 - [Make `_.isFunction()` properly detect arrow functions (`()=>{}`) and AsyncFunctions (`async function(){}` or `async ()=>{}`)](https://github.com/lodash/lodash/issues/2768)
 - [Fix prototype polution security vulnerability](https://github.com/lodash/lodash/issues/2768) _(see also JD's comments [here](https://hackerone.com/reports/310443))_
+- [Fix another prototype polution security vulnerability](https://snyk.io/vuln/SNYK-JS-LODASH-73638)
 
 ## Bugs &nbsp; [![npm version](https://badge.fury.io/js/%40sailshq%2Flodash.svg)](https://badge.fury.io/js/%40sailshq%2Flodash)
 

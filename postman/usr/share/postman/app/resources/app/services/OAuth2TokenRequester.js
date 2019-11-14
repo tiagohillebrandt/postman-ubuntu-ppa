@@ -404,8 +404,17 @@ module.exports = function () {
 
           windowManager
         });
-    oAuth2TokenRequester.startTokenRequestFlow(params, function (err, response) {
-      event.sender.send('oauth2TokenRequestCallback', err && JSON.stringify(new SerializedError(err)), response && JSON.stringify(response));
+    oAuth2TokenRequester.startTokenRequestFlow(params, function (err, result) {
+      err && pm.logger.warn('OAuth2TokenRequester~startTokenRequestFlow: Error while requesting token ', err);
+
+      // @hack: the result of startTokenRequestFlow should have had a "name", but since different grantTypeHandlers
+      // (in startTokenRequestFlow) handle this callback differently, the "name" param is not being returned as it is,
+      // we add the name to the result in this callback itself to compensate for this.
+      if (result) {
+        result.name = params.name;
+      }
+
+      event.sender.send('oauth2TokenRequestCallback', err && JSON.stringify(new SerializedError(err)), result && JSON.stringify(result));
     });
   });
 };

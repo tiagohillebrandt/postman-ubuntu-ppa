@@ -34,11 +34,6 @@ module.exports = {
     return ModelService.delete(this.type, definition);
   },
 
-  getLaunchParams () {
-    let electron = require('electron').remote;
-    return Promise.resolve(electron.getCurrentWindow().params);
-  },
-
   getCurrentWindow () {
     if (!pm.window || !pm.window.id) {
       return Promise.resolve();

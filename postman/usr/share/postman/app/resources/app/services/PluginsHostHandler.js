@@ -1,3 +1,7 @@
+// Plugin process has been temporarily disabled
+// since this is not actively consumed and adds noise to the packaging and execution
+const isPluginFeatureEnabled = false;
+
 const Logger = require('./Logger'),
   { app } = require('electron'),
   PluginsHost = require('@postman/app-plugins-host'),
@@ -5,6 +9,10 @@ const Logger = require('./Logger'),
 
 module.exports = {
   init (cb) {
+    if (!isPluginFeatureEnabled) {
+      return cb();
+    }
+
     pm.pluginHost = new PluginsHost({
       env: {
         APP_PATH: app.getAppPath(),
@@ -18,5 +26,14 @@ module.exports = {
     });
 
     process.nextTick(cb);
+  },
+
+  cleanup () {
+    if (!isPluginFeatureEnabled) {
+      return;
+    }
+
+    pm.pluginHost.terminate();
+    pm.logger.info(pm.pluginHost.host);
   }
 };

@@ -114,6 +114,9 @@ module.exports = (() => {
         // Close the authWindow
         destroy();
 
+        // Sets default visibility of windows as visible.
+        locals.adapter.setWindowsDefaultVisibilityState(true);
+
         // Show all other windows
         locals.adapter.showAllWindows();
       });
@@ -127,6 +130,9 @@ module.exports = (() => {
      * @param {String} userID
      */
     function open ({ hasAccounts, isSignup, userID }) {
+
+      // Sets default visibility of windows as hidden.
+      locals.adapter.setWindowsDefaultVisibilityState(false);
 
       // Hide all other windows
       locals.adapter.hideAllWindows();
@@ -170,7 +176,13 @@ module.exports = (() => {
      */
     function handleWindowClose () {
       authEvents.send({ cancel: true });
+
+      // Sets default visibility state of windows as visible.
+      locals.adapter.setWindowsDefaultVisibilityState(true);
+
+      // Show all other windows
       locals.adapter.showAllWindows();
+
       locals.window = null;
     }
 
@@ -202,6 +214,7 @@ module.exports = (() => {
     if (!adapter.getAuthWindowChannel) throw new Error('Missing getAuthWindowChannel, failed to initialize AuthHandler');
     if (!adapter.showAllWindows) throw new Error('Missing showAllWindows, failed to initialize AuthHandler');
     if (!adapter.hideAllWindows) throw new Error('Missing hideAllWindows, failed to initialize AuthHandler');
+    if (!adapter.setWindowsDefaultVisibilityState) throw new Error('Missing setWindowsDefaultVisibilityState, failed to initialize AuthHandler');
     if (!adapter.getAppInfo) throw new Error('Missing getAppInfo, failed to initialize AuthHandler');
     if (!adapter.getSystemInfo) throw new Error('Missing getSystemInfo, failed to initialize AuthHandler');
 

@@ -1,3 +1,9 @@
+postman (7.11.0) xenial; urgency=medium
+
+  * Postman 7.11.0.
+
+ -- Tiago Hillebrandt <tiago@tiagohillebrandt.com>  Thu, 14 Nov 2019 14:24:05 +0000
+
 postman (7.1.1) xenial; urgency=medium
 
   * Postman 7.1.1.

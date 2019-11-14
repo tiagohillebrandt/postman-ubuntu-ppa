@@ -1,4 +1,5 @@
 const _ = require('lodash'),
+      sdk = require('postman-collection'),
       async = require('async');
 
 const { ensureProperUrl, getURLProps } = require('../common/utils/url');
@@ -79,13 +80,21 @@ class CookieManager {
         return;
       }
 
+      let cookieUrl = url;
+
+      // If the url of the cookie does not have a protocol, then check if the cookie is secure or not
+      // and add http or https in the beginning of the url accordingly
+      if (!sdk.Url.parse(url).protocol) {
+        cookieUrl = cookie.secure ? `https://${url}` : `http://${url}`;
+      }
+
       // copy over any cookies that were set during the run
       // todo: is it better to set them _during_ the run?
       // convert the cookie to a format the App uses internally.
 
       // capture host only property from cookieJar.
       responseCookies.push({
-        url: `${cookie.secure ? 'https' : 'http'}://${url}`,
+        url: cookieUrl,
         name: cookie.key,
         value: cookie.value,
         domain: cookie.domain,

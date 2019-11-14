@@ -1,17 +1,15 @@
 var _ = require('lodash'),
     fs = require('fs'),
+
     postmanRuntime = require('postman-runtime'),
     { AuthLoader, authorizeRequest } = require('postman-runtime/lib/authorizer'),
     postmanCollectionSdk = require('postman-collection'),
-    cookieManager = require('./CookieManager'),
-    CookieJar = require('./cookieJar').cookieJar,
-    cookieIntegration = require('./RuntimeCookieIntegration'),
-    putCookiesInJar = cookieIntegration.putCookiesInTheJar,
-    addCookiesFromJarToCookieManager = cookieIntegration.addCookiesFromJarToCookieManager,
-    collectionRunner = new postmanRuntime.Runner(),
+    SerializedError = require('serialised-error'),
+
+    CookieJar = require('./CookieJar'),
     getSystemProxy = require('../utils/getSystemProxy'),
     PostmanFs = require('../common/utils/postmanFs'),
-    SerializedError = require('serialised-error'),
+    { LARGE_BODY_ALT, MAX_BODY_SIZE } = require('../common/constants/console'),
 
     // Runner level options
     staticOptions = {
@@ -45,7 +43,10 @@ var _ = require('lodash'),
         strictSSL: true,
 
         // follow redirects by default
-        followRedirects: true
+        followRedirects: true,
+
+        // for insights in Console
+        verbose: true
       },
 
       // turn on system proxy by default
@@ -123,13 +124,10 @@ function sanitizeRunOptions (rawOptions) {
 var RuntimeExecutionService = {
   startRun (info, collection, variables, options = {}) {
     var sdkCollection = new postmanCollectionSdk.Collection(collection),
-        cookieJar = CookieJar.create(),
-        cookiePartitionId = options && options.cookiePartitionId,
-        transformedUrl,
-        finalOptions;
+      cookiePartitionId = options && options.cookiePartitionId,
+      cookieJar = new CookieJar(cookiePartitionId, { programmaticAccess: options.cookieConfiguration }),
+      finalOptions;
 
-    // add cookies to the jar and set pass it in the options
-    putCookiesInJar(cookiePartitionId, cookieManager, cookieJar);
     _.set(options, ['requester', 'cookieJar'], cookieJar);
 
 
@@ -181,76 +179,7 @@ var RuntimeExecutionService = {
         },
 
         beforeRequest (err, cursor, request, item, aborter) {
-          transformedUrl = request.url;
-
           addAborter(info.id, aborter);
-
-          let requestUrl = request.url && request.url.toString();
-
-          pm.eventBus.channel('postman-runtime').publish({
-            name: 'net',
-            namespace: 'console',
-            data: {
-              id: info.id,
-
-              cursor: cursor,
-
-              request: {
-                url: requestUrl,
-                method: request.method,
-                headers: request.headers && request.headers.toJSON()
-              }
-            }
-          });
-        },
-
-        io (err, cursor, trace, response, request) {
-          let consolePayload = {},
-            requestJSON;
-
-          if (trace.type !== 'http' || !request) {
-            return;
-          }
-
-          requestJSON = request.toJSON();
-
-          consolePayload.request = {
-            url: request && request.url && request.url.toString(),
-            method: requestJSON.method,
-            headers: request && request.headers && request.headers.toJSON(),
-            body: requestJSON.body,
-            certificate: requestJSON.certificate,
-            proxy: requestJSON.proxy
-          };
-
-          if (response) {
-            consolePayload.response = {
-              responseTime: response.responseTime,
-              code: response.code,
-              headers: response.headers && response.headers.toJSON(),
-              body: response.size().body / 1024 > 1024 ? 'Responses larger than 1MB are not shown' : response.text()
-            };
-          }
-
-          consolePayload.id = info.id;
-          consolePayload.cursor = cursor;
-
-          if (err) {
-            consolePayload.error = err.message;
-
-            pm.eventBus.channel('postman-runtime').publish({
-              name: 'netError',
-              namespace: 'console',
-              data: consolePayload
-            });
-          }
-          else {
-            pm.eventBus.channel('postman-runtime').publish({
-              name: 'net',
-              namespace: 'console',
-              data: consolePayload
-            });
-          }
         },
 
         exception (cursor, exception) {
@@ -262,10 +191,19 @@ var RuntimeExecutionService = {
               error: new SerializedError(exception)
             }
           });
+
+          pm.eventBus.channel('postman-runtime').publish({
+            name: 'exception',
+            namespace: 'console',
+            data: {
+              id: info.id,
+              cursor: cursor,
+              error: exception
+            }
+          });
         },
 
         assertion (cursor, assertions) {
-          // console.log('assertion', assertions);
           pm.eventBus.channel('postman-runtime').publish({
             name: 'assertionsReceived',
             namespace: 'requestexecution',
@@ -308,39 +246,68 @@ var RuntimeExecutionService = {
               environment: result.environment
             }
           });
-        },
 
-        request (err) {
-          if (err) {
-            /**
-             * Note: The error is not being handled here.
-             * All the existing error flow have already been handled so handling this error might
-             * break some flow or lead the app to an unstable state.
-             *
-             * @todo: Review this decision of not handling the error when re-factoring the request
-             * handling flow
-             */
-            return;
-          }
+          if (result.collectionVariables) {
+            // update collectionVariables VariableScope's id to collection session id because
+            // collection variables are stored as VariableList and sessions are not first class
+            // citizen in runtime.
+            info.collectionVariablesSessionId &&
+              (result.collectionVariables.id = info.collectionVariablesSessionId);
 
-          addCookiesFromJarToCookieManager(cookiePartitionId, cookieJar, cookieManager, transformedUrl.getRemote(), (addCookiesError, cookies) => {
-            // send cookies
             pm.eventBus.channel('postman-runtime').publish({
-              name: 'cookiesReceived',
-              namespace: 'requestexecution',
+              name: 'collectionVariablesUpdated',
+              namespace: 'variableupdates',
               data: {
                 id: info.id,
-                cookies: cookies
+                collectionVariables: result.collectionVariables
               }
             });
+          }
+        },
+
+        request (err, cursor, response, request, item, cookies, history) {
+          let consolePayload = {},
+            requestJSON = request.toJSON();
+
+          let executionData = _.get(history, 'execution.data');
+
+          consolePayload.id = info.id;
+          consolePayload.cursor = cursor;
+          consolePayload.history = history;
+
+          consolePayload.request = {
+            url: request && request.url && request.url.toString(),
+            method: requestJSON.method,
+            headers: request && request.headers && request.headers.toJSON(),
+            httpVersion: _.get(_.first(executionData), 'request.httpVersion', ''),
+            body: (request.size().body > MAX_BODY_SIZE) ? { ___ignored___: LARGE_BODY_ALT } : requestJSON.body,
+            certificate: requestJSON.certificate,
+            proxy: requestJSON.proxy
+          };
+
+          if (response) {
+            consolePayload.response = {
+              responseTime: response.responseTime,
+              code: response.code,
+              headers: response.headers && response.headers.toJSON(),
+              status: response.reason(),
+              httpVersion: _.get(_.last(executionData), 'response.httpVersion', ''),
+              body: (response.size().body > MAX_BODY_SIZE) ? { ___ignored___: LARGE_BODY_ALT } : response.text()
+            };
+          }
+
+          if (err) {
+            consolePayload.error = err.message;
+          }
+
+          pm.eventBus.channel('postman-runtime').publish({
+            name: 'net',
+            namespace: 'console',
+            data: consolePayload
           });
         },
 
-        response (err, cursor, response, request, item, cookies, history) {
-          let timings;
-
-          removeAborter(info.id);
-
+        responseStart (err, cursor, response, request, item, cookies, history) {
           // send the actual request that was sent over network
           // always send request even if there is an error
           request && pm.eventBus.channel('postman-runtime').publish({
@@ -371,11 +338,16 @@ var RuntimeExecutionService = {
             return;
           }
 
-          // if there are redirects, get timings for the last request sent
-          timings = _.last(_.get(history, 'execution.data'));
+          // There is a possibility that there are redirects in that case we will have multiple
+          // timings, the last timing is the one that we need.
+          // NOTE: The timing information will be partial here, we can only get the full
+          // after the completion of the request
+          let timings = _.last(_.get(history, 'execution.data'));
+
           timings = timings && timings.timings;
 
-          // send meta data
+          // send response meta data (We do not have the timing information here)
+          // FUTURE: Add time some timing information here to start of
           pm.eventBus.channel('postman-runtime').publish({
             name: 'responseMetaReceived',
             namespace: 'requestexecution',
@@ -384,14 +356,13 @@ var RuntimeExecutionService = {
               meta: {
                 code: response.code,
                 status: response.status,
-                responseTime: response.responseTime,
-                timingPhases: timings && postmanCollectionSdk.Response.timingPhases(timings),
-                responseSize: response.size()
+                responseSize: response.size(),
+                timingPhases: postmanCollectionSdk.Response.timingPhases(timings)
               }
             }
           });
 
-          // send headers
+         // Send headers from the response head
           response.headers && pm.eventBus.channel('postman-runtime').publish({
             name: 'responseHeadersReceived',
             namespace: 'requestexecution',
@@ -401,17 +372,145 @@ var RuntimeExecutionService = {
             }
           });
 
-          // send body
+          if (postmanCollectionSdk.CookieList.isCookieList(cookies)) {
+            cookies = cookies.toJSON();
+          } else {
+            cookies = Array.isArray(cookies) ? cookies : [];
+          }
+
+          /**
+           * The `request` event is called after the `responseStart` so during this interval
+           * there will be no cookies to be shown in the UI.
+           */
+          pm.eventBus.channel('postman-runtime').publish({
+            name: 'cookiesReceived',
+            namespace: 'requestexecution',
+            data: {
+              id: info.id,
+              cookies: cookies
+            }
+          });
+        },
+
+        response (err, cursor, response, request, item, cookies, history) {
+          removeAborter(info.id);
+
+          if (err) {
+            // send the actual request that was sent over network when there is an error as in such cases
+            // responseStart would not have been fired
+            request && pm.eventBus.channel('postman-runtime').publish({
+              name: 'requestDispatched',
+              namespace: 'requestexecution',
+              data: {
+                id: info.id,
+                request: request.toJSON(),
+                requestSize: request.size()
+              }
+            });
+
+            pm.eventBus.channel('postman-runtime').publish({
+              name: 'error',
+              namespace: 'requestexecution',
+              data: {
+                id: info.id,
+                error: new SerializedError(err),
+                phase: 'request'
+              }
+            });
+
+            return;
+          }
+
+          if (!response) {
+            return;
+          }
+
+          // There is a posibility that there are redirects in that case we will have multiple
+          // timings, the last timing is the one that we need.
+          let timings = _.last(_.get(history, 'execution.data'));
+
+          timings = timings && timings.timings;
+
+          // Send final meta information data about the response. At this point we know everything
+          // about the response
+          pm.eventBus.channel('postman-runtime').publish({
+            name: 'responseFinalized',
+            namespace: 'requestexecution',
+            data: {
+              id: info.id,
+              meta: {
+                responseSize: response.size(),
+                responseTime: response.responseTime,
+                timingPhases: postmanCollectionSdk.Response.timingPhases(timings)
+              },
+              responseContentInfo: _.isFunction(response.contentInfo) && response.contentInfo()
+            }
+          });
+
+          // TODO: Move task of response receiving to streaming model
+          // Post that this callback will only signal the end of response
           pm.eventBus.channel('postman-runtime').publish({
             name: 'responseBodyReceived',
             namespace: 'requestexecution',
             data: {
               id: info.id,
 
-              // Passing down the encoded body will prevent from getting access to the raw stream if we want to write to image files etc.
-              responseBody: response.stream.toJSON()
+              /**
+               * WARN: At this point a copy of the stream is being made and persisted as a string.
+               * This will cause 2x memory usage.
+               * FUTURE: This is a trade-off that we need to accept at this moment as react could repeatedly
+               * read this data
+               */
+              responseBody: response.text()
             }
           });
+
+          // send body stream
+          pm.eventBus.channel('postman-runtime').publish({
+            name: 'responseBodyStreamReceived',
+            namespace: 'requestexecution',
+            data: {
+              id: info.id,
+
+              /**
+               * Passing the stream directly to IPC instead of converting it to JSON.
+               *
+               * WARNING: Historically response.steam.toJSON() was being used as encoded body would
+               * have prevent from getting access to the raw stream if we want to write to image
+               * files etc, but the conversion of stream to a JSON resulted in nearly 15x increase on heapMemory
+               * consumption, therefore DO NOT CONVERT stream to json
+               */
+              responseBodyStream: response.stream
+            }
+          });
+        },
+
+        item (err, cursor, item, visualizerData) {
+          if (err) {
+            /**
+             * Note: The error is not being handled here because currently Runtime always sends
+             * null for error in this callback.
+             *
+             * @todo: Review this decision of not handling the error if runtime decides to
+             * send any errors in this callback
+             */
+            pm.logger.info('RuntimeExecutionService~Error in item callback', err);
+            return;
+          }
+
+          if (visualizerData) {
+            visualizerData.error &&
+              (visualizerData.error = new SerializedError(visualizerData.error));
+
+            pm.eventBus.channel('postman-runtime').publish({
+              name: 'visualizerDataReceived',
+              namespace: 'requestexecution',
+              data: {
+                id: info.id,
+                visualizerData: visualizerData
+              }
+            });
+          }
         },
 
         done (err) {

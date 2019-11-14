@@ -12,6 +12,12 @@
 // ### Tue Apr 3, 2018
 // I added a patch based on https://github.com/lodash/lodash/commit/d8e069cc3410082e44eb18fcf8e7f3d08ebe1d4a
 // in order to resolve https://hackerone.com/reports/310443
+// -@mikermcneil
+//
+// ### Mon Aug 19, 2018
+// I added a patch based on https://github.com/lodash/lodash/pull/4336/files
+// in order to resolve https://snyk.io/vuln/SNYK-JS-LODASH-73638
+// -@rachaelshaw
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -639,9 +645,10 @@
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Patched from https://github.com/lodash/lodash/commit/d8e069cc3410082e44eb18fcf8e7f3d08ebe1d4a#diff-001d0647fb00f8336795faccdec19a31R1249
+  // and https://github.com/lodash/lodash/pull/4336/commits/a01e4fa727e7294cb7b2845570ba96b206926790
   //```
   /**
-   * Gets the value at `key`, unless `key` is "__proto__".
+   * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
    *
    * @private
    * @param {Object} object The object to query.
@@ -649,7 +656,7 @@
    * @returns {*} Returns the property value.
    */
   function safeGet(object, key) {
-    return key == '__proto__'
+    return key == '__proto__' || (key === 'constructor' && typeof object[key] === 'function')
       ? undefined
       : object[key];
   }
@@ -2587,7 +2594,7 @@
           return;
         }
       }
-      var value = object[key],
+      var value = safeGet(object, key),
           result = customizer ? customizer(value, srcValue, key, object, source) : undefined,
           isCommon = result === undefined;
 

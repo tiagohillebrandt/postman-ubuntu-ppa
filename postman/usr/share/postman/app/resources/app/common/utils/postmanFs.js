@@ -1,11 +1,16 @@
 const fs = require('fs'),
   path = require('path'),
   Readable = require('stream').Readable,
-  _ = require('lodash'),
-  pathIsInside = require('./pathIsInside'),
   util = require('util'),
 
+  _ = require('lodash'),
+
+  pathIsInside = require('./pathIsInside'),
+
   PPERM_ERR = 'PPERM: insecure file access outside working directory',
+  FUNCTION = 'function',
+  DEPRECATED_SYNC_WRITE_STREAM = 'SyncWriteStream',
+  EXPERIMENTAL_PROMISE = 'promises',
 
   // Use simple character check instead of regex to prevent regex attack
   /**
@@ -114,7 +119,8 @@ PostmanFs.prototype.resolvePathSync = function (relOrAbsPath, whiteList) {
 
 // Attach all functions in fs to postman-fs
 Object.getOwnPropertyNames(fs).map((prop) => {
-  if (typeof fs[prop] !== 'function') {
+  // Bail-out early to prevent fs module from logging warning for deprecated and experimental methods
+  if (prop === DEPRECATED_SYNC_WRITE_STREAM || prop === EXPERIMENTAL_PROMISE || typeof fs[prop] !== FUNCTION) {
     return;
   }
 

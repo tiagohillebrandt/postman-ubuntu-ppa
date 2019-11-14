@@ -22,6 +22,7 @@ let AuthHandlerAdapter = {
   },
   hideAllWindows: windowManager.hideAllWindows.bind(windowManager),
   showAllWindows: windowManager.showAllWindows.bind(windowManager),
+  setWindowsDefaultVisibilityState: windowManager.setWindowsDefaultVisibilityState.bind(windowManager),
   getAppInfo () {
     return { property_id: app.installationId };
   },

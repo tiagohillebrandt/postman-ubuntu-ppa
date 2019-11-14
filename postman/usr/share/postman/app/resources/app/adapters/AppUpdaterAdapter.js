@@ -108,6 +108,13 @@ let AppUpdaterAdapter = {
      * @returns {Object} electron.app.quit
      */
     quitApp () {
+      // Reverting the fix, since it causes issues with the Linux update flow
+      // When the user closes the window, it is captured by the electron event `before-quit`
+      // and then we apply the update (swap the current and newly downloaded update directory)
+      // after that if we call the `electron.app.quit()`, it would re-trigger the electron
+      // event `electron.app.quit` recursively. Running the swapping logic multiple times
+      // would lead to deletion of the `app` directory breaking future updates as well.
+      // https://postmanlabs.atlassian.net/browse/APPSDK-257
       return electron.app.quit;
     }
 };

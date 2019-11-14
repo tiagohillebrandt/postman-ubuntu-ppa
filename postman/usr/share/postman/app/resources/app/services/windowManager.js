@@ -50,30 +50,62 @@ exports.windowManager = {
   },
 
   hideAllWindows () {
-    this.isWindowVisibleByDefault = false;
-
     for (let i = 0; i < this.openWindowIds.length; i++) {
       let openWindow = BrowserWindow.fromId(parseInt(this.openWindowIds[i]));
       openWindow && openWindow.hide();
     }
   },
 
-  showAllWindows () {
-    this.isWindowVisibleByDefault = true;
+  /**
+   * Sets default visibility state of window.
+   * This effect Requester, Console and Runner Windows.
+   * @param {Boolean} visible whether to show windows by default.
+   */
+  setWindowsDefaultVisibilityState (visible) {
+    this.isWindowVisibleByDefault = visible;
+  },
 
-    for (let i = 0; i < this.openWindowIds.length; i++) {
-      let openWindow = BrowserWindow.fromId(parseInt(this.openWindowIds[i]));
-      openWindow && openWindow.show();
-    }
+  /**
+    * Show all windows.
+  */
+  showAllWindows () {
+    return WindowController
+      .getAll({})
+      .then((allWindows) => {
+        // We get all windows from db and choose the one which are currently opened(they are hidden)
+        // We apply the full screen transformation to opened windows
+        allWindows.filter((window) => {
+          return this.openWindowIds.includes(window.browserWindowId);
+        }).forEach((window) => {
+          let browserWindow = BrowserWindow.fromId(parseInt(window.browserWindowId));
+
+          if (!browserWindow) {
+            return;
+          }
+
+          this.setWindowMode({
+            isFullScreen: window.visibility && window.visibility.isFullScreen,
+            maximized: window.visibility && window.visibility.maximized
+          }, browserWindow);
+
+          browserWindow.show();
+        });
+      })
+      .catch((e) => {
+        pm.logger.error('WindowManager - Error in showing windows from db', e);
+
+        // show windows even if there was an error,
+        // skip setting window mode for now
+        for (let i = 0; i < this.openWindowIds.length; i++) {
+          let openWindow = BrowserWindow.fromId(parseInt(this.openWindowIds[i]));
+          openWindow && openWindow.show();
+        }
+      });
   },
 
   getSharedWindow () {
     let windows = BrowserWindow.getAllWindows(),
         sharedWindow = _.find(windows, ['type', 'shared']);
-
-    if (!sharedWindow) {
-      pm.logger.error('WindowManager~getSharedWindow: Shared window is not available');
-    }
 
     return sharedWindow;
   },
@@ -141,10 +173,10 @@ exports.windowManager = {
     // Don't move this to the top,
     // This should be required only in development mode.
     // This package is not bundled in production build.
-    var { default: installExtension, REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS } = require('electron-devtools-installer');
+    var { default: installExtension, REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
     // Just include more extensions above and append them to the array to attach other available extensions
-    [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS].forEach((extension) => {
+    [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS, REDUX_DEVTOOLS].forEach((extension) => {
       installExtension(extension)
         .then((name) => pm.logger.info(`WindowManager~attachDevToolsExtension: Added DevTools Extension: ${name}`))
         .catch((err) => pm.logger.warn('WindowManager~attachDevToolsExtension: An error occurred while adding DevTools extension: ', err));
@@ -245,6 +277,7 @@ exports.windowManager = {
 
     window.loadURL(this.getWebviewPath());
     window.webContents.on('dom-ready', () => {
+      pm.logger.info('window-manager~newSharedWindow: Shell loaded');
       window.webContents.send('shared-loaded');
       window.webContents.send('shell-loaded', {
         id: window.id,
@@ -290,7 +323,7 @@ exports.windowManager = {
     }
 
     let screen = electron.screen,
-        nearestDisplay = screen.getDisplayNearestPoint({ x: bounds.x, y: bounds.y });
+      nearestDisplay = screen.getDisplayNearestPoint({ x: bounds.x, y: bounds.y });
 
     let isWindowVisible = (
       (bounds.x >= nearestDisplay.bounds.x && bounds.x <= nearestDisplay.bounds.x + nearestDisplay.bounds.width) &&
@@ -299,8 +332,11 @@ exports.windowManager = {
 
     if (!isWindowVisible) {
       return {
-        x: null,
-        y: null
+        // APPSDK-34 - return nearest display x,y instead of null, so that in multi monitor it returns the x,y of the
+        // nearest display rather than null which results in the app opening in the default monitor ignoring where it
+        // was last closed.
+        x: nearestDisplay.bounds.x,
+        y: nearestDisplay.bounds.y
       };
     }
 
@@ -370,7 +406,10 @@ exports.windowManager = {
 
     this.windowState[windowName] = window;
 
-    this.setWindowMode({
+    // We do not want to apply fullScreen flag for windows created in hidden mode
+    // since applying it will make these windows visible. Instead, We will apply this flag later
+    // (after the auth window is closed) when we want to show these windows.
+    this.isWindowVisibleByDefault && this.setWindowMode({
       isFullScreen: window.visibility && window.visibility.isFullScreen,
       maximized: window.visibility && window.visibility.maximized
     }, mainWindow);
@@ -531,7 +570,10 @@ exports.windowManager = {
 
     this.windowState[windowName] = window;
 
-    this.setWindowMode({
+    // We do not want to apply fullScreen flag for windows created in hidden mode
+    // since applying it will make these windows visible. Instead, We will apply this flag later
+    // (after the auth window is closed) when we want to show these windows.
+    this.isWindowVisibleByDefault && this.setWindowMode({
       isFullScreen: window.visibility && window.visibility.isFullScreen,
       maximized: window.visibility && window.visibility.maximized
     }, mainWindow);
@@ -623,8 +665,8 @@ exports.windowManager = {
       let mainWindow = new BrowserWindow(Object.assign(
         this.getWindowPref('Postman Console'),
         {
-          width: _.get(window, 'size.width', 1000),
-          height: _.get(window, 'size.height', 400),
+          width: _.get(window, 'size.width', 900),
+          height: _.get(window, 'size.height', 600),
           x: sanitizedBounds.x,
           y: sanitizedBounds.y,
           center: !window.position,
@@ -634,7 +676,10 @@ exports.windowManager = {
 
       this.windowState[windowName] = window;
 
-      this.setWindowMode({
+      // We do not want to apply fullScreen flag for windows created in hidden mode
+      // since applying it will make these windows visible. Instead, We will apply this flag later
+      // (after the auth window is closed) when we want to show these windows.
+      this.isWindowVisibleByDefault && this.setWindowMode({
         isFullScreen: window.visibility && window.visibility.isFullScreen,
         maximized: window.visibility && window.visibility.maximized
       }, mainWindow);
@@ -659,7 +704,7 @@ exports.windowManager = {
         browserWindowId: mainWindow.id,
         activeSession: window.activeSession || '',
         position: window.position || {},
-        size: window.size || { width: 1000, height: 400 },
+        size: window.size || { width: 900, height: 600 },
         visibility: window.visibility || { maximized: false, isFullScreen: false }
       }, {
         id: windowId,
@@ -745,7 +790,7 @@ exports.windowManager = {
   stateChangeHandler (e) {
     const activeWindow = e.sender;
 
-    if (!activeWindow) {
+    if (!activeWindow || activeWindow.isDestroyed()) {
       return Promise.resolve();
     }
 

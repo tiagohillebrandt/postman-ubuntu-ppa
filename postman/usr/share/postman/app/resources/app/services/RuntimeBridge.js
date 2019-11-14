@@ -5,14 +5,9 @@ var ipcMain = require('electron').ipcMain,
     _ = require('lodash'),
     SerializedError = require('serialised-error'),
     getSystemProxy = require('../utils/getSystemProxy'),
-    cookieManagerInstance = require('./CookieManager'),
+    CookieJar = require('./CookieJar'),
     fs = require('fs'),
-    PostmanFs = require('../common/utils/postmanFs'),
-    cookieIntegration = require('./RuntimeCookieIntegration'),
-    putCookiesInTheJar = cookieIntegration.putCookiesInTheJar,
-    addCookiesFromJarToCookieManager = cookieIntegration.addCookiesFromJarToCookieManager,
-    { stringifyCookieObject, _parseCookieHeader } = require('../common/utils/cookie'),
-    { ensureProperUrl, getURLProps } = require('../common/utils/url');
+    PostmanFs = require('../common/utils/postmanFs');
 
 /**
  * A Postman SDK object
@@ -44,40 +39,6 @@ var runPool = {};
  */
 function wrapError (error) {
   return error && JSON.stringify(new SerializedError(error));
-}
-
-/**
- * Adds cookies from headers to cookieJar
- *
- * @function NodeRuntimeBridge~addCookiesFromHeaderToJar
- *
- * @param {string} cookiePartitionId cookie partition id
- * @param {CookieJar} cookieJar     - CookieJar instance where the cookies have to be moved
- * @param {Object[]} requestHeaders - Headers from a Request that will be analyzed
- * @param {URL} requestUrlValue     - URL of the request the headers belong to
- * @param {String} requestUrlHost   - Host of the request URL
-*/
-function addCookiesFromHeaderToJar (cookiePartitionId, cookieJar, requestHeaders, requestUrlValue, requestUrlHost) {
-  var cookiesFromRequest;
-  _.forEach(requestHeaders, (header) => {
-    if (header && _.isString(header.key) && header.key.toLowerCase() === 'cookie') {
-      try {
-        cookiesFromRequest = _parseCookieHeader(requestUrlHost, header.value);
-        _.forEach(cookiesFromRequest, (cookie) => {
-
-          try {
-            cookieJar.setCookie(stringifyCookieObject(cookie), requestUrlValue);
-          }
-          catch (e) {
-            pm.logger.error('RuntimeBridge~addCookiesFromHeaderToJar - Error adding cookie to jar', e);
-          }
-        });
-      }
-      catch (e) {
-        pm.logger.error('RuntimeBridge~addCookiesFromHeaderToJar - Error parsing cookie header', e);
-      }
-    }
-  });
 }
 
 /**
@@ -162,18 +123,19 @@ function disposeRun (runId) {
  */
 function handleRunCreate (event, id, { runnerOptions = {}, fileResolver }, runOptions, runMetaData = {}, collection) {
   var options = _.clone(runnerOptions),
-      cookiePartitionId = runMetaData.cookiePartitionId,
-      runWithEmptyCookieJar = runMetaData.runWithEmptyCookieJar,
-      saveCookiesAfterRun = runMetaData.saveCookiesAfterRun,
-      cookieJar = require('./cookieJar').cookieJar.create(),
-      runner, sender, sdkCollection;
+    cookiePartitionId = runMetaData.cookiePartitionId,
+    runWithEmptyCookieJar = runMetaData.runWithEmptyCookieJar,
+    saveCookiesAfterRun = runMetaData.saveCookiesAfterRun,
+    cookieJar = new CookieJar(cookiePartitionId, {
+      readFromDB: !runWithEmptyCookieJar,
+      writeToDB: false, // disabled writeToDB to avoid real-time updates
+      programmaticAccess: runMetaData.cookieConfiguration
+    }),
+    runner,
+    sender,
+    sdkCollection;
 
   options.run = options.run || {};
-
-  if (!runWithEmptyCookieJar) {
-    // Add cookies from cookieManager to the cookieJar
-    putCookiesInTheJar(cookiePartitionId, cookieManagerInstance, cookieJar);
-  }
 
   _.set(runnerOptions, 'run.requester.cookieJar', cookieJar);
 
@@ -203,8 +165,6 @@ function handleRunCreate (event, id, { runnerOptions = {}, fileResolver }, runOp
 
   // create a run
   runner.run(sdkCollection, runOptions, (runCreateError, run) => {
-    var transformedUrl;
-
     if (runCreateError) {
       sender.send(`RUNTIME_RUN_CREATE_ERROR_${id}`, wrapError(runCreateError));
     }
@@ -228,7 +188,7 @@ function handleRunCreate (event, id, { runnerOptions = {}, fileResolver }, runOp
       },
 
       io (err, cursor, trace, response, request, cookies) {
-        sender.send('RUNTIME_CALLBACK_IO', id, wrapError(err), cursor, trace, serializeSDKObject(response), serializeSDKObject(request), cookies);
+        sender.send('RUNTIME_CALLBACK_IO', id, wrapError(err), cursor, trace, serializeSDKObject(response), serializeSDKObject(request), serializeSDKObject(cookies));
       },
 
       beforeIteration (err, cursor) {
@@ -248,43 +208,20 @@ function handleRunCreate (event, id, { runnerOptions = {}, fileResolver }, runOp
       },
 
       beforeRequest (err, cursor, req, item, aborter) {
-        var currentRunData = runPool[id],
-            requestJson = req.toJSON(),
-            requestUrlHost = req.url.getHost(),
-            requestHeaders = getHeadersFromRequest(requestJson);
+        var currentRunData = runPool[id];
 
         // store aborter so this request could be aborted at later point
         currentRunData && (currentRunData.requestAborter = aborter);
 
-        transformedUrl = req.url.getRemote();
-
-        addCookiesFromHeaderToJar(cookiePartitionId, cookieJar, requestHeaders, requestJson.url, requestUrlHost);
-
         sender.send('RUNTIME_CALLBACK_BEFOREREQUEST', id, wrapError(err), cursor, serializeSDKObject(req), serializeSDKObject(item), aborter);
       },
 
-
-      request (err, cursor, responseObj, requestObj, item, cookies) {
-        sender.send('RUNTIME_CALLBACK_REQUEST', id, wrapError(err), cursor, serializeSDKObject(responseObj), serializeSDKObject(requestObj), serializeSDKObject(item), cookies);
-
-        if (saveCookiesAfterRun) {
-          // to make sure the run instance is not disposed before completing the callback
-          runPool[id] && runPool[id].pendingCallbacks++;
-
-          // Setting and deleting cookies
-          // this flow is included for each request in a collection run.
-          // need to evaluate whether using the same flow for both is justified
-          addCookiesFromJarToCookieManager(cookiePartitionId, cookieJar, cookieManagerInstance, transformedUrl, (addCookiesError, cookies) => {
-            // custom callback - not part of runtime - to handle cookies.
-            // @todo remove after adding a cookie store to runtime
-            sender.send('RUNTIME_CALLBACK_COOKIES', id, wrapError(addCookiesError), cookies);
-            runPool[id] && runPool[id].pendingCallbacks--;
-          });
-        }
+      request (err, cursor, responseObj, requestObj, item, cookies, history) {
+        sender.send('RUNTIME_CALLBACK_REQUEST', id, wrapError(err), cursor, serializeSDKObject(responseObj), serializeSDKObject(requestObj), serializeSDKObject(item), serializeSDKObject(cookies), history);
       },
 
       response (err, cursor, responseObj, requestObj, item, cookies) {
-        sender.send('RUNTIME_CALLBACK_RESPONSE', id, wrapError(err), cursor, serializeSDKObject(responseObj), serializeSDKObject(requestObj), serializeSDKObject(item), cookies);
+        sender.send('RUNTIME_CALLBACK_RESPONSE', id, wrapError(err), cursor, serializeSDKObject(responseObj), serializeSDKObject(requestObj), serializeSDKObject(item), serializeSDKObject(cookies));
       },
 
       assertion (cursor, assertion) {
@@ -329,6 +266,15 @@ function handleRunCreate (event, id, { runnerOptions = {}, fileResolver }, runOp
 
       done (err, cursor) {
         sender.send('RUNTIME_CALLBACK_DONE', id, wrapError(err), cursor);
+
+        if (saveCookiesAfterRun && cookieJar && typeof cookieJar.updateStore === 'function') {
+          // to make sure the run instance is not disposed before completing the callback
+          runPool[id] && runPool[id].pendingCallbacks++;
+
+          cookieJar.updateStore(() => {
+            runPool[id] && runPool[id].pendingCallbacks--;
+          });
+        }
       },
 
       stop (err, ...args) {

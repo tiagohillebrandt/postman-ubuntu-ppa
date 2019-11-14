@@ -1,7 +1,8 @@
 let _ = require('lodash'),
     sdk = require('postman-collection'),
     electron = require('electron'),
-    BrowserWindow = electron.BrowserWindow;
+    BrowserWindow = electron.BrowserWindow,
+    redirectCodesSet = new Set([301, 302, 303, 307, 308]);
 
 /**
  * A simple window manager that interfaces with a OAuth 2 authentication helper.
@@ -15,6 +16,15 @@ class OAuth2WindowManager {
   constructor (options = {}) {
     this.cookiePartitionId = options.cookiePartitionId;
     this.strictSSL = options.strictSSL;
+  }
+
+  /**
+   * Function to handle permission requests
+   * All Permissions will be denied automatically.
+   * Denied permission are ['media', 'geolocation', 'notifications', 'midiSysex', 'pointerLock', 'fullscreen' 'openExternal]
+   */
+  permissionRequestHandler (webContents, permission, callback) {
+    return callback(false);
   }
 
   /**
@@ -50,6 +60,10 @@ class OAuth2WindowManager {
         expectedHost = expectedUrl.host && expectedUrl.host.join('.'),
         urlMatched = !(expectedUrl.protocol && expectedUrl.host), // if no valid url was given, we don't try to match the redirect urls
         didCompleteAuth = false,
+        isUrlMatching = function (urlRedirect) {
+          let actualUrl = new sdk.Url(urlRedirect);
+          return actualUrl.host && actualUrl.host.join('.') === expectedHost;
+        },
         handleUrlChange = function (urlRedirect) {
           pm.logger.info('OAuth2WindowManager~startLoginWith - Received redirect on auth login window');
           let actualUrl = new sdk.Url(urlRedirect),
@@ -66,12 +80,12 @@ class OAuth2WindowManager {
               // It crashes when used directly.
               // https://github.com/electron/electron/issues/1685#issuecomment-102259335
               setTimeout(function () {
-                authWindow.close();
+                authWindow && authWindow.close();
               });
             };
 
           if (!urlMatched) {
-            actualUrl.host && actualUrl.host.join('.') === expectedHost && (urlMatched = true);
+            isUrlMatching(urlRedirect) && (urlMatched = true);
           }
 
           if (!urlMatched) {
@@ -103,6 +117,14 @@ class OAuth2WindowManager {
             callback && callback(null, params.toObject());
             return;
           }
+        },
+        getUrlToLog = function (someUrl) {
+          try {
+            let parsedUrl = new URL(someUrl);
+            return `${parsedUrl.protocol}//${parsedUrl.host}`;
+          } catch (error) {
+            return 'INVALID URL';
+          }
         };
 
     authWindow.on('close', function () {
@@ -120,14 +142,23 @@ class OAuth2WindowManager {
     // attach listeners to all events, and try to extract code/access_token
     // bail out if we could extract from the first event
     // set `didCompleteAuth` flag to true for bail out
-    authWindow.webContents.on('did-get-redirect-request', function (event2, oldUrl, newUrl) {
+    authWindow.webContents.on('did-fail-load', function (event, errorCode, errorDescription, validatedURL) {
+      pm.logger.info('OAuth2WindowManager~did-fail-load: Error with code ', errorCode, errorDescription, getUrlToLog(validatedURL));
       if (didCompleteAuth) {
         return;
       }
-      handleUrlChange(newUrl);
+
+      let redirectUrls = _.get(event, ['sender', 'history']);
+      _.some(redirectUrls, (redirectUrl) => {
+        if (isUrlMatching(redirectUrl)) {
+          handleUrlChange(redirectUrl);
+          return true;
+        }
+      }) || pm.logger.warn('OAuth2WindowManager~did-fail-load: No history URL matched with the callback URL');
     });
 
     authWindow.webContents.on('will-navigate', function (event2, newUrl) {
+      pm.logger.info('OAuth2WindowManager~will-navigate:', getUrlToLog(newUrl));
       if (didCompleteAuth) {
         return;
       }
@@ -135,6 +166,7 @@ class OAuth2WindowManager {
     });
 
     authWindow.webContents.on('did-navigate', function (event2, newUrl) {
+      pm.logger.info('OAuth2WindowManager~did-navigate:', getUrlToLog(newUrl));
       if (didCompleteAuth) {
         return;
       }
@@ -142,13 +174,57 @@ class OAuth2WindowManager {
     });
 
     authWindow.webContents.on('did-navigate-in-page', function (event2, newUrl) {
+      pm.logger.info('OAuth2WindowManager~did-navigate-in-page:', getUrlToLog(newUrl));
       if (didCompleteAuth) {
         return;
       }
       handleUrlChange(newUrl);
     });
 
-    authWindow.webContents.on('certificate-error', (event, url, error, certificate, callback) => {
+    // Workaround to handle server side redirections while obtaining Access Token in OAuth2 flow
+    // as a solution to the issue - https://github.com/postmanlabs/postman-app-support/issues/6895.
+    // Issue happened due to upgrade from electron 1.8.8 to 3.x which deprecated 'did-get-redirect-request' event
+    authWindow.webContents.session.webRequest.onBeforeRedirect((details) => {
+      pm.logger.info('OAuth2WindowManager~onBeforeRedirect:', getUrlToLog(details.redirectURL));
+      if (didCompleteAuth || details.resourceType !== 'mainFrame') {
+        return;
+      }
+      handleUrlChange(details.redirectURL);
+    });
+
+    // This listener handles the case where URL with custom protocol is used as the callback URL.
+    // Such requests are blocked from being executed and an ERR_UNSAFE_REDIRECT error is thrown. It is
+    // not caught by onBeforeRedirect because that is fired just before the redirect is about to occur.
+    // Since the request is blocked, so the event is never fired.
+    //
+    // As a workaround for this, we examine the response headers from the previous request. If the statusCode
+    // is one of the redirect codes, we take the destination URL from the 'location' response header and then
+    // check to see if it matches the callback URL.
+    authWindow.webContents.session.webRequest.onHeadersReceived(function (details, callback) {
+      if (didCompleteAuth || details.resourceType !== 'mainFrame' || !redirectCodesSet.has(details.statusCode)) {
+        callback({
+          cancel: false
+        });
+
+        return;
+      }
+
+      // Location header is returned as an array, but we use the index 0 as according to the RFC -
+      // https://tools.ietf.org/html/rfc7231#section-7.1.2, Location header can have a single URI
+      let redirectUrl = (details.responseHeaders.Location && details.responseHeaders.Location[0]) || (details.responseHeaders.location && details.responseHeaders.location[0]);
+
+      if (redirectUrl) {
+        pm.logger.info('OAuth2WindowManager~onHeadersReceived: Redirection request to', getUrlToLog(redirectUrl));
+        handleUrlChange(redirectUrl);
+      }
+
+      callback({
+        cancel: false
+      });
+    });
+
+    authWindow.webContents.on('certificate-error', function (event, url, error, certificate, callback) {
+      pm.logger.info('OAuth2WindowManager~certificate-error:', error, getUrlToLog(url));
       if (!this.strictSSL) {
         event.preventDefault();
         callback(true);
@@ -157,6 +233,13 @@ class OAuth2WindowManager {
         callback(false);
       }
     });
+
+    let session = _.get(authWindow, 'webContents.session');
+
+    /**
+     * Setting the handler which will respond to permission requests for the session.
+     */
+    session && session.setPermissionRequestHandler(this.permissionRequestHandler);
 
     pm.logger.info('OAuth2WindowManager~startLoginWith - Opening auth login window', url.toString());
 

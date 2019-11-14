@@ -93,6 +93,7 @@ const initializeUpdater = require('@postman/app-updater').init,
         updaterInstance.on('beforeAppQuit', handleAppQuitting);
         updaterInstance.on('versionUpdated', handleOnVersionUpdate);
         updaterInstance.on('error', handleOnUpdateError);
+        updaterInstance.on('warning', handleOnUpdateWarning);
       },
 
       /**
@@ -152,6 +153,10 @@ const initializeUpdater = require('@postman/app-updater').init,
             updateData
           }
         });
+      },
+
+      handleOnUpdateWarning = function (error, info) {
+        pm.logger.warn('UpdaterHandler: Warning while updating app', error, info);
       },
 
       /**

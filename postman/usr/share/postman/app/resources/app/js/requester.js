@@ -1,6 +1,785 @@
-webpackJsonp([25],{
+webpackJsonp([28],{
 
-/***/ 1414:
+/***/ 102:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export splitMetaEvents */
+/* unused harmony export getModelFromMessage */
+/* unused harmony export getActionFromMessage */
+/* unused harmony export validateChangeset */
+/* harmony export (immutable) */ __webpack_exports__["a"] = buildChangesetFromMessage;
+/* unused harmony export sanitize */
+/* unused harmony export getEventFromChangeset */
+/* unused harmony export getTimelineEventsFromChangeset */
+/* unused harmony export inflateChangeset */
+/* unused harmony export dispatchEvent */
+/* harmony export (immutable) */ __webpack_exports__["b"] = dispatchTimelineEvents;
+/* harmony export (immutable) */ __webpack_exports__["c"] = processIncomingChangeset;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_helpers_extract_meta_changesets__ = __webpack_require__(852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_helpers_sync_api__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__ = __webpack_require__(886);
+
+
+
+
+
+
+
+
+
+/**
+                                                                 * If a changeset has collated meta properties like `archive`, extracts them and creates a new changeset out of it.
+                                                                 *
+                                                                 * @param {Object} changeset
+                                                                 * @returns {Array}
+                                                                 */
+function splitMetaEvents(changeset) {
+  let newChangesets = Object(__WEBPACK_IMPORTED_MODULE_1__modules_sync_helpers_extract_meta_changesets__["a" /* extractMetaAsChangesets */])(changeset),
+  metaChangesets = [];
+
+  // push the original changeset
+  metaChangesets.push(changeset);
+
+  _.forEach(newChangesets, function (metaChangeset) {
+    // mark changeset as coming from app
+    _.set(metaChangeset, ['meta', 'origin'], 'app');
+
+    // push the meta changeset
+    metaChangesets.push(metaChangeset);
+  });
+
+  return metaChangesets;
+}
+
+/**
+   * Gets model from message
+   *
+   * @param {Object} message sync message
+   * @returns {String} model
+   */
+function getModelFromMessage(message) {
+  return _.get(message, ['meta', 'model'], message.model);
+}
+
+/**
+   * Gets action from message
+   *
+   * @param {Object} message sync message
+   * @returns {String} action
+   */
+function getActionFromMessage(message) {
+  return _.get(message, ['meta', 'action'], message.action);
+}
+
+/**
+   * Validate sync changeset
+   *
+   * 1. Checks if changeset is non empty
+   * 2. Checks if model is present
+   * 3. Checks if model is supported
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Boolean}
+   */
+function validateChangeset(changeset) {
+  if (!changeset) {
+    return false;
+  }
+
+  let model = changeset.model;
+
+  if (!model || !__WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][model]) {
+    return false;
+  }
+
+  return true;
+}
+
+
+/**
+   * builds app changeset from sync message
+   *
+   * @param {Object} message sync message
+   *
+   * @returns {Object}
+   */
+function buildChangesetFromMessage(message) {
+  if (!message) {
+    return;
+  }
+
+  let model = getModelFromMessage(message),
+  action = getActionFromMessage(message),
+  changesetData = { modelId: message.model_id },
+  changesetMeta,
+  owner = _.get(message, ['meta', 'owner']) || _.get(message, ['data', 'owner']);
+
+  owner && (changesetData.owner = owner);
+
+  // build workspace joining/leaving changeset
+  if (model === 'workspace' && (action === 'joining' || action === 'leaving')) {
+    changesetData.instance = { id: message.model_id };
+    changesetData.user = message.data.user;
+  }
+
+  // build transfer changeset
+  else if (action === 'transfer') {
+      changesetData.from = {
+        model: _.get(message, ['data', 'from', 'model']),
+        modelId: _.get(message, ['data', 'from', 'model_id']) };
+
+
+      changesetData.to = {
+        model: _.get(message, ['data', 'to', 'model']),
+        modelId: _.get(message, ['data', 'to', 'model_id']) };
+
+    } else
+
+    if (action === 'subscribe' || action === 'unsubscribe') {
+      changesetData.user = _.get(message, ['data', 'user']);
+    } else
+
+    {
+      changesetData.instance = message.data;
+    }
+
+  // meta can have additional keys as well
+  // preserve meta and all the keys in meta (DO NOT WHITELIST OR SANITIZE)
+  changesetMeta = message.meta || {};
+
+  changesetMeta.revision = message.revision;
+
+  return Object(__WEBPACK_IMPORTED_MODULE_0__modules_sync_helpers_create_changeset__["a" /* default */])(model, action, changesetData, changesetMeta);
+}
+
+/**
+   * sanitize changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Object}
+   */
+function sanitize(changeset) {
+  let {
+    model,
+    data } =
+  changeset,
+  syncModel = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][model],
+  sanitize = syncModel.sanitizeFromSync;
+
+  // no need for sanitizing this model
+  if (!sanitize) {
+    return changeset;
+  }
+
+  // sanitize the model from sync message
+  data.instance && sanitize(data.instance);
+
+  return changeset;
+}
+
+
+/**
+   * construct events from changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Object} returns the event
+   */
+function getEventFromChangeset(changeset) {
+  if (!changeset) {
+    return [];
+  }
+
+  let changesetAction = changeset.action,
+  changesetModel = changeset.model,
+  model = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][changesetModel],
+  handler;
+
+  // no model for sync changeset
+  if (!model) {
+    pm.logger.error(new Error('Unknown model' + changesetModel));
+    return [];
+  }
+
+  // find handler in the sync model, or in the default
+  handler = _.get(model, ['toAppEvents', changesetAction]);
+
+  // no handler for sync changeset action
+  // sync sent a changeset action that this version of the app doesn't understand
+  if (!handler) {
+    return [];
+  }
+
+  return handler && handler(changeset);
+}
+
+/**
+   * Get events that affect timelines
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Object} returns the event
+   */
+function getTimelineEventsFromChangeset(changeset) {
+  if (!changeset) {
+    return [];
+  }
+
+  let changesetAction = changeset.action,
+  changesetModel = changeset.model,
+  model = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][changesetModel],
+  handler;
+
+  // @todo: windowed-syncing: move this common to model layer events and timeline events
+  // no model for sync changeset
+  if (!model) {
+    pm.logger.error(new Error('Unknown model' + changesetModel));
+    return [];
+  }
+
+  // find handler in the sync model
+  handler = _.get(model, ['toTimelineEvents', changesetAction]);
+
+  // no handler for sync changeset action
+  // sync sent a changeset action that this version of the app doesn't understand
+  if (!handler) {
+    return [];
+  }
+
+  return handler && handler(changeset);
+}
+
+/**
+   * Populate a partial changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Promise.<Object>}
+   */
+async function inflateChangeset(changeset) {
+  if (!_.get(changeset, ['meta', 'partial'])) {
+    return changeset;
+  }
+
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_helpers_sync_api__["b" /* findOne */])(changeset.model, { id: changeset.data.modelId }, { populate: true, owner: _.get(changeset, ['data', 'owner']) }, (err, model, rawMessage) => {
+      if (err) {
+        return reject(err);
+      }
+
+      resolve({ model, rawMessage });
+    });
+  }).
+  then(({ model, rawMessage }) => {
+    changeset.data.instance = model;
+
+    // merge meta from the find one call without the `find` action
+    // and set `partial` flag to false
+    _.merge(changeset.meta, _.omit(rawMessage.meta, ['action']), { partial: false });
+
+    return changeset;
+  });
+}
+
+/**
+   * dispatch events on sync action pipeline
+   *
+   * @param {Array} events
+   */
+async function dispatchEvent(events) {
+  return _.reduce(events, (promise, event) => {
+    return promise.then(() => {
+      return Object(__WEBPACK_IMPORTED_MODULE_3__modules_pipelines_sync_action__["a" /* default */])(event).
+      catch(err => {
+
+        // log the error and proceed committing the next event
+        console.warn(err);
+      });
+    });
+  }, Promise.resolve());
+}
+
+/**
+   * Apply timeline related events.
+   *
+   * @param {Array.<Object>} events
+   */
+async function dispatchTimelineEvents(events) {
+  return events.reduce((acc, event) => {
+    return acc.then(() => {
+      switch (event.name) {
+        case 'create':
+          // at this point we do not know if the new timeline is in syncing window or not
+          // so always subscribe
+          // we rely on the unsubscribe timer to clean the unused subscriptions
+          // also dont wait for each timeline to sync and be subscribed
+          // else will sync everything one by one and will loose the advantage of windowed syncing
+          Object(__WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__["d" /* syncAndSubscribeTimeline */])(event.data);
+          break;
+        case 'delete':
+          return Object(__WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__["e" /* terminateTimeline */])(event.data);}
+
+    });
+  }, Promise.resolve([]));
+}
+
+/**
+   * Processes one single sync changeset for app.
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Promise.<Object>} a promise that resolves with the changeset
+   */
+async function processIncomingChangeset(changeset) {
+  // filter off invalid changesets
+  if (!validateChangeset(changeset)) {
+    return;
+  }
+
+  let perfMarkerId = `incomingChangesetStart:${Date.now()}`,
+  timelineEvents = [],
+  sanitizedChangeset,
+  appEvents = [];
+
+  performance.mark(perfMarkerId);
+
+  // inflate the body of the changeset for any `partial` changeset
+  await inflateChangeset(changeset);
+
+  let changesets = splitMetaEvents(changeset);
+
+  _.forEach(changesets, changeset => {
+    // sanitize the body of the changeset
+    sanitizedChangeset = sanitize(changeset);
+
+    // translate the changeset into events that can be applied on the app
+    // each changeset could return one or more timeline events and/or model layer events
+    timelineEvents = timelineEvents.concat(getTimelineEventsFromChangeset(sanitizedChangeset));
+    appEvents = appEvents.concat(getEventFromChangeset(sanitizedChangeset));
+  });
+
+  // apply all the events for each changeset
+  await Promise.all([
+  dispatchTimelineEvents(timelineEvents),
+  dispatchEvent(appEvents)]);
+
+
+  performance.measure('incomingChangesetProcessing', perfMarkerId);
+
+  // return the changeset to the consumer
+  return sanitizedChangeset;
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 135:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return sanitizeDataMode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return sanitizeRequestBody; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return sanitizeRequestMethod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return sanitizeHeadersFromSync; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return sanitizePathVariablesFromSync; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return sanitizeCollectionModelFromSync; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return sanitizeDeprecatedScriptProperties; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return sanitizeDeprecatedAuthProperties; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeAutoTimestamps; });
+/* unused harmony export sanitizeRawModeDataFromSync */
+/* unused harmony export sanitizeFormDataFromSync */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_RequestConstants__ = __webpack_require__(683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_RequestDataModeConstants__ = __webpack_require__(177);
+
+
+
+
+const MODEL_COLLECTION = 'collection',
+MODEL_FOLDER = 'folder',
+MODEL_REQUEST = 'request',
+MODEL_RESPONSE = 'response',
+
+NAME_UNTITLED_DICT = {
+  collection: 'Untitled Collection',
+  folder: 'Untitled Folder',
+  request: 'Untitled Request',
+  response: 'Untitled Example' },
+
+METHOD_GET = 'GET',
+DBP_FLAG = 'protocolProfileBehavior.disableBodyPruning',
+ALLOWED_VARIABLE_FIELDS = ['id', 'key', 'value', 'type', 'enabled', 'description'],
+NO_BODY_METHODS_SET = new Set(__WEBPACK_IMPORTED_MODULE_1__constants_RequestConstants__["a" /* NO_BODY_METHODS */]),
+
+NAME_UNTITLED = 'Untitled';
+
+/**
+                             * Converts empty model names to `Untitled ${ModelName}`
+                             *
+                             * @param {Object} model
+                             * @param {String} type
+                             */
+function sanitizeNullNames(model, type) {
+  if (!model.name) {
+    model.name = NAME_UNTITLED_DICT[type] || NAME_UNTITLED;
+  }
+}
+
+/**
+   * Sanitizes the collection variables that are coming from sync
+   * It will remove and non-supported properties and also,
+   * make sure that the each variable has `enabled` properties (and not the `disabled` property which the schema supports)
+   * @param {Object} collection
+   */
+function sanitizeCollectionVariables(collection) {
+  if (_.isEmpty(collection.variables)) {
+    return;
+  }
+
+  collection.variables = _.map(collection.variables, variable => {
+    let enabled = true;
+
+    // While importing from sync, we give more preference to enabled field
+    // since sync has the same data which app has and in app db enabled is the valid property
+    if (typeof variable.enabled !== 'undefined') {
+      enabled = Boolean(variable.enabled);
+    } else if (typeof variable.disabled !== 'undefined') {
+      enabled = !variable.disabled;
+    }
+
+    return _.pick(_.merge({}, variable, { enabled }), ALLOWED_VARIABLE_FIELDS);
+  });
+}
+
+/**
+   * Removes the body from requests where the method does not support it and when the
+   * DBP flag is not set. This data can be present for collections that were synced from some App with
+   * version before 6.6
+   * @param {Object} request
+   */
+function sanitizeRequestBody(request) {
+  if (!request) {
+    return;
+  }
+
+  let methodDoesNotAllowBody = !request.method || NO_BODY_METHODS_SET.has(request.method),
+  isDbpFalsy = !_.get(request, DBP_FLAG);
+
+  if (methodDoesNotAllowBody && isDbpFalsy) {
+    request.data = null;
+    request.dataMode = null;
+  }
+}
+
+/**
+   * It will set method to GET when it is not valid (a non-empty string)
+   * @param {Object} request
+   */
+function sanitizeRequestMethod(request) {
+  if (!request) {
+    return;
+  }
+
+  if (!_.isString(request.method) || _.isEmpty(request.method)) {
+    request.method = METHOD_GET;
+  }
+}
+
+const REQUEST_AUTH_DEPRECATED_PROPS = [
+'currentHelper',
+'helperAttributes'];
+
+
+const REQUEST_SCRIPT_DEPRECATED_PROPS = [
+'tests',
+'preRequestScript'];
+
+
+/**
+                      *
+                      * @param {Object} collection
+                      */
+function sanitizeCollectionModelFromSync(model, type) {
+  if (!model) {
+    return;
+  }
+
+  // shallow collection
+  if (type === MODEL_COLLECTION && !(model.folders || model.requests)) {
+    sanitizeCollectionFromSync(model);
+    return;
+  }
+
+  // shallow folder
+  if (type === MODEL_FOLDER && !(model.folders || model.requests)) {
+    sanitizeFolderFromSync(model);
+    return;
+  }
+
+  // shallow request
+  if (type === MODEL_REQUEST && !model.responses) {
+    sanitizeRequestFromSync(model);
+    return;
+  }
+
+  // shallow response
+  if (type === MODEL_RESPONSE) {
+    sanitizeResponseFromSync(model);
+    return;
+  }
+
+  Object(__WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__["c" /* walkCollectionTree */])(model, type, function (node, { type }) {
+    switch (type) {
+      case MODEL_COLLECTION:
+        sanitizeCollectionFromSync(node);
+        break;
+      case MODEL_FOLDER:
+        sanitizeFolderFromSync(node);
+        break;
+      case MODEL_REQUEST:
+        sanitizeRequestFromSync(node);
+        break;
+      case MODEL_RESPONSE:
+        sanitizeResponseFromSync(node);
+        break;}
+
+  });
+}
+
+/**
+   * sanitize collection
+   *
+   * @param {any} collection
+   */
+function sanitizeCollectionFromSync(collection) {
+  // convert all null names to Untitled. New collection models are not allowed with null in app and sync
+  // this is for backward compatibility for old requests
+  sanitizeNullNames(collection, MODEL_COLLECTION);
+  sanitizeCollectionVariables(collection);
+}
+
+/**
+   * sanitize folder
+   *
+   * @param {any} folder
+   */
+function sanitizeFolderFromSync(folder) {
+  // convert all null names to Untitled. New collection models are not allowed with null in app and sync
+  // this is for backward compatibility for old requests
+  sanitizeNullNames(folder, MODEL_FOLDER);
+}
+
+/**
+   * sanitize request
+   *
+   * @param {any} request
+   */
+function sanitizeRequestFromSync(request) {
+  // convert all null names to Untitled. New collection models are not allowed with null in app and sync
+  // this is for backward compatibility for old requests
+  sanitizeNullNames(request, MODEL_REQUEST);
+  sanitizeDataMode(request);
+  sanitizeRequestBody(request);
+  sanitizeRequestMethod(request);
+  sanitizeHeadersFromSync(request);
+  sanitizePathVariablesFromSync(request);
+  sanitizeDeprecatedScriptProperties(request);
+  sanitizeDeprecatedAuthProperties(request);
+  sanitizeAutoTimestamps(request);
+}
+
+/**
+   * sanitize dataMode
+   */
+function sanitizeDataMode(request) {
+
+  switch (request.dataMode) {
+    case 'raw':
+    case 'binary':
+      sanitizeRawModeDataFromSync(request);
+      break;
+    case __WEBPACK_IMPORTED_MODULE_2__constants_RequestDataModeConstants__["d" /* REQUEST_DATA_MODE_GRAPHQL */]:
+      sanitizeGraphqlModeDataFromSync(request);
+      break;
+    case 'params':
+      sanitizeFormDataFromSync(request);
+      break;
+    case 'urlencoded':
+      if (!_.isArray(request.data)) {
+        request.data = [];
+      }
+      break;
+    default:
+      request.dataMode = null;
+      request.data = null;
+      break;}
+
+}
+
+/**
+   * sanitize response
+   *
+   * @param {any} response
+   */
+function sanitizeResponseFromSync(response) {
+  // convert all null names to Untitled. New collection models are not allowed with null in app and sync
+  // this is for backward compatibility for old requests
+  sanitizeNullNames(response, MODEL_RESPONSE);
+  sanitizeAutoTimestamps(response);
+
+  if (_.has(response, 'requestObject')) {
+    let parsedObject = null;
+
+    // Now we need to try parse this value as object and send it to db.
+    try {
+      parsedObject = JSON.parse(response.requestObject);
+    }
+    catch (e) {
+      // no-op here
+    } finally
+    {
+      // Value should be a valid json object or null
+      if (parsedObject && typeof parsedObject === 'object' && !Array.isArray(parsedObject)) {
+        sanitizeDataMode(parsedObject);
+        sanitizeRequestBody(parsedObject);
+        sanitizeRequestMethod(parsedObject);
+
+        // Filling the requestObject
+        response.requestObject = parsedObject;
+        return;
+      }
+
+      response.requestObject = null;
+    }
+  }
+}
+
+/**
+   * transform rawModeData
+   *
+   * @param {any} entity
+   */
+function sanitizeRawModeDataFromSync(model) {
+  if ((model.dataMode === 'raw' || model.dataMode === 'binary') && _.has(model, 'rawModeData')) {
+    model.data = model.rawModeData;
+    delete model.rawModeData;
+    delete model.graphqlModeData;
+  }
+
+  // Brought as is from PmCollections.js and updated for adding binary data persistence
+  // Not sure if this is still needed
+  if ((model.dataMode === 'raw' || model.dataMode === 'binary') && model.data instanceof Array && !_.isString(model.rawModeData) && _.isEmpty(model.rawModeData)) {
+    if (model.data.length == 1 && _.isString(model.data[0])) {
+      model.data = model.data[0];
+    }
+
+    // Always make sure data is string for raw type.
+    if (!_.isString(model.data)) {
+      model.data = _.toString(model.data);
+    }
+  }
+}
+
+/**
+   * transform graphqlModeData
+   *
+   * @param {any} entity
+   */
+function sanitizeGraphqlModeDataFromSync(request) {
+  if (request.dataMode === __WEBPACK_IMPORTED_MODULE_2__constants_RequestDataModeConstants__["d" /* REQUEST_DATA_MODE_GRAPHQL */]) {
+    request.data = _.isPlainObject(request.graphqlModeData) ? request.graphqlModeData : {};
+    delete request.graphqlModeData;
+    delete request.rawModeData;
+  }
+}
+
+/**
+   * transform params/form-data request
+   * @param {any} entity
+   */
+function sanitizeFormDataFromSync(model) {
+  if (!_.isArray(model.data)) {
+    model.data = [];
+
+    return;
+  }
+
+  _.forEach(model.data, datum => {
+    if (!datum || datum.type !== 'file' || Array.isArray(datum.value)) {
+      return;
+    }
+
+    // If type is file and value is a string then convert it to an array
+    if (_.isString(datum.value)) {
+      datum.value = [datum.value];
+      return;
+    }
+
+    // Incase of unknown type cleanup to empty array
+    datum.value = [];
+  });
+}
+
+/**
+   * Removes deprecated properties 'tests', 'preRequestScript'
+   * in favor of 'events'
+   */
+function sanitizeDeprecatedScriptProperties(model) {
+  _.forEach(REQUEST_SCRIPT_DEPRECATED_PROPS, prop => {
+    delete model[prop];
+  });
+}
+
+/**
+   * Removes deprecated properties 'currentHelper', 'helperAttributes'
+   * in favor of 'auth'
+   */
+function sanitizeDeprecatedAuthProperties(model) {
+  _.forEach(REQUEST_AUTH_DEPRECATED_PROPS, prop => {
+    delete model[prop];
+  });
+}
+
+/**
+   * sanitize headers
+   *
+   * @param {any} entity
+   */
+function sanitizeHeadersFromSync(model) {
+  delete model.headers;
+}
+
+/**
+   * sanitize path variables
+   * pathVariables are deprecated in favor of pathVariableData
+   * @param {any} entity
+   */
+function sanitizePathVariablesFromSync(request) {
+  delete request.pathVariables;
+}
+
+/**
+   * Removes auto created timestamps.
+   *
+   * @param {Object} entity
+   */
+function sanitizeAutoTimestamps(entity) {
+  entity.createdAt && delete entity.createdAt;
+  entity.updatedAt && delete entity.updatedAt;
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 1502:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15,7 +794,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(1);
-var PropTypes = __webpack_require__(11);
+var PropTypes = __webpack_require__(8);
 
 var ALL_INITIALIZERS = [];
 var READY_INITIALIZERS = [];
@@ -331,31 +1110,38 @@ module.exports = Loadable;
 
 /***/ }),
 
-/***/ 1533:
+/***/ 16:
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+
+/***/ 1628:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1534);
+module.exports = __webpack_require__(1629);
 
 
 /***/ }),
 
-/***/ 1534:
+/***/ 1629:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__init__ = __webpack_require__(1542);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_requester_scss__ = __webpack_require__(3087);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__init__ = __webpack_require__(1637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_requester_scss__ = __webpack_require__(3083);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_requester_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles_requester_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loadable__ = __webpack_require__(1414);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loadable__ = __webpack_require__(1502);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loadable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_loadable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_TelemetryHelpers__ = __webpack_require__(631);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_empty_states_CrashHandler__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_TelemetryHelpers__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_empty_states_CrashHandler__ = __webpack_require__(197);
 
 
 
@@ -366,7 +1152,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const Requester = __WEBPACK_IMPORTED_MODULE_4_react_loadable___default()({
-  loader: () => __webpack_require__.e/* import() */(21).then(__webpack_require__.bind(null, 3397)),
+  loader: () => __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, 3477)),
   loading: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null) });
 
 
@@ -399,30 +1185,30 @@ __WEBPACK_IMPORTED_MODULE_2__init__["a" /* default */].init(err => {
 
 /***/ }),
 
-/***/ 1542:
+/***/ 1637:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boot_bootConfig__ = __webpack_require__(546);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boot_bootConfig__ = __webpack_require__(556);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boot_bootConfig___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__boot_bootConfig__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootMessaging__ = __webpack_require__(548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootWLModels__ = __webpack_require__(549);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootDBWatcher__ = __webpack_require__(1873);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(567);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootCrashReporter__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_bootIndependentServices__ = __webpack_require__(3053);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootSession__ = __webpack_require__(847);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootRequester__ = __webpack_require__(3063);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_booted__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootThemeManager__ = __webpack_require__(855);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__boot_bootConfigurations__ = __webpack_require__(503);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__boot_bootInAppMessage__ = __webpack_require__(3076);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__boot_bootRuntimeListeners__ = __webpack_require__(3081);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(557);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootMessaging__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootWLModels__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootDBWatcher__ = __webpack_require__(1968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootCrashReporter__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_bootIndependentServices__ = __webpack_require__(3051);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootSession__ = __webpack_require__(840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootRequester__ = __webpack_require__(3061);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_booted__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootThemeManager__ = __webpack_require__(900);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__boot_bootConfigurations__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__boot_bootInAppMessage__ = __webpack_require__(3074);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__boot_bootRuntimeListeners__ = __webpack_require__(3077);
 
 
 
@@ -481,18 +1267,197 @@ pm.init = done => {
 
 /***/ }),
 
-/***/ 16:
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-
-/***/ 1873:
+/***/ 170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_DBResourceWatcher__ = __webpack_require__(1054);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return sanitizeRequestDataForSync; });
+/* unused harmony export sanitizeRequest */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeCollectionModelForSync; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sanitize_collection_model_from_sync__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_RequestDataModeConstants__ = __webpack_require__(177);
+
+
+
+
+
+const COLLECTION = 'collection',
+FOLDER = 'folder',
+REQUEST = 'request',
+RESPONSE = 'response';
+
+/**
+                        * transform rawModeData
+                        *
+                        * @param {any} entity
+                        */
+function sanitizeRequestDataForSync(model) {
+  // set the raw payload in rawModeData
+  if (model.dataMode === 'raw') {
+    model.rawModeData = _.isString(model.data) ? model.data : '';
+    model.data = [];
+    model.graphqlModeData = {};
+  }
+
+  // set the file path in rawModeData for binary data
+  if (model.dataMode === 'binary') {
+    model.rawModeData = model.data;
+    model.data = [];
+    model.graphqlModeData = {};
+  }
+
+  // Sanitizing graphql data.
+  if (model.dataMode === __WEBPACK_IMPORTED_MODULE_3__constants_RequestDataModeConstants__["d" /* REQUEST_DATA_MODE_GRAPHQL */]) {
+    model.graphqlModeData = _.isPlainObject(model.data) ? model.data : {};
+    model.data = [];
+    model.rawModeData = '';
+  }
+
+  // clean up form-data with files
+  if (model.dataMode === 'params' && model.data instanceof Array) {
+    _.forEach(model.data, datum => {
+      if (!datum || datum.type !== 'file') {
+        return;
+      }
+
+      // If the value is not an array or string then don't sync it, file values are always an array or string
+      if (!Array.isArray(datum.value)) {
+        datum.value = _.isString(datum.value) ? datum.value : null;
+
+        return;
+      }
+
+      if (datum.value.length > 1) {
+        return;
+      }
+
+      datum.value = _.isString(datum.value[0]) ? datum.value[0] : null;
+    });
+
+    model.graphqlModeData = {};
+  }
+
+  // if we have headerData in the changeset, then we need to add headers so that other apps will understand.
+  if (_.has(model, 'headerData')) {
+    model.headers = __WEBPACK_IMPORTED_MODULE_2__utils_util__["a" /* default */].packHeaders(model.headerData);
+  }
+
+
+  // if we have pathVariableData in the changeset,
+  // then we need to add pathvariables so that other apps will understand.
+  if (_.has(model, 'pathVariableData')) {
+    let pathVariables = {};
+    _.forEach(model.pathVariableData, datum => {
+      pathVariables[datum.key] = datum.value;
+    });
+
+    model.pathVariables = pathVariables;
+  }
+}
+
+/**
+   * sanitize request
+   *
+   * @param {any} request
+   */
+function sanitizeRequest(request) {
+  // Localfile references not to be synced
+  delete request._postman_local_files;
+
+  sanitizeRequestDataForSync(request);
+  Object(__WEBPACK_IMPORTED_MODULE_1__sanitize_collection_model_from_sync__["a" /* sanitizeAutoTimestamps */])(request);
+}
+
+/**
+   * sanitize example request
+   *
+   * @param {any} requestObject
+   */
+function sanitizeExampleRequest(requestObject) {
+  sanitizeRequestDataForSync(requestObject);
+}
+
+/**
+   * sanitize response
+   *
+   * @param {Object} response
+   */
+function sanitizeResponse(response) {
+  if (_.has(response, 'requestObject')) {
+    sanitizeExampleRequest(response.requestObject);
+
+    // Since requestObject is 'stringified' in format in sync server,
+    // we are making it stringified so that if there is any conflicts in this property
+    // both `strings` are compared instead of `object` and `string`
+
+    // Since server already stores these value in stringified format,
+    // we won't have any problems converting this to string right now
+    response.requestObject = JSON.stringify(response.requestObject);
+  }
+
+  Object(__WEBPACK_IMPORTED_MODULE_1__sanitize_collection_model_from_sync__["a" /* sanitizeAutoTimestamps */])(response);
+}
+
+/**
+   *
+   * @param {Object} model
+   * @param {String} type
+   */
+function sanitizeCollectionModelForSync(model, type) {
+  if (!model) {
+    return;
+  }
+
+  // shallow collection
+  if (type === COLLECTION && !(model.folders || model.requests)) {
+    return;
+  }
+
+  // shallow folder
+  if (type === FOLDER && !(model.folders || model.requests)) {
+    return;
+  }
+
+  // shallow request
+  if (type === REQUEST && !model.responses) {
+    sanitizeRequest(model);
+    return;
+  }
+
+  // shallow response
+  if (type === RESPONSE) {
+    sanitizeResponse(model);
+    return;
+  }
+
+  Object(__WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__["c" /* walkCollectionTree */])(model, type, function (node, { type }) {
+    switch (type) {
+      case REQUEST:
+        sanitizeRequest(node);
+        break;}
+
+  });
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 181:
+/***/ (function(module, exports) {
+
+module.exports = require("zlib");
+
+/***/ }),
+
+/***/ 1968:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_DBResourceWatcher__ = __webpack_require__(1094);
 
 
 /**
@@ -508,26 +1473,1384 @@ function bootWLModels(cb) {
 
 /***/ }),
 
-/***/ 21:
+/***/ 211:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseSyncTimeline; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SyncStateService__ = __webpack_require__(855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RealtimeSyncMessagesService__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__RealtimeOutgoingSyncMessageService__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ConflictResolutionHelpers__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_SyncStatusConstants__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncClientService__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_SyncOutgoingHelpers__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_AnalyticsService__ = __webpack_require__(15);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const ACTION_UNSUBSCRIBE = 'unsubscribeSync',
+
+SYNC_REQUEST_TIMEOUT = 20 * 60 * 1000, // 20 minutes
+
+PUSH_OUTGOING_CHANGES_THROTTLE_TIME = 300, // 300 milliseconds
+
+NUMBER_OF_OLD_VALUES_TO_EMIT_TO_NEW_SUBSCRIBERS = 1,
+
+MAX_ERROR_RETRY = 2;
+
+/**
+                      * Implements sync timeline functionality
+                      */
+let BaseSyncTimeline = class BaseSyncTimeline {
+  /**
+                                                       * @type {Boolean=true}
+                                                       *
+                                                       * Identifies if an integrity check needs to be performed for this timeline.
+                                                       */
+
+
+
+
+
+
+
+
+
+
+  setSyncing() {
+    this._timelineStatusSubject.next(__WEBPACK_IMPORTED_MODULE_8__constants_SyncStatusConstants__["f" /* SYNC_STATUS_SYNCING */]);
+  } /**
+     * @type {Number=0}
+     *
+     * Stores the current state of error retries. If this error count exceeds the maximum count
+     * bail out from sync flows.
+     */setSynced() {this._timelineStatusSubject.next(__WEBPACK_IMPORTED_MODULE_8__constants_SyncStatusConstants__["e" /* SYNC_STATUS_IN_SYNC */]);}
+  setIdle() {
+    this._timelineStatusSubject.next(__WEBPACK_IMPORTED_MODULE_8__constants_SyncStatusConstants__["d" /* SYNC_STATUS_IDLE */]);
+  }
+
+  constructor(timelineId, options) {this.pendingIntegrityChecks = true;this.errorCount = 0;
+    if (!timelineId || !timelineId.model || !timelineId.modelId) {
+      throw new Error('BaseSyncTimeline: Could not create timeline. Invalid params.');
+    }
+
+    // populate attributes of the pipeline
+    this.model = timelineId.model;
+    this.modelId = timelineId.modelId;
+
+    // Timeline status subject is used to gather all the status for that timeline
+    // we use replay subject here so when we subscribe then the consumer gets the last
+    // value else till the time the status doesn't change it will not recieve any
+    // values at all.
+    this._timelineStatusSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["b" /* ReplaySubject */](NUMBER_OF_OLD_VALUES_TO_EMIT_TO_NEW_SUBSCRIBERS);
+    this.timelineStatusObservable$ = this._timelineStatusSubject.asObservable();
+    this.setIdle();
+
+    // populate options
+    /**
+     * @property
+     *
+     * @type {Boolean}
+     * @memberof BaseSyncTimeline
+     *
+     * Set this to true if the entity exists on Sync and client always
+     * does not exist on Sync until it has been synced. For normal entities /sync call is defferred
+     * This is used to differentiate from the usual behavior where an entity created locally
+     * until client changes are synced. Omnipresent entities can start /sync call even during the
+     * first time they are synced.
+     */
+    this.isOmnipresent = options && options.isOmnipresent;
+
+    /**
+                                                            * A subject that the timeline uses to dispatch events on finishing sync.
+                                                            *
+                                                            * @private
+                                                            *
+                                                            * @type {Subject}
+                                                            * @property
+                                                            * @memberof BaseSyncTimeline
+                                                            */
+    this._onSyncFinishedSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["c" /* Subject */]();
+
+    /**
+                                                  * An observable that emits when the timeline finishes syncing. Sync finished here refers to the
+                                                  * state when all pending changes made offline in the App and online on the Sync server are
+                                                  * synchronized with each other. This process is triggered after a period of disconnection
+                                                  * from the Sync server.
+                                                  *
+                                                  * Note that sync finished does not mean there is no further communication with Sync. It just
+                                                  * means any changes done during the period of disconnection are synced with each other.
+                                                  *
+                                                  * After the sync finished state is reached the timeline continues to send and receive changes
+                                                  * directly with Sync servers.
+                                                  *
+                                                  * Each value emitted here contains
+                                                  * `startRevision` (the state of sync before it started syncing).
+                                                  *
+                                                  * @private
+                                                  *
+                                                  * @type {Observable}
+                                                  * @property
+                                                  * @memberof BaseSyncTimeline
+                                                  */
+    this.onSyncFinishedObservable$ = this._onSyncFinishedSubject.asObservable();
+
+    // trigger the onSyncFinished hook every time sync finishes
+    this.onSyncFinishedObservable$.
+    subscribe(async ({ startRevision }) => {
+      pm.logger.info('BaseSyncTimeline~SyncFinishedObservable: Successful sync ' +
+      `proceeding with integrity check and force sync for ${this.model}:${this.modelId}`);
+
+      // perform integrity checks on only on successful sync
+      // performing integrity checks otherwise in case of non recoverable cases
+      // will end up DoS ing the servers
+      await this.handleIntegrityChecks();
+      await this._handleForceSync();
+      this.onSyncFinished && this.onSyncFinished({ startRevision });
+    });
+  }
+
+  async handleIntegrityChecks() {
+    if (this.repairIntegrity && this.pendingIntegrityChecks) {
+      this.pendingIntegrityChecks = false;
+
+      try {
+        pm.logger.info(`BaseSyncTimeline~handleIntegrityChecks: Starting integrity check for ${this.model}:${this.modelId}`);
+        await this.repairIntegrity();
+        pm.logger.info(`BaseSyncTimeline~handleIntegrityChecks: Finished integrity check for ${this.model}:${this.modelId}`);
+      }
+      catch (e) {
+        pm.logger.warn(`BaseSyncTimeline~handleIntegrityChecks: Failed to complete integrity check for ${this.model}:${this.modelId}`, e);
+        this.pendingIntegrityChecks = true;
+      }
+    } else {
+      pm.logger.info(`BaseSyncTimeline~handleIntegrityChecks: Bailed out integrity check for ${this.model}:${this.modelId}`);
+    }
+  }
+
+  async _handleForceSync() {
+    // do nothing if this timeline has not implemented force sync
+    if (!this.handleForceSync) {
+      pm.logger.info(`BaseSyncTimeline~_handleForceSync: Bailing out of force sync for ${this.model}:${this.modelId}`);
+      return;
+    }
+
+    try {
+      pm.logger.info(`BaseSyncTimeline~_handleForceSync: Starting force sync for ${this.model}:${this.modelId}`);
+      await this.handleForceSync();
+      pm.logger.info(`BaseSyncTimeline~_handleForceSync: Finished force sync for ${this.model}:${this.modelId}`);
+    }
+    catch (e) {
+      pm.logger.warn(`BaseSyncTimeline~_handleForceSync: Error in force sync for ${this.model}:${this.modelId}`, e);
+    }
+  }
+
+  /**
+     * Returns the timeline identifier
+     *
+     * @returns {Object}
+     */
+  getTimelineId() {
+    return {
+      model: this.model,
+      modelId: this.modelId };
+
+  }
+
+  /**
+     * Syncs pending changes on the timeline. This makes sure the sync server and the client have
+     * synchronized the changes that happened when the client was offline.
+     *
+     * This needs to be done before we open up channels for real-time incoming and further outgoing changes.
+     *
+     * @note Does nothing if timeline is syncing.
+     *
+     * @returns {Promise}
+     */
+  async sync() {
+    if (this.isSyncing) {
+      pm.logger.info(`BaseSyncTimeline~sync: Bailing out as isSyncing flag is ${this.isSyncing} for ${this.model}:${this.modelId}`);
+      return;
+    }
+
+    return this._sync();
+  }
+
+  /**
+     * This is a private method. See `sync`.
+     *
+     * @private
+     *
+     * @returns {Promise}
+     */
+  async _sync() {
+    pm.logger.info(`BaseSyncTimeline~_sync: Starting sync for ${this.model}:${this.modelId}`);
+
+    // set syncing flag
+    this.isSyncing = true;
+
+    try {
+      let lastSyncState = await Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["a" /* getSyncState */])(this.getTimelineId()),
+      lastSyncedRevision = lastSyncState && lastSyncState.revision || 0,
+      lastSyncedTimestamp = lastSyncState && lastSyncState.timestamp,
+
+      // get client changeset
+      clientChanges = await this.getPendingClientChanges(),
+
+      // find a create or import changeset in the client changes
+      isCreatedLocally = _.some(clientChanges, changeset => {return this.model === changeset.model && (changeset.action === 'create' || changeset.action === 'import');}),
+      serverChanges;
+
+      // if the entity exists everywhere
+      // or if the entity has been synced in the past
+      // or if the entity has not been synced in the past, but is not created locally(could be an update)
+      // - find server changes and sync with client changes
+      if (lastSyncedRevision || this.isOmnipresent || !isCreatedLocally) {
+        serverChanges = await this.getPendingServerChanges({ lastSyncedRevision, lastSyncedTimestamp });
+
+        await this._processPendingChangesWithCR(clientChanges, serverChanges);
+      }
+
+      // if entity has not been synced before and has local changes
+      // it means entity does not exist on sync, so we cannot fetch server changes
+      // just sync client changes
+      else if (!_.isEmpty(clientChanges)) {
+          await this.processClientChanges(clientChanges);
+        }
+
+        // if entity has not been synced before and does not have local changes
+        // it means sync is instructing to create the entity
+        // process only server changes
+        else {
+            serverChanges = await this.getPendingServerChanges({ lastSyncedRevision, lastSyncedTimestamp });
+            await this.processServerChanges(serverChanges);
+          }
+
+      this._onSyncFinishedSubject.next({ startRevision: lastSyncedRevision });
+    }
+    catch (e) {
+      // rethrow the original exception for the caller
+      // @todo: also do we need to do any kind of error handling here?
+      throw e;
+    } finally
+    {
+      this.isSyncing = false;
+    }
+  }
+
+  async _processPendingChangesWithCR(clientChanges, serverChanges) {
+    // if client changes and server changes are present go for Conflict Resolution
+    if (!_.isEmpty(clientChanges) && !_.isEmpty(serverChanges)) {
+      let resolution;
+
+      // resolve conflicts for changes
+      try {
+        pm.logger.info(`BaseSyncTimeline~_processPendingChangesWithCR: Starting conflict resolution for ${this.model}:${this.modelId}`);
+        resolution = await Object(__WEBPACK_IMPORTED_MODULE_7__ConflictResolutionHelpers__["b" /* resolveConflicts */])(_.cloneDeep(clientChanges), _.cloneDeep(serverChanges), this.getTimelineId());
+        pm.logger.info(`BaseSyncTimeline~_processPendingChangesWithCR: Finished conflict resolution for ${this.model}:${this.modelId}`);
+      }
+      catch (e) {
+        pm.logger.warn(`BaseSyncTimeline~_processPendingChangesWithCR: Error in resolving conflicts for ${this.model}:${this.modelId}`, e);
+      }
+
+      clientChanges = resolution.clientChanges || [];
+      serverChanges = resolution.serverChanges || [];
+    }
+
+    // process the client and server changes after CR
+    await Promise.all([
+    this.processClientChanges(clientChanges),
+    this.processServerChanges(serverChanges)]);
+
+  }
+
+
+  /**
+     * Process the outgoing changesets
+     *
+     * @param  {Observable} changesets$
+     *
+     * @returns {Observable}
+     */
+  processClientChangesObservable(clientChanges$) {
+
+    return clientChanges$.
+    pipe(
+
+    // send the changeset to be processed
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(changeset => {
+      this.setSyncing();
+      return new Promise((resolve, reject) => {
+
+        let timelineInfo = this.getTimelineId();
+
+        pm.logger.info('BaseSyncTimeline~processClientChangesObservable: Started sending changeset for ' +
+        `${changeset.model}:${changeset.action}:${_.get(changeset, 'data.modelId') || _.get(changeset, 'data.instance.id')} ` +
+        `Timeline:${timelineInfo.model}:${timelineInfo.modelId}`);
+
+        pm.syncManager.sendChangesetToServer(changeset, function (err, response) {
+          if (err) {
+            pm.logger.warn('BaseSyncTimeline~processClientChangesObservable: Error in sending changeset for ' +
+            `${changeset.model}:${changeset.action}:${_.get(changeset, 'data.modelId') || _.get(changeset, 'data.instance.id')} ` +
+            `Timeline:${timelineInfo.model}:${timelineInfo.modelId}`, err);
+            reject(err);
+            return;
+          }
+
+          pm.logger.info('BaseSyncTimeline~processClientChangesObservable: Success for sending changeset for ' +
+          `${changeset.model}:${changeset.action}:${_.get(changeset, 'data.modelId') || _.get(changeset, 'data.instance.id')} ` +
+          `Timeline:${timelineInfo.model}:${timelineInfo.modelId}`);
+
+          resolve(response);
+          return;
+        });
+      }).
+
+      then(response => {
+        this.setSynced();
+        return response;
+      }).
+
+      catch(() => {
+        this.setSynced();
+      });
+    }),
+
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(async ({ revision } = {}) => {
+      if (!revision) {
+        console.warn('No revision id found for response');
+        return;
+      }
+
+      return Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["b" /* setSyncState */])(this.getTimelineId(), { revision, timestamp: Date.now() });
+    }));
+
+  }
+
+  /**
+     * @param  {} clientChanges
+     */
+  async processClientChanges(clientChanges) {
+    return this.processClientChangesObservable(Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])(...clientChanges)).toPromise();
+  }
+
+  /**
+     * Processes an incoming changeset and moves the revision id marker
+     *
+     * @param {Observable} serverChanges$
+     * @param {Object} [options]
+     * @param {Boolean} [options.unordered=false] when set to true each changeset does not wait till
+     *    the previous changeset to be applied, use this to process changesets that are order independent
+     *
+     * @returns {Observable}
+     */
+  processServerChangesObservable(serverChanges$, options) {
+    // process the changesets in parallel if options.unordered is set to true
+    let isUnordered = options && options.unordered,
+    concurrency = isUnordered ? Number.POSITIVE_INFINITY : 1;
+
+    return serverChanges$.
+    pipe(
+
+    // process individual changeset
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["g" /* mergeMap */])(changeset => {
+
+      return this.processServerChange(changeset)
+
+      // catch any errors report, but move on to the next item
+      .catch(e => {
+        // log identifier instead of full message, message might be too big
+        let identifier = `${_.get(changeset, ['meta', 'model'])}:${_.get(changeset, ['meta', 'action'])}`;
+
+        // Add analytics event for this changeset drop
+        __WEBPACK_IMPORTED_MODULE_12__services_AnalyticsService__["a" /* default */].addEventV2({
+          category: 'sync_failure',
+          action: 'changeset_dropped',
+          entityType: changeset.model,
+          entityId: _.get(changeset, 'data.modelId'),
+          label: changeset.action });
+
+
+        // warn about the error and proceed
+        pm.logger.warn('Could not process incoming changeset. Skipping it.', identifier, e);
+      });
+    }, concurrency),
+
+    // update the sync state with the revision of the changeset
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(async changeset => {
+
+      // might be some error handling flow, just ignore
+      if (!changeset) {
+        return changeset;
+      }
+
+      let currentRevision = _.get(changeset, ['meta', 'revision']);
+
+      // if no sinceId, return an observable and close the iteration
+      if (!currentRevision) {
+        return changeset;
+      }
+
+      let lastSyncState = await Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["a" /* getSyncState */])(this.getTimelineId()),
+      lastRevision = lastSyncState && lastSyncState.revision || 0;
+
+      if (lastRevision > currentRevision) {
+        if (!isUnordered) {
+          // the last sync state is ahead of the current revision
+          // and the changeset does not expect it, as isUnordered is not truthy
+          // Add analytics event for sync invalid state
+          __WEBPACK_IMPORTED_MODULE_12__services_AnalyticsService__["a" /* default */].addEventV2({
+            category: 'sync_failure',
+            action: 'changeset_sync_invalid',
+            label: changeset.action,
+            entityType: changeset.model,
+            entityId: _.get(changeset, 'data.modelId') });
+
+          pm.logger.warn('Sync state invalid. Changeset processed is behind the last sync state', this.getTimelineId(), lastRevision, currentRevision);
+
+        }
+
+        return changeset;
+      }
+
+      await Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["b" /* setSyncState */])(this.getTimelineId(), { revision: currentRevision, timestamp: Date.now() });
+
+      return changeset;
+    }));
+
+  }
+
+  /**
+     * Processes one single sync message for the App.
+     *
+     * Does not update the revision id marker for the changeset.
+     *
+     * @param {Object} serverChange
+     *
+     * @returns {Promise}
+     */
+  async processServerChange(serverChange) {
+    let timelineInfo = this.getTimelineId(),
+    changeset;
+
+
+    try {
+      pm.logger.info('BaseSyncTimeline~processServerChange: Started processing changeset for ' +
+      `${serverChange.model}:${serverChange.action}:${_.get(serverChange, 'data.modelId') || _.get(serverChange, 'data.instance.id')} ` +
+      `Timeline:${timelineInfo.model}:${timelineInfo.modelId}`);
+
+      changeset = await Object(__WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(serverChange);
+
+      pm.logger.info('BaseSyncTimeline~processServerChange: Finished processing changeset for ' +
+      `${serverChange.model}:${serverChange.action}:${_.get(serverChange, 'data.modelId') || _.get(serverChange, 'data.instance.id')} ` +
+      `Timeline:${timelineInfo.model}:${timelineInfo.modelId}`);
+    }
+    catch (e) {
+
+      pm.logger.warn('BaseSyncTimeline~processServerChange: Error in processing changeset for ' +
+      `${serverChange.model}:${serverChange.action}:${_.get(serverChange, 'data.modelId') || _.get(serverChange, 'data.instance.id')} ` +
+      `Timeline:${timelineInfo.model}:${timelineInfo.modelId}`, e);
+    }
+
+    return changeset;
+  }
+
+  /**
+     * Processes an array of incoming changesets
+     *
+     * @private
+     *
+     * @param {Array.<Object>} serverChanges
+     *
+     * @returns {Promise}
+     */
+  async processServerChanges(serverChanges) {
+    let perfMarker = `incomingSyncStart:${this.model}:${this.modelId}`;
+
+    performance.mark(perfMarker);
+
+    // set syncing in this function and not in `processServerChange` because we do not want status to be set
+    // for all incoming realtime changesets, but want for the initial changesets
+    this.setSyncing();
+
+    try {
+      let serverChanges$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])(...serverChanges),
+      orderedSequence$ = serverChanges$,
+      unorderedSequence$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])();
+
+      // this timeline requires filtering changesets out of main ordered sequence
+      if (this.filterOrderIndependentChangesets) {
+        orderedSequence$ = serverChanges$.pipe(
+        Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(changeset => {return !this.filterOrderIndependentChangesets(changeset);}));
+
+
+        unorderedSequence$ = serverChanges$.pipe(
+        Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(changeset => {return this.filterOrderIndependentChangesets(changeset);}));
+
+      }
+
+      let processUnorderedSequence$ = this.processServerChangesObservable(unorderedSequence$, { unordered: true }),
+      processOrderedSequence$ = this.processServerChangesObservable(orderedSequence$);
+
+      await Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["f" /* concat */])(processOrderedSequence$, processUnorderedSequence$).toPromise();
+    }
+    catch (e) {throw e;}
+
+    // set synced in finally block as it is called always.
+    finally {this.setSynced();}
+
+    performance.measure(`initialSync:${this.model}`, perfMarker);
+  }
+
+  /**
+     * Subscribes to realtime changes.
+     */
+  subscribeToRealtimeChanges() {
+    if (this.realtimeChangesSubscription && this.realtimeOutgoingChangesSubscription) {
+      return;
+    }
+
+    let realtimeMessages$ = Object(__WEBPACK_IMPORTED_MODULE_5__RealtimeSyncMessagesService__["a" /* getRealtimeMessagesObservable */])(),
+    processIncomingRealtimeMessages$;
+
+    realtimeMessages$ = realtimeMessages$.
+    pipe(
+
+    // filter messages relevant to this timeline
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(message => {
+      if (!message || !message.meta || !message.meta.timeline) {
+        return false;
+      }
+
+      return message.meta.timeline.model === this.model && message.meta.timeline.model_id === this.modelId;
+    }),
+
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(__WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */]));
+
+
+    // This is how we buffer realtime messages till pending sync finishes
+    // 1. We first create one observable that uses `buffer` https://rxjs-dev.firebaseapp.com/api/operators/buffer
+    // to buffer all changes till offline changes are synced
+    // 2. Because we do not want buffering after that, we terminate the buffering as one observable
+    // and concatenate the original observable with the buffer
+    processIncomingRealtimeMessages$ = Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["f" /* concat */])(
+
+    // buffer events till sync finishes
+    // then spread the buffered events as individual events
+    realtimeMessages$.pipe(
+
+    // if the timeline is syncing buffer till the first sync finished event
+    // otherwise just subscribe
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["a" /* buffer */])(this.isSyncing ? this.onSyncFinishedObservable$.pipe(Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["j" /* take */])(1)) : Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])()),
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["g" /* mergeMap */])(bufferedEvents => {return Object(__WEBPACK_IMPORTED_MODULE_0_rxjs__["j" /* of */])(...bufferedEvents);})),
+
+
+    // concatenate the original stream
+    realtimeMessages$);
+
+
+    // subscribe to the realtime stream and store the subscription
+    // this will be used as a flag to check if we are subscribed and to unsubscribe if needed
+    this.realtimeChangesSubscription = this.processServerChangesObservable(processIncomingRealtimeMessages$).
+
+    subscribe(null, () => {
+      // @todo: observe probable causes if this happens and perform retry if needed
+      pm.logger.error('Realtime incoming changes observable errored out');
+
+      // cleanup subscription on socket error
+      this.realtimeChangesSubscription = null;
+    }, () => {
+      // cleanup subscription on socket complete
+      this.realtimeChangesSubscription = null;
+    });
+
+
+    let processOutgoingChangeset$;
+
+    // take the stream of all outgoing changesets
+    processOutgoingChangeset$ = __WEBPACK_IMPORTED_MODULE_6__RealtimeOutgoingSyncMessageService__["c" /* realtimeOutgoingMessagesTillSocketDisconnect$ */].
+    pipe(
+
+    // get the timeline it belongs to
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["f" /* map */])(changeset => {
+      return _.get(changeset, ['meta', 'timeline']);
+    }),
+
+    // filter off changesets that do not belong to this timeline
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["d" /* filter */])(timeline => {
+      return timeline && timeline.model === this.model && timeline.model_id === this.modelId;
+    }),
+
+    // throttle them so we don't spam DB with reads for a single action that created
+    // multiple changesets at once
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["l" /* throttleTime */])(PUSH_OUTGOING_CHANGES_THROTTLE_TIME, __WEBPACK_IMPORTED_MODULE_0_rxjs__["d" /* asyncScheduler */], { leading: true, trailing: true }),
+
+    // get all the pending changesets and then publish them to sync
+    Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["c" /* concatMap */])(() => {
+      // @todo: investigate a possible performance issue due to
+      // queueing the calls to getAllChangesets
+      return this.getPendingClientChanges().
+      then(changesets => {
+        return this.processClientChanges(changesets);
+      });
+    }));
+
+
+    this.realtimeOutgoingChangesSubscription = processOutgoingChangeset$.
+
+    subscribe(null, () => {
+      // @todo: observe probable causes if this happens and perform retry if needed
+      pm.logger.error('Realtime incoming changes observable errored out');
+
+      // cleanup subscription on socket error
+      this.realtimeOutgoingChangesSubscription = null;
+    }, () => {
+      // cleanup subscription on socket complete
+      this.realtimeOutgoingChangesSubscription = null;
+    });
+  }
+
+  filterClientChanges(message) {
+    if (!message || !message.meta || !message.meta.timeline) {
+      return false;
+    }
+
+    return message.meta.timeline.model === this.model && message.meta.timeline.model_id === this.modelId;
+  }
+
+  /**
+     * Calls /sync which internally subscribes to that entity
+     *
+     * @param {Object} [options]
+     * @param {String} [options.lastSyncedRevision]
+     * @param {Number} [options.lastSyncedTimestamp]
+     *
+     * @returns {Promise.<Array>} resolves with the entities from the response
+     */
+  async getPendingServerChanges(options) {
+    let lastSyncedRevision = options && options.lastSyncedRevision,
+    lastSyncedTimestamp = options && options.lastSyncedTimestamp;
+
+    // throw an error and do not retry when the retry count has exceeded maximum count
+    if (this.errorCount > MAX_ERROR_RETRY) {
+      throw new Error(`BaseSyncTimeline~getPendingServerChanges: Could not make /sync call. Exceeded maximum retry count for ${this.model}:${this.modelId}`);
+    }
+
+    this.subscribeToRealtimeChanges();
+
+    try {
+      pm.logger.info(`BaseSyncTimeline~getPendingServerChanges: Starting /sync call for ${this.model}:${this.modelId}`);
+
+      let response = await Object(__WEBPACK_IMPORTED_MODULE_3__services_SyncService__["c" /* promisifiedRequest */])({
+        model: this.model,
+        action: 'sync',
+        meta: {
+          query: {
+            since_id: lastSyncedRevision },
+
+          pathVariables: {
+            id: this.modelId } } },
+
+
+      { requestTimeout: SYNC_REQUEST_TIMEOUT });
+
+      /** ERROR HANDLING  */
+
+      // make sure the sync rejects when the API returns with any non success response
+      // this is to make sure we don't mark the entity as synced if there are errors in /sync API
+      // no need for any specific error handling here, the polling service
+      // will try to resync it after a period of time
+      if (!response || response.error) {
+        // if the server returns an error or no response (also an error from server)
+        // increase the error count for this timeline, so we can stop retrying after a limit
+        // do this only for server errors, continue retrying for client errors
+        this.errorCount++;
+        throw new Error(_.get(response, ['error', 'message'], 'Could not get response for /sync'));
+      }
+
+      /** RESET_TIMESTAMP HANDLING  */
+
+      // if last synced timestamp is earlier than the reset timestamp
+      // we trigger a force sync flow for this timeline - if force sync is defined
+      // once it finishes, to continue rest of syncing we return empty list of changesets
+      if (response && response.reset_timestamp && lastSyncedTimestamp && lastSyncedTimestamp < response.reset_timestamp) {
+        pm.logger.warn('BaseSyncTimeline: Requesting force sync due to reset timestamp');
+
+        this.markForForceSync && this.markForForceSync();
+        return [];
+      }
+
+      // construct changesets from sync response
+      let serverChangesets = _.map(response && response.entities || [], __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */]),
+      lastChangeset;
+
+      /** MAX_ID HANDLING  */
+
+      // max_id is the last revision in the sync's revision table upto which this /sync response
+      // has processed, use that to update the since id marker to optimize sync performance
+      // in subsequent /sync calls
+
+      if (_.isEmpty(serverChangesets)) {
+        // if there are no server changesets, and there is a max_id in sync response
+        // set the max_id as the last synced revision
+        // that way when we start syncing next time, we can skip all the changesets upto max_id
+        response && response.max_id && (await Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["b" /* setSyncState */])(this.getTimelineId(), { revision: response.max_id, timestamp: Date.now() }));
+        return serverChangesets;
+      }
+
+      // if there are changesets take the last changeset
+      lastChangeset = _.last(serverChangesets);
+
+      // and set the max_id as the revision id of the last changeset
+      // that way when we start syncing next time, we can skip all the changesets upto max_id
+      lastChangeset && response && response.max_id && _.set(lastChangeset, ['meta', 'revision'], response.max_id);
+
+      pm.logger.info(`BaseSyncTimeline~getPendingServerChanges: Finished /sync call for ${this.model}:${this.modelId}`);
+
+      return serverChangesets;
+    }
+    catch (e) {
+      pm.logger.warn(`BaseSyncTimeline~getPendingServerChanges: Error in ${this.model}:${this.modelId} /sync response`, e);
+
+      // clean up the subscriptions
+      this.unsubscribeRealtimeSubscriptions && this.unsubscribeRealtimeSubscriptions();
+
+      // bubble up the error so the isSyncing state can be reset
+      // so on another subscribe it does not bails out and subscribes again.
+      // also if it enters `this.sync` and then socket disconnects
+      // then it also reset the state and next time subscriptions can go on easily
+      throw e;
+    }
+  }
+
+  /**
+     * Gets the pending client changes from sync client
+     *
+     * NOTE: This function will sanitize the format of instance in client changesets to follow format of instance in server changeset
+     *
+     * @returns {Promise.<Array>}
+     */
+  async getPendingClientChanges() {
+    return new Promise((resolve, reject) => {
+      pm.logger.info(`BaseSyncTimeline~getPendingClientChanges: Starting to get pending changes for ${this.model}:${this.modelId}`);
+      Object(__WEBPACK_IMPORTED_MODULE_9__SyncClientService__["b" /* getAllChangesets */])((err, changesets) => {
+        if (err) {
+          pm.logger.warn(`BaseSyncTimeline~getPendingClientChanges: getAllChangesets errored out for ${this.model}:${this.modelId}`, err);
+          return reject(err);
+        }
+
+        pm.logger.info(`BaseSyncTimeline~getPendingClientChanges: Finished to get pending changes for ${this.model}:${this.modelId}`);
+
+        // Since format of instance in changesets returned by client may not follow structure of instance in server changesets,
+        // We are doing the conversation right now so that every changeset follows same structure throughout processing them.
+
+        // Earlier this process used to happen just before sending the changesets to server in `SyncManagerNew.js` file. It's been
+        // moved here because while resolving conflicts we need to compare the changesets and if instance of client and server changesets are not in same
+        // format there will be invalid comparison
+        _.forEach(changesets, changeset => {
+          Object(__WEBPACK_IMPORTED_MODULE_11__models_sync_SyncOutgoingHelpers__["a" /* sanitizeHydratedChangeset */])(changeset);
+        });
+
+        let filteredChangesets = _.filter(changesets, changeset => {
+
+          // filter the changesets for this particular entity and return
+          return this.filterClientChanges(changeset);
+        });
+
+        return resolve(filteredChangesets);
+      });
+    });
+  }
+
+  /**
+     * Returns true if the timeline is subscribed to realtime changes.
+     *
+     * @returns {Boolean}
+     */
+  isSubscribed() {
+    return Boolean(this.realtimeChangesSubscription);
+  }
+
+  /**
+     * Subscribe to realtime changes on a timeline.
+     *
+     * @returns {Promise}
+     */
+  async subscribe() {
+    if (this.realtimeChangesSubscription) {
+      return;
+    }
+
+    if (this.isSyncing) {
+      pm.logger.info(`BaseSyncTimeline~subscribe: Skipping new subscribe for ${this.model}:${this.modelId}. Timeline is syncing.`);
+      return;
+    }
+
+    pm.logger.info(`BaseSyncTimeline~subscribe: Subscribing to real time changes for ${this.model}:${this.modelId}`);
+
+    return this.sync();
+  }
+
+  /**
+     * Unsubscribe from realtime changes for this timeline.
+     *
+     * @returns {Promise}
+     */
+  async unsubscribe() {
+    pm.logger.info(`BaseSyncTimeline~unsubscribe: Unsubscribing to real time changes & subscriptions for ${this.model}:${this.modelId}`);
+
+    // no active subscription
+    if (!this.realtimeChangesSubscription) {
+      pm.logger.info(`BaseSyncTimeline~unsubscribe: Bail out for ${this.model}:${this.modelId} as no subscriptions`);
+      return;
+    }
+
+    if (this.isSyncing) {
+      pm.logger.info(`BaseSyncTimeline~unsubscribe: Bail out for ${this.model}:${this.modelId} as timeline syncing`);
+      return;
+    }
+
+    return Object(__WEBPACK_IMPORTED_MODULE_3__services_SyncService__["c" /* promisifiedRequest */])({
+      model: this.model,
+      action: ACTION_UNSUBSCRIBE,
+      meta: {
+        pathVariables: {
+          id: this.modelId } } },
+
+
+    { requestTimeout: SYNC_REQUEST_TIMEOUT }).
+
+    then(() => {
+      this.realtimeChangesSubscription && this.realtimeChangesSubscription.unsubscribe();
+      this.realtimeChangesSubscription = null;
+
+      this.realtimeOutgoingChangesSubscription && this.realtimeOutgoingChangesSubscription.unsubscribe();
+      this.realtimeOutgoingChangesSubscription = null;
+
+      this.setIdle();
+      pm.logger.info(`BaseSyncTimeline~unsubscribe: Unsubscribed timeline ${this.model}:${this.modelId}`);
+    });
+  }
+
+  /**
+     * Terminates a timeline. It means removing the sync marker for this entity and unsubscribing active subscriptions.
+     *
+     * @returns {Promise}
+     */
+  async terminate() {
+    pm.logger.info(`BaseSyncTimeline~terminate: Terminating timeline ${this.model}:${this.modelId}`);
+
+    // cleanup subscriptions
+    this.unsubscribeRealtimeSubscriptions && this.unsubscribeRealtimeSubscriptions();
+
+    // fire terminate hook for the timeline
+    this.onTerminate && this.onTerminate();
+
+    // wipe since id
+    await Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["c" /* wipeSyncState */])(this.getTimelineId());
+
+    let partials = Object(__WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__["a" /* decomposeUID */])(this.modelId);
+
+    // remove all pending changesets for this modelId
+    partials.modelId && (await new Promise(resolve => {
+      Object(__WEBPACK_IMPORTED_MODULE_9__SyncClientService__["d" /* removeModelsFromAllChangesets */])([partials.modelId], err => {
+        if (err) {
+          pm.logger.warn(`BaseSyncTimeline~terminate: Could not remove changesets for model on delete for ${this.model}:${this.modelId}`, err);
+          return resolve();
+        }
+
+        pm.logger.info(`BaseSyncTimeline~terminate: Finished terminating timeline ${this.model}:${this.modelId}`);
+        resolve();
+      });
+    }));
+  }
+
+  /**
+     * Used to force stop a timeline, i.e. stop all real time subscriptions and set syncing to false
+     */
+  forceStop() {
+    pm.logger.info(`BaseSyncTimeline~forceStop: Force stop ${this.model}:${this.modelId}`);
+
+    // on force stop of a timeline set the isSyncing flag to false
+    this.isSyncing && (this.isSyncing = false);
+
+    // make timeline to publish an idle status
+    this.setIdle();
+
+    // unsubscribe from all real time subscriptions
+    this.unsubscribeRealtimeSubscriptions && this.unsubscribeRealtimeSubscriptions();
+  }
+
+  /**
+     * Used to remove real time incoming and outgoing subscriptions
+     */
+  async unsubscribeRealtimeSubscriptions() {
+    if (this.realtimeChangesSubscription) {
+      this.realtimeChangesSubscription.unsubscribe();
+      this.realtimeChangesSubscription = null;
+    }
+
+    if (this.realtimeOutgoingChangesSubscription) {
+      this.realtimeOutgoingChangesSubscription.unsubscribe();
+      this.realtimeOutgoingChangesSubscription = null;
+    }
+  }};
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 212:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
+
+
+
+const ACTION_IMPORT = 'import',
+ACTION_UPDATE = 'update',
+ACTION_DESTROY = 'destroy',
+
+WORKSPACE = 'workspace';
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: {
+    created(event, rootEvent) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["g" /* getEventNamespace */])(event),
+      rootEventMeta = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["e" /* getEventMeta */])(rootEvent),
+      changesetMeta,
+      changesetData;
+
+      if (rootEventMeta && rootEventMeta[WORKSPACE]) {
+        changesetMeta = _.pick(rootEventMeta, WORKSPACE);
+      }
+
+      // default changeset data
+      changesetData = {
+        modelId: eventData.id,
+        instance: eventData };
+
+
+      // if the model is identified by owner, add owner information to changeset data
+      eventData.owner && (changesetData.owner = eventData.owner);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_IMPORT, changesetData, changesetMeta)];
+    },
+    updated(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      eventMeta = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["e" /* getEventMeta */])(event),
+      eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["g" /* getEventNamespace */])(event),
+      changesetData;
+
+      // default changeset data
+      changesetData = {
+        modelId: eventData.id,
+        keys: eventMeta.updatedKeys };
+
+
+      // if the model is identified by owner, add owner information to changeset data
+      eventData.owner && (changesetData.owner = eventData.owner);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_UPDATE, changesetData)];
+    },
+    deleted(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["g" /* getEventNamespace */])(event),
+      changesetData;
+
+      // default changeset data
+      changesetData = {
+        modelId: eventData.id,
+        instance: eventData };
+
+
+      // if the model is identified by owner, add owner information to changeset data
+      eventData.owner && (changesetData.owner = eventData.owner);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_DESTROY, changesetData)];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 213:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toAppEvents; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
+
+
+const EVENT_CREATE_DEEP = 'create_deep',
+EVENT_UPDATE = 'update',
+EVENT_DELETE = 'delete',
+
+ORDER = 'order',
+FOLDERS_ORDER = 'folders_order';
+
+let toAppEvents = {
+  import(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
+  },
+
+  create(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']);
+
+    // remove any child references, and child order references
+    instance = _.omit(instance, ['folders', 'requests', 'responses', 'folders_order', 'order']);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
+  },
+
+  update(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']),
+    events = [],
+
+    updateData,
+    hasShallowUpdates,
+
+    // look for order properties in update changesets
+    orderUpdateData = {};
+
+    if (model === 'request' || model === 'response') {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, instance)];
+    }
+
+    // if sync sends an order property via an update, it means an order update
+    // we can drop order updates with `order` and `folders_order` for null and []
+    // because sync will never intend a remove all children via a parent update
+    !_.isEmpty(instance, ORDER) && (orderUpdateData.order = instance.order);
+    !_.isEmpty(instance, FOLDERS_ORDER) && (orderUpdateData.folders_order = instance.folders_order);
+
+    // look for order properties in update changesets
+    if (!_.isEmpty(orderUpdateData)) {
+      orderUpdateData.id = _.get(changeset, ['data', 'modelId']);
+
+      events.push(Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])('reorder_children', changeset.model, {
+        model: changeset.model,
+        [changeset.model]: orderUpdateData }));
+
+    }
+
+    // remove order update properties
+    updateData = _.omit(instance, [FOLDERS_ORDER, ORDER]);
+
+    // see if there are any other updates other than order updates
+    hasShallowUpdates = _.chain(updateData).omit(['id']).keys().isEmpty().value();
+
+
+    if (!hasShallowUpdates) {
+      // create an update event without the order updates
+      events.push(Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, updateData));
+    }
+
+    return events;
+  },
+
+  transfer: function (changeset) {
+    let model = changeset.model;
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])('move', model, {
+      model: model,
+      [model]: { id: _.get(changeset, ['data', 'modelId']) },
+      target: _.pick(_.get(changeset, 'data.to'), ['model', 'modelId']) })];
+
+  },
+
+  destroy(changeset) {
+    let model = changeset.model,
+    modelId = _.get(changeset, ['data', 'modelId']);
+
+    // @todo: need to change all collection model deletes to deleteDeep
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__modules_model_event__["a" /* createEvent */])(EVENT_DELETE, model, { id: modelId })];
+  } };
+
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 22:
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
 
-/***/ 231:
-/***/ (function(module, exports) {
+/***/ 268:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = require("zlib");
+"use strict";
+/* unused harmony export isTimelineInCache */
+/* harmony export (immutable) */ __webpack_exports__["c"] = getTimelineStatusObservable;
+/* unused harmony export getTimeline */
+/* harmony export (immutable) */ __webpack_exports__["d"] = syncAndSubscribeTimeline;
+/* harmony export (immutable) */ __webpack_exports__["g"] = unsubscribeTimeline;
+/* harmony export (immutable) */ __webpack_exports__["f"] = unsubscribeAllTimelines;
+/* harmony export (immutable) */ __webpack_exports__["e"] = terminateTimeline;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getSubscribedTimelines;
+/* harmony export (immutable) */ __webpack_exports__["a"] = forceStopAllTimelines;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timelines__ = __webpack_require__(853);
+
+
+/**
+                                                  * Holds a reference to all timelines.
+                                                  *
+                                                  * @type {Map}
+                                                  */
+const _timelineCache = new Map();
+
+/**
+                                   *
+                                   * @param {Object} timelineId Timeline identifier
+                                   * @param {String} timelineId.model
+                                   * @param {String} timelineId.modelId
+                                   *
+                                   * @returns {Boolean}
+                                   */
+function isTimelineInCache(timelineId) {
+  if (!timelineId || !timelineId.model || !timelineId.modelId) {
+    return;
+  }
+
+  let timelineCacheRef = `${timelineId.model}:${timelineId.modelId}`;
+
+  return _timelineCache.has(timelineCacheRef);
+}
+
+/**
+   * Returns the status for a timeline
+   *
+   * @returns {String}
+   */
+function getTimelineStatusObservable(timelineId) {
+  let timeline = _timelineCache.get(`${timelineId.model}:${timelineId.modelId}`);
+  return timeline && timeline.timelineStatusObservable$;
+}
+
+
+/**
+   * Returns an instance of sync timeline for the given timeline identifier.
+   * If instance already was created previously it returns it, otherwise creates a new instance.
+   *
+   * @param {Object} timelineId Timeline identifier
+   * @param {String} timelineId.model
+   * @param {String} timelineId.modelId
+   *
+   * @returns {Object} sync timeline instance
+   */
+function getTimeline(timelineId) {
+  if (!timelineId || !timelineId.model || !timelineId.modelId) {
+    return;
+  }
+
+  let timelineCacheRef = `${timelineId.model}:${timelineId.modelId}`,
+  timeline = _timelineCache.get(timelineCacheRef);
+
+  // cache hit
+  if (timeline) {
+    return timeline;
+  }
+
+  // cache miss
+
+  // instantiate timeline
+  let TimelineModel = __WEBPACK_IMPORTED_MODULE_0__sync_timelines__["a" /* default */][timelineId.model];
+
+  if (!TimelineModel) {
+    pm.logger.warn('getTimeline: Could not find timeline model', timelineId.model);
+    return;
+  }
+
+  timeline = new TimelineModel(timelineId);
+
+  // update cache
+  _timelineCache.set(timelineCacheRef, timeline);
+
+  return timeline;
+}
+
+/**
+   * Syncs pending changes in a timeline and subscribes to further changes.
+   *
+   * @param {Object} timelineId Timeline identifier
+   * @param {String} timelineId.model
+   * @param {String} timelineId.modelId
+   *
+   * @returns {Promise} sync timeline instance
+   */
+function syncAndSubscribeTimeline(timelineId) {
+  let timeline = getTimeline(timelineId);
+
+  return timeline.subscribe().
+  catch(e => {
+    pm.logger.warn('TimelineHelpers~syncAndSubscribeTimeline: Could not subscribe to timeline', e);
+  });
+}
+
+/**
+   * Unsubscribe from changes for a timeline
+   *
+   * @param {Object} timelineId Timeline identifier
+   * @param {String} timelineId.model
+   * @param {String} timelineId.modelId
+   *
+   * @returns {Promise} sync timeline instance
+   */
+function unsubscribeTimeline(timelineId) {
+  if (!isTimelineInCache(timelineId)) {
+    return;
+  }
+
+  let timeline = getTimeline(timelineId);
+
+  return timeline.unsubscribe();
+}
+
+/**
+   * Unsubscribe all active timelines.
+   */
+function unsubscribeAllTimelines() {
+  // for each timeline in cache unsubscribe it
+  _timelineCache.forEach(timelineId => {
+    let timeline = getTimeline(timelineId);
+
+    timeline.unsubscribe();
+  });
+}
+
+/**
+   * Terminate a timeline. Includes deleting the sync marker for the timeline.
+   *
+   * @param {Object} timelineId Timeline identifier
+   * @param {String} timelineId.model
+   * @param {String} timelineId.modelId
+   *
+   * @returns {Promise} sync timeline instance
+   */
+function terminateTimeline(timelineId) {
+  let timeline = getTimeline(timelineId);
+
+  return timeline.terminate();
+}
+
+/**
+   * Returns a list of all timelines subscribed at this point in time.
+   *
+   * @returns {Array.<Object>} returns an array of timeline identifiers
+   */
+function getSubscribedTimelines() {
+  return Array.from(_timelineCache.values()).
+  filter(timeline => {
+    return timeline && timeline.isSubscribed();
+  });
+}
+
+/**
+   * Used to force stop all the timelines
+   */
+function forceStopAllTimelines() {
+  pm.logger.info('SyncTimelineHelper: Force stopping all timelines');
+  _timelineCache.forEach(timelineId => {
+    let timeline = getTimeline(timelineId);
+
+    timeline.forceStop();
+  });
+}
 
 /***/ }),
 
-/***/ 263:
+/***/ 269:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = getRealtimeMessagesObservable;
+/* harmony export (immutable) */ __webpack_exports__["b"] = publishRealtimeMessage;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__ = __webpack_require__(291);
+
+
+
+
+/**
+                                                                                       * An RxJS  Subject instance that is be used to publish real-time sync messages.
+                                                                                       * Subject guarantees that the observable is multi-cast and shares a single listener
+                                                                                       * for every subscriber.
+                                                                                       *
+                                                                                       * @todo: Observe for impact on shared module level instance, and effects on unsubscribe, logout etc.
+                                                                                       *
+                                                                                       * @type {Observable}
+                                                                                       */
+let realtimeMessagesSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["c" /* Subject */]();
+
+
+const realtimeIncomingMessages$ = realtimeMessagesSubject.asObservable();
+/* harmony export (immutable) */ __webpack_exports__["c"] = realtimeIncomingMessages$;
+
+
+/**
+                                                                                  * Returns an Observable of realtime messages from sync socket.
+                                                                                  *
+                                                                                  * @returns
+                                                                                  */
+function getRealtimeMessagesObservable() {
+  return realtimeMessagesSubject.asObservable().
+  pipe(
+  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["k" /* takeUntil */])(Object(__WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__["b" /* getSocketDisconnectsObservable */])()));
+
+}
+
+/**
+   * Publishes a message to the realtime
+   *
+   * @returns
+   */
+function publishRealtimeMessage(message) {
+  pm.logger.info('RealtimeSyncMessageService~publishRealtimeIncomingMessage: Message received ' +
+  `${message.type || _.get(message, 'meta.model')}:${_.get(message, 'meta.action')} ` +
+  `Timeline in message: ${_.get(message, 'meta.timeline.model')}:${_.get(message, 'meta.timeline.model_id')}`);
+
+  realtimeMessagesSubject.next(message);
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 270:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseConfigurationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_events__);
 let
 
@@ -600,28 +2923,21 @@ BaseConfigurationService = class BaseConfigurationService extends __WEBPACK_IMPO
 
 /***/ }),
 
-/***/ 28:
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ 3053:
+/***/ 3051:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(98);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_PmConsole__ = __webpack_require__(843);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Shortcuts__ = __webpack_require__(1338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ToastManager__ = __webpack_require__(844);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_helpers_OAuth2Tokens__ = __webpack_require__(3055);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_cookies_CookieManager__ = __webpack_require__(3056);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_helpers_OAuth2Manager__ = __webpack_require__(3057);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ElectronContextMenu__ = __webpack_require__(3060);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_collections_CollectionClipboard__ = __webpack_require__(3062);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_Toasts__ = __webpack_require__(845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_PmConsole__ = __webpack_require__(835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Shortcuts__ = __webpack_require__(1372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ToastManager__ = __webpack_require__(836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_helpers_OAuth2Tokens__ = __webpack_require__(3053);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_cookies_CookieManager__ = __webpack_require__(3054);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_helpers_OAuth2Manager__ = __webpack_require__(3055);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ElectronContextMenu__ = __webpack_require__(3058);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_collections_CollectionClipboard__ = __webpack_require__(3060);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_Toasts__ = __webpack_require__(838);
 
 
 
@@ -657,13 +2973,13 @@ function bootIndependentServices(cb) {
 
 /***/ }),
 
-/***/ 3055:
+/***/ 3053:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(81);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_backbone__);
 
 
@@ -719,7 +3035,8 @@ var OAuth2Tokens = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Collection.e
     var accessToken = {
       'id': __WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].guid(),
       'timestamp': new Date().getTime(),
-      'data': [] };
+      'data': [],
+      'name': tokenData.name };
 
 
     // make sure data is added to token response for any response
@@ -810,17 +3127,17 @@ var OAuth2Tokens = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Collection.e
 
 /***/ }),
 
-/***/ 3056:
+/***/ 3054:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(55);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
 
 
 
-const session = __webpack_require__(21).remote.session;
+const session = __webpack_require__(22).remote.session;
 
 /**
                                                      * @typedef {Object} Cookie
@@ -1092,11 +3409,24 @@ CookieManager = class CookieManager {
     // in series, otherwise because of concurrency we will end up with some cookies non-deleted
     __WEBPACK_IMPORTED_MODULE_1_async___default.a.eachSeries(cookiesToDelete, (cookie, next) => {
       this.deleteCookie(domain, cookie.name, cookie.path, next);
-    }, () => {
+    }, res => {
       // wait for all cookies to be deleted, then delete the domain too from UI
+      if (res && res.type === 'RemoveCookieError') {
+        res['domain'] = domain;
+        _.isFunction(callback) && callback(res);
+
+        return;
+      }
+
       delete this.cookies[domain];
+
       this.loadCookies(() => {
-        _.isFunction(callback) && callback();
+        let res = {
+          type: 'Success',
+          domain: domain };
+
+
+        _.isFunction(callback) && callback(res);
       });
     });
   }
@@ -1130,12 +3460,14 @@ CookieManager = class CookieManager {
 
     cookieStore.remove(httpUrl, cookieName, error => {
       if (error) {
+        error['type'] = 'removeCookieError';
         _.isFunction(callback) && callback(error);
         return;
       }
 
       cookieStore.remove(httpsUrl, cookieName, error => {
         if (error) {
+          error['type'] = 'removeCookieError';
           _.isFunction(callback) && callback(error);
           return;
         }
@@ -1170,15 +3502,15 @@ CookieManager = class CookieManager {
 
 /***/ }),
 
-/***/ 3057:
+/***/ 3055:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__OAuth2TokenFetcher__ = __webpack_require__(3058);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(81);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__OAuth2TokenFetcher__ = __webpack_require__(3056);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_backbone__);
-
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
 
@@ -1299,6 +3631,27 @@ OAuth2Manager = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Model.extend({
     }
   },
 
+  updateOAauth2Token: function (updatedToken) {
+    let currentTokens = this.get('savedOAuth2Tokens');
+
+    pm.mediator.trigger('updateOAuth2Token', updatedToken);
+
+    currentTokens = currentTokens.map(function (tk) {
+      if (tk.id === updatedToken.id) {
+        let token = _extends({},
+        tk, {
+          name: updatedToken.name });
+
+
+        return token;
+      }
+
+      return tk;
+    });
+
+    this.set('savedOAuth2Tokens', currentTokens);
+  },
+
   loadCurrentTokens: function () {
     if (typeof pm.oAuth2Tokens !== 'undefined') {
       let currentTokens = pm.oAuth2Tokens.models || [];
@@ -1365,22 +3718,25 @@ OAuth2Manager = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Model.extend({
 
 /***/ }),
 
-/***/ 3058:
+/***/ 3056:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(21);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_electron__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ModelToSdkTransformer__ = __webpack_require__(818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ModelToSdkTransformer__ = __webpack_require__(791);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_util__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__ = __webpack_require__(3059);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__ = __webpack_require__(3057);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_backbone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_VariableSessionHelper__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_VariableSessionService__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_VariableSessionService__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_constants_console__ = __webpack_require__(837);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_constants_console___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__common_constants_console__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_ConsoleEventTypes__ = __webpack_require__(307);
+
 
 
 
@@ -1392,10 +3748,10 @@ OAuth2Manager = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Model.extend({
 
 
 /**
-                                                                                                       * Interface that talks to {@link OAuth2TokenRequester} for completing OAuth 2.0 token generation flows.
-                                                                                                       *
-                                                                                                       * @class OAuth2TokenFetcher
-                                                                                                       */
+                                                                            * Interface that talks to {@link OAuth2TokenRequester} for completing OAuth 2.0 token generation flows.
+                                                                            *
+                                                                            * @class OAuth2TokenFetcher
+                                                                            */
 var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.extend( /** @lends OAuth2TokenFetcher.prototype */{
   defaults: function () {
     return {
@@ -1424,11 +3780,11 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
       * @fires IPC#oauth2GetNewToken
       */
   startAuthorization: function (params, collectionId) {
-    let environmentId = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore').id,
-    globalsId = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('ActiveGlobalsStore').id,
-    workspaceId = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id;
+    let environmentId = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["getStore"])('ActiveEnvironmentStore').id,
+    globalsId = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["getStore"])('ActiveGlobalsStore').id,
+    workspaceId = Object(__WEBPACK_IMPORTED_MODULE_4__stores_get_store__["getStore"])('ActiveWorkspaceStore').id;
 
-    Object(__WEBPACK_IMPORTED_MODULE_8__modules_services_VariableSessionService__["e" /* getVariableSessionMap */])({ environmentId, globalsId, workspaceId, collectionId }).
+    Object(__WEBPACK_IMPORTED_MODULE_7__modules_services_VariableSessionService__["e" /* getVariableSessionMap */])({ environmentId, globalsId, workspaceId, collectionId }).
     then(variablesMap => {
       let authParams = {
         grant_type: _.clone(params.grant_type),
@@ -1441,13 +3797,15 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
         redirect_uri: __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__["a" /* default */].resolve(_.clone(params.redirect_uri), variablesMap) || '/',
         scope: __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__["a" /* default */].resolve(_.clone(params.scope), variablesMap),
         state: __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__["a" /* default */].resolve(_.clone(params.state), variablesMap),
-        username: __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__["a" /* default */].resolve(_.clone(params.username), variablesMap) };
+        username: __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__["a" /* default */].resolve(_.clone(params.username), variablesMap),
+        name: __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__["a" /* default */].resolve(_.clone(params.name), variablesMap) };
 
 
       __WEBPACK_IMPORTED_MODULE_0_electron__["ipcRenderer"].send('oauth2GetNewToken', authParams,
       {
         useSystemProxy: pm.settings.getSetting('useSystemProxy'),
-        proxies: pm.proxyListManager.globalProxies.toJSON(),
+        proxies: pm.proxyListManager.getGlobalProxyConfigList(),
+        ignoreProxyEnvironmentVariables: !__WEBPACK_IMPORTED_MODULE_3__utils_util__["a" /* default */].useProxyEnvironmentVariables(),
         certificates: __WEBPACK_IMPORTED_MODULE_1__utils_ModelToSdkTransformer__["a" /* default */].getClientSslCerts(pm.certificateManager),
         requester: {
           strictSSL: pm.settings.getSetting('SSLCertVerify'),
@@ -1515,7 +3873,7 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
       url: _.invoke(request, 'url.toString'),
       method: requestJSON.method,
       headers: _.invoke(request, 'headers.toObject'),
-      body: requestJSON.body,
+      body: request.size().body > __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["MAX_BODY_SIZE"] ? { ___ignored___: __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["LARGE_BODY_ALT"] } : requestJSON.body,
       certificate: requestJSON.certificate,
       proxy: requestJSON.proxy };
 
@@ -1525,15 +3883,18 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
         responseTime: response.responseTime,
         code: response.code,
         headers: _.invoke(response, 'headers.toObject'),
-        body: response.size().body / 1024 > 1024 ? 'Responses larger than 1MB are not shown' : response.text() };
+        body: response.size().body > __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["MAX_BODY_SIZE"] ? { ___ignored___: __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["LARGE_BODY_ALT"] } : response.text() };
 
     }
 
+    consolePayload.indirect = 'auth';
+
     if (err) {
-      pm.console.netErr(cursor.httpRequestId, err.message, consolePayload);
+      consolePayload.error = err.message;
+      pm.newConsole.error(__WEBPACK_IMPORTED_MODULE_9__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, consolePayload);
     } else
     {
-      pm.console.net(cursor.httpRequestId, consolePayload);
+      pm.newConsole.log(__WEBPACK_IMPORTED_MODULE_9__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, consolePayload);
     }
   } });
 
@@ -1543,11 +3904,11 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
 
 /***/ }),
 
-/***/ 3059:
+/***/ 3057:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection__);
 
 
@@ -1573,19 +3934,21 @@ let ResolveVariableHelper = class ResolveVariableHelper {
 
 /***/ }),
 
-/***/ 3060:
+/***/ 3058:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ElectronContextMenu; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_DraftJsHelper__ = __webpack_require__(3061);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_VariableSessionService__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_VariableSessionHelper__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_DraftJsHelper__ = __webpack_require__(3059);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_VariableSessionService__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_VariableSessionHelper__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_EditorService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_EditorService__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__electron_ElectronService__ = __webpack_require__(141);
+
 
 
 
@@ -1596,16 +3959,16 @@ let ResolveVariableHelper = class ResolveVariableHelper {
 
 
 /**
-                                                        * Handles context menu creation for Electron
-                                                        * Currently, the context menu supports:
-                                                        * 1. Encode/Decode URI Component for selected text
-                                                        * 2. Set as env var
-                                                        * 3. Set as global var
-                                                        * @private
-                                                        */let
+                                                                 * Handles context menu creation for Electron
+                                                                 * Currently, the context menu supports:
+                                                                 * 1. Encode/Decode URI Component for selected text
+                                                                 * 2. Set as env var
+                                                                 * 3. Set as global var
+                                                                 * @private
+                                                                 */let
 ElectronContextMenu = class ElectronContextMenu {
   constructor() {
-    this.Remote = __webpack_require__(21).remote;
+    this.Remote = __webpack_require__(22).remote;
     this.Menu = this.Remote.Menu;
     this.MenuItem = this.Remote.MenuItem;
 
@@ -1625,7 +3988,7 @@ ElectronContextMenu = class ElectronContextMenu {
 
       // Empty menu fix for windows native app
       if (menu && _.size(menu.items)) {
-        menu.popup(this.Remote.getCurrentWindow());
+        menu.popup(Object(__WEBPACK_IMPORTED_MODULE_8__electron_ElectronService__["c" /* getCurrentWindow */])());
       }
     }, false);
   }
@@ -1790,7 +4153,7 @@ ElectronContextMenu = class ElectronContextMenu {
   }
 
   buildEnvironmentMenu(menu, selectionText) {
-    let environment = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore');
+    let environment = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('ActiveEnvironmentStore');
     if (!environment || _.isEmpty(environment.values)) {
       return;
     }
@@ -1815,7 +4178,7 @@ ElectronContextMenu = class ElectronContextMenu {
   }
 
   buildGlobalMenu(menu, selectionText) {
-    let globals = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('ActiveGlobalsStore');
+    let globals = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('ActiveGlobalsStore');
     if (!globals || _.isEmpty(globals.values)) {
       return;
     }
@@ -1912,8 +4275,8 @@ ElectronContextMenu = class ElectronContextMenu {
 
   updateGlobalVariableFromContextMenu(index, selectionText) {
     let model = 'globals',
-    modelId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('ActiveGlobalsStore').id,
-    activeWorkspaceId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id,
+    modelId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('ActiveGlobalsStore').id,
+    activeWorkspaceId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('ActiveWorkspaceStore').id,
     sessionId = Object(__WEBPACK_IMPORTED_MODULE_4__utils_VariableSessionHelper__["b" /* getSessionId */])(model, modelId, activeWorkspaceId);
 
     Object(__WEBPACK_IMPORTED_MODULE_3__modules_services_VariableSessionService__["d" /* getSessionFor */])(sessionId).
@@ -1940,15 +4303,15 @@ ElectronContextMenu = class ElectronContextMenu {
       return Object(__WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__["a" /* default */])(updateSessionEvent);
     }).
     catch(err => {
-      pm.logger.error('Failed to update global value through context menu', err);
+      pm.logger.warn('Failed to update global value through context menu', err);
       pm.toasts.error('Something went wrong. Please check DevTools.');
     });
   }
 
   updateEnvironmentVariableFromContextMenu(index, selectionText) {
     let model = 'environment',
-    modelId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('ActiveEnvironmentStore').id,
-    activeWorkspaceId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('ActiveWorkspaceStore').id,
+    modelId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('ActiveEnvironmentStore').id,
+    activeWorkspaceId = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('ActiveWorkspaceStore').id,
     sessionId = Object(__WEBPACK_IMPORTED_MODULE_4__utils_VariableSessionHelper__["b" /* getSessionId */])(model, modelId, activeWorkspaceId);
 
     Object(__WEBPACK_IMPORTED_MODULE_3__modules_services_VariableSessionService__["d" /* getSessionFor */])(sessionId).
@@ -1975,7 +4338,7 @@ ElectronContextMenu = class ElectronContextMenu {
       return Object(__WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__["a" /* default */])(updateSessionEvent);
     }).
     catch(err => {
-      pm.logger.error('Failed to update session through context menu', err);
+      pm.logger.warn('Failed to update session through context menu', err);
       pm.toasts.error('Something went wrong. Please check DevTools.');
     });
   }};
@@ -1983,11 +4346,11 @@ ElectronContextMenu = class ElectronContextMenu {
 
 /***/ }),
 
-/***/ 3061:
+/***/ 3059:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment__ = __webpack_require__(507);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment__);
 let
 
@@ -2013,13 +4376,13 @@ DraftJsHelper = class DraftJsHelper {
 
 /***/ }),
 
-/***/ 3062:
+/***/ 3060:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionClipboard; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(34);
 
 let
 
@@ -2178,26 +4541,35 @@ CollectionClipboard = class CollectionClipboard {
 
 /***/ }),
 
-/***/ 3063:
+/***/ 3061:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(98);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootStore__ = __webpack_require__(3064);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__ = __webpack_require__(848);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__ = __webpack_require__(849);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_UIZoom__ = __webpack_require__(851);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_ProxyListManager__ = __webpack_require__(852);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_AppUpdateNotifier__ = __webpack_require__(3066);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_tcp_ElectronTCPReader__ = __webpack_require__(3068);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_requests_CertificateManager__ = __webpack_require__(853);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_ProtocolHandler__ = __webpack_require__(3069);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_base_XPaths_XPathManager__ = __webpack_require__(544);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_ModelEventToUIEventService__ = __webpack_require__(3070);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_UIEventServiceHandler__ = __webpack_require__(3071);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_controllers_PermissionController__ = __webpack_require__(603);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_AccessControl_DbRollbackService__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootStore__ = __webpack_require__(841);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__ = __webpack_require__(843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__ = __webpack_require__(844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootConsoleInterface__ = __webpack_require__(846);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_UIZoom__ = __webpack_require__(848);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_ProxyListManager__ = __webpack_require__(849);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_AppUpdateNotifier__ = __webpack_require__(3062);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_tcp_ElectronTCPReader__ = __webpack_require__(3064);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_requests_CertificateManager__ = __webpack_require__(850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_ProtocolHandler__ = __webpack_require__(3065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPathManager__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_ModelEventToUIEventService__ = __webpack_require__(3066);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_InterceptorManager__ = __webpack_require__(3067);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge__ = __webpack_require__(978);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_UIEventServiceHandler__ = __webpack_require__(3068);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_controllers_PermissionController__ = __webpack_require__(599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_AccessControl_DbRollbackService__ = __webpack_require__(851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__js_launchpad_Service_openLaunchpadService__ = __webpack_require__(3069);
+
+
+
+
 
 
 
@@ -2215,32 +4587,36 @@ CollectionClipboard = class CollectionClipboard {
 
 
 /**
-                                                                                                   *
-                                                                                                   * @param {*} cb
-                                                                                                   */
+                                                                                    *
+                                                                                    * @param {*} cb
+                                                                                    */
 function bootRequester(cb) {
   __WEBPACK_IMPORTED_MODULE_0_async_series___default()([
   __WEBPACK_IMPORTED_MODULE_1__bootStore__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_9__models_ProtocolHandler__["a" /* default */].initialize,
+  __WEBPACK_IMPORTED_MODULE_4__bootConsoleInterface__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_10__models_ProtocolHandler__["a" /* default */].initialize,
   next => {
-    Object(__WEBPACK_IMPORTED_MODULE_14__services_AccessControl_DbRollbackService__["a" /* initializeRollbackNotifications */])();
+    Object(__WEBPACK_IMPORTED_MODULE_17__services_AccessControl_DbRollbackService__["a" /* initializeRollbackNotifications */])();
     next();
   }],
   err => {
     _.assign(window.pm, {
-      proxyListManager: new __WEBPACK_IMPORTED_MODULE_5__controllers_ProxyListManager__["a" /* default */](), // [settings]
-      certificateManager: new __WEBPACK_IMPORTED_MODULE_8__models_requests_CertificateManager__["a" /* default */](), // [settings]
-      uiZoom: new __WEBPACK_IMPORTED_MODULE_4__controllers_UIZoom__["a" /* default */](), // [settings]
-      updateNotifier: new __WEBPACK_IMPORTED_MODULE_6__models_AppUpdateNotifier__["a" /* default */](), // [appwindow, settings, app]
-      tcpReader: new __WEBPACK_IMPORTED_MODULE_7__models_tcp_ElectronTCPReader__["a" /* default */](), // [settings, appwindow]
-      xPathManager: __WEBPACK_IMPORTED_MODULE_10__components_base_XPaths_XPathManager__["a" /* default */] });
+      proxyListManager: new __WEBPACK_IMPORTED_MODULE_6__controllers_ProxyListManager__["a" /* default */](), // [settings]
+      certificateManager: new __WEBPACK_IMPORTED_MODULE_9__models_requests_CertificateManager__["a" /* default */](), // [settings]
+      uiZoom: new __WEBPACK_IMPORTED_MODULE_5__controllers_UIZoom__["a" /* default */](), // [settings]
+      updateNotifier: new __WEBPACK_IMPORTED_MODULE_7__models_AppUpdateNotifier__["a" /* default */](), // [appwindow, settings, app]
+      tcpReader: new __WEBPACK_IMPORTED_MODULE_8__models_tcp_ElectronTCPReader__["a" /* default */](), // [settings, appwindow]
+      interceptorManager: new __WEBPACK_IMPORTED_MODULE_13__models_InterceptorManager__["a" /* default */](),
+      interceptorBridge: __WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge___default.a,
+      xPathManager: __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPathManager__["a" /* default */] });
 
 
-    __WEBPACK_IMPORTED_MODULE_11__services_ModelEventToUIEventService__["a" /* default */].initialize();
-    __WEBPACK_IMPORTED_MODULE_12__services_UIEventServiceHandler__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_12__services_ModelEventToUIEventService__["a" /* default */].initialize();
+    __WEBPACK_IMPORTED_MODULE_15__services_UIEventServiceHandler__["a" /* default */].init();
     pm.appWindow.sendToElectron({ event: 'postmanInitialized' }); // Initialize protocol handline need revisit
+    __WEBPACK_IMPORTED_MODULE_18__js_launchpad_Service_openLaunchpadService__["a" /* default */].initialize();
 
     err ? pm.logger.error('Requester~boot - Failed', err) : pm.logger.info('Requester~boot - Success');
     return cb && cb(err);
@@ -2252,114 +4628,24 @@ function bootRequester(cb) {
 
 /***/ }),
 
-/***/ 3064:
+/***/ 3062:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stores_store_handler__ = __webpack_require__(3065);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-
-
-
-const STORE_HANDLER_TIMEOUT = 15 * 1000; // 15 seconds
-
-/**
- *
- */
-function bootStore(cb) {
-
-  Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["k" /* subscribeToQueue */])(__WEBPACK_IMPORTED_MODULE_0__stores_store_handler__["a" /* handleModelEventOnStore */], STORE_HANDLER_TIMEOUT);
-  pm.logger.info('Store~boot - Success');
-  cb && cb(null);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (bootStore);
-
-/***/ }),
-
-/***/ 3065:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return handleModelEventOnStore; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mobx__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-
-
-
-/**
-                                                                                                                         *
-                                                                                                                         * @param {Object} modelEvent
-                                                                                                                         */
-function handleModelEventOnStore(modelEvent, callback) {
-  let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(modelEvent),
-  storeListeners = _.get(pm, ['stores', '_listeners']),
-  activeListenersFor = new Set(),
-  matchedListeners = [];
-
-  // @todo: this may have issues, when a top level event does not have a store initialized
-  // but low level events have stores initialized
-  if (!storeListeners) {
-    return callback();
-  }
-
-  storeListeners.forEach(storeListenerForNamespace => {
-    _.forEach(_.keys(storeListenerForNamespace), listenerName => {
-      activeListenersFor.add(listenerName);
-    });
-  });
-
-  Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["j" /* processEventSync */])(modelEvent, Array.from(activeListenersFor), function processEventOnStore(event) {
-    if (!storeListeners.has(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(event))) {
-      return;
-    }
-    let storeListenersForNamespace = storeListeners.get(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(event)),
-    action = Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["f" /* getEventName */])(event),
-    listeners = storeListenersForNamespace[action];
-
-    _.forEach(listeners, function (listener) {
-      // we create new functions instead of binding
-      // listener is already bound with the `store`, we can't find it, or change it
-      listener && matchedListeners.push(function () {
-        listener(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["d" /* getEventData */])(event), Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["e" /* getEventMeta */])(event), modelEvent);
-      });
-    });
-  });
-
-  // wrapping all the individual listeners for an event in a transactions
-  Object(__WEBPACK_IMPORTED_MODULE_0_mobx__["u" /* transaction */])(function () {
-    // listeners are synchronous anyway
-    _.forEach(matchedListeners, function invokeStoreListener(listener) {
-      listener && listener();
-    });
-  });
-
-  callback();
-}
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3066:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppSettingsDefaults__ = __webpack_require__(535);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppSettingsDefaults__ = __webpack_require__(541);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_APIService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AppReleaseService__ = __webpack_require__(1189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_ShellHelper__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AppReleaseService__ = __webpack_require__(1203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_ShellHelper__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_domain__ = __webpack_require__(3067);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_domain__ = __webpack_require__(3063);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_domain___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_domain__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_InfobarConstants__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__controllers_Infobar__ = __webpack_require__(669);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_backbone__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_InfobarConstants__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__controllers_Infobar__ = __webpack_require__(684);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_backbone__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_backbone__);
 
 
@@ -2407,10 +4693,11 @@ NOT_UPDATED_MESG = {
 
   onDismiss: function (params) {
     __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__["a" /* default */].addEvent('app', 'dismiss_update_restart_banner');
-  } };
+  } },
 
+PUBLIC_CHANNELS = ['prod', 'canary'];
 
-var semver = __webpack_require__(1188),
+var semver = __webpack_require__(1202),
 AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.extend({
   defaults: function () {
     return {
@@ -2425,7 +4712,9 @@ AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.exte
   initialize: function () {
     this.set('isUpdateEnabled', pm.app.get('isUpdateEnabled'));
 
-    if (window.DISABLE_UPDATES === true) {
+    // Disable if the flag is set but only if it is not a public facing channel
+    // Used while running integration tests
+    if (pm.env.DISABLE_UPDATES && !_.includes(PUBLIC_CHANNELS, window.RELEASE_CHANNEL)) {
       return;
     }
 
@@ -2831,7 +5120,7 @@ AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.exte
 
 /***/ }),
 
-/***/ 3067:
+/***/ 3063:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2841,7 +5130,7 @@ AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.exte
 
 module.exports = function () {
 	// Import Events
-	var events = __webpack_require__(38);
+	var events = __webpack_require__(35);
 
 	// Export Domain
 	var domain = {};
@@ -2863,7 +5152,8 @@ module.exports = function () {
 				var args = Array.prototype.slice.call(arguments);
 				try {
 					fn.apply(null, args);
-				} catch (err) {
+				}
+				catch (err) {
 					emitError(err);
 				}
 			};
@@ -2872,11 +5162,13 @@ module.exports = function () {
 			return function (err) {
 				if (err) {
 					emitError(err);
-				} else {
+				} else
+				{
 					var args = Array.prototype.slice.call(arguments, 1);
 					try {
 						fn.apply(null, args);
-					} catch (err) {
+					}
+					catch (err) {
 						emitError(err);
 					}
 				}
@@ -2885,7 +5177,8 @@ module.exports = function () {
 		d.run = function (fn) {
 			try {
 				fn();
-			} catch (err) {
+			}
+			catch (err) {
 				emitError(err);
 			}
 			return this;
@@ -2904,15 +5197,15 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 3068:
+/***/ 3064:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(48);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__ = __webpack_require__(59);
 
 
 
@@ -2941,18 +5234,18 @@ ElectronTCPReader = class ElectronTCPReader {
 
     let readerSettings = localStorage.getItem('readerSettings'),
     readerSettingsJSON = null;
-
     try {
       if (!_.isEmpty(readerSettings)) {
         readerSettingsJSON = JSON.parse(readerSettings);
       }
     }
+
     catch (e) {
       pm.logger.error('Error in parsing proxy settings');
     } finally
     {
       if (!_.isEmpty(readerSettingsJSON)) {
-        _.assign(this, _.pick(['port', 'target_type', 'target_id', 'filters']));
+        _.assign(this, _.pick(readerSettingsJSON, ['port', 'target_type', 'target_id', 'filters']));
       }
     }
 
@@ -3003,68 +5296,54 @@ ElectronTCPReader = class ElectronTCPReader {
     this.addRequestObject(requestObject);
   }
 
+  isAllowed(request, filters) {
 
-  isAllowed(request) {
-    var filters = this.filters;
-    var methods = filters.methods.split(',');
+    var methods;
 
-    function trim(s) {
-      return s.trim().toUpperCase();
+    // Captured request URL should contain the URL in the proxy 'URL Contains' filter
+    if (filters.url && filters.url.trim() && request.url.search(filters.url.trim()) < 0) {
+      return false;
     }
 
-    var filterMethods = _.each(methods, trim);
-
-    var flagUrlContains = true;
-    var flagUrlDisabled = true;
-    var flagUrlMethods = true;
-
-    var result;
-
-    // console.log("Filters are", filters);
-
-    if (filters.url === '') {
-      flagUrlContains = true;
-    } else
-    {
-      if (request.url.search(filters.url) >= 0) {
-        flagUrlContains = true;
-      } else
-      {
-        flagUrlContains = false;
-      }
+    // Captured request URL should not contain the URL in the 'URL Does not Contain' filter
+    if (filters.url_disabled && filters.url_disabled.trim() && request.url.search(filters.url_disabled.trim()) >= 0) {
+      return false;
     }
 
-    if (filters.url_disabled === '') {
-      flagUrlDisabled = true;
-    } else
-    {
-      if (request.url.search(filters.url_disabled) < 0) {
-        flagUrlDisabled = true;
-      } else
-      {
-        flagUrlDisabled = false;
-      }
+    methods = filters.methods ? filters.methods.split(',') : [];
+
+    methods = methods.map(method => {
+      return method.trim().toUpperCase();
+    }).filter(method => {
+      return method.length > 0;
+    });
+
+    methods = _.uniq(methods);
+
+    // Captured request method should belong to proxy 'Methods' filters (if any)
+    if (methods.length > 0 && !methods.includes(request.method.toUpperCase())) {
+      return false;
     }
 
-    if (filterMethods.length > 0) {
-      flagUrlMethods = _.indexOf(filterMethods, request.method.toUpperCase());
-    } else
-    {
-      flagUrlMethods = true;
-    }
+    return true;
+  }
 
-    result = flagUrlMethods && flagUrlDisabled && flagUrlContains;
-    return result;
+  checkTarget(id) {
+    var collections = Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('ActiveWorkspaceStore').collections,
+    collection = _.find(collections, item => {return item.id === id;}),
+    editPermission = Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('PermissionStore').can('edit', 'collection', id);
+
+    return collection && editPermission;
   }
 
   addRequestObject(request) {
-    var target_type = this.target_type;
-    var collection;
-    var target_id;
+    var target_type = this.target_type,
+    collection,
+    target_id,
+    filters = this.filters;
 
     // console.log("Settings are", this.toJSON());
-
-    if (this.isAllowed(request)) {
+    if (this.isAllowed(request, filters)) {
       // modify request for sync
       let headerData = [];
       request.headerData = _.map(_.keys(request.headers), key => {
@@ -3083,28 +5362,7 @@ ElectronTCPReader = class ElectronTCPReader {
         request.data = __WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].unpackUrlEncodedData(request.data);
       }
 
-      if (target_type === 'history') {
-        __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__["a" /* default */].
-        get().
-        then(user => {
-          if (!user) {
-            pm.logger.error(new Error('ElectronTCPReader: Could not create history. Current user is missing.'));
-            return;
-          }
-
-          let currentDate = new Date(),
-          workspace = Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('ActiveWorkspaceSessionStore').workspace,
-          historyCreateEvent = Object(__WEBPACK_IMPORTED_MODULE_2__modules_model_event__["a" /* createEvent */])(
-          'create',
-          'history',
-          _.assign({}, request, { id: __WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].guid(), createdAt: currentDate.toISOString(), workspace, owner: user.id, lastUpdatedBy: user.id }));
-
-
-          return Object(__WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__["a" /* default */])(historyCreateEvent).
-          catch(e => {console.log('Error in creating history through proxy', e);});
-        });
-      } else
-      {
+      if (this.checkTarget(this.target_id)) {
         __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__["a" /* default */].
         get().
         then(user => {
@@ -3135,6 +5393,27 @@ ElectronTCPReader = class ElectronTCPReader {
         }).
         catch(err => {
           pm.logger.error('Error while creating collection from tcp', err);
+        });
+      } else
+      {
+        __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__["a" /* default */].
+        get().
+        then(user => {
+          if (!user) {
+            pm.logger.error(new Error('ElectronTCPReader: Could not create history. Current user is missing.'));
+            return;
+          }
+
+          let currentDate = new Date(),
+          workspace = Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').workspace,
+          historyCreateEvent = Object(__WEBPACK_IMPORTED_MODULE_2__modules_model_event__["a" /* createEvent */])(
+          'create',
+          'history',
+          _.assign({}, request, { id: __WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].guid(), createdAt: currentDate.toISOString(), workspace, owner: user.id, lastUpdatedBy: user.id }));
+
+
+          return Object(__WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__["a" /* default */])(historyCreateEvent).
+          catch(e => {console.log('Error in creating history through proxy', e);});
         });
       }
     }
@@ -3184,17 +5463,17 @@ ElectronTCPReader = class ElectronTCPReader {
 
 /***/ }),
 
-/***/ 3069:
+/***/ 3065:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Importer__ = __webpack_require__(649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_UserController__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(656);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Importer__ = __webpack_require__(941);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_UserController__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(19);
 
 
 
@@ -3304,14 +5583,14 @@ const ProtocolHandler = {
 
 /***/ }),
 
-/***/ 3070:
+/***/ 3066:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UIEventService__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UIEventService__ = __webpack_require__(79);
 
 
 
@@ -3643,12 +5922,473 @@ function handleAuthHandlerEvents(event) {
 
 /***/ }),
 
-/***/ 3071:
+/***/ 3067:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UIEventService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_UIEventConstants__ = __webpack_require__(268);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_pipelines_user_action__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer__ = __webpack_require__(598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil__ = __webpack_require__(1366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil__);
+
+
+
+
+
+
+let
+
+InterceptorManager = class InterceptorManager {
+  constructor() {
+
+    // [INTERCEPT-15] maintaining a boolean variable to avoid multiple 'Disconnected from Interceptor' logs
+    var isDisconnectedFromInterceptorBridge = false;
+
+    // store for interceptor settings
+    var interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore');
+
+    // fetching domain list in sync with Interceptor from store
+    var syncDomainList = interceptorSettingsStore.getSyncDomainList();
+
+    // the ipcClient will be connected to the interceptorBridge
+    // as soon as the main process of app loads
+    pm.appWindow.sendToElectron({
+      event: 'initializeInterceptorBridge' });
+
+
+    if (interceptorSettingsStore.isCookieSyncEnabled()) {
+      // syncing back all cookies once the app restarts
+      this.enableCookieSyncFromInterceptor();
+    }
+
+    // starts capturing requests from Interceptor as soon as App is opened (if request capture settings are on)
+    if (interceptorSettingsStore.isRequestCaptureEnabled()) {
+      // start syncing the captured reqeusts
+      this.configureRequestCaptureFromInterceptor();
+    }
+
+    // preserving state to avoid the multiple logs of KEY_MISMATCH errors
+    // false once app loads, true after first KEY_MISMATCH error occurs
+    interceptorSettingsStore.updateKeyMismatchSettings(false);
+
+    // handles the interceptor response based on their types
+    pm.appWindow.trigger('registerInternalEvent', 'interceptorResponse', function (data) {
+      pm.mediator.trigger('onMessageExternal', data);
+      this.handleInterceptorResponse(data);
+    }, this);
+
+    // logs the encryption key being used for App ~ Interceptor communication
+    pm.appWindow.trigger('registerInternalEvent', 'fetchEncryptionKey', function (data) {
+      console.log('InterceptorBridge Encryption Key : ', data.key);
+    }, this);
+
+    // logs the list of domains in sync
+    pm.appWindow.trigger('registerInternalEvent', 'getSyncDomainListForInterceptor', function () {
+      if (!syncDomainList) {
+        console.log('InterceptorBridge : No domains found');
+      } else
+      {
+        console.log('InterceptorBridge : Domain List ', syncDomainList);
+      }
+    }, this);
+
+    // confirms interceptor bridge is connected
+    pm.appWindow.trigger('registerInternalEvent', 'updateInterceptorBridgeConnectionStatus', function (msg) {
+      // here, interceptor bridge is connected with postman app
+      if (msg.data.connectedToPostman) {
+        console.log('Connected to Interceptor');
+        isDisconnectedFromInterceptorBridge = false;
+      } else
+      {
+        if (!isDisconnectedFromInterceptorBridge) {
+          console.log('Disconnected from Interceptor');
+          isDisconnectedFromInterceptorBridge = true;
+        }
+      }
+      interceptorSettingsStore.updateInterceptorBridgeConnectionStatus(msg.data.connectedToPostman);
+
+      // re-send cookie and request capture data to interceptor
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        this.enableCookieSyncFromInterceptor();
+      }
+      if (interceptorSettingsStore.isRequestCaptureEnabled()) {
+        this.configureRequestCaptureFromInterceptor();
+      }
+
+    }, this);
+
+    pm.appWindow.trigger('registerInternalEvent', 'refreshInterceptorBridgeConnectionStatus', function (msg) {
+      if (msg.connectedToInterceptorBridge) {
+        console.log('Connected to Interceptor');
+        interceptorSettingsStore.updateInterceptorBridgeConnectionStatus(msg.connectedToInterceptorBridge);
+      }
+    }, this);
+
+  }
+
+  handleInterceptorResponse(data) {
+    var interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore');
+    if (data.type === 'COOKIE_DUMP') {
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        interceptorSettingsStore.updateKeyMismatchSettings(false);
+        this.addCookiesToApp(data.message);
+      }
+    } else
+    if (data.type === 'COOKIE_REMOVED') {
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        interceptorSettingsStore.updateKeyMismatchSettings(false);
+        this.deleteCookiesFromApp(data.message);
+      }
+    } else
+    if (data.type === 'COOKIE_UPDATED') {
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        interceptorSettingsStore.updateKeyMismatchSettings(false);
+        this.addCookiesToApp(data.message);
+      }
+    } else
+    if (data.type === 'UPDATED_DOMAIN_LIST') {
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        interceptorSettingsStore.updateKeyMismatchSettings(false);
+
+        // updating local sync domain list
+        this.syncDomainList = data.postmanMessage.syncDomainList;
+
+        // updating store
+        interceptorSettingsStore.updateAcknowledgedDomainList(data.postmanMessage.syncDomainList);
+
+        console.log('INTERCEPTOR CONNECTIVITY: Updated domain list : ', this.syncDomainList);
+      }
+    } else
+    if (data.type === 'ADD_DOMAIN_ACK') {
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        interceptorSettingsStore.updateKeyMismatchSettings(false);
+        interceptorSettingsStore.addNewAcknowledgedDomain(data.postmanMessage.domain);
+      }
+    } else
+    if (data.type === 'REMOVE_DOMAIN_ACK') {
+      if (interceptorSettingsStore.isCookieSyncEnabled()) {
+        interceptorSettingsStore.updateKeyMismatchSettings(false);
+        interceptorSettingsStore.removeAcknowledgedDomain(data.postmanMessage.domain);
+      }
+    } else
+    if (data.type === 'KEY_MISMATCH') {
+      if (!interceptorSettingsStore.isKeymismatch()) {
+        console.log('INTERCEPTOR CONNECTIVITY: Key mismatched between Interceptor and Postman App');
+        interceptorSettingsStore.updateKeyMismatchSettings(true);
+      }
+    } else
+    if (data.type === 'KEY_VALIDATION_RESULT') {
+      var validationResults = data;
+
+      // validation is true only if the keys are same at app and interceptor
+      if (validationResults.data.validation) {
+        console.log('INTERCEPTOR CONNECTIVITY: App / Interceptor encryption keys match');
+      } else
+      {
+        console.log('INTERCEPTOR CONNECTIVITY: App / Interceptor encryption keys mismatch');
+      }
+    } else
+    if (data.type === 'CONFIGURE_COOKIE_SYNC_ACK') {
+      if (data.postmanMessage.enabled) {
+        console.log('INTERCEPTOR CONNECTIVITY: Configure cookie sync acknowledged');
+      } else
+      {
+        console.log('INTERCEPTOR CONNECTIVITY: Configure cookie sync stopped');
+      }
+      interceptorSettingsStore.updateKeyMismatchSettings(false);
+    } else
+    if (data.type === 'ENABLE_COOKIE_SYNC_ACK') {
+      if (data.postmanMessage.enabled) {
+        console.log('INTERCEPTOR CONNECTIVITY: Cookie Sync enabled for the domains - ', data.postmanMessage.syncDomainList);
+      } else
+      {
+        console.log('INTERCEPTOR CONNECTIVITY: cookie sync disabled');
+      }
+      interceptorSettingsStore.updateKeyMismatchSettings(false);
+      interceptorSettingsStore.updateAcknowledgedDomainList(data.postmanMessage.syncDomainList);
+
+    } else
+    if (data.type === 'CONFIGURE_REQUEST_CAPTURE_ACK') {
+      if (data.postmanMessage.enabled) {
+        console.log('INTERCEPTOR CONNECTIVITY: Capture requests enabled');
+      } else
+      {
+        console.log('INTERCEPTOR CONNECTIVITY: Capture requests disabled');
+      }
+      interceptorSettingsStore.updateKeyMismatchSettings(false);
+    } else
+    if (data.type === 'CAPTURED_REQUEST') {
+      interceptorSettingsStore.updateKeyMismatchSettings(false);
+      if (interceptorSettingsStore.isRequestCaptureEnabled()) {
+        this.addRequestObject(data.message.postmanMessage.request);
+      }
+    } else
+    {
+      console.log(data);
+    }
+  }
+
+  enableCookieSyncFromInterceptor() {
+
+    var interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore');
+
+    // fetching domain list in sync with Interceptor from store
+    var syncDomainList = interceptorSettingsStore.getSyncDomainList();
+
+    // syncing back all cookies after App establishes connection with Interceptor bridge
+    pm.appWindow.sendToElectron({
+      event: 'forwardInterceptorRequest',
+      message: {
+        type: 'ENABLE_COOKIE_SYNC',
+        postmanMessage: {
+          enabled: true,
+          syncDomainList: syncDomainList } } });
+
+
+
+  }
+
+  configureRequestCaptureFromInterceptor() {
+    var interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore');
+
+    // fetching filters from store
+    var filters = interceptorSettingsStore.getRequestCaptureFilters();
+    var url = filters.url,
+    methodArray = Object(__WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil__["sanitize"])(filters.methods),
+    captureResponse = false;
+
+    pm.appWindow.sendToElectron({
+      event: 'forwardInterceptorRequest',
+      message: {
+        type: 'CONFIGURE_REQUEST_CAPTURE',
+        postmanMessage: {
+          filters: {
+            url: url,
+            method: methodArray },
+
+          captureResponse: captureResponse,
+          enabled: true } } });
+
+
+
+
+  }
+
+
+  addCookiesToApp(cookies) {
+    var newCookies = this.addUrlPropsToCookies(cookies);
+    for (var i = 0; i < newCookies.length; i++) {
+      var url = newCookies[i].url;
+      pm.cookieManager.addSingleCookie(url, newCookies[i].domain, newCookies[i], function () {
+        // cookie is added
+      });
+    }
+  }
+
+  addUrlPropsToCookies(cookies) {
+    var url;
+    for (var i = 0; i < cookies.length; i++) {
+      url = '';
+      if (cookies[i].secure) {
+        url += 'https://';
+      } else
+      {
+        url += 'http://';
+      }
+      if (cookies[i].domain.indexOf('.') === 0) {
+        url += cookies[i].domain.substring(1);
+      } else
+      {
+        url += cookies[i].domain;
+      }
+      url += cookies[i].path;
+      cookies[i].url = url;
+    }
+    return cookies;
+  }
+
+  deleteCookiesFromApp(cookies) {
+    var newCookies = this.addUrlPropsToCookies(cookies);
+    for (var i = 0; i < newCookies.length; i++) {
+      pm.cookieManager.deleteCookie(newCookies[i].domain, newCookies[i].name, newCookies[i].path, function () {
+        // cookie is removed
+      });
+    }
+  }
+
+  checkTarget(id) {
+    var collections = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('ActiveWorkspaceStore').collections,
+    collection = _.find(collections, item => {return item.id === id;}),
+    editPermission = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('PermissionStore').can('edit', 'collection', id);
+
+    return collection && editPermission;
+  }
+
+  // Used to check if the content-type
+  // in the captured request is urlencoded
+  // The body needs to be split differently if this is the case
+  isUrlEncodedHeaderPresent(headers) {
+    for (var i = 0; i < headers.length; i++) {
+      if (headers[i].name.toLowerCase() === 'content-type') {
+        if (headers[i].value.search('urlencoded') >= 0) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  // Used to extract form data key-value
+  // pairs from the captured request
+  getFormData(data) {
+    var formData = [],
+    i;
+
+    if (!data) {
+      return formData;
+    }
+
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        var itemLength = data[key].length;
+        for (i = 0; i < itemLength; i++) {
+          formData.push({
+            'key': key,
+            'value': data[key][i] });
+
+        }
+      }
+    }
+
+    return formData;
+  }
+
+  getRawData(data) {
+    if (!data) {
+      return '';
+    }
+
+    return __WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].arrayBufferToString(__WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer___default.a.decode(data));
+  }
+
+  addRequestObject(requestObj) {
+    var interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore'),
+    target_id = interceptorSettingsStore.requestCaptureTarget(),
+    request;
+
+    request = {
+      name: requestObj.url,
+      url: requestObj.url,
+      method: requestObj.method,
+      headers: {},
+      headerData: [],
+      data: '' };
+
+
+    // modify request for sync
+    requestObj.requestHeaders.forEach(data => {
+      var headers = Object.values(data);
+      request.headers[data.name] = data.value;
+      request.headerData.push({
+        key: data.name,
+        value: data.value });
+
+    });
+
+    // different types of body are encoded differently at the interceptor's end
+    if (requestObj.requestBody) {
+      if (requestObj.requestBodyType === 'formData') {
+        if (this.isUrlEncodedHeaderPresent(requestObj.requestHeaders)) {
+          request.dataMode = 'urlencoded';
+        } else
+        {
+          request.dataMode = 'params';
+        }
+
+        // TODO: Think about removing Content-Type header
+        request.data = this.getFormData(_.get(requestObj, 'requestBody.formData'));
+      } else
+      {
+        request.dataMode = 'raw';
+        request.data = this.getRawData(_.get(requestObj, 'requestBody.rawData'));
+      }
+    }
+
+    if (this.checkTarget(target_id)) {
+      __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__["a" /* default */].
+      get().
+      then(user => {
+        _.assign(request, {
+          id: __WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].guid(),
+          collection: target_id,
+          owner: user.id });
+
+
+        let requestCreateEvent = {
+          name: 'create_deep',
+          namespace: 'request',
+          data: { request },
+          target: {
+            model: 'collection',
+            modelId: target_id } };
+
+
+        Object(__WEBPACK_IMPORTED_MODULE_2__modules_pipelines_user_action__["a" /* default */])(requestCreateEvent).
+        then(response => {
+          if (!_.isEmpty(_.get(response, 'error'))) {
+            pm.logger.error('Error in creating collection from InterceptorManager', response.error);
+            return;
+          }
+        });
+      }).
+      catch(err => {
+        pm.logger.error('Error while creating collection from InterceptorManager', err);
+      });
+    }
+
+    // else create history
+    else {
+        __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__["a" /* default */].
+        get().
+        then(user => {
+          if (!user) {
+            pm.logger.error(new Error('InterceptorManager: Could not create history. Current user is missing.'));
+            return;
+          }
+
+          let currentDate = new Date(),
+          workspace = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('ActiveWorkspaceSessionStore').workspace,
+          historyCreateEvent = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["a" /* createEvent */])(
+          'create',
+          'history',
+          _.assign({}, request, { id: __WEBPACK_IMPORTED_MODULE_1__utils_util__["a" /* default */].guid(), createdAt: currentDate.toISOString(), workspace, owner: user.id, lastUpdatedBy: user.id }));
+
+
+          return Object(__WEBPACK_IMPORTED_MODULE_2__modules_pipelines_user_action__["a" /* default */])(historyCreateEvent).
+          catch(e => {console.log('Error in creating history through proxy', e);});
+        });
+      }
+  }};
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (InterceptorManager);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 3068:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UIEventService__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_UIEventConstants__ = __webpack_require__(219);
 
 
 
@@ -3672,31 +6412,222 @@ function _handleLogout() {
 
 /***/ }),
 
-/***/ 3076:
+/***/ 3069:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__in_app_messaging_InAppController__ = __webpack_require__(613);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__ = __webpack_require__(669);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__ = __webpack_require__(3077);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_APIService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_HttpService__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_postman_collection__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_UIEventService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_NotificationRequestActionService__ = __webpack_require__(3078);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__controllers_PopoverController__ = __webpack_require__(3079);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_ExtractDomainFromURLUtil__ = __webpack_require__(3080);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_services_LessonAPIService__ = __webpack_require__(532);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__external_navigation_ExternalNavigationService__ = __webpack_require__(72);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_EditorService__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(2);
 
 
 
 
 
+const actions = ['switchedWorkspace', 'joined', 'lockUserSession', 'authenticated'],
+nameSpaces = ['workspace', 'user', 'authentication'];
 
+let launchpadService = {
+
+  // Flag used to verify whether user session expired or not.
+  isSessionExpired: false,
+
+  // open launchpad.
+  openLaunchpad(data) {
+
+    let openEditors = _.difference(data.editorOrder, data.closedEditors),
+    launchpadSettingByUser = pm.settings.getSetting('openLaunchpad'),
+    openLaunchpad = true,
+    count = 0;
+
+    if (!launchpadSettingByUser) {
+      return;
+    }
+
+    _.forEach(openEditors, editor => {
+      let editorInfo = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor);
+
+      if (_.get(editorInfo.model.info, 'model') !== 'request') {
+        openLaunchpad = false;
+        return false;
+      }
+
+      if (_.get(editorInfo.model, 'isDirty')) {
+        openLaunchpad = false;
+        return false;
+      }
+
+      if (editorInfo.model.baseResource !== undefined) {
+        openLaunchpad = false;
+        return false;
+      }
+
+      count++;
+
+    });
+
+    if (openLaunchpad && count === openEditors.length) {
+      __WEBPACK_IMPORTED_MODULE_0__services_EditorService__["a" /* default */].open('customview://launchpad', { preview: false });
+    }
+  },
+
+  async hydrateEditorStores() {
+    // wait for ActiveWorkspaceSessionStore to be initialized.
+    await new Promise(resolve => {
+      if (Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').id) {
+        return resolve();
+      }
+
+      let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').id, () => {
+        disposer && disposer();
+        resolve();
+      });
+    });
+
+    let session = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore'),
+    openEditors = _.difference(session.editorOrder, session.closedEditors);
+
+    if (_.isEmpty(openEditors)) {
+      return session;
+    }
+
+    // wait for editor tabs in editor store to initialize.
+    await Promise.all(_.map(openEditors, editor => {
+      return new Promise(resolve => {
+        if (!_.isEmpty(Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor))) {
+          return resolve();
+        }
+
+        let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor), () => {
+          disposer && disposer();
+          resolve();
+        });
+      });
+    }));
+
+    // wait for each editor tab lifecycle to be idle
+    await Promise.all(_.map(openEditors, editor => {
+      return new Promise(resolve => {
+        let lifecycle = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor).lifecycle;
+
+        if (lifecycle === 'idle') {
+          return resolve();
+        }
+
+        let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor).lifecycle, lifecycle => {
+          if (lifecycle === 'idle') {
+            disposer && disposer();
+            resolve();
+          }
+        });
+      });
+    }));
+
+    return session;
+  },
+
+  // handle all model-events
+  handleEvents(event) {
+    Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["i" /* processEvent */])(event, actions, async (processedEvent, cb) => {
+      let eventNameSpace = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["g" /* getEventNamespace */])(processedEvent),
+      eventName = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["f" /* getEventName */])(processedEvent),
+      eventData = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["d" /* getEventData */])(processedEvent);
+
+      if (!_.includes(nameSpaces, eventNameSpace)) {
+        return cb();
+      }
+
+      if (!_.includes(actions, eventName)) {
+        return cb();
+      }
+
+      if (eventName === 'switchedWorkspace') {
+        let switchedWorkspaceId = eventData.workspace,
+        session;
+
+        await launchpadService.hydrateActiveWorkspaceSessionStore(switchedWorkspaceId);
+
+        session = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore');
+
+        launchpadService.openLaunchpad(session);
+      }
+
+      if (eventName === 'joined') {
+        let joinedWorkspaceId = _.get(eventData.workspace, 'id'),
+        session;
+
+        if (joinedWorkspaceId) {
+          await launchpadService.hydrateActiveWorkspaceSessionStore(joinedWorkspaceId);
+          session = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore');
+
+          launchpadService.openLaunchpad(session);
+        }
+      }
+
+      if (eventName === 'lockUserSession') {
+        launchpadService.isSessionExpired = true;
+      }
+
+      if (eventName === 'authenticated') {
+        if (launchpadService.isSessionExpired) {
+          launchpadService.isSessionExpired = false;
+          return;
+        }
+
+        let session = await launchpadService.hydrateEditorStores();
+
+        launchpadService.openLaunchpad(session);
+      }
+    });
+  },
+
+  // verify the workspace is switched or joined.
+  hydrateActiveWorkspaceSessionStore(workspaceId) {
+    return new Promise(resolve => {
+      if (Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').workspace === workspaceId) {
+        return resolve();
+      }
+
+      let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').workspace, workspace => {
+        if (workspace === workspaceId) {
+          disposer && disposer();
+          resolve();
+        }
+      });
+    });
+  },
+
+  async initialize() {
+
+    let modelEventChannel = pm.eventBus.channel('model-events'),
+    authHandlerEventChannel = pm.eventBus.channel('auth-handler-events');
+
+    modelEventChannel.subscribe(this.handleEvents);
+    authHandlerEventChannel.subscribe(this.handleEvents);
+
+    let session = await this.hydrateEditorStores();
+
+    // open launchpad on app boot.
+    this.openLaunchpad(session);
+  } };
+
+
+/* harmony default export */ __webpack_exports__["a"] = (launchpadService);
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 3074:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__in_app_messaging_InAppController__ = __webpack_require__(619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__ = __webpack_require__(684);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__ = __webpack_require__(3075);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_PopoverController__ = __webpack_require__(3076);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_InAppEngagementService__ = __webpack_require__(1367);
 
 
 
@@ -3705,9 +6636,9 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 
 /**
-                                                                                         * @param {*} cb
-                                                                                         *
-                                                                                         */
+                                                                             * @param {*} cb
+                                                                             *
+                                                                             */
 function bootInAppMessaging(cb) {
   /*
                                  * Consumer of in-app messages need to register its ownn handlers with in-app
@@ -3727,11 +6658,11 @@ function bootInAppMessaging(cb) {
         __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__["a" /* default */].show();
       },
       text: message => {
-        Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('TextMessageStore').addNotification(message);
+        Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('TextMessageStore').addNotification(message);
       },
 
       popover: message => {
-        Object(__WEBPACK_IMPORTED_MODULE_9__controllers_PopoverController__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["d" /* transformForPopover */])(message), _.get(message, 'message.target'));
+        Object(__WEBPACK_IMPORTED_MODULE_4__controllers_PopoverController__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["d" /* transformForPopover */])(message), _.get(message, 'message.target'));
       },
 
       backgroundPush: message => {
@@ -3746,61 +6677,9 @@ function bootInAppMessaging(cb) {
 
 
 
-    actionHandlers: {
-      appAPI: data => {
-        __WEBPACK_IMPORTED_MODULE_7__services_UIEventService__["a" /* default */].publish(data.action);
-      },
+    actionHandlers: __WEBPACK_IMPORTED_MODULE_5__services_InAppEngagementService__["a" /* default */] });
 
-      openURL: data => {
-        Object(__WEBPACK_IMPORTED_MODULE_12__external_navigation_ExternalNavigationService__["a" /* openExternalLink */])(data.action);
-      },
-
-      openAuthenticatedURL: data => {
-        Object(__WEBPACK_IMPORTED_MODULE_4__modules_services_APIService__["u" /* openAuthenticatedRoute */])(data.action);
-      },
-
-      makeRequest: (data, notification) => {
-
-        let user = Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('CurrentUserStore'),
-        accessToken = _.get(user, 'auth.access_token'),
-        string = __WEBPACK_IMPORTED_MODULE_6_postman_collection__["Property"].replaceSubstitutions(JSON.stringify(data.request), notification.variables),
-        request = JSON.parse(string),
-        headers = request.headers || {},
-        domain = Object(__WEBPACK_IMPORTED_MODULE_10__utils_ExtractDomainFromURLUtil__["a" /* default */])(request.url),
-        queryParamMap = {
-          showNextLesson: [{
-            key: '__skill_sdk_version',
-            value: __WEBPACK_IMPORTED_MODULE_11__modules_services_LessonAPIService__["a" /* SKILL_SDK_VERSION */] }] };
-
-
-
-        if (_.includes(pm.trustedDomains, domain)) {
-          headers = _extends({},
-          headers, {
-            'x-access-token': accessToken });
-
-        }
-
-        let url = new URL(request.url);
-
-        if (queryParamMap[data.action]) {
-          let queryParameters = queryParamMap[data.action];
-          _.forEach(queryParameters, queryParam => {
-            url.searchParams.append(queryParam.key, queryParam.value);
-          });
-        }
-
-        __WEBPACK_IMPORTED_MODULE_5__utils_HttpService__["a" /* default */].request(url.href, {
-          method: request.method,
-          headers,
-          body: JSON.stringify(request.body) }).
-        then(({ body }) => {
-          Object(__WEBPACK_IMPORTED_MODULE_8__services_NotificationRequestActionService__["a" /* default */])(data, body);
-        });
-      } } });
-
-
-  Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["a" /* getStore */])('NotificationStore');
+  Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('NotificationStore');
   pm.logger.info('InAppMessaging~boot - Success');
   cb && cb(null);
 }
@@ -3810,7 +6689,7 @@ function bootInAppMessaging(cb) {
 
 /***/ }),
 
-/***/ 3077:
+/***/ 3075:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3819,7 +6698,7 @@ function bootInAppMessaging(cb) {
 /* harmony export (immutable) */ __webpack_exports__["d"] = transformForPopover;
 /* harmony export (immutable) */ __webpack_exports__["a"] = transformForBackgroundPush;
 /* harmony export (immutable) */ __webpack_exports__["c"] = transformForModal;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__ = __webpack_require__(79);
 
 
 /**
@@ -3907,32 +6786,13 @@ function transformForModal(message) {
 
 /***/ }),
 
-/***/ 3078:
+/***/ 3076:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UIEventService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lessons_LessonManager__ = __webpack_require__(652);
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ((buttonAction, responseBody) => {
-  let action = buttonAction.action;
-  if (action === 'showNextLesson' && responseBody.data) {
-    return __WEBPACK_IMPORTED_MODULE_1__lessons_LessonManager__["a" /* default */].startLesson(responseBody.data);
-  }
-  __WEBPACK_IMPORTED_MODULE_0__UIEventService__["a" /* default */].publish(action, responseBody);
-});
-
-/***/ }),
-
-/***/ 3079:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_XPaths_XPathManager__ = __webpack_require__(544);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_UIEventConstants__ = __webpack_require__(268);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_XPaths_XPathManager__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_UIEventConstants__ = __webpack_require__(219);
 
 
 
@@ -4003,74 +6863,16 @@ unsubscribeHandler;
 
 /***/ }),
 
-/***/ 3080:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = extractRootDomain;
-/**
- *
- * @param {*} url
- */
-function _extractHostname(url) {
-    var hostname;
-
-    if (url.indexOf('//') > -1) {
-        hostname = url.split('/')[2];
-    } else
-    {
-        hostname = url.split('/')[0];
-    }
-
-    // find & remove port number
-
-    hostname = hostname.split(':')[0];
-
-    // find & remove "?"
-
-    hostname = hostname.split('?')[0];
-
-    return hostname;
-}
-
-/**
-   * @param {*} url
-   * Takes a url and extract
-   */
-function extractRootDomain(url) {
-    var domain = _extractHostname(url),
-    splitArr = domain.split('.'),
-    arrLen = splitArr.length;
-
-    /*
-                                extracting the root domain here
-                                if there is a subdomain
-                              */
-
-    if (arrLen > 2) {
-        domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
-
-        // check to see if it's using a Country Code Top Level Domain (ccTLD) (i.e. ".me.uk")
-
-        if (splitArr[arrLen - 2].length == 2 && splitArr[arrLen - 1].length == 2) {
-            domain = splitArr[arrLen - 3] + '.' + domain;
-        }
-    }
-    return domain;
-}
-
-/***/ }),
-
-/***/ 3081:
+/***/ 3077:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = bootRuntimeListeners;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeRequestExecutionListener__ = __webpack_require__(3082);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_PersistResponseListener__ = __webpack_require__(3083);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_RuntimeRequestAuthorizationListener__ = __webpack_require__(3084);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_RuntimeConsoleEventsListener__ = __webpack_require__(3085);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_RuntimeRequestDownloadListener__ = __webpack_require__(3086);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeRequestExecutionListener__ = __webpack_require__(3078);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_PersistResponseListener__ = __webpack_require__(3079);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_RuntimeRequestAuthorizationListener__ = __webpack_require__(3080);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_RuntimeConsoleEventsListener__ = __webpack_require__(3081);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_RuntimeRequestDownloadListener__ = __webpack_require__(3082);
 
 
 
@@ -4101,21 +6903,34 @@ function bootRuntimeListeners(cb) {
 
 /***/ }),
 
-/***/ 3082:
+/***/ 3078:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestExecutionEvents;
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestExecutionEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__ = __webpack_require__(307);
 
 
 
-const NAMESPACE_REQUEST_EXECUTION = 'requestexecution';
+
+const NAMESPACE_REQUEST_EXECUTION = 'requestexecution',
+MAX_RESPONSE_SIZE_ERROR_MESSAGE = 'Maximum response size reached';
 
 let requestExecutionEventHandlers = {
   error(event, executionStore) {
     let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
+
+    // Adding special handling for request error when response is greater than specified
+    // maximum response size
+    if (eventData.phase === 'request' &&
+    eventData.error &&
+    eventData.error.message === MAX_RESPONSE_SIZE_ERROR_MESSAGE) {
+
+      // Return as this error is going to handled differently
+      return executionStore.maxResponseReached();
+    }
 
     executionStore.setErrors([{
       phase: eventData.phase,
@@ -4155,7 +6970,22 @@ let requestExecutionEventHandlers = {
   responseBodyReceived(event, executionStore) {
     let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
 
-    executionStore.updateResponseBody({ stream: eventData.responseBody });
+    executionStore.updateResponseBody(eventData.responseBody);
+  },
+
+  responseBodyStreamReceived(event, executionStore) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
+
+    // At this point we are getting the buffer from the IPC which is an UintUtf8Encoded array
+    // Note: global.Buffer is used due to a problem in webpack causing buffer library to be shimmed
+    executionStore.updateResponseStream(global.Buffer.from(eventData.responseBodyStream));
+  },
+
+  responseFinalized(event, executionStore) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
+
+    executionStore.updateResponseMeta(eventData.meta);
+    executionStore.updateResponseContentInfo(eventData.responseContentInfo);
   },
 
   cookiesReceived(event, executionStore) {
@@ -4170,16 +7000,37 @@ let requestExecutionEventHandlers = {
     executionStore.addAssertions(eventData.assertions);
   },
 
+  visualizerDataReceived(event, executionStore) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
+
+    executionStore.updateVisualizerData(eventData.visualizerData);
+  },
+
   finished(event, executionStore) {
     executionStore.setFinished();
   },
 
   terminated(event) {
-    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event),
+    executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('RequestExecutionStore'),
+    execution = executionStore.find(eventData.id);
 
-    // do not remove by origin, only remove by execution id
-    // removing by origin might cause race conditions
-    Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('RequestExecutionStore').remove(eventData.id);
+    /**
+                                                    * do not remove by origin, only remove by execution id
+                                                    * removing by origin might cause race conditions
+                                                    * BEHAVIOUR: On termination if the request is present in the staging area it's cleaned up.
+                                                    * If the response has already started then it will no longer be in the staging area
+                                                    * and will not be removed from the UI, instead the request will be cancelled
+                                                    *
+                                                    * If it was the case where a new request was started without canceling the previous request
+                                                    * the `RequestExecutionStore.add` method has already cleanup the execution and this will just
+                                                    * be an noop behaviour
+                                                    */
+    if (executionStore.hasStagingExecution(execution.origin)) {
+      executionStore.remove(eventData.id);
+    } else {
+      execution.setCancelled();
+    }
   } };
 
 
@@ -4194,7 +7045,7 @@ function handleRequestExecutionEvents(event) {
   }
 
   let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event),
-  executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('RequestExecutionStore').find(eventData.id);
+  executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('RequestExecutionStore').find(eventData.id);
 
   if (!executionStore) {
     return;
@@ -4202,20 +7053,21 @@ function handleRequestExecutionEvents(event) {
 
   requestExecutionEventHandlers[Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["f" /* getEventName */])(event)] && requestExecutionEventHandlers[Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["f" /* getEventName */])(event)](event, executionStore);
 }
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
 /***/ }),
 
-/***/ 3083:
+/***/ 3079:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = handleResponsePersistEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_HistoryResponseService__ = __webpack_require__(1238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_user_action__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_WorkspaceController__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_HistoryController__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_HistoryResponseService__ = __webpack_require__(1212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_user_action__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_WorkspaceController__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_HistoryController__ = __webpack_require__(133);
 
 
 
@@ -4291,7 +7143,7 @@ function handleResponsePersistEvents(event) {
   }
 
   let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event),
-  executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('RequestExecutionStore').find(eventData.id);
+  executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('RequestExecutionStore').find(eventData.id);
 
   if (!executionStore) {
     return;
@@ -4303,13 +7155,13 @@ function handleResponsePersistEvents(event) {
 
 /***/ }),
 
-/***/ 3084:
+/***/ 3080:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestAuthorizationEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
 
 
 
@@ -4341,7 +7193,7 @@ function handleRequestAuthorizationEvents(event) {
     return;
   }
 
-  let executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('RequestExecutionStore'),
+  let executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('RequestExecutionStore'),
   execution = executionStore.findByOrigin(event.data.info.origin);
 
   // request was not from this window, or no longer present
@@ -4358,24 +7210,26 @@ function handleRequestAuthorizationEvents(event) {
 
 /***/ }),
 
-/***/ 3085:
+/***/ 3081:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = handleConsoleLogEvents;
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = handleConsoleLogEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_VariableSessionService__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__ = __webpack_require__(307);
 
 
 
+
+// @debt: The events for the request `net` and `netError` should not be in
+// console listener. Console events listener should just listen to console
+// events. This also means changing the runtime execution service in main
+// process to not send console events for request. The logging of request on the
+// console is renderer's responsibility.
 
 let consoleEventListeners = {
   net(event) {
-    if (!pm || !pm.console) {
-      return;
-    }
-
     let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
 
     if (!(eventData && eventData.cursor)) {
@@ -4384,40 +7238,48 @@ let consoleEventListeners = {
 
     let payload = { request: eventData.request };
 
-    eventData.response && (payload.response = eventData.response);
-
-    pm.console.net(eventData.cursor.httpRequestId, payload);
-  },
-
-  netError(event) {
-    if (!pm || !pm.console) {
-      return;
+    // If the cursor has a scriptId then we can safely assume that this was an indirect
+    // sendRequest
+    if (_.has(eventData, 'cursor.scriptId')) {
+      payload.indirect = 'request';
     }
 
-    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
-
-    if (!(eventData && eventData.cursor)) {
-      return;
+    if (eventData.history) {
+      payload.history = eventData.history;
     }
 
-    pm.console.netErr(eventData.cursor.httpRequestId, eventData.error, {
-      request: eventData.request,
-      response: eventData.response });
+    if (eventData.response) {
+      payload.response = eventData.response;
+    }
 
+    if (eventData.error) {
+      payload.error = eventData.error;
+
+      return pm.newConsole.error(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, payload);
+    }
+
+    // Emit the log event to console
+    return pm.newConsole.log(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, payload);
   },
 
   log(event) {
-    if (!pm || !pm.console) {
-      return;
-    }
-
     let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
 
     if (!(eventData && eventData.cursor)) {
       return;
     }
 
-    pm.console.log(eventData.cursor, eventData.level, ...eventData.messages);
+    pm.newConsole.write(eventData.level, __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["b" /* CONSOLE_EVENT_LOG */], {}, eventData.messages);
+  },
+
+  exception(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event);
+
+    if (!(eventData && eventData.cursor)) {
+      return;
+    }
+
+    pm.newConsole.error(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["a" /* CONSOLE_EVENT_EXCEPTION */], {}, eventData.error);
   } };
 
 
@@ -4433,7 +7295,7 @@ function handleConsoleLogEvents(event) {
   }
 
   let eventData = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["d" /* getEventData */])(event),
-  executionStore = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('RequestExecutionStore').find(eventData.id);
+  executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('RequestExecutionStore').find(eventData.id);
 
   if (!executionStore) {
     return;
@@ -4441,17 +7303,18 @@ function handleConsoleLogEvents(event) {
 
   consoleEventListeners[Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["f" /* getEventName */])(event)] && consoleEventListeners[Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["f" /* getEventName */])(event)](event);
 }
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 3086:
+/***/ 3082:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestDownloadEvent;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_services_filesystem__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_services_filesystem__ = __webpack_require__(546);
 
 
 
@@ -4464,7 +7327,7 @@ let requestExecutionEventHandlers = {
       return;
     }
 
-    let executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["a" /* getStore */])('RequestExecutionStore').find(event.data && event.data.id);
+    let executionStore = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('RequestExecutionStore').find(event.data && event.data.id);
 
     if (!executionStore || !executionStore.download) {
       return;
@@ -4474,9 +7337,11 @@ let requestExecutionEventHandlers = {
     contentInfo = executionStore.responseContentInfo;
 
     Object(__WEBPACK_IMPORTED_MODULE_2__models_services_filesystem__["c" /* saveAndOpenFileForResponse */])(contentInfo, stream, err => {
-      if (!err) {
-        pm.toasts.success('Downloaded Response');
+      if (err) {
+        return pm.toasts.error('Error while saving the response: ' + (err.message || ''));
       }
+
+      pm.toasts.success('Downloaded Response');
     });
   } };
 
@@ -4496,22 +7361,1914 @@ function handleRequestDownloadEvent(event) {
 
 /***/ }),
 
-/***/ 3087:
+/***/ 3083:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 503:
+/***/ 309:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toChangesets; });
+/* unused harmony export toEvents */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+
+
+
+
+const ACTION_IMPORT = 'import',
+ACTION_UPDATE = 'update',
+ACTION_TRANSFER = 'transfer',
+ACTION_DESTROY = 'destroy',
+
+EVENT_CREATE_DEEP = 'create_deep',
+EVENT_UPDATE = 'update',
+EVENT_DELETE = 'delete',
+
+ORDER = 'order',
+FOLDERS_ORDER = 'folders_order';
+
+let toChangesets = {
+  created(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    changesetData;
+
+    // default changeset data
+    changesetData = {
+      modelId: eventData.id,
+      instance: eventData,
+      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
+
+
+    // if the model is identified by owner, add owner information to changeset data
+    eventData.owner && (changesetData.owner = eventData.owner);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_IMPORT, changesetData)];
+  },
+
+  updated(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventMeta = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["e" /* getEventMeta */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    changesetData;
+
+    // default changeset data
+    changesetData = {
+      modelId: eventData.id,
+      instance: eventData,
+      keys: eventMeta.updatedKeys,
+      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
+
+
+    // if the model is identified by owner, add owner information to changeset data
+    eventData.owner && (changesetData.owner = eventData.owner);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_UPDATE, changesetData)];
+  },
+
+  /**
+      * 1. Create a changeset for transferring the item. Sync will add this item to the last position in parent.
+      * 2. Create a changeset for updating the position on the parent. (Response move doesn't have a parent update).
+      */
+  moved: function (event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    transferredItem = eventData[eventData.model],
+    transferChangesetData = {},
+    target = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event).target,
+    changesets = [],
+    lowLevelEvents = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["h" /* getLowLevelEvents */])(event),
+    parentUpdatedEvent;
+
+    // 1. Transfer changeset
+    // 1.a Add model info
+    transferChangesetData.modelId = transferredItem.id;
+    transferChangesetData.instance = transferredItem;
+
+    // 1b. Add target info
+    transferChangesetData.to = _.pick(target, ['model', 'modelId']);
+
+    // 1c. Add source info
+    transferChangesetData.parent = transferChangesetData.from = Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(transferredItem, eventNamespace);
+
+    changesets.push(Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(event.namespace, ACTION_TRANSFER, transferChangesetData));
+
+    // 2. Find the updated changeset on target for order update
+    // we do this because a transfer changeset only moves the item to target at the end
+    // hence the order should be sent as an explicit order update changeset to sync
+    parentUpdatedEvent = _.find(lowLevelEvents, stage1Event => {
+      return Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(stage1Event) === 'updated' && _.get(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(stage1Event), 'id') === target.modelId;
+    });
+
+    if (parentUpdatedEvent) {
+      changesets = changesets.concat(toChangesets.updated(parentUpdatedEvent));
+    }
+
+    return changesets;
+  },
+
+  deleted(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    changesetData;
+
+    // default changeset data
+    changesetData = {
+      modelId: eventData.id,
+      instance: eventData,
+      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
+
+
+    // if the model is identified by owner, add owner information to changeset data
+    eventData.owner && (changesetData.owner = eventData.owner);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_DESTROY, changesetData)];
+  } },
+
+
+toEvents = {
+  import(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
+  },
+
+  create(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']);
+
+    // remove any child references, and child order references
+    instance = _.omit(instance, ['folders', 'requests', 'responses', 'folders_order', 'order']);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
+  },
+
+  update(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']),
+    events = [],
+
+    updateData,
+    hasShallowUpdates,
+
+    // look for order properties in update changesets
+    orderUpdateData = {};
+
+    if (model === 'request' || model === 'response') {
+      return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, instance)];
+    }
+
+    // if sync sends an order property via an update, it means an order update
+    // we can drop order updates with `order` and `folders_order` for null and []
+    // because sync will never intend a remove all children via a parent update
+    !_.isEmpty(instance, ORDER) && (orderUpdateData.order = instance.order);
+    !_.isEmpty(instance, FOLDERS_ORDER) && (orderUpdateData.folders_order = instance.folders_order);
+
+    // look for order properties in update changesets
+    if (!_.isEmpty(orderUpdateData)) {
+      orderUpdateData.id = _.get(changeset, ['data', 'modelId']);
+
+      events.push(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('reorder_children', changeset.model, {
+        model: changeset.model,
+        [changeset.model]: orderUpdateData }));
+
+    }
+
+    // remove order update properties
+    updateData = _.omit(instance, [FOLDERS_ORDER, ORDER]);
+
+    // see if there are any other updates other than order updates
+    hasShallowUpdates = _.chain(updateData).omit(['id']).keys().isEmpty().value();
+
+
+    if (!hasShallowUpdates) {
+      // create an update event without the order updates
+      events.push(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, updateData));
+    }
+
+    return events;
+  },
+
+  transfer: function (changeset) {
+    let model = changeset.model;
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('move', model, {
+      model: model,
+      [model]: { id: _.get(changeset, ['data', 'modelId']) },
+      target: _.pick(_.get(changeset, 'data.to'), ['model', 'modelId']) })];
+
+  },
+
+  destroy(changeset) {
+    let model = changeset.model,
+    modelId = _.get(changeset, ['data', 'modelId']);
+
+    // @todo: need to change all collection model deletes to deleteDeep
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_DELETE, model, { id: modelId })];
+  } };
+
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 310:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getCurrentSocketStatus;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getSocketStatusObservable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+
+
+
+
+/**
+                                                                   * Used to get the current socket status
+                                                                   *
+                                                                   * Status is one of these:
+                                                                   *  offline: neither connecting nor connected
+                                                                   *  connecting: socket connecting but not connected yet
+                                                                   *  connected: socket connected
+                                                                   *
+                                                                   * @returns {String}
+                                                                   */
+function getCurrentSocketStatus() {
+  let isSocketConnecting = pm.syncManager.get('connectingToSocket'),
+  isSocketConnected = pm.syncManager.get('socketConnected');
+
+  if (!isSocketConnecting && !isSocketConnected) {
+    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */];
+  }
+
+  if (isSocketConnecting && !isSocketConnected) {
+    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["b" /* SOCKET_CONNECTING */];
+  }
+
+  if (!isSocketConnecting && isSocketConnected) {
+    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["a" /* SOCKET_CONNECTED */];
+  }
+
+  return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */];
+}
+
+/**
+   * @returns {Observable}
+   */
+function getSocketStatusObservable() {
+  return new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](observer => {
+
+    // push the initial value of socket status
+    observer.next(getCurrentSocketStatus());
+
+    let onchange = () => {
+      observer.next(getCurrentSocketStatus());
+    };
+
+    let onRequestStatus = pm.eventBus.channel('sync-manager-internal').subscribe(event => {
+      let eventName = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(event),
+      eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event);
+
+      if (eventName === 'pull' && eventNamespace === 'syncStatus') {
+        observer.next(getCurrentSocketStatus());
+      }
+    });
+
+    // listen for changes and on each change of value
+    // recompute the socket status and push to the observable
+    pm.syncManager.on('change:connectingToSocket', onchange),
+    pm.syncManager.on('change:socketConnected', onchange);
+
+    return () => {
+      pm.syncManager.off('change:connectingToSocket', onchange),
+      pm.syncManager.off('change:socketConnected', onchange);
+      onRequestStatus && onRequestStatus();
+    };
+  });
+}
+
+/***/ }),
+
+/***/ 33:
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 353:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export getCommentOptions */
+/* unused harmony export fetchCollection */
+/* unused harmony export fetchTeamCollection */
+/* unused harmony export fetchEnvironment */
+/* unused harmony export fetchWorkspaces */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchHistory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchCollectionRun; });
+/* unused harmony export fetchNotifications */
+/* unused harmony export fetchGlobals */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return scheduleFetch; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_async__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sync_timeline_helpers_SocketStatusService__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ACConstants__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_SyncStatusConstants__ = __webpack_require__(150);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
+
+
+
+
+
+
+
+
+
+const USER = 'user',
+TEAM = 'team',
+ALLOWED_PERMISSIONS_FOR_TEAM = 'ALLOWED_PERMISSIONS_FOR_TEAM',
+ALLOWED_PERMISSIONS_FOR_USER = 'ALLOWED_PERMISSIONS_FOR_USER',
+actorPermissionsMap = {
+  [USER]: ALLOWED_PERMISSIONS_FOR_USER,
+  [TEAM]: ALLOWED_PERMISSIONS_FOR_TEAM };
+
+
+/**
+                                           * Interface to get stuff from Sync.
+                                           */
+
+/**
+                                               * Fetches a collection from Sync server.
+                                               *
+                                               * @param {Object} criteria
+                                               * @param {String} criteria.id
+                                               * @param {String} criteria.owner
+                                               *
+                                               * @returns {Promise<Object>}
+                                               */
+function fetchCollection(criteria) {
+  if (!criteria) {
+    return Promise.reject(new Error('SyncFetcherService: Missing criteria to fetch collection.'));
+  }
+
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])(),
+  collection = criteria.id,
+  owner = criteria.owner;
+
+  return new Promise((resolve, reject) => {
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'collection',
+      action: 'findOne',
+      meta: {
+        query: { populate: 'true' },
+        pathVariables: { id: `${owner}-${collection}` } } },
+
+    function (msg) {
+      if (msg.error) {
+        return reject(new Error(msg.error));
+      }
+
+      // extract collection
+      let collection = msg.data;
+
+      // add meta information to collection
+      _.assign(collection, _.pick(msg.meta, ['favorite', 'permissions']));
+
+      // return collection
+      return resolve(collection);
+    });
+  });
+}
+
+/**
+   * Fetches a team property of a collection from Sync server.
+   *
+   * @param {String} collectionUid
+   *
+   * @returns {Promise<Object>}
+   */
+function fetchTeamCollection(collectionUid) {
+  if (!collectionUid) {
+    return Promise.reject(new Error('SyncFetcherService: Missing collectionUid to fetch collection.'));
+  }
+
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'collection',
+      action: 'findOneTeam',
+      meta: {
+        pathVariables: { uid: collectionUid } } },
+
+    function (msg) {
+      if (msg.error) {
+        return reject(new Error(msg.error));
+      }
+
+      return resolve(_.get(msg, 'data.team'));
+    });
+  });
+}
+
+/**
+   * Fetches all the team collections for a given workspace
+   *
+   * @param {String} workspaceId
+   *
+   * @returns {Promise<Object>}
+   */
+function fetchTeamCollections(workspaceId) {
+  if (!workspaceId) {
+    return Promise.reject(new Error('SyncFetcherService: Missing workspaceId to fetch collections.'));
+  }
+
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'workspace',
+      action: 'findTeamCollections',
+      meta: {
+        pathVariables: { id: workspaceId },
+        query: { team: 'true' } } },
+
+    function (msg) {
+      if (msg.error) {
+        return reject(new Error(msg.error));
+      }
+
+      return resolve(_.get(msg, 'data.collections'));
+    });
+  });
+}
+
+/**
+   * Fetches all forked collections from sync for given user id
+   *
+   * @returns {Promise<Object>}
+   */
+function fetchAllForkedCollections() {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'collection',
+      action: 'findForks' },
+    function (msg) {
+      if (!msg) {
+        return reject(new Error('SyncFetcherService~fetchAllForkedCollections: Invalid response returned by sync'));
+      }
+
+      if (msg.error) {
+        return reject(new Error(msg.error));
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   * Fetches a environment from Sync server.
+   *
+   * @param {Object} criteria
+   * @param {String} criteria.id
+   * @param {String} criteria.owner
+   *
+   * @returns {Promise<Object>}
+   */
+function fetchEnvironment(criteria) {
+  if (!criteria) {
+    return Promise.reject(new Error('SyncFetcherService: Missing criteria to fetch environment.'));
+  }
+
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])(),
+  collection = criteria.id,
+  owner = criteria.owner;
+
+  return new Promise((resolve, reject) => {
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'environment',
+      action: 'findOne',
+      meta: {
+        query: { populate: 'true' },
+        pathVariables: { id: `${owner}-${collection}` } } },
+
+    function (msg) {
+      if (msg.error) {
+        return reject(new Error(msg.error));
+      }
+
+      // extract env
+      let collection = msg.data;
+
+      // return env
+      return resolve(collection);
+    });
+  });
+}
+
+/**
+   *
+   * @param {*} action
+   * @param {*} criteria
+   * @param {*} options
+   */
+function fetchWorkspaces(action, criteria, options) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = {},
+    data;
+
+    // reusing the same function for get and other actions
+    // this is very wrong
+    // @todo: need to make a generic translator function that take a sync API and makes a sync request
+    if (action === 'findOne') {
+      meta = { query: { populate: criteria.populate }, pathVariables: { id: criteria.id } };
+    } else
+    if (action === 'join' || action === 'leave' || action === 'destroy') {
+      meta = { pathVariables: { id: criteria.id } };
+    } else
+    if (action === 'import') {
+      data = criteria;
+    } else
+    if (action === 'update') {
+      meta = { pathVariables: { id: criteria.id } };
+      data = criteria;
+    } else
+    if (action === 'archivedCount') {
+      meta = { pathVariables: { id: criteria.id } };
+      data = criteria;
+    } else
+    if (action === 'find') {
+      if (_.isEmpty(criteria)) {
+        meta = {};
+      } else
+      {
+        meta = { query: _.pick(criteria, ['dependencies', 'populate', 'type']) };
+      }
+    }
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'workspace',
+      action,
+      data,
+      meta },
+    function (msg) {
+      if (!msg || msg.error) {
+        return reject(new Error(_.get(msg, 'error.message') || _.get(msg, 'error')));
+      }
+
+      let data;
+
+      data = _.isArray(msg) ? _.map(msg, 'data') : msg.data;
+
+      if (options && options.pushToSyncQueue) {
+        let syncResponses = _.isArray(msg) ? _.map(msg, item => {return _.cloneDeep(item);}) : [_.cloneDeep(msg)];
+
+        __WEBPACK_IMPORTED_MODULE_6_async___default.a.eachSeries(syncResponses, function (response, next) {
+          let changeset = Object(__WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(response);
+          return Object(__WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(changeset).
+          then(() => {
+            next(null);
+          }).
+          catch(() => {
+            next(null);
+          });
+        }, function () {
+          return resolve(data);
+        });
+      } else {
+        return resolve(data);
+      }
+
+    });
+  });
+}
+
+function fetchMonitors(action, criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = { query: _.pick(criteria, ['workspace', 'collection']) };
+
+    if (_.includes(['findOne', 'create', 'destroy'], action)) {
+      meta.pathVariables = { id: criteria.id };
+    }
+
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'monitor/proxy',
+      data: _.omit(criteria, 'workspace'),
+      action,
+      meta },
+    function (msg) {
+      if (!msg || msg.error) {
+        return reject(new Error(_.get(msg, 'error.message') || _.get(msg, 'error')));
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+function fetchMocks(action, criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = { query: _.pick(criteria, ['workspace', 'collection']) };
+    if (_.includes(['findOne', 'create', 'destroy', 'update'], action)) {
+      meta.pathVariables = { id: criteria.id };
+    }
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'mock/proxy',
+      data: _.omit(criteria, 'workspace'),
+      action,
+      meta },
+    function (msg) {
+
+      if (!msg || msg.error) {
+        return reject(new Error(_.get(msg, 'error.message') || _.get(msg, 'error')));
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+function fetchNotifications(action, criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta;
+    if (action === 'find') {
+      meta = { query: _extends({}, _.pick(criteria, ['limit', 'broadcastAt', 'type'])) };
+    }
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'notification',
+      action,
+      meta },
+    function (msg) {
+      if (!msg || msg.error) {
+        return reject(new Error(_.get(msg, 'error.message') || _.get(msg, 'error')));
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   *
+   */
+function fetchNotificationEvents(action, criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'notificationevent',
+      data: criteria.data,
+      action },
+    function (msg) {
+      if (!msg || msg.error) {
+        return reject(new Error(_.get(msg, 'error.message') || _.get(msg, 'error')));
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   *
+   * @param {*} action
+   * @param {*} criteria
+   */
+function fetchHistory(action, criteria, options) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = { query: _.omit(criteria, ['data']) };
+    if (_.includes(['findOne', 'create', 'destroy'], action)) {
+      meta.pathVariables = { id: criteria.id };
+    }
+
+    if (action === 'destroyAll') {
+      meta.query = { workspace: criteria.workspace };
+    }
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'history',
+      action,
+      meta },
+    function (msg) {
+
+      if (!msg || msg.error) {
+        return reject(new Error(msg.error.message || msg.error));
+      }
+
+
+      let data;
+
+      data = _.isArray(msg) ? _.map(msg, 'data') : msg.data;
+
+      return resolve(data);
+    });
+  });
+}
+
+/**
+   * Calls sync api for actions related to forking
+   *
+   * @param {String} action
+   * @param {Object} criteria
+   */
+function fetchFork(action, criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'collection',
+      data: { name: criteria.forkLabel },
+      meta: {
+        query: {
+          workspace: criteria.workspace },
+
+        pathVariables: {
+          id: criteria.collectionId } },
+
+
+      action: 'fork' },
+    function (response) {
+      if (!response || response.error) {
+        return reject(new Error(_.get(response, 'error.message')));
+      }
+
+      return resolve(response);
+    });
+  });
+}
+
+/**
+   *
+   * @param {*} action
+   * @param {*} criteria
+   */
+function fetchCollectionRun(action, criteria, options) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = { query: _.omit(criteria, ['data']) };
+    if (_.includes(['findOne', 'create', 'destroy'], action)) {
+      meta.pathVariables = { id: criteria.id };
+    }
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'collectionrun',
+      action,
+      meta },
+    function (msg) {
+
+      if (!msg || msg.error) {
+        return reject(new Error(msg.error.message || msg.error));
+      }
+
+      let data;
+
+      data = _.isArray(msg) ? _.map(msg, 'data') : msg.data;
+
+      return resolve(data);
+    });
+  });
+}
+
+/**
+   *
+   * @param {*} action
+   * @param {*} criteria
+   */
+function fetchGlobals(action, criteria, options) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = { query: _.omit(criteria, ['data']) };
+    if (_.includes(['findOne', 'create', 'destroy'], action)) {
+      meta.pathVariables = { workspace: criteria.workspace };
+    }
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'globals',
+      action,
+      meta },
+    function (msg) {
+
+      if (!msg || msg.error) {
+        return reject(new Error(msg.error.message || msg.error));
+      }
+
+
+      let data;
+
+      data = _.isArray(msg) ? _.map(msg, 'data') : msg.data;
+
+      return resolve(data);
+    });
+  });
+}
+
+/**
+   * Perform sync API actions on workspace settings model
+   *
+   * @param {String} action
+   * @param {Object} criteria
+   * @param {Object} options
+   */
+function fetchWorkspaceSettings(action, criteria, options) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    let meta = { query: _.omit(criteria, ['data']) };
+
+    meta.pathVariables = { workspace: criteria.workspace };
+
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'workspacesettings',
+      action,
+      meta,
+      data: criteria.data },
+    function (msg) {
+      // invalid message
+      if (!msg) {
+        return reject(new Error('SyncFetcherService: Could not get any response from sync'));
+      }
+
+      // error response
+      if (msg.error) {
+        let error = new Error(msg.error.message || 'Could not update workspace settings');
+
+        msg.error.message && (error.isErrorUserFriendly = true);
+
+        return reject(error);
+      }
+
+      let data;
+
+      if (options && options.pushToSyncQueue) {
+        let syncResponses = _.isArray(msg) ? _.map(msg, item => {return _.cloneDeep(item);}) : [_.cloneDeep(msg)];
+
+        __WEBPACK_IMPORTED_MODULE_6_async___default.a.eachSeries(syncResponses, function (response, next) {
+          let changeset = Object(__WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */])(response);
+          return Object(__WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(changeset).
+          then(() => {
+            next(null);
+          }).
+          catch(() => {
+            next(null);
+          });
+        }, function () {
+          return resolve(data);
+        });
+      } else {
+        return resolve(data);
+      }
+    });
+  });
+}
+
+/**
+   * Get options object for annotation service calls
+   * via websocket proxy
+   *
+   * | method | query                  | body                          | path |
+   * |--------|------------------------|-------------------------------|------|
+   * | get    | model, modelId, anchor | -                             | -    |
+   * | post   | -                      | model, modelId, body, anchor  | -    |
+   * | put    | -                      | body                          | id   |
+   * | delete | -                      | -                             | id   |
+   *
+   * @param {String} action - model action
+   * @param {Object} criteria - data needed for the action
+   * @returns {Object} options for request
+   */
+function getCommentOptions(action, criteria) {
+  const methodActionMap = {
+    find: 'get',
+    update: 'put',
+    create: 'post',
+    delete: 'delete' },
+
+  method = methodActionMap[action];
+
+  let query,
+  body,
+  path = '/comments';
+
+  switch (method) {
+    case 'get':
+      query = {
+        model: criteria.model,
+        modelId: criteria.modelId,
+        anchor: criteria.anchor };
+
+
+      break;
+    case 'post':
+      body = criteria;
+
+      break;
+    case 'put':
+      path = `${path}/${criteria.id}`;
+      body = _.omit(criteria, ['id']);
+
+      break;
+    case 'delete':
+      path = `${path}/${criteria.id}`;
+
+      break;}
+
+
+  return { method, path, query, body };
+}
+
+/**
+   * Perform sync actions for comments
+   *
+   * @param {String} action
+   * @param {Object} criteria
+   * @returns {Promise} resolves when sync returns
+   */
+function fetchComments(action, criteria) {
+  const socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    // request for the comment
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'ws/proxy',
+      data: _extends({
+        service: 'annotation' },
+      getCommentOptions(action, criteria)),
+
+      action: 'call',
+      meta: {} },
+    function (msg) {
+      if (!msg || msg.error) {
+        const err = new Error(_.get(msg, 'error.message') || _.get(msg, 'error'));
+
+        err.details = _.get(msg, 'error.details');
+        _.get(msg, 'error.message') && (err.isErrorUserFriendly = true);
+
+        return reject(err);
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   *  Fetches default role for an object type
+   */
+function fetchDefaultRoles(action, criteria) {
+  const socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    // request for the roles
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'roles',
+      action,
+      meta: {
+        query: {
+          objectType: criteria.objectType } } },
+
+
+    function (msg) {
+      if (!msg || msg.error) {
+        const err = new Error(_.get(msg, 'error.message') || _.get(msg, 'error'));
+
+        err.details = _.get(msg, 'error.details');
+        _.get(msg, 'error.message') && (err.isErrorUserFriendly = true);
+
+        return reject(err);
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+
+/**
+   * Returns roles options
+   *
+   * @param {String} action
+   * @param {Object} criteria
+   * @returns {Object} roleOptions - The path and body for the call
+   */
+function getRoleOptions(action, criteria) {
+  const BASE_ROLES_PATH = '/api/roles';
+
+  let path,
+  query,
+  body = criteria;
+
+  switch (action) {
+    case 'objectType':
+      path = `${BASE_ROLES_PATH}/list/by-objects`;
+      query = {
+        permissions: true,
+        populate: true };
+
+      break;
+    case 'object':
+      path = `${BASE_ROLES_PATH}/list-by-object`;
+      body = { item: _extends({}, criteria) };
+      break;}
+
+
+  return { path, body, query };
+}
+
+/**
+   * Fetches roles from sync by the given entity type
+   */
+function fetchRoles(action, criteria) {
+  const socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    // request for the roles
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'ws/proxy',
+      data: _extends({
+        service: 'acs',
+        method: 'post' },
+      getRoleOptions(action, criteria), {
+        query: {
+          permissions: true,
+          populate: true } }),
+
+
+      action: 'call',
+      meta: {} },
+    function (msg) {
+      if (!msg || msg.error) {
+        const err = new Error(_.get(msg, 'error.message') || _.get(msg, 'error'));
+
+        err.details = _.get(msg, 'error.details');
+        _.get(msg, 'error.message') && (err.isErrorUserFriendly = true);
+
+        return reject(err);
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   * Updates Collection Roles
+   *
+   * @param {*} action
+   * @param {*} criteria
+   * @param {*} options
+   */
+function fetchEntityRoles(action, criteria, options) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])(),
+  meta = { pathVariables: { id: criteria.id } };
+
+  return new Promise((resolve, reject) => {
+    // request for the collection
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: criteria.model,
+      action: 'roles',
+      data: criteria.data,
+      meta },
+    function (msg) {
+
+      if (!msg || msg.error) {
+        return reject(new Error(msg.error.message || msg.error));
+      }
+
+      let data = _.isArray(msg) ? _.map(msg, 'data') : msg.data;
+
+      return resolve(data);
+    });
+  });
+}
+
+/**
+   *
+   * @param {Object} queryObject
+   * @returns {Object} entityQueryObject
+   */
+function getEntityQueryObject(queryObject) {
+  let objectType = queryObject.objectType,
+  actorPermissionKey = actorPermissionsMap[queryObject.entityType],
+  permissions = __WEBPACK_IMPORTED_MODULE_8__constants_ACConstants__["a" /* default */][actorPermissionKey],
+  supportedPermissions = permissions && _.values(permissions[objectType]);
+
+  return _.reduce(supportedPermissions, (acc, permission) => {
+    let permissionCompositeKey = constructPermissionCompositeKey(_.assign({}, queryObject, { permission }));
+    acc[permissionCompositeKey] = _.assign(_.pick(queryObject, ['entityType', 'entityId', 'objectId', 'objectType']), { permission });
+    return acc;
+  }, {});
+}
+
+/**
+   * @param {Object} queryObjects
+   * @returns {Object} permissionQueryObject
+   */
+function getPermissionQueryObject(queryObjects) {
+  return _.reduce(queryObjects, (permissionQueryObject, queryObject) => {
+    return _.assign(permissionQueryObject, getEntityQueryObject(queryObject));
+  }, {});
+}
+
+
+/**
+   * @param {permissionQueryObject} permissionQueryObject
+   */
+function fetchPermissions(permissionQueryObject) {
+  const socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+  if (_.isEmpty(permissionQueryObject)) {
+    return Promise.reject(new Error('SyncFetcherService~fetchPermissions: The permissionQueryObject list to fetch permissions is empty'));
+  }
+
+  return new Promise((resolve, reject) => {
+    // request for the comment
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'ws/proxy',
+      data: {
+        path: '/api/permissions/check',
+        service: 'acs',
+        method: 'post',
+        body: { checks: permissionQueryObject } },
+
+      action: 'call',
+      meta: {} },
+    function (msg) {
+      if (!msg || msg.error) {
+        const err = new Error(_.get(msg, 'error.message') || _.get(msg, 'error'));
+
+        err.details = _.get(msg, 'error.details');
+        _.get(msg, 'error.message') && (err.isErrorUserFriendly = true);
+
+        return reject(err);
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   *
+   * @param {String} responseKey
+   * @returns {Object} { objectId, objectType, permission }
+   */
+function constructPermissionCompositeKey(queryObject) {
+  return `${queryObject.objectType}/${queryObject.objectId}/${queryObject.permission}`;
+}
+
+/**
+   *
+   * @param {String} responseKey
+   * @returns {Object} { objectId, objectType, permission }
+   */
+function destructPermissionCompositeKey(responseKey) {
+  let objectInfo = responseKey.split('/');
+  return {
+    objectType: objectInfo[0],
+    objectId: objectInfo[1],
+    permission: objectInfo[2] };
+
+}
+
+/**
+   * @param {Object} response
+   * @param {Object} response.results
+   */
+function transformedPermissionsResponse(response) {
+  return _.reduce(response.results, (transformedResponse, value, key) => {
+    let { objectId, objectType, permission } = destructPermissionCompositeKey(key),
+    entityKey = `${objectType}/${objectId}`;
+
+    if (transformedResponse[entityKey]) {
+      transformedResponse[entityKey].actions[permission] = value.allowed;
+    } else
+    {
+      transformedResponse[entityKey] = { objectType, objectId, actions: { [permission]: value.allowed } };
+    }
+
+    return transformedResponse;
+  }, {});
+}
+
+/**
+   *
+   * @param {Object} criteria
+   * @returns {Promise}
+   */
+function getPermissions(criteria) {
+  let syncResponse,
+  permissionQueryObject = getPermissionQueryObject(criteria.queryObjects);
+
+  return fetchPermissions(permissionQueryObject).
+  then(response => {
+    syncResponse = response;
+    let transformedResponse = transformedPermissionsResponse(response);
+
+    return Promise.all(_.map(_.keys(transformedResponse), key => {
+      return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(
+      Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('reload', 'permission', {
+        model: 'permission',
+        permission: transformedResponse[key] }));
+
+
+    }));
+  }).
+  then(() => {
+    return syncResponse;
+  });
+}
+
+
+/**
+   * Fetches the permission for a given list of objects
+   *
+   * @param {Array<Object>} criteria
+   * @param {String} criteria.entityType
+   * @param {String} criteria.entityId
+   * @param {String} criteria.permission
+   * @param {String} criteria.objectType
+   * @param {String} criteria.objectId
+   */
+function fetchPermissionPerObject(criteria) {
+  const socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    // request for the comment
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'ws/proxy',
+      data: {
+        path: '/api/permissions/check',
+        service: 'acs',
+        method: 'post',
+        body: { checks: criteria } },
+
+      action: 'call',
+      meta: {} },
+    function (msg) {
+      if (!msg || msg.error) {
+        const err = new Error(_.get(msg, 'error.message') || _.get(msg, 'error'));
+
+        err.details = _.get(msg, 'error.details');
+        _.get(msg, 'error.message') && (err.isErrorUserFriendly = true);
+
+        return reject(err);
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   * Fetches data from sync for an entity to check if it is shared
+   * with the team or not
+   *
+   * @param {*} action
+   * @param {*} criteria
+   */
+function fetchEntityShare(action, criteria) {
+  const socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: criteria.model,
+      action: 'isShared',
+      meta: { pathVariables: { id: criteria.id } } },
+    function (msg) {
+      if (!msg || msg.error) {
+        const err = new Error(_.get(msg, 'error.message') || _.get(msg, 'error'));
+
+        err.details = _.get(msg, 'error.details');
+        _.get(msg, 'error.message') && (err.isErrorUserFriendly = true);
+
+        return reject(err);
+      }
+
+      return resolve(msg);
+    });
+  });
+}
+
+/**
+   *
+   * @param {*} param
+   */
+function scheduleFetch({ type, id, model, action, criteria, options }) {
+  if (type !== 'request') {
+    return;
+  }
+
+  let currentSocketStatus = Object(__WEBPACK_IMPORTED_MODULE_7__sync_timeline_helpers_SocketStatusService__["a" /* getCurrentSocketStatus */])();
+
+  if (currentSocketStatus === __WEBPACK_IMPORTED_MODULE_9__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */] || currentSocketStatus === __WEBPACK_IMPORTED_MODULE_9__constants_SyncStatusConstants__["b" /* SOCKET_CONNECTING */]) {
+    return pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: 'Could not fetch from sync. Socket not connected.' });
+  }
+
+  if (model === 'collection') {
+    if (action === 'findOneTeam') {
+      fetchTeamCollection(criteria.collectionUId).then(response => {
+        if (!pm || !pm.eventBus) {
+          pm.logger.error('SyncFetcherService: Could not find event bus.');
+        }
+
+        pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+      }).
+      catch(error => {
+        pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+      });
+    }
+  }
+  if (model === 'workspace') {
+    if (action === 'findTeamCollections') {
+      fetchTeamCollections(criteria.workspaceId).then(response => {
+        if (!pm || !pm.eventBus) {
+          pm.logger.error('SyncFetcherService: Could not find event bus.');
+        }
+
+        pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+      }).
+      catch(error => {
+        pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+      });
+    } else
+    {
+      fetchWorkspaces(action, criteria, options).then(response => {
+        if (!pm || !pm.eventBus) {
+          pm.logger.error('SyncFetcherService: Could not find event bus.');
+        }
+
+        pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+      }).
+      catch(error => {
+        pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+      });
+    }
+  } else
+  if (model === 'workspacesettings') {
+    fetchWorkspaceSettings(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message, isErrorUserFriendly: error && error.isErrorUserFriendly });
+    });
+  } else
+  if (model === 'monitor') {
+    fetchMonitors(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else
+  if (model === 'mock') {
+    fetchMocks(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else
+  if (model === 'forkedcollection' && action === 'find') {
+    fetchAllForkedCollections(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else
+  if (model === 'collectionactivityfeed') {
+    fetchCollectionActivityFeed(criteria, options).then(response => {
+      Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('create', 'collectionactivityfeed', response));
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else if (model === 'workspaceactivityfeed') {
+    fetchWorkspaceActivityFeed(criteria, options).then(response => {
+      Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('create', 'workspaceactivityfeed', response));
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else
+
+  if (model === 'history') {
+    fetchHistory(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else
+  if (model === 'collectionrun') {
+    fetchCollectionRun(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, error: error && error.message });
+    });
+  } else
+  if (model === 'notification') {
+    fetchNotifications(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    });
+  } else
+  if (model === 'forkedcollection' && action === 'create') {
+    fetchFork(action, criteria).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    });
+  } else
+  if (model === 'notificationevent') {
+    fetchNotificationEvents(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    });
+  } else
+  if (model === 'comment') {
+    fetchComments(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({
+        type: 'response',
+        id,
+        error: error && error.message,
+        isErrorUserFriendly: error && error.isErrorUserFriendly });
+
+    });
+  } else
+  if (model === 'permission' && action === 'fetchPerObject') {
+    fetchPermissionPerObject(criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({
+        type: 'response',
+        id,
+        error: error && error.message,
+        isErrorUserFriendly: error && error.isErrorUserFriendly });
+
+    });
+  } else
+  if (model === 'permission') {
+    getPermissions(criteria).
+    then(syncResponse => {
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: syncResponse });
+    }).
+    catch(err => {
+      pm.eventBus.channel('sync-remote-fetch').publish({
+        type: 'response',
+        id,
+        error: err && err.message });
+
+    });
+  } else
+  if (model === 'roles') {
+    let rolesHandler;
+
+    switch (action) {
+      case 'collection':rolesHandler = fetchEntityRoles;break;
+      case 'api':rolesHandler = fetchEntityRoles;break;
+      case 'default':rolesHandler = fetchDefaultRoles;break;
+      default:rolesHandler = fetchRoles;}
+
+
+    rolesHandler(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({
+        type: 'response',
+        id,
+        error: error && error.message,
+        isErrorUserFriendly: error && error.isErrorUserFriendly });
+
+    });
+  } else
+  if (model === 'share') {
+    fetchEntityShare(action, criteria, options).then(response => {
+      if (!pm || !pm.eventBus) {
+        pm.logger.error('SyncFetcherService: Could not find event bus.');
+      }
+
+      pm.eventBus.channel('sync-remote-fetch').publish({ type: 'response', id, data: response });
+    }).
+    catch(error => {
+      pm.eventBus.channel('sync-remote-fetch').publish({
+        type: 'response',
+        id,
+        error: error && error.message,
+        isErrorUserFriendly: error && error.isErrorUserFriendly });
+
+    });
+  }
+}
+
+function fetchCollectionActivityFeed(criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  return __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__["a" /* default */].get().then(user => {
+    let isTeamMember = __WEBPACK_IMPORTED_MODULE_4__utils_util__["a" /* default */].isTeamMember(user),
+    sinceId = criteria.sinceId || null,
+    activityFeedUrlParams = { count: 20 };
+
+    _.assign(activityFeedUrlParams,
+    isTeamMember && { populate: true },
+    criteria.maxId && { max_id: criteria.maxId });
+
+
+    return new Promise((resolve, reject) => {
+      Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+        model: 'collection',
+        action: 'revisions',
+        meta: {
+          query: activityFeedUrlParams,
+          pathVariables: { id: `${criteria.ownerId}-${criteria.collectionId}` } } },
+
+      function (msg) {
+
+        let record = {
+          id: criteria.collectionId,
+          meta: _.get(msg, 'meta') || {},
+          feeds: _.get(msg, 'data') || [],
+          error: !msg || msg.error };
+
+
+        return resolve(record);
+      });
+    });
+  });
+}
+
+function fetchWorkspaceActivityFeed(criteria) {
+  let socket = Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["b" /* getSyncSocket */])();
+
+  let activityFeedUrlParams = { count: 20, populate: true };
+
+  _.assign(activityFeedUrlParams,
+  criteria.maxId && { max_id: criteria.maxId });
+
+
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["d" /* request */])(socket, {
+      model: 'workspace',
+      action: 'revisions',
+      meta: {
+        query: activityFeedUrlParams,
+        pathVariables: { id: criteria.workspaceId } } },
+
+    function (msg) {
+
+      let record = {
+        id: criteria.workspaceId,
+        meta: _.get(msg, 'meta') || {},
+        feeds: _.get(msg, 'data') || [],
+        error: !msg || msg.error };
+
+
+      return resolve(record);
+    });
+  });
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 515:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = findOne;
+/* harmony export (immutable) */ __webpack_exports__["a"] = find;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_SyncService__ = __webpack_require__(76);
+
+
+/**
+                               * Finds a single item for a given model from Sync server.
+                               *
+                               * @param {String} model
+                               * @param {Object} criteria
+                               * @param {Object} query
+                               * @param {Function} callback
+                               */
+function findOne(model, criteria, query, callback) {
+  let pathVariables;
+
+  if (model === 'globals') {
+    pathVariables = { workspace: criteria.workspace };
+  } else {
+    pathVariables = { id: criteria.id };
+  }
+
+  return Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["c" /* promisifiedRequest */])({
+    model: model,
+    action: 'findOne',
+
+    // @todo: compute this from path variables in SyncService instead of hardcoding here
+    meta: { pathVariables, query } }).
+
+
+  then(response => {
+    if (!response) {
+      return callback(new Error('Could not get any response from sync'));
+    }
+
+    if (response.error) {
+      return callback(new Error(response.error.message || response.error));
+    }
+
+    callback(null, response.data, response);
+  }).
+
+  catch(err => {
+    return callback(new Error(`Could not get any response from sync: ${err}`));
+  });
+}
+
+/**
+   * Finds all items for a given model from Sync server.
+   *
+   * @param {String} model
+   * @param {Object} query
+   * @param {Function} callback
+   */
+function find(model, query, callback) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__services_SyncService__["c" /* promisifiedRequest */])({
+    model: model,
+    action: 'find',
+    meta: { query } }).
+
+
+  then(response => {
+    if (!response) {
+      return callback(new Error('Could not get any response from sync'));
+    }
+
+    if (response.error) {
+      return callback(new Error(response.error.message || response.error));
+    }
+
+    callback(null, response);
+  }).
+
+  catch(err => {
+    return callback(new Error(`Could not get any response from sync: ${err}`));
+  });
+
+}
+
+/***/ }),
+
+/***/ 516:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = publishRealtimeOutgoingMessage;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__ = __webpack_require__(291);
+
+
+
+
+/**
+                                                                                       * An RxJS  Subject instance that is be used to publish real-time sync messages.
+                                                                                       * Subject guarantees that the observable is multi-cast and shares a single listener
+                                                                                       * for every subscriber.
+                                                                                       *
+                                                                                       * @type {Observable}
+                                                                                       */
+let realtimeOutgoingMessagesSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["c" /* Subject */]();
+
+/**
+                                                      * Returns an Observable of realtime messages from sync socket
+                                                      *
+                                                      * @returns
+                                                      */
+const realtimeOutgoingMessages$ = realtimeOutgoingMessagesSubject.asObservable();
+/* harmony export (immutable) */ __webpack_exports__["b"] = realtimeOutgoingMessages$;
+
+
+/**
+                                                                                          * an observable of real-time messages from sync socket till the socket disconnects
+                                                                                          *
+                                                                                          * Use this api if you are eventually resubscribing else if you don't after once socket
+                                                                                          * disconnect you will not get the messages.
+                                                                                          *
+                                                                                          * If not resubscribing use `realtimeOutgoingMessages`
+                                                                                          */
+const realtimeOutgoingMessagesTillSocketDisconnect$ = realtimeOutgoingMessages$.
+pipe(
+Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["k" /* takeUntil */])(Object(__WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__["b" /* getSocketDisconnectsObservable */])()));
+/* harmony export (immutable) */ __webpack_exports__["c"] = realtimeOutgoingMessagesTillSocketDisconnect$;
+
+
+
+/**
+                                               * Publishes a message to the realtime outgoing
+                                               *
+                                               * @returns
+                                               */
+function publishRealtimeOutgoingMessage(message) {
+  pm.logger.info('RealtimeSyncMessageService~publishRealtimeOutgoingMessage: Message received ' +
+  `${_.get(message, 'model')}:${_.get(message, 'action')}:${_.get(message, 'data.modelId') || _.get(message, 'data.instance.id')} ` +
+  `Timeline in message: ${_.get(message, 'meta.timeline.model')}:${_.get(message, 'meta.timeline.model_id')}`);
+
+  realtimeOutgoingMessagesSubject.next(message);
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 517:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeHydratedChangeset; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_outgoing_models__ = __webpack_require__(518);
+
+
+/**
+                                                              * sanitize hydrated changeset
+                                                              *
+                                                              * @param {any} changeset
+                                                              */
+function sanitizeHydratedChangeset(changeset) {
+  let {
+    model,
+    action,
+    data } =
+  changeset,
+  syncModel = __WEBPACK_IMPORTED_MODULE_0__modules_sync_outgoing_models__["a" /* default */][model],
+  instance;
+
+  if (!data || !data.instance) {
+    return;
+  }
+
+  // do not sanitize destroy changesets
+  if (action === 'destroy') {
+    return;
+  }
+
+  // get the instance from changeset
+  instance = data.instance;
+
+  // check if this model needs sanitization
+  if (syncModel && syncModel.sanitizeForSync) {
+    syncModel.sanitizeForSync(instance, changeset);
+  }
+}
+
+
+
+/***/ }),
+
+/***/ 518:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  default: __webpack_require__(212).default,
+
+  // workspace
+  workspace: __webpack_require__(869).default,
+
+  // collection models
+  collection: __webpack_require__(870).default,
+  folder: __webpack_require__(871).default,
+  request: __webpack_require__(872).default,
+  response: __webpack_require__(873).default,
+
+  // header preset
+  headerpreset: __webpack_require__(874).default,
+
+  // globals/environment
+  globals: __webpack_require__(875).default,
+  environment: __webpack_require__(876).default,
+
+  // history like
+  history: __webpack_require__(877).default,
+  historyresponse: __webpack_require__(878).default,
+  collectionrun: __webpack_require__(879).default,
+
+  // user/team
+  team: __webpack_require__(880).default,
+
+  // notification
+  notification: __webpack_require__(881).default,
+
+  // comment
+  comment: __webpack_require__(882).default });
+
+/***/ }),
+
+/***/ 519:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeConfigurations;
 /* unused harmony export initializeServices */
 /* unused harmony export subscribeToModelEvents */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(504);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
 
 
@@ -4590,13 +9347,13 @@ function subscribeToModelEvents(service, namespaces) {
 
 /***/ }),
 
-/***/ 504:
+/***/ 520:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(327);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(505);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(521);
 
 
 let
@@ -4621,11 +9378,11 @@ Configuration = class Configuration extends __WEBPACK_IMPORTED_MODULE_0__BaseCon
 
 /***/ }),
 
-/***/ 505:
+/***/ 521:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultConfiguration = __webpack_require__(506);
+let defaultConfiguration = __webpack_require__(522);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -4634,20 +9391,20 @@ let defaultConfiguration = __webpack_require__(506);
 
 /***/ }),
 
-/***/ 506:
+/***/ 522:
 /***/ (function(module, exports) {
 
 module.exports = {"editor.requestEditorLayoutName":"layout-1-column","request.autoPersistVariables":true,"user.plansToAllowUpgrade":[],"workspace.visibilityAvailablePlans":[],"editor.openInNew":false,"editor.skipConfirmationBeforeClose":false,"editor.showIcons":true}
 
 /***/ }),
 
-/***/ 507:
+/***/ 523:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(471);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(524);
 
 
 let
@@ -4680,11 +9437,11 @@ FeatureFlags = class FeatureFlags extends __WEBPACK_IMPORTED_MODULE_0__BaseConfi
 
 /***/ }),
 
-/***/ 508:
+/***/ 524:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultFeatureFlags = __webpack_require__(509);
+let defaultFeatureFlags = __webpack_require__(525);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -4693,28 +9450,616 @@ let defaultFeatureFlags = __webpack_require__(509);
 
 /***/ }),
 
-/***/ 509:
+/***/ 525:
 /***/ (function(module, exports) {
 
-module.exports = {"inviteByNonAdmin":false}
+module.exports = {"graphql":true,"graphqlAutocomplete":true,"inviteByNonAdmin":false,"collectionAndFolderConfigurations":false,"schemaChangelog":true}
 
 /***/ }),
 
-/***/ 56:
+/***/ 554:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {const xPathMap = new Map();
+
+/**
+                             * Controller that registers handlers for react x-path.
+                             * Whenever a XPath is mounted, it registers a handler associated with
+                             * its path. This handler get DOMNode of the wrapped component as the argument.
+                             */
+/* harmony default export */ __webpack_exports__["a"] = ({
+  register: (path, func) => {
+    if (xPathMap.has(path) && !_.includes(['prod', 'canary'], 'prod')) {
+      console.warn(`XPath ${path} already exists`);
+      return;
+    }
+    xPathMap.set(path, func);
+  },
+
+  unregister: path => {
+    xPathMap.delete(path);
+  },
+
+  getPathHandler: path => {
+    return xPathMap.get(path);
+  },
+
+  debug: () => {
+    return xPathMap;
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 60:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 605:
+/***/ 634:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["b"] = resolveConflicts;
+/* harmony export (immutable) */ __webpack_exports__["a"] = initialize;
+/* unused harmony export getUserResolution */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_conflict_models__ = __webpack_require__(856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ConflictResolutionsService__ = __webpack_require__(692);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
+
+let conflictId = 0;
+
+function generateConflictId() {
+  return conflictId++;
+}
+
+let callbackMap = {};
+
+/**
+                       *
+                       *
+                       * @export
+                       */
+async function resolveConflicts(clientChanges, serverChanges, timeline) {
+  // no conflicts if one set or both sets are empty
+  if (_.isEmpty(serverChanges) || _.isEmpty(clientChanges)) {
+    return;
+  }
+
+  let modelIdMap = {},
+  conflicts = [],
+  clientChangesToDrop = [];
+
+
+  _.forEach(serverChanges, (changeset, index) => {
+    let identifier = `${changeset.model}:${changeset.data.modelId}`;
+
+    modelIdMap[identifier] = modelIdMap[identifier] || {};
+    modelIdMap[identifier].serverChange = changeset;
+    modelIdMap[identifier].serverIndex = index;
+  });
+
+  _.forEach(clientChanges, (changeset, index) => {
+    let identifier = `${changeset.model}:${changeset.data.modelId}`;
+
+    modelIdMap[identifier] = modelIdMap[identifier] || {};
+    modelIdMap[identifier].clientChange = changeset;
+    modelIdMap[identifier].clientIndex = index;
+  });
+
+
+  let newServerChanges = _.cloneDeep(serverChanges),
+  newClientChanges = _.cloneDeep(clientChanges),
+  placeHoldersMap = {};
+
+  _.forEach(modelIdMap, changesets => {
+    if (!changesets.clientChange || !changesets.serverChange) {
+      return;
+    }
+
+    let { clientChange, serverChange } = changesets,
+    model = clientChange.model,
+    conflictModel = model && __WEBPACK_IMPORTED_MODULE_0__sync_conflict_models__["a" /* default */][model],
+    resolver = conflictModel && conflictModel[`${clientChange.action}:${serverChange.action}`] || conflictModel[`${serverChange.action}:${clientChange.action}`] || conflictModel['*'];
+
+    if (!resolver) {
+      return;
+    }
+
+    let conflictResolution = resolver(clientChange, serverChange);
+
+
+    // if the conflict resolution drops the client change, keep track of it and remove it from sync client
+    let isClientChangeDropped = true;
+
+    _.forEach(_.isArray(conflictResolution.clientChanges) ? conflictResolution.clientChanges : [conflictResolution.clientChanges], function (resolutionClientChange) {
+      if (!resolutionClientChange) {
+        return;
+      }
+
+      if (resolutionClientChange.action === clientChange.action && resolutionClientChange.model === clientChange.model && _.get(resolutionClientChange, 'data.modelId') === clientChange.data.modelId) {
+        isClientChangeDropped = false;
+        return false;
+      }
+    });
+
+    if (isClientChangeDropped) {
+      clientChangesToDrop.push(clientChange);
+    }
+
+    if (conflictResolution.resolved) {
+      newServerChanges.splice(changesets.serverIndex, 1, ...conflictResolution.serverChanges);
+      newClientChanges.splice(changesets.clientIndex, 1, ...conflictResolution.clientChanges);
+      return;
+    }
+
+    let conflictId = generateConflictId();
+
+    placeHoldersMap[conflictId] = {
+      serverChange: _extends({
+        id: conflictId },
+      conflictResolution.serverChanges, {
+        index: changesets.serverIndex }),
+
+      clientChange: _extends({
+        id: conflictId },
+      conflictResolution.clientChanges, {
+        index: changesets.clientIndex }) };
+
+
+
+    // attaching id to conflicts rows for lookup post resolution
+    if (_.isArray(conflictResolution.userResolution)) {
+      _.forEach(conflictResolution.userResolution, row => {
+        row.id = conflictId;
+      });
+    } else
+    {
+      conflictResolution.userResolution.id = conflictId;
+    }
+
+    conflicts = conflicts.concat(conflictResolution.userResolution);
+  });
+
+  // drop changesets from sync client
+  await new Promise(resolve => {
+    pm.syncManager.removeChangesetsFromSyncClient(clientChangesToDrop, () => {
+      // swallow errors
+      // errors are logged in sync manager
+      resolve();
+    });
+  });
+
+  let userResolution;
+
+  if (!_.isEmpty(conflicts)) {
+
+    // setting isServerSelected true so server values is selected as default in the conflict modal
+    _.forEach(conflicts, conflict => {
+      // bail out if this flag is already set by the conflict modal
+      if (!conflict || conflict.isLocalSelected || conflict.isServerSelected) {
+        return;
+      }
+
+      conflict.isLocalSelected = false;
+      conflict.isServerSelected = true;
+    });
+
+    userResolution = await getUserResolution(conflicts, timeline);
+
+    let result = applyUserResolution({
+      serverChanges: newServerChanges,
+      clientChanges: newClientChanges,
+      userResolution,
+      placeHoldersMap });
+
+
+    newServerChanges = result.serverChanges;
+    newClientChanges = result.clientChanges;
+  }
+
+  return {
+    serverChanges: newServerChanges,
+    clientChanges: newClientChanges };
+
+}
+
+/**
+   *
+   *
+   * @param {*} { serverChanges, clientChanges, userResolution }
+   */
+function applyUserResolution({ serverChanges, clientChanges, userResolution, placeHoldersMap }) {
+  let groupById = _.groupBy(userResolution, 'id');
+  _.forEach(groupById, (resolutions, conflictId) => {
+    let placeHolder = placeHoldersMap[conflictId];
+
+    if (_.some(resolutions, r => r.key)) {
+      let data = {};
+
+      _.forEach(resolutions, row => {
+        data[row.key] = row.isLocalSelected ? row.localValue : row.serverValue;
+      });
+
+      let modifiedServerChange = _.cloneDeep(placeHolder.serverChange),
+      modifiedClientChange = _.cloneDeep(placeHolder.clientChange);
+
+      _.assign(modifiedServerChange.data.instance, data);
+      _.assign(modifiedClientChange.data.instance, data);
+
+      serverChanges.splice(placeHolder.serverChange.index, 1, modifiedServerChange);
+      clientChanges.splice(placeHolder.clientChange.index, 1, modifiedClientChange);
+    } else
+
+    {
+      let resolution = resolutions[0];
+      serverChanges.splice(placeHolder.serverChange.index, 1, ...(resolution.isLocalSelected ? placeHolder.serverChange.onLocal : placeHolder.serverChange.onServer));
+      clientChanges.splice(placeHolder.clientChange.index, 1, ...(resolution.isLocalSelected ? placeHolder.clientChange.onLocal : placeHolder.clientChange.onServer));
+    }
+
+
+  });
+
+  return { serverChanges, clientChanges };
+}
+
+
+/**
+   *
+   *
+   * @export
+   */
+function initialize() {
+  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
+
+  conflictResolutionChannel.subscribe(message => {
+    if (message.name === 'submit' && message.namespace === 'conflicts') {
+      onUserSubmit(message);
+      return;
+    }
+
+    if (message.name === 'pushPending' && message.namespace === 'conflicts') {
+      publishPendingResolutions();
+      return;
+    }
+  });
+}
+
+/**
+   *
+   *
+   * @export
+   * @param {*} conflicts
+   * @param {*} timeline
+   * @returns
+   */
+async function getUserResolution(conflicts, timeline) {
+  return new Promise((resolve, reject) => {
+    callbackMap[`${timeline.model}:${timeline.modelId}`] = { conflicts, resolve, reject, timeline };
+    Object(__WEBPACK_IMPORTED_MODULE_1__ConflictResolutionsService__["a" /* startUserConflictResolution */])(conflicts, timeline);
+  });
+}
+
+/**
+   *
+   */
+function publishPendingResolutions() {
+  _.forEach(callbackMap, (conflictsMap, timeline) => {
+    Object(__WEBPACK_IMPORTED_MODULE_1__ConflictResolutionsService__["a" /* startUserConflictResolution */])(conflictsMap.conflicts, conflictsMap.timeline);
+  });
+}
+
+/**
+   *
+   *
+   * @param {*} message
+   * @returns
+   */
+function onUserSubmit(message) {
+  let { conflicts, timeline } = message.data;
+
+  let callbacks = callbackMap[`${timeline.model}:${timeline.modelId}`];
+
+  callbacks.resolve(conflicts);
+
+  callbackMap[`${timeline.model}:${timeline.modelId}`] = null;
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 635:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = getAllChangesets;
+/* unused harmony export getChangesets */
+/* harmony export (immutable) */ __webpack_exports__["c"] = removeChangesets;
+/* harmony export (immutable) */ __webpack_exports__["d"] = removeModelsFromAllChangesets;
+/* harmony export (immutable) */ __webpack_exports__["a"] = addChangesets;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
+
+
+const TIMEOUT = 5 * 60 * 1000, // 5 minutes
+CONCURRENCY_LIMIT = 1;
+
+/**
+                        * Wrap all sync client functions in a queue so as to avoid multiple read/writes at a instance
+                        *
+                        * Works something similar to locks, and to maintain this concurrency limit is 1
+                        *
+                        * Because it involves multiple asynchronous I/O operations there could be invalid intermediate
+                        * states. That is why we wrap it in a queue.
+                        */
+let syncClientFunctionsQueue = Object(__WEBPACK_IMPORTED_MODULE_0_async__["queue"])((task, cb) => {
+  let done = false,
+  timeoutId = setTimeout(() => {
+    done = true;
+    cb(new Error(`SyncClientService~syncClientFunctionsQueue: Could not complete function call: ${task.command}. Request timedout.`));
+  }, TIMEOUT);
+
+  // if undefined or null, assign []
+  !task.args && (task.args = []);
+
+  pm.syncManager.syncClient[task.command](...task.args, (...args) => {
+    if (done) {
+      return;
+    }
+
+    clearTimeout(timeoutId);
+    cb && cb(...args);
+  });
+}, CONCURRENCY_LIMIT);
+
+/**
+                        * SyncClient.getAllChangesets
+                        *
+                        * This is a wrapper function and internally is implemented through a queue.
+                        * @param  {Function} cb
+                        */
+function getAllChangesets(cb) {
+  syncClientFunctionsQueue.push({
+    command: 'getAllChangesets',
+    args: [] },
+  cb);
+}
+
+/**
+   * SyncClient.getChangesets
+   *
+   * This is a wrapper function and internally is implemented through a queue.
+   * @param  {Function} cb
+   */
+function getChangesets(cb) {
+  syncClientFunctionsQueue.push({
+    command: 'getChangesets',
+    args: [] },
+  cb);
+}
+
+/**
+   * SyncClient.removeChangesets
+   *
+   * This is a wrapper function and internally is implemented through a queue.
+   * @param  {Array} changesets
+   * @param  {Function} cb
+   */
+function removeChangesets(changesets, cb) {
+  syncClientFunctionsQueue.push({
+    command: 'removeChangesets',
+    args: [changesets] },
+  cb);
+}
+
+/**
+   * SyncClient.removeModelsFromAllChangesets
+   *
+   * This is a wrapper function and internally is implemented through a queue.
+   * @param  {Array} modelsIds
+   * @param  {Function} cb
+   */
+function removeModelsFromAllChangesets(modelsIds, cb) {
+  syncClientFunctionsQueue.push({
+    command: 'removeModelsFromAllChangesets',
+    args: [modelsIds] },
+  cb);
+}
+
+/**
+   * SyncClient.addChangesets
+   *
+   * This is a wrapper function and internally is implemented through a queue.
+   * @param  {Array} changesets
+   * @param  {Function} cb
+   */
+function addChangesets(changesets, cb) {
+  syncClientFunctionsQueue.push({
+    command: 'addChangesets',
+    args: [changesets] },
+  cb);
+}
+
+/***/ }),
+
+/***/ 674:
 /***/ (function(module, exports) {
 
 module.exports = require("child_process");
 
 /***/ }),
 
-/***/ 843:
+/***/ 692:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = startUserConflictResolution;
+/* harmony export (immutable) */ __webpack_exports__["b"] = submitUserResolution;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AnalyticsService__ = __webpack_require__(15);
+
+
+
+/**
+                                                              *
+                                                              */
+function startUserConflictResolution(conflicts, timeline) {
+  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
+
+  conflictResolutionChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts, timeline }));
+
+  // Add analytics event for tracking conflicts modal shown to user
+  __WEBPACK_IMPORTED_MODULE_1__services_AnalyticsService__["a" /* default */].addEventV2({
+    category: 'sync_failure',
+    action: 'resolve_conflicts',
+    label: 'conflicts',
+    entityType: _.get(timeline, 'model'),
+    entityId: _.get(timeline, 'modelId') });
+
+}
+
+function submitUserResolution(conflicts, timeline) {
+  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
+
+  conflictResolutionChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('submit', 'conflicts', { conflicts, timeline }));
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["c"] = getUserResolutionForNonDeletedEntities;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return dropChanges; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return applyServerChangesForConflictResolution; });
+/**
+ * Use when that conflict does a no operation
+ * @returns {Object}
+ */
+function dropChanges() {
+  return {
+    resolved: true,
+    clientChanges: [],
+    serverChanges: [] };
+
+}
+
+/**
+   * Use then when the server changes are directly to be applied on the client
+   * @param  {Object} clientChange
+   * @param  {Object} serverChange
+   *
+   * @returns {Object}
+   */
+function applyServerChangesForConflictResolution(clientChange, serverChange) {
+  let clonedServerChange = _.cloneDeep(serverChange);
+
+  serverChange.action === 'create' && _.set(clonedServerChange, 'action', 'update');
+  serverChange.action === 'import' && _.set(clonedServerChange, 'action', 'update');
+
+  return {
+    resolved: true,
+    clientChanges: [],
+    serverChanges: [clonedServerChange] };
+
+}
+
+/**
+   * Creates user conflict resolution rows in case of conflicting keys
+   * If there are no conflicting keys automatically resolves the changesets
+   *
+   * @param {String} model
+   * @param {Object} clientChange
+   * @param {Object} serverChange
+   * @param {Object} [options]
+   * @param {Object} [options.fieldsToPick] these keys are picked from the client and server change for resolution
+   *
+   * @returns {Object}
+   */
+function getUserResolutionForNonDeletedEntities(model, clientChange, serverChange, options) {
+  let fieldsToPick = options && options.fieldsToPick;
+
+  let localValue = _.get(clientChange, 'data.instance'),
+  serverValue = _.get(serverChange, 'data.instance');
+
+  if (!localValue || !serverValue) {
+    return {
+      resolved: true,
+      serverChanges: [],
+      clientChanges: [] };
+
+  }
+
+  // always change action to update
+  clientChange.action = 'update';
+  serverChange.action = 'update';
+
+  localValue = fieldsToPick && _.pick(localValue, fieldsToPick);
+  serverValue = fieldsToPick && _.pick(serverValue, fieldsToPick);
+
+  let localUpdatedKeys = _.keys(localValue),
+  serverUpdatedKeys = _.keys(serverValue),
+  overlappingKeys = _.intersection(localUpdatedKeys, serverUpdatedKeys),
+  conflictingKeys;
+
+  conflictingKeys = _.filter(overlappingKeys, keyName => {
+    let localKeyValue = _.get(localValue, keyName),
+    serverKeyValue = _.get(serverValue, keyName);
+
+    if (_.isEmpty(localKeyValue) && _.isEmpty(serverKeyValue)) {
+      return false;
+    }
+
+    if (_.isEqual(localKeyValue, serverKeyValue)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  if (_.isEmpty(conflictingKeys)) {
+    return {
+      resolved: true,
+
+      serverChanges: [serverChange],
+      clientChanges: [] };
+
+  }
+
+  let conflictValues = _.map(conflictingKeys, key => {
+    return {
+      key,
+      model: model,
+      nameOrId: localValue && localValue.name || clientChange.modelId,
+      localText: 'Updated to: ' + JSON.stringify(localValue[key]),
+      serverText: 'Updated to: ' + JSON.stringify(serverValue[key]),
+      localValue: localValue[key],
+      serverValue: serverValue[key] };
+
+  });
+
+  return {
+    resolved: false,
+
+    serverChanges: serverChange,
+    clientChanges: clientChange,
+
+    userResolution: conflictValues };
+
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 835:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4797,7 +10142,7 @@ PmConsole = class PmConsole {
 
 /***/ }),
 
-/***/ 844:
+/***/ 836:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4852,22 +10197,31 @@ let ToastManager = class ToastManager {
 
 /***/ }),
 
-/***/ 845:
+/***/ 837:
+/***/ (function(module, exports) {
+
+module.exports = {
+  LARGE_BODY_ALT: 'The console only shows bodies smaller than 10 KB in size. To view the complete body, inspect it in the Builder window.',
+  MAX_BODY_SIZE: 1024 * 10 };
+
+/***/ }),
+
+/***/ 838:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content__ = __webpack_require__(708);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content__ = __webpack_require__(745);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_DashboardService__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_DashboardService__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Toast__ = __webpack_require__(846);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__external_navigation_ExternalNavigationService__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Toast__ = __webpack_require__(839);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__external_navigation_ExternalNavigationService__ = __webpack_require__(58);
 
 
 
@@ -4955,7 +10309,7 @@ const attachLinkListeners = function () {
       try {
         let slug = e.target.dataset.slug;
         if (slug === 'invite_users') {
-          Object(__WEBPACK_IMPORTED_MODULE_3__services_DashboardService__["o" /* openInviteUsers */])();
+          Object(__WEBPACK_IMPORTED_MODULE_3__services_DashboardService__["n" /* openInviteUsers */])();
         }
       }
       catch (e) {
@@ -5127,22 +10481,22 @@ const warn = function (message, options) {
 
 /***/ }),
 
-/***/ 846:
+/***/ 839:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toast; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_InformationIcon__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Markdown__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_UIEventService__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_InformationIcon__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Markdown__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_UIEventService__ = __webpack_require__(79);
 
 
 
@@ -5310,22 +10664,24 @@ Toast.propTypes = {
 
 /***/ }),
 
-/***/ 847:
+/***/ 840:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export findSession */
 /* unused harmony export clearOrphanSessions */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bootSession; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_WorkspaceController__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_WorkspaceController__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v4__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__electron_ElectronService__ = __webpack_require__(141);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
 
 
 
@@ -5516,8 +10872,7 @@ let clearOrphanSessions = (activeWindowId, { activeSessionId }) => {
 // 5. Complete the boot process
 // 6. Start pruning orphan sessions
 let bootSession = cb => {
-  return __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default.a.
-  getLaunchParams()
+  return Object(__WEBPACK_IMPORTED_MODULE_6__electron_ElectronService__["d" /* getLaunchParams */])()
 
   // First, initialize the WindowController
   .then(windowParams => {
@@ -5573,11 +10928,101 @@ let bootSession = cb => {
 
 /***/ }),
 
-/***/ 849:
+/***/ 841:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerProxy__ = __webpack_require__(850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stores_store_handler__ = __webpack_require__(842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
+
+
+
+const STORE_HANDLER_TIMEOUT = 15 * 1000; // 15 seconds
+
+/**
+ *
+ */
+function bootStore(cb) {
+
+  Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["k" /* subscribeToQueue */])(__WEBPACK_IMPORTED_MODULE_0__stores_store_handler__["a" /* handleModelEventOnStore */], STORE_HANDLER_TIMEOUT);
+  pm.logger.info('Store~boot - Success');
+  cb && cb(null);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (bootStore);
+
+/***/ }),
+
+/***/ 842:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return handleModelEventOnStore; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mobx__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
+
+
+
+/**
+                                                                                                                         *
+                                                                                                                         * @param {Object} modelEvent
+                                                                                                                         */
+function handleModelEventOnStore(modelEvent, callback) {
+  let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(modelEvent),
+  storeListeners = _.get(pm, ['stores', '_listeners']),
+  activeListenersFor = new Set(),
+  matchedListeners = [];
+
+  // @todo: this may have issues, when a top level event does not have a store initialized
+  // but low level events have stores initialized
+  if (!storeListeners) {
+    return callback();
+  }
+
+  storeListeners.forEach(storeListenerForNamespace => {
+    _.forEach(_.keys(storeListenerForNamespace), listenerName => {
+      activeListenersFor.add(listenerName);
+    });
+  });
+
+  Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["j" /* processEventSync */])(modelEvent, Array.from(activeListenersFor), function processEventOnStore(event) {
+    if (!storeListeners.has(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(event))) {
+      return;
+    }
+    let storeListenersForNamespace = storeListeners.get(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(event)),
+    action = Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["f" /* getEventName */])(event),
+    listeners = storeListenersForNamespace[action];
+
+    _.forEach(listeners, function (listener) {
+      // we create new functions instead of binding
+      // listener is already bound with the `store`, we can't find it, or change it
+      listener && matchedListeners.push(function () {
+        listener(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["d" /* getEventData */])(event), Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["e" /* getEventMeta */])(event), modelEvent);
+      });
+    });
+  });
+
+  // wrapping all the individual listeners for an event in a transactions
+  Object(__WEBPACK_IMPORTED_MODULE_0_mobx__["u" /* transaction */])(function () {
+    // listeners are synchronous anyway
+    _.forEach(matchedListeners, function invokeStoreListener(listener) {
+      listener && listener();
+    });
+  });
+
+  callback();
+}
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 844:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerProxy__ = __webpack_require__(845);
 
 
 /**
@@ -5594,14 +11039,14 @@ function bootSyncProxy(cb) {
 
 /***/ }),
 
-/***/ 850:
+/***/ 845:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(81);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_backbone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(4);
 
 
 
@@ -5670,7 +11115,7 @@ var SyncManagerProxy = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.ex
   },
 
   restoreCollection: function (restoreTarget, cb) {
-    let isSocketConnected = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["a" /* getStore */])('SyncStatusStore').isSocketConnected;
+    let isSocketConnected = Object(__WEBPACK_IMPORTED_MODULE_2__stores_get_store__["getStore"])('SyncStatusStore').isSocketConnected;
     if (!isSocketConnected) {
       pm.toasts.error('You need to be connected to Postman Sync to restore a collection.');
       _.isFunction(cb) && cb(new Error('No sync connection to restore collection'));
@@ -5706,85 +11151,417 @@ var SyncManagerProxy = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.ex
 
 /***/ }),
 
-/***/ 852:
+/***/ 846:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProxyListManager; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection__);
-let
-
-ProxyListManager = class ProxyListManager {
-  constructor() {
-    var globalProxies = this.getFromDB();
-    _.isEmpty(globalProxies) && (globalProxies = [{ disabled: true }]);
-
-    this.globalProxies = new __WEBPACK_IMPORTED_MODULE_0_postman_collection__["ProxyConfigList"]({}, globalProxies);
-  }
-
-  toJSON() {
-    return { globalProxies: this.globalProxies.toJSON() };
-  }};
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_ConsoleInterface__ = __webpack_require__(847);
 
 
-_.assign(ProxyListManager.prototype, /** @lends ProxyListManager.prototype */{
-  saveToDB: function () {
-    pm.settings.setSetting('ProxyListManager', this.toJSON());
-  },
+/**
+                                                               * Boots up the console interface
+                                                               * @param {Function} cb - The callback with error
+                                                               */
+function bootConsoleInterface(cb) {
+  _.assign(window.pm, {
+    newConsole: new __WEBPACK_IMPORTED_MODULE_0__models_ConsoleInterface__["a" /* default */]() // @todo: Change to pm.console when we replace the current console
+  });
 
-  getFromDB: function () {
-    var globalProxies = _.get(pm.settings.getSetting('ProxyListManager'), 'globalProxies');
+  // Initialize the new console interface with current window information
+  window.pm.newConsole.initialize(pm && pm.window && pm.window.id).
+  then(() => {
+    pm.logger.info('NewConsole~boot - Success');
 
-    // postman-collection v3.4.3 added support port match in `UrlMatchPattern`
-    // which broke the Proxy Configuration match pattern i.e, `://*/*` which matches
-    // all host and path but fail if a custom port is defined in the request URL.
-    // discovered in: https://github.com/postmanlabs/postman-app-support/issues/6364
-    //
-    // postman-collection v3.4.8 fixed this issue by updating the default proxy
-    // match pattern to `://*:*/*`.
-    //
-    // But, existing apps which already have a proxy configured stored the SDK
-    // ProxyConfig object directly into the local storage with the default
-    // match pattern as `://*/*`.
-    // To fix this, we traverse the globalProxies configuration and update
-    // the proxy match pattern to the new default i.e, `://*:*/*`
-    // Doing so, older data gets migrated to this new default value.
-    //
-    // @todo To avoid this, we should only store the user data into the database
-    // and not the SDK ProxyConfig object with the defaults etc.
-    Array.isArray(globalProxies) && globalProxies.forEach(proxyConfig => {
-      let pattern = _.get(proxyConfig, 'match.pattern'),
-      PREV_MATCH_PATTERN = '://*/*',
-      NEW_MATCH_PATTERN = '://*:*/*';
+    return cb && cb();
+  }).
+  catch(err => {
+    pm.logger.error('NewConsole~boot - Failed');
 
-      // bail out if pattern is not defined, this also means proxy is not configured.
-      if (typeof pattern !== 'string') {
-        return;
-      }
+    return cb && cb(err);
+  });
+}
 
-      // pattern can be either `http://*/*` or `https://*/*` or `http+https://*/*`
-      // updated match pattern is not done already
-      if (pattern.endsWith(PREV_MATCH_PATTERN)) {
-        proxyConfig.match.pattern = pattern.replace(PREV_MATCH_PATTERN, NEW_MATCH_PATTERN);
-      }
-    });
-
-    return globalProxies;
-  },
-
-  update: function (options) {
-    _.has(options, 'globalProxies') && (this.globalProxies = options.globalProxies);
-  } });
+/* harmony default export */ __webpack_exports__["a"] = (bootConsoleInterface);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 853:
+/***/ 847:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(81);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConsoleInterface; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uuid__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_ConsoleEventTypes__ = __webpack_require__(307);
+
+
+// @note: remove the below imports when removing the `clear` method. The console
+// service should be responsible for interacting with the pipeline.
+// see the comment for `clear` method for details
+
+
+
+
+
+let
+
+ConsoleInterface = class ConsoleInterface {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**
+                                            * Constructor
+                                            */ /**
+                                                * The ID of the window that is associated for an instance
+                                                * @type {String}
+                                                * @private
+                                                */ /**
+                                                    * The types of events that we're handling.
+                                                    * @default
+                                                    * @type {Set<String>}
+                                                    * @private
+                                                    */constructor() {this.initialized = false;this._eventTypes = new Set([__WEBPACK_IMPORTED_MODULE_4__constants_ConsoleEventTypes__["b" /* CONSOLE_EVENT_LOG */], __WEBPACK_IMPORTED_MODULE_4__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], __WEBPACK_IMPORTED_MODULE_4__constants_ConsoleEventTypes__["a" /* CONSOLE_EVENT_EXCEPTION */]]);this._timelineId = null;this._windowId = null;this._sequence = 0; // Initialize the sugar helper methods over write
+    this.log = this.write.bind(this, __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__["CONSOLE_LEVEL_LOG"]);this.info = this.write.bind(this, __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__["CONSOLE_LEVEL_INFO"]);this.warn = this.write.bind(this, __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__["CONSOLE_LEVEL_WARN"]);this.error = this.write.bind(this, __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__["CONSOLE_LEVEL_ERROR"]);} /**
+                                                                                                                                                                                                                               * Connect to the timeline and register event types
+                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                               * @param {String} windowId - The window id for attaching to the console stream
+                                                                                                                                                                                                                               * @return {Promise} - A promise that resolves if connected to a timeline successfully
+                                                                                                                                                                                                                               */ /**
+                                                                                                                                                                                                                                   * A counter maintained to establish strict order of logs
+                                                                                                                                                                                                                                   * @type {number}
+                                                                                                                                                                                                                                   * @private
+                                                                                                                                                                                                                                   */ /**
+                                                                                                                                                                                                                                       * The ID of the console stream (timeline) that we're connected to.
+                                                                                                                                                                                                                                       * @type {String}
+                                                                                                                                                                                                                                       */ /**
+                                                                                                                                                                                                                                           * The state of the console interface. It is true if the console is attached to a timeline.
+                                                                                                                                                                                                                                           * @default
+                                                                                                                                                                                                                                           * @type {Boolean}
+                                                                                                                                                                                                                                           */initialize(windowId) {if (this.initialized) {return Promise.reject(new Error('Console has already been initialized'));}if (!windowId || typeof windowId !== 'string') {return Promise.reject(new TypeError('Invalid value for argument `windowId`'));}this._windowId = windowId;this._timelineId = __WEBPACK_IMPORTED_MODULE_0_uuid___default.a.v4();
+    this._sequence = 0;
+
+    return Object(__WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["a" /* createEvent */])('createTimeline', 'console', {
+      id: this._timelineId,
+      window: this._windowId })).
+
+    then(result => {
+      if (!result || result.status !== 'OK') {
+        return Promise.reject(new Error('Could not create a timeline for the window'));
+      }
+
+      this.initialized = true;
+
+      return Promise.resolve();
+    });
+  }
+
+  /**
+     * Check if we're handling the event that was sent
+     *
+     * @param {String} eventType - the event type to check
+     * @return {Boolean} - true if we're handling the event type
+     */
+  canHandleEvent(eventType) {
+    if (typeof eventType !== 'string') {
+      return false;
+    }
+
+    return this._eventTypes.has(eventType);
+  }
+
+  /**
+     * Writes a log to console
+     *
+     * @param {String} severity - One of several severity levels for the console message (defined in constants/ConsoleEventSeverity.js)
+     * @param {String} eventType - One of the several available types for a console message. This must be one which was sent while instantiating the console
+     * @param {Object} source - TBD
+     * @param {Object} log - A detailed description for this log
+     * @param {Number} [timestamp] - A timestamp to be used when logging this value
+     */
+  write(severity, eventType, source, log, timestamp = Date.now()) {
+    if (!this.canHandleEvent(eventType)) {
+      throw new Error('ConsoleInterface~write: Could not handle event type: ' + eventType);
+    }
+
+    if (!severity || typeof severity !== 'string') {
+      return new Error('Invalid value for argument `severity`');
+    }
+
+    if (!source || typeof source !== 'object') {
+      return new Error('Invalid value for argument `source`');
+    }
+
+    if (!log) {
+      return new Error('Invalid value for argument `log`');
+    }
+
+    if (timestamp && (typeof timestamp !== 'number' || timestamp < 0)) {
+      return new Error('Invalid value for argument `timestamp`');
+    }
+
+    if (!this.initialized) {
+      pm.logger.warn('ConsoleInterface~write: Cannot write as interface has not been initialized');
+
+      return;
+    }
+
+    return Object(__WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["a" /* createEvent */])('createEvent', 'console', {
+      id: __WEBPACK_IMPORTED_MODULE_0_uuid___default.a.v4(),
+      timeline: this._timelineId,
+      sequence: this._sequence++,
+      timestamp: timestamp,
+      type: eventType,
+      severity: severity,
+      source: source,
+      details: log }));
+
+  }
+
+  /**
+     * Clears console events from the persistence storage for all timelines.
+     */
+  clear() {
+    if (!this.initialized) {
+      pm.logger.warn('ConsoleInterface~clear: Cannot clear as interface has not been initialized');
+
+      return;
+    }
+
+    // we're calling the dispatchAppAction directly to clear all console events
+    // because:
+    //   the clear event is supposed to be just like another event in a timeline
+    //   to allow exporting timelines with info before the clear event was
+    //   fired. Until the export capabilities are not added to the console, it's
+    //   useless to keep the events in the storage which impacts performance.
+    return Object(__WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["a" /* createEvent */])('deleteEvents', 'console', { timeline: this._timelineId }));
+  }
+
+  /**
+     * Disconnect from the console stream. Once this method is called, the window
+     * will not be able to send any logs to this stream.
+     */
+  destroy() {
+    if (!this.initialized) {
+      pm.logger.warn('ConsoleInterface~destroy: Cannot destroy as interface has not been initialized');
+
+      return;
+    }
+
+    this.initialized = false;
+
+    return Object(__WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["a" /* createEvent */])('deleteTimeline', 'console', { id: this._timelineId }));
+  }};
+
+/***/ }),
+
+/***/ 849:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProxyListManager; });
+const WHITELISTED_PROPS = ['disabled', 'httpProxy', 'httpsProxy', 'host', 'port',
+'authenticate', 'username', 'password', 'bypass'];
+
+/**
+                                                    * Transform older proxy settings to newer version (globalProxies -> globalProxy).
+                                                    *
+                                                    * @param {Object[]} config
+                                                    * @returns {Object}
+                                                    */
+function transformOlderSettings(config) {
+  const defaultConfig = {
+    disabled: true,
+    httpProxy: true,
+    httpsProxy: true,
+    port: 8080 };
+
+
+  if (!(Array.isArray(config) && config.length > 0)) {
+    return defaultConfig;
+  }
+
+  config = config[0];
+
+  if (!(config && config.host)) {
+    return defaultConfig;
+  }
+
+  let pattern = String(_.get(config, 'match.pattern', '')),
+  httpProxy = pattern.includes('http:') || pattern.includes('http+'),
+  httpsProxy = pattern.includes('https');
+
+  return {
+    httpProxy: !httpProxy && !httpsProxy ? true : httpProxy, // unlikely but, set at-least HTTP proxy
+    httpsProxy: httpsProxy,
+    host: config.host,
+    port: config.port,
+    authenticate: config.authenticate,
+    username: config.username,
+    password: config.password,
+    disabled: config.disabled };
+
+}
+
+/**
+   * SDK compatible url mach for which the proxy has been associated with.
+   *
+   * @param {Boolean} httpProxy
+   * @param {Boolean} httpsProxy
+   * @returns {String}
+   */
+function getMatchPattern(httpProxy, httpsProxy) {
+  const suffix = '://*:*/*';
+
+  if (httpsProxy) {
+    if (httpProxy) {
+      return 'http+https' + suffix;
+    }
+
+    return 'https' + suffix;
+  }
+
+  return 'http' + suffix;
+}
+
+/**
+   * Get bypass list for the proxy setting.
+   *
+   * @param {String} bypass
+   * @returns {String[]}
+   */
+function getBypassList(bypass) {
+  if (!(bypass && typeof bypass === 'string')) {return;}
+
+  // split by ',' and '\n' and filter empty strings
+  bypass = bypass.split(/,|\n/g).map(h => h.trim()).filter(Boolean);
+
+  let host,
+  i,
+  ii = bypass.length,
+  bypassList = new Array(ii);
+
+  for (i = 0; i < ii; i++) {
+    host = bypass[i];
+
+    if (host.includes('://')) {// protocol is specified
+      host = host.endsWith('/') ?
+      host : // already a complete URL
+      host + ':*/*'; // match all ports and paths
+    } else
+    {// just hostname
+      host = `http+https://${host}:*/*`;
+    }
+
+    bypassList[i] = host;
+  }
+
+  return bypassList;
+}let
+
+ProxyListManager = class ProxyListManager {
+  constructor() {
+    this.globalProxy = this.getFromDB();
+  }
+
+  getFromDB() {
+    let config = pm.settings.getSetting('ProxyListManager');
+
+    !_.isObject(config) && (config = {});
+
+    // migrate to newer global proxy configuration (< v7.9.0)
+    // @note this migrate as well as set default config for newer versions
+    if (!config.globalProxy) {
+      config.globalProxy = transformOlderSettings(config.globalProxies);
+
+      // update local storage to avoid this migration on every load
+      this.saveToDB({ globalProxy: config.globalProxy });
+    }
+
+    return config.globalProxy;
+  }
+
+  saveToDB(config) {
+    // bail out if not a valid config object (if present)
+    if (config && !config.globalProxy) {
+      return;
+    }
+
+    pm.settings.setSetting('ProxyListManager', config || { globalProxy: this.globalProxy });
+  }
+
+  update(config) {
+    // bail out if not a valid config object
+    if (!(config && config.globalProxy)) {
+      return;
+    }
+
+    this.globalProxy = Object.assign(this.globalProxy, _.pick(config.globalProxy, WHITELISTED_PROPS));
+  }
+
+  /**
+     * @returns {Object[]} - SDK compatible ProxyConfigList object
+     */
+  getGlobalProxyConfigList() {
+    let globalProxy = this.globalProxy;
+
+    return [{
+      match: getMatchPattern(globalProxy.httpProxy, globalProxy.httpsProxy),
+      host: globalProxy.host,
+      port: globalProxy.port,
+      authenticate: globalProxy.authenticate,
+      username: globalProxy.username,
+      password: globalProxy.password,
+      disabled: globalProxy.disabled,
+      bypass: getBypassList(globalProxy.bypass) }];
+
+  }};
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 850:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_backbone__);
 
 const Certificate = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.extend({
@@ -5806,7 +11583,7 @@ const Certificate = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.exten
       return;
     }
 
-    const fs = __webpack_require__(28);
+    const fs = __webpack_require__(33);
     fs.readFile(this.get('pemPath'), (err, _pemData) => {
       fs.readFile(this.get('keyPath'), (err, _keyData) => {
         fs.readFile(this.get('pfxPath'), (err, _pfxData) => {
@@ -5979,24 +11756,24 @@ const CertificateManager = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Coll
 
 /***/ }),
 
-/***/ 854:
+/***/ 851:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeRollbackNotifications;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(769);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
 
 
 
@@ -6512,6 +12289,3280 @@ const rollbackQueue = __WEBPACK_IMPORTED_MODULE_0_async___default.a.queue(rollba
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
+/***/ }),
+
+/***/ 852:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = extractMetaAsChangesets;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__create_changeset__ = __webpack_require__(61);
+
+
+/**
+                                                   * Constructs archive changeset
+                                                   *
+                                                   * @param {Object} changeset
+                                                   *
+                                                   * @returns {Array.<Object>}
+                                                   */
+function constructArchiveChangeset(changeset) {
+  // this should not happen, but if archive changeset has archive meta
+  // makes sure there is no infinite loop
+  if (changeset.action === 'archive') {
+    return [];
+  }
+
+  if (!changeset.data) {
+    return;
+  }
+
+  return [Object(__WEBPACK_IMPORTED_MODULE_0__create_changeset__["a" /* default */])(changeset.model, 'archive', { modelId: changeset.data.modelId, owner: changeset.data.owner })];
+}
+
+/**
+   * Constructs fork changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Array.<Object>}
+   */
+function constructForkChangeset(changeset) {
+  // this should not happen, but if fork changeset has fork meta
+  // makes sure there is no infinite loop
+  if (changeset.action === 'fork') {
+    return [];
+  }
+
+  if (!changeset.data) {
+    return;
+  }
+
+  return [Object(__WEBPACK_IMPORTED_MODULE_0__create_changeset__["a" /* default */])(changeset.model, 'fork', { modelId: changeset.data.modelId, owner: changeset.data.owner, forkedFrom: changeset.meta.forkedFrom })];
+}
+
+/**
+   * Constructs a favorite changeset from `favorite` meta property.
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Array.<Object>}
+   *
+   */
+function constructFavoriteChangeset(changeset) {
+  // bail out for favorite changesets
+  if (changeset.action === 'favorite' || changeset.action === 'unfavorite') {
+    return [];
+  }
+
+  if (!changeset.data) {
+    return;
+  }
+
+  if (changeset.meta.favorite) {
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__create_changeset__["a" /* default */])(changeset.model, 'favorite', { modelId: changeset.data.modelId, owner: changeset.data.owner })];
+  }
+
+  return [Object(__WEBPACK_IMPORTED_MODULE_0__create_changeset__["a" /* default */])(changeset.model, 'unfavorite', { modelId: changeset.data.modelId, owner: changeset.data.owner })];
+}
+
+/**
+   * Creates an update changeset with permissions from `permissions` meta property.
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Array.<Object>}
+   *
+   */
+function constructPermissionsUpdateChangeset(changeset) {
+  if (!changeset.data) {
+    return;
+  }
+
+  // compute updated instance with `permissions`
+  // need to keep the rest of the instance as well, the rest of the system assumes
+  // payload for update is the full snapshot
+  // @TODO-permissions
+  let instance = _.defaults({ permissions: changeset.meta.permissions }, changeset.data.instance);
+
+  return [Object(__WEBPACK_IMPORTED_MODULE_0__create_changeset__["a" /* default */])(changeset.model, 'update', { modelId: changeset.data.modelId, owner: changeset.data.owner, instance: instance })];
+}
+
+/**
+   * Extract meta properties as their own changeset.
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Array.<Object>}
+   */
+function extractMetaAsChangesets(changeset) {
+  if (!(changeset && changeset.meta)) {
+    return [];
+  }
+
+  // process meta only for `import`, `create`, `update` or `subscribe`
+  if (!(changeset.action === 'import' || changeset.action === 'create' || changeset.action === 'update' || changeset.action === 'subscribe')) {
+    return [];
+  }
+
+  // do not extract meta changeset for meta changesets created by app
+  // this will make sure we don't enter loops
+  if (changeset.meta.changesetType === 'meta') {
+    return [];
+  }
+
+  let metaChangesets = [];
+
+  // this might not look very elegant or scalable
+  // but has better performance
+  // do not try to make this clean by iterating over `changeset.meta`
+  // that will iterate over all keys on meta for every changeset
+  // the probability of finding a valid `meta` property is very low compared to not finding one
+  if (_.has(changeset.meta, 'archived')) {
+    metaChangesets = _.concat(metaChangesets, constructArchiveChangeset(changeset));
+
+    // remove the `archived` meta property now that it's handled
+    delete changeset.meta.archived;
+  }
+
+  if (_.has(changeset.meta, 'forkedFrom')) {
+    metaChangesets = _.concat(metaChangesets, constructForkChangeset(changeset));
+
+    // remove the `forkedFrom` meta property now that it's handled
+    delete changeset.meta.forkedFrom;
+  }
+
+  if (_.has(changeset.meta, 'favorite')) {
+    metaChangesets = _.concat(metaChangesets, constructFavoriteChangeset(changeset));
+
+    // remove the `favorite` meta property now that it's handled
+    delete changeset.meta.favorite;
+  }
+
+  if (_.has(changeset.meta, 'permissions')) {
+    metaChangesets = _.concat(metaChangesets, constructPermissionsUpdateChangeset(changeset));
+
+    // remove the `permissions` meta property now that it's handled
+    // @TODO-permissions
+    delete changeset.meta.permissions;
+  }
+
+  // mark the locally created changeset as a meta type changeset
+  // this should be used to prevent meta changesets creating more meta changesets and leading to infinite loops
+  _.forEach(metaChangesets, changeset => {
+    _.set(changeset, ['meta', 'changesetType'], 'meta');
+  });
+
+  return _.compact(metaChangesets);
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 853:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collection__ = __webpack_require__(883);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workspace__ = __webpack_require__(884);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environment__ = __webpack_require__(885);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  user: __WEBPACK_IMPORTED_MODULE_0__user__["a" /* UserTimeline */],
+  collection: __WEBPACK_IMPORTED_MODULE_1__collection__["a" /* CollectionTimeline */],
+  workspace: __WEBPACK_IMPORTED_MODULE_2__workspace__["a" /* WorkspaceTimeline */],
+  environment: __WEBPACK_IMPORTED_MODULE_3__environment__["a" /* EnvironmentTimeline */] });
+
+/***/ }),
+
+/***/ 854:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserTimeline; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+
+
+
+
+
+
+let UserTimeline = class UserTimeline extends __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__["a" /* BaseSyncTimeline */] {
+  constructor(timelineId) {
+    super(timelineId, { isOmnipresent: true });
+  }
+
+  filterClientChanges(message) {
+    if (!message) {
+      return false;
+    }
+
+    if (!message.meta || !message.meta.timeline) {
+      return true;
+    }
+
+    return message.meta.timeline.model === this.model && message.meta.timeline.model_id === this.modelId;
+  }
+
+  /**
+     * Integrity checks for user timeline.
+     *
+     * Creates missing workspaces in App.
+     */
+  repairIntegrity() {
+    // fetch list of workspaces joined and create then locally.
+    // we are fetching this list on bootstrap because these events may be missed in the old app
+
+    let userId = this.modelId;
+
+    return __WEBPACK_IMPORTED_MODULE_1__services_SyncService__["c" /* promisifiedRequest */]({
+      model: 'workspace',
+      action: 'find',
+      meta: {
+        query: {
+          dependencies: true,
+          members: true } } }).
+
+
+
+    then(resData => {
+      if (!resData || resData.error) {
+        throw new Error(resData ? resData.error : 'Could not get workspaces from sync');
+      }
+
+      return resData;
+    }).
+    then(workspaces => {
+      return Promise.all(_.map(workspaces, workspace => {
+        return __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__["a" /* default */].get({ id: workspace.model_id }).
+        then(localWorkspace => {
+          return {
+            local: localWorkspace,
+            remote: workspace.data };
+
+        });
+      }));
+    }).
+    then(fetchedWorkspaces => {
+      return _.map(fetchedWorkspaces, fetchedWorkspace => {
+        // if user is a member of the workspace and the workspace is missing locally, create it
+        // do not attempt to join it, syncing might skip the create changeset
+        // just create the workspace, the other parts of it will be pulled by workspace integrity check
+        if (_.get(fetchedWorkspace.remote, ['members', 'users', userId]) && !fetchedWorkspace.local) {
+          return Object(__WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__["a" /* default */])('workspace', 'create', { instance: fetchedWorkspace.remote, modelId: fetchedWorkspace.remote.id });
+        }
+      });
+    }).
+    then(updates => {
+      updates = _.compact(updates);
+
+      return Promise.all(_.map(updates, changeset => {
+        return Object(__WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(changeset);
+      }));
+    });
+  }};
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 855:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getSyncState;
+/* harmony export (immutable) */ __webpack_exports__["b"] = setSyncState;
+/* harmony export (immutable) */ __webpack_exports__["c"] = wipeSyncState;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_SyncStateController__ = __webpack_require__(779);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
+
+
+const CREATE_OR_UPDATE_ACTION = 'createOrUpdate',
+DELETE_ACTION = 'delete',
+MODEL_SYNC_CLIENT = 'syncclient';
+
+/**
+                                   * Returns the sync state for a timeline.
+                                   *
+                                   * The sync state includes
+                                   * 1. revision - the last revision id synced in this timeline
+                                   * 2. timestamp
+                                   *
+                                   * @param {Object} timelineId
+                                   * @param {String} timelineId.model
+                                   * @param {String} timelineId.modelId
+                                   *
+                                   * @returns {Promise.<Object>}
+                                   */
+function getSyncState(timelineId) {
+  if (!timelineId || !timelineId.model || !timelineId.modelId) {
+    return Promise.reject(new Error('SyncStateService~getSyncState: Could not get sync state. Invalid params.'));
+  }
+
+  let syncStateId = `${timelineId.model}:${timelineId.modelId}`;
+
+  return __WEBPACK_IMPORTED_MODULE_0__controllers_SyncStateController__["a" /* default */].get({ id: syncStateId });
+}
+
+/**
+   * Updates the sync state for a timeline.
+   *
+   * @param {Object} timelineId
+   * @param {String} timelineId.model
+   * @param {String} timelineId.modelId
+   * @param {Object} state
+   *
+   * @returns {Promise.<Object>}
+   */
+function setSyncState(timelineId, state) {
+  if (!timelineId || !timelineId.model || !timelineId.modelId || !state) {
+    return Promise.reject(new Error('SyncStateService~setSyncState: Could not set sync state. Invalid params.'));
+  }
+
+  let syncStateId = `${timelineId.model}:${timelineId.modelId}`;
+
+  return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(CREATE_OR_UPDATE_ACTION, MODEL_SYNC_CLIENT, _extends({ id: syncStateId }, state)));
+}
+
+/**
+   * Deletes the sync state for a timeline.
+   *
+   * @param {Object} timelineId
+   * @param {String} timelineId.model
+   * @param {String} timelineId.modelId
+   *
+   * @returns {Promise.<Object>}
+   */
+function wipeSyncState(timelineId) {
+  if (!timelineId || !timelineId.model || !timelineId.modelId) {
+    return Promise.reject(new Error('SyncStateService~wipeSyncState: Could not wipe sync state. Invalid params.'));
+  }
+
+  let syncStateId = `${timelineId.model}:${timelineId.modelId}`;
+
+  return Object(__WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(DELETE_ACTION, MODEL_SYNC_CLIENT, { id: syncStateId }));
+}
+
+/***/ }),
+
+/***/ 856:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__workspace__ = __webpack_require__(858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globals__ = __webpack_require__(860);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__headerpreset__ = __webpack_require__(861);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__history__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__historyresponse__ = __webpack_require__(863);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__collectionrun__ = __webpack_require__(864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__environment__ = __webpack_require__(865);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__request__ = __webpack_require__(866);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__response__ = __webpack_require__(867);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__folder__ = __webpack_require__(868);
+
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  collection: __WEBPACK_IMPORTED_MODULE_0__collection__["a" /* default */],
+  workspace: __WEBPACK_IMPORTED_MODULE_1__workspace__["a" /* default */],
+  globals: __WEBPACK_IMPORTED_MODULE_2__globals__["a" /* default */],
+  headerpreset: __WEBPACK_IMPORTED_MODULE_3__headerpreset__["a" /* default */],
+  history: __WEBPACK_IMPORTED_MODULE_4__history__["a" /* default */],
+  historyresponse: __WEBPACK_IMPORTED_MODULE_5__historyresponse__["a" /* default */],
+  collectionrun: __WEBPACK_IMPORTED_MODULE_6__collectionrun__["a" /* default */],
+  environment: __WEBPACK_IMPORTED_MODULE_7__environment__["a" /* default */],
+  request: __WEBPACK_IMPORTED_MODULE_8__request__["a" /* default */],
+  response: __WEBPACK_IMPORTED_MODULE_9__response__["a" /* default */],
+  folder: __WEBPACK_IMPORTED_MODULE_10__folder__["a" /* default */] });
+
+/***/ }),
+
+/***/ 857:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+const FIELDS_TO_PICK = ['name', 'description', 'auth', 'events', 'variables'];
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'create:create'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('collection', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('collection', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'update:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('collection', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  } });
+
+/***/ }),
+
+/***/ 858:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_workspace_helper__ = __webpack_require__(859);
+
+
+/**
+                                                                              * Auto resolution for workspace level conflicts, handles dependencies.
+                                                                              *
+                                                                              * Auto resolution is done merging client dependency mapping with server dependency mapping.
+                                                                              *
+                                                                              * Client dependency updates are in the form of delta - { $diff: true, $add: [], $remove: [] }
+                                                                              * Server dependency is a snapshot of the latest value
+                                                                              *
+                                                                              * To resolve the conflict,
+                                                                              * 1. App has to apply the delta on top of server values
+                                                                              * 2. Use the applied value as the new snapshot locally
+                                                                              * 3. Send the diff to server - don't send the new snapshot - we don't want to accidentally remove stuff on server
+                                                                              *
+                                                                              * @param  {Object} clientChange
+                                                                              * @param  {Object} serverChange
+                                                                              *
+                                                                              * @returns {Object}
+                                                                              */
+function autoResolveWorkspaceConflicts(clientChange, serverChange) {
+  let clonedServerChange = _.cloneDeep(serverChange);
+
+  if (_.has(clientChange, 'data.instance.dependencies')) {
+    let clientDepsDiff = _.get(clientChange, 'data.instance.dependencies'),
+    serverDepsSnapshot = _.get(serverChange, 'data.instance.dependencies'),
+    modifiedServerDeps = Object(__WEBPACK_IMPORTED_MODULE_0__utils_workspace_helper__["a" /* applyWorkspaceDependencyDiff */])(serverDepsSnapshot, clientDepsDiff);
+
+    _.set(clonedServerChange, 'data.instance.dependencies', modifiedServerDeps);
+    _.set(clonedServerChange, 'action', 'update');
+  }
+
+  return {
+    resolved: true,
+
+    serverChanges: [clonedServerChange],
+    clientChanges: [] };
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'import:update'(clientChange, serverChange) {
+    return autoResolveWorkspaceConflicts(clientChange, serverChange);
+  },
+  'create:update'(clientChange, serverChange) {
+    return autoResolveWorkspaceConflicts(clientChange, serverChange);
+  },
+  'update:update'(clientChange, serverChange) {
+    return autoResolveWorkspaceConflicts(clientChange, serverChange);
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 859:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = applyWorkspaceDependencyDiff;
+const ALLOWED_DEPENDENCIES = [
+'collections',
+'environments',
+'headerpresets',
+'mocks',
+'monitors'];
+
+
+
+/**
+              * apply workspace deps diff on a snapshot
+              *
+              * @export
+              * @param {any} wsDepsSnapshot
+              * @param {any} wsDepsDiff
+              * @returns
+              */
+function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
+  if (!wsDepsSnapshot) {
+    return;
+  }
+
+  if (!wsDepsDiff) {
+    return wsDepsSnapshot;
+  }
+
+  // clone and initialize finalDepsSnapshot with initial snapshot
+  let finalDepsSnapshot = _.cloneDeep(wsDepsSnapshot);
+
+  _.forEach(ALLOWED_DEPENDENCIES, dependency => {
+
+    // --- DIFF VALIDATION ---
+
+    // early return if this dependency doesn't have $diff set
+    if (_.get(wsDepsDiff, [dependency, '$diff']) !== true) {
+      return;
+    }
+
+    let $add = _.get(wsDepsDiff, [dependency, '$add']),
+    $remove = _.get(wsDepsDiff, [dependency, '$remove']);
+
+    // early return if this dependency diff has $add/$remove but which is not an array
+    if ($add && !_.isArray($add) || $remove && !_.isArray($remove)) {
+      return;
+    }
+
+    // --- END OF DIFF VALIDATION ---
+
+    // if snapshot doesn't have a dependency, initialise it to empty array in final snapshot
+    let finalDepValue = _.has(wsDepsSnapshot, dependency) ? _.compact(finalDepsSnapshot[dependency]) : [];
+
+    // get the $add and remove for this dependency
+    let entitiesToBeAdded = _.get(wsDepsDiff, [dependency, '$add'], []),
+    entitiesToBeRemoved = _.get(wsDepsDiff, [dependency, '$remove'], []);
+
+    // apply the adds via a union
+    finalDepValue = _.union(finalDepValue, _.compact(entitiesToBeAdded));
+
+    // apply the removes via a difference
+    finalDepValue = _.difference(finalDepValue, _.compact(entitiesToBeRemoved));
+
+    finalDepsSnapshot[dependency] = finalDepValue;
+  });
+
+  return finalDepsSnapshot;
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 860:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'update:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["a" /* applyServerChangesForConflictResolution */])(clientChange, serverChange);
+  } });
+
+/***/ }),
+
+/***/ 861:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'update:update'(clientChange, serverChange) {
+    return {
+      resolved: true,
+      serverChanges: [serverChange],
+      clientChanges: [] };
+
+  },
+  'update:destroy'(clientChange, serverChange) {
+    let clonedServerChange = _.cloneDeep(serverChange);
+
+    if (clientChange.action === 'destroy') {
+      _.set(clonedServerChange, 'action', 'create');
+    }
+
+    return {
+      resolved: true,
+      serverChanges: [clonedServerChange],
+      clientChanges: [] };
+
+  },
+  'destroy:destroy'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 862:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  '*'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  } });
+
+/***/ }),
+
+/***/ 863:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  '*'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  } });
+
+/***/ }),
+
+/***/ 864:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  '*'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  } });
+
+/***/ }),
+
+/***/ 865:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+const FIELDS_TO_PICK = ['name', 'values'];
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'import:import'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('environment', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'import:create'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('environment', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'import:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('environment', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'import:destroy'(clientChange, serverChange) {
+    if (clientChange.action === 'import') {
+      return {
+        resolved: true,
+        clientChanges: [clientChange],
+        serverChanges: [] };
+
+    }
+
+    if (serverChange.action === 'import') {
+      return {
+        resolved: true,
+        clientChanges: [],
+        serverChanges: [serverChange] };
+
+    }
+  },
+  'create:create'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('environment', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('environment', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:destroy'(clientChange, serverChange) {
+    if (clientChange.action === 'create') {
+      return {
+        resolved: true,
+        clientChanges: [clientChange],
+        serverChanges: [] };
+
+    }
+
+    if (serverChange.action === 'create') {
+      return {
+        resolved: true,
+        clientChanges: [],
+        serverChanges: [serverChange] };
+
+    }
+  },
+  'update:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('environment', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  } });
+
+/***/ }),
+
+/***/ 866:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+const FIELDS_TO_PICK = ['name', 'description', 'auth', 'events', 'url', 'data', 'dataMode', 'dataOptions',
+'rawModeData', 'graphqlModeData', 'headerData', 'method', 'pathVariableData', 'queryParams'];
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'update:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('request', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:create'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('request', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('request', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'destroy:destroy'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  },
+  'transfer:transfer'(clientChange, serverChange) {
+    return {
+      resolved: true,
+      serverChanges: [serverChange],
+      clientChanges: [] };
+
+  } });
+
+/***/ }),
+
+/***/ 867:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+const FIELDS_TO_PICK = ['name', 'status', 'mime', 'language', 'text', 'responseCode', 'requestObject', 'headers', 'cookies'];
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'update:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('response', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:create'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('response', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('response', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'destroy:destroy'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  } });
+
+/***/ }),
+
+/***/ 868:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conflict_helpers__ = __webpack_require__(73);
+
+
+const FIELDS_TO_PICK = ['name', 'description', 'auth', 'events'];
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  'create:create'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('folder', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'create:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('folder', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'update:update'(clientChange, serverChange) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["c" /* getUserResolutionForNonDeletedEntities */])('folder', clientChange, serverChange, { fieldsToPick: FIELDS_TO_PICK });
+  },
+  'destroy:update'(clientChange, serverChange) {
+    let clonedServerChanges = _.cloneDeep(serverChange);
+
+    if (serverChange.action === 'update') {
+      _.set(clonedServerChanges, 'action', 'create');
+    }
+
+    return {
+      resolved: true,
+      serverChanges: [clonedServerChanges],
+      clientChanges: [] };
+
+  },
+  'destroy:destroy'() {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__conflict_helpers__["b" /* dropChanges */])();
+  },
+  'transfer:transfer'(clientChange, serverChange) {
+    return {
+      resolved: true,
+      serverChanges: [serverChange],
+      clientChanges: [] };
+
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 869:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(61);
+
+
+
+
+
+const EVENT_UPDATE = 'update',
+
+ACTION_DESTROY = 'destroy',
+
+MODEL_WORKSPACE = 'workspace',
+
+// @todo: using this instead of defaultOfflineWorkspaceId because, the convertors are synchronous
+OFFLINE_WORKSPACE = '29ba1c6f-43ab-4e23-8a6c-27c39a57a069',
+
+pluralMap = {
+  collection: 'collections',
+  environment: 'environments',
+  headerpreset: 'headerpresets',
+  mock: 'mocks',
+  monitor: 'monitors' };
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: {
+    created() {
+
+      // Workspace creates are handled as an online action.
+      return [];
+    },
+    updated(event) {
+      if (_.get(event, ['data', 'id']) === OFFLINE_WORKSPACE) {
+        return [];
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0__default__["default"].toChangesets.updated(...arguments);
+    },
+    deleted() {
+
+      // Workspace deletes are handled as an online action.
+      return [];
+    },
+    added_dependencies(event, rootEvent) {
+      // adding dependencies to a workspace on item creates is implied on Sync
+      // we do need it for conflict resolution
+      let changesetMeta;
+
+      if (Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(rootEvent) === 'create' || Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(rootEvent) === 'create_deep' || Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(rootEvent) === 'duplicate') {
+        changesetMeta = { sideEffect: true };
+      }
+
+      if (_.get(event, ['data', 'id']) === OFFLINE_WORKSPACE) {
+        return [];
+      }
+
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+      workspace = eventData.workspace,
+      diffPerDep = {},
+      diff;
+
+      _.forEach(eventData.dependencies, dependency => {
+        let additions = _.get(diffPerDep, [dependency.model], []);
+
+        additions.push(dependency.modelId);
+
+        _.set(diffPerDep, [dependency.model], additions);
+      });
+
+      diff = _.map(diffPerDep, (value, key) => {
+        return {
+          $path: ['dependencies', pluralMap[key]],
+          $add: value };
+
+      });
+
+      return Object(__WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__["a" /* default */])(MODEL_WORKSPACE, EVENT_UPDATE, {
+        modelId: workspace.id,
+        diff: diff },
+      changesetMeta);
+    },
+    removed_dependencies(event, rootEvent) {
+      // removing dependencies from a workspace on item deletes is implied on Sync
+      // we do need it for conflict resolution
+      let changesetMeta;
+      if (Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(rootEvent) === 'delete' || Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(rootEvent) === 'deleteDeep') {
+        changesetMeta = {};
+        changesetMeta.sideEffect = true;
+      }
+
+      if (_.get(event, ['data', 'id']) === OFFLINE_WORKSPACE) {
+        return [];
+      }
+
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+      workspace = eventData.workspace,
+      diffPerDep = {},
+      diff;
+
+      _.forEach(eventData.dependencies, dependency => {
+        let removals = _.get(diffPerDep, [dependency.model], []);
+
+        removals.push(dependency.modelId);
+
+        _.set(diffPerDep, [dependency.model], removals);
+      });
+
+      diff = _.map(diffPerDep, (value, key) => {
+        return {
+          $path: ['dependencies', pluralMap[key]],
+          $remove: value };
+
+      });
+
+      return Object(__WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__["a" /* default */])(MODEL_WORKSPACE, EVENT_UPDATE, {
+        modelId: workspace.id,
+        diff: diff },
+      changesetMeta);
+    } },
+
+
+  async addMetaTimelineId(changeset) {
+    // destroy changesets go to user timeline
+    if (changeset.action === ACTION_DESTROY) {
+      try {
+        let user = await __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__["a" /* default */].get();
+
+        user && user.id && _.set(changeset, ['meta', 'timeline'], {
+          model: 'user',
+          model_id: user.id });
+
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+
+      return;
+    }
+
+    let data = _.get(changeset, 'data');
+
+    if (data.modelId) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'workspace',
+        model_id: data.modelId });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 870:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(39);
+
+
+
+
+
+const ID = 'id',
+
+COLLECTION = 'collection',
+ARCHIVED_RESOURCES = 'archivedresource',
+FORKED_COLLECTION = 'forkedcollection',
+TIMELINE = 'timeline',
+
+ACTION_FAVORITE = 'favorite',
+ACTION_UNFAVORITE = 'unfavorite',
+ACTION_SUBSCRIBE = 'subscribe',
+ACTION_UNSUBSCRIBE = 'unsubscribe',
+ACTION_SHARE = 'share',
+ACTION_DESTROY = 'destroy',
+
+ACTION_DELETE = 'delete';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toTimelineEvents: {
+    /**
+                       * Returns timeline delete event
+                       * @param  {Object} event
+                       * @returns {Array.<Object>}
+                       */
+    deleted_deep(event) {
+      let collection = _.get(event, 'data.collection');
+
+      if (collection) {
+        return [Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["a" /* createEvent */])(ACTION_DELETE, TIMELINE, { model: COLLECTION, modelId: `${collection.owner}-${collection.id}` })];
+      }
+
+      return [];
+    } },
+
+
+  toChangesets: {
+    /**
+                   *
+                   */
+    favorited(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      changesetData = { modelId: _.get(eventData, [COLLECTION, ID]) };
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(COLLECTION, ACTION_FAVORITE, changesetData)];
+    },
+
+    /**
+        *
+        */
+    unfavorited(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      changesetData = { modelId: _.get(eventData, [COLLECTION, ID]) };
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(COLLECTION, ACTION_UNFAVORITE, changesetData)];
+    },
+
+    subscribe(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      changesetData = { modelId: _.get(eventData, [COLLECTION, ID]) };
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(COLLECTION, ACTION_SUBSCRIBE, changesetData)];
+    },
+
+    unsubscribe(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      changesetData = { modelId: _.get(eventData, [COLLECTION, ID]) };
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(COLLECTION, ACTION_UNSUBSCRIBE, changesetData)];
+    },
+
+    shared(event) {
+      let eventData = Object(__WEBPACK_IMPORTED_MODULE_1__model_event__["d" /* getEventData */])(event),
+      changesetData = { modelId: _.get(eventData, [COLLECTION, ID]), permissions: _.get(eventData, 'permissions') };
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(COLLECTION, ACTION_SHARE, changesetData)];
+    } },
+
+
+  sanitizeForSync(collection) {
+    return Object(__WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_for_sync__["a" /* sanitizeCollectionModelForSync */])(collection, COLLECTION);
+  },
+
+  async addMetaTimelineId(changeset) {
+    // favorite, unfavorite, destroy chnagesets go to user timeline
+    if (changeset.action === ACTION_FAVORITE || changeset.action === ACTION_UNFAVORITE || changeset.action === ACTION_DESTROY) {
+      try {
+        let user = await __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__["a" /* default */].get();
+
+        user && user.id && _.set(changeset, ['meta', 'timeline'], {
+          model: 'user',
+          model_id: user.id });
+
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+
+      return;
+    }
+
+    let data = _.get(changeset, 'data');
+
+    if (data.owner && data.modelId) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'collection',
+        model_id: `${data.owner}-${data.modelId}` });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 871:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(34);
+
+
+
+
+const FOLDER = 'folder';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: _.defaults({/* Add custom event to changeset convertors here */}, __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__["a" /* toChangesets */]),
+
+  sanitizeForSync(folder) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__["a" /* sanitizeCollectionModelForSync */])(folder, FOLDER);
+  },
+
+  async addMetaTimelineId(changeset) {
+    let collection = _.get(changeset, 'data.instance.collection'),
+    owner = _.get(changeset, 'data.owner');
+
+    // owner is added by buildMetaChangesets function in SyncOutgoingHandler
+    if (!owner) {
+      return;
+    }
+
+    if (!collection) {
+      let modelId = _.get(changeset, 'data.modelId'),
+      folder;
+
+      try {
+        folder = await __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__["a" /* default */].getFolder({ id: modelId });
+        collection = folder && folder.collection;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    if (collection) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'collection',
+        model_id: `${owner}-${collection}` });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 872:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(34);
+
+
+
+
+const REQUEST = 'request';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: _.defaults({/* Add custom event to changeset convertors here */}, __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__["a" /* toChangesets */]),
+
+  sanitizeForSync: function (requestInstance) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__["a" /* sanitizeCollectionModelForSync */])(requestInstance, REQUEST);
+  },
+
+  async addMetaTimelineId(changeset) {
+    let collection = _.get(changeset, 'data.instance.collection'),
+    owner = _.get(changeset, 'data.owner');
+
+    // owner is added by buildMetaChangesets function in SyncOutgoingHandler
+    if (!owner) {
+      return;
+    }
+
+    if (!collection) {
+      let modelId = _.get(changeset, 'data.modelId'),
+      request;
+
+      try {
+        request = await __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__["a" /* default */].getRequest({ id: modelId });
+        collection = request && request.collection;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    if (collection) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'collection',
+        model_id: `${owner}-${collection}` });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 873:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_ResponsePropertiesValidation__ = __webpack_require__(496);
+
+
+
+
+
+const RESPONSE = 'response';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: _.defaults({
+    created(event) {
+      if (!__WEBPACK_IMPORTED_MODULE_3__services_ResponsePropertiesValidation__["a" /* default */].isResponseBodySizeWithinLimit(event && event.data)) {
+        pm.logger.warn('SyncOutgoingModels~response:created: Dropping create changeset because the response body size exceeds the limit');
+        return [];
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__["a" /* toChangesets */].created(event);
+    },
+
+    updated(event) {
+      if (!__WEBPACK_IMPORTED_MODULE_3__services_ResponsePropertiesValidation__["a" /* default */].isResponseBodySizeWithinLimit(event && event.data)) {
+        pm.logger.warn('SyncOutgoingModels~response:updated: Dropping update changeset because the response body size exceeds the limit');
+        return [];
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__["a" /* toChangesets */].updated(event);
+    } },
+  __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__["a" /* toChangesets */]),
+
+  sanitizeForSync: function (requestInstance) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__["a" /* sanitizeCollectionModelForSync */])(requestInstance, RESPONSE);
+  },
+
+  async addMetaTimelineId(changeset) {
+    let collection = _.get(changeset, 'data.instance.collection'),
+    owner = _.get(changeset, 'data.owner');
+
+    // owner is added by buildMetaChangesets function in SyncOutgoingHandler
+    if (!owner) {
+      return;
+    }
+
+    if (!collection) {
+      let modelId = _.get(changeset, 'data.modelId'),
+      request;
+
+      try {
+        request = await __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__["a" /* default */].getResponse({ id: modelId });
+        collection = request && request.collection;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    if (collection) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'collection',
+        model_id: `${owner}-${collection}` });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 874:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_HeaderPresetController__ = __webpack_require__(114);
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  async addMetaTimelineId(changeset) {
+    let workspaceId = _.get(changeset, 'data.instance.workspace'),
+    modelId = _.get(changeset, 'data.modelId');
+
+    if (!workspaceId) {
+      try {
+        let headerpreset = await __WEBPACK_IMPORTED_MODULE_0__controllers_HeaderPresetController__["a" /* default */].get({ id: modelId });
+        workspaceId = headerpreset && headerpreset.workspace;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    if (workspaceId) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'workspace',
+        model_id: workspaceId });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 875:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_GlobalsController__ = __webpack_require__(86);
+
+
+
+// @todo: using this instead of defaultOfflineWorkspaceId because, the convertors are synchronous
+const OFFLINE_WORKSPACE = '29ba1c6f-43ab-4e23-8a6c-27c39a57a069';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: {
+    created() {
+      // drop created globals events, sync handles these on workspace creates implicitly
+      return [];
+    },
+
+    updated(event) {
+      // @rewrite the globals:update changeset for new user id instead of dropping them
+      if (_.get(event, ['data', 'workspace']) === OFFLINE_WORKSPACE) {
+        return [];
+      }
+
+      let changeset = __WEBPACK_IMPORTED_MODULE_0__default__["default"].toChangesets.updated(...arguments);
+
+      /*
+                                                                        We add `workspace` to updated `keys` even if it is not updated. This is done because
+                                                                        we need `globals.workspace` for constructing the sync endpoint for the globals changeset.
+                                                                        This makes sync-client hydrate the `globals.workspace` key when this changeset is fetched.
+                                                                         @todo: remove this once sync-client supports tracking additional properties in changeset data
+                                                                        https://postmanlabs.atlassian.net/browse/SYNCCLIENT-69
+                                                                      */
+
+      _.has(changeset[0], 'data.keys') && (changeset[0].data.keys = _.union(['workspace'], changeset[0].data.keys));
+
+      return changeset;
+    },
+    deleted() {
+      // drop deleted globals events, sync handles these on workspace deletes implicitly
+      return [];
+    } },
+
+
+  async addMetaTimelineId(changeset) {
+    let workspace = _.get(changeset, 'data.instance.workspace');
+
+    if (!workspace) {
+      let modelId = _.get(changeset, 'data.modelId'),
+      globals;
+
+      try {
+        globals = await __WEBPACK_IMPORTED_MODULE_1__controllers_GlobalsController__["a" /* default */].get({ id: modelId });
+        workspace = globals && globals.workspace;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    if (workspace) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'workspace',
+        model_id: workspace });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 876:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_SyncFetcherService__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(39);
+
+
+
+
+
+const ACTION_SUBSCRIBE = 'subscribe',
+ACTION_UNSUBSCRIBE = 'unsubscribe',
+ACTION_DESTROY = 'destroy',
+ACTION_DELETE = 'delete',
+
+TIMELINE = 'timeline',
+ENVIRONMENT = 'environment';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  toTimelineEvents: {
+    /**
+                       * Returns timeline deleted event
+                       * @param  {Object} event
+                       * @returns {Array.<Object>}
+                       */
+    deleted(event) {
+      let environment = _.get(event, 'data');
+
+      if (environment) {
+        return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(ACTION_DELETE, TIMELINE, { model: ENVIRONMENT, modelId: `${environment.owner}-${environment.id}` })];
+      }
+
+      return [];
+    } },
+
+
+  async addMetaTimelineId(changeset) {
+    // destroy changesets go to user timeline
+    if (changeset.action === ACTION_DESTROY) {
+      try {
+        let user = await __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__["a" /* default */].get();
+
+        user && user.id && _.set(changeset, ['meta', 'timeline'], {
+          model: 'user',
+          model_id: user.id });
+
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+
+      return;
+    }
+
+    let data = _.get(changeset, 'data');
+
+    if (data.owner && data.modelId) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'environment',
+        model_id: `${data.owner}-${data.modelId}` });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 877:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__ = __webpack_require__(133);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  sanitizeForSync(history) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_sanitize_collection_model_for_sync__["b" /* sanitizeRequestDataForSync */])(history);
+    return;
+  },
+
+  toChangesets: {
+    updated: function () {
+      return [];
+    },
+    deletedAllInWorkspace: function () {
+      return [];
+    } },
+
+
+  async addMetaTimelineId(changeset) {
+    // find workspace Id in changeset itself
+    let workspaceId = _.get(changeset, 'data.instance.workspace'),
+    modelId = _.get(changeset, 'data.modelId');
+
+    if (!workspaceId) {
+      try {
+        let history = await __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__["a" /* default */].get({ id: modelId });
+        workspaceId = history && history.workspace;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    workspaceId && _.set(changeset, ['meta', 'timeline'], {
+      model: 'workspace',
+      model_id: workspaceId });
+
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 878:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__ = __webpack_require__(133);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
+
+/**
+                                                                   * Adds parent history reference to changeset.
+                                                                   *
+                                                                   * @param {Object} changeset
+                                                                   *
+                                                                   * @returns {Object}
+                                                                   */
+function addParent(changeset) {
+  let parentId = _.get(changeset, ['data', 'instance', 'history']);
+
+  if (!parentId) {
+    return changeset;
+  }
+
+  return _extends({},
+  changeset, {
+    data: _extends({},
+    changeset.data, {
+      parent: {
+        model: 'history',
+        modelId: parentId } }) });
+
+
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: {
+    created: function (event, rootEvent) {
+      let changesets = __WEBPACK_IMPORTED_MODULE_0__default__["default"].toChangesets.created(event, rootEvent);
+
+      return _.map(changesets, addParent);
+    },
+
+    updated: function () {
+      return [];
+    },
+
+    deleted: function (event, rootEvent) {
+      let changesets = __WEBPACK_IMPORTED_MODULE_0__default__["default"].toChangesets.deleted(event, rootEvent);
+
+      return _.map(changesets, addParent);
+    } },
+
+
+  async addMetaTimelineId(changeset, changesets) {
+    let workspaceId,
+    historyChangeset = _.find(changesets, { model: 'history' });
+
+    // find the history changeset from the changesets and get the workspace id from it
+    if (historyChangeset) {
+      workspaceId = _.get(historyChangeset, 'data.instance.workspace');
+    }
+
+    // if workspaceId is not found then find it from history record in db
+    if (!workspaceId) {
+      let historyId = _.get(changeset, 'data.instance.history'),
+      history;
+
+      if (historyId) {
+        try {
+          history = await __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__["a" /* default */].get({ id: historyId });
+          workspaceId = history && history.workspace;
+        }
+        catch (e) {
+          // timeline info is not there in changeset and entity is no longer in db
+          // there is no other way to extract the info
+          // don't throw and allow default handler to handle this
+        }
+      }
+    }
+
+    workspaceId && _.set(changeset, ['meta', 'timeline'], {
+      model: 'workspace',
+      model_id: workspaceId });
+
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 879:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionRunController__ = __webpack_require__(292);
+
+
+function sanitizeIterationsForSync(iterations) {
+  return _.chain(iterations).
+  map(iteration => {
+    return _.map(iteration, request => {
+      if (_.isEmpty(request.request)) {
+        return {
+          id: request.id,
+          name: request.name,
+          error: request.error };
+
+      }
+      return {
+        id: request.id,
+        name: request.name,
+        error: request.error,
+        request: {
+
+          // Request headers and body should not be synced
+          url: _.get(request, 'request.unresolvedUrl'),
+          method: _.get(request, 'request.method'),
+          path: _.get(request, 'request.path') },
+
+        response: {
+
+          // Response headers and body should not be synced
+          code: _.get(request, 'response.code'),
+          name: _.get(request, 'response.name'),
+          time: _.get(request, 'response.time'),
+          size: _.get(request, 'response.size') },
+
+        tests: request.tests };
+
+    });
+  }).
+  filter(iteration => {return !_.isEmpty(iteration);}).
+  value();
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  sanitizeForSync(collectionrun, changeset) {
+    let collectionOwner = _.get(changeset, ['meta', 'collectionOwner']),
+    environmentOwner = _.get(changeset, ['meta', 'environmentOwner']);
+
+    if (environmentOwner) {
+      collectionrun.environment = environmentOwner + '-' + collectionrun.environment;
+    }
+
+    if (collectionOwner) {
+      collectionrun.collection = collectionOwner + '-' + collectionrun.collection;
+    }
+
+    if (_.get(collectionrun, 'target.folder')) {
+      if (collectionOwner) {
+        collectionrun.folder = collectionOwner + '-' + collectionrun.target.folder;
+      } else
+      {
+        collectionrun.folder = collectionrun.target.folder;
+      }
+    } else
+    {
+      collectionrun.folder = null;
+    }
+
+    collectionrun.iterations = sanitizeIterationsForSync(collectionrun.iterations);
+
+    delete collectionrun.target;
+    delete collectionrun.owner;
+    delete collectionrun.createdAt;
+    return;
+  },
+
+  toChangesets: {
+    updated: function (event) {
+      return [];
+    } },
+
+
+  async addMetaTimelineId(changeset) {
+    let workspace = _.get(changeset, 'data.instance.workspace');
+
+    if (!workspace) {
+      let modelId = _.get(changeset, 'data.modelId'),
+      collectionRun;
+
+      try {
+        collectionRun = await __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionRunController__["a" /* default */].get({ id: modelId });
+        workspace = collectionRun && collectionRun.workspace;
+      }
+      catch (e) {
+        // timeline info is not there in changeset and entity is no longer in db
+        // there is no other way to extract the info
+        // don't throw and allow default handler to handle this
+      }
+    }
+
+    if (workspace) {
+      _.set(changeset, ['meta', 'timeline'], {
+        model: 'workspace',
+        model_id: workspace });
+
+    }
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 880:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  toChangesets: {
+    updated: function () {
+      return [];
+    },
+    created: function () {
+      return [];
+    },
+    deleted: function () {
+      return [];
+    } } });
+
+/***/ }),
+
+/***/ 881:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
+/***/ 882:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ({
+  toChangesets: {
+    /**
+                   * No-op for creation as this is a remote first action
+                   */
+    created: () => [],
+
+    /**
+                        * No-op for update as this is a remote first action
+                        */
+    updated: () => [],
+
+    /**
+                        * No-op for delete as this is a remote first action
+                        */
+    deleted: () => [] } });
+
+/***/ }),
+
+/***/ 883:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionTimeline; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_utils_collection_tree__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AccessControl_PermissionService__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_sync_SyncOutgoingHelpers__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_AnalyticsService__ = __webpack_require__(15);
+
+
+
+
+
+
+
+
+
+
+
+
+
+let CollectionTimeline = class CollectionTimeline extends __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__["a" /* BaseSyncTimeline */] {
+  constructor(timelineId) {
+    super(timelineId);
+  }
+
+  markForForceSync() {
+    let { modelId } = Object(__WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__["a" /* decomposeUID */])(this.modelId);
+
+    Object(__WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__["d" /* markModelForForceSync */])({
+      model: 'collection',
+      modelId });
+
+  }
+
+  /**
+     * Implements force sync for a collection.
+     *
+     * Force syncing would mean merging all the changes on Sync service and the app.
+     * It includes pulling missing changes and pushing missing changes to sync.
+     *
+     * To do this
+     *
+     * 1. We fetch the latest state of the collection from sync in form of changesets (create changesets for all items)
+     * 2. We populate the local state of the collection in the form of changesets
+     * 3. We push both of these into a conflict resolution flow
+     * 4. CR flow takes care of ignoring identical values and asking the user for mismatches
+     * 5. On completion CR publishes the resolution to both sync and the app bringing both to the same state
+     */
+  async handleForceSync() {
+    let { owner, modelId } = Object(__WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__["a" /* decomposeUID */])(this.modelId),
+    isMarkedForForceSync = _.find(pm.syncManager.modelsToForceSync, entity => {return entity && entity.modelId === modelId;});
+
+    // bail out if force sync is not needed
+    if (!isMarkedForForceSync) {
+      return;
+    }
+
+    // first unmark the item
+    // so that in case of failures we don't want to go into a loop of retries
+    Object(__WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__["f" /* unmarkModelForForceSync */])({ model: 'collection', modelId });
+
+    // Add analytics event for force sync
+    __WEBPACK_IMPORTED_MODULE_10__services_AnalyticsService__["a" /* default */].addEventV2({
+      category: 'sync_failure',
+      action: 'force_sync',
+      entityType: 'collection',
+      entityId: modelId });
+
+
+    // get the latest state of collection as changesets from sync
+    let syncResponse = await __WEBPACK_IMPORTED_MODULE_3__services_SyncService__["c" /* promisifiedRequest */]({
+      model: 'collection',
+      action: 'findOne',
+      meta: {
+        pathVariables: { id: this.modelId },
+        query: {
+          populate: true,
+          changeset: true } } }),
+
+
+
+    serverChanges;
+
+    if (!syncResponse || syncResponse.error) {
+      pm.logger.warn('collectionTimeline~handleForceSync: Could not force sync collection', this.modelId, syncResponse && syncResponse.error);
+      return;
+    }
+
+    serverChanges = _.map(syncResponse.data, __WEBPACK_IMPORTED_MODULE_1__models_sync_services_SyncIncomingHandler__["a" /* buildChangesetFromMessage */]);
+
+    // get the latest state of collection as changesets from DB
+    let localCollection = await __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__["a" /* default */].getCollection({ id: modelId }, { populate: true }),
+    localChanges = Object(__WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__["b" /* getCreateChangesetsForCollectionModel */])(localCollection, 'collection', { owner: owner });
+
+    // Earlier this process used to happen just before sending the changesets to server in `SyncManagerNew.js` file. It's been
+    // moved here because while resolving conflicts we need to compare the changesets and if instance of client and server changesets are not in same
+    // format, there will be invalid comparison
+    _.forEach(localChanges, changeset => {
+      Object(__WEBPACK_IMPORTED_MODULE_9__models_sync_SyncOutgoingHelpers__["a" /* sanitizeHydratedChangeset */])(changeset);
+    });
+
+    // sync them with CR
+    await this._processPendingChangesWithCR(localChanges, serverChanges);
+  }
+
+  /**
+     * Integrity checks for collection timeline
+     *
+     * Creates any missing collection/folders/requests or responses rows in app that are present on Sync. Does not
+     * push any missing entities to Sync server. Only pulls missing items.
+     */
+  async repairIntegrity() {
+    // fetch the collection, but only the ids enough to replicate the collection structure
+    // similar to the collection response but with only ids and without the data
+    let collection = await __WEBPACK_IMPORTED_MODULE_3__services_SyncService__["c" /* promisifiedRequest */]({
+      model: 'collection',
+      action: 'findOne',
+      meta: {
+        query: {
+          ids: true,
+          populate: true },
+
+        pathVariables: {
+          id: this.modelId } } }).
+
+
+
+    then(resData => {
+      if (!resData || resData.error) {
+        throw new Error(resData ? resData.error : 'Could not get collection from sync');
+      }
+
+      if (!resData.data) {
+        throw new Error('Could not get collection from sync');
+      }
+
+      return resData.data;
+    });
+
+    let localCollection = await __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__["a" /* default */].getCollection({ id: collection.id }),
+    localFolders = await __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__["a" /* default */].getFolders({ collection: collection.id }),
+    localRequests = await __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__["a" /* default */].getRequests({ collection: collection.id }),
+    localResponses = await __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__["a" /* default */].getResponses({ collection: collection.id });
+
+    let collectionElements = new Set();
+
+    localCollection && collectionElements.add(`collection:${localCollection.id}`);
+
+    // create a set with all local entities
+    _.forEach(localFolders, folder => {
+      collectionElements.add(`folder:${folder.id}`);
+    });
+    _.forEach(localRequests, request => {
+      collectionElements.add(`request:${request.id}`);
+    });
+    _.forEach(localResponses, response => {
+      collectionElements.add(`response:${response.id}`);
+    });
+
+    let changesets = [];
+
+    // for each element in server collection check if the element is present locally
+    // create the item if not present in app
+    Object(__WEBPACK_IMPORTED_MODULE_4__common_utils_collection_tree__["c" /* walkCollectionTree */])(collection, 'collection', (node, { type }) => {
+      if (collectionElements.has(`${type}:${node.id}`)) {
+        return;
+      }
+
+      changesets.push(Object(__WEBPACK_IMPORTED_MODULE_2__sync_helpers_create_changeset__["a" /* default */])(type, 'create', { instance: node, modelId: node.id, owner: collection.owner }, { partial: true }));
+    });
+
+    // process all the changesets in series
+    return changesets.reduce((acc, changeset) => {
+      return acc.then(() => {
+        return Object(__WEBPACK_IMPORTED_MODULE_1__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(changeset);
+      });
+    }, Promise.resolve());
+  }
+
+  /**
+     * Pull the permissions for the collection
+     *
+     * @param {Object} options
+     * @param {Number} options.startRevision
+     */
+  onSyncFinished({ startRevision }) {
+    __WEBPACK_IMPORTED_MODULE_6__services_AccessControl_PermissionService__["a" /* default */].fetch({ model: this.model, modelId: this.modelId });
+  }
+
+  /**
+     * Delete the permissions for collection
+     */
+  onTerminate() {
+    __WEBPACK_IMPORTED_MODULE_6__services_AccessControl_PermissionService__["a" /* default */].destroy({ model: this.model, modelId: this.modelId });
+  }};
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 884:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceTimeline; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncFetcherService__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AccessControl_PermissionService__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_GlobalsController__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__controllers_HeaderPresetController__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__ = __webpack_require__(85);
+
+
+
+
+
+
+
+
+
+
+
+
+const MODEL_HISTORY = 'history',
+MODEL_COLLECTION_RUN = 'collectionrun',
+ACTION_IMPORT = 'import',
+
+HISTORY_FIRST_PULL_COUNT = 100,
+COLLECTION_RUN_FIRST_PULL_COUNT = 100;
+
+let WorkspaceTimeline = class WorkspaceTimeline extends __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__["a" /* BaseSyncTimeline */] {
+  constructor(timelineId) {
+    super(timelineId);
+  }
+
+  /**
+     * Pull history and collection run the first time this workspace is synced.
+     * Pull permissions for the workspace
+     *
+     * @param {Object} options
+     * @param {Number} options.startRevision
+     */
+  onSyncFinished({ startRevision }) {
+
+    // a falsy value means that this is the first time this timeline is synced
+    if (!startRevision) {
+      // pull history
+      __WEBPACK_IMPORTED_MODULE_1__services_SyncFetcherService__["b" /* fetchHistory */]('find', { workspace: this.modelId, count: HISTORY_FIRST_PULL_COUNT }).
+      then(history => {
+        _.forEach(history, function (history) {
+          let historyCreateChangeset = Object(__WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__["a" /* default */])(MODEL_HISTORY, ACTION_IMPORT, {
+            instance: history,
+            modelId: history.id,
+            owner: history.owner },
+          { partial: true });
+
+          // asynchronous create, but don't wait
+          Object(__WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(historyCreateChangeset).
+          catch(e => {
+            pm.logger.warn('WorkspaceSyncTimeline: Could not create history', e);
+          });
+        });
+      });
+
+      // pull collection run
+      __WEBPACK_IMPORTED_MODULE_1__services_SyncFetcherService__["a" /* fetchCollectionRun */]('find', { workspace: this.modelId, count: COLLECTION_RUN_FIRST_PULL_COUNT }).
+      then(collectionRuns => {
+        _.forEach(collectionRuns, collectionRun => {
+          let collectionRunCreateChangeset = Object(__WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__["a" /* default */])(MODEL_COLLECTION_RUN, ACTION_IMPORT, {
+            instance: collectionRun,
+            modelId: collectionRun.id,
+            owner: collectionRun.owner },
+          { partial: true });
+
+          // asynchronous create, but don't wait
+          Object(__WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(collectionRunCreateChangeset).
+          catch(e => {
+            pm.logger.warn('WorkspaceSyncTimeline: Could not create collection run', e);
+          });
+        });
+      });
+    }
+
+    // Fetch permissions for the workspace
+    __WEBPACK_IMPORTED_MODULE_2__services_AccessControl_PermissionService__["a" /* default */].fetch({ model: this.model, modelId: this.modelId });
+  }
+
+  /**
+     * Delete the permissions for workspace
+     */
+  onTerminate() {
+    __WEBPACK_IMPORTED_MODULE_2__services_AccessControl_PermissionService__["a" /* default */].destroy({ model: this.model, modelId: this.modelId });
+  }
+
+  /**
+     * A sync timeline processes all changesets as an ordered sequence. i.e. It waits for the each
+     * changeset to finish before moving on the next. In some cases this might be less than ideal.
+     *
+     * For example history or collection run changesets. Once we filter these type of changesets
+     * they will be moved out of the main sequence and applied at an appropriate time.
+     *
+     * @param {Object} changeset
+     *
+     * @returns {Boolean}
+     */
+  filterOrderIndependentChangesets(changeset) {
+    // just ignore changesets you don't understand, the host will take care of rejections
+    if (!changeset || !changeset.meta) {
+      return false;
+    }
+
+    if (changeset.meta.model === 'history' || changeset.meta.model === 'collectionrun') {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+     * Integrity checks for workspace timeline.
+     *
+     * Creates missing globals and header presets
+     */
+  async repairIntegrity() {
+    let workspace = await __WEBPACK_IMPORTED_MODULE_5__services_SyncService__["c" /* promisifiedRequest */]({
+      model: 'workspace',
+      action: 'findOne',
+      meta: {
+        query: {
+          dependencies: true,
+          members: true },
+
+        pathVariables: {
+          id: this.modelId } } }).
+
+
+
+    then(resData => {
+      if (!resData || resData.error) {
+        throw new Error(resData ? resData.error : 'Could not get workspace from sync');
+      }
+
+
+      if (!resData.data) {
+        throw new Error('Could not get workspace from sync');
+      }
+
+      return resData.data;
+    });
+
+    // globals recovery
+    let clientGlobals = await __WEBPACK_IMPORTED_MODULE_6__controllers_GlobalsController__["a" /* default */].get({ workspace: this.modelId }),
+    remoteGlobals;
+
+    if (!clientGlobals) {
+      remoteGlobals = await __WEBPACK_IMPORTED_MODULE_5__services_SyncService__["c" /* promisifiedRequest */]({
+        model: 'globals',
+        action: 'findOne',
+        meta: {
+          query: {
+            dependencies: true,
+            members: true },
+
+          pathVariables: {
+            workspace: this.modelId } } }).
+
+
+
+      then(resData => {
+        if (!resData || resData.error) {
+          throw new Error(resData ? resData.error : 'Could not get globals from sync');
+        }
+
+        return resData.data;
+      });
+
+      remoteGlobals && (await Object(__WEBPACK_IMPORTED_MODULE_8__pipelines_sync_action__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_7__model_event__["a" /* createEvent */])('create', 'globals', remoteGlobals)));
+    }
+
+    // header presets recovery
+    let localHeaderPresets = await __WEBPACK_IMPORTED_MODULE_9__controllers_HeaderPresetController__["a" /* default */].getAll({ workspace: workspace.id }),
+    localHeaderPresetsIds = localHeaderPresets.map(preset => {return preset && `${preset.owner}-${preset.id}`;}),
+    remoteHeaderPresetIds = _.get(workspace, ['dependencies', 'headerpresets']),
+    missingHeaderPresetIds = _.difference(remoteHeaderPresetIds, localHeaderPresetsIds);
+
+    _.forEach(missingHeaderPresetIds, presetId => {
+      let { modelId, owner } = Object(__WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__["a" /* decomposeUID */])(presetId);
+
+      return Object(__WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(Object(__WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__["a" /* default */])('headerpreset', 'import', { modelId, owner }, { partial: true }));
+    });
+  }};
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 885:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentTimeline; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_EnvironmentController__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_AccessControl_PermissionService__ = __webpack_require__(262);
+
+
+
+
+
+
+
+let EnvironmentTimeline = class EnvironmentTimeline extends __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__["a" /* BaseSyncTimeline */] {
+  constructor(timelineId) {
+    super(timelineId);
+  }
+
+  /**
+     * Integrity checks for environment timeline
+     *
+     * Creates the environment if it is missing locally. Does not push anything to Sync.
+     */
+  async repairIntegrity() {
+    // fetch the environment from sync
+    let remoteEnvironment = await __WEBPACK_IMPORTED_MODULE_1__services_SyncService__["c" /* promisifiedRequest */]({
+      model: 'environment',
+      action: 'findOne',
+      meta: {
+        pathVariables: {
+          id: this.modelId } } }).
+
+
+
+    then(resData => {
+      if (!resData || resData.error) {
+        throw new Error(resData ? resData.error : 'Could not get environment from sync');
+      }
+
+      if (!resData.data) {
+        throw new Error('Could not get environmemnt from sync');
+      }
+
+      return resData.data;
+    });
+
+
+    // fetch environment from DB
+    let localEnvironment = await __WEBPACK_IMPORTED_MODULE_2__controllers_EnvironmentController__["a" /* default */].get({ id: remoteEnvironment.id });
+
+    // if local environment is missing
+    // apply a create changeset for that environment
+    if (!localEnvironment) {
+      return Object(__WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(Object(__WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__["a" /* default */])('environment', 'create', { instance: remoteEnvironment, modelId: remoteEnvironment.id }));
+    }
+  }
+
+  /**
+     * Pull the permissions for the environment
+     *
+     * @param {Object} options
+     * @param {Number} options.startRevision
+     */
+  onSyncFinished({ startRevision }) {
+    __WEBPACK_IMPORTED_MODULE_5__services_AccessControl_PermissionService__["a" /* default */].fetch({ model: this.model, modelId: this.modelId });
+  }
+
+  /**
+     * Delete the permissions for environment
+     */
+  onTerminate() {
+    __WEBPACK_IMPORTED_MODULE_5__services_AccessControl_PermissionService__["a" /* default */].destroy({ model: this.model, modelId: this.modelId });
+  }};
+
+/***/ }),
+
+/***/ 886:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(887);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collectionrun__ = __webpack_require__(888);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment__ = __webpack_require__(889);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__folder__ = __webpack_require__(890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__globals__ = __webpack_require__(891);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__headerpreset__ = __webpack_require__(892);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__history__ = __webpack_require__(893);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__historyresponse__ = __webpack_require__(894);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__request__ = __webpack_require__(895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__response__ = __webpack_require__(896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__team__ = __webpack_require__(897);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__workspace__ = __webpack_require__(898);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__comment__ = __webpack_require__(899);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  collection: __WEBPACK_IMPORTED_MODULE_0__collection__["a" /* default */],
+  folder: __WEBPACK_IMPORTED_MODULE_3__folder__["a" /* default */],
+  request: __WEBPACK_IMPORTED_MODULE_8__request__["a" /* default */],
+  response: __WEBPACK_IMPORTED_MODULE_9__response__["a" /* default */],
+  collectionrun: __WEBPACK_IMPORTED_MODULE_1__collectionrun__["a" /* default */],
+  environment: __WEBPACK_IMPORTED_MODULE_2__environment__["a" /* default */],
+  globals: __WEBPACK_IMPORTED_MODULE_4__globals__["a" /* default */],
+  headerpreset: __WEBPACK_IMPORTED_MODULE_5__headerpreset__["a" /* default */],
+  history: __WEBPACK_IMPORTED_MODULE_6__history__["a" /* default */],
+  historyresponse: __WEBPACK_IMPORTED_MODULE_7__historyresponse__["a" /* default */],
+  team: __WEBPACK_IMPORTED_MODULE_10__team__["a" /* default */],
+  workspace: __WEBPACK_IMPORTED_MODULE_11__workspace__["a" /* default */],
+  comment: __WEBPACK_IMPORTED_MODULE_12__comment__["a" /* default */] });
+
+/***/ }),
+
+/***/ 887:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+
+
+
+
+const EVENT_CREATE = 'create',
+EVENT_DELETE = 'delete',
+EVENT_DELETE_DEEP = 'deleteDeep',
+EVENT_FAVORITE = 'favorite',
+EVENT_UNFAVORITE = 'unfavorite',
+
+FORKED_COLLECTION = 'forkedcollection',
+ACCESS_CONTROL = 'accesscontrol',
+
+MODEL_TIMELINE = 'timeline',
+MODEL_COLLECTION = 'collection',
+
+ARCHIVED_RESOURCES = 'archivedresource',
+COLLECTION = 'collection';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toTimelineEvents: {
+    /**
+                       * Create and subscribe to environment timeline
+                       *
+                       * @param  {Object} changeset
+                       * @returns {Array.<Object>}
+                       */
+    subscribe(changeset) {
+      let data = _.get(changeset, 'data');
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, MODEL_TIMELINE, { model: MODEL_COLLECTION, modelId: `${data.owner}-${data.modelId}` })];
+    },
+
+    /**
+        * Unsubscribe collection timeline.
+        *
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    unsubscribe(changeset) {
+      let data = _.get(changeset, 'data');
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_TIMELINE, { model: MODEL_COLLECTION, modelId: `${data.owner}-${data.modelId}` })];
+    } },
+
+
+  toAppEvents: _.defaults({
+    /**
+                             * Favorite a collection.
+                             * @param  {Object} changeset
+                             *
+                             * @return {Array.<Object>}
+                             */
+    favorite(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_FAVORITE, changeset.model || changeset.meta.model, {
+        model: changeset.model || changeset.meta.model,
+        [changeset.model]: { id: _.get(changeset, ['data', 'modelId']) } })];
+
+    },
+
+    /**
+        * Unfavorite a collection
+        * @param  {Object} changeset
+        *
+        * @returns {Array.<Object>}
+        */
+    unfavorite(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_UNFAVORITE, changeset.model || changeset.meta.model, {
+        model: changeset.model || changeset.meta.model,
+        [changeset.model]: { id: _.get(changeset, ['data', 'modelId']) } })];
+
+    },
+
+    /**
+        * Transform collection:unsubscribe to collection:delete
+        *
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    unsubscribe(changeset) {
+      let data = _.get(changeset, 'data');
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE_DEEP, MODEL_COLLECTION, { model: MODEL_COLLECTION, collection: { id: data.modelId } })];
+    },
+
+    /**
+        * Converts archive changeset to an event
+        * @param {Object} changeset
+        * @returns {Array<Object>}
+        */
+    archive(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, ARCHIVED_RESOURCES, {
+        model: changeset.model,
+        modelId: _.get(changeset, ['data', 'modelId']) })];
+
+    },
+
+    /**
+        * Converts unarchive changeset to an event
+        * @param {Object} changeset
+        * @returns {Array<Object>}
+        */
+    unarchive(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, ARCHIVED_RESOURCES, {
+        model: changeset.model,
+        modelId: _.get(changeset, ['data', 'modelId']) })];
+
+    },
+
+    /**
+        * Converts fork changeset to an event
+        *
+        * @param {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    fork(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('create', FORKED_COLLECTION, {
+        id: `${_.get(changeset, ['data', 'owner'])}-${_.get(changeset, ['data', 'modelId'])}`,
+        forkLabel: _.get(changeset, ['data', 'forkedFrom', 'forkName']),
+        baseCollectionId: _.get(changeset, ['data', 'forkedFrom', 'id']),
+        baseCollectionName: _.get(changeset, ['data', 'forkedFrom', 'name']) })];
+
+    },
+
+    /**
+        * Converts the collection:update-roles event into a accesscontrol:update-roles event
+        * @param {Object} changeset
+        */
+    update_roles(changeset) {
+      let collectionUId = _.get(changeset, 'meta.timeline.model_id');
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('update_roles', ACCESS_CONTROL, {
+        model: COLLECTION,
+        modelId: collectionUId })];
+
+    } },
+  __WEBPACK_IMPORTED_MODULE_1__models_sync_sync_helpers_collection_model_converters__["a" /* toAppEvents */]),
+
+  sanitizeFromSync(collection) {
+    return Object(__WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_from_sync__["b" /* sanitizeCollectionModelFromSync */])(collection, COLLECTION);
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 888:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+
+
+const EVENT_CREATE = 'create',
+EVENT_DELETE = 'delete',
+EVENT_UPDATE = 'update';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  sanitizeFromSync(collectionrun) {
+    collectionrun.target = {
+      collection: collectionrun.collection,
+      folder: collectionrun.folder };
+
+
+    delete collectionrun.folder;
+    return;
+  },
+
+  toAppEvents: {
+    /**
+                  * Create a collection run
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    import(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, model, instance)];
+    },
+
+    /**
+        * Create a collection run
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    create(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, model, instance)];
+    },
+
+    /**
+        * Update a collection run
+        * @returns {Array.<Object>}
+        */
+    update() {
+      return [];
+    },
+
+    /**
+        * Delete a collection run
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    destroy(changeset) {
+      let model = changeset.model,
+      modelId = _.get(changeset, ['data', 'modelId']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, model, { id: modelId })];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 889:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+
+
+const EVENT_UPDATE = 'update',
+EVENT_CREATE = 'create';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  toTimelineEvents: {
+    /**
+                       * Create and subscribe to the environment timeline
+                       * @param  {Object} changeset
+                       * @returns {Array.<Object>}
+                       */
+    subscribe(changeset) {
+      let data = _.get(changeset, 'data');
+
+      if (!data.owner || !data.modelId) {
+        return [];
+      }
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('create', 'timeline', { model: 'environment', modelId: `${data.owner}-${data.modelId}` })];
+    },
+
+    /**
+        * Cleanup environment timeline on environment unsubscribe
+        *
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    unsubscribe(changeset) {
+      let data = _.get(changeset, 'data');
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('delete', 'timeline', { model: 'environment', modelId: `${data.owner}-${data.modelId}` })];
+    } },
+
+
+  toAppEvents: {
+    /**
+                  * Delete environment on environment unsubscribe.
+                  *
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    unsubscribe(changeset) {
+      let data = _.get(changeset, 'data');
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('delete', 'environment', { id: data.modelId })];
+    },
+
+    /**
+        * Create a new environment
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    create(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, model, instance)];
+    },
+
+    /**
+        * Create a new environment
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    import(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, model, instance)];
+    },
+
+    /**
+        * Update a particular environment
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    update(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_UPDATE, model, instance)];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 890:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+
+
+
+const FOLDER = 'folder';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: _.defaults({/* Add custom event to changeset convertors here */}, __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__["a" /* toAppEvents */]),
+
+  sanitizeFromSync: function (requestInstance) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["b" /* sanitizeCollectionModelFromSync */])(requestInstance, FOLDER);
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 891:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_event__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_event___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_model_event__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: {
+    /**
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    import(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      // @todo: change this to create once we have conflict resolution wired up
+      // just now the globals for the default workspace is already there hence create fails, so
+      // we do a createOrUpdate so that the globals can be updated
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__common_model_event__["createEvent"])('createOrUpdate', model, instance)];
+    },
+
+    /**
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    create(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      // @todo: change this once we have conflict resolution wired up
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__common_model_event__["createEvent"])('createOrUpdate', model, instance)];
+    },
+
+    /**
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    update(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__common_model_event__["createEvent"])('update', model, instance)];
+    },
+
+    /**
+        * @returns {Array}
+        */
+    destroy() {
+      return [];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 892:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+
+
+const EVENT_CREATE = 'create',
+EVENT_DELETE = 'delete',
+EVENT_UPDATE = 'update';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: {
+    /**
+                  * Create a header preset
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    import(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, model, instance)];
+    },
+
+    /**
+        * Create a header preset
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    create(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, model, instance)];
+    },
+
+    /**
+        * Update a header preset
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    update(changeset) {
+      let model = changeset.model,
+      instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_UPDATE, model, instance)];
+    },
+
+    /**
+        * Delete a header preset
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    destroy(changeset) {
+      let model = changeset.model,
+      modelId = _.get(changeset, ['data', 'modelId']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, model, { id: modelId })];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 893:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+
+
+
+const ARCHIVED_RESOURCES = 'archivedresource',
+
+EVENT_CREATE = 'create',
+EVENT_DELETE = 'delete',
+
+HISTORY = 'history';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  sanitizeFromSync(history) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["c" /* sanitizeDataMode */])(history);
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["h" /* sanitizeRequestBody */])(history);
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["i" /* sanitizeRequestMethod */])(history);
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["f" /* sanitizeHeadersFromSync */])(history);
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["g" /* sanitizePathVariablesFromSync */])(history);
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["e" /* sanitizeDeprecatedScriptProperties */])(history);
+    Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["d" /* sanitizeDeprecatedAuthProperties */])(history);
+    return;
+  },
+
+  toAppEvents: {
+    /**
+                  * Create a history and history response if present
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    import(changeset) {
+      if (!(changeset && changeset.data && changeset.data.instance)) {
+        return [];
+      }
+
+      let historyObject = _.omit(changeset.data.instance, ['historyresponses']),
+      historyCreateEvent = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, HISTORY, historyObject),
+      historyResponseCreateEvents;
+
+      historyResponseCreateEvents = _.map(changeset.data.instance.historyresponses, historyresponse => {
+        return Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, 'historyresponse', historyresponse);
+      });
+
+      return _.concat(historyCreateEvent, historyResponseCreateEvents);
+    },
+
+    /**
+        * Converts create changeset to an event
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    create(changeset) {
+      let instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, HISTORY, instance)];
+    },
+
+    /**
+        * Converts destroy changeset to event
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    destroy(changeset) {
+      let model = changeset.model || changeset.meta.model,
+      modelId = _.get(changeset, ['data', 'modelId']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, HISTORY, { id: modelId })];
+    },
+
+    /**
+        * Converts update changeset to an event
+        */
+    update: function () {
+      return [];
+    },
+
+    /**
+        * Converts archive changeset to an event
+        * @param {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    archive(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, ARCHIVED_RESOURCES, {
+        model: HISTORY,
+        modelId: _.get(changeset, ['data', 'modelId']) })];
+
+    },
+
+    /**
+        * Converts unarchive changeset to an event
+        * @param {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    unarchive(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, ARCHIVED_RESOURCES, {
+        model: HISTORY,
+        modelId: _.get(changeset, ['data', 'modelId']) })];
+
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 894:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+
+
+const MODEL_HISTORY_RESPONSE = 'historyresponse',
+
+EVENT_CREATE = 'create',
+EVENT_DELETE = 'delete';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: {
+    /**
+                  * Converts import changeset to an event
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    import(changeset) {
+      let instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, MODEL_HISTORY_RESPONSE, instance)];
+    },
+
+    /**
+        * Converts create changeset to an event
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    create(changeset) {
+      let instance = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, MODEL_HISTORY_RESPONSE, instance)];
+    },
+
+    /**
+        * Converts update changeset to event
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    update(changeset) {
+      return [];
+    },
+
+    /**
+        * Converts destroy changeset to an event
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    destroy(changeset) {
+      let modelId = _.get(changeset, ['data', 'modelId']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_HISTORY_RESPONSE, { id: modelId })];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 895:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+
+
+
+const REQUEST = 'request';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: _.defaults({/* Add custom event to changeset convertors here */}, __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__["a" /* toAppEvents */]),
+
+  sanitizeFromSync: function (requestInstance) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["b" /* sanitizeCollectionModelFromSync */])(requestInstance, REQUEST);
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 896:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+
+
+
+const RESPONSE = 'response';
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: _.defaults({/* Add custom event to changeset convertors here */}, __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__["a" /* toAppEvents */]),
+
+  sanitizeFromSync: function (requestInstance) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__["b" /* sanitizeCollectionModelFromSync */])(requestInstance, RESPONSE);
+  } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 897:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: {
+    // other functions (changePlan, add_member, remove_member) are handled
+    // in SyncTeamEventsService.js because that belongs to the team timeline and is
+    // handled separately
+
+    /**
+     * @param  {Object} changeset
+     * @returns {Array.<Object>}
+     */
+    join(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('activate', changeset.model, changeset.data)];
+    },
+
+    /**
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    leave(changeset) {
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('deactivate', changeset.model, changeset.data)];
+    } } });
+
+/***/ }),
+
+/***/ 898:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+
+
+const MODEL_WORKSPACE = 'workspace',
+MODEL_SYNC_WORKSPACE = 'syncworkspace',
+MODEL_HISTORY = 'history',
+MODEL_COLLECTION_RUN = 'collectionrun',
+MODEL_GLOBALS = 'globals',
+MODEL_WORKSPACE_SESSION = 'workspacesession',
+
+ACCESS_CONTROL = 'accesscontrol',
+
+MODEL_TIMELINE = 'timeline',
+EVENT_CREATE = 'create',
+EVENT_DELETE = 'delete';
+
+/**
+                          * Returns a list of events to handle workspace leave/destroy
+                          *
+                          * @returns {Array.<Object>}
+                          */
+function getWorkspaceLeaveEvents(workspace) {
+  let workspaceDeleteEvent = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_WORKSPACE, workspace),
+
+  historyDeleteEvent = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_HISTORY, { workspace: workspace.id }),
+  collectionRunDeleteEvent = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_COLLECTION_RUN, { workspace: workspace.id }),
+  globalsDeleteEvent = Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_GLOBALS, { workspace: workspace.id });
+
+  return [historyDeleteEvent, collectionRunDeleteEvent, globalsDeleteEvent, workspaceDeleteEvent];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toTimelineEvents: {
+    /**
+                       * Sync the workspace timeline on workspace join.
+                       *
+                       * @param  {Object} changeset
+                       * @returns {Array.<Object>}
+                       */
+    join(changeset) {
+      let workspaceId = _.get(changeset, 'data.modelId');
+
+      if (!workspaceId) {
+        return [];
+      }
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, MODEL_TIMELINE, { model: MODEL_WORKSPACE, modelId: workspaceId })];
+    },
+
+    /**
+        * Cleanup workspace timeline on workspace leave.
+        *
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    leave(changeset) {
+      let workspaceId = _.get(changeset, 'data.modelId');
+
+      if (!workspaceId) {
+        return [];
+      }
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_TIMELINE, { model: MODEL_WORKSPACE, modelId: workspaceId })];
+    } },
+
+
+  toAppEvents: {
+    /**
+                  * Update sync workspace list when a workspace becomes visible.
+                  *
+                  * @param  {Object} changeset
+                  * @returns {Array.<Object>}
+                  */
+    visible(changeset) {
+      let workspace = _.get(changeset, ['data', 'instance']);
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_CREATE, MODEL_SYNC_WORKSPACE, workspace)];
+    },
+
+    /**
+        * Update sync workspace list when a workspace becomes invisible.
+        *
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    invisible(changeset) {
+      let workspace = _.get(changeset, ['data', 'instance']);
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_SYNC_WORKSPACE, workspace)];
+    },
+
+    /**
+        * Delete the workspace on workspace leave.
+        *
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    leave(changeset) {
+      let workspaceId = _.get(changeset, 'data.modelId');
+
+      if (!workspaceId) {
+        return [];
+      }
+
+      return getWorkspaceLeaveEvents({ id: workspaceId });
+    },
+
+    /**
+        * Create changeset to event
+        * @param  {Object} changeset
+        * @returns  {Array.<Object>}
+        */
+    create(changeset) {
+      let workspace = _.get(changeset, ['data', 'instance']);
+
+      // @todo: change this to create once we have conflict resolution wired up
+      // just now the default workspace is already there hence create fails, so
+      // we do a createOrUpdate so that the dependencies can be updated and collections
+      // and environments are visible
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', MODEL_SYNC_WORKSPACE, workspace), Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', MODEL_WORKSPACE, workspace)];
+    },
+
+    /**
+        * Import changeset to event
+        * @param  {Object} changeset
+        * @returns  {Array.<Object>}
+        */
+    import(changeset) {
+      let workspace = _.get(changeset, ['data', 'instance']);
+
+      // @todo: change this to create once we have conflict resolution wired up
+      // just now the default workspace is already there hence create fails, so
+      // we do a createOrUpdate so that the dependencies can be updated and collections
+      // and environments are visible
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', MODEL_SYNC_WORKSPACE, workspace), Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', MODEL_WORKSPACE, workspace)];
+    },
+
+    /**
+        * Update changeset to event
+        * @param  {Object} changeset
+        * @returns {Array.<Object>}
+        */
+    update(changeset) {
+      let workspace = _.get(changeset, ['data', 'instance']);
+
+      // @todo: revisit this once (Windowed Syncing)
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', MODEL_SYNC_WORKSPACE, workspace), Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', MODEL_WORKSPACE, workspace)];
+    },
+
+    destroy(changeset) {
+      let workspace = _.get(changeset, ['data', 'instance']);
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])(EVENT_DELETE, MODEL_WORKSPACE_SESSION, { workspace: workspace.id }), ...getWorkspaceLeaveEvents(workspace)];
+    },
+
+    /**
+        * Converts the workspace:update-roles event into a accesscontrol:update-roles event
+        * @param {Object} changeset
+        */
+    update_roles(changeset) {
+      let workspaceId = _.get(changeset, 'meta.timeline.model_id');
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('update_roles', ACCESS_CONTROL, {
+        model: MODEL_WORKSPACE,
+        modelId: workspaceId })];
+
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 899:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
+
+const COMMENT = 'comment',
+ALLOWED_KEYS = ['id', 'body', 'createdBy', 'createdAt', 'updatedAt', 'tags'];
+
+/**
+                                                                               * Parse sync changeset for comments
+                                                                               *
+                                                                               * @param {Object} changeset - comment changeset
+                                                                               * @returns {Object} augmented comment data from changeset
+                                                                               */
+function getCommentFromChangeset(changeset) {
+  const annotation = _.get(changeset, 'data.instance.annotation') || {},
+  comment = _.get(changeset, 'data.instance.comment') || {};
+
+  if (_.isEmpty(annotation) || _.isEmpty(comment)) {
+    return null;
+  }
+
+  return _extends({}, annotation, _.pick(comment, ALLOWED_KEYS));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  toAppEvents: {
+    /**
+                  * Fire create or update event to prevent accidental
+                  * rewrites as we are adding response data.
+                  *
+                  * @param {Object} changeset - comment changeset
+                  */
+    create(changeset) {
+      const data = getCommentFromChangeset(changeset);
+
+      if (!data) {
+        return [];
+      }
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('createOrUpdate', COMMENT, data)];
+    },
+
+    /**
+        * Fire update if exits event to prevent accidental
+        * writes.
+        *
+        * @param {Object} changeset - comment changeset
+        */
+    update(changeset) {
+      const data = getCommentFromChangeset(changeset);
+
+      if (!data) {
+        return [];
+      }
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('updateIfExists', COMMENT, data)];
+    },
+
+    /**
+        * Fire delete if exits event to prevent errors for
+        * comments which may not exist.
+        *
+        * @param {Object} changeset - comment changeset
+        */
+    destroy(changeset) {
+      const data = getCommentFromChangeset(changeset);
+
+      if (!data) {
+        return [];
+      }
+
+      return [Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('deleteIfExists', COMMENT, data)];
+    } } });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
 /***/ })
 
-},[1533]);
+},[1628]);

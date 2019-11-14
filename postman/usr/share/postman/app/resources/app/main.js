@@ -24,11 +24,15 @@ var electron = require('electron'),
     updaterHandler = require('./services/UpdaterHandler'),
     RuntimeExecutionService = require('./services/RuntimeExecutionService'),
     ProtocolHandler = require('./services/ProtocolHandler'),
+    ipcClient = require('./services/ipcClient').ipcClient,
     initializeLogger = require('./services/Logger').init,
     initializePluginsHostHandler = require('./services/PluginsHostHandler').init,
+    cleanupPluginsHostHandler = require('./services/PluginsHostHandler').cleanup,
     CrashReporter = require('./services/CrashReporter'),
     { getValue } = require('./utils/processArg'),
-    { createDefaultDir } = require('./services/workingDirManager');
+    { createDefaultDir } = require('./services/workingDirManager'),
+    initializeRequesterBootListener = require('./common/services/RequesterBootListener'),
+    ipcClientInitialized = false;
 
 const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
       MOVE_DIALOG_ACTION_BUTTON = 'Move to Applications Folder',
@@ -49,6 +53,21 @@ catch (e) {
 }
 
 app.sessionId = process.pid; // set the current process id as sessionId
+
+let gotTheLock = app.requestSingleInstanceLock();
+
+// Quit if this is another instance of app trying to open
+if (!gotTheLock) {
+  pm.logger.info('Could not get the lock, quitting');
+  app.quit();
+  return;
+}
+
+// Initializing ProtocolHandler as early as possible to handle Run-In-Postman even when the app is closed.
+// Recommended to do it on will-finish-launching event in electron docs - https://electronjs.org/docs/api/app#event-will-finish-launching
+app.on('will-finish-launching', function () {
+  ProtocolHandler.init();
+});
 
 async.series([
 
@@ -136,14 +155,6 @@ async.series([
     cb();
   },
 
-  /**
-   * Initialize protocolHandler
-   */
-  (cb) => {
-    ProtocolHandler.init();
-    cb();
-  },
-
   initializePluginsHostHandler
 
 ], (err) => {
@@ -152,6 +163,8 @@ async.series([
     // We are continue proceeding for now. even we see error.
     pm.logger.error('Main~booting: Failed', err);
   }
+
+  initializeRequesterBootListener();
 
   global.isSharedBooted = false;
 
@@ -320,6 +333,43 @@ async.series([
         // sent by the primary window when indexedDB has loaded
         windowManager.newRequesterOpened();
       }
+      else if (arg.event === 'forwardInterceptorRequest') {
+        ipcClient.sendEncryptedMessageToInterceptor(arg.message);
+      }
+      else if (arg.event === 'initializeInterceptorBridge') {
+        // creating IPC bridge with native server
+        if (!ipcClientInitialized) {
+          ipcClient.initialize();
+          ipcClientInitialized = true;
+        }
+        else {
+          windowManager.sendInternalMessage({
+            'event': 'refreshInterceptorBridgeConnectionStatus',
+            'object': {
+              connectedToInterceptorBridge: true
+            }
+          });
+        }
+      }
+      else if (arg.event === 'disconnectInterceptorBridge') {
+        ipcClient.disconnect();
+      }
+
+      else if (arg.event === 'setEncryptionKeyForInterceptor') {
+        // setting the encryption key for App ~ Interceptor communication
+        ipcClient.setEncryptionKeyForInterceptor(arg.message.encryptionKeyForInterceptor);
+
+        if (ipcClientInitialized) {
+          // checking for the same key at interceptor
+          ipcClient.startKeyValidationFlow();
+        }
+      }
+      else if (arg.event === 'getEncryptionKeyForInterceptor') {
+        ipcClient.sendEncryptionKeyToRenderer();
+      }
+      else if (arg.event === 'getSyncDomainListForInterceptor') {
+        ipcClient.sendSyncDomainListToRenderer();
+      }
     });
 
     ipc.on('overrideRequestHeaders', function (event, arg) {
@@ -331,13 +381,14 @@ async.series([
     });
 
     ipc.on('getSaveTarget', function (event, arg) {
-      var retPath = showSaveDialog(event.sender, arg);
-      if (!retPath) {
-        event.returnValue = null;
-      }
-      else {
-        event.returnValue = retPath;
-      }
+      showSaveDialog(event.sender, arg, (retPath) => {
+        if (!retPath) {
+          event.returnValue = null;
+        }
+        else {
+          event.returnValue = retPath;
+        }
+      });
     });
 
     ipc.on('sendToAllWindows', function (event, arg) {
@@ -454,8 +505,9 @@ async.series([
     app.quittingApp = true;
     let sharedWindow = windowManager.getSharedWindow();
     sharedWindow && sharedWindow.show();
-    pm.pluginHost.terminate();
-    pm.logger.info(pm.pluginHost.host);
+
+    // terminate the plugin process
+    cleanupPluginsHostHandler();
 
     if (os.type() !== 'Linux') {
       app.updaterInstance = null;
@@ -491,12 +543,11 @@ async.series([
    * @param {*} window
    * @param {*} fileName
    */
-  function showSaveDialog (window, fileName) {
-    var savePath = dialog.showSaveDialog({
+  function showSaveDialog (window, fileName, cb) {
+    dialog.showSaveDialog({
       title: 'Select path to save file',
       defaultPath: '~/' + fileName
-    });
-    return savePath;
+    }, cb);
 
   }
   attachIpcListeners();
@@ -575,8 +626,10 @@ async.series([
     });
   }
 
-  // app.makeSingleInstance will be deprecated in 3.x in-favour of 'second-instance' event
-  var shouldQuit = app.makeSingleInstance((commandLine) => {
+  // This is the first instance, and another instance tried to open, here we should
+  // 1. focus the first instance (current one)
+  // 2. Allow protocol handler to parse the arguments and act accordingly
+  app.on('second-instance', (event, commandLine) => {
     /**
      * bringing requester window in focus when an user tries to create another instance of the app.
      */
@@ -598,7 +651,7 @@ async.series([
         pm.logger.error(`main~makeSingleInstance: ${errorMessage}`);
 
         try {
-         window = windowManager.newRequesterWindow();
+          window = windowManager.newRequesterWindow();
         }
         catch (e) {
           pm.logger.error('main~makeSingleInstance: Error while creating a new Requester window', e);
@@ -612,11 +665,6 @@ async.series([
         ProtocolHandler.processArg(commandLine);
       });
   });
-
-  if (shouldQuit) {
-    app.quit();
-    return;
-  }
 
   /**
    * Determines whether to shortcuts should be removed from menu.
