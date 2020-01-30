@@ -1,385 +1,6 @@
 webpackJsonp([28],{
 
-/***/ 102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export splitMetaEvents */
-/* unused harmony export getModelFromMessage */
-/* unused harmony export getActionFromMessage */
-/* unused harmony export validateChangeset */
-/* harmony export (immutable) */ __webpack_exports__["a"] = buildChangesetFromMessage;
-/* unused harmony export sanitize */
-/* unused harmony export getEventFromChangeset */
-/* unused harmony export getTimelineEventsFromChangeset */
-/* unused harmony export inflateChangeset */
-/* unused harmony export dispatchEvent */
-/* harmony export (immutable) */ __webpack_exports__["b"] = dispatchTimelineEvents;
-/* harmony export (immutable) */ __webpack_exports__["c"] = processIncomingChangeset;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_helpers_extract_meta_changesets__ = __webpack_require__(852);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_helpers_sync_api__ = __webpack_require__(515);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_pipelines_sync_action__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__ = __webpack_require__(886);
-
-
-
-
-
-
-
-
-
-/**
-                                                                 * If a changeset has collated meta properties like `archive`, extracts them and creates a new changeset out of it.
-                                                                 *
-                                                                 * @param {Object} changeset
-                                                                 * @returns {Array}
-                                                                 */
-function splitMetaEvents(changeset) {
-  let newChangesets = Object(__WEBPACK_IMPORTED_MODULE_1__modules_sync_helpers_extract_meta_changesets__["a" /* extractMetaAsChangesets */])(changeset),
-  metaChangesets = [];
-
-  // push the original changeset
-  metaChangesets.push(changeset);
-
-  _.forEach(newChangesets, function (metaChangeset) {
-    // mark changeset as coming from app
-    _.set(metaChangeset, ['meta', 'origin'], 'app');
-
-    // push the meta changeset
-    metaChangesets.push(metaChangeset);
-  });
-
-  return metaChangesets;
-}
-
-/**
-   * Gets model from message
-   *
-   * @param {Object} message sync message
-   * @returns {String} model
-   */
-function getModelFromMessage(message) {
-  return _.get(message, ['meta', 'model'], message.model);
-}
-
-/**
-   * Gets action from message
-   *
-   * @param {Object} message sync message
-   * @returns {String} action
-   */
-function getActionFromMessage(message) {
-  return _.get(message, ['meta', 'action'], message.action);
-}
-
-/**
-   * Validate sync changeset
-   *
-   * 1. Checks if changeset is non empty
-   * 2. Checks if model is present
-   * 3. Checks if model is supported
-   *
-   * @param {Object} changeset
-   *
-   * @returns {Boolean}
-   */
-function validateChangeset(changeset) {
-  if (!changeset) {
-    return false;
-  }
-
-  let model = changeset.model;
-
-  if (!model || !__WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][model]) {
-    return false;
-  }
-
-  return true;
-}
-
-
-/**
-   * builds app changeset from sync message
-   *
-   * @param {Object} message sync message
-   *
-   * @returns {Object}
-   */
-function buildChangesetFromMessage(message) {
-  if (!message) {
-    return;
-  }
-
-  let model = getModelFromMessage(message),
-  action = getActionFromMessage(message),
-  changesetData = { modelId: message.model_id },
-  changesetMeta,
-  owner = _.get(message, ['meta', 'owner']) || _.get(message, ['data', 'owner']);
-
-  owner && (changesetData.owner = owner);
-
-  // build workspace joining/leaving changeset
-  if (model === 'workspace' && (action === 'joining' || action === 'leaving')) {
-    changesetData.instance = { id: message.model_id };
-    changesetData.user = message.data.user;
-  }
-
-  // build transfer changeset
-  else if (action === 'transfer') {
-      changesetData.from = {
-        model: _.get(message, ['data', 'from', 'model']),
-        modelId: _.get(message, ['data', 'from', 'model_id']) };
-
-
-      changesetData.to = {
-        model: _.get(message, ['data', 'to', 'model']),
-        modelId: _.get(message, ['data', 'to', 'model_id']) };
-
-    } else
-
-    if (action === 'subscribe' || action === 'unsubscribe') {
-      changesetData.user = _.get(message, ['data', 'user']);
-    } else
-
-    {
-      changesetData.instance = message.data;
-    }
-
-  // meta can have additional keys as well
-  // preserve meta and all the keys in meta (DO NOT WHITELIST OR SANITIZE)
-  changesetMeta = message.meta || {};
-
-  changesetMeta.revision = message.revision;
-
-  return Object(__WEBPACK_IMPORTED_MODULE_0__modules_sync_helpers_create_changeset__["a" /* default */])(model, action, changesetData, changesetMeta);
-}
-
-/**
-   * sanitize changeset
-   *
-   * @param {Object} changeset
-   *
-   * @returns {Object}
-   */
-function sanitize(changeset) {
-  let {
-    model,
-    data } =
-  changeset,
-  syncModel = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][model],
-  sanitize = syncModel.sanitizeFromSync;
-
-  // no need for sanitizing this model
-  if (!sanitize) {
-    return changeset;
-  }
-
-  // sanitize the model from sync message
-  data.instance && sanitize(data.instance);
-
-  return changeset;
-}
-
-
-/**
-   * construct events from changeset
-   *
-   * @param {Object} changeset
-   *
-   * @returns {Object} returns the event
-   */
-function getEventFromChangeset(changeset) {
-  if (!changeset) {
-    return [];
-  }
-
-  let changesetAction = changeset.action,
-  changesetModel = changeset.model,
-  model = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][changesetModel],
-  handler;
-
-  // no model for sync changeset
-  if (!model) {
-    pm.logger.error(new Error('Unknown model' + changesetModel));
-    return [];
-  }
-
-  // find handler in the sync model, or in the default
-  handler = _.get(model, ['toAppEvents', changesetAction]);
-
-  // no handler for sync changeset action
-  // sync sent a changeset action that this version of the app doesn't understand
-  if (!handler) {
-    return [];
-  }
-
-  return handler && handler(changeset);
-}
-
-/**
-   * Get events that affect timelines
-   *
-   * @param {Object} changeset
-   *
-   * @returns {Object} returns the event
-   */
-function getTimelineEventsFromChangeset(changeset) {
-  if (!changeset) {
-    return [];
-  }
-
-  let changesetAction = changeset.action,
-  changesetModel = changeset.model,
-  model = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][changesetModel],
-  handler;
-
-  // @todo: windowed-syncing: move this common to model layer events and timeline events
-  // no model for sync changeset
-  if (!model) {
-    pm.logger.error(new Error('Unknown model' + changesetModel));
-    return [];
-  }
-
-  // find handler in the sync model
-  handler = _.get(model, ['toTimelineEvents', changesetAction]);
-
-  // no handler for sync changeset action
-  // sync sent a changeset action that this version of the app doesn't understand
-  if (!handler) {
-    return [];
-  }
-
-  return handler && handler(changeset);
-}
-
-/**
-   * Populate a partial changeset
-   *
-   * @param {Object} changeset
-   *
-   * @returns {Promise.<Object>}
-   */
-async function inflateChangeset(changeset) {
-  if (!_.get(changeset, ['meta', 'partial'])) {
-    return changeset;
-  }
-
-  return new Promise((resolve, reject) => {
-    Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_helpers_sync_api__["b" /* findOne */])(changeset.model, { id: changeset.data.modelId }, { populate: true, owner: _.get(changeset, ['data', 'owner']) }, (err, model, rawMessage) => {
-      if (err) {
-        return reject(err);
-      }
-
-      resolve({ model, rawMessage });
-    });
-  }).
-  then(({ model, rawMessage }) => {
-    changeset.data.instance = model;
-
-    // merge meta from the find one call without the `find` action
-    // and set `partial` flag to false
-    _.merge(changeset.meta, _.omit(rawMessage.meta, ['action']), { partial: false });
-
-    return changeset;
-  });
-}
-
-/**
-   * dispatch events on sync action pipeline
-   *
-   * @param {Array} events
-   */
-async function dispatchEvent(events) {
-  return _.reduce(events, (promise, event) => {
-    return promise.then(() => {
-      return Object(__WEBPACK_IMPORTED_MODULE_3__modules_pipelines_sync_action__["a" /* default */])(event).
-      catch(err => {
-
-        // log the error and proceed committing the next event
-        console.warn(err);
-      });
-    });
-  }, Promise.resolve());
-}
-
-/**
-   * Apply timeline related events.
-   *
-   * @param {Array.<Object>} events
-   */
-async function dispatchTimelineEvents(events) {
-  return events.reduce((acc, event) => {
-    return acc.then(() => {
-      switch (event.name) {
-        case 'create':
-          // at this point we do not know if the new timeline is in syncing window or not
-          // so always subscribe
-          // we rely on the unsubscribe timer to clean the unused subscriptions
-          // also dont wait for each timeline to sync and be subscribed
-          // else will sync everything one by one and will loose the advantage of windowed syncing
-          Object(__WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__["d" /* syncAndSubscribeTimeline */])(event.data);
-          break;
-        case 'delete':
-          return Object(__WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__["e" /* terminateTimeline */])(event.data);}
-
-    });
-  }, Promise.resolve([]));
-}
-
-/**
-   * Processes one single sync changeset for app.
-   *
-   * @param {Object} changeset
-   *
-   * @returns {Promise.<Object>} a promise that resolves with the changeset
-   */
-async function processIncomingChangeset(changeset) {
-  // filter off invalid changesets
-  if (!validateChangeset(changeset)) {
-    return;
-  }
-
-  let perfMarkerId = `incomingChangesetStart:${Date.now()}`,
-  timelineEvents = [],
-  sanitizedChangeset,
-  appEvents = [];
-
-  performance.mark(perfMarkerId);
-
-  // inflate the body of the changeset for any `partial` changeset
-  await inflateChangeset(changeset);
-
-  let changesets = splitMetaEvents(changeset);
-
-  _.forEach(changesets, changeset => {
-    // sanitize the body of the changeset
-    sanitizedChangeset = sanitize(changeset);
-
-    // translate the changeset into events that can be applied on the app
-    // each changeset could return one or more timeline events and/or model layer events
-    timelineEvents = timelineEvents.concat(getTimelineEventsFromChangeset(sanitizedChangeset));
-    appEvents = appEvents.concat(getEventFromChangeset(sanitizedChangeset));
-  });
-
-  // apply all the events for each changeset
-  await Promise.all([
-  dispatchTimelineEvents(timelineEvents),
-  dispatchEvent(appEvents)]);
-
-
-  performance.measure('incomingChangesetProcessing', perfMarkerId);
-
-  // return the changeset to the consumer
-  return sanitizedChangeset;
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 135:
+/***/ 140:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -394,9 +15,9 @@ async function processIncomingChangeset(changeset) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeAutoTimestamps; });
 /* unused harmony export sanitizeRawModeDataFromSync */
 /* unused harmony export sanitizeFormDataFromSync */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_RequestConstants__ = __webpack_require__(683);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_RequestDataModeConstants__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_RequestConstants__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_RequestDataModeConstants__ = __webpack_require__(143);
 
 
 
@@ -779,7 +400,14 @@ function sanitizeAutoTimestamps(entity) {
 
 /***/ }),
 
-/***/ 1502:
+/***/ 15:
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+
+/***/ 1580:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1110,38 +738,154 @@ module.exports = Loadable;
 
 /***/ }),
 
-/***/ 16:
-/***/ (function(module, exports) {
+/***/ 1665:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = require("path");
+"use strict";
+let InterceptorInstaller = class InterceptorInstaller {
+
+  constructor() {
+
+    // checking intermediate states for interceptor bridge installation
+    pm.appWindow.trigger('registerInternalEvent', 'interceptorBridgeInstallationStatusUpdate', function (data) {
+      pm.mediator.trigger('onMessageExternal', data);
+      if (data.status === 'downloadStarted') {
+        console.log('Downloading Interceptor Bridge...');
+      } else
+      if (data.status === 'downloadFinished') {
+        console.log('Downloaded Interceptor Bridge');
+      } else
+      if (data.status === 'installationStarted') {
+        console.log('Installing Interceptor Bridge');
+      } else
+      if (data.status === 'manifestAdded') {
+        console.log('Added manifest');
+      } else
+      if (data.status === 'registryKeyAdded') {
+        console.log('Added registry key');
+      } else
+      if (data.status === 'installationFinished') {
+        pm.settings.setSetting('interceptor.interceptorBridgeInstalled', true);
+        console.log('InterceptorBridge is installed successfully');
+      } else
+      if (data.status === 'error') {
+        pm.settings.setSetting('interceptor.interceptorBridgeInstalled', false);
+        console.log('Error occured while installing Interceptor Bridge: ', data.errorMessage);
+      }
+    }, this);
+
+    // checking intermediate states for node installation
+    pm.appWindow.trigger('registerInternalEvent', 'nodeInstallationStatusUpdate', function (data) {
+      if (data.status === 'downloadStarted') {
+        console.log('Downloading Node...');
+      } else
+      if (data.status === 'downloadFinished') {
+        console.log('Node is downloaded successfully');
+      } else
+      if (data.status === 'installationFinished') {
+        console.log('Node is installed successfully');
+      } else
+      if (data.status === 'installationNotFinished') {
+        console.log('Node installation is not finished');
+      } else
+      if (data.status === 'error') {
+        console.log(data.errorMessage);
+      }
+    }, this);
+
+    pm.appWindow.trigger('registerInternalEvent', 'interceptorBridgeResetStatusUpdate', function (data) {
+      if (data.status === 'success') {
+        console.log('Interceptor Bridge installation is reset successfully');
+      } else
+      if (data.status === 'error') {
+        console.log(data.errorMessage);
+      }
+    }, this);
+
+  }
+
+  /**
+     * sets up the Native App ~ Interceptor integration
+     * i.e. puts the native server in Applications/ folder
+     * puts the manifest at chrome-specific location
+     *
+     */
+  installInterceptorBridge() {
+    pm.appWindow.sendToElectron({
+      event: 'installInterceptorBridge' });
+
+    return 'InterceptorBridge installation initiated';
+  }
+
+  /**
+     * checks for the presence of manifest and Interceptor Bridge executable
+     * checks for the presence of registry key in case of windows
+     * checks for the presence of node in case of macOS
+     */
+  checkInstallationStatus() {
+    pm.appWindow.sendToElectron({
+      event: 'checkInstallationStatus' });
+
+    return 'Check Installation initiated';
+  }
+
+  /**
+     * it downloads node installer in case of macOS if it doesn't exist
+     */
+  installNode() {
+    pm.appWindow.sendToElectron({
+      event: 'installNode' });
+
+    return 'Node installation initiated';
+  }
+
+  /**
+     *
+     * resets interceptor bridge installation by initiating
+     *
+     * 1. removal of `InterceptorBridge` directory
+     * 2. removal of manifest present at os-specific location
+     * 3. removal of registry key (only in case of windows)
+     *
+     */
+  reset() {
+    pm.appWindow.sendToElectron({
+      event: 'resetInterceptorBridgeInstallation' });
+
+    return 'Resetting Interceptor Bridge installation';
+  }};
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (InterceptorInstaller);
 
 /***/ }),
 
-/***/ 1628:
+/***/ 1666:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1629);
+module.exports = __webpack_require__(1667);
 
 
 /***/ }),
 
-/***/ 1629:
+/***/ 1667:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__init__ = __webpack_require__(1637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_requester_scss__ = __webpack_require__(3083);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__init__ = __webpack_require__(1675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_requester_scss__ = __webpack_require__(3314);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_requester_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles_requester_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loadable__ = __webpack_require__(1502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loadable__ = __webpack_require__(1580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loadable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_loadable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_TelemetryHelpers__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_empty_states_CrashHandler__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_TelemetryHelpers__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_empty_states_CrashHandler__ = __webpack_require__(203);
 
 
 
@@ -1152,7 +896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const Requester = __WEBPACK_IMPORTED_MODULE_4_react_loadable___default()({
-  loader: () => __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, 3477)),
+  loader: () => __webpack_require__.e/* import() */(24).then(__webpack_require__.bind(null, 3572)),
   loading: () => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null) });
 
 
@@ -1185,31 +929,29 @@ __WEBPACK_IMPORTED_MODULE_2__init__["a" /* default */].init(err => {
 
 /***/ }),
 
-/***/ 1637:
+/***/ 1675:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boot_bootConfig__ = __webpack_require__(556);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boot_bootConfig__ = __webpack_require__(584);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boot_bootConfig___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__boot_bootConfig__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(557);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootMessaging__ = __webpack_require__(558);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootWLModels__ = __webpack_require__(559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootDBWatcher__ = __webpack_require__(1968);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(631);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootCrashReporter__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_bootIndependentServices__ = __webpack_require__(3051);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootSession__ = __webpack_require__(840);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootRequester__ = __webpack_require__(3061);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_booted__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootThemeManager__ = __webpack_require__(900);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__boot_bootConfigurations__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__boot_bootInAppMessage__ = __webpack_require__(3074);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__boot_bootRuntimeListeners__ = __webpack_require__(3077);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__boot_bootLogger__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__boot_bootMessaging__ = __webpack_require__(586);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boot_bootWLModels__ = __webpack_require__(587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boot_bootDBWatcher__ = __webpack_require__(2017);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__ = __webpack_require__(607);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boot_bootSettings__ = __webpack_require__(662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__boot_bootTelemetry__ = __webpack_require__(663);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__boot_bootCrashReporter__ = __webpack_require__(664);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__boot_bootIndependentServices__ = __webpack_require__(3282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__boot_bootSession__ = __webpack_require__(921);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__boot_bootRequester__ = __webpack_require__(3293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__boot_booted__ = __webpack_require__(667);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__boot_bootThemeManager__ = __webpack_require__(982);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__boot_bootConfigurations__ = __webpack_require__(551);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__boot_bootRuntimeListeners__ = __webpack_require__(3308);
 
 
 
@@ -1249,10 +991,9 @@ pm.init = done => {
   __WEBPACK_IMPORTED_MODULE_11__boot_bootSession__["a" /* bootSession */],
   __WEBPACK_IMPORTED_MODULE_10__boot_bootIndependentServices__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_6__boot_bootAppModels__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_17__boot_bootRuntimeListeners__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_16__boot_bootRuntimeListeners__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_5__boot_bootDBWatcher__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_14__boot_bootThemeManager__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_16__boot_bootInAppMessage__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_12__boot_bootRequester__["a" /* default */]],
   err => {
     Object(__WEBPACK_IMPORTED_MODULE_13__boot_booted__["a" /* default */])(err);
@@ -1267,17 +1008,17 @@ pm.init = done => {
 
 /***/ }),
 
-/***/ 170:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return sanitizeRequestDataForSync; });
 /* unused harmony export sanitizeRequest */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeCollectionModelForSync; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sanitize_collection_model_from_sync__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_RequestDataModeConstants__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_utils_collection_tree__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sanitize_collection_model_from_sync__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_RequestDataModeConstants__ = __webpack_require__(143);
 
 
 
@@ -1446,18 +1187,18 @@ function sanitizeCollectionModelForSync(model, type) {
 
 /***/ }),
 
-/***/ 181:
+/***/ 189:
 /***/ (function(module, exports) {
 
 module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 1968:
+/***/ 2017:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_DBResourceWatcher__ = __webpack_require__(1094);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_DBResourceWatcher__ = __webpack_require__(1149);
 
 
 /**
@@ -1473,24 +1214,31 @@ function bootWLModels(cb) {
 
 /***/ }),
 
-/***/ 211:
+/***/ 21:
+/***/ (function(module, exports) {
+
+module.exports = require("electron");
+
+/***/ }),
+
+/***/ 219:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseSyncTimeline; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SyncStateService__ = __webpack_require__(855);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_SyncService__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RealtimeSyncMessagesService__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__RealtimeOutgoingSyncMessageService__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ConflictResolutionHelpers__ = __webpack_require__(634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_SyncStatusConstants__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncClientService__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_SyncOutgoingHelpers__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_AnalyticsService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SyncStateService__ = __webpack_require__(935);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_SyncService__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RealtimeSyncMessagesService__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__RealtimeOutgoingSyncMessageService__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ConflictResolutionHelpers__ = __webpack_require__(665);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_SyncStatusConstants__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__SyncClientService__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_SyncOutgoingHelpers__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_AnalyticsService__ = __webpack_require__(20);
 
 
 
@@ -2179,10 +1927,30 @@ let BaseSyncTimeline = class BaseSyncTimeline {
       // no need for any specific error handling here, the polling service
       // will try to resync it after a period of time
       if (!response || response.error) {
+        // Action for analytics event to be tracked
+        let action = 'initial_sync_fail';
+
         // if the server returns an error or no response (also an error from server)
         // increase the error count for this timeline, so we can stop retrying after a limit
         // do this only for server errors, continue retrying for client errors
         this.errorCount++;
+
+        pm.syncManager.sailsIO.url.includes('premium') ?
+        action = action + '_premium' :
+        action = action + '_prod';
+
+        _.get(response, 'jwr.statusCode') >= 400 && _.get(response, 'jwr.statusCode') < 500 ?
+        action = action + '_4xx' :
+        action = action + '_5xx';
+
+        // Tracking this error as analytics event
+        __WEBPACK_IMPORTED_MODULE_12__services_AnalyticsService__["a" /* default */].addEventV2({
+          category: 'sync_failure',
+          action: action,
+          entityType: this.model,
+          entityId: this.modelId });
+
+
         throw new Error(_.get(response, ['error', 'message'], 'Could not get response for /sync'));
       }
 
@@ -2367,7 +2135,7 @@ let BaseSyncTimeline = class BaseSyncTimeline {
     // wipe since id
     await Object(__WEBPACK_IMPORTED_MODULE_2__SyncStateService__["c" /* wipeSyncState */])(this.getTimelineId());
 
-    let partials = Object(__WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__["a" /* decomposeUID */])(this.modelId);
+    let partials = Object(__WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__["b" /* decomposeUID */])(this.modelId);
 
     // remove all pending changesets for this modelId
     partials.modelId && (await new Promise(resolve => {
@@ -2417,12 +2185,12 @@ let BaseSyncTimeline = class BaseSyncTimeline {
 
 /***/ }),
 
-/***/ 212:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
 
 
@@ -2495,7 +2263,7 @@ WORKSPACE = 'workspace';
 
 /***/ }),
 
-/***/ 213:
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2598,14 +2366,7 @@ let toAppEvents = {
 
 /***/ }),
 
-/***/ 22:
-/***/ (function(module, exports) {
-
-module.exports = require("electron");
-
-/***/ }),
-
-/***/ 268:
+/***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2618,7 +2379,7 @@ module.exports = require("electron");
 /* harmony export (immutable) */ __webpack_exports__["e"] = terminateTimeline;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getSubscribedTimelines;
 /* harmony export (immutable) */ __webpack_exports__["a"] = forceStopAllTimelines;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timelines__ = __webpack_require__(853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timelines__ = __webpack_require__(933);
 
 
 /**
@@ -2788,69 +2549,12 @@ function forceStopAllTimelines() {
 
 /***/ }),
 
-/***/ 269:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = getRealtimeMessagesObservable;
-/* harmony export (immutable) */ __webpack_exports__["b"] = publishRealtimeMessage;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__ = __webpack_require__(291);
-
-
-
-
-/**
-                                                                                       * An RxJS  Subject instance that is be used to publish real-time sync messages.
-                                                                                       * Subject guarantees that the observable is multi-cast and shares a single listener
-                                                                                       * for every subscriber.
-                                                                                       *
-                                                                                       * @todo: Observe for impact on shared module level instance, and effects on unsubscribe, logout etc.
-                                                                                       *
-                                                                                       * @type {Observable}
-                                                                                       */
-let realtimeMessagesSubject = new __WEBPACK_IMPORTED_MODULE_0_rxjs__["c" /* Subject */]();
-
-
-const realtimeIncomingMessages$ = realtimeMessagesSubject.asObservable();
-/* harmony export (immutable) */ __webpack_exports__["c"] = realtimeIncomingMessages$;
-
-
-/**
-                                                                                  * Returns an Observable of realtime messages from sync socket.
-                                                                                  *
-                                                                                  * @returns
-                                                                                  */
-function getRealtimeMessagesObservable() {
-  return realtimeMessagesSubject.asObservable().
-  pipe(
-  Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_operators__["k" /* takeUntil */])(Object(__WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__["b" /* getSocketDisconnectsObservable */])()));
-
-}
-
-/**
-   * Publishes a message to the realtime
-   *
-   * @returns
-   */
-function publishRealtimeMessage(message) {
-  pm.logger.info('RealtimeSyncMessageService~publishRealtimeIncomingMessage: Message received ' +
-  `${message.type || _.get(message, 'meta.model')}:${_.get(message, 'meta.action')} ` +
-  `Timeline in message: ${_.get(message, 'meta.timeline.model')}:${_.get(message, 'meta.timeline.model_id')}`);
-
-  realtimeMessagesSubject.next(message);
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 270:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseConfigurationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_events__);
 let
 
@@ -2923,22 +2627,318 @@ BaseConfigurationService = class BaseConfigurationService extends __WEBPACK_IMPO
 
 /***/ }),
 
-/***/ 3051:
+/***/ 317:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_PmConsole__ = __webpack_require__(835);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Shortcuts__ = __webpack_require__(1372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ToastManager__ = __webpack_require__(836);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_helpers_OAuth2Tokens__ = __webpack_require__(3053);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_cookies_CookieManager__ = __webpack_require__(3054);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_helpers_OAuth2Manager__ = __webpack_require__(3055);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__controllers_ElectronContextMenu__ = __webpack_require__(3058);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_collections_CollectionClipboard__ = __webpack_require__(3060);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_Toasts__ = __webpack_require__(838);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toChangesets; });
+/* unused harmony export toEvents */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
 
+
+
+
+const ACTION_IMPORT = 'import',
+ACTION_UPDATE = 'update',
+ACTION_TRANSFER = 'transfer',
+ACTION_DESTROY = 'destroy',
+
+EVENT_CREATE_DEEP = 'create_deep',
+EVENT_UPDATE = 'update',
+EVENT_DELETE = 'delete',
+
+ORDER = 'order',
+FOLDERS_ORDER = 'folders_order';
+
+let toChangesets = {
+  created(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    changesetData;
+
+    // default changeset data
+    changesetData = {
+      modelId: eventData.id,
+      instance: eventData,
+      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
+
+
+    // if the model is identified by owner, add owner information to changeset data
+    eventData.owner && (changesetData.owner = eventData.owner);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_IMPORT, changesetData)];
+  },
+
+  updated(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventMeta = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["e" /* getEventMeta */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    changesetData;
+
+    // default changeset data
+    changesetData = {
+      modelId: eventData.id,
+      instance: eventData,
+      keys: eventMeta.updatedKeys,
+      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
+
+
+    // if the model is identified by owner, add owner information to changeset data
+    eventData.owner && (changesetData.owner = eventData.owner);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_UPDATE, changesetData)];
+  },
+
+  /**
+      * 1. Create a changeset for transferring the item. Sync will add this item to the last position in parent.
+      * 2. Create a changeset for updating the position on the parent. (Response move doesn't have a parent update).
+      */
+  moved: function (event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    transferredItem = eventData[eventData.model],
+    transferChangesetData = {},
+    target = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event).target,
+    changesets = [],
+    lowLevelEvents = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["h" /* getLowLevelEvents */])(event),
+    parentUpdatedEvent;
+
+    // 1. Transfer changeset
+    // 1.a Add model info
+    transferChangesetData.modelId = transferredItem.id;
+    transferChangesetData.instance = transferredItem;
+
+    // 1b. Add target info
+    transferChangesetData.to = _.pick(target, ['model', 'modelId']);
+
+    // 1c. Add source info
+    transferChangesetData.parent = transferChangesetData.from = Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(transferredItem, eventNamespace);
+
+    changesets.push(Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(event.namespace, ACTION_TRANSFER, transferChangesetData));
+
+    // 2. Find the updated changeset on target for order update
+    // we do this because a transfer changeset only moves the item to target at the end
+    // hence the order should be sent as an explicit order update changeset to sync
+    parentUpdatedEvent = _.find(lowLevelEvents, stage1Event => {
+      return Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(stage1Event) === 'updated' && _.get(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(stage1Event), 'id') === target.modelId;
+    });
+
+    if (parentUpdatedEvent) {
+      changesets = changesets.concat(toChangesets.updated(parentUpdatedEvent));
+    }
+
+    return changesets;
+  },
+
+  deleted(event) {
+    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
+    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
+    changesetData;
+
+    // default changeset data
+    changesetData = {
+      modelId: eventData.id,
+      instance: eventData,
+      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
+
+
+    // if the model is identified by owner, add owner information to changeset data
+    eventData.owner && (changesetData.owner = eventData.owner);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_DESTROY, changesetData)];
+  } },
+
+
+toEvents = {
+  import(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
+  },
+
+  create(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']);
+
+    // remove any child references, and child order references
+    instance = _.omit(instance, ['folders', 'requests', 'responses', 'folders_order', 'order']);
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
+  },
+
+  update(changeset) {
+    let model = changeset.model,
+    instance = _.get(changeset, ['data', 'instance']),
+    events = [],
+
+    updateData,
+    hasShallowUpdates,
+
+    // look for order properties in update changesets
+    orderUpdateData = {};
+
+    if (model === 'request' || model === 'response') {
+      return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, instance)];
+    }
+
+    // if sync sends an order property via an update, it means an order update
+    // we can drop order updates with `order` and `folders_order` for null and []
+    // because sync will never intend a remove all children via a parent update
+    !_.isEmpty(instance, ORDER) && (orderUpdateData.order = instance.order);
+    !_.isEmpty(instance, FOLDERS_ORDER) && (orderUpdateData.folders_order = instance.folders_order);
+
+    // look for order properties in update changesets
+    if (!_.isEmpty(orderUpdateData)) {
+      orderUpdateData.id = _.get(changeset, ['data', 'modelId']);
+
+      events.push(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('reorder_children', changeset.model, {
+        model: changeset.model,
+        [changeset.model]: orderUpdateData }));
+
+    }
+
+    // remove order update properties
+    updateData = _.omit(instance, [FOLDERS_ORDER, ORDER]);
+
+    // see if there are any other updates other than order updates
+    hasShallowUpdates = _.chain(updateData).omit(['id']).keys().isEmpty().value();
+
+
+    if (!hasShallowUpdates) {
+      // create an update event without the order updates
+      events.push(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, updateData));
+    }
+
+    return events;
+  },
+
+  transfer: function (changeset) {
+    let model = changeset.model;
+
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('move', model, {
+      model: model,
+      [model]: { id: _.get(changeset, ['data', 'modelId']) },
+      target: _.pick(_.get(changeset, 'data.to'), ['model', 'modelId']) })];
+
+  },
+
+  destroy(changeset) {
+    let model = changeset.model,
+    modelId = _.get(changeset, ['data', 'modelId']);
+
+    // @todo: need to change all collection model deletes to deleteDeep
+    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_DELETE, model, { id: modelId })];
+  } };
+
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 318:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getCurrentSocketStatus;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getSocketStatusObservable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
+
+
+
+
+/**
+                                                                   * Used to get the current socket status
+                                                                   *
+                                                                   * Status is one of these:
+                                                                   *  offline: neither connecting nor connected
+                                                                   *  connecting: socket connecting but not connected yet
+                                                                   *  connected: socket connected
+                                                                   *
+                                                                   * @returns {String}
+                                                                   */
+function getCurrentSocketStatus() {
+  let isSocketConnecting = pm.syncManager.get('connectingToSocket'),
+  isSocketConnected = pm.syncManager.get('socketConnected');
+
+  if (!isSocketConnecting && !isSocketConnected) {
+    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */];
+  }
+
+  if (isSocketConnecting && !isSocketConnected) {
+    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["b" /* SOCKET_CONNECTING */];
+  }
+
+  if (!isSocketConnecting && isSocketConnected) {
+    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["a" /* SOCKET_CONNECTED */];
+  }
+
+  return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */];
+}
+
+/**
+   * @returns {Observable}
+   */
+function getSocketStatusObservable() {
+  return new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](observer => {
+
+    // push the initial value of socket status
+    observer.next(getCurrentSocketStatus());
+
+    let onchange = () => {
+      observer.next(getCurrentSocketStatus());
+    };
+
+    let onRequestStatus = pm.eventBus.channel('sync-manager-internal').subscribe(event => {
+      let eventName = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(event),
+      eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event);
+
+      if (eventName === 'pull' && eventNamespace === 'syncStatus') {
+        observer.next(getCurrentSocketStatus());
+      }
+    });
+
+    // listen for changes and on each change of value
+    // recompute the socket status and push to the observable
+    pm.syncManager.on('change:connectingToSocket', onchange),
+    pm.syncManager.on('change:socketConnected', onchange);
+
+    return () => {
+      pm.syncManager.off('change:connectingToSocket', onchange),
+      pm.syncManager.off('change:socketConnected', onchange);
+      onRequestStatus && onRequestStatus();
+    };
+  });
+}
+
+/***/ }),
+
+/***/ 32:
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 3282:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Shortcuts__ = __webpack_require__(1497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_ToastManager__ = __webpack_require__(919);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_helpers_OAuth2Tokens__ = __webpack_require__(3284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_cookies_CookieManager__ = __webpack_require__(3285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_helpers_OAuth2Manager__ = __webpack_require__(3286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_ElectronContextMenu__ = __webpack_require__(3289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_collections_CollectionClipboard__ = __webpack_require__(3291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_Toasts__ = __webpack_require__(920);
 
 
 
@@ -2955,14 +2955,13 @@ BaseConfigurationService = class BaseConfigurationService extends __WEBPACK_IMPO
                                                 */
 function bootIndependentServices(cb) {
   _.assign(window.pm, {
-    toasts: __WEBPACK_IMPORTED_MODULE_9__models_Toasts__,
-    toastManager: new __WEBPACK_IMPORTED_MODULE_3__models_ToastManager__["a" /* default */](),
-    cookieManager: new __WEBPACK_IMPORTED_MODULE_5__models_cookies_CookieManager__["a" /* default */](),
-    oAuth2Tokens: new __WEBPACK_IMPORTED_MODULE_4__models_helpers_OAuth2Tokens__["a" /* default */](),
-    oAuth2Manager: new __WEBPACK_IMPORTED_MODULE_6__models_helpers_OAuth2Manager__["a" /* default */](),
-    contextMenuManager: new __WEBPACK_IMPORTED_MODULE_7__controllers_ElectronContextMenu__["a" /* default */](),
-    clipboard: new __WEBPACK_IMPORTED_MODULE_8__models_collections_CollectionClipboard__["a" /* default */](),
-    console: new __WEBPACK_IMPORTED_MODULE_1__models_PmConsole__["a" /* default */]('builder') });
+    toasts: __WEBPACK_IMPORTED_MODULE_8__models_Toasts__,
+    toastManager: new __WEBPACK_IMPORTED_MODULE_2__models_ToastManager__["a" /* default */](),
+    cookieManager: new __WEBPACK_IMPORTED_MODULE_4__models_cookies_CookieManager__["a" /* default */](),
+    oAuth2Tokens: new __WEBPACK_IMPORTED_MODULE_3__models_helpers_OAuth2Tokens__["a" /* default */](),
+    oAuth2Manager: new __WEBPACK_IMPORTED_MODULE_5__models_helpers_OAuth2Manager__["a" /* default */](),
+    contextMenuManager: new __WEBPACK_IMPORTED_MODULE_6__controllers_ElectronContextMenu__["a" /* default */](),
+    clipboard: new __WEBPACK_IMPORTED_MODULE_7__models_collections_CollectionClipboard__["a" /* default */]() });
 
   pm.logger.info('IndependentServices~boot - Success');
   cb && cb(null);
@@ -2973,13 +2972,13 @@ function bootIndependentServices(cb) {
 
 /***/ }),
 
-/***/ 3053:
+/***/ 3284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(87);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_backbone__);
 
 
@@ -3127,17 +3126,17 @@ var OAuth2Tokens = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Collection.e
 
 /***/ }),
 
-/***/ 3054:
+/***/ 3285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(52);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
 
 
 
-const session = __webpack_require__(22).remote.session;
+const session = __webpack_require__(21).remote.session;
 
 /**
                                                      * @typedef {Object} Cookie
@@ -3154,6 +3153,80 @@ CookieManager = class CookieManager {
 
   constructor() {
     this.cookies = {};
+
+    this.loadCookiesDebounced = _.debounce(this.loadCookies, 300);
+    this.callbackAccumulator = [];
+  }
+
+  /**
+     * @private
+     *
+     * @param {string} url - URL of the cookie
+     * @param {string} host - Host (domain) name of the cookie
+     * @param {Object} cookie - Cookie object
+     * @param {Function} [callback] - Callback function to be triggered
+     */
+  _writeToCookieStore(url, host, cookie, callback) {
+    let cookieStore = session.fromPartition(__WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].getCookiePartition()).cookies;
+    if (!host) {return;}
+
+    var urlKey = host;
+    urlKey[0] == '.' && (urlKey = urlKey.substring(1));
+    if (!this.cookies.hasOwnProperty(urlKey)) {
+      this.cookies[urlKey] = {};
+    }
+
+    // cookie will be loaded once the callback is successful
+    if (cookie.url.indexOf('http://') !== 0 && cookie.url.indexOf('https://') !== 0) {
+      cookie.url = 'http://' + cookie.url;
+    }
+
+    if (!cookie.domain) {
+      cookie.domain = host;
+    }
+    if (!cookie.Path) {
+      cookie.Path = '/';
+    }
+
+    if (host[0] == '.') {
+      host = host.substring(1);
+    }
+    var cookieToSet = {
+      url: cookie.url,
+      name: cookie.name,
+      value: cookie.value,
+      domain: host,
+      path: cookie.path,
+      secure: cookie.secure,
+      expirationDate: cookie.expires,
+      httpOnly: cookie.httpOnly };
+
+
+    cookieStore.set(cookieToSet, err => {
+      _.isFunction(callback) && callback(err);
+    });
+  }
+
+  /**
+     * `loadCookiesBulk` accumulates all the callbacks and uses debounced `loadCookies`.
+     * Once `loadCookies` is triggered, all the callbacks are called and the accumulator is cleared.
+     *
+     * @param {Function} callback - Callback function to be triggered
+     */
+  loadCookiesBulk(callback) {
+    this.callbackAccumulator.push(callback);
+
+    this.loadCookiesDebounced(() => {
+      const callbacks = this.callbackAccumulator;
+
+      // Empty the callback accumulator so that we do not miss any callback during flushing of
+      // other callbacks
+      this.callbackAccumulator = [];
+
+      _.forEach(callbacks, callback => {
+        _.isFunction(callback) && callback();
+      });
+    });
   }
 
   // when the app loads
@@ -3313,47 +3386,40 @@ CookieManager = class CookieManager {
     }
   }
 
+  /**
+     * `cookies` param has a similar structure to `addSingleCookie` method's params
+     *
+     * @param {Object[]} cookies - Array of Objects containing cookies
+     * @param {string} cookies[].url - URL of the cookie
+     * @param {string} cookies[].host - Host (domain) name of the cookie
+     * @param {Object} cookies[].cookie - Cookie object
+     * @param {Function} [callback] - Callback function to be triggered
+     */
+  addBulkCookies(cookies, callback) {
+    __WEBPACK_IMPORTED_MODULE_1_async___default.a.each(cookies, (cookieItem, next) => {
+      this._writeToCookieStore(cookieItem.url, cookieItem.host, cookieItem.cookie, next);
+    }, err => {
+      if (err) {
+        return _.isFunction(callback) && callback(err);
+      }
+
+      this.loadCookiesBulk(() => {
+        _.isFunction(callback) && callback();
+      });
+    });
+  }
+
+  /**
+     *
+     * @param {string} url - URL of the cookie
+     * @param {string} host - Host (domain) name of the cookie
+     * @param {Object} cookie - Cookie object
+     * @param {Function} [callback] - Callback function to be triggered
+     */
   addSingleCookie(url, host, cookie, callback) {
-    let cookieStore = session.fromPartition(__WEBPACK_IMPORTED_MODULE_0__utils_util__["a" /* default */].getCookiePartition()).cookies;
-    if (!host) {return;}
-
-    var urlKey = host;
-    urlKey[0] == '.' && (urlKey = urlKey.substring(1));
-    if (!this.cookies.hasOwnProperty(urlKey)) {
-      this.cookies[urlKey] = {};
-    }
-
-    // cookie will be loaded once the callback is successful
-    if (cookie.url.indexOf('http://') !== 0 && cookie.url.indexOf('https://') !== 0) {
-      cookie.url = 'http://' + cookie.url;
-    }
-
-    if (!cookie.domain) {
-      cookie.domain = host;
-    }
-    if (!cookie.Path) {
-      cookie.Path = '/';
-    }
-
-    if (host[0] == '.') {
-      host = host.substring(1);
-    }
-    var cookieToSet = {
-      url: cookie.url,
-      name: cookie.name,
-      value: cookie.value,
-      domain: host,
-      path: cookie.path,
-      secure: cookie.secure,
-      expirationDate: cookie.expires,
-      httpOnly: cookie.httpOnly };
-
-
-    cookieStore.set(cookieToSet,
-    error => {
-      if (error) {
-        _.isFunction(callback) && callback(error);
-        return;
+    this._writeToCookieStore(url, host, cookie, err => {
+      if (err) {
+        return _.isFunction(callback) && callback(err);
       }
 
       this.loadCookies(() => {
@@ -3482,14 +3548,20 @@ CookieManager = class CookieManager {
         // If there were multiple cookies with same name & different paths,
         // this would have deleted all those cookies, adding them back
         matchingCookies.splice(index, 1); // remove the one which was intended to be deleted
-        __WEBPACK_IMPORTED_MODULE_1_async___default.a.each(matchingCookies, (cookie, next) => {
+
+        let bulkCookies = _.map(matchingCookies, cookie => {
           cookie.url = cookie.domain + cookie.path;
           cookie.secure ? cookie.url = 'https://' + cookie.url : cookie.url = 'http://' + cookie.url;
-          this.addSingleCookie(cookie.url, cookie.domain, cookie, next);
-        }, () => {
-          this.loadCookies(() => {
-            _.isFunction(callback) && callback();
-          });
+
+          return {
+            url: cookie.url,
+            host: cookie.domain,
+            cookie };
+
+        });
+
+        this.addBulkCookies(bulkCookies, () => {
+          _.isFunction(callback) && callback();
         });
       });
     });
@@ -3502,13 +3574,13 @@ CookieManager = class CookieManager {
 
 /***/ }),
 
-/***/ 3055:
+/***/ 3286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__OAuth2TokenFetcher__ = __webpack_require__(3056);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(87);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__OAuth2TokenFetcher__ = __webpack_require__(3287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_ModelService__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_backbone__);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -3718,25 +3790,22 @@ OAuth2Manager = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Model.extend({
 
 /***/ }),
 
-/***/ 3056:
+/***/ 3287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(22);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_electron___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_electron__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ModelToSdkTransformer__ = __webpack_require__(791);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_ModelToSdkTransformer__ = __webpack_require__(845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_postman_collection__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__ = __webpack_require__(3057);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_ResolveVariableHelper__ = __webpack_require__(3288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_backbone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_VariableSessionService__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_constants_console__ = __webpack_require__(837);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_constants_console___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__common_constants_console__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_ConsoleEventTypes__ = __webpack_require__(307);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_VariableSessionService__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ConsoleEventTypes__ = __webpack_require__(266);
 
 
 
@@ -3748,10 +3817,10 @@ OAuth2Manager = __WEBPACK_IMPORTED_MODULE_2_backbone___default.a.Model.extend({
 
 
 /**
-                                                                            * Interface that talks to {@link OAuth2TokenRequester} for completing OAuth 2.0 token generation flows.
-                                                                            *
-                                                                            * @class OAuth2TokenFetcher
-                                                                            */
+                                      * Interface that talks to {@link OAuth2TokenRequester} for completing OAuth 2.0 token generation flows.
+                                      *
+                                      * @class OAuth2TokenFetcher
+                                      */
 var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.extend( /** @lends OAuth2TokenFetcher.prototype */{
   defaults: function () {
     return {
@@ -3809,7 +3878,11 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
         certificates: __WEBPACK_IMPORTED_MODULE_1__utils_ModelToSdkTransformer__["a" /* default */].getClientSslCerts(pm.certificateManager),
         requester: {
           strictSSL: pm.settings.getSetting('SSLCertVerify'),
-          extendedRootCA: pm.settings.getSetting('isCACertEnabled') && pm.settings.getSetting('CACertPath') || undefined } },
+          extendedRootCA: pm.settings.getSetting('isCACertEnabled') && pm.settings.getSetting('CACertPath') || undefined,
+          verbose: true },
+
+        script: {
+          serializeLogs: true } },
 
 
       { cookiePartitionId: __WEBPACK_IMPORTED_MODULE_3__utils_util__["a" /* default */].getCookiePartition(),
@@ -3830,23 +3903,25 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
       * @fires Mediator#addOAuth2Token
       */
   onOAuth2TokenRequestCallback: function (event, rawErr, rawResponse) {
-    let response = rawResponse && JSON.parse(rawResponse);
-
     if (rawErr) {
-      let err = JSON.parse(rawErr);
+      let err = JSON.parse(rawErr),
+      errMessage = err && err.message || String(err);
+
       pm.toasts.error('Could not complete OAuth 2.0 login. Check Postman Console for more details.');
 
-      // pm console swallows anything but the first argument
-      pm.console.error('exception', err);
-      pm.console.error('exception', response);
+      if (rawResponse) {
+        errMessage += ': ' + String(rawResponse);
+      }
 
-      // dump it on dev tools as well
-      console.warn('Could not complete OAuth 2.0 login.', err, response);
+      pm.console.error(__WEBPACK_IMPORTED_MODULE_8__constants_ConsoleEventTypes__["a" /* CONSOLE_EVENT_EXCEPTION */], {}, {
+        name: err && err.name,
+        message: errMessage });
+
 
       return;
     }
 
-    pm.mediator.trigger('addOAuth2Token', response);
+    pm.mediator.trigger('addOAuth2Token', rawResponse && JSON.parse(rawResponse));
   },
 
   /**
@@ -3859,21 +3934,21 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
       * @param {SDKResponse~definition} responseJSON json representation of sdk response
       * @param {SDKRequest~definition} requestJSON json representation of sdk request
       */
-  onOAuth2TokenRequestResponse: function (event, rawErr, trace, cursor, responseJSON, requestJSON) {
+  onOAuth2TokenRequestResponse: function (event, rawErr, cursor, responseJSON, requestJSON, history) {
     let err = rawErr && JSON.parse(rawErr),
     request = requestJSON && new __WEBPACK_IMPORTED_MODULE_2_postman_collection__["Request"](requestJSON),
     response = responseJSON && new __WEBPACK_IMPORTED_MODULE_2_postman_collection__["Response"](responseJSON),
     consolePayload = {};
 
-    if (!trace || trace.type !== 'http' || !request) {
+    if (!request) {
       return;
     }
 
     consolePayload.request = {
       url: _.invoke(request, 'url.toString'),
       method: requestJSON.method,
-      headers: _.invoke(request, 'headers.toObject'),
-      body: request.size().body > __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["MAX_BODY_SIZE"] ? { ___ignored___: __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["LARGE_BODY_ALT"] } : requestJSON.body,
+      headers: _.invoke(request, 'headers.toJSON'),
+      body: requestJSON.body,
       certificate: requestJSON.certificate,
       proxy: requestJSON.proxy };
 
@@ -3882,19 +3957,21 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
       consolePayload.response = {
         responseTime: response.responseTime,
         code: response.code,
-        headers: _.invoke(response, 'headers.toObject'),
-        body: response.size().body > __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["MAX_BODY_SIZE"] ? { ___ignored___: __WEBPACK_IMPORTED_MODULE_8__common_constants_console__["LARGE_BODY_ALT"] } : response.text() };
+        headers: _.invoke(response, 'headers.toJSON'),
+        body: response.text(),
+        contentInfo: _.isFunction(response.contentInfo) && response.contentInfo() };
 
     }
 
     consolePayload.indirect = 'auth';
+    consolePayload.history = history;
 
     if (err) {
       consolePayload.error = err.message;
-      pm.newConsole.error(__WEBPACK_IMPORTED_MODULE_9__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, consolePayload);
+      pm.console.error(__WEBPACK_IMPORTED_MODULE_8__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, consolePayload);
     } else
     {
-      pm.newConsole.log(__WEBPACK_IMPORTED_MODULE_9__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, consolePayload);
+      pm.console.log(__WEBPACK_IMPORTED_MODULE_8__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, consolePayload);
     }
   } });
 
@@ -3904,11 +3981,11 @@ var OAuth2TokenFetcher = __WEBPACK_IMPORTED_MODULE_6_backbone___default.a.Model.
 
 /***/ }),
 
-/***/ 3057:
+/***/ 3288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection__);
 
 
@@ -3934,20 +4011,20 @@ let ResolveVariableHelper = class ResolveVariableHelper {
 
 /***/ }),
 
-/***/ 3058:
+/***/ 3289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ElectronContextMenu; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_DraftJsHelper__ = __webpack_require__(3059);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_VariableSessionService__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_VariableSessionHelper__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_DraftJsHelper__ = __webpack_require__(3290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_VariableSessionService__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_VariableSessionHelper__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_EditorService__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__electron_ElectronService__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_EditorService__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__electron_ElectronService__ = __webpack_require__(144);
 
 
 
@@ -3968,7 +4045,7 @@ let ResolveVariableHelper = class ResolveVariableHelper {
                                                                  */let
 ElectronContextMenu = class ElectronContextMenu {
   constructor() {
-    this.Remote = __webpack_require__(22).remote;
+    this.Remote = __webpack_require__(21).remote;
     this.Menu = this.Remote.Menu;
     this.MenuItem = this.Remote.MenuItem;
 
@@ -4346,11 +4423,11 @@ ElectronContextMenu = class ElectronContextMenu {
 
 /***/ }),
 
-/***/ 3059:
+/***/ 3290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment__ = __webpack_require__(507);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_draft_js_lib_getContentStateFragment__);
 let
 
@@ -4376,13 +4453,13 @@ DraftJsHelper = class DraftJsHelper {
 
 /***/ }),
 
-/***/ 3060:
+/***/ 3291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionClipboard; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(36);
 
 let
 
@@ -4541,31 +4618,31 @@ CollectionClipboard = class CollectionClipboard {
 
 /***/ }),
 
-/***/ 3061:
+/***/ 3293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(99);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async_series___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async_series__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootStore__ = __webpack_require__(841);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__ = __webpack_require__(843);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__ = __webpack_require__(844);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootConsoleInterface__ = __webpack_require__(846);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_UIZoom__ = __webpack_require__(848);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_ProxyListManager__ = __webpack_require__(849);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_AppUpdateNotifier__ = __webpack_require__(3062);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_tcp_ElectronTCPReader__ = __webpack_require__(3064);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_requests_CertificateManager__ = __webpack_require__(850);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_ProtocolHandler__ = __webpack_require__(3065);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPathManager__ = __webpack_require__(554);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_ModelEventToUIEventService__ = __webpack_require__(3066);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_InterceptorManager__ = __webpack_require__(3067);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge__ = __webpack_require__(978);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_UIEventServiceHandler__ = __webpack_require__(3068);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_controllers_PermissionController__ = __webpack_require__(599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_AccessControl_DbRollbackService__ = __webpack_require__(851);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__js_launchpad_Service_openLaunchpadService__ = __webpack_require__(3069);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bootStore__ = __webpack_require__(922);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__ = __webpack_require__(923);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__ = __webpack_require__(924);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__bootConsoleInterface__ = __webpack_require__(926);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_UIZoom__ = __webpack_require__(928);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_ProxyListManager__ = __webpack_require__(929);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_AppUpdateNotifier__ = __webpack_require__(3295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_tcp_ElectronTCPReader__ = __webpack_require__(3297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_requests_CertificateManager__ = __webpack_require__(930);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_ProtocolHandler__ = __webpack_require__(3298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPathManager__ = __webpack_require__(722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_ModelEventToUIEventService__ = __webpack_require__(3299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__models_InterceptorManager__ = __webpack_require__(3300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__models_InterceptorInstaller__ = __webpack_require__(1665);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__models_InterceptorBridge__ = __webpack_require__(708);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__models_InterceptorBridge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__models_InterceptorBridge__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_UIEventServiceHandler__ = __webpack_require__(3301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_AccessControl_DbRollbackService__ = __webpack_require__(931);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__bootAPIDevInterface__ = __webpack_require__(3302);
 
 
 
@@ -4587,15 +4664,16 @@ CollectionClipboard = class CollectionClipboard {
 
 
 /**
-                                                                                    *
-                                                                                    * @param {*} cb
-                                                                                    */
+                                                          *
+                                                          * @param {*} cb
+                                                          */
 function bootRequester(cb) {
   __WEBPACK_IMPORTED_MODULE_0_async_series___default()([
   __WEBPACK_IMPORTED_MODULE_1__bootStore__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_2__bootShortcuts__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_3__bootSyncProxy__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_4__bootConsoleInterface__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_18__bootAPIDevInterface__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_10__models_ProtocolHandler__["a" /* default */].initialize,
   next => {
     Object(__WEBPACK_IMPORTED_MODULE_17__services_AccessControl_DbRollbackService__["a" /* initializeRollbackNotifications */])();
@@ -4609,14 +4687,14 @@ function bootRequester(cb) {
       updateNotifier: new __WEBPACK_IMPORTED_MODULE_7__models_AppUpdateNotifier__["a" /* default */](), // [appwindow, settings, app]
       tcpReader: new __WEBPACK_IMPORTED_MODULE_8__models_tcp_ElectronTCPReader__["a" /* default */](), // [settings, appwindow]
       interceptorManager: new __WEBPACK_IMPORTED_MODULE_13__models_InterceptorManager__["a" /* default */](),
-      interceptorBridge: __WEBPACK_IMPORTED_MODULE_14__models_InterceptorBridge___default.a,
+      interceptorBridge: __WEBPACK_IMPORTED_MODULE_15__models_InterceptorBridge___default.a,
+      interceptorInstaller: new __WEBPACK_IMPORTED_MODULE_14__models_InterceptorInstaller__["a" /* default */](),
       xPathManager: __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPathManager__["a" /* default */] });
 
 
     __WEBPACK_IMPORTED_MODULE_12__services_ModelEventToUIEventService__["a" /* default */].initialize();
-    __WEBPACK_IMPORTED_MODULE_15__services_UIEventServiceHandler__["a" /* default */].init();
+    __WEBPACK_IMPORTED_MODULE_16__services_UIEventServiceHandler__["a" /* default */].init();
     pm.appWindow.sendToElectron({ event: 'postmanInitialized' }); // Initialize protocol handline need revisit
-    __WEBPACK_IMPORTED_MODULE_18__js_launchpad_Service_openLaunchpadService__["a" /* default */].initialize();
 
     err ? pm.logger.error('Requester~boot - Failed', err) : pm.logger.info('Requester~boot - Success');
     return cb && cb(err);
@@ -4628,24 +4706,24 @@ function bootRequester(cb) {
 
 /***/ }),
 
-/***/ 3062:
+/***/ 3295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppSettingsDefaults__ = __webpack_require__(541);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_APIService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AppReleaseService__ = __webpack_require__(1203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_ShellHelper__ = __webpack_require__(335);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_AppSettingsDefaults__ = __webpack_require__(575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_APIService__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_AppReleaseService__ = __webpack_require__(1264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_ShellHelper__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_domain__ = __webpack_require__(3063);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_domain__ = __webpack_require__(3296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_domain___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_domain__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_InfobarConstants__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__controllers_Infobar__ = __webpack_require__(684);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_backbone__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_InfobarConstants__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__controllers_Infobar__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_backbone__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_backbone__);
 
 
@@ -4697,7 +4775,7 @@ NOT_UPDATED_MESG = {
 
 PUBLIC_CHANNELS = ['prod', 'canary'];
 
-var semver = __webpack_require__(1202),
+var semver = __webpack_require__(1263),
 AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.extend({
   defaults: function () {
     return {
@@ -5120,7 +5198,7 @@ AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.exte
 
 /***/ }),
 
-/***/ 3063:
+/***/ 3296:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5130,7 +5208,7 @@ AppUpdateNotifier = __WEBPACK_IMPORTED_MODULE_12_backbone___default.a.Model.exte
 
 module.exports = function () {
 	// Import Events
-	var events = __webpack_require__(35);
+	var events = __webpack_require__(37);
 
 	// Export Domain
 	var domain = {};
@@ -5197,15 +5275,15 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 3064:
+/***/ 3297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(45);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_pipelines_user_action__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_CurrentUserController__ = __webpack_require__(60);
 
 
 
@@ -5463,17 +5541,17 @@ ElectronTCPReader = class ElectronTCPReader {
 
 /***/ }),
 
-/***/ 3065:
+/***/ 3298:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(656);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Importer__ = __webpack_require__(941);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_UserController__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__ = __webpack_require__(165);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_APIService__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_conversion_promisifiedConverter__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_Importer__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_UserController__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__common_controllers_WindowController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(22);
 
 
 
@@ -5583,14 +5661,14 @@ const ProtocolHandler = {
 
 /***/ }),
 
-/***/ 3066:
+/***/ 3299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UIEventService__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UIEventService__ = __webpack_require__(141);
 
 
 
@@ -5922,18 +6000,18 @@ function handleAuthHandlerEvents(event) {
 
 /***/ }),
 
-/***/ 3067:
+/***/ 3300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_pipelines_user_action__ = __webpack_require__(45);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_pipelines_user_action__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer__ = __webpack_require__(598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_base64_arraybuffer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil__ = __webpack_require__(1366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_CurrentUserController__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil__ = __webpack_require__(1458);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__utils_InterceptorUtil__);
 
 
@@ -5947,13 +6025,19 @@ InterceptorManager = class InterceptorManager {
   constructor() {
 
     // [INTERCEPT-15] maintaining a boolean variable to avoid multiple 'Disconnected from Interceptor' logs
-    var isDisconnectedFromInterceptorBridge = false;
+    var isDisconnectedFromInterceptorBridge = false,
+    isInterceptorBridgeInstalled = false,
+    installationStatus = 'BRIDGE_NOT_YET_INSTALLED',
+    connectionStatus,
 
     // store for interceptor settings
-    var interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore');
+    interceptorSettingsStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorSettingsStore'),
+
+    // store for installation of interceptor installation states
+    interceptorInstallationUIStore = __WEBPACK_IMPORTED_MODULE_0__js_stores_get_store__["getStore"]('InterceptorInstallationUIStore'),
 
     // fetching domain list in sync with Interceptor from store
-    var syncDomainList = interceptorSettingsStore.getSyncDomainList();
+    syncDomainList = interceptorSettingsStore.getSyncDomainList();
 
     // the ipcClient will be connected to the interceptorBridge
     // as soon as the main process of app loads
@@ -5999,18 +6083,25 @@ InterceptorManager = class InterceptorManager {
 
     // confirms interceptor bridge is connected
     pm.appWindow.trigger('registerInternalEvent', 'updateInterceptorBridgeConnectionStatus', function (msg) {
+      connectionStatus = msg.data.connectedToPostman;
+
       // here, interceptor bridge is connected with postman app
-      if (msg.data.connectedToPostman) {
+      if (connectionStatus) {
         console.log('Connected to Interceptor');
         isDisconnectedFromInterceptorBridge = false;
+        isInterceptorBridgeInstalled = true;
+
+        // updates the connection status and installed status
+        interceptorSettingsStore.updateInterceptorBridgeConnectionStatus(connectionStatus);
+        interceptorSettingsStore.updateInterceptorBridgeInstallationStatus(isInterceptorBridgeInstalled);
       } else
       {
         if (!isDisconnectedFromInterceptorBridge) {
           console.log('Disconnected from Interceptor');
           isDisconnectedFromInterceptorBridge = true;
+          pm.interceptorInstaller.checkInstallationStatus();
         }
       }
-      interceptorSettingsStore.updateInterceptorBridgeConnectionStatus(msg.data.connectedToPostman);
 
       // re-send cookie and request capture data to interceptor
       if (interceptorSettingsStore.isCookieSyncEnabled()) {
@@ -6020,6 +6111,47 @@ InterceptorManager = class InterceptorManager {
         this.configureRequestCaptureFromInterceptor();
       }
 
+    }, this);
+
+    pm.appWindow.trigger('registerInternalEvent', 'interceptorBridgeInstallationStatusResponse', function (data) {
+      if (isDisconnectedFromInterceptorBridge) {
+        if (data.status.platformSpecific.os === 'MACOS') {
+          if (!data.status.platformSpecific.nodeInstalled) {
+            installationStatus = 'MACOS_NODE_NOT_YET_INSTALLED';
+            isInterceptorBridgeInstalled = false;
+          } else
+          {
+            if (data.status.manifestAdded && data.status.interceptorBridgeInstalled) {
+              isInterceptorBridgeInstalled = true;
+            } else
+            {
+              isInterceptorBridgeInstalled = false;
+              installationStatus = 'BRIDGE_NOT_YET_INSTALLED';
+            }
+          }
+        } else
+        if (data.status.platformSpecific.os === 'WINDOWS') {
+          if (data.status.manifestAdded && data.status.interceptorBridgeInstalled && data.status.platformSpecific.registryKeyAdded) {
+            isInterceptorBridgeInstalled = true;
+          } else
+          {
+            isInterceptorBridgeInstalled = false;
+            installationStatus = 'BRIDGE_NOT_YET_INSTALLED';
+          }
+        } else
+        if (data.status.platformSpecific.os === 'LINUX') {
+          if (data.status.manifestAdded && data.status.interceptorBridgeInstalled) {
+            isInterceptorBridgeInstalled = true;
+          } else
+          {
+            isInterceptorBridgeInstalled = false;
+            installationStatus = 'BRIDGE_NOT_YET_INSTALLED';
+          }
+        }
+        interceptorSettingsStore.updateInterceptorBridgeInstallationStatus(isInterceptorBridgeInstalled);
+        interceptorInstallationUIStore.updateInitialInstallationStatus(installationStatus);
+        interceptorSettingsStore.updateInterceptorBridgeConnectionStatus(connectionStatus);
+      }
     }, this);
 
     pm.appWindow.trigger('registerInternalEvent', 'refreshInterceptorBridgeConnectionStatus', function (msg) {
@@ -6181,13 +6313,17 @@ InterceptorManager = class InterceptorManager {
 
 
   addCookiesToApp(cookies) {
-    var newCookies = this.addUrlPropsToCookies(cookies);
-    for (var i = 0; i < newCookies.length; i++) {
-      var url = newCookies[i].url;
-      pm.cookieManager.addSingleCookie(url, newCookies[i].domain, newCookies[i], function () {
-        // cookie is added
-      });
-    }
+    var newCookies = this.addUrlPropsToCookies(cookies),
+    bulkCookies = _.map(newCookies, cookieItem => {
+      return {
+        url: cookieItem.url,
+        host: cookieItem.domain,
+        cookie: cookieItem };
+
+    });
+
+    // addBulkCookies also has a second parameter `callback` if required
+    pm.cookieManager.addBulkCookies(bulkCookies);
   }
 
   addUrlPropsToCookies(cookies) {
@@ -6383,12 +6519,12 @@ InterceptorManager = class InterceptorManager {
 
 /***/ }),
 
-/***/ 3068:
+/***/ 3301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UIEventService__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_UIEventConstants__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UIEventService__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_UIEventConstants__ = __webpack_require__(283);
 
 
 
@@ -6412,467 +6548,194 @@ function _handleLogout() {
 
 /***/ }),
 
-/***/ 3069:
+/***/ 3302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_EditorService__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_model_event__ = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_dev_public_APIDevInterface__ = __webpack_require__(3303);
 
 
+/**
+                                                                        *
+                                                                        * @param {Callback} cb
+                                                                        */
+function bootAPIDevInterface(cb) {
+  _.assign(window.pm, { apiDev: new __WEBPACK_IMPORTED_MODULE_0__api_dev_public_APIDevInterface__["a" /* default */]() });
+  pm.logger.info('APIDevInterface~boot - Success');
+  return cb && cb(null);
+}
 
-
-
-const actions = ['switchedWorkspace', 'joined', 'lockUserSession', 'authenticated'],
-nameSpaces = ['workspace', 'user', 'authentication'];
-
-let launchpadService = {
-
-  // Flag used to verify whether user session expired or not.
-  isSessionExpired: false,
-
-  // open launchpad.
-  openLaunchpad(data) {
-
-    let openEditors = _.difference(data.editorOrder, data.closedEditors),
-    launchpadSettingByUser = pm.settings.getSetting('openLaunchpad'),
-    openLaunchpad = true,
-    count = 0;
-
-    if (!launchpadSettingByUser) {
-      return;
-    }
-
-    _.forEach(openEditors, editor => {
-      let editorInfo = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor);
-
-      if (_.get(editorInfo.model.info, 'model') !== 'request') {
-        openLaunchpad = false;
-        return false;
-      }
-
-      if (_.get(editorInfo.model, 'isDirty')) {
-        openLaunchpad = false;
-        return false;
-      }
-
-      if (editorInfo.model.baseResource !== undefined) {
-        openLaunchpad = false;
-        return false;
-      }
-
-      count++;
-
-    });
-
-    if (openLaunchpad && count === openEditors.length) {
-      __WEBPACK_IMPORTED_MODULE_0__services_EditorService__["a" /* default */].open('customview://launchpad', { preview: false });
-    }
-  },
-
-  async hydrateEditorStores() {
-    // wait for ActiveWorkspaceSessionStore to be initialized.
-    await new Promise(resolve => {
-      if (Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').id) {
-        return resolve();
-      }
-
-      let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').id, () => {
-        disposer && disposer();
-        resolve();
-      });
-    });
-
-    let session = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore'),
-    openEditors = _.difference(session.editorOrder, session.closedEditors);
-
-    if (_.isEmpty(openEditors)) {
-      return session;
-    }
-
-    // wait for editor tabs in editor store to initialize.
-    await Promise.all(_.map(openEditors, editor => {
-      return new Promise(resolve => {
-        if (!_.isEmpty(Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor))) {
-          return resolve();
-        }
-
-        let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor), () => {
-          disposer && disposer();
-          resolve();
-        });
-      });
-    }));
-
-    // wait for each editor tab lifecycle to be idle
-    await Promise.all(_.map(openEditors, editor => {
-      return new Promise(resolve => {
-        let lifecycle = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor).lifecycle;
-
-        if (lifecycle === 'idle') {
-          return resolve();
-        }
-
-        let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('EditorStore').find(editor).lifecycle, lifecycle => {
-          if (lifecycle === 'idle') {
-            disposer && disposer();
-            resolve();
-          }
-        });
-      });
-    }));
-
-    return session;
-  },
-
-  // handle all model-events
-  handleEvents(event) {
-    Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["i" /* processEvent */])(event, actions, async (processedEvent, cb) => {
-      let eventNameSpace = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["g" /* getEventNamespace */])(processedEvent),
-      eventName = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["f" /* getEventName */])(processedEvent),
-      eventData = Object(__WEBPACK_IMPORTED_MODULE_3__modules_model_event__["d" /* getEventData */])(processedEvent);
-
-      if (!_.includes(nameSpaces, eventNameSpace)) {
-        return cb();
-      }
-
-      if (!_.includes(actions, eventName)) {
-        return cb();
-      }
-
-      if (eventName === 'switchedWorkspace') {
-        let switchedWorkspaceId = eventData.workspace,
-        session;
-
-        await launchpadService.hydrateActiveWorkspaceSessionStore(switchedWorkspaceId);
-
-        session = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore');
-
-        launchpadService.openLaunchpad(session);
-      }
-
-      if (eventName === 'joined') {
-        let joinedWorkspaceId = _.get(eventData.workspace, 'id'),
-        session;
-
-        if (joinedWorkspaceId) {
-          await launchpadService.hydrateActiveWorkspaceSessionStore(joinedWorkspaceId);
-          session = Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore');
-
-          launchpadService.openLaunchpad(session);
-        }
-      }
-
-      if (eventName === 'lockUserSession') {
-        launchpadService.isSessionExpired = true;
-      }
-
-      if (eventName === 'authenticated') {
-        if (launchpadService.isSessionExpired) {
-          launchpadService.isSessionExpired = false;
-          return;
-        }
-
-        let session = await launchpadService.hydrateEditorStores();
-
-        launchpadService.openLaunchpad(session);
-      }
-    });
-  },
-
-  // verify the workspace is switched or joined.
-  hydrateActiveWorkspaceSessionStore(workspaceId) {
-    return new Promise(resolve => {
-      if (Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').workspace === workspaceId) {
-        return resolve();
-      }
-
-      let disposer = Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_1__stores_get_store__["getStore"])('ActiveWorkspaceSessionStore').workspace, workspace => {
-        if (workspace === workspaceId) {
-          disposer && disposer();
-          resolve();
-        }
-      });
-    });
-  },
-
-  async initialize() {
-
-    let modelEventChannel = pm.eventBus.channel('model-events'),
-    authHandlerEventChannel = pm.eventBus.channel('auth-handler-events');
-
-    modelEventChannel.subscribe(this.handleEvents);
-    authHandlerEventChannel.subscribe(this.handleEvents);
-
-    let session = await this.hydrateEditorStores();
-
-    // open launchpad on app boot.
-    this.openLaunchpad(session);
-  } };
-
-
-/* harmony default export */ __webpack_exports__["a"] = (launchpadService);
+/* harmony default export */ __webpack_exports__["a"] = (bootAPIDevInterface);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 3074:
+/***/ 3303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__in_app_messaging_InAppController__ = __webpack_require__(619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__ = __webpack_require__(684);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__ = __webpack_require__(3075);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_PopoverController__ = __webpack_require__(3076);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_InAppEngagementService__ = __webpack_require__(1367);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return APIDevInterface; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_APIDevService__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_APISchemaController__ = __webpack_require__(980);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_APIRelationController__ = __webpack_require__(981);
 
 
+let
+
+APIDevInterface = class APIDevInterface {
+
+  constructor() {
+    this.constants = {
+      schemaType: {
+        OPENAPI3: 'openapi3',
+        OPENAPI2: 'openapi2',
+        OPENAPI1: 'openapi1',
+        RAML1: 'raml',
+        RAML: 'raml0.8',
+        GRAPHQL: 'graphql' },
+
+      model: {
+        COLLECTION: 'collection' } };
 
 
-
-
-
-/**
-                                                                             * @param {*} cb
-                                                                             *
-                                                                             */
-function bootInAppMessaging(cb) {
-  /*
-                                 * Consumer of in-app messages need to register its ownn handlers with in-app
-                                 * message controller. The controller just calls your handlers whenever it want to
-                                 * perform different tasks. This gives the consumer flexibility and keeps the controller
-                                 * unopinionated about what you should do when certain message needs to be shown.
-                                 */
-  Object(__WEBPACK_IMPORTED_MODULE_0__in_app_messaging_InAppController__["b" /* registerHandlers */])({
-
-    messageHandlers: {
-      toast: message => {
-        let options = Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["e" /* transformForToast */])(message);
-        pm.toasts[options.level](options.text, options);
-      },
-      banner: message => {
-        __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__["a" /* default */].add(Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["b" /* transformForBanner */])(message));
-        __WEBPACK_IMPORTED_MODULE_1__controllers_Infobar__["a" /* default */].show();
-      },
-      text: message => {
-        Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('TextMessageStore').addNotification(message);
-      },
-
-      popover: message => {
-        Object(__WEBPACK_IMPORTED_MODULE_4__controllers_PopoverController__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["d" /* transformForPopover */])(message), _.get(message, 'message.target'));
-      },
-
-      backgroundPush: message => {
-        let { action } = Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["a" /* transformForBackgroundPush */])(message);
-        message.onView && message.onView();
-        action && action();
-      },
-
-      modal: message => {
-        pm.mediator.trigger('showInAppModal', Object(__WEBPACK_IMPORTED_MODULE_2__in_app_messaging_message_transformer__["c" /* transformForModal */])(message));
-      } },
-
-
-
-    actionHandlers: __WEBPACK_IMPORTED_MODULE_5__services_InAppEngagementService__["a" /* default */] });
-
-  Object(__WEBPACK_IMPORTED_MODULE_3__stores_get_store__["getStore"])('NotificationStore');
-  pm.logger.info('InAppMessaging~boot - Success');
-  cb && cb(null);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (bootInAppMessaging);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3075:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["e"] = transformForToast;
-/* harmony export (immutable) */ __webpack_exports__["b"] = transformForBanner;
-/* harmony export (immutable) */ __webpack_exports__["d"] = transformForPopover;
-/* harmony export (immutable) */ __webpack_exports__["a"] = transformForBackgroundPush;
-/* harmony export (immutable) */ __webpack_exports__["c"] = transformForModal;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__ = __webpack_require__(79);
-
-
-/**
-                                                          * @param {*} message - message sent received from InAppController
-                                                          */
-function transformForToast(message) {
-  return {
-    level: _.get(message, 'tag.level'),
-    title: _.get(message, 'message.title'),
-    text: _.get(message, 'message.text'),
-    primaryAction: _.get(message, 'message.buttons.primary'),
-    secondaryAction: _.get(message, 'message.buttons.secondary'),
-    isDismissable: !_.get(message, 'dismiss.disabled'),
-    timeout: _.get(message, 'dismiss.auto'),
-    onDismiss: _.get(message, 'dismiss.onDismiss'),
-    dismissEvent: _.get(message, 'dismiss.event'),
-    onView: _.get(message, 'onView') };
-
-}
-
-/**
-   * @param {*} message - message sent received from InAppController
-   */
-function transformForBanner(message) {
-  return {
-    message: _.get(message, 'message.text'),
-    priority: _.get(message, 'message.priority') || 100,
-    type: _.get(message, 'tag.level'),
-    primaryAction: _.get(message, 'message.buttons.primary'),
-    secondaryAction: _.get(message, 'message.buttons.secondary'),
-    isDismissable: !_.get(message, 'dismiss.disabled'),
-    onDismiss: _.get(message, 'dismiss.onDismiss'),
-    dismissEvent: _.get(message, 'dismiss.event'),
-    onView: _.get(message, 'onView') };
-
-}
-
-/**
-   * @param {*} message - message sent received from InAppController
-   */
-function transformForPopover(message) {
-  return {
-    show: true,
-    immediate: true,
-    title: _.get(message, 'message.title'),
-    placement: _.get(message, 'message.position', 'bottom-left'),
-    allowTargetClick: _.get(message, 'message.allowTargetClick'),
-    message: _.get(message, 'message.text', ''),
-    primaryAction: _.get(message, 'message.buttons.primary'),
-    secondaryAction: _.get(message, 'message.buttons.secondary'),
-    isDismissable: !_.get(message, 'dismiss.disabled'),
-    meta: _.get(message, 'message.meta'),
-    onDismiss: _.get(message, 'dismiss.onDismiss'),
-    dismissEvent: _.get(message, 'dismiss.event'),
-    onView: _.get(message, 'onView') };
-
-}
-
-/**
-   * @param {*} message - message sent received from InAppController
-   */
-function transformForBackgroundPush(message) {
-  return {
-    action: _.get(message, 'message.buttons.primary.onClick') };
-
-}
-
-/**
-   * @param {*} message - message sent received from InAppController
-   */
-function transformForModal(message) {
-  return {
-    title: _.get(message, 'message.title'),
-    message: _.get(message, 'message.text'),
-    meta: _.get(message, 'message.meta'),
-    primaryAction: _.get(message, 'message.buttons.primary'),
-    secondaryAction: _.get(message, 'message.buttons.secondary'),
-    isDismissable: !_.get(message, 'dismiss.disabled'),
-    onDismiss: _.get(message, 'dismiss.onDismiss'),
-    dismissEvent: _.get(message, 'dismiss.event'),
-    onView: _.get(message, 'onView') };
-
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 3076:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_XPaths_XPathManager__ = __webpack_require__(554);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_UIEventConstants__ = __webpack_require__(219);
-
-
-
-
-
-const MAX_TIMEOUT = 60000;
-
-let xPathUnregisterHandler,
-unsubscribeHandler;
-
-/**
-                     * It is used to show popover for a given target xPath path.
-                     * If the target xPath is visible, it directly shows the Popover otherwise
-                     * it attaches a listener and waits for xPathRegistered event to trigger for the provided xPath.
-                     *
-                     * Also this xPath might get hidden due to some user interaction. Therefore as soon
-                     * as we show the Popover we attach a listener for xPathUnregistered event, which is used to
-                     * hide the popover.
-                     *
-                     * @param message {Object} - Popover message to display
-                     * @param targetPath {String} - xPath of the target
-                     */
-/* harmony default export */ __webpack_exports__["a"] = ((message, targetPath) => {
-  let triggerPopover = target => {
-    pm.mediator.trigger('showPopover', { target }, message);
-    xPathUnregisterHandler && xPathUnregisterHandler();
-
-    /* attach a xpath unregister handler so that if the target becomes unavailable
-                                                           while popover is visible, it should dismiss it.
-                                                        */
-    xPathUnregisterHandler = __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__["a" /* default */].subscribe(__WEBPACK_IMPORTED_MODULE_2__constants_UIEventConstants__["j" /* XPATH_UNREGISTERED */], xPath => {
-      if (xPath !== targetPath) {
-        return;
-      }
-      pm.mediator.trigger('dismissLesson');
-    });
-  },
-  targetHandler = __WEBPACK_IMPORTED_MODULE_1__components_base_XPaths_XPathManager__["a" /* default */].getPathHandler(targetPath),
-  timeout;
-
-  // If target exists, trigger popover immediately
-  if (_.isFunction(targetHandler)) {
-    triggerPopover(targetHandler());
-    return;
   }
 
-  unsubscribeHandler && unsubscribeHandler();
+  /**
+     *
+     * @param {String} model
+     * @param {String} modelId
+     * @param {callback} cb
+     */
+  getAPIForModel(model, modelId, cb) {
+    if (!model) {
+      return cb({
+        status: 'ERR_MISSING_MODEL',
+        message: 'model is a mandatory parameter' });
 
-  // If target doesn't exists wait for it to be visible
-  unsubscribeHandler = __WEBPACK_IMPORTED_MODULE_0__services_UIEventService__["a" /* default */].subscribe(__WEBPACK_IMPORTED_MODULE_2__constants_UIEventConstants__["i" /* XPATH_REGISTERED */], xPath => {
-    if (xPath !== targetPath) {
-      return;
     }
-    unsubscribeHandler && unsubscribeHandler();
-    timeout && clearTimeout(timeout);
-    let targetHandler = __WEBPACK_IMPORTED_MODULE_1__components_base_XPaths_XPathManager__["a" /* default */].getPathHandler(xPath);
 
-    triggerPopover(targetHandler());
-  });
+    if (model !== 'collection') {
+      return cb({
+        status: 'ERR_UNSUPPORTED_MODEL',
+        message: 'Specified model is not supported' });
 
-  // If its still not visible within MAX_TIMEOUT, pause the lesson
-  timeout = setTimeout(() => {
-    unsubscribeHandler && unsubscribeHandler();
-    message.onDismiss && message.onDismiss();
-  }, MAX_TIMEOUT);
-});
+    }
+
+    if (!modelId) {
+      return cb({
+        status: 'ERR_MISSING_MODELID',
+        message: 'modelId is a mandatory parameter' });
+
+    }
+
+    if (typeof modelId != 'string') {
+      return cb({
+        status: 'ERR_INVALID_MODELID',
+        message: 'modelId should be string' });
+
+    }
+
+    __WEBPACK_IMPORTED_MODULE_2__controllers_APIRelationController__["a" /* default */].get(modelId, (error, res) => {
+      if (error) {
+        pm.logger.warn('APIDevInterface~getAPIForModel', error);
+        return cb(null);
+      }
+
+      if (!_.get(res, 'apiId')) {
+        pm.logger.warn('APIDevInterface~getAPIForModel: There is no API linked to the model');
+        return cb(null);
+      }
+
+      let apiModel = new API(model, modelId, res);
+
+      cb(null, apiModel);
+    });
+  }};let
+
+
+API = class API {
+
+
+
+
+
+  constructor(model, modelId, apiLinkedToCollection) {this.id = null;this.name = null;this.version = null;
+    this.model = model;
+    this.modelId = modelId;
+    this.initialize(apiLinkedToCollection);
+  }
+
+  initialize(definition) {
+    this.id = definition.apiId;
+    this.name = definition.apiName;
+    this.version = { id: definition.apiVersionId, name: definition.apiVersionName };
+  }
+
+  /**
+     *
+     * @param {Object} options : Additional parameters
+     * @param {callback} cb: Callback that handles the response
+     */
+  getSchema(options, cb) {
+    if (this.model === 'collection') {
+      if (!options ||
+      typeof _.get(options, 'schemaTypes') !== 'object') {
+        return cb({
+          status: 'ERR_INVALID_SCHEMA_TYPES',
+          message: 'Invalid supported schema types' });
+
+      }
+
+      let definition = {
+        apiId: this.id,
+        apiVersionId: this.version.id,
+        modelId: this.modelId,
+        types: _.get(options, 'schemaTypes').toString() };
+
+
+      __WEBPACK_IMPORTED_MODULE_1__controllers_APISchemaController__["a" /* default */].get(definition, (error, res) => {
+        if (!error) {
+          return cb(null, res);
+        }
+        if (error.status === 401) {
+          return cb({
+            status: 'ERR_UNAUTHENTICATED_USER',
+            message: _.get(error, 'error.message') });
+
+        }
+        if (error.status === 500) {
+          return cb({
+            status: 'SERVER_ERROR',
+            message: _.get(error, 'error.message') });
+
+        }
+        if (error.status === 403) {
+          return cb({
+            status: 'ERR_FORBIDDEN',
+            message: _.get(error, 'error.message') });
+
+        }
+        if (error.status === 404 || error.status === 400) {
+          return cb(null);
+        }
+        cb(null);
+      });
+    }
+  }};
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 3077:
+/***/ 3308:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = bootRuntimeListeners;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeRequestExecutionListener__ = __webpack_require__(3078);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_PersistResponseListener__ = __webpack_require__(3079);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_RuntimeRequestAuthorizationListener__ = __webpack_require__(3080);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_RuntimeConsoleEventsListener__ = __webpack_require__(3081);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_RuntimeRequestDownloadListener__ = __webpack_require__(3082);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_services_RuntimeRequestExecutionListener__ = __webpack_require__(3309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_services_PersistResponseListener__ = __webpack_require__(3310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_RuntimeRequestAuthorizationListener__ = __webpack_require__(3311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_services_RuntimeConsoleEventsListener__ = __webpack_require__(3312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_RuntimeRequestDownloadListener__ = __webpack_require__(3313);
 
 
 
@@ -6903,15 +6766,13 @@ function bootRuntimeListeners(cb) {
 
 /***/ }),
 
-/***/ 3078:
+/***/ 3309:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestExecutionEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__ = __webpack_require__(307);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
 
 
 
@@ -6944,7 +6805,6 @@ let requestExecutionEventHandlers = {
 
     pm.toasts.error('Something went wrong while running your scripts. Check Postman Console for more info.', { dedupeId: eventData.id });
 
-    pm.console.error('exception', { message: `${exception.name} | ${exception.message}` });
     console.warn(`Error running scripts: ${exception.name} | ${exception.message}`, exception);
   },
 
@@ -7053,21 +6913,21 @@ function handleRequestExecutionEvents(event) {
 
   requestExecutionEventHandlers[Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["f" /* getEventName */])(event)] && requestExecutionEventHandlers[Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["f" /* getEventName */])(event)](event, executionStore);
 }
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
 
 /***/ }),
 
-/***/ 3079:
+/***/ 3310:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = handleResponsePersistEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_HistoryResponseService__ = __webpack_require__(1212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_user_action__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_WorkspaceController__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_HistoryController__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_HistoryResponseService__ = __webpack_require__(1304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipelines_user_action__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controllers_WorkspaceController__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_HistoryController__ = __webpack_require__(137);
 
 
 
@@ -7155,13 +7015,13 @@ function handleResponsePersistEvents(event) {
 
 /***/ }),
 
-/***/ 3080:
+/***/ 3311:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestAuthorizationEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
 
 
 
@@ -7210,14 +7070,14 @@ function handleRequestAuthorizationEvents(event) {
 
 /***/ }),
 
-/***/ 3081:
+/***/ 3312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = handleConsoleLogEvents;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__ = __webpack_require__(266);
 
 
 
@@ -7255,11 +7115,11 @@ let consoleEventListeners = {
     if (eventData.error) {
       payload.error = eventData.error;
 
-      return pm.newConsole.error(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, payload);
+      return pm.console.error(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, payload);
     }
 
     // Emit the log event to console
-    return pm.newConsole.log(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, payload);
+    return pm.console.log(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["c" /* CONSOLE_EVENT_NETWORK */], {}, payload);
   },
 
   log(event) {
@@ -7269,7 +7129,7 @@ let consoleEventListeners = {
       return;
     }
 
-    pm.newConsole.write(eventData.level, __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["b" /* CONSOLE_EVENT_LOG */], {}, eventData.messages);
+    pm.console.write(eventData.level, __WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["b" /* CONSOLE_EVENT_LOG */], {}, eventData.messages);
   },
 
   exception(event) {
@@ -7279,7 +7139,7 @@ let consoleEventListeners = {
       return;
     }
 
-    pm.newConsole.error(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["a" /* CONSOLE_EVENT_EXCEPTION */], {}, eventData.error);
+    pm.console.error(__WEBPACK_IMPORTED_MODULE_2__constants_ConsoleEventTypes__["a" /* CONSOLE_EVENT_EXCEPTION */], {}, eventData.error);
   } };
 
 
@@ -7307,14 +7167,14 @@ function handleConsoleLogEvents(event) {
 
 /***/ }),
 
-/***/ 3082:
+/***/ 3313:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = handleRequestDownloadEvent;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_services_filesystem__ = __webpack_require__(546);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_services_filesystem__ = __webpack_require__(580);
 
 
 
@@ -7361,312 +7221,14 @@ function handleRequestDownloadEvent(event) {
 
 /***/ }),
 
-/***/ 3083:
+/***/ 3314:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 309:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return toChangesets; });
-/* unused harmony export toEvents */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
-
-
-
-
-const ACTION_IMPORT = 'import',
-ACTION_UPDATE = 'update',
-ACTION_TRANSFER = 'transfer',
-ACTION_DESTROY = 'destroy',
-
-EVENT_CREATE_DEEP = 'create_deep',
-EVENT_UPDATE = 'update',
-EVENT_DELETE = 'delete',
-
-ORDER = 'order',
-FOLDERS_ORDER = 'folders_order';
-
-let toChangesets = {
-  created(event) {
-    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
-    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
-    changesetData;
-
-    // default changeset data
-    changesetData = {
-      modelId: eventData.id,
-      instance: eventData,
-      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
-
-
-    // if the model is identified by owner, add owner information to changeset data
-    eventData.owner && (changesetData.owner = eventData.owner);
-
-    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_IMPORT, changesetData)];
-  },
-
-  updated(event) {
-    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
-    eventMeta = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["e" /* getEventMeta */])(event),
-    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
-    changesetData;
-
-    // default changeset data
-    changesetData = {
-      modelId: eventData.id,
-      instance: eventData,
-      keys: eventMeta.updatedKeys,
-      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
-
-
-    // if the model is identified by owner, add owner information to changeset data
-    eventData.owner && (changesetData.owner = eventData.owner);
-
-    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_UPDATE, changesetData)];
-  },
-
-  /**
-      * 1. Create a changeset for transferring the item. Sync will add this item to the last position in parent.
-      * 2. Create a changeset for updating the position on the parent. (Response move doesn't have a parent update).
-      */
-  moved: function (event) {
-    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
-    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
-    transferredItem = eventData[eventData.model],
-    transferChangesetData = {},
-    target = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event).target,
-    changesets = [],
-    lowLevelEvents = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["h" /* getLowLevelEvents */])(event),
-    parentUpdatedEvent;
-
-    // 1. Transfer changeset
-    // 1.a Add model info
-    transferChangesetData.modelId = transferredItem.id;
-    transferChangesetData.instance = transferredItem;
-
-    // 1b. Add target info
-    transferChangesetData.to = _.pick(target, ['model', 'modelId']);
-
-    // 1c. Add source info
-    transferChangesetData.parent = transferChangesetData.from = Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(transferredItem, eventNamespace);
-
-    changesets.push(Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(event.namespace, ACTION_TRANSFER, transferChangesetData));
-
-    // 2. Find the updated changeset on target for order update
-    // we do this because a transfer changeset only moves the item to target at the end
-    // hence the order should be sent as an explicit order update changeset to sync
-    parentUpdatedEvent = _.find(lowLevelEvents, stage1Event => {
-      return Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(stage1Event) === 'updated' && _.get(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(stage1Event), 'id') === target.modelId;
-    });
-
-    if (parentUpdatedEvent) {
-      changesets = changesets.concat(toChangesets.updated(parentUpdatedEvent));
-    }
-
-    return changesets;
-  },
-
-  deleted(event) {
-    let eventData = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["d" /* getEventData */])(event),
-    eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event),
-    changesetData;
-
-    // default changeset data
-    changesetData = {
-      modelId: eventData.id,
-      instance: eventData,
-      parent: Object(__WEBPACK_IMPORTED_MODULE_1__common_utils_collection_tree__["b" /* getParent */])(eventData, eventNamespace) };
-
-
-    // if the model is identified by owner, add owner information to changeset data
-    eventData.owner && (changesetData.owner = eventData.owner);
-
-    return [Object(__WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__["a" /* default */])(eventNamespace, ACTION_DESTROY, changesetData)];
-  } },
-
-
-toEvents = {
-  import(changeset) {
-    let model = changeset.model,
-    instance = _.get(changeset, ['data', 'instance']);
-
-    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
-  },
-
-  create(changeset) {
-    let model = changeset.model,
-    instance = _.get(changeset, ['data', 'instance']);
-
-    // remove any child references, and child order references
-    instance = _.omit(instance, ['folders', 'requests', 'responses', 'folders_order', 'order']);
-
-    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_CREATE_DEEP, model, { model: model, [model]: instance })];
-  },
-
-  update(changeset) {
-    let model = changeset.model,
-    instance = _.get(changeset, ['data', 'instance']),
-    events = [],
-
-    updateData,
-    hasShallowUpdates,
-
-    // look for order properties in update changesets
-    orderUpdateData = {};
-
-    if (model === 'request' || model === 'response') {
-      return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, instance)];
-    }
-
-    // if sync sends an order property via an update, it means an order update
-    // we can drop order updates with `order` and `folders_order` for null and []
-    // because sync will never intend a remove all children via a parent update
-    !_.isEmpty(instance, ORDER) && (orderUpdateData.order = instance.order);
-    !_.isEmpty(instance, FOLDERS_ORDER) && (orderUpdateData.folders_order = instance.folders_order);
-
-    // look for order properties in update changesets
-    if (!_.isEmpty(orderUpdateData)) {
-      orderUpdateData.id = _.get(changeset, ['data', 'modelId']);
-
-      events.push(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('reorder_children', changeset.model, {
-        model: changeset.model,
-        [changeset.model]: orderUpdateData }));
-
-    }
-
-    // remove order update properties
-    updateData = _.omit(instance, [FOLDERS_ORDER, ORDER]);
-
-    // see if there are any other updates other than order updates
-    hasShallowUpdates = _.chain(updateData).omit(['id']).keys().isEmpty().value();
-
-
-    if (!hasShallowUpdates) {
-      // create an update event without the order updates
-      events.push(Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_UPDATE, changeset.model, updateData));
-    }
-
-    return events;
-  },
-
-  transfer: function (changeset) {
-    let model = changeset.model;
-
-    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])('move', model, {
-      model: model,
-      [model]: { id: _.get(changeset, ['data', 'modelId']) },
-      target: _.pick(_.get(changeset, 'data.to'), ['model', 'modelId']) })];
-
-  },
-
-  destroy(changeset) {
-    let model = changeset.model,
-    modelId = _.get(changeset, ['data', 'modelId']);
-
-    // @todo: need to change all collection model deletes to deleteDeep
-    return [Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["a" /* createEvent */])(EVENT_DELETE, model, { id: modelId })];
-  } };
-
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 310:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = getCurrentSocketStatus;
-/* harmony export (immutable) */ __webpack_exports__["b"] = getSocketStatusObservable;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
-
-
-
-
-/**
-                                                                   * Used to get the current socket status
-                                                                   *
-                                                                   * Status is one of these:
-                                                                   *  offline: neither connecting nor connected
-                                                                   *  connecting: socket connecting but not connected yet
-                                                                   *  connected: socket connected
-                                                                   *
-                                                                   * @returns {String}
-                                                                   */
-function getCurrentSocketStatus() {
-  let isSocketConnecting = pm.syncManager.get('connectingToSocket'),
-  isSocketConnected = pm.syncManager.get('socketConnected');
-
-  if (!isSocketConnecting && !isSocketConnected) {
-    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */];
-  }
-
-  if (isSocketConnecting && !isSocketConnected) {
-    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["b" /* SOCKET_CONNECTING */];
-  }
-
-  if (!isSocketConnecting && isSocketConnected) {
-    return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["a" /* SOCKET_CONNECTED */];
-  }
-
-  return __WEBPACK_IMPORTED_MODULE_1__constants_SyncStatusConstants__["c" /* SOCKET_OFFLINE */];
-}
-
-/**
-   * @returns {Observable}
-   */
-function getSocketStatusObservable() {
-  return new __WEBPACK_IMPORTED_MODULE_0_rxjs__["a" /* Observable */](observer => {
-
-    // push the initial value of socket status
-    observer.next(getCurrentSocketStatus());
-
-    let onchange = () => {
-      observer.next(getCurrentSocketStatus());
-    };
-
-    let onRequestStatus = pm.eventBus.channel('sync-manager-internal').subscribe(event => {
-      let eventName = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["f" /* getEventName */])(event),
-      eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_2__model_event__["g" /* getEventNamespace */])(event);
-
-      if (eventName === 'pull' && eventNamespace === 'syncStatus') {
-        observer.next(getCurrentSocketStatus());
-      }
-    });
-
-    // listen for changes and on each change of value
-    // recompute the socket status and push to the observable
-    pm.syncManager.on('change:connectingToSocket', onchange),
-    pm.syncManager.on('change:socketConnected', onchange);
-
-    return () => {
-      pm.syncManager.off('change:connectingToSocket', onchange),
-      pm.syncManager.off('change:socketConnected', onchange);
-      onRequestStatus && onRequestStatus();
-    };
-  });
-}
-
-/***/ }),
-
-/***/ 33:
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ 353:
+/***/ 370:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7680,17 +7242,17 @@ module.exports = require("fs");
 /* unused harmony export fetchNotifications */
 /* unused harmony export fetchGlobals */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return scheduleFetch; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_SyncService__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_SyncService__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sync_timeline_helpers_SocketStatusService__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ACConstants__ = __webpack_require__(547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_SyncStatusConstants__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sync_timeline_helpers_SocketStatusService__ = __webpack_require__(318);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ACConstants__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__constants_SyncStatusConstants__ = __webpack_require__(155);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -9031,13 +8593,13 @@ function fetchWorkspaceActivityFeed(criteria) {
 
 /***/ }),
 
-/***/ 515:
+/***/ 547:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = findOne;
 /* harmony export (immutable) */ __webpack_exports__["a"] = find;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_SyncService__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_SyncService__ = __webpack_require__(78);
 
 
 /**
@@ -9116,14 +8678,14 @@ function find(model, query, callback) {
 
 /***/ }),
 
-/***/ 516:
+/***/ 548:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = publishRealtimeOutgoingMessage;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operators__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_SocketEventsService__ = __webpack_require__(345);
 
 
 
@@ -9177,12 +8739,12 @@ function publishRealtimeOutgoingMessage(message) {
 
 /***/ }),
 
-/***/ 517:
+/***/ 549:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return sanitizeHydratedChangeset; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_outgoing_models__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_outgoing_models__ = __webpack_require__(550);
 
 
 /**
@@ -9221,54 +8783,54 @@ function sanitizeHydratedChangeset(changeset) {
 
 /***/ }),
 
-/***/ 518:
+/***/ 550:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-  default: __webpack_require__(212).default,
+  default: __webpack_require__(220).default,
 
   // workspace
-  workspace: __webpack_require__(869).default,
+  workspace: __webpack_require__(949).default,
 
   // collection models
-  collection: __webpack_require__(870).default,
-  folder: __webpack_require__(871).default,
-  request: __webpack_require__(872).default,
-  response: __webpack_require__(873).default,
+  collection: __webpack_require__(950).default,
+  folder: __webpack_require__(951).default,
+  request: __webpack_require__(952).default,
+  response: __webpack_require__(953).default,
 
   // header preset
-  headerpreset: __webpack_require__(874).default,
+  headerpreset: __webpack_require__(954).default,
 
   // globals/environment
-  globals: __webpack_require__(875).default,
-  environment: __webpack_require__(876).default,
+  globals: __webpack_require__(955).default,
+  environment: __webpack_require__(956).default,
 
   // history like
-  history: __webpack_require__(877).default,
-  historyresponse: __webpack_require__(878).default,
-  collectionrun: __webpack_require__(879).default,
+  history: __webpack_require__(957).default,
+  historyresponse: __webpack_require__(958).default,
+  collectionrun: __webpack_require__(959).default,
 
   // user/team
-  team: __webpack_require__(880).default,
+  team: __webpack_require__(960).default,
 
   // notification
-  notification: __webpack_require__(881).default,
+  notification: __webpack_require__(961).default,
 
   // comment
-  comment: __webpack_require__(882).default });
+  comment: __webpack_require__(962).default });
 
 /***/ }),
 
-/***/ 519:
+/***/ 551:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeConfigurations;
 /* unused harmony export initializeServices */
 /* unused harmony export subscribeToModelEvents */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(520);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_Configuration__ = __webpack_require__(552);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FeatureFlags__ = __webpack_require__(555);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
 
 
@@ -9347,13 +8909,13 @@ function subscribeToModelEvents(service, namespaces) {
 
 /***/ }),
 
-/***/ 520:
+/***/ 552:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserConfigurationController__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultConfigurationController__ = __webpack_require__(553);
 
 
 let
@@ -9378,11 +8940,11 @@ Configuration = class Configuration extends __WEBPACK_IMPORTED_MODULE_0__BaseCon
 
 /***/ }),
 
-/***/ 521:
+/***/ 553:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultConfiguration = __webpack_require__(522);
+let defaultConfiguration = __webpack_require__(554);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -9391,20 +8953,20 @@ let defaultConfiguration = __webpack_require__(522);
 
 /***/ }),
 
-/***/ 522:
+/***/ 554:
 /***/ (function(module, exports) {
 
 module.exports = {"editor.requestEditorLayoutName":"layout-1-column","request.autoPersistVariables":true,"user.plansToAllowUpgrade":[],"workspace.visibilityAvailablePlans":[],"editor.openInNew":false,"editor.skipConfirmationBeforeClose":false,"editor.showIcons":true}
 
 /***/ }),
 
-/***/ 523:
+/***/ 555:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(486);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseConfigurationService__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_UserFeatureFlagController__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_DefaultFeatureFlagController__ = __webpack_require__(556);
 
 
 let
@@ -9437,11 +8999,11 @@ FeatureFlags = class FeatureFlags extends __WEBPACK_IMPORTED_MODULE_0__BaseConfi
 
 /***/ }),
 
-/***/ 524:
+/***/ 556:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let defaultFeatureFlags = __webpack_require__(525);
+let defaultFeatureFlags = __webpack_require__(557);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   getAll: function () {
@@ -9450,64 +9012,29 @@ let defaultFeatureFlags = __webpack_require__(525);
 
 /***/ }),
 
-/***/ 525:
+/***/ 557:
 /***/ (function(module, exports) {
 
-module.exports = {"graphql":true,"graphqlAutocomplete":true,"inviteByNonAdmin":false,"collectionAndFolderConfigurations":false,"schemaChangelog":true}
+module.exports = {"graphql":true,"graphqlAutocomplete":true,"inviteByNonAdmin":false,"collectionAndFolderConfigurations":false,"schemaChangelog":true,"requestValidation":true,"schemaSyncing":false}
 
 /***/ }),
 
-/***/ 554:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {const xPathMap = new Map();
-
-/**
-                             * Controller that registers handlers for react x-path.
-                             * Whenever a XPath is mounted, it registers a handler associated with
-                             * its path. This handler get DOMNode of the wrapped component as the argument.
-                             */
-/* harmony default export */ __webpack_exports__["a"] = ({
-  register: (path, func) => {
-    if (xPathMap.has(path) && !_.includes(['prod', 'canary'], 'prod')) {
-      console.warn(`XPath ${path} already exists`);
-      return;
-    }
-    xPathMap.set(path, func);
-  },
-
-  unregister: path => {
-    xPathMap.delete(path);
-  },
-
-  getPathHandler: path => {
-    return xPathMap.get(path);
-  },
-
-  debug: () => {
-    return xPathMap;
-  } });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 60:
+/***/ 61:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 634:
+/***/ 665:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["b"] = resolveConflicts;
 /* harmony export (immutable) */ __webpack_exports__["a"] = initialize;
 /* unused harmony export getUserResolution */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_conflict_models__ = __webpack_require__(856);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ConflictResolutionsService__ = __webpack_require__(692);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_conflict_models__ = __webpack_require__(936);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ConflictResolutionsService__ = __webpack_require__(730);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -9772,7 +9299,7 @@ function onUserSubmit(message) {
 
 /***/ }),
 
-/***/ 635:
+/***/ 666:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9781,7 +9308,7 @@ function onUserSubmit(message) {
 /* harmony export (immutable) */ __webpack_exports__["c"] = removeChangesets;
 /* harmony export (immutable) */ __webpack_exports__["d"] = removeModelsFromAllChangesets;
 /* harmony export (immutable) */ __webpack_exports__["a"] = addChangesets;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
 
 
@@ -9886,48 +9413,10 @@ function addChangesets(changesets, cb) {
 
 /***/ }),
 
-/***/ 674:
+/***/ 702:
 /***/ (function(module, exports) {
 
 module.exports = require("child_process");
-
-/***/ }),
-
-/***/ 692:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = startUserConflictResolution;
-/* harmony export (immutable) */ __webpack_exports__["b"] = submitUserResolution;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AnalyticsService__ = __webpack_require__(15);
-
-
-
-/**
-                                                              *
-                                                              */
-function startUserConflictResolution(conflicts, timeline) {
-  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
-
-  conflictResolutionChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts, timeline }));
-
-  // Add analytics event for tracking conflicts modal shown to user
-  __WEBPACK_IMPORTED_MODULE_1__services_AnalyticsService__["a" /* default */].addEventV2({
-    category: 'sync_failure',
-    action: 'resolve_conflicts',
-    label: 'conflicts',
-    entityType: _.get(timeline, 'model'),
-    entityId: _.get(timeline, 'modelId') });
-
-}
-
-function submitUserResolution(conflicts, timeline) {
-  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
-
-  conflictResolutionChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('submit', 'conflicts', { conflicts, timeline }));
-}
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
@@ -10059,970 +9548,49 @@ function getUserResolutionForNonDeletedEntities(model, clientChange, serverChang
 
 /***/ }),
 
-/***/ 835:
+/***/ 730:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PmConsole; });
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};const sendLogToConsole = function (label, message, type, data) {
-  /**
-                                                                                                                                                                                                                                                                                                                        * Tells the listener to sanitize and dispatch a console message event.
-                                                                                                                                                                                                                                                                                                                        * The actual console message is triggered by `onConsoleMessage` event.
-                                                                                                                                                                                                                                                                                                                        *
-                                                                                                                                                                                                                                                                                                                        * @event Mediator#consoleMessage
-                                                                                                                                                                                                                                                                                                                        *
-                                                                                                                                                                                                                                                                                                                        * @param {Object} message console message
-                                                                                                                                                                                                                                                                                                                        *
-                                                                                                                                                                                                                                                                                                                        * @see Mediator#onConsoleMessage
-                                                                                                                                                                                                                                                                                                                        */
-  pm.mediator.trigger('consoleMessage', {
-    label: label,
-    message: message,
-    children: {
-      type: type,
-      data: data } });
-
-
-};let
-
-PmConsole = class PmConsole {
-  constructor() {
-    ['debug', 'error', 'info', 'log', 'warn'].forEach(level => {
-      this[level] = function (...args) {
-        try {
-          console.log(...args.slice(2));
-        }
-        catch (e) {
-          // nothing
-        }
-        if (_.isError(args[0])) {
-          sendLogToConsole(level, args[0].message, 'LOG', null);
-        } else
-        if (args[0] === 'exception') {
-          sendLogToConsole(level, args[1] && args[1].message || 'Error', 'LOG', null);
-        } else
-        {
-          const isMultiArg = args.slice(3).length;
-          sendLogToConsole(level, args.slice(2)[0], 'LOG', isMultiArg ? args.slice(3) : null);
-        }
-      };
-    });
-  }
-
-  trace(args) {
-
-  } // not supported on postman yet
-
-  /**
-   * Used to display network log on the console.
-   * @param  {String} ref  [Current id of the cursor in the runner]
-   * @param  {Object} data [Object with properties => request and response]
-   */
-  net(ref, data) {
-    if (!ref || !data || data && !data.request) {
-      pm.logger.error('PmConsole: missing parameters');
-      return;
-    }
-    data.ref = ref;
-    sendLogToConsole(data.request.method, data.request.url, 'NET', data);
-  }
-
-  netErr(ref, errMsg, data = {}) {
-    if (!ref || !errMsg) {
-      pm.logger.error('PmConsole: missing parameters');
-      return;
-    }
-    sendLogToConsole('error', null, 'NET', _extends({
-      ref: ref,
-      err: { message: errMsg } },
-    data));
-
-  }};
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 836:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToastManager; });
-let ToastManager = class ToastManager {
-  constructor() {
-    this.notificationQueue = [];
-    this.isPaused = false;
-  }
-
-  isVisible() {
-    var notifs = !document.getElementsByClassName('notification'),
-    tooltips = !document.getElementsByClassName('tooltip'),
-    fullscreenModals = !document.getElementsByClassName('modal-fullscreen');
-
-    return !(notifs && tooltips && fullscreenModals);
-  }
-
-  enqueue(callback, priority) {
-    this.notificationQueue.push({
-      callback: callback,
-      priority: priority });
-
-
-    this.process();
-  }
-
-  dequeue() {
-    var minPriority = _.min(_.map(this.notificationQueue, 'priority'));
-    var toRunIndex = _.findKey(this.notificationQueue, function (element) {
-      return element.priority === minPriority;
-    });
-    return this.notificationQueue.splice(toRunIndex, 1)[0];
-  }
-
-  process() {
-    if (this.isVisible() || this.isPaused) {
-      setTimeout(() => {
-        this.process();
-      }, 1000); // Try again after 1 second
-    } else
-    {
-      this.isPaused = true;
-      this.dequeue().callback();
-
-      setTimeout(() => {
-        this.isPaused = false;
-      }, 2000); // Separation between notifications
-    }
-  }};
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 837:
-/***/ (function(module, exports) {
-
-module.exports = {
-  LARGE_BODY_ALT: 'The console only shows bodies smaller than 10 KB in size. To view the complete body, inspect it in the Builder window.',
-  MAX_BODY_SIZE: 1024 * 10 };
-
-/***/ }),
-
-/***/ 838:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content__ = __webpack_require__(745);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_sanitise_user_content__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_DashboardService__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_messaging_Toast__ = __webpack_require__(839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__external_navigation_ExternalNavigationService__ = __webpack_require__(58);
-
-
-
-
-
-
-
-const eventBusChannel = null;
-/* harmony export (immutable) */ __webpack_exports__["eventBusChannel"] = eventBusChannel;
-
-
-const getEventBus = function () {
-  if (!this.eventBusChannel) this.eventBusChannel = pm.eventBus.channel('notifications');
-  return this.eventBusChannel;
-};
-/* harmony export (immutable) */ __webpack_exports__["getEventBus"] = getEventBus;
-
-
-const setNotificationComponent = function (ref) {
-  this._ref = ref;
-  this.attachLinkListeners();
-
-  // Listen for notifications from windows with no UI
-  if (_.get(pm, 'windowConfig.ui')) {
-    this.getEventBus().subscribe(options => {
-      this._show(options);
-    });
-  }
-};
-/* harmony export (immutable) */ __webpack_exports__["setNotificationComponent"] = setNotificationComponent;
-
-
-const attachLinkListeners = function () {
-  if (!this._ref) {
-    return;
-  }
-
-  let notificationWrapper = Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["findDOMNode"])(this._ref);
-  if (!notificationWrapper) {
-    return;
-  }
-
-  notificationWrapper.addEventListener('click', e => {
-    let classList = e.target.classList,
-    allowClicks = ['toast-dismiss', 'toast-primary-action', 'toast-secondary-action'];
-
-    if (_.isEmpty(_.intersection(classList, allowClicks))) {
-      // This check is there if the target is SVG (close icon)
-      // and its parent is 'toast-dismiss'
-      const maxParentNodeLookupCount = 4;
-      let currentTarget = e.target,
-      targetClass = currentTarget.className,
-      notificationClass = 'notifications-wrapper',
-      lookUpCount = 0;
-
-      while (targetClass && targetClass !== notificationClass) {
-        if (lookUpCount > maxParentNodeLookupCount) {
-          break;
-        }
-
-        // Do not prevent if the icon is a child node of toast-dismiss
-        if (targetClass === 'toast-dismiss') {
-          return;
-        }
-
-        currentTarget = _.get(currentTarget, 'parentNode', null);
-        targetClass = _.get(currentTarget, 'className', null);
-        lookUpCount++;
-      }
-
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
-    if (e.target.tagName !== 'A') {
-      return;
-    }
-    e.preventDefault();
-    e.stopPropagation();
-    let link = e.target.href;
-    if (link) {
-      Object(__WEBPACK_IMPORTED_MODULE_6__external_navigation_ExternalNavigationService__["a" /* openExternalLink */])(link);
-    } else
-    {
-      try {
-        let slug = e.target.dataset.slug;
-        if (slug === 'invite_users') {
-          Object(__WEBPACK_IMPORTED_MODULE_3__services_DashboardService__["n" /* openInviteUsers */])();
-        }
-      }
-      catch (e) {
-        pm.logger.error(e);
-      }
-    }
-  });
-};
-/* harmony export (immutable) */ __webpack_exports__["attachLinkListeners"] = attachLinkListeners;
-
-
-const getRef = function () {
-  return this._ref;
-};
-/* harmony export (immutable) */ __webpack_exports__["getRef"] = getRef;
-
-
-const _getBaseOptions = function (persist, timeout) {
-  return {
-    position: 'tr',
-    dismissible: true,
-    autoDismiss: persist ? 0 : timeout };
-
-};
-/* harmony export (immutable) */ __webpack_exports__["_getBaseOptions"] = _getBaseOptions;
-
-
-/**
-    * Returns level for type for the react notification system
-    *
-    * @param {*} type
-    */
-function getLevelForType(type) {
-  let map = {
-    success: 'success',
-    error: 'error',
-    warn: 'warning',
-    info: 'info' };
-
-  return map[type];
-}
-
-const _show = function (options) {
-  if (!this._ref) {
-    _.get(pm, 'windowConfig.ui') ? pm.logger.error('Notification System not initialized') : this.getEventBus().publish(options);
-    return;
-  }
-
-  let {
-    type = 'info',
-    message,
-    dedupeId,
-    primaryAction = null,
-    secondaryAction = null,
-    persist = false,
-    timeout = 3000,
-    title = null,
-    primaryButtonLabel = '',
-    secondaryButtonLabel = '',
-    enableActions = null,
-    noIcon = false,
-    isDismissable = true,
-    onDismiss = null,
-    onView = _.noop,
-
-    // HACK: quick fix for 100K. cleanup.
-    skipSanitise = false } =
-  options;
-
-  // react notification system takes seconds timeout
-  timeout /= 1000;
-  let notificationId = __WEBPACK_IMPORTED_MODULE_4_uuid_v4___default()(),
-  notification = _.extend(
-  this._getBaseOptions(persist, timeout), {
-    uid: notificationId,
-    level: getLevelForType(type),
-    children:
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_messaging_Toast__["a" /* default */], {
-      isDismissable: isDismissable,
-      noIcon: noIcon,
-      uid: notificationId,
-      dismiss: this._ref.removeNotification,
-      type: type,
-      title: title || null,
-      message: message,
-      primaryAction: primaryAction,
-      secondaryAction: secondaryAction,
-      onDismiss: onDismiss,
-      onView: onView }) });
-
-
-
-
-
-  if (dedupeId) {
-    notification = _.extend(notification, { uid: `${getLevelForType(type)}-${dedupeId}` });
-  }
-
-  this._ref.addNotification(notification);
-};
-/* harmony export (immutable) */ __webpack_exports__["_show"] = _show;
-
-
-const error = function (message, options) {
-  message || (message = 'Something went wrong. Please try again.');
-  options || (options = {});
-
-  this._show(
-  _.extend(options, {
-    type: 'error',
-    message: message }));
-
-
-};
-/* harmony export (immutable) */ __webpack_exports__["error"] = error;
-
-
-const info = function (message, options) {
-  if (!message) {
-    return;
-  }
-
-  options || (options = {});
-
-  this._show(
-  _.extend(options, {
-    type: 'info',
-    message: message }));
-
-
-};
-/* harmony export (immutable) */ __webpack_exports__["info"] = info;
-
-
-const success = function (message, options) {
-  if (!message) {
-    return;
-  }
-
-  options || (options = {});
-
-  this._show(
-  _.extend(options, {
-    type: 'success',
-    message: message }));
-
-
-};
-/* harmony export (immutable) */ __webpack_exports__["success"] = success;
-
-
-const warn = function (message, options) {
-  if (!message) {
-    return;
-  }
-
-  options || (options = {});
-
-  this._show(
-  _.extend(options, {
-    type: 'warn',
-    message: message }));
-
-
-};
-/* harmony export (immutable) */ __webpack_exports__["warn"] = warn;
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 839:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Toast; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_InformationIcon__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Markdown__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_UIEventService__ = __webpack_require__(79);
-
-
-
-
-
-
-
-let
-
-Toast = class Toast extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-  constructor() {
-    super();
-
-    this.handlePrimaryAction = this.handlePrimaryAction.bind(this);
-    this.handleSecondaryAction = this.handleSecondaryAction.bind(this);
-    this.dismissToast = this.dismissToast.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.onView && this.props.onView();
-    this.unsubscribeHandler = this.props.dismissEvent && __WEBPACK_IMPORTED_MODULE_7__services_UIEventService__["a" /* default */].subscribe(this.props.dismissEvent, this.dismissToast);
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeHandler && this.unsubscribeHandler();
-  }
-
-  handlePrimaryAction() {
-    if (this.props.primaryAction && this.props.primaryAction.onClick) {
-      this.props.primaryAction.onClick();
-    }
-    this.props.dismiss(this.props.uid);
-  }
-
-  handleSecondaryAction() {
-    if (this.props.secondaryAction && this.props.secondaryAction.onClick) {
-      this.props.secondaryAction.onClick();
-    }
-    this.props.dismiss(this.props.uid);
-  }
-
-  dismissToast() {
-    // The notification system provides a handler
-    // to remove the toast
-    this.props.dismiss(this.props.uid);
-    this.props.onDismiss && this.props.onDismiss(this.props.uid);
-  }
-
-  getTypeClass() {
-    let typeClass = this.props.type ? `toast-${this.props.type}` : 'toast-info';
-    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({
-      'toast': true,
-      [typeClass]: true });
-
-  }
-
-  getActions() {
-    const { primaryAction = null, secondaryAction = null } = this.props;
-
-    if (primaryAction || secondaryAction) {
-      return (
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'toast-actions' },
-
-          primaryAction &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
-              className: 'toast-primary-action',
-              type: 'primary',
-              size: 'small',
-              disabled: primaryAction.disabled,
-              onClick: this.handlePrimaryAction },
-
-            primaryAction.label),
-
-
-
-          secondaryAction &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Buttons__["a" /* Button */], {
-              className: __WEBPACK_IMPORTED_MODULE_3_classnames___default()({ 'toast-secondary-action': true, 'toast-secondary-action-only': !primaryAction }),
-              type: 'text',
-              disabled: secondaryAction.disabled,
-              onClick: this.handleSecondaryAction },
-
-            secondaryAction.label)));
-
-
-
-
-    }
-  }
-
-  getContentClasses() {
-    return __WEBPACK_IMPORTED_MODULE_3_classnames___default()({
-      'toast-content': true,
-      'toast-content-shrink': this.props.isDismissable });
-
-  }
-
-  render() {
-    const {
-      title,
-      message,
-      onMessageLinkClick,
-      disabled,
-      isDismissable,
-      noIcon } =
-    this.props;
-
-    return (
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getTypeClass() },
-
-        !noIcon &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_InformationIcon__["a" /* default */], { className: 'toast-icon' }),
-
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getContentClasses() },
-
-          title &&
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'toast-title' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Markdown__["a" /* default */], {
-              source: title,
-              onLinkClick: onMessageLinkClick })),
-
-
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'toast-body' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Markdown__["a" /* default */], {
-              source: message,
-              onLinkClick: onMessageLinkClick })),
-
-
-          this.getActions()),
-
-
-        isDismissable &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', {
-            className: 'toast-dismiss',
-            onClick: this.dismissToast },
-
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__["a" /* default */], {
-            className: 'toast-close',
-            size: 'xs' }))));
-
-
-
-
-
-  }};
-
-
-Toast.defaultProps = {
-  type: 'info',
-  message: '',
-  disabled: false,
-  isDismissable: true,
-  noIcon: false,
-  onMessageLinkClick: null };
-
-
-Toast.propTypes = {
-  type: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.oneOf(['error', 'success', 'warn', 'info']),
-  message: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
-  isDismissable: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
-  noIcon: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
-  dismiss: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func.isRequired,
-  onMessageLinkClick: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func };
-
-/***/ }),
-
-/***/ 840:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export findSession */
-/* unused harmony export clearOrphanSessions */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bootSession; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_WorkspaceController__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uuid_v4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uuid_v4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__electron_ElectronService__ = __webpack_require__(141);
-var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
-
-
-
-
-
-
-
-let getDefaultSession = window => {
-  return Object(__WEBPACK_IMPORTED_MODULE_5__utils_default_workspace__["c" /* defaultUserWorkspaceId */])().
-  then(defaultWorkspaceId => {
-    if (!defaultWorkspaceId) {
-      return Promise.reject(new Error('Could not find default workspace while booting session'));
-    }
-
-    return __WEBPACK_IMPORTED_MODULE_2__modules_controllers_WorkspaceController__["a" /* default */].get({ id: defaultWorkspaceId });
-  }).
-  then(defaultWorkspace => {
-    if (!defaultWorkspace) {
-      return Promise.reject(new Error('Could not find default workspace while booting session'));
-    }
-
-    return defaultWorkspace;
-  }).
-  then(defaultWorkspace => {
-    return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].
-    create({
-      id: __WEBPACK_IMPORTED_MODULE_3_uuid_v4___default()(),
-      window: window.id,
-      workspace: defaultWorkspace.id,
-      state: {} }).
-
-    then(sessionCreatedEvent => {
-      return Object(__WEBPACK_IMPORTED_MODULE_4__modules_model_event__["d" /* getEventData */])(sessionCreatedEvent);
-    });
-  });
-};
-
-let findSession = (window, options) => {
-  return Promise.resolve()
-
-  // First, check if this window is supposed to be opened with a workspace (New window with workspace pre-selected)
-  .then(() => {
-    // If this window is not being opened with a pre-selected workspace, move on
-    if (!options.session || !options.session.workspace) {
-      return;
-    }
-
-    // If this window is supposed to be opened with a workspace, just create the session
-    // with that workspace and move on
-    return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].
-    getSessionFor(window.id, options.session.workspace).
-    then(session => {
-      // If the window is not supposed to have pre-selected state, move on
-      if (!options.session.state) {
-        return session;
-      }
-
-      // Otherwise, update the session's state with whatever is supplied
-      return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].
-      update({
-        id: session.id,
-        state: _extends({},
-        session.state,
-        options.session.state) }).
-
-
-      then(sessionUpdatedEvent => {
-        return Object(__WEBPACK_IMPORTED_MODULE_4__modules_model_event__["d" /* getEventData */])(sessionUpdatedEvent);
-      });
-    });
-  })
-
-  // First, check if this window is supposed to be opened with a defined session (restore flow)
-  .then(session => {
-    // If we've already found a session, move on
-    if (session) {
-      return session;
-    }
-
-    // If this window is not being restored, move on
-    if (!options.session || !window.activeSession) {
-      return;
-    }
-
-    return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].
-    get({ id: window.activeSession }).
-    then(session => {
-      if (!session || session.window !== window.id) {
-        return;
-      }
-
-      return session;
-    });
-  })
-
-  // If the window's activeSession exists, continue, or else try finding another suitable session
-  .then(session => {
-    if (session) {
-      return session;
-    }
-
-    // Active session on this window does not exist, trying to find some other session on this window
-    return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].
-    getAll({ window: pm.window.id }).
-    then(allSessions => {
-      if (allSessions && allSessions[0]) {
-        return allSessions[0];
-      }
-
-      // There are no sessions on this window, creating one
-      return getDefaultSession(window);
-    });
-  })
-
-  // Verify if the session being restored points to a valid workspace.
-  .then(session => {
-    return __WEBPACK_IMPORTED_MODULE_2__modules_controllers_WorkspaceController__["a" /* default */].
-    get({ id: session.workspace }).
-    then(workspace => {
-      // If the workspace being pointed to does not exist, delete this session and restart the session boot
-      if (workspace) {
-        return session;
-      }
-
-      return getDefaultSession(window);
-    });
-  });
-};
-
-let clearOrphanSessions = (activeWindowId, { activeSessionId }) => {
-  // Find all sessions, if for a session, the window / workspace does not exist, delete the session
-  return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].
-  getAll().
-  then(allSessions => {
-    // First, take the currently active session out of the picture.
-    // Don't want to ever delete that
-    _.remove(allSessions, session => session.id === activeSessionId);
-    return allSessions;
-  }).
-  then(allSessions => {
-    // Remove all sessions with an invalid window ID
-    return Promise.all(
-    _.map(allSessions, session => {
-      return __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default.a.get({ id: session.window }).
-      then(window => {
-        if (window) {
-          return session;
-        }
-
-        return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].delete({ id: session.id }).
-        then(sessionDeletedEvent => {
-          return;
-        }).
-        catch(e => {
-          pm.logger.error(`Failed to clear orphan sessions on window ${session.window}`, e);
-          return session;
-        });
-      });
-    }));
-
-  }).
-  then(sessions => {
-    // Clean the result, remove all undefined values from the previous loop
-    return _.compact(sessions);
-  }).
-  then(allSessions => {
-    // Now, remove all sessions on the currentWindow, with an invalid workspace
-    return Promise.all(
-    _.map(allSessions, session => {
-      return __WEBPACK_IMPORTED_MODULE_2__modules_controllers_WorkspaceController__["a" /* default */].get({ id: session.workspace }).
-      then(workspace => {
-        if (session.window === activeWindowId && !workspace) {
-          return __WEBPACK_IMPORTED_MODULE_1__modules_controllers_WorkspaceSessionController__["a" /* default */].delete({ id: session.id }).
-          catch(e => {
-            pm.logger.error(`Failed to clear orphan sessions with workspace ${session.workspace}`, e);
-          });
-        }
-      });
-    }));
-
-  });
-};
-
-// IMPORTANT: DO NOT REORDER PROMISES HERE
-// 1. Getting launch params from window
-// 2. Get / create a window
-// 3. Find a suitable session (find / create). Session create should always be after window create, otherwise this might be pruned
-// 4. Update the new window with the new session's ID
-// 5. Complete the boot process
-// 6. Start pruning orphan sessions
-let bootSession = cb => {
-  return Object(__WEBPACK_IMPORTED_MODULE_6__electron_ElectronService__["d" /* getLaunchParams */])()
-
-  // First, initialize the WindowController
-  .then(windowParams => {
-    return __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default.a.bootstrap(...windowParams);
-  })
-
-  // Find the window being restored / opened
-  .then(windowParams => {
-    let window = windowParams[0],
-    options = windowParams[1];
-
-    return __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default.a.
-    getCurrentWindow().
-    then(currentWindow => {
-      if (currentWindow) {
-        return currentWindow;
-      }
-
-      // Worst case scenario
-      return Promise.reject(new Error('Window to open does not exist ' + pm.window.id));
-    })
-
-    // Try to find the session that the window opened wants to open
-    .then(() => findSession(...windowParams))
-
-    // Update the Window table to indicate the new session is the active session
-    .then(session => {
-      return __WEBPACK_IMPORTED_MODULE_0__common_controllers_WindowController___default.a.update({
-        id: window.id,
-        activeSession: session.id });
-
-    })
-
-    // Complete the boot process
-    .then(() => {
-      pm.logger.info('Session~boot - Success');
-      cb && cb(null);
-    }).
-
-    catch(e => {
-      pm.logger.error('Session~boot - Failed', e);
-      cb && cb(e);
-    })
-
-    // Prune any sessions that are invalid
-    .then(() => clearOrphanSessions()).
-    catch(() => {});
-  });
-};
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-
-/***/ 841:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stores_store_handler__ = __webpack_require__(842);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-
-
-
-const STORE_HANDLER_TIMEOUT = 15 * 1000; // 15 seconds
-
-/**
- *
- */
-function bootStore(cb) {
-
-  Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["k" /* subscribeToQueue */])(__WEBPACK_IMPORTED_MODULE_0__stores_store_handler__["a" /* handleModelEventOnStore */], STORE_HANDLER_TIMEOUT);
-  pm.logger.info('Store~boot - Success');
-  cb && cb(null);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (bootStore);
-
-/***/ }),
-
-/***/ 842:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return handleModelEventOnStore; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mobx__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = startUserConflictResolution;
+/* harmony export (immutable) */ __webpack_exports__["b"] = submitUserResolution;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_AnalyticsService__ = __webpack_require__(20);
 
 
 
 /**
-                                                                                                                         *
-                                                                                                                         * @param {Object} modelEvent
-                                                                                                                         */
-function handleModelEventOnStore(modelEvent, callback) {
-  let eventNamespace = Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(modelEvent),
-  storeListeners = _.get(pm, ['stores', '_listeners']),
-  activeListenersFor = new Set(),
-  matchedListeners = [];
+                                                              *
+                                                              */
+function startUserConflictResolution(conflicts, timeline) {
+  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
 
-  // @todo: this may have issues, when a top level event does not have a store initialized
-  // but low level events have stores initialized
-  if (!storeListeners) {
-    return callback();
-  }
+  conflictResolutionChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('show', 'conflicts', { conflicts, timeline }));
 
-  storeListeners.forEach(storeListenerForNamespace => {
-    _.forEach(_.keys(storeListenerForNamespace), listenerName => {
-      activeListenersFor.add(listenerName);
-    });
-  });
+  // Add analytics event for tracking conflicts modal shown to user
+  __WEBPACK_IMPORTED_MODULE_1__services_AnalyticsService__["a" /* default */].addEventV2({
+    category: 'sync_failure',
+    action: 'resolve_conflicts',
+    label: 'conflicts',
+    entityType: _.get(timeline, 'model'),
+    entityId: _.get(timeline, 'modelId') });
 
-  Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["j" /* processEventSync */])(modelEvent, Array.from(activeListenersFor), function processEventOnStore(event) {
-    if (!storeListeners.has(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(event))) {
-      return;
-    }
-    let storeListenersForNamespace = storeListeners.get(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["g" /* getEventNamespace */])(event)),
-    action = Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["f" /* getEventName */])(event),
-    listeners = storeListenersForNamespace[action];
-
-    _.forEach(listeners, function (listener) {
-      // we create new functions instead of binding
-      // listener is already bound with the `store`, we can't find it, or change it
-      listener && matchedListeners.push(function () {
-        listener(Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["d" /* getEventData */])(event), Object(__WEBPACK_IMPORTED_MODULE_1__modules_model_event__["e" /* getEventMeta */])(event), modelEvent);
-      });
-    });
-  });
-
-  // wrapping all the individual listeners for an event in a transactions
-  Object(__WEBPACK_IMPORTED_MODULE_0_mobx__["u" /* transaction */])(function () {
-    // listeners are synchronous anyway
-    _.forEach(matchedListeners, function invokeStoreListener(listener) {
-      listener && listener();
-    });
-  });
-
-  callback();
 }
 
+function submitUserResolution(conflicts, timeline) {
+  let conflictResolutionChannel = pm.eventBus.channel('conflict-resolution');
 
+  conflictResolutionChannel.publish(Object(__WEBPACK_IMPORTED_MODULE_0__model_event__["a" /* createEvent */])('submit', 'conflicts', { conflicts, timeline }));
+}
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 
-/***/ 844:
+/***/ 924:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerProxy__ = __webpack_require__(845);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_SyncManagerProxy__ = __webpack_require__(925);
 
 
 /**
@@ -11039,14 +9607,14 @@ function bootSyncProxy(cb) {
 
 /***/ }),
 
-/***/ 845:
+/***/ 925:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(87);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_backbone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(5);
 
 
 
@@ -11151,11 +9719,11 @@ var SyncManagerProxy = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.ex
 
 /***/ }),
 
-/***/ 846:
+/***/ 926:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_ConsoleInterface__ = __webpack_require__(847);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_ConsoleInterface__ = __webpack_require__(927);
 
 
 /**
@@ -11164,11 +9732,11 @@ var SyncManagerProxy = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.ex
                                                                */
 function bootConsoleInterface(cb) {
   _.assign(window.pm, {
-    newConsole: new __WEBPACK_IMPORTED_MODULE_0__models_ConsoleInterface__["a" /* default */]() // @todo: Change to pm.console when we replace the current console
+    console: new __WEBPACK_IMPORTED_MODULE_0__models_ConsoleInterface__["a" /* default */]() // @todo: Change to pm.console when we replace the current console
   });
 
   // Initialize the new console interface with current window information
-  window.pm.newConsole.initialize(pm && pm.window && pm.window.id).
+  window.pm.console.initialize(pm && pm.window && pm.window.id).
   then(() => {
     pm.logger.info('NewConsole~boot - Success');
 
@@ -11186,17 +9754,17 @@ function bootConsoleInterface(cb) {
 
 /***/ }),
 
-/***/ 847:
+/***/ 927:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConsoleInterface; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uuid__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_ConsoleEventTypes__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_pipelines_app_action__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_ConsoleEventSeverity__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_ConsoleEventTypes__ = __webpack_require__(266);
 
 
 // @note: remove the below imports when removing the `clear` method. The console
@@ -11392,7 +9960,7 @@ ConsoleInterface = class ConsoleInterface {
 
 /***/ }),
 
-/***/ 849:
+/***/ 929:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11557,11 +10125,11 @@ ProxyListManager = class ProxyListManager {
 
 /***/ }),
 
-/***/ 850:
+/***/ 930:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(87);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_backbone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_backbone__);
 
 const Certificate = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.extend({
@@ -11583,7 +10151,7 @@ const Certificate = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Model.exten
       return;
     }
 
-    const fs = __webpack_require__(33);
+    const fs = __webpack_require__(32);
     fs.readFile(this.get('pemPath'), (err, _pemData) => {
       fs.readFile(this.get('keyPath'), (err, _keyData) => {
         fs.readFile(this.get('pfxPath'), (err, _pfxData) => {
@@ -11756,24 +10324,24 @@ const CertificateManager = __WEBPACK_IMPORTED_MODULE_0_backbone___default.a.Coll
 
 /***/ }),
 
-/***/ 851:
+/***/ 931:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = initializeRollbackNotifications;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_HeaderPresetController__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(292);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(515);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_controllers_WorkspaceController__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_GlobalsController__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_controllers_HistoryController__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_HistoryResponseController__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_CollectionRunController__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_sync_helpers_sync_api__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
 
 
 
@@ -12291,12 +10859,12 @@ const rollbackQueue = __WEBPACK_IMPORTED_MODULE_0_async___default.a.queue(rollba
 
 /***/ }),
 
-/***/ 852:
+/***/ 932:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = extractMetaAsChangesets;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__create_changeset__ = __webpack_require__(62);
 
 
 /**
@@ -12459,14 +11027,14 @@ function extractMetaAsChangesets(changeset) {
 
 /***/ }),
 
-/***/ 853:
+/***/ 933:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user__ = __webpack_require__(854);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collection__ = __webpack_require__(883);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workspace__ = __webpack_require__(884);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environment__ = __webpack_require__(885);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user__ = __webpack_require__(934);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collection__ = __webpack_require__(963);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__workspace__ = __webpack_require__(964);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environment__ = __webpack_require__(965);
 
 
 
@@ -12480,16 +11048,16 @@ function extractMetaAsChangesets(changeset) {
 
 /***/ }),
 
-/***/ 854:
+/***/ 934:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserTimeline; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_WorkspaceController__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
 
 
 
@@ -12574,15 +11142,15 @@ let UserTimeline = class UserTimeline extends __WEBPACK_IMPORTED_MODULE_0__sync_
 
 /***/ }),
 
-/***/ 855:
+/***/ 935:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getSyncState;
 /* harmony export (immutable) */ __webpack_exports__["b"] = setSyncState;
 /* harmony export (immutable) */ __webpack_exports__["c"] = wipeSyncState;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_SyncStateController__ = __webpack_require__(779);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_SyncStateController__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipelines_sync_action__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -12656,21 +11224,21 @@ function wipeSyncState(timelineId) {
 
 /***/ }),
 
-/***/ 856:
+/***/ 936:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(857);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__workspace__ = __webpack_require__(858);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globals__ = __webpack_require__(860);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__headerpreset__ = __webpack_require__(861);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__history__ = __webpack_require__(862);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__historyresponse__ = __webpack_require__(863);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__collectionrun__ = __webpack_require__(864);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__environment__ = __webpack_require__(865);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__request__ = __webpack_require__(866);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__response__ = __webpack_require__(867);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__folder__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(937);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__workspace__ = __webpack_require__(938);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globals__ = __webpack_require__(940);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__headerpreset__ = __webpack_require__(941);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__history__ = __webpack_require__(942);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__historyresponse__ = __webpack_require__(943);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__collectionrun__ = __webpack_require__(944);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__environment__ = __webpack_require__(945);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__request__ = __webpack_require__(946);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__response__ = __webpack_require__(947);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__folder__ = __webpack_require__(948);
 
 
 
@@ -12698,7 +11266,7 @@ function wipeSyncState(timelineId) {
 
 /***/ }),
 
-/***/ 857:
+/***/ 937:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12719,11 +11287,11 @@ const FIELDS_TO_PICK = ['name', 'description', 'auth', 'events', 'variables'];
 
 /***/ }),
 
-/***/ 858:
+/***/ 938:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_workspace_helper__ = __webpack_require__(859);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_workspace_helper__ = __webpack_require__(939);
 
 
 /**
@@ -12778,7 +11346,7 @@ function autoResolveWorkspaceConflicts(clientChange, serverChange) {
 
 /***/ }),
 
-/***/ 859:
+/***/ 939:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12853,7 +11421,7 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 
 /***/ }),
 
-/***/ 860:
+/***/ 940:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12867,7 +11435,7 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 
 /***/ }),
 
-/***/ 861:
+/***/ 941:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12902,7 +11470,7 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 
 /***/ }),
 
-/***/ 862:
+/***/ 942:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12916,7 +11484,7 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 
 /***/ }),
 
-/***/ 863:
+/***/ 943:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12930,7 +11498,7 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 
 /***/ }),
 
-/***/ 864:
+/***/ 944:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12944,7 +11512,7 @@ function applyWorkspaceDependencyDiff(wsDepsSnapshot, wsDepsDiff) {
 
 /***/ }),
 
-/***/ 865:
+/***/ 945:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13008,7 +11576,7 @@ const FIELDS_TO_PICK = ['name', 'values'];
 
 /***/ }),
 
-/***/ 866:
+/***/ 946:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13040,7 +11608,7 @@ const FIELDS_TO_PICK = ['name', 'description', 'auth', 'events', 'url', 'data', 
 
 /***/ }),
 
-/***/ 867:
+/***/ 947:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13064,7 +11632,7 @@ const FIELDS_TO_PICK = ['name', 'status', 'mime', 'language', 'text', 'responseC
 
 /***/ }),
 
-/***/ 868:
+/***/ 948:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13110,15 +11678,15 @@ const FIELDS_TO_PICK = ['name', 'description', 'auth', 'events'];
 
 /***/ }),
 
-/***/ 869:
+/***/ 949:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__ = __webpack_require__(39);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_UserController__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(62);
 
 
 
@@ -13271,15 +11839,15 @@ pluralMap = {
 
 /***/ }),
 
-/***/ 870:
+/***/ 950:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(61);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_create_changeset__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(43);
 
 
 
@@ -13399,14 +11967,14 @@ ACTION_DELETE = 'delete';
 
 /***/ }),
 
-/***/ 871:
+/***/ 951:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(34);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(36);
 
 
 
@@ -13455,14 +12023,14 @@ const FOLDER = 'folder';
 
 /***/ }),
 
-/***/ 872:
+/***/ 952:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(34);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(36);
 
 
 
@@ -13511,15 +12079,15 @@ const REQUEST = 'request';
 
 /***/ }),
 
-/***/ 873:
+/***/ 953:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_ResponsePropertiesValidation__ = __webpack_require__(496);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_collection_model_convertors__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_CollectionController__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_ResponsePropertiesValidation__ = __webpack_require__(521);
 
 
 
@@ -13587,7 +12155,7 @@ const RESPONSE = 'response';
 
 /***/ }),
 
-/***/ 874:
+/***/ 954:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13623,13 +12191,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 875:
+/***/ 955:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_GlobalsController__ = __webpack_require__(86);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_GlobalsController__ = __webpack_require__(87);
 
 
 
@@ -13698,15 +12266,15 @@ const OFFLINE_WORKSPACE = '29ba1c6f-43ab-4e23-8a6c-27c39a57a069';
 
 /***/ }),
 
-/***/ 876:
+/***/ 956:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_SyncFetcherService__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_SyncFetcherService__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controllers_UserController__ = __webpack_require__(43);
 
 
 
@@ -13772,13 +12340,13 @@ ENVIRONMENT = 'environment';
 
 /***/ }),
 
-/***/ 877:
+/***/ 957:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__ = __webpack_require__(133);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_helpers_sanitize_collection_model_for_sync__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__ = __webpack_require__(137);
 
 
 
@@ -13823,13 +12391,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 878:
+/***/ 958:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__ = __webpack_require__(133);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__default__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_HistoryController__ = __webpack_require__(137);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -13914,12 +12482,12 @@ function addParent(changeset) {
 
 /***/ }),
 
-/***/ 879:
+/***/ 959:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionRunController__ = __webpack_require__(292);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controllers_CollectionRunController__ = __webpack_require__(192);
 
 
 function sanitizeIterationsForSync(iterations) {
@@ -13936,11 +12504,12 @@ function sanitizeIterationsForSync(iterations) {
       return {
         id: request.id,
         name: request.name,
+        ref: request.ref,
         error: request.error,
         request: {
 
           // Request headers and body should not be synced
-          url: _.get(request, 'request.unresolvedUrl'),
+          url: _.get(request, 'request.url'),
           method: _.get(request, 'request.method'),
           path: _.get(request, 'request.path') },
 
@@ -14028,7 +12597,7 @@ function sanitizeIterationsForSync(iterations) {
 
 /***/ }),
 
-/***/ 880:
+/***/ 960:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14048,7 +12617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 881:
+/***/ 961:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14057,7 +12626,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 882:
+/***/ 962:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14081,22 +12650,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 883:
+/***/ 963:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollectionTimeline; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_SyncService__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_utils_collection_tree__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AccessControl_PermissionService__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_sync_SyncOutgoingHelpers__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_AnalyticsService__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_SyncService__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_utils_collection_tree__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__controllers_CollectionController__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_AccessControl_PermissionService__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_sync_SyncOutgoingHelpers__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_AnalyticsService__ = __webpack_require__(20);
 
 
 
@@ -14116,7 +12685,7 @@ let CollectionTimeline = class CollectionTimeline extends __WEBPACK_IMPORTED_MOD
   }
 
   markForForceSync() {
-    let { modelId } = Object(__WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__["a" /* decomposeUID */])(this.modelId);
+    let { modelId } = Object(__WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__["b" /* decomposeUID */])(this.modelId);
 
     Object(__WEBPACK_IMPORTED_MODULE_8__models_sync_SyncManagerHelper__["d" /* markModelForForceSync */])({
       model: 'collection',
@@ -14139,7 +12708,7 @@ let CollectionTimeline = class CollectionTimeline extends __WEBPACK_IMPORTED_MOD
      * 5. On completion CR publishes the resolution to both sync and the app bringing both to the same state
      */
   async handleForceSync() {
-    let { owner, modelId } = Object(__WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__["a" /* decomposeUID */])(this.modelId),
+    let { owner, modelId } = Object(__WEBPACK_IMPORTED_MODULE_7__utils_uid_helper__["b" /* decomposeUID */])(this.modelId),
     isMarkedForForceSync = _.find(pm.syncManager.modelsToForceSync, entity => {return entity && entity.modelId === modelId;});
 
     // bail out if force sync is not needed
@@ -14289,22 +12858,22 @@ let CollectionTimeline = class CollectionTimeline extends __WEBPACK_IMPORTED_MOD
 
 /***/ }),
 
-/***/ 884:
+/***/ 964:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WorkspaceTimeline; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncFetcherService__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AccessControl_PermissionService__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_SyncService__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_GlobalsController__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncFetcherService__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_AccessControl_PermissionService__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_SyncService__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__controllers_GlobalsController__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pipelines_sync_action__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pipelines_sync_action__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__controllers_HeaderPresetController__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__ = __webpack_require__(95);
 
 
 
@@ -14480,7 +13049,7 @@ let WorkspaceTimeline = class WorkspaceTimeline extends __WEBPACK_IMPORTED_MODUL
     missingHeaderPresetIds = _.difference(remoteHeaderPresetIds, localHeaderPresetsIds);
 
     _.forEach(missingHeaderPresetIds, presetId => {
-      let { modelId, owner } = Object(__WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__["a" /* decomposeUID */])(presetId);
+      let { modelId, owner } = Object(__WEBPACK_IMPORTED_MODULE_10__utils_uid_helper__["b" /* decomposeUID */])(presetId);
 
       return Object(__WEBPACK_IMPORTED_MODULE_3__models_sync_services_SyncIncomingHandler__["c" /* processIncomingChangeset */])(Object(__WEBPACK_IMPORTED_MODULE_4__sync_helpers_create_changeset__["a" /* default */])('headerpreset', 'import', { modelId, owner }, { partial: true }));
     });
@@ -14489,17 +13058,17 @@ let WorkspaceTimeline = class WorkspaceTimeline extends __WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
-/***/ 885:
+/***/ 965:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EnvironmentTimeline; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_EnvironmentController__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_AccessControl_PermissionService__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sync_timeline_helpers_BaseSyncTimeline__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_SyncService__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__controllers_EnvironmentController__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_sync_services_SyncIncomingHandler__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_AccessControl_PermissionService__ = __webpack_require__(267);
 
 
 
@@ -14570,23 +13139,23 @@ let EnvironmentTimeline = class EnvironmentTimeline extends __WEBPACK_IMPORTED_M
 
 /***/ }),
 
-/***/ 886:
+/***/ 966:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(887);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collectionrun__ = __webpack_require__(888);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment__ = __webpack_require__(889);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__folder__ = __webpack_require__(890);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__globals__ = __webpack_require__(891);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__headerpreset__ = __webpack_require__(892);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__history__ = __webpack_require__(893);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__historyresponse__ = __webpack_require__(894);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__request__ = __webpack_require__(895);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__response__ = __webpack_require__(896);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__team__ = __webpack_require__(897);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__workspace__ = __webpack_require__(898);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__comment__ = __webpack_require__(899);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collection__ = __webpack_require__(967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collectionrun__ = __webpack_require__(968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environment__ = __webpack_require__(969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__folder__ = __webpack_require__(970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__globals__ = __webpack_require__(971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__headerpreset__ = __webpack_require__(972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__history__ = __webpack_require__(973);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__historyresponse__ = __webpack_require__(974);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__request__ = __webpack_require__(975);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__response__ = __webpack_require__(976);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__team__ = __webpack_require__(977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__workspace__ = __webpack_require__(978);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__comment__ = __webpack_require__(979);
 
 
 
@@ -14618,13 +13187,13 @@ let EnvironmentTimeline = class EnvironmentTimeline extends __WEBPACK_IMPORTED_M
 
 /***/ }),
 
-/***/ 887:
+/***/ 967:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(140);
 
 
 
@@ -14769,7 +13338,7 @@ COLLECTION = 'collection';
 
 /***/ }),
 
-/***/ 888:
+/***/ 968:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14839,7 +13408,7 @@ EVENT_UPDATE = 'update';
 
 /***/ }),
 
-/***/ 889:
+/***/ 969:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14932,12 +13501,12 @@ EVENT_CREATE = 'create';
 
 /***/ }),
 
-/***/ 890:
+/***/ 970:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(140);
 
 
 
@@ -14953,11 +13522,11 @@ const FOLDER = 'folder';
 
 /***/ }),
 
-/***/ 891:
+/***/ 971:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_event__ = __webpack_require__(228);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_event__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_event___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_model_event__);
 
 
@@ -15010,7 +13579,7 @@ const FOLDER = 'folder';
 
 /***/ }),
 
-/***/ 892:
+/***/ 972:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15074,12 +13643,12 @@ EVENT_UPDATE = 'update';
 
 /***/ }),
 
-/***/ 893:
+/***/ 973:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_event__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(140);
 
 
 
@@ -15181,7 +13750,7 @@ HISTORY = 'history';
 
 /***/ }),
 
-/***/ 894:
+/***/ 974:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15240,12 +13809,12 @@ EVENT_DELETE = 'delete';
 
 /***/ }),
 
-/***/ 895:
+/***/ 975:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(140);
 
 
 
@@ -15261,12 +13830,12 @@ const REQUEST = 'request';
 
 /***/ }),
 
-/***/ 896:
+/***/ 976:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(135);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_sync_sync_helpers_collection_model_converters__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sync_helpers_sanitize_collection_model_from_sync__ = __webpack_require__(140);
 
 
 
@@ -15282,7 +13851,7 @@ const RESPONSE = 'response';
 
 /***/ }),
 
-/***/ 897:
+/***/ 977:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15313,7 +13882,7 @@ const RESPONSE = 'response';
 
 /***/ }),
 
-/***/ 898:
+/***/ 978:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15485,7 +14054,7 @@ function getWorkspaceLeaveEvents(workspace) {
 
 /***/ }),
 
-/***/ 899:
+/***/ 979:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15563,6 +14132,745 @@ function getCommentFromChangeset(changeset) {
     } } });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
+/***/ }),
+
+/***/ 980:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_APIDevService__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_uuid___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_uuid__);
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (_.defaults({
+  type: 'apischema',
+
+  get(definition, cb) {
+    cb = _.once(cb);
+
+    __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].get.call(this, {
+      apiVersionId: definition.apiVersionId }).
+    then(schema => {
+
+      if (schema) {
+
+        /**
+                    * Bail out if the requested schema type
+                    * does not match the schema type in DB cache
+                    */
+        if (!_.includes(definition.types, schema.type)) {
+          return cb(null);
+        }
+
+        // call callback and return from here
+        // since we got the schema in DB cache
+        let schemaToBeReturned = {
+          id: schema.schemaId,
+          schema: schema.schema,
+          type: schema.type,
+          language: schema.language };
+
+
+        return cb(null, schemaToBeReturned);
+      }
+
+      __WEBPACK_IMPORTED_MODULE_1__services_APIDevService__["a" /* default */].fetchSchemaForCollection(definition.modelId, definition.types).
+      then(response => {
+        let schemaFromResponse = _.get(response, 'body.data.schema'),
+        schemaToUpdate = {
+          id: __WEBPACK_IMPORTED_MODULE_4_uuid___default.a.v4(),
+          schemaId: schemaFromResponse.id,
+          apiId: definition.apiId,
+          apiVersionId: definition.apiVersionId,
+          schema: schemaFromResponse.schema,
+          type: schemaFromResponse.type,
+          language: schemaFromResponse.language,
+          updatedAt: schemaFromResponse.updatedAt };
+
+
+        __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].get.call(this, {
+          apiVersionId: definition.apiVersionId }).
+        then(schema => {
+          if (!schema) {
+            __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].create.call(this, schemaToUpdate).then(() => {
+              let schemaToBeReturned = {
+                id: schemaToUpdate.schemaId,
+                schema: schemaToUpdate.schema,
+                type: schemaToUpdate.type,
+                language: schemaToUpdate.language };
+
+
+              cb(null, schemaToBeReturned);
+            }).
+            then(() => {
+              Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_3__js_stores_get_store__["getStore"])('SyncStatusStore').isSocketConnected, isSocketConnected => {
+
+                /**
+                                                                                                   * workaround for now
+                                                                                                   * to resubscribe when the socket is reconnected
+                                                                                                   *
+                                                                                                   * Also, used fireImmediately to subscribe
+                                                                                                   * for the first time when the DB cache does not have
+                                                                                                   * the data
+                                                                                                   */
+                isSocketConnected && this.subscribe(definition, cb);
+              }, {
+                fireImmediately: true });
+
+            });
+          } else {
+            let schemaToBeReturned = {
+              id: schemaToUpdate.schemaId,
+              schema: schemaToUpdate.schema,
+              type: schemaToUpdate.type,
+              language: schemaToUpdate.language };
+
+            return cb(null, schemaToBeReturned);
+          }
+        });
+      });
+    }).
+    catch(error => {
+      pm.logger.error('APISchemaController~get', error);
+      cb(error);
+    });
+  },
+
+  subscribe(definition, cb) {
+    __WEBPACK_IMPORTED_MODULE_1__services_APIDevService__["a" /* default */].getSchemaForCollectionRealtimeEvents(definition.apiId, definition.apiVersionId, definition.modelId).
+    subscribe(event => {
+      let eventAction = _.get(event, 'meta.action'),
+      eventData = _.get(event, 'data'),
+      schemaId = _.get(eventData, 'schema.id'),
+      schema = _.get(eventData, 'schema.schema'),
+      type = _.get(eventData, 'schema.type'),
+      language = _.get(eventData, 'schema.language'),
+      updatedAt = _.get(eventData, 'schema.updatedAt'),
+      apiId = _.get(eventData, 'apiId'),
+      apiVersionId = _.get(eventData, 'apiVersionId'),
+      schemaToUpdate;
+
+      switch (eventAction) {
+        case 'link':
+          schemaToUpdate = {
+            schemaId: schemaId,
+            apiId: apiId,
+            apiVersionId: apiVersionId,
+            schema: schema,
+            type: type,
+            language: language,
+            updatedAt: updatedAt };
+
+          break;
+
+        case 'update':
+          schemaToUpdate = {
+            schemaId: schemaId,
+            apiId: apiId,
+            apiVersionId: apiVersionId,
+            schema: schema,
+            type: type,
+            language: language,
+            updatedAt: updatedAt };
+
+          break;
+
+        case 'unlink':
+          schemaToUpdate = {
+            schemaId: schemaId,
+            apiId: apiId,
+            apiVersionId: apiVersionId,
+            schema: schema,
+            type: type,
+            language: language,
+            updatedAt: updatedAt };
+
+          break;}
+
+
+      __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].update.call(this, schemaToUpdate).then(() => {
+        let schemaToBeReturned = { id: schemaToUpdate.schemaId, schema: schemaToUpdate.schema, type: schemaToUpdate.type, language: schemaToUpdate.language };
+
+        cb(null, schemaToBeReturned);
+      });
+    },
+    error => {
+      pm.logger.warn('Failed to subscribe schema for collection', error);
+    });
+  } },
+__WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */]));
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 981:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_APIDevService__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_stores_get_store__ = __webpack_require__(5);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (_.defaults({
+  type: 'apirelation',
+  get(modelId, cb) {
+    cb = _.once(cb);
+
+    __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].get.call(this, {
+      id: modelId }).
+    then(api => {
+
+      if (api) {
+
+        // call callback and return from here
+        // since we got the data in DB cache
+        return cb(null, api);
+      }
+
+      /**
+         * get data for the API linked
+         * to the collection if the collectionId
+         * is not available in DB cache
+         */
+      __WEBPACK_IMPORTED_MODULE_1__services_APIDevService__["a" /* default */].getAPILinkedToCollection(modelId).then(response => {
+        let relationToUpdate = {
+          id: modelId,
+          apiId: _.get(response, 'api.id'),
+          apiName: _.get(response, 'api.name'),
+          apiVersionId: _.get(response, 'api.versions[0].id'),
+          apiCreatedAt: _.get(response, 'api.createdAt'),
+          apiUpdatedAt: _.get(response, 'api.updatedAt'),
+          apiVersionName: _.get(response, 'api.versions[0].name'),
+          apiVersionCreatedAt: _.get(response, 'api.versions[0].createdAt'),
+          apiVersionUpdatedAt: _.get(response, 'api.versions[0].updatedAt') };
+
+        __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].get.call(this, {
+          id: modelId }).
+        then(api => {
+          if (!api) {
+            __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].create.call(this, relationToUpdate).then(res => {
+              cb(null, res.data);
+            }).
+            then(() => {
+              Object(__WEBPACK_IMPORTED_MODULE_2_mobx__["q" /* reaction */])(() => Object(__WEBPACK_IMPORTED_MODULE_3__js_stores_get_store__["getStore"])('SyncStatusStore').isSocketConnected, isSocketConnected => {
+
+                /**
+                                                                                                   * workaround for now
+                                                                                                   * to resubscribe when the socket is reconnected
+                                                                                                   *
+                                                                                                   * Also, used fireImmediately to subscribe
+                                                                                                   * for the first time when the DB cache does not have
+                                                                                                   * the data
+                                                                                                   */
+                isSocketConnected && this.subscribe(modelId, cb);
+              }, {
+                fireImmediately: true });
+
+            });
+          } else
+          {
+            return cb(null, api);
+          }
+        });
+      });
+    }).
+    catch(error => {
+      pm.logger.warn('APIRelationController~get', error);
+      cb(null);
+    });
+  },
+
+  /**
+      * subscribe the collection for
+      * linked API
+      * realtime events
+      */
+  subscribe(modelId, cb) {
+    this.subscription = __WEBPACK_IMPORTED_MODULE_1__services_APIDevService__["a" /* default */].getAPIForCollectionRealtimeEvents(modelId).
+    subscribe(event => {
+      let eventAction = _.get(event, 'meta.action'),
+      eventData = _.get(event, 'data'),
+      eventModel = _.get(event, 'meta.model'),
+      relationToUpdate;
+
+      if (eventModel === 'api') {
+        let apiId = _.get(eventData, 'api.id'),
+        apiName = _.get(eventData, 'api.name'),
+        apiCreatedAt = _.get(eventData, 'api.createdAt'),
+        apiUpdatedAt = _.get(eventData, 'api.updatedAt');
+
+        switch (eventAction) {
+          case 'update':
+            relationToUpdate = {
+              id: modelId,
+              apiId: apiId,
+              apiName: apiName,
+              apiCreatedAt: apiCreatedAt,
+              apiUpdatedAt: apiUpdatedAt };
+
+            break;
+
+          case 'link':
+            relationToUpdate = {
+              id: modelId,
+              apiId: apiId,
+              apiName: apiName,
+              apiCreatedAt: apiCreatedAt,
+              apiUpdatedAt: apiUpdatedAt,
+              apiVersionId: _.get(eventData, 'apiVersion.id'),
+              apiVersionName: _.get(eventData, 'apiVersion.name'),
+              apiVersionCreatedAt: _.get(eventData, 'apiVersion.createdAt'),
+              apiVersionUpdatedAt: _.get(eventData, 'apiVersion.updatedAt') };
+
+            break;
+
+          case 'unlink':
+            relationToUpdate = {
+              id: modelId,
+              apiId: '',
+              apiName: '',
+              apiVersionId: '',
+              apiCreatedAt: '',
+              apiUpdatedAt: '',
+              apiVersionName: '',
+              apiVersionCreatedAt: '',
+              apiVersionUpdatedAt: '' };
+
+            break;}
+
+      } else if (eventModel === 'apiVersion') {
+
+        let apiVersionId = _.get(eventData, 'apiVersion.id'),
+        apiVersionName = _.get(eventData, 'apiVersion.name'),
+        apiVersionCreatedAt = _.get(eventData, 'apiVersion.createdAt'),
+        apiVersionUpdatedAt = _.get(eventData, 'apiVersion.updatedAt'),
+        apiId = _.get(eventData, 'api.id');
+
+        switch (eventAction) {
+          case 'update':
+            relationToUpdate = {
+              id: modelId,
+              apiId: apiId,
+              apiVersionId: apiVersionId,
+              apiVersionName: apiVersionName,
+              apiVersionCreatedAt: apiVersionCreatedAt,
+              apiVersionUpdatedAt: apiVersionUpdatedAt };
+
+            break;
+
+          case 'destroy':
+          case 'create':
+
+            // remove entry from the DB
+            // and unsubscribe for the modelId
+            return __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].delete.call(this, { id: modelId }).then(res => {
+              this.subscription && this.subscription.unsubscribe();
+            });}
+
+      }
+
+      __WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */].update.call(this, relationToUpdate).then(res => {
+        cb(null, res);
+      });
+    }, error => {
+      pm.logger.warn('Failed to subscribe collection for linked API', error);
+    });
+  } },
+__WEBPACK_IMPORTED_MODULE_0__js_modules_controllers_ListController__["a" /* default */]));
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+
+/***/ 99:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(_) {/* unused harmony export splitMetaEvents */
+/* unused harmony export getModelFromMessage */
+/* unused harmony export getActionFromMessage */
+/* unused harmony export validateChangeset */
+/* harmony export (immutable) */ __webpack_exports__["a"] = buildChangesetFromMessage;
+/* unused harmony export sanitize */
+/* unused harmony export getEventFromChangeset */
+/* unused harmony export getTimelineEventsFromChangeset */
+/* unused harmony export inflateChangeset */
+/* unused harmony export dispatchEvent */
+/* harmony export (immutable) */ __webpack_exports__["b"] = dispatchTimelineEvents;
+/* harmony export (immutable) */ __webpack_exports__["c"] = processIncomingChangeset;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_sync_helpers_create_changeset__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_sync_helpers_extract_meta_changesets__ = __webpack_require__(932);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_sync_helpers_sync_api__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_pipelines_sync_action__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__ = __webpack_require__(966);
+
+
+
+
+
+
+
+
+
+/**
+                                                                 * If a changeset has collated meta properties like `archive`, extracts them and creates a new changeset out of it.
+                                                                 *
+                                                                 * @param {Object} changeset
+                                                                 * @returns {Array}
+                                                                 */
+function splitMetaEvents(changeset) {
+  let newChangesets = Object(__WEBPACK_IMPORTED_MODULE_1__modules_sync_helpers_extract_meta_changesets__["a" /* extractMetaAsChangesets */])(changeset),
+  metaChangesets = [];
+
+  // push the original changeset
+  metaChangesets.push(changeset);
+
+  _.forEach(newChangesets, function (metaChangeset) {
+    // mark changeset as coming from app
+    _.set(metaChangeset, ['meta', 'origin'], 'app');
+
+    // push the meta changeset
+    metaChangesets.push(metaChangeset);
+  });
+
+  return metaChangesets;
+}
+
+/**
+   * Gets model from message
+   *
+   * @param {Object} message sync message
+   * @returns {String} model
+   */
+function getModelFromMessage(message) {
+  return _.get(message, ['meta', 'model'], message.model);
+}
+
+/**
+   * Gets action from message
+   *
+   * @param {Object} message sync message
+   * @returns {String} action
+   */
+function getActionFromMessage(message) {
+  return _.get(message, ['meta', 'action'], message.action);
+}
+
+/**
+   * Validate sync changeset
+   *
+   * 1. Checks if changeset is non empty
+   * 2. Checks if model is present
+   * 3. Checks if model is supported
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Boolean}
+   */
+function validateChangeset(changeset) {
+  if (!changeset) {
+    return false;
+  }
+
+  let model = changeset.model;
+
+  if (!model || !__WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][model]) {
+    return false;
+  }
+
+  return true;
+}
+
+
+/**
+   * builds app changeset from sync message
+   *
+   * @param {Object} message sync message
+   *
+   * @returns {Object}
+   */
+function buildChangesetFromMessage(message) {
+  if (!message) {
+    return;
+  }
+
+  let model = getModelFromMessage(message),
+  action = getActionFromMessage(message),
+  changesetData = { modelId: message.model_id },
+  changesetMeta,
+  owner = _.get(message, ['meta', 'owner']) || _.get(message, ['data', 'owner']);
+
+  owner && (changesetData.owner = owner);
+
+  // build workspace joining/leaving changeset
+  if (model === 'workspace' && (action === 'joining' || action === 'leaving')) {
+    changesetData.instance = { id: message.model_id };
+    changesetData.user = message.data.user;
+  }
+
+  // build transfer changeset
+  else if (action === 'transfer') {
+      changesetData.from = {
+        model: _.get(message, ['data', 'from', 'model']),
+        modelId: _.get(message, ['data', 'from', 'model_id']) };
+
+
+      changesetData.to = {
+        model: _.get(message, ['data', 'to', 'model']),
+        modelId: _.get(message, ['data', 'to', 'model_id']) };
+
+    } else
+
+    if (action === 'subscribe' || action === 'unsubscribe') {
+      changesetData.user = _.get(message, ['data', 'user']);
+    } else
+
+    {
+      changesetData.instance = message.data;
+    }
+
+  // meta can have additional keys as well
+  // preserve meta and all the keys in meta (DO NOT WHITELIST OR SANITIZE)
+  changesetMeta = message.meta || {};
+
+  changesetMeta.revision = message.revision;
+
+  return Object(__WEBPACK_IMPORTED_MODULE_0__modules_sync_helpers_create_changeset__["a" /* default */])(model, action, changesetData, changesetMeta);
+}
+
+/**
+   * sanitize changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Object}
+   */
+function sanitize(changeset) {
+  let {
+    model,
+    data } =
+  changeset,
+  syncModel = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][model],
+  sanitize = syncModel.sanitizeFromSync;
+
+  // no need for sanitizing this model
+  if (!sanitize) {
+    return changeset;
+  }
+
+  // sanitize the model from sync message
+  data.instance && sanitize(data.instance);
+
+  return changeset;
+}
+
+
+/**
+   * construct events from changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Object} returns the event
+   */
+function getEventFromChangeset(changeset) {
+  if (!changeset) {
+    return [];
+  }
+
+  let changesetAction = changeset.action,
+  changesetModel = changeset.model,
+  model = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][changesetModel],
+  handler;
+
+  // no model for sync changeset
+  if (!model) {
+    pm.logger.error(new Error('Unknown model' + changesetModel));
+    return [];
+  }
+
+  // find handler in the sync model, or in the default
+  handler = _.get(model, ['toAppEvents', changesetAction]);
+
+  // no handler for sync changeset action
+  // sync sent a changeset action that this version of the app doesn't understand
+  if (!handler) {
+    return [];
+  }
+
+  return handler && handler(changeset);
+}
+
+/**
+   * Get events that affect timelines
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Object} returns the event
+   */
+function getTimelineEventsFromChangeset(changeset) {
+  if (!changeset) {
+    return [];
+  }
+
+  let changesetAction = changeset.action,
+  changesetModel = changeset.model,
+  model = __WEBPACK_IMPORTED_MODULE_5__modules_sync_incoming_models__["a" /* default */][changesetModel],
+  handler;
+
+  // @todo: windowed-syncing: move this common to model layer events and timeline events
+  // no model for sync changeset
+  if (!model) {
+    pm.logger.error(new Error('Unknown model' + changesetModel));
+    return [];
+  }
+
+  // find handler in the sync model
+  handler = _.get(model, ['toTimelineEvents', changesetAction]);
+
+  // no handler for sync changeset action
+  // sync sent a changeset action that this version of the app doesn't understand
+  if (!handler) {
+    return [];
+  }
+
+  return handler && handler(changeset);
+}
+
+/**
+   * Populate a partial changeset
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Promise.<Object>}
+   */
+async function inflateChangeset(changeset) {
+  if (!_.get(changeset, ['meta', 'partial'])) {
+    return changeset;
+  }
+
+  return new Promise((resolve, reject) => {
+    Object(__WEBPACK_IMPORTED_MODULE_2__modules_sync_helpers_sync_api__["b" /* findOne */])(changeset.model, { id: changeset.data.modelId }, { populate: true, owner: _.get(changeset, ['data', 'owner']) }, (err, model, rawMessage) => {
+      if (err) {
+        return reject(err);
+      }
+
+      resolve({ model, rawMessage });
+    });
+  }).
+  then(({ model, rawMessage }) => {
+    changeset.data.instance = model;
+
+    // merge meta from the find one call without the `find` action
+    // and set `partial` flag to false
+    _.merge(changeset.meta, _.omit(rawMessage.meta, ['action']), { partial: false });
+
+    return changeset;
+  });
+}
+
+/**
+   * dispatch events on sync action pipeline
+   *
+   * @param {Array} events
+   */
+async function dispatchEvent(events) {
+  return _.reduce(events, (promise, event) => {
+    return promise.then(() => {
+      return Object(__WEBPACK_IMPORTED_MODULE_3__modules_pipelines_sync_action__["a" /* default */])(event).
+      catch(err => {
+
+        // log the error and proceed committing the next event
+        console.warn(err);
+      });
+    });
+  }, Promise.resolve());
+}
+
+/**
+   * Apply timeline related events.
+   *
+   * @param {Array.<Object>} events
+   */
+async function dispatchTimelineEvents(events) {
+  return events.reduce((acc, event) => {
+    return acc.then(() => {
+      switch (event.name) {
+        case 'create':
+          // at this point we do not know if the new timeline is in syncing window or not
+          // so always subscribe
+          // we rely on the unsubscribe timer to clean the unused subscriptions
+          // also dont wait for each timeline to sync and be subscribed
+          // else will sync everything one by one and will loose the advantage of windowed syncing
+          Object(__WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__["d" /* syncAndSubscribeTimeline */])(event.data);
+          break;
+        case 'delete':
+          return Object(__WEBPACK_IMPORTED_MODULE_4__modules_sync_timeline_helpers__["e" /* terminateTimeline */])(event.data);}
+
+    });
+  }, Promise.resolve([]));
+}
+
+/**
+   * Processes one single sync changeset for app.
+   *
+   * @param {Object} changeset
+   *
+   * @returns {Promise.<Object>} a promise that resolves with the changeset
+   */
+async function processIncomingChangeset(changeset) {
+  // filter off invalid changesets
+  if (!validateChangeset(changeset)) {
+    return;
+  }
+
+  let perfMarkerId = `incomingChangesetStart:${Date.now()}`,
+  timelineEvents = [],
+  sanitizedChangeset,
+  appEvents = [];
+
+  performance.mark(perfMarkerId);
+
+  // inflate the body of the changeset for any `partial` changeset
+  await inflateChangeset(changeset);
+
+  let changesets = splitMetaEvents(changeset);
+
+  _.forEach(changesets, changeset => {
+    // sanitize the body of the changeset
+    sanitizedChangeset = sanitize(changeset);
+
+    // translate the changeset into events that can be applied on the app
+    // each changeset could return one or more timeline events and/or model layer events
+    timelineEvents = timelineEvents.concat(getTimelineEventsFromChangeset(sanitizedChangeset));
+    appEvents = appEvents.concat(getEventFromChangeset(sanitizedChangeset));
+  });
+
+  // apply all the events for each changeset
+  await Promise.all([
+  dispatchTimelineEvents(timelineEvents),
+  dispatchEvent(appEvents)]);
+
+
+  performance.measure('incomingChangesetProcessing', perfMarkerId);
+
+  // return the changeset to the consumer
+  return sanitizedChangeset;
+}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
 /***/ })
 
-},[1628]);
+},[1666]);

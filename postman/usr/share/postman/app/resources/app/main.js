@@ -14,7 +14,7 @@ var electron = require('electron'),
     authHandlerAdapter = require('./services/adapters/AuthHandlerAdapter'),
     appSettings = require('./services/appSettings').appSettings,
     uuidV4 = require('uuid/v4'),
-    setupRuntimeBridge = require('./services/RuntimeBridge'),
+    setupRunnerBridge = require('./services/RunnerExecutionService'),
     setupOAuth2TokenRequester = require('./services/OAuth2TokenRequester'),
     os = require('os'),
     initializeEventBus = require('./common/initializeEventBus'),
@@ -32,6 +32,7 @@ var electron = require('electron'),
     { getValue } = require('./utils/processArg'),
     { createDefaultDir } = require('./services/workingDirManager'),
     initializeRequesterBootListener = require('./common/services/RequesterBootListener'),
+    interceptorBridgeInstaller = require('./services/interceptorBridgeInstaller').installer,
     ipcClientInitialized = false;
 
 const MOVE_DIALOG_MESSAGE = 'Move to Applications Folder?',
@@ -219,7 +220,7 @@ async.series([
     });
   });
 
-  setupRuntimeBridge();
+  setupRunnerBridge();
 
   // setup OAuth 2 token requester
   setupOAuth2TokenRequester();
@@ -332,6 +333,23 @@ async.series([
       else if (arg.event === 'postmanInitialized') {
         // sent by the primary window when indexedDB has loaded
         windowManager.newRequesterOpened();
+      }
+      else if (arg.event === 'installInterceptorBridge') {
+        interceptorBridgeInstaller.installInterceptorBridge();
+      }
+      else if (arg.event === 'checkInstallationStatus') {
+        interceptorBridgeInstaller.checkInstallationStatus();
+      }
+      else if (arg.event === 'installNode') {
+        try {
+          interceptorBridgeInstaller.installNode();
+        }
+        catch (err) {
+          console.log('Error occurred while installing Node: ', err);
+        }
+      }
+      else if (arg.event === 'resetInterceptorBridgeInstallation') {
+        interceptorBridgeInstaller.resetInstallation();
       }
       else if (arg.event === 'forwardInterceptorRequest') {
         ipcClient.sendEncryptedMessageToInterceptor(arg.message);

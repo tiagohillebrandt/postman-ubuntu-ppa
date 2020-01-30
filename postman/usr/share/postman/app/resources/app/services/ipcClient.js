@@ -1,7 +1,9 @@
 var windowManager = require('./windowManager').windowManager,
   appSettings = require('./appSettings').appSettings,
   ipc = require('node-ipc'),
-  CryptoJS = require('crypto-js');
+  CryptoJS = require('crypto-js'),
+  { getConfig } = require('./AppConfigService'),
+  interceptorBridgeSocketName = getConfig('__WP_INTERCEPTOR_BRIDGE_SOCKET_NAME__'); // channel specific
 
 // default encryption key for Postman
 const POSTMAN_DEFAULT_KEY = 'postman_default_key',
@@ -134,9 +136,9 @@ exports.ipcClient = {
     ipc.config.silent = true;
 
     console.log('INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge');
-    ipc.connectTo('postman', function () {
+    ipc.connectTo(interceptorBridgeSocketName, function () {
       console.log('InterceptorBridge: Trying to connect Native App IPC~Interceptor Bridge');
-      ipc.of.postman.on('connect', function () {
+      ipc.of[interceptorBridgeSocketName].on('connect', function () {
         if (!isClientConnected) {
           console.log('InterceptorBridge: connected with postman app');
         }
@@ -147,7 +149,7 @@ exports.ipcClient = {
             connectedToPostman: true
           }
         };
-        ipc.of.postman.emit('connection_established', {
+        ipc.of[interceptorBridgeSocketName].emit('connection_established', {
           id: ipc.config.id,
           message: msg
         });
@@ -157,7 +159,7 @@ exports.ipcClient = {
         });
       });
 
-      ipc.of.postman.on('disconnect', function () {
+      ipc.of[interceptorBridgeSocketName].on('disconnect', function () {
         if (isClientConnected) {
           console.log('InterceptorBridge: disconnected from postman app');
         }
@@ -174,14 +176,13 @@ exports.ipcClient = {
         });
       });
 
-      ipc.of.postman.on('forward_encrypted_msg_to_app', function (data) {
-        console.log('RECEIVED ENCRYPTED MESSAGE FROM INTERCEPTOR: ', data);
+      ipc.of[interceptorBridgeSocketName].on('forward_encrypted_msg_to_app', function (data) {
         var msg;
         try {
           var decryptedText = decrypt(data.payload);
           if (decryptedText.type === 'KEY_MISMATCH') {
             msg = decryptedText;
-            ipc.of.postman.emit('forwardMessageToInterceptor', {
+            ipc.of[interceptorBridgeSocketName].emit('forwardMessageToInterceptor', {
               id: ipc.config.id,
               message: msg
             });
@@ -214,12 +215,10 @@ exports.ipcClient = {
         });
       });
 
-      ipc.of.postman.on('forward_msg_to_app', function (msg) {
-        console.log('RECEIVED UNENCRYPTED PAYLOAD FROM INTERCEPTOR: ', msg);
+      ipc.of[interceptorBridgeSocketName].on('forward_msg_to_app', function (msg) {
         if (msg.type === 'VALIDATE_KEY') {
-          console.log('RECEIVED DATA FROM INTERECEPTOR: ', msg);
           var keyValidationResult = validateKey(msg.data);
-          ipc.of.postman.emit('forwardMessageToInterceptor', {
+          ipc.of[interceptorBridgeSocketName].emit('forwardMessageToInterceptor', {
             id: ipc.config.id,
             message: keyValidationResult
           });
@@ -239,8 +238,8 @@ exports.ipcClient = {
   },
 
   sendEncryptedMessageToInterceptor: function (message) {
-    if (ipc && ipc.of && ipc.of.postman) {
-      ipc.of.postman.emit('forwardEncryptedMessageToInterceptor', {
+    if (ipc && ipc.of && ipc.of[interceptorBridgeSocketName]) {
+      ipc.of[interceptorBridgeSocketName].emit('forwardEncryptedMessageToInterceptor', {
         id: ipc.config.id,
         message: encrypt(JSON.stringify(message))
       });
@@ -273,7 +272,7 @@ exports.ipcClient = {
       type: 'VALIDATE_KEY',
       data: encryptedData
     };
-    ipc.of.postman.emit('forwardMessageToInterceptor', {
+    ipc.of[interceptorBridgeSocketName].emit('forwardMessageToInterceptor', {
       id: ipc.config.id,
       message: msg
     });
@@ -287,7 +286,7 @@ exports.ipcClient = {
 
   disconnect: function () {
     if (isClientConnected) {
-      ipc.disconnect('postman');
+      ipc.disconnect(interceptorBridgeSocketName);
       isClientConnected = false;
     }
   }

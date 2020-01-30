@@ -1,5 +1,9 @@
 {
   "__WP_SENTRY_DSN__": "'https://8fb2d5d1749642eface793d3dd93a6d8@sentry-app.postmanlabs.com/22'",
   "__WP_ENABLE_CRASH_REPORTING__": true,
-  "__WP_RELEASE_CHANNEL__": "'prod'"
+  "__WP_RELEASE_CHANNEL__": "'prod'",
+  "__WP_INTERCEPTOR_APP_ID__": "'aicmkgpgakddgnaphhhpliifpcfhicfo'",
+  "__WP_INTERCEPTOR_DEPENDENCIES_DOWNLOAD_URL__": "'https://go.pstmn.io/interceptor-dependencies'",
+  "__WP_INTERCEPTOR_MANIFEST_FILENAME__": "'com.postman.postmanapp'",
+  "__WP_INTERCEPTOR_BRIDGE_SOCKET_NAME__": "'postman'"
 }

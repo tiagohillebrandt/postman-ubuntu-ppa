@@ -173,10 +173,10 @@ exports.windowManager = {
     // Don't move this to the top,
     // This should be required only in development mode.
     // This package is not bundled in production build.
-    var { default: installExtension, REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+    var { default: installExtension, REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS } = require('electron-devtools-installer');
 
     // Just include more extensions above and append them to the array to attach other available extensions
-    [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS, REDUX_DEVTOOLS].forEach((extension) => {
+    [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS].forEach((extension) => {
       installExtension(extension)
         .then((name) => pm.logger.info(`WindowManager~attachDevToolsExtension: Added DevTools Extension: ${name}`))
         .catch((err) => pm.logger.warn('WindowManager~attachDevToolsExtension: An error occurred while adding DevTools extension: ', err));

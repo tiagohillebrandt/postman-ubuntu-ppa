@@ -1,20 +1,20 @@
 webpackJsonp([1],{
 
-/***/ 3453:
+/***/ 3548:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkImportEnvironmentFromUrl__ = __webpack_require__(4049);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__importCollectionAndEnvironment__ = __webpack_require__(4275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__convertData__ = __webpack_require__(3845);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__importFileFromUrl__ = __webpack_require__(4276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__importFiles__ = __webpack_require__(4277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__importFolder__ = __webpack_require__(4278);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__saveEntity__ = __webpack_require__(4279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stores_get_store__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__importers_index__ = __webpack_require__(1615);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_async__ = __webpack_require__(52);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkImportEnvironmentFromUrl__ = __webpack_require__(4336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__importCollectionAndEnvironment__ = __webpack_require__(4676);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__convertData__ = __webpack_require__(4125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__importFileFromUrl__ = __webpack_require__(4677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__importFiles__ = __webpack_require__(4678);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__importFolder__ = __webpack_require__(4679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__saveEntity__ = __webpack_require__(4680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__importers_index__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_async__);
 
 
@@ -94,19 +94,19 @@ async function importData(data, options, done) {
 
 /***/ }),
 
-/***/ 4049:
+/***/ 4336:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = checkImportEnvironmentFromUrl;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__ = __webpack_require__(378);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml__ = __webpack_require__(3633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml__ = __webpack_require__(3733);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_yaml__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__formats__ = __webpack_require__(3683);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_pipelines_user_action__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__formats__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_pipelines_user_action__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_UserController__ = __webpack_require__(43);
 
 
 
@@ -204,19 +204,19 @@ function checkImportEnvironmentFromUrl(url) {
 
 /***/ }),
 
-/***/ 4275:
+/***/ 4676:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = importCollectionAndEnvironment;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__ = __webpack_require__(378);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_postman_collection_transformer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml__ = __webpack_require__(3633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml__ = __webpack_require__(3733);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_yaml__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__formats__ = __webpack_require__(3683);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index__ = __webpack_require__(3453);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__formats__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index__ = __webpack_require__(3548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_util__ = __webpack_require__(22);
 
 
 
@@ -252,7 +252,7 @@ function importCollectionAndEnvironment(url) {
 
 /***/ }),
 
-/***/ 4276:
+/***/ 4677:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -260,9 +260,9 @@ function importCollectionAndEnvironment(url) {
 /* harmony export (immutable) */ __webpack_exports__["b"] = parseUrlData;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__ = __webpack_require__(941);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_util__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_HttpService__ = __webpack_require__(232);
 
 
 
@@ -324,15 +324,15 @@ function parseUrlData(url) {
 
 /***/ }),
 
-/***/ 4277:
+/***/ 4678:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = importFiles;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__ = __webpack_require__(941);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_async__);
 
 
@@ -390,22 +390,18 @@ function importFiles(files, source, callback) {
 
 /***/ }),
 
-/***/ 4278:
+/***/ 4679:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = importFolder;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__ = __webpack_require__(941);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_raml_to_postman__ = __webpack_require__(3832);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_raml_to_postman___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__postman_raml_to_postman__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_raml_parser__ = __webpack_require__(3703);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_raml_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_raml_parser__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__formats__ = __webpack_require__(3778);
 
 
 
@@ -413,57 +409,42 @@ function importFiles(files, source, callback) {
 
 
 /**
-                                       * Imports a file system folder.
-                                       *
-                                       * @param {File[]} allFiles   - The files that need to be imported
-                                       * @param {String} rootPath   - The root path of uploaded data, e.g: /Uber or /my-folder. The slash at the beginning is important
-                                       * @param {Function} callback - The function that will be called after the imported resources are written to IndexedDB
-                                       *
-                                       * @fires Mediator#failedCollectionImport
-                                       */
+                                  * Imports a file system folder.
+                                  *
+                                  * @param {File[]} allFiles   - The files that need to be imported
+                                  * @param {String} rootPath   - The root path of uploaded data, e.g: /Uber or /my-folder. The slash at the beginning is important
+                                  * @param {Function} callback - The function that will be called after the imported resources are written to IndexedDB
+                                  *
+                                  * @fires Mediator#failedCollectionImport
+                                  */
 function importFolder(allFiles, rootPath, callback) {
   var uploadedData = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.zipObject(__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.map(allFiles, 'fileName'), __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.map(allFiles, 'content')),
-  rootFiles = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.filter(allFiles, { isRoot: true }),
-  reader;
+  allFileNames = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.map(allFiles, file => {return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.pick(file, 'fileName');}),
+  validFormats = determineDataFormats(allFileNames);
 
-  reader = new __WEBPACK_IMPORTED_MODULE_5_raml_parser___default.a.FileReader(function (path) {
-    return new Promise(function (resolve, reject) {
-      var decodedFullPath = decodeURIComponent(path);
-      if (uploadedData.hasOwnProperty(decodedFullPath)) {
-        resolve(uploadedData[decodedFullPath]);
-      } else
-      if (uploadedData.hasOwnProperty(rootPath + path)) {
-        resolve(uploadedData[rootPath + path]);
-      } else
-      {
-        reject(new Error('Unable to find file ' + path + ' in uploaded data'));
-      }
-    });
-  });
+  __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.forEach(validFormats, async format => {
+    try {
+      // Convert the data to native Postman objects (Collections, Environments, Globals, etc)
+      let result = await format.convertFolder(allFileNames);
 
-  // Import RAML files, if any
-  __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.forEach(rootFiles, function (rootFile) {
-    __WEBPACK_IMPORTED_MODULE_5_raml_parser___default.a.loadFile(rootFile.fileName, { reader: reader }).
-    then(function (result) {
-      __WEBPACK_IMPORTED_MODULE_4__postman_raml_to_postman___default.a.parseRaw(result, function (op, env) {
-        __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__["a" /* default */].addEvent('collection', 'create', 'raml');
+      // Add relevant analytics event
+      __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__["a" /* default */].addEventV2({
+        category: 'collection',
+        action: 'create',
+        label: format.id });
 
-        // @todo Akhil need to remove this
-        // pm.collections.importCollectionData(op);
-        __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isFunction(callback) && callback(null, op);
-      }, function (errorMessage) {
-        pm.toasts.error('Error while importing RAML ' + errorMessage);
-        __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isFunction(callback) && callback('RAML: ' + errorMessage);
+
+      __WEBPACK_IMPORTED_MODULE_3_async___default.a.each(result, (conversionOutput, next) => {
+        __WEBPACK_IMPORTED_MODULE_1__controllers_Importer__["a" /* default */].importData(conversionOutput.data, { origin: 'import/folder' }, next);
       });
-    }).
-    catch(function (e) {
-      pm.logger.error(e);
-      pm.mediator.trigger('failedCollectionImport', 'Error importing RAML API: ' + e);
-      return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isFunction(callback) && callback(e);
-    });
+    }
+    catch (error) {
+      pm.toasts.error(`Error while importing ${format.name}: ${error.message}`);
+      pm.mediator.trigger('failedCollectionImport', `Error importing ${format.name} API: ${error.message}`);
+    }
   });
 
-  if (rootFiles.length === 0) {
+  if (validFormats.length === 0) {
     __WEBPACK_IMPORTED_MODULE_3_async___default.a.eachOfSeries(uploadedData, (content, fileName, next) => {
       if (!/^.*\.postman_collection$|^.*\.postman_environment$|^.*\.json$/ig.test(fileName)) {
         return next();
@@ -475,17 +456,43 @@ function importFolder(allFiles, rootPath, callback) {
   }
 }
 
+/**
+   * Returns the appropriate formats for the given data
+   *
+   * @param {array} data - Array of all non-hidden file paths in imported folder
+   * @returns {array} - Array of format objects with a `convertFolder` method
+   */
+function determineDataFormats(data) {
+  // filter formats with support for folder import
+  var allFormats = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.chain(__WEBPACK_IMPORTED_MODULE_4__formats__["a" /* default */]).
+  filter('convertFolder' && 'validateFolder').
+  value(),
+  validFormats = [];
+
+  for (let format of allFormats) {
+    try {
+      if (format.validateFolder(data)) {
+        validFormats.push(format);
+      }
+    }
+    catch (error) {
+      // The data is not supported by this format, so just try the next one
+    }
+  }
+  return validFormats;
+}
+
 /***/ }),
 
-/***/ 4279:
+/***/ 4680:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (immutable) */ __webpack_exports__["a"] = saveEntity;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_services_filesystem__ = __webpack_require__(546);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_export_index__ = __webpack_require__(3846);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__export_all__ = __webpack_require__(1515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_services_filesystem__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_export_index__ = __webpack_require__(4126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_services_AnalyticsService__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__export_all__ = __webpack_require__(1591);
 
 
 

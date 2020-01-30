@@ -9,11 +9,13 @@ var _ = require('lodash'),
     CookieJar = require('./CookieJar'),
     getSystemProxy = require('../utils/getSystemProxy'),
     PostmanFs = require('../common/utils/postmanFs'),
-    { LARGE_BODY_ALT, MAX_BODY_SIZE } = require('../common/constants/console'),
 
     // Runner level options
     staticOptions = {
       host: {
+
+        // FIXME: These options do not seem to be exists in postman-runtime
+        // Investigate as to why they still exist and if not required them remove them
         // libraries to include sandbox legacy globals interface
         requires: ['lodash', 'crypto-all', 'tv4', 'xml2js', 'atob', 'btoa']
       }
@@ -47,6 +49,11 @@ var _ = require('lodash'),
 
         // for insights in Console
         verbose: true
+      },
+
+      script: {
+        // get logs as a serialized string to preserve rich types
+        serializeLogs: true
       },
 
       // turn on system proxy by default
@@ -280,7 +287,7 @@ var RuntimeExecutionService = {
             method: requestJSON.method,
             headers: request && request.headers && request.headers.toJSON(),
             httpVersion: _.get(_.first(executionData), 'request.httpVersion', ''),
-            body: (request.size().body > MAX_BODY_SIZE) ? { ___ignored___: LARGE_BODY_ALT } : requestJSON.body,
+            body: requestJSON.body,
             certificate: requestJSON.certificate,
             proxy: requestJSON.proxy
           };
@@ -292,7 +299,8 @@ var RuntimeExecutionService = {
               headers: response.headers && response.headers.toJSON(),
               status: response.reason(),
               httpVersion: _.get(_.last(executionData), 'response.httpVersion', ''),
-              body: (response.size().body > MAX_BODY_SIZE) ? { ___ignored___: LARGE_BODY_ALT } : response.text()
+              body: response.text(),
+              contentInfo: _.isFunction(response.contentInfo) && response.contentInfo()
             };
           }
 

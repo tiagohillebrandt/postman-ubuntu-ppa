@@ -240,7 +240,7 @@ module.exports = (function waterlineNeDB () {
 
       // Create a new NeDB instance for each model (an NeDB instance is like one MongoDB collection),
       // and load the instance from disk.  The `loadDatabase` NeDB method is asynchronous, hence the async.each.
-      async.each(_.keys(models), function (modelIdentity, next) {
+      async.eachSeries(_.keys(models), function (modelIdentity, next) {
 
         // Get the model definition.
         var modelDef = models[modelIdentity];
@@ -276,23 +276,29 @@ module.exports = (function waterlineNeDB () {
 
         try {
           // Add any unique indexes and initialize any sequences.
-          _.each(modelDef.definition, function (val, attributeName) {
+          // Per APPSDK-147 this is now going to run each index operation in series. Each call to db.ensureIndex or
+          // db.removeIndex results in an async function execution. This needs to run synchronously to ensure there
+          // isnt any chance of one of the calls running AFTER the loadDatabase call executes.
+          async.eachSeries(modelDef.definition, function (val, callback) {
+            let attributeName = val.columnName;
 
             // If the attribute has `unique` set on it, or it's the primary key, add a unique index.
             if ((val.autoMigrations && val.autoMigrations.unique) || (attributeName === modelDef.primaryKey)) {
               if (val.autoMigrations && val.autoMigrations.unique && (!val.required && (attributeName !== modelDef.primaryKey))) {
                 throw new Error('\nIn attribute `' + attributeName + '` of model `' + modelIdentity + '`:\n' +
-                                'When using waterline-nedb, any attribute with `unique: true` must also have `required: true`\n');
+                  'When using waterline-nedb, any attribute with `unique: true` must also have `required: true`\n');
               }
+
               db.ensureIndex({
                 fieldName: val.columnName,
                 unique: true
-              });
+              }, callback);
             }
 
             // Otherwise, remove any index that may have been added previously.
             else {
-              db.removeIndex(val.columnName);
+              db.removeIndex(val.columnName,
+                callback);
             }
 
             // If the attribute has `autoIncrement` on it, and it's the primary key,
@@ -308,40 +314,40 @@ module.exports = (function waterlineNeDB () {
             if (val.type === 'ref') {
               datastore.refCols[modelDef.tableName].push(val.columnName);
             }
+          }, (asyncSeriesError) => {
+            // Log if there is an error, as we want to continue to load database regardless.
+            asyncSeriesError && pm.logger.warn('WaterlineNedb~registerDatastore: Could not update indices' + asyncSeriesError.message);
 
-          });// </ _.each() >
-
-        } catch (e) { return next(e); }
-
-        // Load the database from disk.  NeDB will replay any add/remove index calls before loading the data,
-        // so making `loadDatabase` the last step ensures that we can safely migrate data without violating
-        // key constraints that have been removed.
-        db.loadDatabase(function (err) {
-          if (err) { return next(err); }
-
-          // If there's a sequence for this table, then load the records in reverse PK order
-          // to get the last sequence value.
-          if (sequenceName) {
-            var sortObj = {};
-            sortObj[primaryKeyCol] = -1;
-
-            // Find the record with the highest PK value.
-            db.find({}).sort(sortObj).limit(1).exec(function (err, records) {
+            // Load the database from disk.  NeDB will replay any add/remove index calls before loading the data,
+            // so making `loadDatabase` the last step ensures that we can safely migrate data without violating
+            // key constraints that have been removed.
+            db.loadDatabase(function (err) {
               if (err) { return next(err); }
 
-              // No records yet?  Leave the sequence at zero.
-              if (records.length === 0) { return next(err); }
+              // If there's a sequence for this table, then load the records in reverse PK order
+              // to get the last sequence value.
+              if (sequenceName) {
+                var sortObj = {};
+                sortObj[primaryKeyCol] = -1;
 
-              // Otherwise set the sequence to the PK value.
-              datastore.sequences[sequenceName] = records[0][primaryKeyCol];
+                // Find the record with the highest PK value.
+                db.find({}).sort(sortObj).limit(1).exec(function (err, records) {
+                  if (err) { return next(err); }
+
+                  // No records yet?  Leave the sequence at zero.
+                  if (records.length === 0) { return next(err); }
+
+                  // Otherwise set the sequence to the PK value.
+                  datastore.sequences[sequenceName] = records[0][primaryKeyCol];
+                  return next();
+                });// _∏_
+                return;
+              }// -•
+
               return next();
-            });// _∏_
-            return;
-          }// -•
-
-          return next();
-        });
-
+            });
+          });// async.eachSeries callback >
+        } catch (e) { console.log('exception'); return next(e); }
       }, cb);// </ async.each() >
     },
 

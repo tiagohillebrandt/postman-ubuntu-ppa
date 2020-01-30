@@ -1,6 +1,6 @@
 webpackJsonp([11],{
 
-/***/ 3461:
+/***/ 3556:
 /***/ (function(module, exports, __webpack_require__) {
 
 ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
@@ -766,7 +766,7 @@ oop.inherits(Mode, TextMode);
     };
 
     this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], __webpack_require__(3551), "JavaScriptWorker");
+        var worker = new WorkerClient(["ace"], __webpack_require__(3672), "JavaScriptWorker");
         worker.attachToDocument(session.getDocument());
 
         worker.on("annotate", function(results) {
@@ -936,7 +936,7 @@ exports.Mode = Mode;
 
 /***/ }),
 
-/***/ 3551:
+/***/ 3672:
 /***/ (function(module, exports) {
 
 module.exports.id = 'ace/mode/javascript_worker';

@@ -180,7 +180,11 @@ class OAuth2TokenRequester {
 
     authWindowManager && authWindowManager.startLoginWith(authUrl, options, (err, tokenParams) => {
       if (err) {
-        callback(new Error(err.error_description || err.error || err), tokenParams);
+        if (!err.message || !err.name) {
+          err = new Error(err.error_description || err.error || err.message || err);
+        }
+
+        callback(err, tokenParams);
         return;
       }
 
@@ -249,7 +253,11 @@ class OAuth2TokenRequester {
 
     authWindowManager && authWindowManager.startLoginWith(authUrl, options, (err, tokenParams) => {
       if (err) {
-        callback(new Error(err.error_description || err.error || err), tokenParams);
+        if (!err.message || !err.name) {
+          err = new Error(err.error_description || err.error || err.message || err);
+        }
+
+        callback(err, tokenParams);
         return;
       }
 
@@ -337,7 +345,7 @@ class OAuth2TokenRequester {
       run.start({
         // this is a hack to log token request to postman console
         // this needs to be more streamlined across request sending and OAuth 2 flows
-        io: this.log,
+        request: this.log,
 
         // we are only interested in the first response event, because there will be only one
         response: function (error, cursor, response) {
@@ -364,7 +372,8 @@ class OAuth2TokenRequester {
           // look for possible error properties
           // we do it for all response codes to make sure we extract error in 200 or 201 responses(who knows)
           if ((errorInResponse = tokenResponse.error_description || tokenResponse.error || tokenResponse.errors)) {
-            tokenError = new Error(errorInResponse);
+            tokenError = new Error('Cound not complete OAuth 2.0 token request');
+            tokenResponse = errorInResponse; // send error response in the callback which will be shown to the user
           }
 
           // token request API is a failure with no extractable error, set a default message
@@ -392,13 +401,13 @@ module.exports = function () {
           runMetaData,
 
           // sends an IPC event for every OAuth 2.0 API response, so it can be logged in Postman Console
-          log: function (err, cursor, trace, response, request) {
+          log: function (err, cursor, response, request, _item, _cookies, history) {
             event.sender.send('oauth2TokenRequestResponse',
               err && JSON.stringify(new SerializedError(err)),
-              trace,
               cursor,
               response && response.toJSON(),
-              request && request.toJSON()
+              request && request.toJSON(),
+              history
             );
           },
 
@@ -410,7 +419,7 @@ module.exports = function () {
       // @hack: the result of startTokenRequestFlow should have had a "name", but since different grantTypeHandlers
       // (in startTokenRequestFlow) handle this callback differently, the "name" param is not being returned as it is,
       // we add the name to the result in this callback itself to compensate for this.
-      if (result) {
+      if (!err && result) {
         result.name = params.name;
       }
 

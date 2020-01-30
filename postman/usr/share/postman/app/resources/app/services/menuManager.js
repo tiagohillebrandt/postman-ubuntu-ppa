@@ -213,7 +213,7 @@ var electron = require('electron'),
           },
           {
             label: 'Twitter',
-            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://twitter.com/postmanclient', options); }
+            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://go.pstmn.io/twitter', options); }
           },
           {
             label: 'Support',
@@ -398,7 +398,7 @@ var electron = require('electron'),
           },
           {
             label: 'Twitter',
-            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://twitter.com/postmanclient', options); }
+            click: function (menuItem, browserWindow, options) { menuManager.handleMenuAction('openCustomUrl', 'https://go.pstmn.io/twitter', options); }
           },
           {
             label: 'Support',
@@ -506,7 +506,7 @@ menuManager = {
     }
     else {
       let win = BrowserWindow.getFocusedWindow();
-      pm.eventBus.channel('menuActions').publish(createEvent(action, 'menuActions', { windowId: win && win.params[0].id }, [], meta));
+      pm.eventBus.channel('menuActions').publish(createEvent(action, 'menuActions', { windowId: _.get(win, 'params[0].id') }, [], meta));
     }
   }
 };
