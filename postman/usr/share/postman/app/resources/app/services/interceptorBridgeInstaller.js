@@ -59,6 +59,9 @@ exports.installer = {
         if (err.type) {
           errObj.type = err.type;
         }
+        if (err.subType) {
+          errObj.subType = err.subType;
+        }
         windowManager.sendInternalMessage({
           'event': 'nodeInstallationStatusUpdate',
           'object': errObj
@@ -106,6 +109,11 @@ exports.installer = {
         // err.type can be 'download', 'installation', 'nodeRequired'
         if (err.type) {
           errObj.type = err.type;
+        }
+
+        // err.subType can be 'CHROME_NOT_INSTALLED', 'INTERNET_CONNECTIVITY', 'REGISTRY_ACCESS_NEEDED', 'FILE_PERMISSIONS_REQUIRED'
+        if (err.subType) {
+          errObj.subType = err.subType;
         }
         windowManager.sendInternalMessage({
           'event': 'interceptorBridgeInstallationStatusUpdate',

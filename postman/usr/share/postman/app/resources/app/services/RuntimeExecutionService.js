@@ -108,6 +108,29 @@ function removeAborter (executionId) {
 }
 
 /**
+ * Handles the error when cookie access was denied.
+ *
+ * @param {String} executionId - UUID for the execution
+ * @param {String} domain - The domain for which the access was denied
+ */
+function handleCookieAccessDenied (executionId, domain) {
+  let message = `Unable to access "${domain}" cookie store.` +
+    ' Try whitelisting the domain in "Manage Cookies" screen.' +
+    ' View more detailed instructions in the Learning Center: https://go.pstmn.io/docs-cookies';
+
+  pm.eventBus.channel('postman-runtime').publish({
+    name: 'log',
+    namespace: 'console',
+    data: {
+      id: executionId,
+      cursor: {},
+      level: 'warn',
+      messages: [message]
+    }
+  });
+}
+
+/**
  * Sanitizes options to be sent to runtime. Mostly converting objects into SDK instances.
  *
  * @param {Object} rawOptions
@@ -132,7 +155,10 @@ var RuntimeExecutionService = {
   startRun (info, collection, variables, options = {}) {
     var sdkCollection = new postmanCollectionSdk.Collection(collection),
       cookiePartitionId = options && options.cookiePartitionId,
-      cookieJar = new CookieJar(cookiePartitionId, { programmaticAccess: options.cookieConfiguration }),
+      cookieJar = new CookieJar(cookiePartitionId, {
+          programmaticAccess: options.cookieConfiguration,
+          onCookieAccessDenied: handleCookieAccessDenied.bind(this, info.id)
+        }),
       finalOptions;
 
     _.set(options, ['requester', 'cookieJar'], cookieJar);

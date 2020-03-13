@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 1028:
+/***/ 1084:
 /***/ (function(module, exports, __webpack_require__) {
 
 self["MonacoEnvironment"] = function (paths) {
@@ -20,21 +20,21 @@ self["MonacoEnvironment"] = function (paths) {
   "handlebars": "monaco/html.worker.js",
   "razor": "monaco/html.worker.js" });
 
-__webpack_require__(4685);
-__webpack_require__(4735);
-__webpack_require__(4743);
-__webpack_require__(4746);
-__webpack_require__(4749);
-__webpack_require__(4756);
-module.exports = __webpack_require__(4757);
-__webpack_require__(4923);
-__webpack_require__(4931);
-__webpack_require__(4933);
-__webpack_require__(4938);
+__webpack_require__(4776);
+__webpack_require__(4826);
+__webpack_require__(4834);
+__webpack_require__(4837);
+__webpack_require__(4840);
+__webpack_require__(4847);
+module.exports = __webpack_require__(4848);
+__webpack_require__(5014);
+__webpack_require__(5022);
+__webpack_require__(5024);
+__webpack_require__(5029);
 
 /***/ }),
 
-/***/ 3599:
+/***/ 3772:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,10 +46,10 @@ __webpack_require__(4938);
 /* harmony export (immutable) */ __webpack_exports__["d"] = getThemeTypeSelector;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Extensions; });
 /* harmony export (immutable) */ __webpack_exports__["e"] = registerThemingParticipant;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3756);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -105,13 +105,13 @@ function registerThemingParticipant(participant) {
 
 /***/ }),
 
-/***/ 3608:
+/***/ 3777:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FastDomNode; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createFastDomNode;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3760);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -289,7 +289,7 @@ function createFastDomNode(domNode) {
 
 /***/ }),
 
-/***/ 3626:
+/***/ 3793:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -399,12 +399,12 @@ function createFastDomNode(domNode) {
 /* unused harmony export transparent */
 /* unused harmony export oneOf */
 /* unused harmony export workbenchColorsSchemaId */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jsonschemas_common_jsonContributionRegistry_js__ = __webpack_require__(4136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_async_js__ = __webpack_require__(3601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jsonschemas_common_jsonContributionRegistry_js__ = __webpack_require__(4251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_async_js__ = __webpack_require__(3773);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -696,14 +696,14 @@ colorRegistry.onDidChangeSchema(function () {
 
 /***/ }),
 
-/***/ 3627:
+/***/ 3794:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ViewPart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PartFingerprints; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_viewModel_viewEventHandler_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_viewModel_viewEventHandler_js__ = __webpack_require__(3916);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -779,7 +779,7 @@ var PartFingerprints = /** @class */function () {
 
 /***/ }),
 
-/***/ 3634:
+/***/ 3797:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -792,13 +792,13 @@ var PartFingerprints = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return EditOperationResult; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CursorColumns; });
 /* harmony export (immutable) */ __webpack_exports__["g"] = isQuote;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -1234,7 +1234,7 @@ function isQuote(ch) {
 
 /***/ }),
 
-/***/ 3649:
+/***/ 3812:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1260,10 +1260,10 @@ function isQuote(ch) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return overviewRulerError; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return overviewRulerWarning; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return overviewRulerInfo; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -1328,1668 +1328,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 3653:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["h"] = blinkingStyleToString;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return TextEditorCursorStyle; });
-/* harmony export (immutable) */ __webpack_exports__["i"] = cursorStyleToString;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return InternalEditorOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return EditorOptionsValidator; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return InternalEditorOptionsFactory; });
-/* unused harmony export EditorLayoutProvider */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EDITOR_FONT_DEFAULTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return EDITOR_MODEL_DEFAULTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EDITOR_DEFAULTS; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_wordHelper_js__ = __webpack_require__(3821);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_types_js__ = __webpack_require__(3605);
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-var __assign = this && this.__assign || function () {
-    __assign = Object.assign || function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-
-
-
-
-
-
-/**
-                                                           * @internal
-                                                           */
-function blinkingStyleToString(blinkingStyle) {
-    if (blinkingStyle === 1 /* Blink */) {
-            return 'blink';
-        } else
-    if (blinkingStyle === 4 /* Expand */) {
-            return 'expand';
-        } else
-    if (blinkingStyle === 3 /* Phase */) {
-            return 'phase';
-        } else
-    if (blinkingStyle === 2 /* Smooth */) {
-            return 'smooth';
-        } else
-    if (blinkingStyle === 5 /* Solid */) {
-            return 'solid';
-        } else
-    {
-        throw new Error('blinkingStyleToString: Unknown blinkingStyle');
-    }
-}
-/**
-   * The style in which the editor's cursor should be rendered.
-   */
-var TextEditorCursorStyle;
-(function (TextEditorCursorStyle) {
-    /**
-                                    * As a vertical line (sitting between two characters).
-                                    */
-    TextEditorCursorStyle[TextEditorCursorStyle["Line"] = 1] = "Line";
-    /**
-                                                                        * As a block (sitting on top of a character).
-                                                                        */
-    TextEditorCursorStyle[TextEditorCursorStyle["Block"] = 2] = "Block";
-    /**
-                                                                          * As a horizontal line (sitting under a character).
-                                                                          */
-    TextEditorCursorStyle[TextEditorCursorStyle["Underline"] = 3] = "Underline";
-    /**
-                                                                                  * As a thin vertical line (sitting between two characters).
-                                                                                  */
-    TextEditorCursorStyle[TextEditorCursorStyle["LineThin"] = 4] = "LineThin";
-    /**
-                                                                                * As an outlined block (sitting on top of a character).
-                                                                                */
-    TextEditorCursorStyle[TextEditorCursorStyle["BlockOutline"] = 5] = "BlockOutline";
-    /**
-                                                                                        * As a thin horizontal line (sitting under a character).
-                                                                                        */
-    TextEditorCursorStyle[TextEditorCursorStyle["UnderlineThin"] = 6] = "UnderlineThin";
-})(TextEditorCursorStyle || (TextEditorCursorStyle = {}));
-/**
-                                                            * @internal
-                                                            */
-function cursorStyleToString(cursorStyle) {
-    if (cursorStyle === TextEditorCursorStyle.Line) {
-        return 'line';
-    } else
-    if (cursorStyle === TextEditorCursorStyle.Block) {
-        return 'block';
-    } else
-    if (cursorStyle === TextEditorCursorStyle.Underline) {
-        return 'underline';
-    } else
-    if (cursorStyle === TextEditorCursorStyle.LineThin) {
-        return 'line-thin';
-    } else
-    if (cursorStyle === TextEditorCursorStyle.BlockOutline) {
-        return 'block-outline';
-    } else
-    if (cursorStyle === TextEditorCursorStyle.UnderlineThin) {
-        return 'underline-thin';
-    } else
-    {
-        throw new Error('cursorStyleToString: Unknown cursorStyle');
-    }
-}
-function _cursorStyleFromString(cursorStyle, defaultValue) {
-    if (typeof cursorStyle !== 'string') {
-        return defaultValue;
-    }
-    if (cursorStyle === 'line') {
-        return TextEditorCursorStyle.Line;
-    } else
-    if (cursorStyle === 'block') {
-        return TextEditorCursorStyle.Block;
-    } else
-    if (cursorStyle === 'underline') {
-        return TextEditorCursorStyle.Underline;
-    } else
-    if (cursorStyle === 'line-thin') {
-        return TextEditorCursorStyle.LineThin;
-    } else
-    if (cursorStyle === 'block-outline') {
-        return TextEditorCursorStyle.BlockOutline;
-    } else
-    if (cursorStyle === 'underline-thin') {
-        return TextEditorCursorStyle.UnderlineThin;
-    }
-    return TextEditorCursorStyle.Line;
-}
-/**
-   * Internal configuration options (transformed or computed) for the editor.
-   */
-var InternalEditorOptions = /** @class */function () {
-    /**
-                                                       * @internal
-                                                       */
-    function InternalEditorOptions(source) {
-        this.canUseLayerHinting = source.canUseLayerHinting;
-        this.pixelRatio = source.pixelRatio;
-        this.editorClassName = source.editorClassName;
-        this.lineHeight = source.lineHeight | 0;
-        this.readOnly = source.readOnly;
-        this.accessibilitySupport = source.accessibilitySupport;
-        this.multiCursorModifier = source.multiCursorModifier;
-        this.multiCursorMergeOverlapping = source.multiCursorMergeOverlapping;
-        this.wordSeparators = source.wordSeparators;
-        this.autoClosingBrackets = source.autoClosingBrackets;
-        this.autoClosingQuotes = source.autoClosingQuotes;
-        this.autoClosingOvertype = source.autoClosingOvertype;
-        this.autoSurround = source.autoSurround;
-        this.autoIndent = source.autoIndent;
-        this.useTabStops = source.useTabStops;
-        this.tabFocusMode = source.tabFocusMode;
-        this.dragAndDrop = source.dragAndDrop;
-        this.emptySelectionClipboard = source.emptySelectionClipboard;
-        this.copyWithSyntaxHighlighting = source.copyWithSyntaxHighlighting;
-        this.layoutInfo = source.layoutInfo;
-        this.fontInfo = source.fontInfo;
-        this.viewInfo = source.viewInfo;
-        this.wrappingInfo = source.wrappingInfo;
-        this.contribInfo = source.contribInfo;
-        this.showUnused = source.showUnused;
-    }
-    /**
-       * @internal
-       */
-    InternalEditorOptions.prototype.equals = function (other) {
-        return this.canUseLayerHinting === other.canUseLayerHinting &&
-        this.pixelRatio === other.pixelRatio &&
-        this.editorClassName === other.editorClassName &&
-        this.lineHeight === other.lineHeight &&
-        this.readOnly === other.readOnly &&
-        this.accessibilitySupport === other.accessibilitySupport &&
-        this.multiCursorModifier === other.multiCursorModifier &&
-        this.multiCursorMergeOverlapping === other.multiCursorMergeOverlapping &&
-        this.wordSeparators === other.wordSeparators &&
-        this.autoClosingBrackets === other.autoClosingBrackets &&
-        this.autoClosingQuotes === other.autoClosingQuotes &&
-        this.autoClosingOvertype === other.autoClosingOvertype &&
-        this.autoSurround === other.autoSurround &&
-        this.autoIndent === other.autoIndent &&
-        this.useTabStops === other.useTabStops &&
-        this.tabFocusMode === other.tabFocusMode &&
-        this.dragAndDrop === other.dragAndDrop &&
-        this.showUnused === other.showUnused &&
-        this.emptySelectionClipboard === other.emptySelectionClipboard &&
-        this.copyWithSyntaxHighlighting === other.copyWithSyntaxHighlighting &&
-        InternalEditorOptions._equalsLayoutInfo(this.layoutInfo, other.layoutInfo) &&
-        this.fontInfo.equals(other.fontInfo) &&
-        InternalEditorOptions._equalsViewOptions(this.viewInfo, other.viewInfo) &&
-        InternalEditorOptions._equalsWrappingInfo(this.wrappingInfo, other.wrappingInfo) &&
-        InternalEditorOptions._equalsContribOptions(this.contribInfo, other.contribInfo);
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions.prototype.createChangeEvent = function (newOpts) {
-        return {
-            canUseLayerHinting: this.canUseLayerHinting !== newOpts.canUseLayerHinting,
-            pixelRatio: this.pixelRatio !== newOpts.pixelRatio,
-            editorClassName: this.editorClassName !== newOpts.editorClassName,
-            lineHeight: this.lineHeight !== newOpts.lineHeight,
-            readOnly: this.readOnly !== newOpts.readOnly,
-            accessibilitySupport: this.accessibilitySupport !== newOpts.accessibilitySupport,
-            multiCursorModifier: this.multiCursorModifier !== newOpts.multiCursorModifier,
-            multiCursorMergeOverlapping: this.multiCursorMergeOverlapping !== newOpts.multiCursorMergeOverlapping,
-            wordSeparators: this.wordSeparators !== newOpts.wordSeparators,
-            autoClosingBrackets: this.autoClosingBrackets !== newOpts.autoClosingBrackets,
-            autoClosingQuotes: this.autoClosingQuotes !== newOpts.autoClosingQuotes,
-            autoClosingOvertype: this.autoClosingOvertype !== newOpts.autoClosingOvertype,
-            autoSurround: this.autoSurround !== newOpts.autoSurround,
-            autoIndent: this.autoIndent !== newOpts.autoIndent,
-            useTabStops: this.useTabStops !== newOpts.useTabStops,
-            tabFocusMode: this.tabFocusMode !== newOpts.tabFocusMode,
-            dragAndDrop: this.dragAndDrop !== newOpts.dragAndDrop,
-            emptySelectionClipboard: this.emptySelectionClipboard !== newOpts.emptySelectionClipboard,
-            copyWithSyntaxHighlighting: this.copyWithSyntaxHighlighting !== newOpts.copyWithSyntaxHighlighting,
-            layoutInfo: !InternalEditorOptions._equalsLayoutInfo(this.layoutInfo, newOpts.layoutInfo),
-            fontInfo: !this.fontInfo.equals(newOpts.fontInfo),
-            viewInfo: !InternalEditorOptions._equalsViewOptions(this.viewInfo, newOpts.viewInfo),
-            wrappingInfo: !InternalEditorOptions._equalsWrappingInfo(this.wrappingInfo, newOpts.wrappingInfo),
-            contribInfo: !InternalEditorOptions._equalsContribOptions(this.contribInfo, newOpts.contribInfo) };
-
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsLayoutInfo = function (a, b) {
-        return a.width === b.width &&
-        a.height === b.height &&
-        a.glyphMarginLeft === b.glyphMarginLeft &&
-        a.glyphMarginWidth === b.glyphMarginWidth &&
-        a.glyphMarginHeight === b.glyphMarginHeight &&
-        a.lineNumbersLeft === b.lineNumbersLeft &&
-        a.lineNumbersWidth === b.lineNumbersWidth &&
-        a.lineNumbersHeight === b.lineNumbersHeight &&
-        a.decorationsLeft === b.decorationsLeft &&
-        a.decorationsWidth === b.decorationsWidth &&
-        a.decorationsHeight === b.decorationsHeight &&
-        a.contentLeft === b.contentLeft &&
-        a.contentWidth === b.contentWidth &&
-        a.contentHeight === b.contentHeight &&
-        a.renderMinimap === b.renderMinimap &&
-        a.minimapLeft === b.minimapLeft &&
-        a.minimapWidth === b.minimapWidth &&
-        a.viewportColumn === b.viewportColumn &&
-        a.verticalScrollbarWidth === b.verticalScrollbarWidth &&
-        a.horizontalScrollbarHeight === b.horizontalScrollbarHeight &&
-        this._equalsOverviewRuler(a.overviewRuler, b.overviewRuler);
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsOverviewRuler = function (a, b) {
-        return a.width === b.width &&
-        a.height === b.height &&
-        a.top === b.top &&
-        a.right === b.right;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsViewOptions = function (a, b) {
-        return a.extraEditorClassName === b.extraEditorClassName &&
-        a.disableMonospaceOptimizations === b.disableMonospaceOptimizations &&
-        __WEBPACK_IMPORTED_MODULE_1__base_common_arrays_js__["f" /* equals */](a.rulers, b.rulers) &&
-        a.ariaLabel === b.ariaLabel &&
-        a.renderLineNumbers === b.renderLineNumbers &&
-        a.renderCustomLineNumbers === b.renderCustomLineNumbers &&
-        a.cursorSurroundingLines === b.cursorSurroundingLines &&
-        a.renderFinalNewline === b.renderFinalNewline &&
-        a.selectOnLineNumbers === b.selectOnLineNumbers &&
-        a.glyphMargin === b.glyphMargin &&
-        a.revealHorizontalRightPadding === b.revealHorizontalRightPadding &&
-        a.roundedSelection === b.roundedSelection &&
-        a.overviewRulerLanes === b.overviewRulerLanes &&
-        a.overviewRulerBorder === b.overviewRulerBorder &&
-        a.cursorBlinking === b.cursorBlinking &&
-        a.mouseWheelZoom === b.mouseWheelZoom &&
-        a.cursorSmoothCaretAnimation === b.cursorSmoothCaretAnimation &&
-        a.cursorStyle === b.cursorStyle &&
-        a.cursorWidth === b.cursorWidth &&
-        a.hideCursorInOverviewRuler === b.hideCursorInOverviewRuler &&
-        a.scrollBeyondLastLine === b.scrollBeyondLastLine &&
-        a.scrollBeyondLastColumn === b.scrollBeyondLastColumn &&
-        a.smoothScrolling === b.smoothScrolling &&
-        a.stopRenderingLineAfter === b.stopRenderingLineAfter &&
-        a.renderWhitespace === b.renderWhitespace &&
-        a.renderControlCharacters === b.renderControlCharacters &&
-        a.fontLigatures === b.fontLigatures &&
-        a.renderIndentGuides === b.renderIndentGuides &&
-        a.highlightActiveIndentGuide === b.highlightActiveIndentGuide &&
-        a.renderLineHighlight === b.renderLineHighlight &&
-        this._equalsScrollbarOptions(a.scrollbar, b.scrollbar) &&
-        this._equalsMinimapOptions(a.minimap, b.minimap) &&
-        a.fixedOverflowWidgets === b.fixedOverflowWidgets;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsScrollbarOptions = function (a, b) {
-        return a.arrowSize === b.arrowSize &&
-        a.vertical === b.vertical &&
-        a.horizontal === b.horizontal &&
-        a.useShadows === b.useShadows &&
-        a.verticalHasArrows === b.verticalHasArrows &&
-        a.horizontalHasArrows === b.horizontalHasArrows &&
-        a.handleMouseWheel === b.handleMouseWheel &&
-        a.horizontalScrollbarSize === b.horizontalScrollbarSize &&
-        a.horizontalSliderSize === b.horizontalSliderSize &&
-        a.verticalScrollbarSize === b.verticalScrollbarSize &&
-        a.verticalSliderSize === b.verticalSliderSize &&
-        a.mouseWheelScrollSensitivity === b.mouseWheelScrollSensitivity &&
-        a.fastScrollSensitivity === b.fastScrollSensitivity;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsMinimapOptions = function (a, b) {
-        return a.enabled === b.enabled &&
-        a.side === b.side &&
-        a.showSlider === b.showSlider &&
-        a.renderCharacters === b.renderCharacters &&
-        a.maxColumn === b.maxColumn;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalFindOptions = function (a, b) {
-        return a.seedSearchStringFromSelection === b.seedSearchStringFromSelection &&
-        a.autoFindInSelection === b.autoFindInSelection &&
-        a.globalFindClipboard === b.globalFindClipboard &&
-        a.addExtraSpaceOnTop === b.addExtraSpaceOnTop;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsParameterHintOptions = function (a, b) {
-        return a.enabled === b.enabled &&
-        a.cycle === b.cycle;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsHoverOptions = function (a, b) {
-        return a.enabled === b.enabled &&
-        a.delay === b.delay &&
-        a.sticky === b.sticky;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsSuggestOptions = function (a, b) {
-        if (a === b) {
-            return true;
-        } else
-        if (!a || !b) {
-            return false;
-        } else
-        {
-            return a.filterGraceful === b.filterGraceful &&
-            a.snippets === b.snippets &&
-            a.snippetsPreventQuickSuggestions === b.snippetsPreventQuickSuggestions &&
-            a.localityBonus === b.localityBonus &&
-            a.shareSuggestSelections === b.shareSuggestSelections &&
-            a.showIcons === b.showIcons &&
-            a.maxVisibleSuggestions === b.maxVisibleSuggestions &&
-            __WEBPACK_IMPORTED_MODULE_2__base_common_objects_js__["c" /* equals */](a.filteredTypes, b.filteredTypes);
-        }
-    };
-    InternalEditorOptions._equalsGotoLocationOptions = function (a, b) {
-        if (a === b) {
-            return true;
-        } else
-        if (!a || !b) {
-            return false;
-        } else
-        {
-            return a.multiple === b.multiple;
-        }
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsWrappingInfo = function (a, b) {
-        return a.inDiffEditor === b.inDiffEditor &&
-        a.isDominatedByLongLines === b.isDominatedByLongLines &&
-        a.isWordWrapMinified === b.isWordWrapMinified &&
-        a.isViewportWrapping === b.isViewportWrapping &&
-        a.wrappingColumn === b.wrappingColumn &&
-        a.wrappingIndent === b.wrappingIndent &&
-        a.wordWrapBreakBeforeCharacters === b.wordWrapBreakBeforeCharacters &&
-        a.wordWrapBreakAfterCharacters === b.wordWrapBreakAfterCharacters &&
-        a.wordWrapBreakObtrusiveCharacters === b.wordWrapBreakObtrusiveCharacters;
-    };
-    /**
-        * @internal
-        */
-    InternalEditorOptions._equalsContribOptions = function (a, b) {
-        return a.selectionClipboard === b.selectionClipboard &&
-        this._equalsHoverOptions(a.hover, b.hover) &&
-        a.links === b.links &&
-        a.contextmenu === b.contextmenu &&
-        InternalEditorOptions._equalsQuickSuggestions(a.quickSuggestions, b.quickSuggestions) &&
-        a.quickSuggestionsDelay === b.quickSuggestionsDelay &&
-        this._equalsParameterHintOptions(a.parameterHints, b.parameterHints) &&
-        a.formatOnType === b.formatOnType &&
-        a.formatOnPaste === b.formatOnPaste &&
-        a.suggestOnTriggerCharacters === b.suggestOnTriggerCharacters &&
-        a.acceptSuggestionOnEnter === b.acceptSuggestionOnEnter &&
-        a.acceptSuggestionOnCommitCharacter === b.acceptSuggestionOnCommitCharacter &&
-        a.wordBasedSuggestions === b.wordBasedSuggestions &&
-        a.suggestSelection === b.suggestSelection &&
-        a.suggestFontSize === b.suggestFontSize &&
-        a.suggestLineHeight === b.suggestLineHeight &&
-        a.tabCompletion === b.tabCompletion &&
-        this._equalsSuggestOptions(a.suggest, b.suggest) &&
-        InternalEditorOptions._equalsGotoLocationOptions(a.gotoLocation, b.gotoLocation) &&
-        a.selectionHighlight === b.selectionHighlight &&
-        a.occurrencesHighlight === b.occurrencesHighlight &&
-        a.codeLens === b.codeLens &&
-        a.folding === b.folding &&
-        a.foldingStrategy === b.foldingStrategy &&
-        a.showFoldingControls === b.showFoldingControls &&
-        a.matchBrackets === b.matchBrackets &&
-        this._equalFindOptions(a.find, b.find) &&
-        a.colorDecorators === b.colorDecorators &&
-        __WEBPACK_IMPORTED_MODULE_2__base_common_objects_js__["c" /* equals */](a.codeActionsOnSave, b.codeActionsOnSave) &&
-        a.codeActionsOnSaveTimeout === b.codeActionsOnSaveTimeout &&
-        a.lightbulbEnabled === b.lightbulbEnabled;
-    };
-    InternalEditorOptions._equalsQuickSuggestions = function (a, b) {
-        if (typeof a === 'boolean') {
-            if (typeof b !== 'boolean') {
-                return false;
-            }
-            return a === b;
-        }
-        if (typeof b === 'boolean') {
-            return false;
-        }
-        return a.comments === b.comments &&
-        a.other === b.other &&
-        a.strings === b.strings;
-    };
-    return InternalEditorOptions;
-}();
-
-function _boolean(value, defaultValue) {
-    if (typeof value === 'undefined') {
-        return defaultValue;
-    }
-    if (value === 'false') {
-        // treat the string 'false' as false
-        return false;
-    }
-    return Boolean(value);
-}
-function _booleanMap(value, defaultValue) {
-    if (!value) {
-        return defaultValue;
-    }
-    var out = Object.create(null);
-    for (var _i = 0, _a = Object.keys(value); _i < _a.length; _i++) {
-        var k = _a[_i];
-        var v = value[k];
-        if (typeof v === 'boolean') {
-            out[k] = v;
-        }
-    }
-    return out;
-}
-function _string(value, defaultValue) {
-    if (typeof value !== 'string') {
-        return defaultValue;
-    }
-    return value;
-}
-function _stringSet(value, defaultValue, allowedValues) {
-    if (typeof value !== 'string') {
-        return defaultValue;
-    }
-    if (allowedValues.indexOf(value) === -1) {
-        return defaultValue;
-    }
-    return value;
-}
-function _clampedInt(value, defaultValue, minimum, maximum) {
-    var r;
-    if (typeof value === 'undefined') {
-        r = defaultValue;
-    } else
-    {
-        r = parseInt(value, 10);
-        if (isNaN(r)) {
-            r = defaultValue;
-        }
-    }
-    r = Math.max(minimum, r);
-    r = Math.min(maximum, r);
-    return r | 0;
-}
-function _float(value, defaultValue) {
-    var r = parseFloat(value);
-    if (isNaN(r)) {
-        r = defaultValue;
-    }
-    return r;
-}
-function _wrappingIndentFromString(wrappingIndent, defaultValue) {
-    if (typeof wrappingIndent !== 'string') {
-        return defaultValue;
-    }
-    if (wrappingIndent === 'same') {
-        return 1 /* Same */;
-    } else
-    if (wrappingIndent === 'indent') {
-        return 2 /* Indent */;
-    } else
-    if (wrappingIndent === 'deepIndent') {
-        return 3 /* DeepIndent */;
-    } else
-        {
-            return 0 /* None */;
-        }
-}
-function _cursorBlinkingStyleFromString(cursorBlinkingStyle, defaultValue) {
-    if (typeof cursorBlinkingStyle !== 'string') {
-        return defaultValue;
-    }
-    switch (cursorBlinkingStyle) {
-        case 'blink':
-            return 1 /* Blink */;
-        case 'smooth':
-            return 2 /* Smooth */;
-        case 'phase':
-            return 3 /* Phase */;
-        case 'expand':
-            return 4 /* Expand */;
-        case 'visible': // maintain compatibility
-        case 'solid':
-            return 5 /* Solid */;}
-
-    return 1 /* Blink */;
-}
-function _scrollbarVisibilityFromString(visibility, defaultValue) {
-    if (typeof visibility !== 'string') {
-        return defaultValue;
-    }
-    switch (visibility) {
-        case 'hidden':
-            return 2 /* Hidden */;
-        case 'visible':
-            return 3 /* Visible */;
-        default:
-            return 1 /* Auto */;}
-
-}
-/**
-   * @internal
-   */
-var EditorOptionsValidator = /** @class */function () {
-    function EditorOptionsValidator() {
-    }
-    /**
-       * Validate raw editor options.
-       * i.e. since they can be defined by the user, they might be invalid.
-       */
-    EditorOptionsValidator.validate = function (opts, defaults) {
-        var wordWrap = opts.wordWrap;
-        {
-            // Compatibility with old true or false values
-            if (wordWrap === true) {
-                wordWrap = 'on';
-            } else
-            if (wordWrap === false) {
-                wordWrap = 'off';
-            }
-            wordWrap = _stringSet(wordWrap, defaults.wordWrap, ['off', 'on', 'wordWrapColumn', 'bounded']);
-        }
-        var viewInfo = this._sanitizeViewInfo(opts, defaults.viewInfo);
-        var contribInfo = this._sanitizeContribInfo(opts, defaults.contribInfo);
-        var configuredMulticursorModifier = undefined;
-        if (typeof opts.multiCursorModifier === 'string') {
-            if (opts.multiCursorModifier === 'ctrlCmd') {
-                configuredMulticursorModifier = __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__["d" /* isMacintosh */] ? 'metaKey' : 'ctrlKey';
-            } else
-            {
-                configuredMulticursorModifier = 'altKey';
-            }
-        }
-        var multiCursorModifier = _stringSet(configuredMulticursorModifier, defaults.multiCursorModifier, ['altKey', 'metaKey', 'ctrlKey']);
-        var autoClosingBrackets;
-        var autoClosingQuotes;
-        var autoSurround;
-        if (typeof opts.autoClosingBrackets === 'boolean' && opts.autoClosingBrackets === false) {
-            // backwards compatibility: disable all on boolean false
-            autoClosingBrackets = 'never';
-            autoClosingQuotes = 'never';
-            autoSurround = 'never';
-        } else
-        {
-            autoClosingBrackets = _stringSet(opts.autoClosingBrackets, defaults.autoClosingBrackets, ['always', 'languageDefined', 'beforeWhitespace', 'never']);
-            autoClosingQuotes = _stringSet(opts.autoClosingQuotes, defaults.autoClosingQuotes, ['always', 'languageDefined', 'beforeWhitespace', 'never']);
-            autoSurround = _stringSet(opts.autoSurround, defaults.autoSurround, ['languageDefined', 'brackets', 'quotes', 'never']);
-        }
-        return {
-            inDiffEditor: _boolean(opts.inDiffEditor, defaults.inDiffEditor),
-            wordSeparators: _string(opts.wordSeparators, defaults.wordSeparators),
-            lineNumbersMinChars: _clampedInt(opts.lineNumbersMinChars, defaults.lineNumbersMinChars, 1, 10),
-            lineDecorationsWidth: typeof opts.lineDecorationsWidth === 'undefined' ? defaults.lineDecorationsWidth : opts.lineDecorationsWidth,
-            readOnly: _boolean(opts.readOnly, defaults.readOnly),
-            mouseStyle: _stringSet(opts.mouseStyle, defaults.mouseStyle, ['text', 'default', 'copy']),
-            disableLayerHinting: _boolean(opts.disableLayerHinting, defaults.disableLayerHinting),
-            automaticLayout: _boolean(opts.automaticLayout, defaults.automaticLayout),
-            wordWrap: wordWrap,
-            wordWrapColumn: _clampedInt(opts.wordWrapColumn, defaults.wordWrapColumn, 1, 1073741824 /* MAX_SAFE_SMALL_INTEGER */),
-            wordWrapMinified: _boolean(opts.wordWrapMinified, defaults.wordWrapMinified),
-            wrappingIndent: _wrappingIndentFromString(opts.wrappingIndent, defaults.wrappingIndent),
-            wordWrapBreakBeforeCharacters: _string(opts.wordWrapBreakBeforeCharacters, defaults.wordWrapBreakBeforeCharacters),
-            wordWrapBreakAfterCharacters: _string(opts.wordWrapBreakAfterCharacters, defaults.wordWrapBreakAfterCharacters),
-            wordWrapBreakObtrusiveCharacters: _string(opts.wordWrapBreakObtrusiveCharacters, defaults.wordWrapBreakObtrusiveCharacters),
-            autoClosingBrackets: autoClosingBrackets,
-            autoClosingQuotes: autoClosingQuotes,
-            autoClosingOvertype: _stringSet(opts.autoClosingOvertype, defaults.autoClosingOvertype, ['always', 'auto', 'never']),
-            autoSurround: autoSurround,
-            autoIndent: _boolean(opts.autoIndent, defaults.autoIndent),
-            dragAndDrop: _boolean(opts.dragAndDrop, defaults.dragAndDrop),
-            emptySelectionClipboard: _boolean(opts.emptySelectionClipboard, defaults.emptySelectionClipboard),
-            copyWithSyntaxHighlighting: _boolean(opts.copyWithSyntaxHighlighting, defaults.copyWithSyntaxHighlighting),
-            useTabStops: _boolean(opts.useTabStops, defaults.useTabStops),
-            multiCursorModifier: multiCursorModifier,
-            multiCursorMergeOverlapping: _boolean(opts.multiCursorMergeOverlapping, defaults.multiCursorMergeOverlapping),
-            accessibilitySupport: _stringSet(opts.accessibilitySupport, defaults.accessibilitySupport, ['auto', 'on', 'off']),
-            showUnused: _boolean(opts.showUnused, defaults.showUnused),
-            viewInfo: viewInfo,
-            contribInfo: contribInfo };
-
-    };
-    EditorOptionsValidator._sanitizeScrollbarOpts = function (opts, defaults, mouseWheelScrollSensitivity, fastScrollSensitivity) {
-        if (typeof opts !== 'object') {
-            return defaults;
-        }
-        var horizontalScrollbarSize = _clampedInt(opts.horizontalScrollbarSize, defaults.horizontalScrollbarSize, 0, 1000);
-        var verticalScrollbarSize = _clampedInt(opts.verticalScrollbarSize, defaults.verticalScrollbarSize, 0, 1000);
-        return {
-            vertical: _scrollbarVisibilityFromString(opts.vertical, defaults.vertical),
-            horizontal: _scrollbarVisibilityFromString(opts.horizontal, defaults.horizontal),
-            arrowSize: _clampedInt(opts.arrowSize, defaults.arrowSize, 0, 1000),
-            useShadows: _boolean(opts.useShadows, defaults.useShadows),
-            verticalHasArrows: _boolean(opts.verticalHasArrows, defaults.verticalHasArrows),
-            horizontalHasArrows: _boolean(opts.horizontalHasArrows, defaults.horizontalHasArrows),
-            horizontalScrollbarSize: horizontalScrollbarSize,
-            horizontalSliderSize: _clampedInt(opts.horizontalSliderSize, horizontalScrollbarSize, 0, 1000),
-            verticalScrollbarSize: verticalScrollbarSize,
-            verticalSliderSize: _clampedInt(opts.verticalSliderSize, verticalScrollbarSize, 0, 1000),
-            handleMouseWheel: _boolean(opts.handleMouseWheel, defaults.handleMouseWheel),
-            mouseWheelScrollSensitivity: mouseWheelScrollSensitivity,
-            fastScrollSensitivity: fastScrollSensitivity };
-
-    };
-    EditorOptionsValidator._sanitizeMinimapOpts = function (opts, defaults) {
-        if (typeof opts !== 'object') {
-            return defaults;
-        }
-        return {
-            enabled: _boolean(opts.enabled, defaults.enabled),
-            side: _stringSet(opts.side, defaults.side, ['right', 'left']),
-            showSlider: _stringSet(opts.showSlider, defaults.showSlider, ['always', 'mouseover']),
-            renderCharacters: _boolean(opts.renderCharacters, defaults.renderCharacters),
-            maxColumn: _clampedInt(opts.maxColumn, defaults.maxColumn, 1, 10000) };
-
-    };
-    EditorOptionsValidator._sanitizeFindOpts = function (opts, defaults) {
-        if (typeof opts !== 'object') {
-            return defaults;
-        }
-        return {
-            seedSearchStringFromSelection: _boolean(opts.seedSearchStringFromSelection, defaults.seedSearchStringFromSelection),
-            autoFindInSelection: _boolean(opts.autoFindInSelection, defaults.autoFindInSelection),
-            globalFindClipboard: _boolean(opts.globalFindClipboard, defaults.globalFindClipboard),
-            addExtraSpaceOnTop: _boolean(opts.addExtraSpaceOnTop, defaults.addExtraSpaceOnTop) };
-
-    };
-    EditorOptionsValidator._sanitizeParameterHintOpts = function (opts, defaults) {
-        if (typeof opts !== 'object') {
-            return defaults;
-        }
-        return {
-            enabled: _boolean(opts.enabled, defaults.enabled),
-            cycle: _boolean(opts.cycle, defaults.cycle) };
-
-    };
-    EditorOptionsValidator._sanitizeHoverOpts = function (_opts, defaults) {
-        var opts;
-        if (typeof _opts === 'boolean') {
-            opts = {
-                enabled: _opts };
-
-        } else
-        if (typeof _opts === 'object') {
-            opts = _opts;
-        } else
-        {
-            return defaults;
-        }
-        return {
-            enabled: _boolean(opts.enabled, defaults.enabled),
-            delay: _clampedInt(opts.delay, defaults.delay, 0, 10000),
-            sticky: _boolean(opts.sticky, defaults.sticky) };
-
-    };
-    EditorOptionsValidator._sanitizeSuggestOpts = function (opts, defaults) {
-        var suggestOpts = opts.suggest || {};
-        return {
-            filterGraceful: _boolean(suggestOpts.filterGraceful, defaults.filterGraceful),
-            snippets: _stringSet(opts.snippetSuggestions, defaults.snippets, ['top', 'bottom', 'inline', 'none']),
-            snippetsPreventQuickSuggestions: _boolean(suggestOpts.snippetsPreventQuickSuggestions, defaults.filterGraceful),
-            localityBonus: _boolean(suggestOpts.localityBonus, defaults.localityBonus),
-            shareSuggestSelections: _boolean(suggestOpts.shareSuggestSelections, defaults.shareSuggestSelections),
-            showIcons: _boolean(suggestOpts.showIcons, defaults.showIcons),
-            maxVisibleSuggestions: _clampedInt(suggestOpts.maxVisibleSuggestions, defaults.maxVisibleSuggestions, 1, 15),
-            filteredTypes: Object(__WEBPACK_IMPORTED_MODULE_5__base_common_types_js__["h" /* isObject */])(suggestOpts.filteredTypes) ? suggestOpts.filteredTypes : Object.create(null) };
-
-    };
-    EditorOptionsValidator._sanitizeGotoLocationOpts = function (opts, defaults) {
-        var gotoOpts = opts.gotoLocation || {};
-        return {
-            multiple: _stringSet(gotoOpts.multiple, defaults.multiple, ['peek', 'gotoAndPeek', 'goto']) };
-
-    };
-    EditorOptionsValidator._sanitizeTabCompletionOpts = function (opts, defaults) {
-        if (opts === false) {
-            return 'off';
-        } else
-        if (opts === true) {
-            return 'onlySnippets';
-        } else
-        {
-            return _stringSet(opts, defaults, ['on', 'off', 'onlySnippets']);
-        }
-    };
-    EditorOptionsValidator._sanitizeViewInfo = function (opts, defaults) {
-        var rulers = [];
-        if (Array.isArray(opts.rulers)) {
-            for (var i = 0, len = opts.rulers.length; i < len; i++) {
-                rulers.push(_clampedInt(opts.rulers[i], 0, 0, 10000));
-            }
-            rulers.sort();
-        }
-        var renderLineNumbers = defaults.renderLineNumbers;
-        var renderCustomLineNumbers = defaults.renderCustomLineNumbers;
-        if (typeof opts.lineNumbers !== 'undefined') {
-            var lineNumbers = opts.lineNumbers;
-            // Compatibility with old true or false values
-            if (lineNumbers === true) {
-                lineNumbers = 'on';
-            } else
-            if (lineNumbers === false) {
-                lineNumbers = 'off';
-            }
-            if (typeof lineNumbers === 'function') {
-                renderLineNumbers = 4 /* Custom */;
-                renderCustomLineNumbers = lineNumbers;
-            } else
-            if (lineNumbers === 'interval') {
-                renderLineNumbers = 3 /* Interval */;
-            } else
-            if (lineNumbers === 'relative') {
-                renderLineNumbers = 2 /* Relative */;
-            } else
-            if (lineNumbers === 'on') {
-                renderLineNumbers = 1 /* On */;
-            } else
-            {
-                renderLineNumbers = 0 /* Off */;
-            }
-        }
-        var fontLigatures = _boolean(opts.fontLigatures, defaults.fontLigatures);
-        var disableMonospaceOptimizations = _boolean(opts.disableMonospaceOptimizations, defaults.disableMonospaceOptimizations) || fontLigatures;
-        var renderWhitespace = opts.renderWhitespace;
-        {
-            // Compatibility with old true or false values
-            if (renderWhitespace === true) {
-                renderWhitespace = 'boundary';
-            } else
-            if (renderWhitespace === false) {
-                renderWhitespace = 'none';
-            }
-            renderWhitespace = _stringSet(renderWhitespace, defaults.renderWhitespace, ['none', 'boundary', 'selection', 'all']);
-        }
-        var renderLineHighlight = opts.renderLineHighlight;
-        {
-            // Compatibility with old true or false values
-            if (renderLineHighlight === true) {
-                renderLineHighlight = 'line';
-            } else
-            if (renderLineHighlight === false) {
-                renderLineHighlight = 'none';
-            }
-            renderLineHighlight = _stringSet(renderLineHighlight, defaults.renderLineHighlight, ['none', 'gutter', 'line', 'all']);
-        }
-        var mouseWheelScrollSensitivity = _float(opts.mouseWheelScrollSensitivity, defaults.scrollbar.mouseWheelScrollSensitivity);
-        if (mouseWheelScrollSensitivity === 0) {
-            // Disallow 0, as it would prevent/block scrolling
-            mouseWheelScrollSensitivity = 1;
-        }
-        var fastScrollSensitivity = _float(opts.fastScrollSensitivity, defaults.scrollbar.fastScrollSensitivity);
-        if (fastScrollSensitivity <= 0) {
-            fastScrollSensitivity = defaults.scrollbar.fastScrollSensitivity;
-        }
-        var scrollbar = this._sanitizeScrollbarOpts(opts.scrollbar, defaults.scrollbar, mouseWheelScrollSensitivity, fastScrollSensitivity);
-        var minimap = this._sanitizeMinimapOpts(opts.minimap, defaults.minimap);
-        return {
-            extraEditorClassName: _string(opts.extraEditorClassName, defaults.extraEditorClassName),
-            disableMonospaceOptimizations: disableMonospaceOptimizations,
-            rulers: rulers,
-            ariaLabel: _string(opts.ariaLabel, defaults.ariaLabel),
-            cursorSurroundingLines: _clampedInt(opts.cursorSurroundingLines, defaults.cursorWidth, 0, Number.MAX_VALUE),
-            renderLineNumbers: renderLineNumbers,
-            renderCustomLineNumbers: renderCustomLineNumbers,
-            renderFinalNewline: _boolean(opts.renderFinalNewline, defaults.renderFinalNewline),
-            selectOnLineNumbers: _boolean(opts.selectOnLineNumbers, defaults.selectOnLineNumbers),
-            glyphMargin: _boolean(opts.glyphMargin, defaults.glyphMargin),
-            revealHorizontalRightPadding: _clampedInt(opts.revealHorizontalRightPadding, defaults.revealHorizontalRightPadding, 0, 1000),
-            roundedSelection: _boolean(opts.roundedSelection, defaults.roundedSelection),
-            overviewRulerLanes: _clampedInt(opts.overviewRulerLanes, defaults.overviewRulerLanes, 0, 3),
-            overviewRulerBorder: _boolean(opts.overviewRulerBorder, defaults.overviewRulerBorder),
-            cursorBlinking: _cursorBlinkingStyleFromString(opts.cursorBlinking, defaults.cursorBlinking),
-            mouseWheelZoom: _boolean(opts.mouseWheelZoom, defaults.mouseWheelZoom),
-            cursorSmoothCaretAnimation: _boolean(opts.cursorSmoothCaretAnimation, defaults.cursorSmoothCaretAnimation),
-            cursorStyle: _cursorStyleFromString(opts.cursorStyle, defaults.cursorStyle),
-            cursorWidth: _clampedInt(opts.cursorWidth, defaults.cursorWidth, 0, Number.MAX_VALUE),
-            hideCursorInOverviewRuler: _boolean(opts.hideCursorInOverviewRuler, defaults.hideCursorInOverviewRuler),
-            scrollBeyondLastLine: _boolean(opts.scrollBeyondLastLine, defaults.scrollBeyondLastLine),
-            scrollBeyondLastColumn: _clampedInt(opts.scrollBeyondLastColumn, defaults.scrollBeyondLastColumn, 0, 1073741824 /* MAX_SAFE_SMALL_INTEGER */),
-            smoothScrolling: _boolean(opts.smoothScrolling, defaults.smoothScrolling),
-            stopRenderingLineAfter: _clampedInt(opts.stopRenderingLineAfter, defaults.stopRenderingLineAfter, -1, 1073741824 /* MAX_SAFE_SMALL_INTEGER */),
-            renderWhitespace: renderWhitespace,
-            renderControlCharacters: _boolean(opts.renderControlCharacters, defaults.renderControlCharacters),
-            fontLigatures: fontLigatures,
-            renderIndentGuides: _boolean(opts.renderIndentGuides, defaults.renderIndentGuides),
-            highlightActiveIndentGuide: _boolean(opts.highlightActiveIndentGuide, defaults.highlightActiveIndentGuide),
-            renderLineHighlight: renderLineHighlight,
-            scrollbar: scrollbar,
-            minimap: minimap,
-            fixedOverflowWidgets: _boolean(opts.fixedOverflowWidgets, defaults.fixedOverflowWidgets) };
-
-    };
-    EditorOptionsValidator._sanitizeContribInfo = function (opts, defaults) {
-        var quickSuggestions;
-        if (typeof opts.quickSuggestions === 'object') {
-            quickSuggestions = __assign({ other: true }, opts.quickSuggestions);
-        } else
-        {
-            quickSuggestions = _boolean(opts.quickSuggestions, defaults.quickSuggestions);
-        }
-        // Compatibility support for acceptSuggestionOnEnter
-        if (typeof opts.acceptSuggestionOnEnter === 'boolean') {
-            opts.acceptSuggestionOnEnter = opts.acceptSuggestionOnEnter ? 'on' : 'off';
-        }
-        var find = this._sanitizeFindOpts(opts.find, defaults.find);
-        return {
-            selectionClipboard: _boolean(opts.selectionClipboard, defaults.selectionClipboard),
-            hover: this._sanitizeHoverOpts(opts.hover, defaults.hover),
-            links: _boolean(opts.links, defaults.links),
-            contextmenu: _boolean(opts.contextmenu, defaults.contextmenu),
-            quickSuggestions: quickSuggestions,
-            quickSuggestionsDelay: _clampedInt(opts.quickSuggestionsDelay, defaults.quickSuggestionsDelay, -1073741824 /* MIN_SAFE_SMALL_INTEGER */, 1073741824 /* MAX_SAFE_SMALL_INTEGER */),
-            parameterHints: this._sanitizeParameterHintOpts(opts.parameterHints, defaults.parameterHints),
-            formatOnType: _boolean(opts.formatOnType, defaults.formatOnType),
-            formatOnPaste: _boolean(opts.formatOnPaste, defaults.formatOnPaste),
-            suggestOnTriggerCharacters: _boolean(opts.suggestOnTriggerCharacters, defaults.suggestOnTriggerCharacters),
-            acceptSuggestionOnEnter: _stringSet(opts.acceptSuggestionOnEnter, defaults.acceptSuggestionOnEnter, ['on', 'smart', 'off']),
-            acceptSuggestionOnCommitCharacter: _boolean(opts.acceptSuggestionOnCommitCharacter, defaults.acceptSuggestionOnCommitCharacter),
-            wordBasedSuggestions: _boolean(opts.wordBasedSuggestions, defaults.wordBasedSuggestions),
-            suggestSelection: _stringSet(opts.suggestSelection, defaults.suggestSelection, ['first', 'recentlyUsed', 'recentlyUsedByPrefix']),
-            suggestFontSize: _clampedInt(opts.suggestFontSize, defaults.suggestFontSize, 0, 1000),
-            suggestLineHeight: _clampedInt(opts.suggestLineHeight, defaults.suggestLineHeight, 0, 1000),
-            tabCompletion: this._sanitizeTabCompletionOpts(opts.tabCompletion, defaults.tabCompletion),
-            suggest: this._sanitizeSuggestOpts(opts, defaults.suggest),
-            gotoLocation: this._sanitizeGotoLocationOpts(opts, defaults.gotoLocation),
-            selectionHighlight: _boolean(opts.selectionHighlight, defaults.selectionHighlight),
-            occurrencesHighlight: _boolean(opts.occurrencesHighlight, defaults.occurrencesHighlight),
-            codeLens: _boolean(opts.codeLens, defaults.codeLens),
-            folding: _boolean(opts.folding, defaults.folding),
-            foldingStrategy: _stringSet(opts.foldingStrategy, defaults.foldingStrategy, ['auto', 'indentation']),
-            showFoldingControls: _stringSet(opts.showFoldingControls, defaults.showFoldingControls, ['always', 'mouseover']),
-            matchBrackets: _boolean(opts.matchBrackets, defaults.matchBrackets),
-            find: find,
-            colorDecorators: _boolean(opts.colorDecorators, defaults.colorDecorators),
-            lightbulbEnabled: _boolean(opts.lightbulb ? opts.lightbulb.enabled : false, defaults.lightbulbEnabled),
-            codeActionsOnSave: _booleanMap(opts.codeActionsOnSave, {}),
-            codeActionsOnSaveTimeout: _clampedInt(opts.codeActionsOnSaveTimeout, defaults.codeActionsOnSaveTimeout, 1, 10000) };
-
-    };
-    return EditorOptionsValidator;
-}();
-
-/**
-                                    * @internal
-                                    */
-var InternalEditorOptionsFactory = /** @class */function () {
-    function InternalEditorOptionsFactory() {
-    }
-    InternalEditorOptionsFactory._tweakValidatedOptions = function (opts, accessibilitySupport) {
-        var accessibilityIsOff = accessibilitySupport === 1 /* Disabled */;
-        return {
-            inDiffEditor: opts.inDiffEditor,
-            wordSeparators: opts.wordSeparators,
-            lineNumbersMinChars: opts.lineNumbersMinChars,
-            lineDecorationsWidth: opts.lineDecorationsWidth,
-            readOnly: opts.readOnly,
-            mouseStyle: opts.mouseStyle,
-            disableLayerHinting: opts.disableLayerHinting,
-            automaticLayout: opts.automaticLayout,
-            wordWrap: opts.wordWrap,
-            wordWrapColumn: opts.wordWrapColumn,
-            wordWrapMinified: opts.wordWrapMinified,
-            wrappingIndent: opts.wrappingIndent,
-            wordWrapBreakBeforeCharacters: opts.wordWrapBreakBeforeCharacters,
-            wordWrapBreakAfterCharacters: opts.wordWrapBreakAfterCharacters,
-            wordWrapBreakObtrusiveCharacters: opts.wordWrapBreakObtrusiveCharacters,
-            autoClosingBrackets: opts.autoClosingBrackets,
-            autoClosingQuotes: opts.autoClosingQuotes,
-            autoClosingOvertype: opts.autoClosingOvertype,
-            autoSurround: opts.autoSurround,
-            autoIndent: opts.autoIndent,
-            dragAndDrop: opts.dragAndDrop,
-            emptySelectionClipboard: opts.emptySelectionClipboard,
-            copyWithSyntaxHighlighting: opts.copyWithSyntaxHighlighting,
-            useTabStops: opts.useTabStops,
-            multiCursorModifier: opts.multiCursorModifier,
-            multiCursorMergeOverlapping: opts.multiCursorMergeOverlapping,
-            accessibilitySupport: opts.accessibilitySupport,
-            showUnused: opts.showUnused,
-            viewInfo: {
-                extraEditorClassName: opts.viewInfo.extraEditorClassName,
-                disableMonospaceOptimizations: opts.viewInfo.disableMonospaceOptimizations,
-                rulers: opts.viewInfo.rulers,
-                ariaLabel: accessibilityIsOff ? __WEBPACK_IMPORTED_MODULE_0__nls_js__["a" /* localize */]('accessibilityOffAriaLabel', "The editor is not accessible at this time. Press Alt+F1 for options.") : opts.viewInfo.ariaLabel,
-                renderLineNumbers: opts.viewInfo.renderLineNumbers,
-                renderCustomLineNumbers: opts.viewInfo.renderCustomLineNumbers,
-                cursorSurroundingLines: opts.viewInfo.cursorSurroundingLines,
-                renderFinalNewline: opts.viewInfo.renderFinalNewline,
-                selectOnLineNumbers: opts.viewInfo.selectOnLineNumbers,
-                glyphMargin: opts.viewInfo.glyphMargin,
-                revealHorizontalRightPadding: opts.viewInfo.revealHorizontalRightPadding,
-                roundedSelection: opts.viewInfo.roundedSelection,
-                overviewRulerLanes: opts.viewInfo.overviewRulerLanes,
-                overviewRulerBorder: opts.viewInfo.overviewRulerBorder,
-                cursorBlinking: opts.viewInfo.cursorBlinking,
-                mouseWheelZoom: opts.viewInfo.mouseWheelZoom,
-                cursorSmoothCaretAnimation: opts.viewInfo.cursorSmoothCaretAnimation,
-                cursorStyle: opts.viewInfo.cursorStyle,
-                cursorWidth: opts.viewInfo.cursorWidth,
-                hideCursorInOverviewRuler: opts.viewInfo.hideCursorInOverviewRuler,
-                scrollBeyondLastLine: opts.viewInfo.scrollBeyondLastLine,
-                scrollBeyondLastColumn: opts.viewInfo.scrollBeyondLastColumn,
-                smoothScrolling: opts.viewInfo.smoothScrolling,
-                stopRenderingLineAfter: opts.viewInfo.stopRenderingLineAfter,
-                renderWhitespace: opts.viewInfo.renderWhitespace,
-                renderControlCharacters: opts.viewInfo.renderControlCharacters,
-                fontLigatures: opts.viewInfo.fontLigatures,
-                renderIndentGuides: opts.viewInfo.renderIndentGuides,
-                highlightActiveIndentGuide: opts.viewInfo.highlightActiveIndentGuide,
-                renderLineHighlight: opts.viewInfo.renderLineHighlight,
-                scrollbar: opts.viewInfo.scrollbar,
-                minimap: {
-                    enabled: opts.viewInfo.minimap.enabled,
-                    side: opts.viewInfo.minimap.side,
-                    renderCharacters: opts.viewInfo.minimap.renderCharacters,
-                    showSlider: opts.viewInfo.minimap.showSlider,
-                    maxColumn: opts.viewInfo.minimap.maxColumn },
-
-                fixedOverflowWidgets: opts.viewInfo.fixedOverflowWidgets },
-
-            contribInfo: {
-                selectionClipboard: opts.contribInfo.selectionClipboard,
-                hover: opts.contribInfo.hover,
-                links: opts.contribInfo.links,
-                contextmenu: opts.contribInfo.contextmenu,
-                quickSuggestions: opts.contribInfo.quickSuggestions,
-                quickSuggestionsDelay: opts.contribInfo.quickSuggestionsDelay,
-                parameterHints: opts.contribInfo.parameterHints,
-                formatOnType: opts.contribInfo.formatOnType,
-                formatOnPaste: opts.contribInfo.formatOnPaste,
-                suggestOnTriggerCharacters: opts.contribInfo.suggestOnTriggerCharacters,
-                acceptSuggestionOnEnter: opts.contribInfo.acceptSuggestionOnEnter,
-                acceptSuggestionOnCommitCharacter: opts.contribInfo.acceptSuggestionOnCommitCharacter,
-                wordBasedSuggestions: opts.contribInfo.wordBasedSuggestions,
-                suggestSelection: opts.contribInfo.suggestSelection,
-                suggestFontSize: opts.contribInfo.suggestFontSize,
-                suggestLineHeight: opts.contribInfo.suggestLineHeight,
-                tabCompletion: opts.contribInfo.tabCompletion,
-                suggest: opts.contribInfo.suggest,
-                gotoLocation: opts.contribInfo.gotoLocation,
-                selectionHighlight: opts.contribInfo.selectionHighlight,
-                occurrencesHighlight: opts.contribInfo.occurrencesHighlight,
-                codeLens: opts.contribInfo.codeLens,
-                folding: opts.contribInfo.folding,
-                foldingStrategy: opts.contribInfo.foldingStrategy,
-                showFoldingControls: opts.contribInfo.showFoldingControls,
-                matchBrackets: opts.contribInfo.matchBrackets,
-                find: opts.contribInfo.find,
-                colorDecorators: opts.contribInfo.colorDecorators,
-                lightbulbEnabled: opts.contribInfo.lightbulbEnabled,
-                codeActionsOnSave: opts.contribInfo.codeActionsOnSave,
-                codeActionsOnSaveTimeout: opts.contribInfo.codeActionsOnSaveTimeout } };
-
-
-    };
-    InternalEditorOptionsFactory.createInternalEditorOptions = function (env, _opts) {
-        var accessibilitySupport;
-        if (_opts.accessibilitySupport === 'auto') {
-            // The editor reads the `accessibilitySupport` from the environment
-            accessibilitySupport = env.accessibilitySupport;
-        } else
-        if (_opts.accessibilitySupport === 'on') {
-            accessibilitySupport = 2 /* Enabled */;
-        } else
-        {
-            accessibilitySupport = 1 /* Disabled */;
-        }
-        // Disable some non critical features to get as best performance as possible
-        // See https://github.com/Microsoft/vscode/issues/26730
-        var opts = this._tweakValidatedOptions(_opts, accessibilitySupport);
-        var lineDecorationsWidth;
-        if (typeof opts.lineDecorationsWidth === 'string' && /^\d+(\.\d+)?ch$/.test(opts.lineDecorationsWidth)) {
-            var multiple = parseFloat(opts.lineDecorationsWidth.substr(0, opts.lineDecorationsWidth.length - 2));
-            lineDecorationsWidth = multiple * env.fontInfo.typicalHalfwidthCharacterWidth;
-        } else
-        {
-            lineDecorationsWidth = _clampedInt(opts.lineDecorationsWidth, 0, 0, 1000);
-        }
-        if (opts.contribInfo.folding) {
-            lineDecorationsWidth += 16;
-        }
-        var layoutInfo = EditorLayoutProvider.compute({
-            outerWidth: env.outerWidth,
-            outerHeight: env.outerHeight,
-            showGlyphMargin: opts.viewInfo.glyphMargin,
-            lineHeight: env.fontInfo.lineHeight,
-            showLineNumbers: opts.viewInfo.renderLineNumbers !== 0 /* Off */,
-            lineNumbersMinChars: opts.lineNumbersMinChars,
-            lineNumbersDigitCount: env.lineNumbersDigitCount,
-            lineDecorationsWidth: lineDecorationsWidth,
-            typicalHalfwidthCharacterWidth: env.fontInfo.typicalHalfwidthCharacterWidth,
-            maxDigitWidth: env.fontInfo.maxDigitWidth,
-            verticalScrollbarWidth: opts.viewInfo.scrollbar.verticalScrollbarSize,
-            horizontalScrollbarHeight: opts.viewInfo.scrollbar.horizontalScrollbarSize,
-            scrollbarArrowSize: opts.viewInfo.scrollbar.arrowSize,
-            verticalScrollbarHasArrows: opts.viewInfo.scrollbar.verticalHasArrows,
-            minimap: opts.viewInfo.minimap.enabled,
-            minimapSide: opts.viewInfo.minimap.side,
-            minimapRenderCharacters: opts.viewInfo.minimap.renderCharacters,
-            minimapMaxColumn: opts.viewInfo.minimap.maxColumn,
-            pixelRatio: env.pixelRatio });
-
-        var bareWrappingInfo = null;
-        {
-            var wordWrap = opts.wordWrap;
-            var wordWrapColumn = opts.wordWrapColumn;
-            var wordWrapMinified = opts.wordWrapMinified;
-            if (accessibilitySupport === 2 /* Enabled */) {
-                    // See https://github.com/Microsoft/vscode/issues/27766
-                    // Never enable wrapping when a screen reader is attached
-                    // because arrow down etc. will not move the cursor in the way
-                    // a screen reader expects.
-                    bareWrappingInfo = {
-                        isWordWrapMinified: false,
-                        isViewportWrapping: false,
-                        wrappingColumn: -1 };
-
-                } else
-            if (wordWrapMinified && env.isDominatedByLongLines) {
-                // Force viewport width wrapping if model is dominated by long lines
-                bareWrappingInfo = {
-                    isWordWrapMinified: true,
-                    isViewportWrapping: true,
-                    wrappingColumn: Math.max(1, layoutInfo.viewportColumn) };
-
-            } else
-            if (wordWrap === 'on') {
-                bareWrappingInfo = {
-                    isWordWrapMinified: false,
-                    isViewportWrapping: true,
-                    wrappingColumn: Math.max(1, layoutInfo.viewportColumn) };
-
-            } else
-            if (wordWrap === 'bounded') {
-                bareWrappingInfo = {
-                    isWordWrapMinified: false,
-                    isViewportWrapping: true,
-                    wrappingColumn: Math.min(Math.max(1, layoutInfo.viewportColumn), wordWrapColumn) };
-
-            } else
-            if (wordWrap === 'wordWrapColumn') {
-                bareWrappingInfo = {
-                    isWordWrapMinified: false,
-                    isViewportWrapping: false,
-                    wrappingColumn: wordWrapColumn };
-
-            } else
-            {
-                bareWrappingInfo = {
-                    isWordWrapMinified: false,
-                    isViewportWrapping: false,
-                    wrappingColumn: -1 };
-
-            }
-        }
-        var wrappingInfo = {
-            inDiffEditor: opts.inDiffEditor,
-            isDominatedByLongLines: env.isDominatedByLongLines,
-            isWordWrapMinified: bareWrappingInfo.isWordWrapMinified,
-            isViewportWrapping: bareWrappingInfo.isViewportWrapping,
-            wrappingColumn: bareWrappingInfo.wrappingColumn,
-            wrappingIndent: opts.wrappingIndent,
-            wordWrapBreakBeforeCharacters: opts.wordWrapBreakBeforeCharacters,
-            wordWrapBreakAfterCharacters: opts.wordWrapBreakAfterCharacters,
-            wordWrapBreakObtrusiveCharacters: opts.wordWrapBreakObtrusiveCharacters };
-
-        var className = 'monaco-editor';
-        if (opts.viewInfo.extraEditorClassName) {
-            className += ' ' + opts.viewInfo.extraEditorClassName;
-        }
-        if (env.extraEditorClassName) {
-            className += ' ' + env.extraEditorClassName;
-        }
-        if (opts.viewInfo.fontLigatures) {
-            className += ' enable-ligatures';
-        }
-        if (opts.mouseStyle === 'default') {
-            className += ' mouse-default';
-        } else
-        if (opts.mouseStyle === 'copy') {
-            className += ' mouse-copy';
-        }
-        return new InternalEditorOptions({
-            canUseLayerHinting: opts.disableLayerHinting ? false : true,
-            pixelRatio: env.pixelRatio,
-            editorClassName: className,
-            lineHeight: env.fontInfo.lineHeight,
-            readOnly: opts.readOnly,
-            accessibilitySupport: accessibilitySupport,
-            multiCursorModifier: opts.multiCursorModifier,
-            multiCursorMergeOverlapping: opts.multiCursorMergeOverlapping,
-            wordSeparators: opts.wordSeparators,
-            autoClosingBrackets: opts.autoClosingBrackets,
-            autoClosingQuotes: opts.autoClosingQuotes,
-            autoClosingOvertype: opts.autoClosingOvertype,
-            autoSurround: opts.autoSurround,
-            autoIndent: opts.autoIndent,
-            useTabStops: opts.useTabStops,
-            tabFocusMode: opts.readOnly ? true : env.tabFocusMode,
-            dragAndDrop: opts.dragAndDrop,
-            emptySelectionClipboard: opts.emptySelectionClipboard && env.emptySelectionClipboard,
-            copyWithSyntaxHighlighting: opts.copyWithSyntaxHighlighting,
-            layoutInfo: layoutInfo,
-            fontInfo: env.fontInfo,
-            viewInfo: opts.viewInfo,
-            wrappingInfo: wrappingInfo,
-            contribInfo: opts.contribInfo,
-            showUnused: opts.showUnused });
-
-    };
-    return InternalEditorOptionsFactory;
-}();
-
-/**
-                                          * @internal
-                                          */
-var EditorLayoutProvider = /** @class */function () {
-    function EditorLayoutProvider() {
-    }
-    EditorLayoutProvider.compute = function (_opts) {
-        var outerWidth = _opts.outerWidth | 0;
-        var outerHeight = _opts.outerHeight | 0;
-        var showGlyphMargin = _opts.showGlyphMargin;
-        var lineHeight = _opts.lineHeight | 0;
-        var showLineNumbers = _opts.showLineNumbers;
-        var lineNumbersMinChars = _opts.lineNumbersMinChars | 0;
-        var lineNumbersDigitCount = _opts.lineNumbersDigitCount | 0;
-        var lineDecorationsWidth = _opts.lineDecorationsWidth | 0;
-        var typicalHalfwidthCharacterWidth = _opts.typicalHalfwidthCharacterWidth;
-        var maxDigitWidth = _opts.maxDigitWidth;
-        var verticalScrollbarWidth = _opts.verticalScrollbarWidth | 0;
-        var verticalScrollbarHasArrows = _opts.verticalScrollbarHasArrows;
-        var scrollbarArrowSize = _opts.scrollbarArrowSize | 0;
-        var horizontalScrollbarHeight = _opts.horizontalScrollbarHeight | 0;
-        var minimap = _opts.minimap;
-        var minimapSide = _opts.minimapSide;
-        var minimapRenderCharacters = _opts.minimapRenderCharacters;
-        var minimapMaxColumn = _opts.minimapMaxColumn | 0;
-        var pixelRatio = _opts.pixelRatio;
-        var lineNumbersWidth = 0;
-        if (showLineNumbers) {
-            var digitCount = Math.max(lineNumbersDigitCount, lineNumbersMinChars);
-            lineNumbersWidth = Math.round(digitCount * maxDigitWidth);
-        }
-        var glyphMarginWidth = 0;
-        if (showGlyphMargin) {
-            glyphMarginWidth = lineHeight;
-        }
-        var glyphMarginLeft = 0;
-        var lineNumbersLeft = glyphMarginLeft + glyphMarginWidth;
-        var decorationsLeft = lineNumbersLeft + lineNumbersWidth;
-        var contentLeft = decorationsLeft + lineDecorationsWidth;
-        var remainingWidth = outerWidth - glyphMarginWidth - lineNumbersWidth - lineDecorationsWidth;
-        var renderMinimap;
-        var minimapLeft;
-        var minimapWidth;
-        var contentWidth;
-        if (!minimap) {
-            minimapLeft = 0;
-            minimapWidth = 0;
-            renderMinimap = 0 /* None */;
-            contentWidth = remainingWidth;
-        } else
-        {
-            var minimapCharWidth = void 0;
-            if (pixelRatio >= 2) {
-                renderMinimap = minimapRenderCharacters ? 2 /* Large */ : 4 /* LargeBlocks */;
-                minimapCharWidth = 2 / pixelRatio;
-            } else
-            {
-                renderMinimap = minimapRenderCharacters ? 1 /* Small */ : 3 /* SmallBlocks */;
-                minimapCharWidth = 1 / pixelRatio;
-            }
-            // Given:
-            // (leaving 2px for the cursor to have space after the last character)
-            // viewportColumn = (contentWidth - verticalScrollbarWidth - 2) / typicalHalfwidthCharacterWidth
-            // minimapWidth = viewportColumn * minimapCharWidth
-            // contentWidth = remainingWidth - minimapWidth
-            // What are good values for contentWidth and minimapWidth ?
-            // minimapWidth = ((contentWidth - verticalScrollbarWidth - 2) / typicalHalfwidthCharacterWidth) * minimapCharWidth
-            // typicalHalfwidthCharacterWidth * minimapWidth = (contentWidth - verticalScrollbarWidth - 2) * minimapCharWidth
-            // typicalHalfwidthCharacterWidth * minimapWidth = (remainingWidth - minimapWidth - verticalScrollbarWidth - 2) * minimapCharWidth
-            // (typicalHalfwidthCharacterWidth + minimapCharWidth) * minimapWidth = (remainingWidth - verticalScrollbarWidth - 2) * minimapCharWidth
-            // minimapWidth = ((remainingWidth - verticalScrollbarWidth - 2) * minimapCharWidth) / (typicalHalfwidthCharacterWidth + minimapCharWidth)
-            minimapWidth = Math.max(0, Math.floor((remainingWidth - verticalScrollbarWidth - 2) * minimapCharWidth / (typicalHalfwidthCharacterWidth + minimapCharWidth)));
-            var minimapColumns = minimapWidth / minimapCharWidth;
-            if (minimapColumns > minimapMaxColumn) {
-                minimapWidth = Math.floor(minimapMaxColumn * minimapCharWidth);
-            }
-            contentWidth = remainingWidth - minimapWidth;
-            if (minimapSide === 'left') {
-                minimapLeft = 0;
-                glyphMarginLeft += minimapWidth;
-                lineNumbersLeft += minimapWidth;
-                decorationsLeft += minimapWidth;
-                contentLeft += minimapWidth;
-            } else
-            {
-                minimapLeft = outerWidth - minimapWidth - verticalScrollbarWidth;
-            }
-        }
-        // (leaving 2px for the cursor to have space after the last character)
-        var viewportColumn = Math.max(1, Math.floor((contentWidth - verticalScrollbarWidth - 2) / typicalHalfwidthCharacterWidth));
-        var verticalArrowSize = verticalScrollbarHasArrows ? scrollbarArrowSize : 0;
-        return {
-            width: outerWidth,
-            height: outerHeight,
-            glyphMarginLeft: glyphMarginLeft,
-            glyphMarginWidth: glyphMarginWidth,
-            glyphMarginHeight: outerHeight,
-            lineNumbersLeft: lineNumbersLeft,
-            lineNumbersWidth: lineNumbersWidth,
-            lineNumbersHeight: outerHeight,
-            decorationsLeft: decorationsLeft,
-            decorationsWidth: lineDecorationsWidth,
-            decorationsHeight: outerHeight,
-            contentLeft: contentLeft,
-            contentWidth: contentWidth,
-            contentHeight: outerHeight,
-            renderMinimap: renderMinimap,
-            minimapLeft: minimapLeft,
-            minimapWidth: minimapWidth,
-            viewportColumn: viewportColumn,
-            verticalScrollbarWidth: verticalScrollbarWidth,
-            horizontalScrollbarHeight: horizontalScrollbarHeight,
-            overviewRuler: {
-                top: verticalArrowSize,
-                width: verticalScrollbarWidth,
-                height: outerHeight - 2 * verticalArrowSize,
-                right: 0 } };
-
-
-    };
-    return EditorLayoutProvider;
-}();
-
-var DEFAULT_WINDOWS_FONT_FAMILY = 'Consolas, \'Courier New\', monospace';
-var DEFAULT_MAC_FONT_FAMILY = 'Menlo, Monaco, \'Courier New\', monospace';
-var DEFAULT_LINUX_FONT_FAMILY = '\'Droid Sans Mono\', \'monospace\', monospace, \'Droid Sans Fallback\'';
-/**
-                                                                                                           * @internal
-                                                                                                           */
-var EDITOR_FONT_DEFAULTS = {
-    fontFamily: __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__["d" /* isMacintosh */] ? DEFAULT_MAC_FONT_FAMILY : __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__["c" /* isLinux */] ? DEFAULT_LINUX_FONT_FAMILY : DEFAULT_WINDOWS_FONT_FAMILY,
-    fontWeight: 'normal',
-    fontSize: __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__["d" /* isMacintosh */] ? 12 : 14,
-    lineHeight: 0,
-    letterSpacing: 0 };
-
-/**
-                         * @internal
-                         */
-var EDITOR_MODEL_DEFAULTS = {
-    tabSize: 4,
-    indentSize: 4,
-    insertSpaces: true,
-    detectIndentation: true,
-    trimAutoWhitespace: true,
-    largeFileOptimizations: true };
-
-/**
-                                     * @internal
-                                     */
-var EDITOR_DEFAULTS = {
-    inDiffEditor: false,
-    wordSeparators: __WEBPACK_IMPORTED_MODULE_4__model_wordHelper_js__["b" /* USUAL_WORD_SEPARATORS */],
-    lineNumbersMinChars: 5,
-    lineDecorationsWidth: 10,
-    readOnly: false,
-    mouseStyle: 'text',
-    disableLayerHinting: false,
-    automaticLayout: false,
-    wordWrap: 'off',
-    wordWrapColumn: 80,
-    wordWrapMinified: true,
-    wrappingIndent: 1 /* Same */,
-    wordWrapBreakBeforeCharacters: '([{‘“〈《「『【〔（［｛｢£¥＄￡￥+＋',
-    wordWrapBreakAfterCharacters: ' \t})]?|/&,;¢°′″‰℃、。｡､￠，．：；？！％・･ゝゞヽヾーァィゥェォッャュョヮヵヶぁぃぅぇぉっゃゅょゎゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ々〻ｧｨｩｪｫｬｭｮｯｰ”〉》」』】〕）］｝｣',
-    wordWrapBreakObtrusiveCharacters: '.',
-    autoClosingBrackets: 'languageDefined',
-    autoClosingQuotes: 'languageDefined',
-    autoClosingOvertype: 'auto',
-    autoSurround: 'languageDefined',
-    autoIndent: true,
-    dragAndDrop: true,
-    emptySelectionClipboard: true,
-    copyWithSyntaxHighlighting: true,
-    useTabStops: true,
-    multiCursorModifier: 'altKey',
-    multiCursorMergeOverlapping: true,
-    accessibilitySupport: 'auto',
-    showUnused: true,
-    viewInfo: {
-        extraEditorClassName: '',
-        disableMonospaceOptimizations: false,
-        rulers: [],
-        ariaLabel: __WEBPACK_IMPORTED_MODULE_0__nls_js__["a" /* localize */]('editorViewAccessibleLabel', "Editor content"),
-        renderLineNumbers: 1 /* On */,
-        renderCustomLineNumbers: null,
-        cursorSurroundingLines: 0,
-        renderFinalNewline: true,
-        selectOnLineNumbers: true,
-        glyphMargin: true,
-        revealHorizontalRightPadding: 30,
-        roundedSelection: true,
-        overviewRulerLanes: 2,
-        overviewRulerBorder: true,
-        cursorBlinking: 1 /* Blink */,
-        mouseWheelZoom: false,
-        cursorSmoothCaretAnimation: false,
-        cursorStyle: TextEditorCursorStyle.Line,
-        cursorWidth: 0,
-        hideCursorInOverviewRuler: false,
-        scrollBeyondLastLine: true,
-        scrollBeyondLastColumn: 5,
-        smoothScrolling: false,
-        stopRenderingLineAfter: 10000,
-        renderWhitespace: 'none',
-        renderControlCharacters: false,
-        fontLigatures: false,
-        renderIndentGuides: true,
-        highlightActiveIndentGuide: true,
-        renderLineHighlight: 'line',
-        scrollbar: {
-            vertical: 1 /* Auto */,
-            horizontal: 1 /* Auto */,
-            arrowSize: 11,
-            useShadows: true,
-            verticalHasArrows: false,
-            horizontalHasArrows: false,
-            horizontalScrollbarSize: 10,
-            horizontalSliderSize: 10,
-            verticalScrollbarSize: 14,
-            verticalSliderSize: 14,
-            handleMouseWheel: true,
-            mouseWheelScrollSensitivity: 1,
-            fastScrollSensitivity: 5 },
-
-        minimap: {
-            enabled: true,
-            side: 'right',
-            showSlider: 'mouseover',
-            renderCharacters: true,
-            maxColumn: 120 },
-
-        fixedOverflowWidgets: false },
-
-    contribInfo: {
-        selectionClipboard: true,
-        hover: {
-            enabled: true,
-            delay: 300,
-            sticky: true },
-
-        links: true,
-        contextmenu: true,
-        quickSuggestions: { other: true, comments: false, strings: false },
-        quickSuggestionsDelay: 10,
-        parameterHints: {
-            enabled: true,
-            cycle: false },
-
-        formatOnType: false,
-        formatOnPaste: false,
-        suggestOnTriggerCharacters: true,
-        acceptSuggestionOnEnter: 'on',
-        acceptSuggestionOnCommitCharacter: true,
-        wordBasedSuggestions: true,
-        suggestSelection: 'recentlyUsed',
-        suggestFontSize: 0,
-        suggestLineHeight: 0,
-        tabCompletion: 'off',
-        suggest: {
-            filterGraceful: true,
-            snippets: 'inline',
-            snippetsPreventQuickSuggestions: true,
-            localityBonus: false,
-            shareSuggestSelections: false,
-            showIcons: true,
-            maxVisibleSuggestions: 12,
-            filteredTypes: Object.create(null) },
-
-        gotoLocation: {
-            multiple: 'peek' },
-
-        selectionHighlight: true,
-        occurrencesHighlight: true,
-        codeLens: true,
-        folding: true,
-        foldingStrategy: 'auto',
-        showFoldingControls: 'mouseover',
-        matchBrackets: true,
-        find: {
-            seedSearchStringFromSelection: true,
-            autoFindInSelection: false,
-            globalFindClipboard: false,
-            addExtraSpaceOnTop: true },
-
-        colorDecorators: true,
-        lightbulbEnabled: true,
-        codeActionsOnSave: {},
-        codeActionsOnSaveTimeout: 750 } };
-
-/***/ }),
-
-/***/ 3659:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = deepClone;
-/* harmony export (immutable) */ __webpack_exports__["b"] = deepFreeze;
-/* unused harmony export cloneAndChange */
-/* harmony export (immutable) */ __webpack_exports__["e"] = mixin;
-/* unused harmony export assign */
-/* harmony export (immutable) */ __webpack_exports__["c"] = equals;
-/* harmony export (immutable) */ __webpack_exports__["d"] = getOrDefault;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types_js__ = __webpack_require__(3605);
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-function deepClone(obj) {
-    if (!obj || typeof obj !== 'object') {
-        return obj;
-    }
-    if (obj instanceof RegExp) {
-        // See https://github.com/Microsoft/TypeScript/issues/10990
-        return obj;
-    }
-    var result = Array.isArray(obj) ? [] : {};
-    Object.keys(obj).forEach(function (key) {
-        if (obj[key] && typeof obj[key] === 'object') {
-            result[key] = deepClone(obj[key]);
-        } else
-        {
-            result[key] = obj[key];
-        }
-    });
-    return result;
-}
-function deepFreeze(obj) {
-    if (!obj || typeof obj !== 'object') {
-        return obj;
-    }
-    var stack = [obj];
-    while (stack.length > 0) {
-        var obj_1 = stack.shift();
-        Object.freeze(obj_1);
-        for (var key in obj_1) {
-            if (_hasOwnProperty.call(obj_1, key)) {
-                var prop = obj_1[key];
-                if (typeof prop === 'object' && !Object.isFrozen(prop)) {
-                    stack.push(prop);
-                }
-            }
-        }
-    }
-    return obj;
-}
-var _hasOwnProperty = Object.prototype.hasOwnProperty;
-function cloneAndChange(obj, changer) {
-    return _cloneAndChange(obj, changer, new Set());
-}
-function _cloneAndChange(obj, changer, seen) {
-    if (Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["k" /* isUndefinedOrNull */])(obj)) {
-        return obj;
-    }
-    var changed = changer(obj);
-    if (typeof changed !== 'undefined') {
-        return changed;
-    }
-    if (Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["c" /* isArray */])(obj)) {
-        var r1 = [];
-        for (var _i = 0, obj_2 = obj; _i < obj_2.length; _i++) {
-            var e = obj_2[_i];
-            r1.push(_cloneAndChange(e, changer, seen));
-        }
-        return r1;
-    }
-    if (Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["h" /* isObject */])(obj)) {
-        if (seen.has(obj)) {
-            throw new Error('Cannot clone recursive data-structure');
-        }
-        seen.add(obj);
-        var r2 = {};
-        for (var i2 in obj) {
-            if (_hasOwnProperty.call(obj, i2)) {
-                r2[i2] = _cloneAndChange(obj[i2], changer, seen);
-            }
-        }
-        seen.delete(obj);
-        return r2;
-    }
-    return obj;
-}
-/**
-   * Copies all properties of source into destination. The optional parameter "overwrite" allows to control
-   * if existing properties on the destination should be overwritten or not. Defaults to true (overwrite).
-   */
-function mixin(destination, source, overwrite) {
-    if (overwrite === void 0) {overwrite = true;}
-    if (!Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["h" /* isObject */])(destination)) {
-        return source;
-    }
-    if (Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["h" /* isObject */])(source)) {
-        Object.keys(source).forEach(function (key) {
-            if (key in destination) {
-                if (overwrite) {
-                    if (Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["h" /* isObject */])(destination[key]) && Object(__WEBPACK_IMPORTED_MODULE_0__types_js__["h" /* isObject */])(source[key])) {
-                        mixin(destination[key], source[key], overwrite);
-                    } else
-                    {
-                        destination[key] = source[key];
-                    }
-                }
-            } else
-            {
-                destination[key] = source[key];
-            }
-        });
-    }
-    return destination;
-}
-function assign(destination) {
-    var sources = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        sources[_i - 1] = arguments[_i];
-    }
-    sources.forEach(function (source) {return Object.keys(source).forEach(function (key) {return destination[key] = source[key];});});
-    return destination;
-}
-function equals(one, other) {
-    if (one === other) {
-        return true;
-    }
-    if (one === null || one === undefined || other === null || other === undefined) {
-        return false;
-    }
-    if (typeof one !== typeof other) {
-        return false;
-    }
-    if (typeof one !== 'object') {
-        return false;
-    }
-    if (Array.isArray(one) !== Array.isArray(other)) {
-        return false;
-    }
-    var i;
-    var key;
-    if (Array.isArray(one)) {
-        if (one.length !== other.length) {
-            return false;
-        }
-        for (i = 0; i < one.length; i++) {
-            if (!equals(one[i], other[i])) {
-                return false;
-            }
-        }
-    } else
-    {
-        var oneKeys = [];
-        for (key in one) {
-            oneKeys.push(key);
-        }
-        oneKeys.sort();
-        var otherKeys = [];
-        for (key in other) {
-            otherKeys.push(key);
-        }
-        otherKeys.sort();
-        if (!equals(oneKeys, otherKeys)) {
-            return false;
-        }
-        for (i = 0; i < oneKeys.length; i++) {
-            if (!equals(one[oneKeys[i]], other[oneKeys[i]])) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-function getOrDefault(obj, fn, defaultValue) {
-    var result = fn(obj);
-    return typeof result === 'undefined' ? defaultValue : result;
-}
-
-/***/ }),
-
-/***/ 3660:
+/***/ 3821:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3462,7 +1801,7 @@ var Color = /** @class */function () {
 
 /***/ }),
 
-/***/ 3662:
+/***/ 3823:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3475,9 +1814,9 @@ var Color = /** @class */function () {
 /* harmony export (immutable) */ __webpack_exports__["e"] = getDefaultValues;
 /* harmony export (immutable) */ __webpack_exports__["g"] = overrideIdentifierFromKey;
 /* harmony export (immutable) */ __webpack_exports__["f"] = getMigratedSettingValue;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__configurationRegistry_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__configurationRegistry_js__ = __webpack_require__(3915);
 
 
 
@@ -3587,7 +1926,7 @@ function getMigratedSettingValue(configurationService, currentSettingName, legac
 
 /***/ }),
 
-/***/ 3673:
+/***/ 3832:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3678,7 +2017,7 @@ var ApplyEditsResult = /** @class */function () {
 
 /***/ }),
 
-/***/ 3674:
+/***/ 3833:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3691,31 +2030,31 @@ var ApplyEditsResult = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModelDecorationOptions; });
 /* unused harmony export DidChangeDecorationsEmitter */
 /* unused harmony export DidChangeContentEmitter */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__editStack_js__ = __webpack_require__(4688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__indentationGuesser_js__ = __webpack_require__(4689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__intervalTree_js__ = __webpack_require__(4690);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pieceTreeTextBuffer_pieceTreeTextBufferBuilder_js__ = __webpack_require__(4691);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__textModelEvents_js__ = __webpack_require__(4694);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__textModelSearch_js__ = __webpack_require__(3912);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__textModelTokens_js__ = __webpack_require__(4695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__wordHelper_js__ = __webpack_require__(3821);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modes_nullMode_js__ = __webpack_require__(3696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modes_supports_js__ = __webpack_require__(3913);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modes_supports_richEditBrackets_js__ = __webpack_require__(3914);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__tokensStore_js__ = __webpack_require__(4135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__base_common_color_js__ = __webpack_require__(3660);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__editStack_js__ = __webpack_require__(4779);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__indentationGuesser_js__ = __webpack_require__(4780);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__intervalTree_js__ = __webpack_require__(4781);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pieceTreeTextBuffer_pieceTreeTextBufferBuilder_js__ = __webpack_require__(4782);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__textModelEvents_js__ = __webpack_require__(4785);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__textModelSearch_js__ = __webpack_require__(4046);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__textModelTokens_js__ = __webpack_require__(4786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__wordHelper_js__ = __webpack_require__(3965);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modes_nullMode_js__ = __webpack_require__(3852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modes_supports_js__ = __webpack_require__(4047);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modes_supports_richEditBrackets_js__ = __webpack_require__(4048);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__tokensStore_js__ = __webpack_require__(4250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__base_common_color_js__ = __webpack_require__(3821);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -5699,13 +4038,13 @@ var TextModel = /** @class */function (_super) {
     TextModel.LARGE_FILE_LINE_COUNT_THRESHOLD = 300 * 1000; // 300K lines
     TextModel.DEFAULT_CREATION_OPTIONS = {
         isForSimpleWidget: false,
-        tabSize: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].tabSize,
-        indentSize: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].indentSize,
-        insertSpaces: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].insertSpaces,
+        tabSize: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].tabSize,
+        indentSize: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].indentSize,
+        insertSpaces: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].insertSpaces,
         detectIndentation: false,
         defaultEOL: 1 /* LF */,
-        trimAutoWhitespace: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].trimAutoWhitespace,
-        largeFileOptimizations: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].largeFileOptimizations };
+        trimAutoWhitespace: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].trimAutoWhitespace,
+        largeFileOptimizations: __WEBPACK_IMPORTED_MODULE_5__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].largeFileOptimizations };
 
     return TextModel;
 }(__WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__["a" /* Disposable */]);
@@ -5968,7 +4307,7 @@ var DidChangeContentEmitter = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3675:
+/***/ 3834:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5976,19 +4315,19 @@ var DidChangeContentEmitter = /** @class */function (_super) {
 /* unused harmony export LanguageConfigurationChangeEvent */
 /* unused harmony export LanguageConfigurationRegistryImpl */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageConfigurationRegistry; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_wordHelper_js__ = __webpack_require__(3821);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__languageConfiguration_js__ = __webpack_require__(3824);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__supports_js__ = __webpack_require__(3913);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__supports_characterPair_js__ = __webpack_require__(4700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__supports_electricCharacter_js__ = __webpack_require__(4701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__supports_indentRules_js__ = __webpack_require__(4702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__supports_onEnter_js__ = __webpack_require__(4703);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__supports_richEditBrackets_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_wordHelper_js__ = __webpack_require__(3965);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__languageConfiguration_js__ = __webpack_require__(3968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__supports_js__ = __webpack_require__(4047);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__supports_characterPair_js__ = __webpack_require__(4791);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__supports_electricCharacter_js__ = __webpack_require__(4792);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__supports_indentRules_js__ = __webpack_require__(4793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__supports_onEnter_js__ = __webpack_require__(4794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__supports_richEditBrackets_js__ = __webpack_require__(4048);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -6667,15 +5006,15 @@ var LanguageConfigurationRegistry = new LanguageConfigurationRegistryImpl();
 
 /***/ }),
 
-/***/ 3676:
+/***/ 3835:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Widget; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboardEvent_js__ = __webpack_require__(3698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboardEvent_js__ = __webpack_require__(3854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -6738,15 +5077,15 @@ var Widget = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3677:
+/***/ 3836:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export Severity */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return INotificationService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NoOpNotification; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_severity_js__ = __webpack_require__(3918);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_severity_js__ = __webpack_require__(4052);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -6764,20 +5103,20 @@ var NoOpNotification = /** @class */function () {
 
 /***/ }),
 
-/***/ 3688:
+/***/ 3845:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = clearAllFontInfos;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Configuration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__charWidthReader_js__ = __webpack_require__(4785);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__elementSizeObserver_js__ = __webpack_require__(4786);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_config_commonEditorConfig_js__ = __webpack_require__(4164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_config_fontInfo_js__ = __webpack_require__(3922);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__charWidthReader_js__ = __webpack_require__(4876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__elementSizeObserver_js__ = __webpack_require__(4877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_config_commonEditorConfig_js__ = __webpack_require__(4279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_config_fontInfo_js__ = __webpack_require__(4056);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7068,12 +5407,12 @@ var Configuration = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3695:
+/***/ 3851:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditorContextKeys; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7128,7 +5467,7 @@ var EditorContextKeys;
 
 /***/ }),
 
-/***/ 3696:
+/***/ 3852:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7137,8 +5476,8 @@ var EditorContextKeys;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NULL_LANGUAGE_IDENTIFIER; });
 /* harmony export (immutable) */ __webpack_exports__["d"] = nullTokenize;
 /* harmony export (immutable) */ __webpack_exports__["e"] = nullTokenize2;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_token_js__ = __webpack_require__(3823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modes_js__ = __webpack_require__(3547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_token_js__ = __webpack_require__(3967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modes_js__ = __webpack_require__(3721);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7175,14 +5514,14 @@ function nullTokenize2(languageId, buffer, state, deltaOffset) {
 
 /***/ }),
 
-/***/ 3700:
+/***/ 3856:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return IAccessibilityService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONTEXT_ACCESSIBILITY_MODE_ENABLED; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contextkey_common_contextkey_js__ = __webpack_require__(3775);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7194,7 +5533,7 @@ var CONTEXT_ACCESSIBILITY_MODE_ENABLED = new __WEBPACK_IMPORTED_MODULE_1__contex
 
 /***/ }),
 
-/***/ 3701:
+/***/ 3857:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7204,7 +5543,7 @@ var CONTEXT_ACCESSIBILITY_MODE_ENABLED = new __WEBPACK_IMPORTED_MODULE_1__contex
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return ViewLineRenderingData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InlineDecoration; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return ViewModelDecoration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7286,12 +5625,12 @@ var ViewModelDecoration = /** @class */function () {
 
 /***/ }),
 
-/***/ 3702:
+/***/ 3858:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DynamicViewOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_viewModel_viewEventHandler_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_viewModel_viewEventHandler_js__ = __webpack_require__(3916);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7321,13 +5660,13 @@ var DynamicViewOverlay = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3723:
+/***/ 3875:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return IContextViewService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IContextMenuService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7338,12 +5677,12 @@ var IContextMenuService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_comm
 
 /***/ }),
 
-/***/ 3724:
+/***/ 3876:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IKeybindingService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7353,7 +5692,7 @@ var IKeybindingService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_commo
 
 /***/ }),
 
-/***/ 3726:
+/***/ 3878:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7375,8 +5714,8 @@ var IKeybindingService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_commo
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return ViewLanguageConfigurationEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return ViewEventEmitter; });
 /* unused harmony export ViewEventsCollector */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7626,13 +5965,13 @@ function safeInvokeListener(listener, events) {
 
 /***/ }),
 
-/***/ 3758:
+/***/ 3911:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export WordCharacterClassifier */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getMapForWordSeparators; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_characterClassifier_js__ = __webpack_require__(3819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_characterClassifier_js__ = __webpack_require__(3963);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7678,13 +6017,13 @@ var getMapForWordSeparators = once(function (input) {return new WordCharacterCla
 
 /***/ }),
 
-/***/ 3759:
+/***/ 3912:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LineTokens; });
 /* unused harmony export SlicedLineTokens */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modes_js__ = __webpack_require__(3547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modes_js__ = __webpack_require__(3721);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -7849,16 +6188,16 @@ var SlicedLineTokens = /** @class */function () {
 
 /***/ }),
 
-/***/ 3760:
+/***/ 3913:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Gesture; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_decorators_js__ = __webpack_require__(3915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_decorators_js__ = __webpack_require__(4049);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -8095,7 +6434,7 @@ var Gesture = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3761:
+/***/ 3914:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8104,20 +6443,20 @@ var Gesture = /** @class */function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ScrollableElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return SmoothScrollableElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DomScrollableElement; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_scrollbars_css__ = __webpack_require__(4729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_scrollbars_css__ = __webpack_require__(4820);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_scrollbars_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__media_scrollbars_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__horizontalScrollbar_js__ = __webpack_require__(4731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__verticalScrollbar_js__ = __webpack_require__(4733);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_scrollable_js__ = __webpack_require__(4145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__horizontalScrollbar_js__ = __webpack_require__(4822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__verticalScrollbar_js__ = __webpack_require__(4824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_scrollable_js__ = __webpack_require__(4260);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -8593,7 +6932,7 @@ function resolveOptions(opts) {
 
 /***/ }),
 
-/***/ 3762:
+/***/ 3915:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8608,12 +6947,12 @@ function resolveOptions(opts) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return OVERRIDE_PROPERTY_PATTERN; });
 /* unused harmony export getDefaultValue */
 /* unused harmony export validateProperty */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__jsonschemas_common_jsonContributionRegistry_js__ = __webpack_require__(4136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__jsonschemas_common_jsonContributionRegistry_js__ = __webpack_require__(4251);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -8850,12 +7189,12 @@ function validateProperty(property) {
 
 /***/ }),
 
-/***/ 3763:
+/***/ 3916:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewEventHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9043,7 +7382,7 @@ var ViewEventHandler = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3764:
+/***/ 3917:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9132,7 +7471,7 @@ var HorizontalRange = /** @class */function () {
 
 /***/ }),
 
-/***/ 3818:
+/***/ 3962:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9140,7 +7479,7 @@ var HorizontalRange = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return ReplaceCommandWithoutChangingPosition; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ReplaceCommandWithOffsetCursorState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ReplaceCommandThatPreservesSelection; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_selection_js__ = __webpack_require__(3619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_selection_js__ = __webpack_require__(3786);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9222,13 +7561,13 @@ var ReplaceCommandThatPreservesSelection = /** @class */function () {
 
 /***/ }),
 
-/***/ 3819:
+/***/ 3963:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CharacterClassifier; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CharacterSet; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uint_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uint_js__ = __webpack_require__(3964);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9287,7 +7626,7 @@ var CharacterSet = /** @class */function () {
 
 /***/ }),
 
-/***/ 3820:
+/***/ 3964:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9347,130 +7686,7 @@ function toUint32Array(arr) {
 
 /***/ }),
 
-/***/ 3821:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return USUAL_WORD_SEPARATORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DEFAULT_WORD_REGEXP; });
-/* harmony export (immutable) */ __webpack_exports__["c"] = ensureValidWordDefinition;
-/* harmony export (immutable) */ __webpack_exports__["d"] = getWordAtText;
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-var USUAL_WORD_SEPARATORS = '`~!@#$%^&*()-=+[{]}\\|;:\'",.<>/?';
-/**
-                                                                         * Create a word definition regular expression based on default word separators.
-                                                                         * Optionally provide allowed separators that should be included in words.
-                                                                         *
-                                                                         * The default would look like this:
-                                                                         * /(-?\d*\.\d\w*)|([^\`\~\!\@\#\$\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g
-                                                                         */
-function createWordRegExp(allowInWords) {
-    if (allowInWords === void 0) {allowInWords = '';}
-    var source = '(-?\\d*\\.\\d\\w*)|([^';
-    for (var _i = 0, USUAL_WORD_SEPARATORS_1 = USUAL_WORD_SEPARATORS; _i < USUAL_WORD_SEPARATORS_1.length; _i++) {
-        var sep = USUAL_WORD_SEPARATORS_1[_i];
-        if (allowInWords.indexOf(sep) >= 0) {
-            continue;
-        }
-        source += '\\' + sep;
-    }
-    source += '\\s]+)';
-    return new RegExp(source, 'g');
-}
-// catches numbers (including floating numbers) in the first group, and alphanum in the second
-var DEFAULT_WORD_REGEXP = createWordRegExp();
-function ensureValidWordDefinition(wordDefinition) {
-    var result = DEFAULT_WORD_REGEXP;
-    if (wordDefinition && wordDefinition instanceof RegExp) {
-        if (!wordDefinition.global) {
-            var flags = 'g';
-            if (wordDefinition.ignoreCase) {
-                flags += 'i';
-            }
-            if (wordDefinition.multiline) {
-                flags += 'm';
-            }
-            if (wordDefinition.unicode) {
-                flags += 'u';
-            }
-            result = new RegExp(wordDefinition.source, flags);
-        } else
-        {
-            result = wordDefinition;
-        }
-    }
-    result.lastIndex = 0;
-    return result;
-}
-function getWordAtPosFast(column, wordDefinition, text, textOffset) {
-    // find whitespace enclosed text around column and match from there
-    var pos = column - 1 - textOffset;
-    var start = text.lastIndexOf(' ', pos - 1) + 1;
-    wordDefinition.lastIndex = start;
-    var match;
-    while (match = wordDefinition.exec(text)) {
-        var matchIndex = match.index || 0;
-        if (matchIndex <= pos && wordDefinition.lastIndex >= pos) {
-            return {
-                word: match[0],
-                startColumn: textOffset + 1 + matchIndex,
-                endColumn: textOffset + 1 + wordDefinition.lastIndex };
-
-        }
-    }
-    return null;
-}
-function getWordAtPosSlow(column, wordDefinition, text, textOffset) {
-    // matches all words starting at the beginning
-    // of the input until it finds a match that encloses
-    // the desired column. slow but correct
-    var pos = column - 1 - textOffset;
-    wordDefinition.lastIndex = 0;
-    var match;
-    while (match = wordDefinition.exec(text)) {
-        var matchIndex = match.index || 0;
-        if (matchIndex > pos) {
-            // |nW -> matched only after the pos
-            return null;
-        } else
-        if (wordDefinition.lastIndex >= pos) {
-            // W|W -> match encloses pos
-            return {
-                word: match[0],
-                startColumn: textOffset + 1 + matchIndex,
-                endColumn: textOffset + 1 + wordDefinition.lastIndex };
-
-        }
-    }
-    return null;
-}
-function getWordAtText(column, wordDefinition, text, textOffset) {
-    // if `words` can contain whitespace character we have to use the slow variant
-    // otherwise we use the fast variant of finding a word
-    wordDefinition.lastIndex = 0;
-    var match = wordDefinition.exec(text);
-    if (!match) {
-        return null;
-    }
-    // todo@joh the `match` could already be the (first) word
-    var ret = match[0].indexOf(' ') >= 0
-    // did match a word which contains a space character -> use slow word find
-    ? getWordAtPosSlow(column, wordDefinition, text, textOffset)
-    // sane word definition -> use fast word find
-    : getWordAtPosFast(column, wordDefinition, text, textOffset);
-    // both (getWordAtPosFast and getWordAtPosSlow) leave the wordDefinition-RegExp
-    // in an undefined state and to not confuse other users of the wordDefinition
-    // we reset the lastIndex
-    wordDefinition.lastIndex = 0;
-    return ret;
-}
-
-/***/ }),
-
-/***/ 3823:
+/***/ 3967:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9512,7 +7728,7 @@ var TokenizationResult2 = /** @class */function () {
 
 /***/ }),
 
-/***/ 3824:
+/***/ 3968:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9581,16 +7797,16 @@ var StandardAutoClosingPairConditional = /** @class */function () {
 
 /***/ }),
 
-/***/ 3826:
+/***/ 3970:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = standardMouseMoveMerger;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalMouseMoveMonitor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__iframe_js__ = __webpack_require__(4137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__iframe_js__ = __webpack_require__(4252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9681,7 +7897,7 @@ var GlobalMouseMoveMonitor = /** @class */function () {
 
 /***/ }),
 
-/***/ 3827:
+/***/ 3971:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9692,9 +7908,9 @@ var GlobalMouseMoveMonitor = /** @class */function () {
 /* harmony export (immutable) */ __webpack_exports__["d"] = renderViewLine;
 /* unused harmony export RenderLineOutput2 */
 /* harmony export (immutable) */ __webpack_exports__["e"] = renderViewLine2;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_stringBuilder_js__ = __webpack_require__(3926);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lineDecorations_js__ = __webpack_require__(3927);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_stringBuilder_js__ = __webpack_require__(4060);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lineDecorations_js__ = __webpack_require__(4061);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10411,7 +8627,7 @@ function _renderLine(input, sb) {
 
 /***/ }),
 
-/***/ 3828:
+/***/ 3972:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10449,7 +8665,7 @@ var ServiceCollection = /** @class */function () {
 
 /***/ }),
 
-/***/ 3911:
+/***/ 4045:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10463,17 +8679,17 @@ var ServiceCollection = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FIND_IDS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return MATCHES_LIMIT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return FindModelBoundToEditorModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_commands_replaceCommand_js__ = __webpack_require__(3818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_model_textModelSearch_js__ = __webpack_require__(3912);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__findDecorations_js__ = __webpack_require__(4687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__replaceAllCommand_js__ = __webpack_require__(4704);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__replacePattern_js__ = __webpack_require__(4705);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_commands_replaceCommand_js__ = __webpack_require__(3962);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_model_textModelSearch_js__ = __webpack_require__(4046);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__findDecorations_js__ = __webpack_require__(4778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__replaceAllCommand_js__ = __webpack_require__(4795);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__replacePattern_js__ = __webpack_require__(4796);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10920,7 +9136,7 @@ var FindModelBoundToEditorModel = /** @class */function () {
 
 /***/ }),
 
-/***/ 3912:
+/***/ 4046:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10931,11 +9147,11 @@ var FindModelBoundToEditorModel = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return TextModelSearch; });
 /* harmony export (immutable) */ __webpack_exports__["e"] = isValidMatch;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Searcher; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controller_wordCharacterClassifier_js__ = __webpack_require__(3758);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_js__ = __webpack_require__(3673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controller_wordCharacterClassifier_js__ = __webpack_require__(3911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_js__ = __webpack_require__(3832);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -11400,7 +9616,7 @@ var Searcher = /** @class */function () {
 
 /***/ }),
 
-/***/ 3913:
+/***/ 4047:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11456,15 +9672,15 @@ function ignoreBracketsInToken(standardTokenType) {
 
 /***/ }),
 
-/***/ 3914:
+/***/ 4048:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export RichEditBracket */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RichEditBrackets; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BracketsUtils; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -11608,7 +9824,7 @@ var BracketsUtils = /** @class */function () {
 
 /***/ }),
 
-/***/ 3915:
+/***/ 4049:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11650,7 +9866,7 @@ function memoize(target, key, descriptor) {
 
 /***/ }),
 
-/***/ 3916:
+/***/ 4050:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11658,17 +9874,17 @@ function memoize(target, key, descriptor) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Separator; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionViewItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionBar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actionbar_css__ = __webpack_require__(4726);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actionbar_css__ = __webpack_require__(4817);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actionbar_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__actionbar_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_actions_js__ = __webpack_require__(3722);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__touch_js__ = __webpack_require__(3760);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__keyboardEvent_js__ = __webpack_require__(3698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_event_js__ = __webpack_require__(3581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_actions_js__ = __webpack_require__(3874);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__touch_js__ = __webpack_require__(3913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__keyboardEvent_js__ = __webpack_require__(3854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_event_js__ = __webpack_require__(3756);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12275,15 +10491,15 @@ var ActionBar = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3917:
+/***/ 4051:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ARROW_IMG_SIZE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ScrollbarArrow; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__globalMouseMoveMonitor_js__ = __webpack_require__(3826);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_async_js__ = __webpack_require__(3601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__globalMouseMoveMonitor_js__ = __webpack_require__(3970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_async_js__ = __webpack_require__(3773);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12376,12 +10592,12 @@ var ScrollbarArrow = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3918:
+/***/ 4052:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -12429,7 +10645,7 @@ var Severity;
 
 /***/ }),
 
-/***/ 3919:
+/***/ 4053:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12624,7 +10840,7 @@ var FoldingRegion = /** @class */function () {
 
 /***/ }),
 
-/***/ 3920:
+/***/ 4054:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13326,7 +11542,7 @@ var SymbolTag;
 
 /***/ }),
 
-/***/ 3921:
+/***/ 4055:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13341,12 +11557,12 @@ var SymbolTag;
 /* unused harmony export originalFSPath */
 /* unused harmony export relativePath */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataUri; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__extpath_js__ = __webpack_require__(4133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__path_js__ = __webpack_require__(3822);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_js__ = __webpack_require__(3589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__extpath_js__ = __webpack_require__(4248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__path_js__ = __webpack_require__(3966);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_js__ = __webpack_require__(3763);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13542,15 +11758,15 @@ var DataUri;
 
 /***/ }),
 
-/***/ 3922:
+/***/ 4056:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BareFontInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FontInfo; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorZoom_js__ = __webpack_require__(3923);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorZoom_js__ = __webpack_require__(4057);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13643,12 +11859,12 @@ var BareFontInfo = /** @class */function () {
        */
     BareFontInfo.createFromRawSettings = function (opts, zoomLevel, ignoreEditorZoom) {
         if (ignoreEditorZoom === void 0) {ignoreEditorZoom = false;}
-        var fontFamily = _string(opts.fontFamily, __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */].fontFamily);
-        var fontWeight = _string(opts.fontWeight, __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */].fontWeight);
-        var fontSize = safeParseFloat(opts.fontSize, __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */].fontSize);
+        var fontFamily = _string(opts.fontFamily, __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["EDITOR_FONT_DEFAULTS"].fontFamily);
+        var fontWeight = _string(opts.fontWeight, __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["EDITOR_FONT_DEFAULTS"].fontWeight);
+        var fontSize = safeParseFloat(opts.fontSize, __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["EDITOR_FONT_DEFAULTS"].fontSize);
         fontSize = clamp(fontSize, 0, MAXIMUM_FONT_SIZE);
         if (fontSize === 0) {
-            fontSize = __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */].fontSize;
+            fontSize = __WEBPACK_IMPORTED_MODULE_1__editorOptions_js__["EDITOR_FONT_DEFAULTS"].fontSize;
         } else
         if (fontSize < MINIMUM_FONT_SIZE) {
             fontSize = MINIMUM_FONT_SIZE;
@@ -13735,12 +11951,12 @@ var FontInfo = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3923:
+/***/ 4057:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditorZoom; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13768,14 +11984,14 @@ var EditorZoom = new ( /** @class */function () {
 
 /***/ }),
 
-/***/ 3924:
+/***/ 4058:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export PrefixSumIndexOfResult */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PrefixSumComputer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PrefixSumComputerWithCache; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_uint_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_uint_js__ = __webpack_require__(3964);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13979,25 +12195,25 @@ var PrefixSumComputerWithCache = /** @class */function () {
 
 /***/ }),
 
-/***/ 3925:
+/***/ 4059:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ITextResourceConfigurationService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ITextResourcePropertiesService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
 
 var ITextResourceConfigurationService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__["c" /* createDecorator */])('textResourceConfigurationService');
 var ITextResourcePropertiesService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__["c" /* createDecorator */])('textResourcePropertiesService');
 
 /***/ }),
 
-/***/ 3926:
+/***/ 4060:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createStringBuilder; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14102,14 +12318,14 @@ var CompatStringBuilder = /** @class */function () {
 
 /***/ }),
 
-/***/ 3927:
+/***/ 4061:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LineDecoration; });
 /* unused harmony export DecorationSegment */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LineDecorationsNormalizer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14286,7 +12502,7 @@ var LineDecorationsNormalizer = /** @class */function () {
 
 /***/ }),
 
-/***/ 3928:
+/***/ 4062:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14306,32 +12522,32 @@ var LineDecorationsNormalizer = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SimpleBulkEditService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return SimpleUriLabelService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SimpleLayoutService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_keyboardEvent_js__ = __webpack_require__(3698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_keyCodes_js__ = __webpack_require__(3686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_severity_js__ = __webpack_require__(3918);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__browser_editorBrowser_js__ = __webpack_require__(4152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_config_commonEditorConfig_js__ = __webpack_require__(4164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_core_editOperation_js__ = __webpack_require__(4154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_configuration_common_configurationModels_js__ = __webpack_require__(4774);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_keybinding_common_abstractKeybindingService_js__ = __webpack_require__(4775);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_keybinding_common_keybindingResolver_js__ = __webpack_require__(4165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__platform_keybinding_common_keybindingsRegistry_js__ = __webpack_require__(3909);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_keybinding_common_resolvedKeybindingItem_js__ = __webpack_require__(4776);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__platform_keybinding_common_usLayoutResolvedKeybinding_js__ = __webpack_require__(4777);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_workspace_common_workspace_js__ = __webpack_require__(4166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__common_standaloneStrings_js__ = __webpack_require__(4167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_keyboardEvent_js__ = __webpack_require__(3854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_keyCodes_js__ = __webpack_require__(3843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_severity_js__ = __webpack_require__(4052);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__browser_editorBrowser_js__ = __webpack_require__(4267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_config_commonEditorConfig_js__ = __webpack_require__(4279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_core_editOperation_js__ = __webpack_require__(4269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_configuration_common_configurationModels_js__ = __webpack_require__(4865);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_keybinding_common_abstractKeybindingService_js__ = __webpack_require__(4866);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_keybinding_common_keybindingResolver_js__ = __webpack_require__(4280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__platform_keybinding_common_keybindingsRegistry_js__ = __webpack_require__(4043);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_keybinding_common_resolvedKeybindingItem_js__ = __webpack_require__(4867);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__platform_keybinding_common_usLayoutResolvedKeybinding_js__ = __webpack_require__(4868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_workspace_common_workspace_js__ = __webpack_require__(4281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__common_standaloneStrings_js__ = __webpack_require__(4282);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14804,7 +13020,7 @@ var SimpleLayoutService = /** @class */function () {
 
 /***/ }),
 
-/***/ 3929:
+/***/ 4063:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14815,10 +13031,10 @@ var SimpleLayoutService = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EditorMouseEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return EditorMouseEventFactory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GlobalEditorMouseMoveMonitor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_globalMouseMoveMonitor_js__ = __webpack_require__(3826);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_globalMouseMoveMonitor_js__ = __webpack_require__(3970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14976,14 +13192,14 @@ var GlobalEditorMouseMoveMonitor = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3930:
+/***/ 4064:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RenderedLinesCollection; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return VisibleLinesCollection; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_stringBuilder_js__ = __webpack_require__(3926);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_stringBuilder_js__ = __webpack_require__(4060);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15445,16 +13661,16 @@ var ViewLayerRenderer = /** @class */function () {
 
 /***/ }),
 
-/***/ 3931:
+/***/ 4065:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DecorationToRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DedupOverlay; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GlyphMarginOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__glyphMargin_css__ = __webpack_require__(4815);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__glyphMargin_css__ = __webpack_require__(4906);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__glyphMargin_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__glyphMargin_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15639,15 +13855,15 @@ var GlyphMarginOverlay = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 3932:
+/***/ 4066:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MinimapTokensColorTracker; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MinimapCharRenderer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_rgba_js__ = __webpack_require__(4832);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modes_js__ = __webpack_require__(3547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_rgba_js__ = __webpack_require__(4923);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modes_js__ = __webpack_require__(3721);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15931,12 +14147,12 @@ var MinimapCharRenderer = /** @class */function () {
 
 /***/ }),
 
-/***/ 3933:
+/***/ 4067:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IStandaloneThemeService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15946,7 +14162,7 @@ var IStandaloneThemeService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_insta
 
 /***/ }),
 
-/***/ 3934:
+/***/ 4068:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15955,11 +14171,11 @@ var IStandaloneThemeService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_insta
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModesRegistry; });
 /* unused harmony export PLAINTEXT_MODE_ID */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PLAINTEXT_LANGUAGE_IDENTIFIER; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__languageConfigurationRegistry_js__ = __webpack_require__(3675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_registry_common_platform_js__ = __webpack_require__(3648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__languageConfigurationRegistry_js__ = __webpack_require__(3834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_registry_common_platform_js__ = __webpack_require__(3811);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16009,7 +14225,7 @@ __WEBPACK_IMPORTED_MODULE_3__languageConfigurationRegistry_js__["a" /* LanguageC
 
 /***/ }),
 
-/***/ 3935:
+/***/ 4069:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16061,7 +14277,7 @@ var Range;
 
 /***/ }),
 
-/***/ 3936:
+/***/ 4070:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16069,22 +14285,22 @@ var Range;
 /* unused harmony export ExternalElementsDragAndDropData */
 /* unused harmony export DesktopDragAndDropData */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ListView; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__touch_js__ = __webpack_require__(3760);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__event_js__ = __webpack_require__(3697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__scrollbar_scrollableElement_js__ = __webpack_require__(3761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__rangeMap_js__ = __webpack_require__(4907);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__rowCache_js__ = __webpack_require__(4908);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_decorators_js__ = __webpack_require__(3915);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_range_js__ = __webpack_require__(3935);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dnd_js__ = __webpack_require__(4185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_async_js__ = __webpack_require__(3601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__touch_js__ = __webpack_require__(3913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__event_js__ = __webpack_require__(3853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__scrollbar_scrollableElement_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__rangeMap_js__ = __webpack_require__(4998);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__rowCache_js__ = __webpack_require__(4999);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_decorators_js__ = __webpack_require__(4049);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_range_js__ = __webpack_require__(4069);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dnd_js__ = __webpack_require__(4300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_async_js__ = __webpack_require__(3773);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -17046,32 +15262,32 @@ var ListView = /** @class */function () {
 
 /***/ }),
 
-/***/ 3937:
+/***/ 4071:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ComposedTreeDelegate; });
 /* unused harmony export RenderIndentGuides */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractTree; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_tree_css__ = __webpack_require__(4910);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_tree_css__ = __webpack_require__(5001);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_tree_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__media_tree_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_listWidget_js__ = __webpack_require__(4184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__keyboardEvent_js__ = __webpack_require__(3698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dnd_js__ = __webpack_require__(4185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__list_listView_js__ = __webpack_require__(3936);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__event_js__ = __webpack_require__(3697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_filters_js__ = __webpack_require__(4187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__indexTreeModel_js__ = __webpack_require__(4189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_map_js__ = __webpack_require__(3658);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common_numbers_js__ = __webpack_require__(4186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_collections_js__ = __webpack_require__(4183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_listWidget_js__ = __webpack_require__(4299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__keyboardEvent_js__ = __webpack_require__(3854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dnd_js__ = __webpack_require__(4300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__list_listView_js__ = __webpack_require__(4070);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__event_js__ = __webpack_require__(3853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_filters_js__ = __webpack_require__(4302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__indexTreeModel_js__ = __webpack_require__(4304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_map_js__ = __webpack_require__(3819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common_numbers_js__ = __webpack_require__(4301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_collections_js__ = __webpack_require__(4298);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18266,16 +16482,16 @@ var AbstractTree = /** @class */function () {
 
 /***/ }),
 
-/***/ 3938:
+/***/ 4072:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MarkerSeverity; });
 /* unused harmony export IMarkerData */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IMarkerService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_severity_js__ = __webpack_require__(3918);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_severity_js__ = __webpack_require__(4052);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18390,7 +16606,7 @@ var IMarkerService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common_in
 
 /***/ }),
 
-/***/ 4131:
+/***/ 4246:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18402,11 +16618,11 @@ var IMarkerService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common_in
 /* unused harmony export Piece */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StringBuffer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieceTreeBase; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rbTreeBase_js__ = __webpack_require__(4692);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__textModelSearch_js__ = __webpack_require__(3912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rbTreeBase_js__ = __webpack_require__(4783);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__textModelSearch_js__ = __webpack_require__(4046);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19748,12 +17964,12 @@ var PieceTreeBase = /** @class */function () {
 
 /***/ }),
 
-/***/ 4134:
+/***/ 4249:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StopWatch; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_js__ = __webpack_require__(3589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_js__ = __webpack_require__(3763);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19788,7 +18004,7 @@ var StopWatch = /** @class */function () {
 
 /***/ }),
 
-/***/ 4135:
+/***/ 4250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19796,10 +18012,10 @@ var StopWatch = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultilineTokensBuilder; });
 /* unused harmony export MultilineTokens */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TokensStore; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_lineTokens_js__ = __webpack_require__(3759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modes_js__ = __webpack_require__(3547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_lineTokens_js__ = __webpack_require__(3912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modes_js__ = __webpack_require__(3721);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20122,13 +18338,13 @@ var TokensStore = /** @class */function () {
 
 /***/ }),
 
-/***/ 4136:
+/***/ 4251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Extensions; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20163,17 +18379,17 @@ __WEBPACK_IMPORTED_MODULE_0__registry_common_platform_js__["a" /* Registry */].a
 
 /***/ }),
 
-/***/ 4138:
+/***/ 4253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CaseSensitiveCheckbox; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return WholeWordsCheckbox; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RegexCheckbox; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_checkbox_js__ = __webpack_require__(4139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findInputCheckboxes_css__ = __webpack_require__(4710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_checkbox_js__ = __webpack_require__(4254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findInputCheckboxes_css__ = __webpack_require__(4801);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__findInputCheckboxes_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__findInputCheckboxes_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nls_js__ = __webpack_require__(3595);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nls_js__ = __webpack_require__(3769);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20242,18 +18458,18 @@ var RegexCheckbox = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4139:
+/***/ 4254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Checkbox; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_css__ = __webpack_require__(4708);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_css__ = __webpack_require__(4799);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkbox_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__checkbox_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_objects_js__ = __webpack_require__(3659);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_objects_js__ = __webpack_require__(3820);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20369,22 +18585,22 @@ var Checkbox = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4140:
+/***/ 4255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Sash; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sash_css__ = __webpack_require__(4718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sash_css__ = __webpack_require__(4809);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sash_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__sash_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__touch_js__ = __webpack_require__(3760);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__event_js__ = __webpack_require__(3697);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__touch_js__ = __webpack_require__(3913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__event_js__ = __webpack_require__(3853);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -20708,13 +18924,13 @@ var Sash = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4141:
+/***/ 4256:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4722);
+var content = __webpack_require__(4813);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -20722,7 +18938,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -20740,27 +18956,27 @@ if(false) {
 
 /***/ }),
 
-/***/ 4142:
+/***/ 4257:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export InputBox */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryInputBox; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputBox_css__ = __webpack_require__(4723);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputBox_css__ = __webpack_require__(4814);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__inputBox_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__inputBox_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__formattedTextRenderer_js__ = __webpack_require__(4725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__aria_aria_js__ = __webpack_require__(3825);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__actionbar_actionbar_js__ = __webpack_require__(3916);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_history_js__ = __webpack_require__(4728);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__scrollbar_scrollableElement_js__ = __webpack_require__(3761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__event_js__ = __webpack_require__(3697);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__formattedTextRenderer_js__ = __webpack_require__(4816);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__aria_aria_js__ = __webpack_require__(3969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__actionbar_actionbar_js__ = __webpack_require__(4050);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_history_js__ = __webpack_require__(4819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__scrollbar_scrollableElement_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__event_js__ = __webpack_require__(3853);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21269,18 +19485,18 @@ var HistoryInputBox = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4143:
+/***/ 4258:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractScrollbar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globalMouseMoveMonitor_js__ = __webpack_require__(3826);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scrollbarArrow_js__ = __webpack_require__(3917);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__scrollbarVisibilityController_js__ = __webpack_require__(4732);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_platform_js__ = __webpack_require__(3589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__globalMouseMoveMonitor_js__ = __webpack_require__(3970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scrollbarArrow_js__ = __webpack_require__(4051);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__scrollbarVisibilityController_js__ = __webpack_require__(4823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_platform_js__ = __webpack_require__(3763);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21490,7 +19706,7 @@ var AbstractScrollbar = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4144:
+/***/ 4259:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21638,7 +19854,7 @@ var ScrollbarState = /** @class */function () {
 
 /***/ }),
 
-/***/ 4145:
+/***/ 4260:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21646,8 +19862,8 @@ var ScrollbarState = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Scrollable; });
 /* unused harmony export SmoothScrollingUpdate */
 /* unused harmony export SmoothScrollingOperation */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21968,12 +20184,12 @@ function easeOutCubic(t) {
 
 /***/ }),
 
-/***/ 4146:
+/***/ 4261:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IClipboardService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -21983,17 +20199,17 @@ var IClipboardService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common
 
 /***/ }),
 
-/***/ 4147:
+/***/ 4262:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IStorageService; });
 /* unused harmony export WillSaveStateReason */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InMemoryStorageService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_types_js__ = __webpack_require__(3605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_types_js__ = __webpack_require__(3776);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22083,7 +20299,7 @@ var InMemoryStorageService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4148:
+/***/ 4263:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22091,8 +20307,8 @@ var InMemoryStorageService = /** @class */function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SyntaxRangeProvider; });
 /* unused harmony export RangesCollector */
 /* harmony export (immutable) */ __webpack_exports__["c"] = sanitizeRanges;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__foldingRanges_js__ = __webpack_require__(3919);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__foldingRanges_js__ = __webpack_require__(4053);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22259,13 +20475,13 @@ function sanitizeRanges(rangeData, limit) {
 
 /***/ }),
 
-/***/ 4155:
+/***/ 4270:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IOpenerService; });
 /* unused harmony export NullOpenerService */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22280,17 +20496,17 @@ var NullOpenerService = Object.freeze({
 
 /***/ }),
 
-/***/ 4156:
+/***/ 4271:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WordOperations; });
 /* unused harmony export WordPartOperations */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wordCharacterClassifier_js__ = __webpack_require__(3758);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wordCharacterClassifier_js__ = __webpack_require__(3911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22863,23 +21079,23 @@ function enforceDefined(arr) {
 
 /***/ }),
 
-/***/ 4157:
+/***/ 4272:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export KeyMod */
 /* harmony export (immutable) */ __webpack_exports__["a"] = createMonacoBaseAPI;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__promise_polyfill_polyfill_js__ = __webpack_require__(4758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__promise_polyfill_polyfill_js__ = __webpack_require__(4849);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__promise_polyfill_polyfill_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__promise_polyfill_polyfill_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_cancellation_js__ = __webpack_require__(3685);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_keyCodes_js__ = __webpack_require__(3686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_token_js__ = __webpack_require__(3823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__standaloneEnums_js__ = __webpack_require__(3920);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_cancellation_js__ = __webpack_require__(3842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_keyCodes_js__ = __webpack_require__(3843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_token_js__ = __webpack_require__(3967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__standaloneEnums_js__ = __webpack_require__(4054);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -22928,26 +21144,26 @@ function createMonacoBaseAPI() {
 
 /***/ }),
 
-/***/ 4158:
+/***/ 4273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EditorWorkerServiceImpl; });
 /* unused harmony export EditorWorkerHost */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditorWorkerClient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_worker_simpleWorker_js__ = __webpack_require__(4159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_worker_defaultWorkerFactory_js__ = __webpack_require__(4766);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editorSimpleWorker_js__ = __webpack_require__(4767);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modelService_js__ = __webpack_require__(3694);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__resourceConfiguration_js__ = __webpack_require__(3925);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_log_common_log_js__ = __webpack_require__(4161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_common_stopwatch_js__ = __webpack_require__(4134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_worker_simpleWorker_js__ = __webpack_require__(4274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_worker_defaultWorkerFactory_js__ = __webpack_require__(4857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editorSimpleWorker_js__ = __webpack_require__(4858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modelService_js__ = __webpack_require__(3850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__resourceConfiguration_js__ = __webpack_require__(4059);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_log_common_log_js__ = __webpack_require__(4276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_common_stopwatch_js__ = __webpack_require__(4249);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -23360,7 +21576,7 @@ var EditorWorkerClient = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4159:
+/***/ 4274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23368,10 +21584,10 @@ var EditorWorkerClient = /** @class */function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SimpleWorkerClient; });
 /* unused harmony export SimpleWorkerServer */
 /* unused harmony export create */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__types_js__ = __webpack_require__(3605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__types_js__ = __webpack_require__(3776);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -23675,7 +21891,7 @@ function create(postMessage) {
 
 /***/ }),
 
-/***/ 4160:
+/***/ 4275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23683,7 +21899,7 @@ function create(postMessage) {
 /* unused harmony export Debug */
 /* unused harmony export MyArray */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LcsDiff; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__diffChange_js__ = __webpack_require__(4768);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__diffChange_js__ = __webpack_require__(4859);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -24475,13 +22691,13 @@ var LcsDiff = /** @class */function () {
 
 /***/ }),
 
-/***/ 4161:
+/***/ 4276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ILogService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NullLogService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -24510,16 +22726,16 @@ var NullLogService = /** @class */function () {
 
 /***/ }),
 
-/***/ 4162:
+/***/ 4277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonarchTokenizer; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createTokenizationSupport;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_token_js__ = __webpack_require__(3823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modes_nullMode_js__ = __webpack_require__(3696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__monarchCommon_js__ = __webpack_require__(4163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_token_js__ = __webpack_require__(3967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modes_nullMode_js__ = __webpack_require__(3852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__monarchCommon_js__ = __webpack_require__(4278);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -25260,7 +23476,7 @@ function createTokenizationSupport(modeService, standaloneThemeService, modeId, 
 
 /***/ }),
 
-/***/ 4163:
+/***/ 4278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25403,7 +23619,7 @@ function stateExists(lexer, inState) {
 
 /***/ }),
 
-/***/ 4164:
+/***/ 4279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25411,16 +23627,16 @@ function stateExists(lexer, inState) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonEditorConfiguration; });
 /* harmony export (immutable) */ __webpack_exports__["c"] = isEditorConfigurationKey;
 /* harmony export (immutable) */ __webpack_exports__["b"] = isDiffEditorConfigurationKey;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editorZoom_js__ = __webpack_require__(3923);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fontInfo_js__ = __webpack_require__(3922);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_configuration_common_configurationRegistry_js__ = __webpack_require__(3762);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_registry_common_platform_js__ = __webpack_require__(3648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__editorZoom_js__ = __webpack_require__(4057);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fontInfo_js__ = __webpack_require__(4056);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_configuration_common_configurationRegistry_js__ = __webpack_require__(3915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_registry_common_platform_js__ = __webpack_require__(3811);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -25448,9 +23664,9 @@ var __extends = this && this.__extends || function () {
 
 
 
-var EDITOR_DEFAULTS = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["a" /* EDITOR_DEFAULTS */];
-var EDITOR_FONT_DEFAULTS = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */];
-var EDITOR_MODEL_DEFAULTS = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */];
+var EDITOR_DEFAULTS = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["EDITOR_DEFAULTS"];
+var EDITOR_FONT_DEFAULTS = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["EDITOR_FONT_DEFAULTS"];
+var EDITOR_MODEL_DEFAULTS = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["EDITOR_MODEL_DEFAULTS"];
 var TabFocus = new ( /** @class */function () {
     function class_1() {
         this._tabFocus = false;
@@ -25484,7 +23700,7 @@ var CommonEditorConfiguration = /** @class */function (_super) {
         _this._rawOptions.find = __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__["e" /* mixin */]({}, _this._rawOptions.find || {});
         _this._rawOptions.hover = __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__["e" /* mixin */]({}, _this._rawOptions.hover || {});
         _this._rawOptions.parameterHints = __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__["e" /* mixin */]({}, _this._rawOptions.parameterHints || {});
-        _this._validatedOptions = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["d" /* EditorOptionsValidator */].validate(_this._rawOptions, EDITOR_DEFAULTS);
+        _this._validatedOptions = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["EditorOptionsValidator"].validate(_this._rawOptions, EDITOR_DEFAULTS);
         _this._isDominatedByLongLines = false;
         _this._lineNumbersDigitCount = 1;
         _this._register(__WEBPACK_IMPORTED_MODULE_6__editorZoom_js__["a" /* EditorZoom */].onDidChangeZoomLevel(function (_) {return _this._recomputeOptions();}));
@@ -25526,7 +23742,7 @@ var CommonEditorConfiguration = /** @class */function (_super) {
             tabFocusMode: TabFocus.getTabFocusMode(),
             accessibilitySupport: partialEnv.accessibilitySupport };
 
-        return __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["f" /* InternalEditorOptionsFactory */].createInternalEditorOptions(env, opts);
+        return __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["InternalEditorOptionsFactory"].createInternalEditorOptions(env, opts);
     };
     CommonEditorConfiguration._primitiveArrayEquals = function (a, b) {
         if (a.length !== b.length) {
@@ -25572,7 +23788,7 @@ var CommonEditorConfiguration = /** @class */function (_super) {
             return;
         }
         this._rawOptions = __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__["e" /* mixin */](this._rawOptions, newOptions || {});
-        this._validatedOptions = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["d" /* EditorOptionsValidator */].validate(this._rawOptions, EDITOR_DEFAULTS);
+        this._validatedOptions = __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["EditorOptionsValidator"].validate(this._rawOptions, EDITOR_DEFAULTS);
         this._recomputeOptions();
     };
     CommonEditorConfiguration.prototype.setIsDominatedByLongLines = function (isDominatedByLongLines) {
@@ -26257,7 +24473,7 @@ var editorConfiguration = {
         'editor.cursorBlinking': {
             'type': 'string',
             'enum': ['blink', 'smooth', 'phase', 'expand', 'solid'],
-            'default': __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["h" /* blinkingStyleToString */](EDITOR_DEFAULTS.viewInfo.cursorBlinking),
+            'default': __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["blinkingStyleToString"](EDITOR_DEFAULTS.viewInfo.cursorBlinking),
             'description': __WEBPACK_IMPORTED_MODULE_0__nls_js__["a" /* localize */]('cursorBlinking', "Control the cursor animation style.") },
 
         'editor.mouseWheelZoom': {
@@ -26273,7 +24489,7 @@ var editorConfiguration = {
         'editor.cursorStyle': {
             'type': 'string',
             'enum': ['block', 'block-outline', 'line', 'line-thin', 'underline', 'underline-thin'],
-            'default': __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["i" /* cursorStyleToString */](EDITOR_DEFAULTS.viewInfo.cursorStyle),
+            'default': __WEBPACK_IMPORTED_MODULE_5__editorOptions_js__["cursorStyleToString"](EDITOR_DEFAULTS.viewInfo.cursorStyle),
             'description': __WEBPACK_IMPORTED_MODULE_0__nls_js__["a" /* localize */]('cursorStyle', "Controls the cursor style.") },
 
         'editor.cursorWidth': {
@@ -26491,12 +24707,12 @@ configurationRegistry.registerConfiguration(editorConfiguration);
 
 /***/ }),
 
-/***/ 4165:
+/***/ 4280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeybindingResolver; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextkey_common_contextkey_js__ = __webpack_require__(3775);
 
 var KeybindingResolver = /** @class */function () {
     function KeybindingResolver(defaultKeybindings, overrides) {
@@ -26736,7 +24952,7 @@ var KeybindingResolver = /** @class */function () {
 
 /***/ }),
 
-/***/ 4166:
+/***/ 4281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26745,10 +24961,10 @@ var KeybindingResolver = /** @class */function () {
 /* unused harmony export IWorkspaceFolder */
 /* unused harmony export Workspace */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WorkspaceFolder; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_resources_js__ = __webpack_require__(3921);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_map_js__ = __webpack_require__(3658);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_resources_js__ = __webpack_require__(4055);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_map_js__ = __webpack_require__(3819);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -26856,7 +25072,7 @@ var WorkspaceFolder = /** @class */function () {
 
 /***/ }),
 
-/***/ 4167:
+/***/ 4282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26868,7 +25084,7 @@ var WorkspaceFolder = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StandaloneCodeEditorNLS; });
 /* unused harmony export ToggleHighContrastNLS */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SimpleServicesNLS; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -26955,48 +25171,48 @@ var SimpleServicesNLS;
 
 /***/ }),
 
-/***/ 4168:
+/***/ 4283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CodeEditorWidget; });
 /* unused harmony export BooleanEventEmitter */
 /* unused harmony export EditorModeContext */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_editor_css__ = __webpack_require__(4781);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_editor_css__ = __webpack_require__(4872);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_editor_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__media_editor_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_tokens_css__ = __webpack_require__(4783);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_tokens_css__ = __webpack_require__(4874);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_tokens_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__media_tokens_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__view_viewImpl_js__ = __webpack_require__(4787);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__view_viewOutgoingEvents_js__ = __webpack_require__(4856);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_controller_cursor_js__ = __webpack_require__(4857);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_controller_cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_editorAction_js__ = __webpack_require__(4178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__common_editorCommon_js__ = __webpack_require__(3699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__common_viewModel_viewModelImpl_js__ = __webpack_require__(4860);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__platform_instantiation_common_serviceCollection_js__ = __webpack_require__(3828);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__platform_accessibility_common_accessibility_js__ = __webpack_require__(3700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__base_common_types_js__ = __webpack_require__(3605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__view_viewImpl_js__ = __webpack_require__(4878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__view_viewOutgoingEvents_js__ = __webpack_require__(4947);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_controller_cursor_js__ = __webpack_require__(4948);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_controller_cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_editorAction_js__ = __webpack_require__(4293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__common_editorCommon_js__ = __webpack_require__(3855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__common_viewModel_viewModelImpl_js__ = __webpack_require__(4951);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__platform_instantiation_common_serviceCollection_js__ = __webpack_require__(3972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__platform_accessibility_common_accessibility_js__ = __webpack_require__(3856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__base_common_types_js__ = __webpack_require__(3776);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -28389,20 +26605,20 @@ Object(__WEBPACK_IMPORTED_MODULE_30__platform_theme_common_themeService_js__["e"
 
 /***/ }),
 
-/***/ 4169:
+/***/ 4284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MouseTarget; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HitTestContext; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return MouseTargetFactory; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorDom_js__ = __webpack_require__(3929);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viewParts_lines_viewLine_js__ = __webpack_require__(4170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_controller_cursorCommon_js__ = __webpack_require__(3634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__editorDom_js__ = __webpack_require__(4063);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viewParts_lines_viewLine_js__ = __webpack_require__(4285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_controller_cursorCommon_js__ = __webpack_require__(3797);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -29164,21 +27380,21 @@ var MouseTargetFactory = /** @class */function () {
 
 /***/ }),
 
-/***/ 4170:
+/***/ 4285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DomReadingContext; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ViewLineOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ViewLine; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rangeUtil_js__ = __webpack_require__(4790);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_view_renderingContext_js__ = __webpack_require__(3764);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_viewLayout_lineDecorations_js__ = __webpack_require__(3927);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3827);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rangeUtil_js__ = __webpack_require__(4881);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_view_renderingContext_js__ = __webpack_require__(3917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_viewLayout_lineDecorations_js__ = __webpack_require__(4061);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -29665,15 +27881,15 @@ function createNormalRenderedLine(domNode, renderLineInput, characterMapping, co
 
 /***/ }),
 
-/***/ 4171:
+/***/ 4286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TextAreaState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PagedScreenReaderStrategy; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -29905,18 +28121,18 @@ var PagedScreenReaderStrategy = /** @class */function () {
 
 /***/ }),
 
-/***/ 4172:
+/***/ 4287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LineNumbersOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lineNumbers_css__ = __webpack_require__(4795);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lineNumbers_css__ = __webpack_require__(4886);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lineNumbers_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__lineNumbers_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -30083,13 +28299,13 @@ Object(__WEBPACK_IMPORTED_MODULE_5__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4173:
+/***/ 4288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Margin; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_viewPart_js__ = __webpack_require__(3627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_viewPart_js__ = __webpack_require__(3794);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -30171,16 +28387,16 @@ var Margin = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4174:
+/***/ 4289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeleteOperations; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__commands_replaceCommand_js__ = __webpack_require__(3818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cursorMoveOperations_js__ = __webpack_require__(4175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__commands_replaceCommand_js__ = __webpack_require__(3962);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cursorMoveOperations_js__ = __webpack_require__(4290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -30367,15 +28583,15 @@ var DeleteOperations = /** @class */function () {
 
 /***/ }),
 
-/***/ 4175:
+/***/ 4290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export CursorPosition */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoveOperations; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -30577,22 +28793,22 @@ var MoveOperations = /** @class */function () {
 
 /***/ }),
 
-/***/ 4176:
+/***/ 4291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeOperations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TypeWithAutoClosingCommand; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__commands_replaceCommand_js__ = __webpack_require__(3818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commands_shiftCommand_js__ = __webpack_require__(4801);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__commands_surroundSelectionCommand_js__ = __webpack_require__(4802);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__wordCharacterClassifier_js__ = __webpack_require__(3758);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modes_languageConfiguration_js__ = __webpack_require__(3824);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__commands_replaceCommand_js__ = __webpack_require__(3962);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commands_shiftCommand_js__ = __webpack_require__(4892);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__commands_surroundSelectionCommand_js__ = __webpack_require__(4893);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__wordCharacterClassifier_js__ = __webpack_require__(3911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modes_languageConfiguration_js__ = __webpack_require__(3968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -31415,7 +29631,7 @@ var TypeWithAutoClosingCommand = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4177:
+/***/ 4292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31595,7 +29811,7 @@ var OverviewZoneManager = /** @class */function () {
 
 /***/ }),
 
-/***/ 4178:
+/***/ 4293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31629,7 +29845,7 @@ var InternalEditorAction = /** @class */function () {
 
 /***/ }),
 
-/***/ 4179:
+/***/ 4294:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31639,12 +29855,12 @@ var InternalEditorAction = /** @class */function () {
 /* unused harmony export SplitLine */
 /* unused harmony export IdentityCoordinatesConverter */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IdentityLinesCollection; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewEvents_js__ = __webpack_require__(3726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prefixSumComputer_js__ = __webpack_require__(3924);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewModel_js__ = __webpack_require__(3701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewEvents_js__ = __webpack_require__(3878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__prefixSumComputer_js__ = __webpack_require__(4058);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewModel_js__ = __webpack_require__(3857);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -32742,57 +30958,57 @@ var OverviewRulerDecorations = /** @class */function () {
 
 /***/ }),
 
-/***/ 4180:
+/***/ 4295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StaticServices; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DynamicStandaloneServices; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_services_bulkEditService_js__ = __webpack_require__(4874);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_services_editorWorkerService_js__ = __webpack_require__(3725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_services_editorWorkerServiceImpl_js__ = __webpack_require__(4158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_services_modeService_js__ = __webpack_require__(4875);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_services_modeServiceImpl_js__ = __webpack_require__(4876);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_services_modelService_js__ = __webpack_require__(3694);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_services_modelServiceImpl_js__ = __webpack_require__(4880);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_services_resourceConfiguration_js__ = __webpack_require__(3925);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__simpleServices_js__ = __webpack_require__(3928);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__standaloneCodeServiceImpl_js__ = __webpack_require__(4881);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__standaloneThemeServiceImpl_js__ = __webpack_require__(4884);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_standaloneThemeService_js__ = __webpack_require__(3933);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_actions_common_actions_js__ = __webpack_require__(3757);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_contextkey_browser_contextKeyService_js__ = __webpack_require__(4887);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_contextview_browser_contextMenuService_js__ = __webpack_require__(4888);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__platform_contextview_browser_contextView_js__ = __webpack_require__(3723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_contextview_browser_contextViewService_js__ = __webpack_require__(4895);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__platform_dialogs_common_dialogs_js__ = __webpack_require__(4899);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_instantiation_common_instantiationService_js__ = __webpack_require__(4900);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_instantiation_common_serviceCollection_js__ = __webpack_require__(3828);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_keybinding_common_keybinding_js__ = __webpack_require__(3724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_label_common_label_js__ = __webpack_require__(4902);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__platform_list_browser_listService_js__ = __webpack_require__(4903);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__platform_log_common_log_js__ = __webpack_require__(4161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__platform_markers_common_markerService_js__ = __webpack_require__(4914);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__platform_markers_common_markers_js__ = __webpack_require__(3938);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__platform_progress_common_progress_js__ = __webpack_require__(4915);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__platform_storage_common_storage_js__ = __webpack_require__(4147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__platform_telemetry_common_telemetry_js__ = __webpack_require__(3910);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__platform_workspace_common_workspace_js__ = __webpack_require__(4166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__platform_actions_common_menuService_js__ = __webpack_require__(4916);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__common_services_markersDecorationService_js__ = __webpack_require__(4917);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__common_services_markerDecorationsServiceImpl_js__ = __webpack_require__(4918);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__platform_accessibility_common_accessibility_js__ = __webpack_require__(3700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__platform_accessibility_common_accessibilityService_js__ = __webpack_require__(4919);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__platform_layout_browser_layoutService_js__ = __webpack_require__(4182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__platform_instantiation_common_extensions_js__ = __webpack_require__(4150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_services_bulkEditService_js__ = __webpack_require__(4965);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_services_editorWorkerService_js__ = __webpack_require__(3877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_services_editorWorkerServiceImpl_js__ = __webpack_require__(4273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_services_modeService_js__ = __webpack_require__(4966);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_services_modeServiceImpl_js__ = __webpack_require__(4967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_services_modelService_js__ = __webpack_require__(3850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_services_modelServiceImpl_js__ = __webpack_require__(4971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_services_resourceConfiguration_js__ = __webpack_require__(4059);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__simpleServices_js__ = __webpack_require__(4062);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__standaloneCodeServiceImpl_js__ = __webpack_require__(4972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__standaloneThemeServiceImpl_js__ = __webpack_require__(4975);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_standaloneThemeService_js__ = __webpack_require__(4067);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_actions_common_actions_js__ = __webpack_require__(3910);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_contextkey_browser_contextKeyService_js__ = __webpack_require__(4978);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_contextview_browser_contextMenuService_js__ = __webpack_require__(4979);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__platform_contextview_browser_contextView_js__ = __webpack_require__(3875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_contextview_browser_contextViewService_js__ = __webpack_require__(4986);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__platform_dialogs_common_dialogs_js__ = __webpack_require__(4990);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_instantiation_common_instantiationService_js__ = __webpack_require__(4991);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_instantiation_common_serviceCollection_js__ = __webpack_require__(3972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_keybinding_common_keybinding_js__ = __webpack_require__(3876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_label_common_label_js__ = __webpack_require__(4993);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__platform_list_browser_listService_js__ = __webpack_require__(4994);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__platform_log_common_log_js__ = __webpack_require__(4276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__platform_markers_common_markerService_js__ = __webpack_require__(5005);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__platform_markers_common_markers_js__ = __webpack_require__(4072);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__platform_progress_common_progress_js__ = __webpack_require__(5006);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__platform_storage_common_storage_js__ = __webpack_require__(4262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__platform_telemetry_common_telemetry_js__ = __webpack_require__(4044);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__platform_workspace_common_workspace_js__ = __webpack_require__(4281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__platform_actions_common_menuService_js__ = __webpack_require__(5007);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__common_services_markersDecorationService_js__ = __webpack_require__(5008);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__common_services_markerDecorationsServiceImpl_js__ = __webpack_require__(5009);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__platform_accessibility_common_accessibility_js__ = __webpack_require__(3856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__platform_accessibility_common_accessibilityService_js__ = __webpack_require__(5010);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__platform_layout_browser_layoutService_js__ = __webpack_require__(4297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__platform_instantiation_common_extensions_js__ = __webpack_require__(4265);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -32993,7 +31209,7 @@ var DynamicStandaloneServices = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4181:
+/***/ 4296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33005,8 +31221,8 @@ var DynamicStandaloneServices = /** @class */function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return defaultListStyles; });
 /* unused harmony export defaultMenuStyles */
 /* harmony export (immutable) */ __webpack_exports__["b"] = attachMenuStyler;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_objects_js__ = __webpack_require__(3659);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_objects_js__ = __webpack_require__(3820);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -33136,12 +31352,12 @@ function attachMenuStyler(widget, themeService, style) {
 
 /***/ }),
 
-/***/ 4182:
+/***/ 4297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ILayoutService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -33151,7 +31367,7 @@ var ILayoutService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common_in
 
 /***/ }),
 
-/***/ 4183:
+/***/ 4298:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33241,7 +31457,7 @@ var SetMap = /** @class */function () {
 
 /***/ }),
 
-/***/ 4184:
+/***/ 4299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33251,26 +31467,26 @@ var SetMap = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return MouseController; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultStyleController; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return List; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_css__ = __webpack_require__(4904);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_css__ = __webpack_require__(4995);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__list_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__list_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_decorators_js__ = __webpack_require__(3915);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__touch_js__ = __webpack_require__(3760);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__keyboardEvent_js__ = __webpack_require__(3698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__event_js__ = __webpack_require__(3697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__list_js__ = __webpack_require__(4906);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__listView_js__ = __webpack_require__(3936);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__splice_js__ = __webpack_require__(4909);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_numbers_js__ = __webpack_require__(4186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_filters_js__ = __webpack_require__(4187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_decorators_js__ = __webpack_require__(4049);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__touch_js__ = __webpack_require__(3913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__keyboardEvent_js__ = __webpack_require__(3854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__event_js__ = __webpack_require__(3853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__list_js__ = __webpack_require__(4997);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__listView_js__ = __webpack_require__(4070);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__splice_js__ = __webpack_require__(5000);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_numbers_js__ = __webpack_require__(4301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_filters_js__ = __webpack_require__(4302);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -34600,7 +32816,7 @@ var List = /** @class */function () {
 
 /***/ }),
 
-/***/ 4185:
+/***/ 4300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34644,7 +32860,7 @@ var StaticDND = {
 
 /***/ }),
 
-/***/ 4186:
+/***/ 4301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34659,7 +32875,7 @@ function clamp(value, min, max) {
 
 /***/ }),
 
-/***/ 4187:
+/***/ 4302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34676,8 +32892,8 @@ function clamp(value, min, max) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuzzyScore; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = fuzzyScore;
 /* unused harmony export fuzzyScoreGracefulAggressive */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map_js__ = __webpack_require__(3658);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map_js__ = __webpack_require__(3819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -35302,13 +33518,13 @@ function nextTypoPermutation(pattern, patternPos) {
 
 /***/ }),
 
-/***/ 4188:
+/***/ 4303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObjectTree; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstractTree_js__ = __webpack_require__(3937);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objectTreeModel_js__ = __webpack_require__(4190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstractTree_js__ = __webpack_require__(4071);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objectTreeModel_js__ = __webpack_require__(4305);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -35358,16 +33574,16 @@ var ObjectTree = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4189:
+/***/ 4304:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["c"] = isFilterResult;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getVisibleState;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndexTreeModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_iterator_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_iterator_js__ = __webpack_require__(3873);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -35797,13 +34013,13 @@ var IndexTreeModel = /** @class */function () {
 
 /***/ }),
 
-/***/ 4190:
+/***/ 4305:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObjectTreeModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_iterator_js__ = __webpack_require__(3721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indexTreeModel_js__ = __webpack_require__(4189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_iterator_js__ = __webpack_require__(3873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indexTreeModel_js__ = __webpack_require__(4304);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -35964,7 +34180,7 @@ var ObjectTreeModel = /** @class */function () {
 
 /***/ }),
 
-/***/ 4193:
+/***/ 4308:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36003,7 +34219,7 @@ function registerLanguage(def) {
 
 /***/ }),
 
-/***/ 4685:
+/***/ 4776:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36022,24 +34238,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NextSelectionMatchFindAction", function() { return NextSelectionMatchFindAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PreviousSelectionMatchFindAction", function() { return PreviousSelectionMatchFindAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StartFindReplaceAction", function() { return StartFindReplaceAction; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__findModel_js__ = __webpack_require__(3911);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__findOptionsWidget_js__ = __webpack_require__(4707);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__findState_js__ = __webpack_require__(4712);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__findWidget_js__ = __webpack_require__(4713);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_clipboard_common_clipboardService_js__ = __webpack_require__(4146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_contextview_browser_contextView_js__ = __webpack_require__(3723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_keybinding_common_keybinding_js__ = __webpack_require__(3724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_storage_common_storage_js__ = __webpack_require__(4147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_notification_common_notification_js__ = __webpack_require__(3677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__findModel_js__ = __webpack_require__(4045);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__findOptionsWidget_js__ = __webpack_require__(4798);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__findState_js__ = __webpack_require__(4803);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__findWidget_js__ = __webpack_require__(4804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_clipboard_common_clipboardService_js__ = __webpack_require__(4261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_contextview_browser_contextView_js__ = __webpack_require__(3875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_keybinding_common_keybinding_js__ = __webpack_require__(3876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_storage_common_storage_js__ = __webpack_require__(4262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_notification_common_notification_js__ = __webpack_require__(3836);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -36852,16 +35068,16 @@ Object(__WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__["f" /* registe
 
 /***/ }),
 
-/***/ 4687:
+/***/ 4778:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindDecorations; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -37141,12 +35357,12 @@ var FindDecorations = /** @class */function () {
 
 /***/ }),
 
-/***/ 4688:
+/***/ 4779:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditStack; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -37322,7 +35538,7 @@ var EditStack = /** @class */function () {
 
 /***/ }),
 
-/***/ 4689:
+/***/ 4780:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37505,7 +35721,7 @@ function guessIndentation(source, defaultTabSize, defaultInsertSpaces) {
 
 /***/ }),
 
-/***/ 4690:
+/***/ 4781:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38504,15 +36720,15 @@ function intervalCompare(aStart, aEnd, bStart, bEnd) {
 
 /***/ }),
 
-/***/ 4691:
+/***/ 4782:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export PieceTreeTextBufferFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieceTreeTextBufferBuilder; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pieceTreeBase_js__ = __webpack_require__(4131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pieceTreeTextBuffer_js__ = __webpack_require__(4693);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pieceTreeBase_js__ = __webpack_require__(4246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pieceTreeTextBuffer_js__ = __webpack_require__(4784);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -38652,7 +36868,7 @@ var PieceTreeTextBufferBuilder = /** @class */function () {
 
 /***/ }),
 
-/***/ 4692:
+/***/ 4783:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39036,15 +37252,15 @@ function recomputeTreeMetadata(tree, x) {
 
 /***/ }),
 
-/***/ 4693:
+/***/ 4784:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PieceTreeTextBuffer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pieceTreeBase_js__ = __webpack_require__(4131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pieceTreeBase_js__ = __webpack_require__(4246);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -39437,7 +37653,7 @@ var PieceTreeTextBuffer = /** @class */function () {
 
 /***/ }),
 
-/***/ 4694:
+/***/ 4785:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39579,21 +37795,21 @@ var InternalModelContentChangeEvent = /** @class */function () {
 
 /***/ }),
 
-/***/ 4695:
+/***/ 4786:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export TokenizationStateStore */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TextModelTokenization; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_lineTokens_js__ = __webpack_require__(3759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_nullMode_js__ = __webpack_require__(3696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_stopwatch_js__ = __webpack_require__(4134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__tokensStore_js__ = __webpack_require__(4135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_lineTokens_js__ = __webpack_require__(3912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_nullMode_js__ = __webpack_require__(3852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_stopwatch_js__ = __webpack_require__(4249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__tokensStore_js__ = __webpack_require__(4250);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -39993,12 +38209,12 @@ function safeTokenize(languageIdentifier, tokenizationSupport, text, state) {
 
 /***/ }),
 
-/***/ 4700:
+/***/ 4791:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CharacterPairSupport; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__languageConfiguration_js__ = __webpack_require__(3824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__languageConfiguration_js__ = __webpack_require__(3968);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40048,13 +38264,13 @@ var CharacterPairSupport = /** @class */function () {
 
 /***/ }),
 
-/***/ 4701:
+/***/ 4792:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BracketElectricCharacterSupport; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__supports_js__ = __webpack_require__(3913);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__richEditBrackets_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__supports_js__ = __webpack_require__(4047);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__richEditBrackets_js__ = __webpack_require__(4048);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40115,7 +38331,7 @@ var BracketElectricCharacterSupport = /** @class */function () {
 
 /***/ }),
 
-/***/ 4702:
+/***/ 4793:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40180,14 +38396,14 @@ var IndentRulesSupport = /** @class */function () {
 
 /***/ }),
 
-/***/ 4703:
+/***/ 4794:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OnEnterSupport; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__languageConfiguration_js__ = __webpack_require__(3824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__languageConfiguration_js__ = __webpack_require__(3968);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40290,12 +38506,12 @@ var OnEnterSupport = /** @class */function () {
 
 /***/ }),
 
-/***/ 4704:
+/***/ 4795:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReplaceAllCommand; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40353,14 +38569,14 @@ var ReplaceAllCommand = /** @class */function () {
 
 /***/ }),
 
-/***/ 4705:
+/***/ 4796:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReplacePattern; });
 /* unused harmony export ReplacePiece */
 /* harmony export (immutable) */ __webpack_exports__["b"] = parseReplaceString;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_search_js__ = __webpack_require__(4706);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_search_js__ = __webpack_require__(4797);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40602,12 +38818,12 @@ function parseReplaceString(replaceString) {
 
 /***/ }),
 
-/***/ 4706:
+/***/ 4797:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buildReplaceStringWithCasePreserved;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40654,18 +38870,18 @@ function buildReplaceStringForSpecificSpecialCharacter(matches, pattern, special
 
 /***/ }),
 
-/***/ 4707:
+/***/ 4798:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindOptionsWidget; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_findinput_findInputCheckboxes_js__ = __webpack_require__(4138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_ui_widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__findModel_js__ = __webpack_require__(3911);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_findinput_findInputCheckboxes_js__ = __webpack_require__(4253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_ui_widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__findModel_js__ = __webpack_require__(4045);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -40848,13 +39064,13 @@ Object(__WEBPACK_IMPORTED_MODULE_6__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4708:
+/***/ 4799:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4709);
+var content = __webpack_require__(4800);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40862,7 +39078,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -40880,10 +39096,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4709:
+/***/ 4800:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -40895,13 +39111,13 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4710:
+/***/ 4801:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4711);
+var content = __webpack_require__(4802);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40909,7 +39125,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -40927,10 +39143,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4711:
+/***/ 4802:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -40942,13 +39158,13 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4712:
+/***/ 4803:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceState; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -41213,30 +39429,30 @@ var FindReplaceState = /** @class */function () {
 
 /***/ }),
 
-/***/ 4713:
+/***/ 4804:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export FindWidgetViewZone */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindWidget; });
 /* unused harmony export SimpleButton */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findWidget_css__ = __webpack_require__(4714);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findWidget_css__ = __webpack_require__(4805);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findWidget_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__findWidget_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_ui_aria_aria_js__ = __webpack_require__(3825);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_ui_sash_sash_js__ = __webpack_require__(4140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_browser_ui_widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__findModel_js__ = __webpack_require__(3911);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_browser_contextScopedHistoryWidget_js__ = __webpack_require__(4720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_ui_aria_aria_js__ = __webpack_require__(3969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_ui_sash_sash_js__ = __webpack_require__(4255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_browser_ui_widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__findModel_js__ = __webpack_require__(4045);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_browser_contextScopedHistoryWidget_js__ = __webpack_require__(4811);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42456,13 +40672,13 @@ Object(__WEBPACK_IMPORTED_MODULE_14__platform_theme_common_themeService_js__["e"
 
 /***/ }),
 
-/***/ 4714:
+/***/ 4805:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4715);
+var content = __webpack_require__(4806);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -42470,7 +40686,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -42488,10 +40704,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4715:
+/***/ 4806:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -42503,13 +40719,13 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4718:
+/***/ 4809:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4719);
+var content = __webpack_require__(4810);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -42517,7 +40733,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -42535,10 +40751,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4719:
+/***/ 4810:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -42550,7 +40766,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4720:
+/***/ 4811:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42559,10 +40775,10 @@ exports.push([module.i, "/*-----------------------------------------------------
 /* unused harmony export createAndBindHistoryNavigationWidgetScopedContextKeyService */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContextScopedFindInput; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ContextScopedReplaceInput; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_findinput_findInput_js__ = __webpack_require__(4721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keybinding_common_keybindingsRegistry_js__ = __webpack_require__(3909);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_ui_findinput_replaceInput_js__ = __webpack_require__(4734);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_findinput_findInput_js__ = __webpack_require__(4812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keybinding_common_keybindingsRegistry_js__ = __webpack_require__(4043);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_ui_findinput_replaceInput_js__ = __webpack_require__(4825);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42668,19 +40884,19 @@ __WEBPACK_IMPORTED_MODULE_2__keybinding_common_keybindingsRegistry_js__["a" /* K
 
 /***/ }),
 
-/***/ 4721:
+/***/ 4812:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindInput; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findInput_css__ = __webpack_require__(4141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findInput_css__ = __webpack_require__(4256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__findInput_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputbox_inputBox_js__ = __webpack_require__(4142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__findInputCheckboxes_js__ = __webpack_require__(4138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputbox_inputBox_js__ = __webpack_require__(4257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__findInputCheckboxes_js__ = __webpack_require__(4253);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42995,10 +41211,10 @@ var FindInput = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4722:
+/***/ 4813:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -43010,13 +41226,13 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4723:
+/***/ 4814:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4724);
+var content = __webpack_require__(4815);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -43024,7 +41240,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -43042,10 +41258,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4724:
+/***/ 4815:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -43057,14 +41273,14 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4725:
+/***/ 4816:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = renderText;
 /* harmony export (immutable) */ __webpack_exports__["a"] = renderFormattedText;
 /* unused harmony export createElement */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3760);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -43234,13 +41450,13 @@ function formatTagType(char) {
 
 /***/ }),
 
-/***/ 4726:
+/***/ 4817:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4727);
+var content = __webpack_require__(4818);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -43248,7 +41464,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -43266,10 +41482,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4727:
+/***/ 4818:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -43281,12 +41497,12 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4728:
+/***/ 4819:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryNavigator; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__iterator_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__iterator_js__ = __webpack_require__(3873);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -43358,13 +41574,13 @@ var HistoryNavigator = /** @class */function () {
 
 /***/ }),
 
-/***/ 4729:
+/***/ 4820:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4730);
+var content = __webpack_require__(4821);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -43372,7 +41588,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -43390,10 +41606,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4730:
+/***/ 4821:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -43405,15 +41621,15 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4731:
+/***/ 4822:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HorizontalScrollbar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstractScrollbar_js__ = __webpack_require__(4143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scrollbarArrow_js__ = __webpack_require__(3917);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scrollbarState_js__ = __webpack_require__(4144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstractScrollbar_js__ = __webpack_require__(4258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scrollbarArrow_js__ = __webpack_require__(4051);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scrollbarState_js__ = __webpack_require__(4259);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -43507,13 +41723,13 @@ var HorizontalScrollbar = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4732:
+/***/ 4823:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ScrollbarVisibilityController; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -43618,15 +41834,15 @@ var ScrollbarVisibilityController = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4733:
+/***/ 4824:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerticalScrollbar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstractScrollbar_js__ = __webpack_require__(4143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scrollbarArrow_js__ = __webpack_require__(3917);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scrollbarState_js__ = __webpack_require__(4144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__abstractScrollbar_js__ = __webpack_require__(4258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scrollbarArrow_js__ = __webpack_require__(4051);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scrollbarState_js__ = __webpack_require__(4259);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -43722,20 +41938,20 @@ var VerticalScrollbar = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4734:
+/***/ 4825:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export PreserveCaseCheckbox */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReplaceInput; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findInput_css__ = __webpack_require__(4141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findInput_css__ = __webpack_require__(4256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__findInput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__findInput_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputbox_inputBox_js__ = __webpack_require__(4142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__widget_js__ = __webpack_require__(3676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__checkbox_checkbox_js__ = __webpack_require__(4139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inputbox_inputBox_js__ = __webpack_require__(4257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__widget_js__ = __webpack_require__(3835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__checkbox_checkbox_js__ = __webpack_require__(4254);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -43999,33 +42215,33 @@ var ReplaceInput = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4735:
+/***/ 4826:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ID", function() { return ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FoldingController", function() { return FoldingController; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__folding_css__ = __webpack_require__(4736);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__folding_css__ = __webpack_require__(4827);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__folding_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__folding_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_keyCodes_js__ = __webpack_require__(3686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__browser_editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__foldingModel_js__ = __webpack_require__(4738);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__foldingDecorations_js__ = __webpack_require__(4739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__hiddenRangeModel_js__ = __webpack_require__(4740);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__indentRangeProvider_js__ = __webpack_require__(4741);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__syntaxRangeProvider_js__ = __webpack_require__(4148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__intializingRangeProvider_js__ = __webpack_require__(4742);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_keyCodes_js__ = __webpack_require__(3843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__browser_editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__foldingModel_js__ = __webpack_require__(4829);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__foldingDecorations_js__ = __webpack_require__(4830);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__hiddenRangeModel_js__ = __webpack_require__(4831);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__indentRangeProvider_js__ = __webpack_require__(4832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__syntaxRangeProvider_js__ = __webpack_require__(4263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__intializingRangeProvider_js__ = __webpack_require__(4833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -44812,13 +43028,13 @@ for (var i = 1; i <= 7; i++) {
 
 /***/ }),
 
-/***/ 4736:
+/***/ 4827:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4737);
+var content = __webpack_require__(4828);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -44826,7 +43042,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -44844,10 +43060,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4737:
+/***/ 4828:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -44859,7 +43075,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4738:
+/***/ 4829:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44869,8 +43085,8 @@ exports.push([module.i, "/*-----------------------------------------------------
 /* harmony export (immutable) */ __webpack_exports__["b"] = setCollapseStateAtLevel;
 /* harmony export (immutable) */ __webpack_exports__["c"] = setCollapseStateForMatchingLines;
 /* harmony export (immutable) */ __webpack_exports__["d"] = setCollapseStateForType;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__foldingRanges_js__ = __webpack_require__(3919);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__foldingRanges_js__ = __webpack_require__(4053);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -45188,12 +43404,12 @@ function setCollapseStateForType(foldingModel, type, doCollapse) {
 
 /***/ }),
 
-/***/ 4739:
+/***/ 4830:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FoldingDecorationProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_textModel_js__ = __webpack_require__(3674);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_model_textModel_js__ = __webpack_require__(3833);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -45240,14 +43456,14 @@ var FoldingDecorationProvider = /** @class */function () {
 
 /***/ }),
 
-/***/ 4740:
+/***/ 4831:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HiddenRangeModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_arrays_js__ = __webpack_require__(3610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_arrays_js__ = __webpack_require__(3778);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -45397,7 +43613,7 @@ function findRange(ranges, line) {
 
 /***/ }),
 
-/***/ 4741:
+/***/ 4832:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45405,9 +43621,9 @@ function findRange(ranges, line) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndentRangeProvider; });
 /* unused harmony export RangesCollector */
 /* unused harmony export computeRanges */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__foldingRanges_js__ = __webpack_require__(3919);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__foldingRanges_js__ = __webpack_require__(4053);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -45575,13 +43791,13 @@ function computeRanges(model, offSide, markers, foldingRangesLimit) {
 
 /***/ }),
 
-/***/ 4742:
+/***/ 4833:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ID_INIT_PROVIDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InitializingRangeProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__syntaxRangeProvider_js__ = __webpack_require__(4148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__syntaxRangeProvider_js__ = __webpack_require__(4263);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -45639,29 +43855,29 @@ var InitializingRangeProvider = /** @class */function () {
 
 /***/ }),
 
-/***/ 4743:
+/***/ 4834:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_cancellation_js__ = __webpack_require__(3685);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_keyCodes_js__ = __webpack_require__(3686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__browser_services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_characterClassifier_js__ = __webpack_require__(3819);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_services_editorWorkerService_js__ = __webpack_require__(3725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__format_js__ = __webpack_require__(3549);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__formattingEdit_js__ = __webpack_require__(4153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__base_common_errors_js__ = __webpack_require__(3598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_cancellation_js__ = __webpack_require__(3842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_keyCodes_js__ = __webpack_require__(3843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__browser_services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_characterClassifier_js__ = __webpack_require__(3963);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_services_editorWorkerService_js__ = __webpack_require__(3877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__format_js__ = __webpack_require__(3724);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__formattingEdit_js__ = __webpack_require__(4268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__base_common_errors_js__ = __webpack_require__(3771);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -46013,27 +44229,27 @@ __WEBPACK_IMPORTED_MODULE_14__platform_commands_common_commands_js__["a" /* Comm
 
 /***/ }),
 
-/***/ 4746:
+/***/ 4837:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BracketMatchingController", function() { return BracketMatchingController; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bracketMatching_css__ = __webpack_require__(4747);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bracketMatching_css__ = __webpack_require__(4838);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bracketMatching_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bracketMatching_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_actions_common_actions_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_actions_common_actions_js__ = __webpack_require__(3910);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -46332,13 +44548,13 @@ __WEBPACK_IMPORTED_MODULE_13__platform_actions_common_actions_js__["c" /* MenuRe
 
 /***/ }),
 
-/***/ 4747:
+/***/ 4838:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4748);
+var content = __webpack_require__(4839);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -46346,7 +44562,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -46364,10 +44580,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4748:
+/***/ 4839:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -46379,29 +44595,29 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4749:
+/***/ 4840:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__links_css__ = __webpack_require__(4750);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__links_css__ = __webpack_require__(4841);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__links_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__links_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_cancellation_js__ = __webpack_require__(3685);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_htmlContent_js__ = __webpack_require__(4752);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__browser_editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__goToDefinition_clickLinkGesture_js__ = __webpack_require__(3550);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__getLinks_js__ = __webpack_require__(4755);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_opener_common_opener_js__ = __webpack_require__(4155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_cancellation_js__ = __webpack_require__(3842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_htmlContent_js__ = __webpack_require__(4843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__browser_editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__goToDefinition_clickLinkGesture_js__ = __webpack_require__(3725);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__getLinks_js__ = __webpack_require__(4846);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_opener_common_opener_js__ = __webpack_require__(4270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -46827,13 +45043,13 @@ Object(__WEBPACK_IMPORTED_MODULE_16__platform_theme_common_themeService_js__["e"
 
 /***/ }),
 
-/***/ 4750:
+/***/ 4841:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4751);
+var content = __webpack_require__(4842);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -46841,7 +45057,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -46859,10 +45075,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4751:
+/***/ 4842:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -46874,7 +45090,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4752:
+/***/ 4843:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46884,7 +45100,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 /* unused harmony export markedStringsEquals */
 /* unused harmony export removeMarkdownEscapes */
 /* unused harmony export parseHrefAndDimensions */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrays_js__ = __webpack_require__(3610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrays_js__ = __webpack_require__(3778);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -46994,22 +45210,22 @@ function parseHrefAndDimensions(href) {
 
 /***/ }),
 
-/***/ 4755:
+/***/ 4846:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export Link */
 /* unused harmony export LinksList */
 /* harmony export (immutable) */ __webpack_exports__["a"] = getLinks;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_cancellation_js__ = __webpack_require__(3685);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_services_modelService_js__ = __webpack_require__(3694);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_arrays_js__ = __webpack_require__(3610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_cancellation_js__ = __webpack_require__(3842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_services_modelService_js__ = __webpack_require__(3850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_arrays_js__ = __webpack_require__(3778);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -47248,7 +45464,7 @@ __WEBPACK_IMPORTED_MODULE_6__platform_commands_common_commands_js__["a" /* Comma
 
 /***/ }),
 
-/***/ 4756:
+/***/ 4847:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47281,18 +45497,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteWordStartRight", function() { return DeleteWordStartRight; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteWordEndRight", function() { return DeleteWordEndRight; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteWordRight", function() { return DeleteWordRight; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__browser_editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_commands_replaceCommand_js__ = __webpack_require__(3818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_controller_cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_controller_cursorWordOperations_js__ = __webpack_require__(4156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__ = __webpack_require__(3758);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_accessibility_common_accessibility_js__ = __webpack_require__(3700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__ = __webpack_require__(3653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__browser_editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_commands_replaceCommand_js__ = __webpack_require__(3962);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_controller_cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_controller_cursorWordOperations_js__ = __webpack_require__(4271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__ = __webpack_require__(3911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_accessibility_common_accessibility_js__ = __webpack_require__(3856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__ = __webpack_require__(3722);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -47492,7 +45708,7 @@ var CursorWordAccessibilityLeft = /** @class */function (_super) {
         this;
     }
     CursorWordAccessibilityLeft.prototype._move = function (_, model, position, wordNavigationType) {
-        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].wordSeparators), model, position, wordNavigationType);
+        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["EDITOR_DEFAULTS"].wordSeparators), model, position, wordNavigationType);
     };
     return CursorWordAccessibilityLeft;
 }(WordLeftCommand);
@@ -47514,7 +45730,7 @@ var CursorWordAccessibilityLeftSelect = /** @class */function (_super) {
         this;
     }
     CursorWordAccessibilityLeftSelect.prototype._move = function (_, model, position, wordNavigationType) {
-        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].wordSeparators), model, position, wordNavigationType);
+        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["EDITOR_DEFAULTS"].wordSeparators), model, position, wordNavigationType);
     };
     return CursorWordAccessibilityLeftSelect;
 }(WordLeftCommand);
@@ -47626,7 +45842,7 @@ var CursorWordAccessibilityRight = /** @class */function (_super) {
         this;
     }
     CursorWordAccessibilityRight.prototype._move = function (_, model, position, wordNavigationType) {
-        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].wordSeparators), model, position, wordNavigationType);
+        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["EDITOR_DEFAULTS"].wordSeparators), model, position, wordNavigationType);
     };
     return CursorWordAccessibilityRight;
 }(WordRightCommand);
@@ -47648,7 +45864,7 @@ var CursorWordAccessibilityRightSelect = /** @class */function (_super) {
         this;
     }
     CursorWordAccessibilityRightSelect.prototype._move = function (_, model, position, wordNavigationType) {
-        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].wordSeparators), model, position, wordNavigationType);
+        return _super.prototype._move.call(this, Object(__WEBPACK_IMPORTED_MODULE_4__common_controller_wordCharacterClassifier_js__["a" /* getMapForWordSeparators */])(__WEBPACK_IMPORTED_MODULE_11__common_config_editorOptions_js__["EDITOR_DEFAULTS"].wordSeparators), model, position, wordNavigationType);
     };
     return CursorWordAccessibilityRightSelect;
 }(WordRightCommand);
@@ -47828,7 +46044,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__browser_editorExtensions_js__["f" /* registe
 
 /***/ }),
 
-/***/ 4757:
+/***/ 4848:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47847,10 +46063,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Token", function() { return Token; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editor", function() { return editor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "languages", function() { return languages; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_standalone_standaloneBase_js__ = __webpack_require__(4157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__standalone_browser_standaloneEditor_js__ = __webpack_require__(4759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__standalone_browser_standaloneLanguages_js__ = __webpack_require__(4921);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_standalone_standaloneBase_js__ = __webpack_require__(4272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__standalone_browser_standaloneEditor_js__ = __webpack_require__(4850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__standalone_browser_standaloneLanguages_js__ = __webpack_require__(5012);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -47861,9 +46077,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var global = self;
 // Set defaults for standalone editor
-__WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].wrappingIndent = 0 /* None */;
-__WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].viewInfo.glyphMargin = false;
-__WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].autoIndent = false;
+__WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__["EDITOR_DEFAULTS"].wrappingIndent = 0 /* None */;
+__WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__["EDITOR_DEFAULTS"].viewInfo.glyphMargin = false;
+__WEBPACK_IMPORTED_MODULE_0__common_config_editorOptions_js__["EDITOR_DEFAULTS"].autoIndent = false;
 var api = Object(__WEBPACK_IMPORTED_MODULE_1__common_standalone_standaloneBase_js__["a" /* createMonacoBaseAPI */])();
 api.editor = Object(__WEBPACK_IMPORTED_MODULE_2__standalone_browser_standaloneEditor_js__["a" /* createMonacoEditorAPI */])();
 api.languages = Object(__WEBPACK_IMPORTED_MODULE_3__standalone_browser_standaloneLanguages_js__["a" /* createMonacoLanguagesAPI */])();
@@ -47901,7 +46117,7 @@ if (typeof global.require !== 'undefined' && typeof global.require.config === 'f
 
 /***/ }),
 
-/***/ 4758:
+/***/ 4849:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate, global) {/*!
@@ -48199,7 +46415,7 @@ Copyright (c) 2014 Forbes Lindesay
 
 /***/ }),
 
-/***/ 4759:
+/***/ 4850:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48225,36 +46441,36 @@ Copyright (c) 2014 Forbes Lindesay
 /* unused harmony export setTheme */
 /* unused harmony export remeasureFonts */
 /* harmony export (immutable) */ __webpack_exports__["a"] = createMonacoEditorAPI;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__standalone_tokens_css__ = __webpack_require__(4760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__standalone_tokens_css__ = __webpack_require__(4851);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__standalone_tokens_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__standalone_tokens_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_services_openerService_js__ = __webpack_require__(4762);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__browser_widget_diffNavigator_js__ = __webpack_require__(4764);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_config_fontInfo_js__ = __webpack_require__(3922);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_editorCommon_js__ = __webpack_require__(3699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_modes_nullMode_js__ = __webpack_require__(3696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_services_editorWorkerService_js__ = __webpack_require__(3725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_services_resolverService_js__ = __webpack_require__(4129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_services_webWorker_js__ = __webpack_require__(4765);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_standalone_standaloneEnums_js__ = __webpack_require__(3920);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__colorizer_js__ = __webpack_require__(4773);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__simpleServices_js__ = __webpack_require__(3928);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__standaloneCodeEditor_js__ = __webpack_require__(4780);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__standaloneServices_js__ = __webpack_require__(4180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_standaloneThemeService_js__ = __webpack_require__(3933);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__platform_configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__platform_contextview_browser_contextView_js__ = __webpack_require__(3723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_keybinding_common_keybinding_js__ = __webpack_require__(3724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_opener_common_opener_js__ = __webpack_require__(4155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_accessibility_common_accessibility_js__ = __webpack_require__(3700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__browser_config_configuration_js__ = __webpack_require__(3688);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__browser_services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_services_openerService_js__ = __webpack_require__(4853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__browser_widget_diffNavigator_js__ = __webpack_require__(4855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_config_fontInfo_js__ = __webpack_require__(4056);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_editorCommon_js__ = __webpack_require__(3855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_modes_nullMode_js__ = __webpack_require__(3852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_services_editorWorkerService_js__ = __webpack_require__(3877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_services_resolverService_js__ = __webpack_require__(4244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_services_webWorker_js__ = __webpack_require__(4856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_standalone_standaloneEnums_js__ = __webpack_require__(4054);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__colorizer_js__ = __webpack_require__(4864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__simpleServices_js__ = __webpack_require__(4062);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__standaloneCodeEditor_js__ = __webpack_require__(4871);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__standaloneServices_js__ = __webpack_require__(4295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_standaloneThemeService_js__ = __webpack_require__(4067);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__platform_configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__platform_contextview_browser_contextView_js__ = __webpack_require__(3875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_keybinding_common_keybinding_js__ = __webpack_require__(3876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_opener_common_opener_js__ = __webpack_require__(4270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_accessibility_common_accessibility_js__ = __webpack_require__(3856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__browser_config_configuration_js__ = __webpack_require__(3845);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -48538,7 +46754,7 @@ function createMonacoEditorAPI() {
         ScrollType: __WEBPACK_IMPORTED_MODULE_13__common_standalone_standaloneEnums_js__["u" /* ScrollType */],
         RenderLineNumbersType: __WEBPACK_IMPORTED_MODULE_13__common_standalone_standaloneEnums_js__["s" /* RenderLineNumbersType */],
         // classes
-        InternalEditorOptions: __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["e" /* InternalEditorOptions */],
+        InternalEditorOptions: __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["InternalEditorOptions"],
         BareFontInfo: __WEBPACK_IMPORTED_MODULE_5__common_config_fontInfo_js__["a" /* BareFontInfo */],
         FontInfo: __WEBPACK_IMPORTED_MODULE_5__common_config_fontInfo_js__["b" /* FontInfo */],
         TextModelResolvedOptions: __WEBPACK_IMPORTED_MODULE_7__common_model_js__["e" /* TextModelResolvedOptions */],
@@ -48550,13 +46766,13 @@ function createMonacoEditorAPI() {
 
 /***/ }),
 
-/***/ 4760:
+/***/ 4851:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4761);
+var content = __webpack_require__(4852);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -48564,7 +46780,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -48582,10 +46798,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4761:
+/***/ 4852:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -48597,20 +46813,20 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4762:
+/***/ 4853:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OpenerService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_linkedList_js__ = __webpack_require__(3756);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_marshalling_js__ = __webpack_require__(4763);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_resources_js__ = __webpack_require__(3921);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_commands_common_commands_js__ = __webpack_require__(3643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_linkedList_js__ = __webpack_require__(3909);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_marshalling_js__ = __webpack_require__(4854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_resources_js__ = __webpack_require__(4055);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_commands_common_commands_js__ = __webpack_require__(3806);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -48803,13 +47019,13 @@ var OpenerService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4763:
+/***/ 4854:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = parse;
 /* unused harmony export revive */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uri_js__ = __webpack_require__(3642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__uri_js__ = __webpack_require__(3805);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -48841,16 +47057,16 @@ function revive(obj, depth) {
 
 /***/ }),
 
-/***/ 4764:
+/***/ 4855:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiffNavigator; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_assert_js__ = __webpack_require__(4130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_assert_js__ = __webpack_require__(4245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -49044,13 +47260,13 @@ var DiffNavigator = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4765:
+/***/ 4856:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createWebWorker;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editorWorkerServiceImpl_js__ = __webpack_require__(4158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_types_js__ = __webpack_require__(3605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editorWorkerServiceImpl_js__ = __webpack_require__(4273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_types_js__ = __webpack_require__(3776);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -49138,13 +47354,13 @@ var MonacoWebWorkerImpl = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4766:
+/***/ 4857:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultWorkerFactory; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_worker_simpleWorker_js__ = __webpack_require__(4159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_worker_simpleWorker_js__ = __webpack_require__(4274);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -49260,26 +47476,26 @@ var DefaultWorkerFactory = /** @class */function () {
 
 /***/ }),
 
-/***/ 4767:
+/***/ 4858:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditorSimpleWorker; });
 /* unused harmony export create */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_diff_diff_js__ = __webpack_require__(4160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_iterator_js__ = __webpack_require__(3721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__diff_diffComputer_js__ = __webpack_require__(4769);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_mirrorTextModel_js__ = __webpack_require__(4770);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_wordHelper_js__ = __webpack_require__(3821);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modes_linkComputer_js__ = __webpack_require__(4771);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modes_supports_inplaceReplaceSupport_js__ = __webpack_require__(4772);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__standalone_standaloneBase_js__ = __webpack_require__(4157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_common_types_js__ = __webpack_require__(3605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_diff_diff_js__ = __webpack_require__(4275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_iterator_js__ = __webpack_require__(3873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__diff_diffComputer_js__ = __webpack_require__(4860);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_mirrorTextModel_js__ = __webpack_require__(4861);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_wordHelper_js__ = __webpack_require__(3965);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modes_linkComputer_js__ = __webpack_require__(4862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modes_supports_inplaceReplaceSupport_js__ = __webpack_require__(4863);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__standalone_standaloneBase_js__ = __webpack_require__(4272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_common_types_js__ = __webpack_require__(3776);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -49810,7 +48026,7 @@ if (typeof importScripts === 'function') {
 
 /***/ }),
 
-/***/ 4768:
+/***/ 4859:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49852,13 +48068,13 @@ var DiffChange = /** @class */function () {
 
 /***/ }),
 
-/***/ 4769:
+/***/ 4860:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiffComputer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_diff_diff_js__ = __webpack_require__(4160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_diff_diff_js__ = __webpack_require__(4275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -50244,13 +48460,13 @@ var DiffComputer = /** @class */function () {
 
 /***/ }),
 
-/***/ 4770:
+/***/ 4861:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MirrorTextModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewModel_prefixSumComputer_js__ = __webpack_require__(3924);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewModel_prefixSumComputer_js__ = __webpack_require__(4058);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -50362,15 +48578,15 @@ var MirrorTextModel = /** @class */function () {
 
 /***/ }),
 
-/***/ 4771:
+/***/ 4862:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export StateMachine */
 /* unused harmony export LinkComputer */
 /* harmony export (immutable) */ __webpack_exports__["a"] = computeLinks;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_characterClassifier_js__ = __webpack_require__(3819);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_uint_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_characterClassifier_js__ = __webpack_require__(3963);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_uint_js__ = __webpack_require__(3964);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -50614,7 +48830,7 @@ function computeLinks(model) {
 
 /***/ }),
 
-/***/ 4772:
+/***/ 4863:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50709,18 +48925,18 @@ var BasicInplaceReplace = /** @class */function () {
 
 /***/ }),
 
-/***/ 4773:
+/***/ 4864:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Colorizer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_lineTokens_js__ = __webpack_require__(3759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3827);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_viewModel_viewModel_js__ = __webpack_require__(3701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_monarch_monarchLexer_js__ = __webpack_require__(4162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_lineTokens_js__ = __webpack_require__(3912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_viewModel_viewModel_js__ = __webpack_require__(3857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_monarch_monarchLexer_js__ = __webpack_require__(4277);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -50882,19 +49098,19 @@ function _actualColorize(lines, tabSize, tokenizationSupport) {
 
 /***/ }),
 
-/***/ 4774:
+/***/ 4865:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ConfigurationModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DefaultConfigurationModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Configuration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_map_js__ = __webpack_require__(3658);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configurationRegistry_js__ = __webpack_require__(3762);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__configuration_js__ = __webpack_require__(3662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_map_js__ = __webpack_require__(3819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configurationRegistry_js__ = __webpack_require__(3915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__configuration_js__ = __webpack_require__(3823);
 var __extends = this && this.__extends || function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -51250,15 +49466,15 @@ var Configuration = /** @class */function () {
 
 /***/ }),
 
-/***/ 4775:
+/***/ 4866:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractKeybindingService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -51418,7 +49634,7 @@ var AbstractKeybindingService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4776:
+/***/ 4867:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51456,13 +49672,13 @@ function removeElementsAfterNulls(arr) {
 
 /***/ }),
 
-/***/ 4777:
+/***/ 4868:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return USLayoutResolvedKeybinding; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_keyCodes_js__ = __webpack_require__(3686);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseResolvedKeybinding_js__ = __webpack_require__(4778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_keyCodes_js__ = __webpack_require__(3843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseResolvedKeybinding_js__ = __webpack_require__(4869);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -51546,14 +49762,14 @@ var USLayoutResolvedKeybinding = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4778:
+/***/ 4869:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseResolvedKeybinding; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_keybindingLabels_js__ = __webpack_require__(4779);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_keyCodes_js__ = __webpack_require__(3686);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_keybindingLabels_js__ = __webpack_require__(4870);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_keyCodes_js__ = __webpack_require__(3843);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -51613,14 +49829,14 @@ var BaseResolvedKeybinding = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4779:
+/***/ 4870:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export ModifierLabelProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UILabelProvider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AriaLabelProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -51722,35 +49938,35 @@ function _simpleAsString(modifiers, key, labels) {
 
 /***/ }),
 
-/***/ 4780:
+/***/ 4871:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export StandaloneCodeEditor */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StandaloneEditor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StandaloneDiffEditor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_aria_aria_js__ = __webpack_require__(3825);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__browser_services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_widget_codeEditorWidget_js__ = __webpack_require__(4168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__browser_widget_diffEditorWidget_js__ = __webpack_require__(4867);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_editorAction_js__ = __webpack_require__(4178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_services_editorWorkerService_js__ = __webpack_require__(3725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__simpleServices_js__ = __webpack_require__(3928);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_standaloneThemeService_js__ = __webpack_require__(3933);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_actions_common_actions_js__ = __webpack_require__(3757);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_contextview_browser_contextView_js__ = __webpack_require__(3723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_keybinding_common_keybinding_js__ = __webpack_require__(3724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_accessibility_common_accessibility_js__ = __webpack_require__(3700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__common_standaloneStrings_js__ = __webpack_require__(4167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_clipboard_common_clipboardService_js__ = __webpack_require__(4146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_aria_aria_js__ = __webpack_require__(3969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__browser_services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_widget_codeEditorWidget_js__ = __webpack_require__(4283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__browser_widget_diffEditorWidget_js__ = __webpack_require__(4958);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_editorAction_js__ = __webpack_require__(4293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_services_editorWorkerService_js__ = __webpack_require__(3877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__simpleServices_js__ = __webpack_require__(4062);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_standaloneThemeService_js__ = __webpack_require__(4067);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_actions_common_actions_js__ = __webpack_require__(3910);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_contextview_browser_contextView_js__ = __webpack_require__(3875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_keybinding_common_keybinding_js__ = __webpack_require__(3876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__platform_accessibility_common_accessibility_js__ = __webpack_require__(3856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__common_standaloneStrings_js__ = __webpack_require__(4282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__platform_clipboard_common_clipboardService_js__ = __webpack_require__(4261);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -52040,13 +50256,13 @@ var StandaloneDiffEditor = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4781:
+/***/ 4872:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4782);
+var content = __webpack_require__(4873);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -52054,7 +50270,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -52072,10 +50288,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4782:
+/***/ 4873:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -52087,13 +50303,13 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4783:
+/***/ 4874:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4784);
+var content = __webpack_require__(4875);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -52101,7 +50317,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -52119,10 +50335,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4784:
+/***/ 4875:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -52134,7 +50350,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4785:
+/***/ 4876:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52258,12 +50474,12 @@ function readCharWidths(bareFontInfo, requests) {
 
 /***/ }),
 
-/***/ 4786:
+/***/ 4877:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ElementSizeObserver; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -52346,48 +50562,48 @@ var ElementSizeObserver = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4787:
+/***/ 4878:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return View; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controller_pointerHandler_js__ = __webpack_require__(4788);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controller_textAreaHandler_js__ = __webpack_require__(4791);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewController_js__ = __webpack_require__(4797);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__viewOverlays_js__ = __webpack_require__(4803);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__viewParts_contentWidgets_contentWidgets_js__ = __webpack_require__(4804);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewParts_currentLineHighlight_currentLineHighlight_js__ = __webpack_require__(4805);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__viewParts_currentLineMarginHighlight_currentLineMarginHighlight_js__ = __webpack_require__(4808);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__viewParts_decorations_decorations_js__ = __webpack_require__(4811);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__viewParts_editorScrollbar_editorScrollbar_js__ = __webpack_require__(4814);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__viewParts_glyphMargin_glyphMargin_js__ = __webpack_require__(3931);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__viewParts_indentGuides_indentGuides_js__ = __webpack_require__(4817);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__viewParts_lineNumbers_lineNumbers_js__ = __webpack_require__(4172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__viewParts_lines_viewLines_js__ = __webpack_require__(4820);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__viewParts_linesDecorations_linesDecorations_js__ = __webpack_require__(4823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__viewParts_margin_margin_js__ = __webpack_require__(4173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__viewParts_marginDecorations_marginDecorations_js__ = __webpack_require__(4826);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__viewParts_minimap_minimap_js__ = __webpack_require__(4829);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__viewParts_overlayWidgets_overlayWidgets_js__ = __webpack_require__(4834);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__viewParts_overviewRuler_decorationsOverviewRuler_js__ = __webpack_require__(4837);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__viewParts_overviewRuler_overviewRuler_js__ = __webpack_require__(4838);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__viewParts_rulers_rulers_js__ = __webpack_require__(4839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__viewParts_scrollDecoration_scrollDecoration_js__ = __webpack_require__(4842);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__viewParts_selections_selections_js__ = __webpack_require__(4845);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__viewParts_viewCursors_viewCursors_js__ = __webpack_require__(4848);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__viewParts_viewZones_viewZones_js__ = __webpack_require__(4852);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__common_view_renderingContext_js__ = __webpack_require__(3764);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__common_view_viewContext_js__ = __webpack_require__(4853);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__common_view_viewEventDispatcher_js__ = __webpack_require__(4854);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__common_view_viewEvents_js__ = __webpack_require__(3726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__common_viewLayout_viewLinesViewportData_js__ = __webpack_require__(4855);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__common_viewModel_viewEventHandler_js__ = __webpack_require__(3763);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__controller_pointerHandler_js__ = __webpack_require__(4879);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__controller_textAreaHandler_js__ = __webpack_require__(4882);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewController_js__ = __webpack_require__(4888);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__viewOverlays_js__ = __webpack_require__(4894);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__viewParts_contentWidgets_contentWidgets_js__ = __webpack_require__(4895);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewParts_currentLineHighlight_currentLineHighlight_js__ = __webpack_require__(4896);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__viewParts_currentLineMarginHighlight_currentLineMarginHighlight_js__ = __webpack_require__(4899);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__viewParts_decorations_decorations_js__ = __webpack_require__(4902);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__viewParts_editorScrollbar_editorScrollbar_js__ = __webpack_require__(4905);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__viewParts_glyphMargin_glyphMargin_js__ = __webpack_require__(4065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__viewParts_indentGuides_indentGuides_js__ = __webpack_require__(4908);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__viewParts_lineNumbers_lineNumbers_js__ = __webpack_require__(4287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__viewParts_lines_viewLines_js__ = __webpack_require__(4911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__viewParts_linesDecorations_linesDecorations_js__ = __webpack_require__(4914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__viewParts_margin_margin_js__ = __webpack_require__(4288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__viewParts_marginDecorations_marginDecorations_js__ = __webpack_require__(4917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__viewParts_minimap_minimap_js__ = __webpack_require__(4920);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__viewParts_overlayWidgets_overlayWidgets_js__ = __webpack_require__(4925);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__viewParts_overviewRuler_decorationsOverviewRuler_js__ = __webpack_require__(4928);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__viewParts_overviewRuler_overviewRuler_js__ = __webpack_require__(4929);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__viewParts_rulers_rulers_js__ = __webpack_require__(4930);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__viewParts_scrollDecoration_scrollDecoration_js__ = __webpack_require__(4933);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__viewParts_selections_selections_js__ = __webpack_require__(4936);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__viewParts_viewCursors_viewCursors_js__ = __webpack_require__(4939);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__viewParts_viewZones_viewZones_js__ = __webpack_require__(4943);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__common_view_renderingContext_js__ = __webpack_require__(3917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__common_view_viewContext_js__ = __webpack_require__(4944);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__common_view_viewEventDispatcher_js__ = __webpack_require__(4945);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__common_view_viewEvents_js__ = __webpack_require__(3878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__common_viewLayout_viewLinesViewportData_js__ = __webpack_require__(4946);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__common_viewModel_viewEventHandler_js__ = __webpack_require__(3916);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -52850,16 +51066,16 @@ function safeInvoke1Arg(func, arg1) {
 
 /***/ }),
 
-/***/ 4788:
+/***/ 4879:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PointerHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_touch_js__ = __webpack_require__(3760);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mouseHandler_js__ = __webpack_require__(4789);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__editorDom_js__ = __webpack_require__(3929);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_touch_js__ = __webpack_require__(3913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mouseHandler_js__ = __webpack_require__(4880);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__editorDom_js__ = __webpack_require__(4063);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -53090,23 +51306,23 @@ var PointerHandler = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4789:
+/***/ 4880:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MouseHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_mouseEvent_js__ = __webpack_require__(3661);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mouseTarget_js__ = __webpack_require__(4169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__editorDom_js__ = __webpack_require__(3929);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_config_editorZoom_js__ = __webpack_require__(3923);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_viewModel_viewEventHandler_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_mouseEvent_js__ = __webpack_require__(3822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mouseTarget_js__ = __webpack_require__(4284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__editorDom_js__ = __webpack_require__(4063);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_config_editorZoom_js__ = __webpack_require__(4057);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_viewModel_viewEventHandler_js__ = __webpack_require__(3916);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -53610,12 +51826,12 @@ var MouseDownState = /** @class */function () {
 
 /***/ }),
 
-/***/ 4790:
+/***/ 4881:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeUtil; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_view_renderingContext_js__ = __webpack_require__(3764);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_view_renderingContext_js__ = __webpack_require__(3917);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -53745,28 +51961,28 @@ var RangeUtil = /** @class */function () {
 
 /***/ }),
 
-/***/ 4791:
+/***/ 4882:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TextAreaHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textAreaHandler_css__ = __webpack_require__(4792);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textAreaHandler_css__ = __webpack_require__(4883);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__textAreaHandler_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__textAreaHandler_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__textAreaInput_js__ = __webpack_require__(4794);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__textAreaState_js__ = __webpack_require__(4171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewParts_lineNumbers_lineNumbers_js__ = __webpack_require__(4172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__viewParts_margin_margin_js__ = __webpack_require__(4173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_controller_wordCharacterClassifier_js__ = __webpack_require__(3758);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_view_viewEvents_js__ = __webpack_require__(3726);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__textAreaInput_js__ = __webpack_require__(4885);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__textAreaState_js__ = __webpack_require__(4286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewParts_lineNumbers_lineNumbers_js__ = __webpack_require__(4287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__viewParts_margin_margin_js__ = __webpack_require__(4288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_controller_wordCharacterClassifier_js__ = __webpack_require__(3911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_view_viewEvents_js__ = __webpack_require__(3878);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -54222,13 +52438,13 @@ function doCreateFontString(fontStyle, fontWeight, fontSize, lineHeight, fontFam
 
 /***/ }),
 
-/***/ 4792:
+/***/ 4883:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4793);
+var content = __webpack_require__(4884);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -54236,7 +52452,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -54254,10 +52470,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4793:
+/***/ 4884:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -54269,21 +52485,21 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4794:
+/***/ 4885:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CopyOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TextAreaInput; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__textAreaState_js__ = __webpack_require__(4171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_core_selection_js__ = __webpack_require__(3619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__textAreaState_js__ = __webpack_require__(4286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_core_selection_js__ = __webpack_require__(3786);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -54798,13 +53014,13 @@ var TextAreaWrapper = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4795:
+/***/ 4886:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4796);
+var content = __webpack_require__(4887);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -54812,7 +53028,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -54830,10 +53046,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4796:
+/***/ 4887:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -54845,13 +53061,13 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4797:
+/***/ 4888:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewController; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_coreCommands_js__ = __webpack_require__(4798);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_position_js__ = __webpack_require__(3588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__controller_coreCommands_js__ = __webpack_require__(4889);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_position_js__ = __webpack_require__(3762);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -55113,7 +53329,7 @@ var ViewController = /** @class */function () {
 
 /***/ }),
 
-/***/ 4798:
+/***/ 4889:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55122,20 +53338,20 @@ var ViewController = /** @class */function () {
 /* unused harmony export RevealLine_ */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoreNavigationCommands; });
 /* unused harmony export CoreEditingCommands */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controller_cursorColumnSelection_js__ = __webpack_require__(4799);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_controller_cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_controller_cursorDeleteOperations_js__ = __webpack_require__(4174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_controller_cursorMoveCommands_js__ = __webpack_require__(4800);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_controller_cursorTypeOperations_js__ = __webpack_require__(4176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_editorCommon_js__ = __webpack_require__(3699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_editorContextKeys_js__ = __webpack_require__(3695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_controller_cursorColumnSelection_js__ = __webpack_require__(4890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_controller_cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_controller_cursorDeleteOperations_js__ = __webpack_require__(4289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_controller_cursorMoveCommands_js__ = __webpack_require__(4891);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_controller_cursorTypeOperations_js__ = __webpack_require__(4291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_editorCommon_js__ = __webpack_require__(3855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_editorContextKeys_js__ = __webpack_require__(3851);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -56707,14 +54923,14 @@ registerOverwritableCommand(__WEBPACK_IMPORTED_MODULE_11__common_editorCommon_js
 
 /***/ }),
 
-/***/ 4799:
+/***/ 4890:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ColumnSelection; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -56812,18 +55028,18 @@ var ColumnSelection = /** @class */function () {
 
 /***/ }),
 
-/***/ 4800:
+/***/ 4891:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CursorMoveCommands; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CursorMove; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cursorMoveOperations_js__ = __webpack_require__(4175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cursorWordOperations_js__ = __webpack_require__(4156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cursorMoveOperations_js__ = __webpack_require__(4290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cursorWordOperations_js__ = __webpack_require__(4271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -57459,17 +55675,17 @@ var CursorMove;
 
 /***/ }),
 
-/***/ 4801:
+/***/ 4892:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export cachedStringRepeat */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShiftCommand; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controller_cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controller_cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -57691,13 +55907,13 @@ var ShiftCommand = /** @class */function () {
 
 /***/ }),
 
-/***/ 4802:
+/***/ 4893:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SurroundSelectionCommand; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_selection_js__ = __webpack_require__(3619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_selection_js__ = __webpack_require__(3786);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -57726,7 +55942,7 @@ var SurroundSelectionCommand = /** @class */function () {
 
 /***/ }),
 
-/***/ 4803:
+/***/ 4894:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57734,10 +55950,10 @@ var SurroundSelectionCommand = /** @class */function () {
 /* unused harmony export ViewOverlayLine */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContentViewOverlays; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MarginViewOverlays; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewLayer_js__ = __webpack_require__(3930);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viewPart_js__ = __webpack_require__(3627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewLayer_js__ = __webpack_require__(4064);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viewPart_js__ = __webpack_require__(3794);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -57977,14 +56193,14 @@ var MarginViewOverlays = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4804:
+/***/ 4895:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewContentWidgets; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -58423,16 +56639,16 @@ var Widget = /** @class */function () {
 
 /***/ }),
 
-/***/ 4805:
+/***/ 4896:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentLineHighlightOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__currentLineHighlight_css__ = __webpack_require__(4806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__currentLineHighlight_css__ = __webpack_require__(4897);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__currentLineHighlight_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__currentLineHighlight_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -58565,13 +56781,13 @@ Object(__WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4806:
+/***/ 4897:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4807);
+var content = __webpack_require__(4898);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -58579,7 +56795,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -58597,10 +56813,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4807:
+/***/ 4898:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -58612,16 +56828,16 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4808:
+/***/ 4899:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentLineMarginHighlightOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__currentLineMarginHighlight_css__ = __webpack_require__(4809);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__currentLineMarginHighlight_css__ = __webpack_require__(4900);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__currentLineMarginHighlight_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__currentLineMarginHighlight_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -58747,13 +56963,13 @@ Object(__WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4809:
+/***/ 4900:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4810);
+var content = __webpack_require__(4901);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -58761,7 +56977,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -58779,10 +56995,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4810:
+/***/ 4901:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -58794,16 +57010,16 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4811:
+/***/ 4902:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DecorationsOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__decorations_css__ = __webpack_require__(4812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__decorations_css__ = __webpack_require__(4903);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__decorations_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__decorations_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_view_renderingContext_js__ = __webpack_require__(3764);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_view_renderingContext_js__ = __webpack_require__(3917);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -59015,13 +57231,13 @@ var DecorationsOverlay = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4812:
+/***/ 4903:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4813);
+var content = __webpack_require__(4904);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -59029,7 +57245,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -59047,10 +57263,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4813:
+/***/ 4904:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -59062,16 +57278,16 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4814:
+/***/ 4905:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditorScrollbar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_ui_scrollbar_scrollableElement_js__ = __webpack_require__(3761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_ui_scrollbar_scrollableElement_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -59211,13 +57427,13 @@ var EditorScrollbar = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4815:
+/***/ 4906:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4816);
+var content = __webpack_require__(4907);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -59225,7 +57441,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -59243,10 +57459,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4816:
+/***/ 4907:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -59258,17 +57474,17 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4817:
+/***/ 4908:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndentGuidesOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indentGuides_css__ = __webpack_require__(4818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indentGuides_css__ = __webpack_require__(4909);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indentGuides_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__indentGuides_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -59432,13 +57648,13 @@ Object(__WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4818:
+/***/ 4909:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4819);
+var content = __webpack_require__(4910);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -59446,7 +57662,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -59464,10 +57680,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4819:
+/***/ 4910:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -59479,21 +57695,21 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4820:
+/***/ 4911:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewLines; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewLines_css__ = __webpack_require__(4821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewLines_css__ = __webpack_require__(4912);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewLines_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__viewLines_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewLayer_js__ = __webpack_require__(3930);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewLine_js__ = __webpack_require__(4170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_view_renderingContext_js__ = __webpack_require__(3764);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewLayer_js__ = __webpack_require__(4064);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewLine_js__ = __webpack_require__(4285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_view_renderingContext_js__ = __webpack_require__(3917);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -60076,13 +58292,13 @@ var ViewLines = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4821:
+/***/ 4912:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4822);
+var content = __webpack_require__(4913);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -60090,7 +58306,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60108,10 +58324,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4822:
+/***/ 4913:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -60123,14 +58339,14 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4823:
+/***/ 4914:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinesDecorationsOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linesDecorations_css__ = __webpack_require__(4824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linesDecorations_css__ = __webpack_require__(4915);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linesDecorations_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__linesDecorations_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__glyphMargin_glyphMargin_js__ = __webpack_require__(3931);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__glyphMargin_glyphMargin_js__ = __webpack_require__(4065);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -60239,13 +58455,13 @@ var LinesDecorationsOverlay = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4824:
+/***/ 4915:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4825);
+var content = __webpack_require__(4916);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -60253,7 +58469,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60271,10 +58487,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4825:
+/***/ 4916:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -60286,14 +58502,14 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4826:
+/***/ 4917:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MarginViewLineDecorationsOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__marginDecorations_css__ = __webpack_require__(4827);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__marginDecorations_css__ = __webpack_require__(4918);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__marginDecorations_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__marginDecorations_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__glyphMargin_glyphMargin_js__ = __webpack_require__(3931);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__glyphMargin_glyphMargin_js__ = __webpack_require__(4065);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -60393,13 +58609,13 @@ var MarginViewLineDecorationsOverlay = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4827:
+/***/ 4918:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4828);
+var content = __webpack_require__(4919);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -60407,7 +58623,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60425,10 +58641,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4828:
+/***/ 4919:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -60440,26 +58656,26 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4829:
+/***/ 4920:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Minimap; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__minimap_css__ = __webpack_require__(4830);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__minimap_css__ = __webpack_require__(4921);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__minimap_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__minimap_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_globalMouseMoveMonitor_js__ = __webpack_require__(3826);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_viewLayer_js__ = __webpack_require__(3930);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_view_minimapCharRenderer_js__ = __webpack_require__(3932);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_view_runtimeMinimapCharRenderer_js__ = __webpack_require__(4833);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_view_viewEvents_js__ = __webpack_require__(3726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_globalMouseMoveMonitor_js__ = __webpack_require__(3970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_viewLayer_js__ = __webpack_require__(4064);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_view_minimapCharRenderer_js__ = __webpack_require__(4066);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_view_runtimeMinimapCharRenderer_js__ = __webpack_require__(4924);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_view_viewEvents_js__ = __webpack_require__(3878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -61230,13 +59446,13 @@ Object(__WEBPACK_IMPORTED_MODULE_13__platform_theme_common_themeService_js__["e"
 
 /***/ }),
 
-/***/ 4830:
+/***/ 4921:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4831);
+var content = __webpack_require__(4922);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -61244,7 +59460,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -61262,10 +59478,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4831:
+/***/ 4922:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -61277,7 +59493,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4832:
+/***/ 4923:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61313,12 +59529,12 @@ var RGBA8 = /** @class */function () {
 
 /***/ }),
 
-/***/ 4833:
+/***/ 4924:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getOrCreateMinimapCharRenderer;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__minimapCharRenderer_js__ = __webpack_require__(3932);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__minimapCharRenderer_js__ = __webpack_require__(4066);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -62108,15 +60324,15 @@ var x1Data = [
 
 /***/ }),
 
-/***/ 4834:
+/***/ 4925:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewOverlayWidgets; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overlayWidgets_css__ = __webpack_require__(4835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overlayWidgets_css__ = __webpack_require__(4926);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overlayWidgets_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__overlayWidgets_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -62241,13 +60457,13 @@ var ViewOverlayWidgets = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4835:
+/***/ 4926:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4836);
+var content = __webpack_require__(4927);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -62255,7 +60471,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -62273,10 +60489,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4836:
+/***/ 4927:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -62288,17 +60504,17 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4837:
+/***/ 4928:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DecorationsOverviewRuler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -62658,14 +60874,14 @@ var DecorationsOverviewRuler = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4838:
+/***/ 4929:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OverviewRuler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_view_overviewZoneManager_js__ = __webpack_require__(4177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_viewModel_viewEventHandler_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_view_overviewZoneManager_js__ = __webpack_require__(4292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_viewModel_viewEventHandler_js__ = __webpack_require__(3916);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -62811,17 +61027,17 @@ var OverviewRuler = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4839:
+/***/ 4930:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Rulers; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rulers_css__ = __webpack_require__(4840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rulers_css__ = __webpack_require__(4931);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rulers_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__rulers_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -62924,13 +61140,13 @@ Object(__WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4840:
+/***/ 4931:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4841);
+var content = __webpack_require__(4932);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -62938,7 +61154,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -62956,10 +61172,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4841:
+/***/ 4932:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -62971,17 +61187,17 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4842:
+/***/ 4933:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ScrollDecorationViewPart; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scrollDecoration_css__ = __webpack_require__(4843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scrollDecoration_css__ = __webpack_require__(4934);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scrollDecoration_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scrollDecoration_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -63082,13 +61298,13 @@ Object(__WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4843:
+/***/ 4934:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4844);
+var content = __webpack_require__(4935);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -63096,7 +61312,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -63114,10 +61330,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4844:
+/***/ 4935:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -63129,17 +61345,17 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4845:
+/***/ 4936:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectionsOverlay; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selections_css__ = __webpack_require__(4846);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selections_css__ = __webpack_require__(4937);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selections_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__selections_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_browser_js__ = __webpack_require__(3621);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_dynamicViewOverlay_js__ = __webpack_require__(3702);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_browser_js__ = __webpack_require__(3788);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_dynamicViewOverlay_js__ = __webpack_require__(3858);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -63500,13 +61716,13 @@ function abs(n) {
 
 /***/ }),
 
-/***/ 4846:
+/***/ 4937:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4847);
+var content = __webpack_require__(4938);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -63514,7 +61730,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -63532,10 +61748,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4847:
+/***/ 4938:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -63547,20 +61763,20 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4848:
+/***/ 4939:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewCursors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewCursors_css__ = __webpack_require__(4849);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewCursors_css__ = __webpack_require__(4940);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewCursors_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__viewCursors_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__viewCursor_js__ = __webpack_require__(4851);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__viewCursor_js__ = __webpack_require__(4942);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -63780,22 +61996,22 @@ var ViewCursors = /** @class */function (_super) {
             result += ' has-selection';
         }
         switch (this._cursorStyle) {
-            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Line:
+            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["TextEditorCursorStyle"].Line:
                 result += ' cursor-line-style';
                 break;
-            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Block:
+            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["TextEditorCursorStyle"].Block:
                 result += ' cursor-block-style';
                 break;
-            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Underline:
+            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["TextEditorCursorStyle"].Underline:
                 result += ' cursor-underline-style';
                 break;
-            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].LineThin:
+            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["TextEditorCursorStyle"].LineThin:
                 result += ' cursor-line-thin-style';
                 break;
-            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].BlockOutline:
+            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["TextEditorCursorStyle"].BlockOutline:
                 result += ' cursor-block-outline-style';
                 break;
-            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].UnderlineThin:
+            case __WEBPACK_IMPORTED_MODULE_5__common_config_editorOptions_js__["TextEditorCursorStyle"].UnderlineThin:
                 result += ' cursor-underline-thin-style';
                 break;
             default:
@@ -63888,13 +62104,13 @@ Object(__WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__["e" 
 
 /***/ }),
 
-/***/ 4849:
+/***/ 4940:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4850);
+var content = __webpack_require__(4941);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -63902,7 +62118,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -63920,10 +62136,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4850:
+/***/ 4941:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -63935,18 +62151,18 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4851:
+/***/ 4942:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewCursor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -64028,14 +62244,14 @@ var ViewCursor = /** @class */function () {
     ViewCursor.prototype._prepareRender = function (ctx) {
         var textContent = '';
         var textContentClassName = '';
-        if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Line || this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].LineThin) {
+        if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["TextEditorCursorStyle"].Line || this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["TextEditorCursorStyle"].LineThin) {
             var visibleRange = ctx.visibleRangeForPosition(this._position);
             if (!visibleRange) {
                 // Outside viewport
                 return null;
             }
             var width_1;
-            if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Line) {
+            if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["TextEditorCursorStyle"].Line) {
                 width_1 = __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__["o" /* computeScreenAwareSize */](this._lineCursorWidth > 0 ? this._lineCursorWidth : 2);
                 if (width_1 > 2) {
                     var lineContent = this._context.model.getLineContent(this._position.lineNumber);
@@ -64060,7 +62276,7 @@ var ViewCursor = /** @class */function () {
         }
         var range = visibleRangeForCharacter[0].ranges[0];
         var width = range.width < 1 ? this._typicalHalfwidthCharacterWidth : range.width;
-        if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Block) {
+        if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["TextEditorCursorStyle"].Block) {
             var lineData = this._context.model.getViewLineData(this._position.lineNumber);
             textContent = lineData.content.charAt(this._position.column - 1);
             if (__WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__["u" /* isHighSurrogate */](lineData.content.charCodeAt(this._position.column - 1))) {
@@ -64072,7 +62288,7 @@ var ViewCursor = /** @class */function () {
         var top = ctx.getVerticalOffsetForLineNumber(this._position.lineNumber) - ctx.bigNumbersDelta;
         var height = this._lineHeight;
         // Underline might interfere with clicking
-        if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].Underline || this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["g" /* TextEditorCursorStyle */].UnderlineThin) {
+        if (this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["TextEditorCursorStyle"].Underline || this._cursorStyle === __WEBPACK_IMPORTED_MODULE_4__common_config_editorOptions_js__["TextEditorCursorStyle"].UnderlineThin) {
             top += this._lineHeight - 2;
             height = 2;
         }
@@ -64111,15 +62327,15 @@ var ViewCursor = /** @class */function () {
 
 /***/ }),
 
-/***/ 4852:
+/***/ 4943:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewZones; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_viewPart_js__ = __webpack_require__(3794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_core_position_js__ = __webpack_require__(3762);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -64418,7 +62634,7 @@ var ViewZones = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4853:
+/***/ 4944:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64447,7 +62663,7 @@ var ViewContext = /** @class */function () {
 
 /***/ }),
 
-/***/ 4854:
+/***/ 4945:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64531,12 +62747,12 @@ var ViewEventDispatcher = /** @class */function () {
 
 /***/ }),
 
-/***/ 4855:
+/***/ 4946:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewportData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -64568,13 +62784,13 @@ var ViewportData = /** @class */function () {
 
 /***/ }),
 
-/***/ 4856:
+/***/ 4947:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewOutgoingEvents; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controller_mouseTarget_js__ = __webpack_require__(4169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__controller_mouseTarget_js__ = __webpack_require__(4284);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -64717,25 +62933,25 @@ var ExternalMouseTarget = /** @class */function () {
 
 /***/ }),
 
-/***/ 4857:
+/***/ 4948:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export CursorStateChangedEvent */
 /* unused harmony export CursorModelState */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Cursor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cursorCollection_js__ = __webpack_require__(4858);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cursorDeleteOperations_js__ = __webpack_require__(4174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cursorTypeOperations_js__ = __webpack_require__(4176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_selection_js__ = __webpack_require__(3619);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__editorCommon_js__ = __webpack_require__(3699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__view_viewEvents_js__ = __webpack_require__(3726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cursorCollection_js__ = __webpack_require__(4949);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cursorDeleteOperations_js__ = __webpack_require__(4289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__cursorTypeOperations_js__ = __webpack_require__(4291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_selection_js__ = __webpack_require__(3786);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__editorCommon_js__ = __webpack_require__(3855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__view_viewEvents_js__ = __webpack_require__(3878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -65658,14 +63874,14 @@ var CommandExecutor = /** @class */function () {
 
 /***/ }),
 
-/***/ 4858:
+/***/ 4949:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CursorCollection; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oneCursor_js__ = __webpack_require__(4859);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_selection_js__ = __webpack_require__(3619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__oneCursor_js__ = __webpack_require__(4950);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_selection_js__ = __webpack_require__(3786);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -65894,15 +64110,15 @@ var CursorCollection = /** @class */function () {
 
 /***/ }),
 
-/***/ 4859:
+/***/ 4950:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OneCursor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_selection_js__ = __webpack_require__(3619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cursorCommon_js__ = __webpack_require__(3797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_selection_js__ = __webpack_require__(3786);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -65996,26 +64212,26 @@ var OneCursor = /** @class */function () {
 
 /***/ }),
 
-/***/ 4860:
+/***/ 4951:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewModel; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modes_textToHtmlTokenizer_js__ = __webpack_require__(4861);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_minimapCharRenderer_js__ = __webpack_require__(3932);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__view_viewEvents_js__ = __webpack_require__(3726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewLayout_viewLayout_js__ = __webpack_require__(4862);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__characterHardWrappingLineMapper_js__ = __webpack_require__(4865);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__splitLinesCollection_js__ = __webpack_require__(4179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__viewModel_js__ = __webpack_require__(3701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__viewModelDecorations_js__ = __webpack_require__(4866);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_common_async_js__ = __webpack_require__(3601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modes_textToHtmlTokenizer_js__ = __webpack_require__(4952);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_minimapCharRenderer_js__ = __webpack_require__(4066);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__view_viewEvents_js__ = __webpack_require__(3878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__viewLayout_viewLayout_js__ = __webpack_require__(4953);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__characterHardWrappingLineMapper_js__ = __webpack_require__(4956);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__splitLinesCollection_js__ = __webpack_require__(4294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__viewModel_js__ = __webpack_require__(3857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__viewModelDecorations_js__ = __webpack_require__(4957);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_common_async_js__ = __webpack_require__(3773);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -66564,7 +64780,7 @@ var ViewModel = /** @class */function (_super) {
         }
         var fontInfo = this.configuration.editor.fontInfo;
         var colorMap = this._getColorMap();
-        var fontFamily = fontInfo.fontFamily === __WEBPACK_IMPORTED_MODULE_2__config_editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */].fontFamily ? fontInfo.fontFamily : "'" + fontInfo.fontFamily + "', " + __WEBPACK_IMPORTED_MODULE_2__config_editorOptions_js__["b" /* EDITOR_FONT_DEFAULTS */].fontFamily;
+        var fontFamily = fontInfo.fontFamily === __WEBPACK_IMPORTED_MODULE_2__config_editorOptions_js__["EDITOR_FONT_DEFAULTS"].fontFamily ? fontInfo.fontFamily : "'" + fontInfo.fontFamily + "', " + __WEBPACK_IMPORTED_MODULE_2__config_editorOptions_js__["EDITOR_FONT_DEFAULTS"].fontFamily;
         return "<div style=\"" + (
         "color: " + colorMap[1 /* DefaultForeground */] + ";") + (
         "background-color: " + colorMap[2 /* DefaultBackground */] + ";") + (
@@ -66614,15 +64830,15 @@ var ViewModel = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4861:
+/***/ 4952:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export tokenizeToString */
 /* harmony export (immutable) */ __webpack_exports__["a"] = tokenizeLineToHTML;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_lineTokens_js__ = __webpack_require__(3759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nullMode_js__ = __webpack_require__(3696);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_lineTokens_js__ = __webpack_require__(3912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nullMode_js__ = __webpack_require__(3852);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -66722,15 +64938,15 @@ function _tokenizeToString(text, tokenizationSupport) {
 
 /***/ }),
 
-/***/ 4862:
+/***/ 4953:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewLayout; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_scrollable_js__ = __webpack_require__(4145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__linesLayout_js__ = __webpack_require__(4863);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viewModel_viewModel_js__ = __webpack_require__(3701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_scrollable_js__ = __webpack_require__(4260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__linesLayout_js__ = __webpack_require__(4954);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__viewModel_viewModel_js__ = __webpack_require__(3857);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -66954,12 +65170,12 @@ var ViewLayout = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4863:
+/***/ 4954:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinesLayout; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__whitespaceComputer_js__ = __webpack_require__(4864);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__whitespaceComputer_js__ = __webpack_require__(4955);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -67349,12 +65565,12 @@ var LinesLayout = /** @class */function () {
 
 /***/ }),
 
-/***/ 4864:
+/***/ 4955:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WhitespaceComputer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -67736,17 +65952,17 @@ var WhitespaceComputer = /** @class */function () {
 
 /***/ }),
 
-/***/ 4865:
+/***/ 4956:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CharacterHardWrappingLineMapperFactory; });
 /* unused harmony export CharacterHardWrappingLineMapping */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_characterClassifier_js__ = __webpack_require__(3819);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_uint_js__ = __webpack_require__(3820);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__prefixSumComputer_js__ = __webpack_require__(3924);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitLinesCollection_js__ = __webpack_require__(4179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_characterClassifier_js__ = __webpack_require__(3963);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_uint_js__ = __webpack_require__(3964);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__prefixSumComputer_js__ = __webpack_require__(4058);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitLinesCollection_js__ = __webpack_require__(4294);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -67995,14 +66211,14 @@ var CharacterHardWrappingLineMapping = /** @class */function () {
 
 /***/ }),
 
-/***/ 4866:
+/***/ 4957:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewModelDecorations; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewModel_js__ = __webpack_require__(3701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewModel_js__ = __webpack_require__(3857);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -68117,44 +66333,44 @@ var ViewModelDecorations = /** @class */function () {
 
 /***/ }),
 
-/***/ 4867:
+/***/ 4958:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiffEditorWidget; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_diffEditor_css__ = __webpack_require__(4868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_diffEditor_css__ = __webpack_require__(4959);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_diffEditor_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__media_diffEditor_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_ui_sash_sash_js__ = __webpack_require__(4140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_objects_js__ = __webpack_require__(3659);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_editorState_js__ = __webpack_require__(4149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__codeEditorWidget_js__ = __webpack_require__(4168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__diffReview_js__ = __webpack_require__(4870);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common_core_stringBuilder_js__ = __webpack_require__(3926);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_editorCommon_js__ = __webpack_require__(3699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__common_services_editorWorkerService_js__ = __webpack_require__(3725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__common_view_overviewZoneManager_js__ = __webpack_require__(4177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__common_viewLayout_lineDecorations_js__ = __webpack_require__(3927);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3827);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__common_viewModel_viewModel_js__ = __webpack_require__(3701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_instantiation_common_serviceCollection_js__ = __webpack_require__(3828);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__platform_contextview_browser_contextView_js__ = __webpack_require__(3723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__inlineDiffMargin_js__ = __webpack_require__(4873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_ui_sash_sash_js__ = __webpack_require__(4255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_objects_js__ = __webpack_require__(3820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_editorState_js__ = __webpack_require__(4264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__codeEditorWidget_js__ = __webpack_require__(4283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__diffReview_js__ = __webpack_require__(4961);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__common_core_stringBuilder_js__ = __webpack_require__(4060);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__common_editorCommon_js__ = __webpack_require__(3855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__common_model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__common_services_editorWorkerService_js__ = __webpack_require__(3877);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__common_view_overviewZoneManager_js__ = __webpack_require__(4292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__common_viewLayout_lineDecorations_js__ = __webpack_require__(4061);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__common_viewModel_viewModel_js__ = __webpack_require__(3857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__platform_instantiation_common_serviceCollection_js__ = __webpack_require__(3972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__platform_notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__platform_contextview_browser_contextView_js__ = __webpack_require__(3875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__inlineDiffMargin_js__ = __webpack_require__(4964);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -68902,7 +67118,7 @@ var DiffEditorWidget = /** @class */function (_super) {
     };
     DiffEditorWidget.prototype._adjustOptionsForRightHandSide = function (options) {
         var result = this._adjustOptionsForSubEditor(options);
-        result.revealHorizontalRightPadding = __WEBPACK_IMPORTED_MODULE_14__common_config_editorOptions_js__["a" /* EDITOR_DEFAULTS */].viewInfo.revealHorizontalRightPadding + DiffEditorWidget.ENTIRE_DIFF_OVERVIEW_WIDTH;
+        result.revealHorizontalRightPadding = __WEBPACK_IMPORTED_MODULE_14__common_config_editorOptions_js__["EDITOR_DEFAULTS"].viewInfo.revealHorizontalRightPadding + DiffEditorWidget.ENTIRE_DIFF_OVERVIEW_WIDTH;
         result.scrollbar.verticalHasArrows = false;
         result.extraEditorClassName = 'modified-in-monaco-diff-editor';
         return result;
@@ -69816,13 +68032,13 @@ Object(__WEBPACK_IMPORTED_MODULE_29__platform_theme_common_themeService_js__["e"
 
 /***/ }),
 
-/***/ 4868:
+/***/ 4959:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4869);
+var content = __webpack_require__(4960);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -69830,7 +68046,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -69848,10 +68064,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4869:
+/***/ 4960:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -69863,31 +68079,31 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4870:
+/***/ 4961:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DiffReview; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_diffReview_css__ = __webpack_require__(4871);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_diffReview_css__ = __webpack_require__(4962);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__media_diffReview_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__media_diffReview_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_fastDomNode_js__ = __webpack_require__(3608);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_ui_actionbar_actionbar_js__ = __webpack_require__(3916);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_browser_ui_scrollbar_scrollableElement_js__ = __webpack_require__(3761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_actions_js__ = __webpack_require__(3722);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config_configuration_js__ = __webpack_require__(3688);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__editorExtensions_js__ = __webpack_require__(3652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_codeEditorService_js__ = __webpack_require__(3657);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_core_lineTokens_js__ = __webpack_require__(3759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_core_position_js__ = __webpack_require__(3588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3827);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_viewModel_viewModel_js__ = __webpack_require__(3701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_fastDomNode_js__ = __webpack_require__(3777);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_ui_actionbar_actionbar_js__ = __webpack_require__(4050);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_browser_ui_scrollbar_scrollableElement_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_common_actions_js__ = __webpack_require__(3874);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config_configuration_js__ = __webpack_require__(3845);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__editorExtensions_js__ = __webpack_require__(3814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_codeEditorService_js__ = __webpack_require__(3818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_core_lineTokens_js__ = __webpack_require__(3912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__common_core_position_js__ = __webpack_require__(3762);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__common_viewLayout_viewLineRenderer_js__ = __webpack_require__(3971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__common_viewModel_viewModel_js__ = __webpack_require__(3857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__platform_contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -70590,13 +68806,13 @@ Object(__WEBPACK_IMPORTED_MODULE_9__editorExtensions_js__["e" /* registerEditorA
 
 /***/ }),
 
-/***/ 4871:
+/***/ 4962:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4872);
+var content = __webpack_require__(4963);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -70604,7 +68820,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -70622,10 +68838,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4872:
+/***/ 4963:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -70637,16 +68853,16 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4873:
+/***/ 4964:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InlineDiffMargin; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_actions_js__ = __webpack_require__(3722);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_range_js__ = __webpack_require__(3582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_actions_js__ = __webpack_require__(3874);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_core_range_js__ = __webpack_require__(3757);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -70852,12 +69068,12 @@ var InlineDiffMargin = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4874:
+/***/ 4965:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IBulkEditService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -70867,12 +69083,12 @@ var IBulkEditService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_instantiatio
 
 /***/ }),
 
-/***/ 4875:
+/***/ 4966:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IModeService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -70882,16 +69098,16 @@ var IModeService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_instantiation_co
 
 /***/ }),
 
-/***/ 4876:
+/***/ 4967:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModeServiceImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modes_abstractMode_js__ = __webpack_require__(4877);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modes_nullMode_js__ = __webpack_require__(3696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__languagesRegistry_js__ = __webpack_require__(4878);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modes_abstractMode_js__ = __webpack_require__(4968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modes_nullMode_js__ = __webpack_require__(3852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__languagesRegistry_js__ = __webpack_require__(4969);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -71011,7 +69227,7 @@ var ModeServiceImpl = /** @class */function () {
 
 /***/ }),
 
-/***/ 4877:
+/***/ 4968:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71033,21 +69249,21 @@ var FrankensteinMode = /** @class */function () {
 
 /***/ }),
 
-/***/ 4878:
+/***/ 4969:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguagesRegistry; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_mime_js__ = __webpack_require__(4879);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modes_modesRegistry_js__ = __webpack_require__(3934);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modes_nullMode_js__ = __webpack_require__(3696);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_configuration_common_configurationRegistry_js__ = __webpack_require__(3762);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_registry_common_platform_js__ = __webpack_require__(3648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_mime_js__ = __webpack_require__(4970);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modes_modesRegistry_js__ = __webpack_require__(4068);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modes_nullMode_js__ = __webpack_require__(3852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_configuration_common_configurationRegistry_js__ = __webpack_require__(3915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_registry_common_platform_js__ = __webpack_require__(3811);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -71307,7 +69523,7 @@ var LanguagesRegistry = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4879:
+/***/ 4970:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71315,11 +69531,11 @@ var LanguagesRegistry = /** @class */function (_super) {
 /* unused harmony export MIME_UNKNOWN */
 /* harmony export (immutable) */ __webpack_exports__["b"] = registerTextMime;
 /* harmony export (immutable) */ __webpack_exports__["a"] = guessMimeTypes;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__path_js__ = __webpack_require__(3822);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__glob_js__ = __webpack_require__(4132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__resources_js__ = __webpack_require__(3921);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__path_js__ = __webpack_require__(3966);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__glob_js__ = __webpack_require__(4247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__resources_js__ = __webpack_require__(4055);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -71494,19 +69710,19 @@ function guessMimeTypeByFirstline(firstLine) {
 
 /***/ }),
 
-/***/ 4880:
+/***/ 4971:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModelServiceImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_platform_js__ = __webpack_require__(3589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__ = __webpack_require__(3653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_textModel_js__ = __webpack_require__(3674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_modesRegistry_js__ = __webpack_require__(3934);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__resourceConfiguration_js__ = __webpack_require__(3925);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_configuration_common_configuration_js__ = __webpack_require__(3662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_platform_js__ = __webpack_require__(3763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__ = __webpack_require__(3722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_textModel_js__ = __webpack_require__(3833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modes_modesRegistry_js__ = __webpack_require__(4068);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__resourceConfiguration_js__ = __webpack_require__(4059);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_configuration_common_configuration_js__ = __webpack_require__(3823);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -71596,7 +69812,7 @@ var ModelServiceImpl = /** @class */function (_super) {
         return _this;
     }
     ModelServiceImpl._readModelOptions = function (config, isForSimpleWidget) {
-        var tabSize = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].tabSize;
+        var tabSize = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].tabSize;
         if (config.editor && typeof config.editor.tabSize !== 'undefined') {
             var parsedTabSize = parseInt(config.editor.tabSize, 10);
             if (!isNaN(parsedTabSize)) {
@@ -71616,7 +69832,7 @@ var ModelServiceImpl = /** @class */function (_super) {
                 indentSize = 1;
             }
         }
-        var insertSpaces = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].insertSpaces;
+        var insertSpaces = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].insertSpaces;
         if (config.editor && typeof config.editor.insertSpaces !== 'undefined') {
             insertSpaces = config.editor.insertSpaces === 'false' ? false : Boolean(config.editor.insertSpaces);
         }
@@ -71628,15 +69844,15 @@ var ModelServiceImpl = /** @class */function (_super) {
         if (eol === '\n') {
             newDefaultEOL = 1 /* LF */;
         }
-        var trimAutoWhitespace = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].trimAutoWhitespace;
+        var trimAutoWhitespace = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].trimAutoWhitespace;
         if (config.editor && typeof config.editor.trimAutoWhitespace !== 'undefined') {
             trimAutoWhitespace = config.editor.trimAutoWhitespace === 'false' ? false : Boolean(config.editor.trimAutoWhitespace);
         }
-        var detectIndentation = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].detectIndentation;
+        var detectIndentation = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].detectIndentation;
         if (config.editor && typeof config.editor.detectIndentation !== 'undefined') {
             detectIndentation = config.editor.detectIndentation === 'false' ? false : Boolean(config.editor.detectIndentation);
         }
-        var largeFileOptimizations = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["c" /* EDITOR_MODEL_DEFAULTS */].largeFileOptimizations;
+        var largeFileOptimizations = __WEBPACK_IMPORTED_MODULE_3__config_editorOptions_js__["EDITOR_MODEL_DEFAULTS"].largeFileOptimizations;
         if (config.editor && typeof config.editor.largeFileOptimizations !== 'undefined') {
             largeFileOptimizations = config.editor.largeFileOptimizations === 'false' ? false : Boolean(config.editor.largeFileOptimizations);
         }
@@ -71788,14 +70004,14 @@ var ModelServiceImpl = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4881:
+/***/ 4972:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StandaloneCodeEditorServiceImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_services_codeEditorServiceImpl_js__ = __webpack_require__(4882);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__browser_services_codeEditorServiceImpl_js__ = __webpack_require__(4973);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -71873,19 +70089,19 @@ var StandaloneCodeEditorServiceImpl = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4882:
+/***/ 4973:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CodeEditorServiceImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_uri_js__ = __webpack_require__(3642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstractCodeEditorService_js__ = __webpack_require__(4883);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_editorCommon_js__ = __webpack_require__(3699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_uri_js__ = __webpack_require__(3805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstractCodeEditorService_js__ = __webpack_require__(4974);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_editorCommon_js__ = __webpack_require__(3855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -72325,13 +70541,13 @@ var CSSNameHelper = /** @class */function () {
 
 /***/ }),
 
-/***/ 4883:
+/***/ 4974:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractCodeEditorService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -72412,20 +70628,20 @@ var AbstractCodeEditorService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4884:
+/***/ 4975:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StandaloneThemeServiceImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_supports_tokenization_js__ = __webpack_require__(4885);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_themes_js__ = __webpack_require__(4886);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_theme_common_themeService_js__ = __webpack_require__(3599);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_color_js__ = __webpack_require__(3821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_supports_tokenization_js__ = __webpack_require__(4976);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_themes_js__ = __webpack_require__(4977);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_theme_common_themeService_js__ = __webpack_require__(3772);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -72657,7 +70873,7 @@ var StandaloneThemeServiceImpl = /** @class */function () {
 
 /***/ }),
 
-/***/ 4885:
+/***/ 4976:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72670,7 +70886,7 @@ var StandaloneThemeServiceImpl = /** @class */function () {
 /* unused harmony export ThemeTrieElementRule */
 /* unused harmony export ThemeTrieElement */
 /* harmony export (immutable) */ __webpack_exports__["b"] = generateTokensCSSForColorMap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_color_js__ = __webpack_require__(3660);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_color_js__ = __webpack_require__(3821);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -72960,15 +71176,15 @@ function generateTokensCSSForColorMap(colorMap) {
 
 /***/ }),
 
-/***/ 4886:
+/***/ 4977:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return vs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return vs_dark; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hc_black; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__platform_theme_common_colorRegistry_js__ = __webpack_require__(3626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__platform_theme_common_colorRegistry_js__ = __webpack_require__(3793);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -73152,20 +71368,20 @@ var hc_black = {
 
 /***/ }),
 
-/***/ 4887:
+/***/ 4978:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export Context */
 /* unused harmony export AbstractContextKeyService */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContextKeyService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_map_js__ = __webpack_require__(3658);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__keybinding_common_keybindingResolver_js__ = __webpack_require__(4165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_map_js__ = __webpack_require__(3819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__keybinding_common_keybindingResolver_js__ = __webpack_require__(4280);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -73570,19 +71786,19 @@ __WEBPACK_IMPORTED_MODULE_3__commands_common_commands_js__["a" /* CommandsRegist
 
 /***/ }),
 
-/***/ 4888:
+/***/ 4979:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContextMenuService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextMenuHandler_js__ = __webpack_require__(4889);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contextView_js__ = __webpack_require__(3723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__telemetry_common_telemetry_js__ = __webpack_require__(3910);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__notification_common_notification_js__ = __webpack_require__(3677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__keybinding_common_keybinding_js__ = __webpack_require__(3724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextMenuHandler_js__ = __webpack_require__(4980);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__contextView_js__ = __webpack_require__(3875);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__telemetry_common_telemetry_js__ = __webpack_require__(4044);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__notification_common_notification_js__ = __webpack_require__(3836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__keybinding_common_keybinding_js__ = __webpack_require__(3876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_lifecycle_js__ = __webpack_require__(3755);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -73646,20 +71862,20 @@ var ContextMenuService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4889:
+/***/ 4980:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContextMenuHandler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextMenuHandler_css__ = __webpack_require__(4890);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextMenuHandler_css__ = __webpack_require__(4981);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextMenuHandler_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__contextMenuHandler_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_actions_js__ = __webpack_require__(3722);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_ui_menu_menu_js__ = __webpack_require__(4892);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_common_styler_js__ = __webpack_require__(4181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_browser_event_js__ = __webpack_require__(3697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_browser_mouseEvent_js__ = __webpack_require__(3661);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_actions_js__ = __webpack_require__(3874);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_browser_ui_menu_menu_js__ = __webpack_require__(4983);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_common_styler_js__ = __webpack_require__(4296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_browser_event_js__ = __webpack_require__(3853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_browser_mouseEvent_js__ = __webpack_require__(3822);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -73779,13 +71995,13 @@ var ContextMenuHandler = /** @class */function () {
 
 /***/ }),
 
-/***/ 4890:
+/***/ 4981:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4891);
+var content = __webpack_require__(4982);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -73793,7 +72009,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -73811,10 +72027,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4891:
+/***/ 4982:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -73826,7 +72042,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4892:
+/***/ 4983:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73835,19 +72051,19 @@ exports.push([module.i, "/*-----------------------------------------------------
 /* unused harmony export SubmenuAction */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Menu; });
 /* unused harmony export cleanMnemonic */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__menu_css__ = __webpack_require__(4893);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__menu_css__ = __webpack_require__(4984);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__menu_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__menu_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_strings_js__ = __webpack_require__(3583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_actions_js__ = __webpack_require__(3722);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actionbar_actionbar_js__ = __webpack_require__(3916);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__keyboardEvent_js__ = __webpack_require__(3698);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__scrollbar_scrollableElement_js__ = __webpack_require__(3761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_platform_js__ = __webpack_require__(3589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_strings_js__ = __webpack_require__(3758);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_actions_js__ = __webpack_require__(3874);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actionbar_actionbar_js__ = __webpack_require__(4050);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__keyboardEvent_js__ = __webpack_require__(3854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__scrollbar_scrollableElement_js__ = __webpack_require__(3914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__common_platform_js__ = __webpack_require__(3763);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -74500,13 +72716,13 @@ function cleanMnemonic(label) {
 
 /***/ }),
 
-/***/ 4893:
+/***/ 4984:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4894);
+var content = __webpack_require__(4985);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -74514,7 +72730,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -74532,10 +72748,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4894:
+/***/ 4985:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -74547,14 +72763,14 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4895:
+/***/ 4986:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContextViewService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_ui_contextview_contextview_js__ = __webpack_require__(4896);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layout_browser_layoutService_js__ = __webpack_require__(4182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_ui_contextview_contextview_js__ = __webpack_require__(4987);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__layout_browser_layoutService_js__ = __webpack_require__(4297);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -74616,17 +72832,17 @@ var ContextViewService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4896:
+/***/ 4987:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export layout */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContextView; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextview_css__ = __webpack_require__(4897);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextview_css__ = __webpack_require__(4988);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextview_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__contextview_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_range_js__ = __webpack_require__(3935);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_range_js__ = __webpack_require__(4069);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -74836,13 +73052,13 @@ var ContextView = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4897:
+/***/ 4988:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4898);
+var content = __webpack_require__(4989);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -74850,7 +73066,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -74868,10 +73084,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4898:
+/***/ 4989:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -74883,28 +73099,28 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4899:
+/***/ 4990:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IDialogService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 
 var IDialogService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__["c" /* createDecorator */])('dialogService');
 
 /***/ }),
 
-/***/ 4900:
+/***/ 4991:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InstantiationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__graph_js__ = __webpack_require__(4901);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__descriptors_js__ = __webpack_require__(4151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__serviceCollection_js__ = __webpack_require__(3828);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_async_js__ = __webpack_require__(3601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__graph_js__ = __webpack_require__(4992);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__descriptors_js__ = __webpack_require__(4266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__serviceCollection_js__ = __webpack_require__(3972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_common_async_js__ = __webpack_require__(3773);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -75205,13 +73421,13 @@ var Trace = /** @class */function () {
 
 /***/ }),
 
-/***/ 4901:
+/***/ 4992:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Graph; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_collections_js__ = __webpack_require__(4183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_collections_js__ = __webpack_require__(4298);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -75281,12 +73497,12 @@ var Graph = /** @class */function () {
 
 /***/ }),
 
-/***/ 4902:
+/***/ 4993:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ILabelService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -75297,7 +73513,7 @@ var ILabelService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common_ins
 
 /***/ }),
 
-/***/ 4903:
+/***/ 4994:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75319,22 +73535,22 @@ var ILabelService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_common_ins
 /* unused harmony export WorkbenchObjectTree */
 /* unused harmony export WorkbenchDataTree */
 /* unused harmony export WorkbenchAsyncDataTree */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_list_listWidget_js__ = __webpack_require__(4184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nls_js__ = __webpack_require__(3595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__configuration_common_configurationRegistry_js__ = __webpack_require__(3762);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__instantiation_common_instantiation_js__ = __webpack_require__(3587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__keybinding_common_keybinding_js__ = __webpack_require__(3724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__registry_common_platform_js__ = __webpack_require__(3648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__theme_common_styler_js__ = __webpack_require__(4181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_browser_ui_tree_objectTree_js__ = __webpack_require__(4188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_browser_ui_tree_asyncDataTree_js__ = __webpack_require__(4912);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_browser_ui_tree_dataTree_js__ = __webpack_require__(4913);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__accessibility_common_accessibility_js__ = __webpack_require__(3700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_browser_dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_browser_ui_list_listWidget_js__ = __webpack_require__(4299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nls_js__ = __webpack_require__(3769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__configuration_common_configurationRegistry_js__ = __webpack_require__(3915);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__instantiation_common_instantiation_js__ = __webpack_require__(3761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__keybinding_common_keybinding_js__ = __webpack_require__(3876);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__registry_common_platform_js__ = __webpack_require__(3811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__theme_common_styler_js__ = __webpack_require__(4296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__base_browser_ui_tree_objectTree_js__ = __webpack_require__(4303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__base_browser_ui_tree_asyncDataTree_js__ = __webpack_require__(5003);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__base_browser_ui_tree_dataTree_js__ = __webpack_require__(5004);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__accessibility_common_accessibility_js__ = __webpack_require__(3856);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -75806,13 +74022,13 @@ configurationRegistry.registerConfiguration({
 
 /***/ }),
 
-/***/ 4904:
+/***/ 4995:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4905);
+var content = __webpack_require__(4996);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -75820,7 +74036,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -75838,10 +74054,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4905:
+/***/ 4996:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -75853,7 +74069,7 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4906:
+/***/ 4997:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75872,7 +74088,7 @@ var ListAriaRootRole;
 
 /***/ }),
 
-/***/ 4907:
+/***/ 4998:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75880,7 +74096,7 @@ var ListAriaRootRole;
 /* harmony export (immutable) */ __webpack_exports__["b"] = shift;
 /* unused harmony export consolidate */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeMap; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_range_js__ = __webpack_require__(3935);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_range_js__ = __webpack_require__(4069);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -76052,12 +74268,12 @@ var RangeMap = /** @class */function () {
 
 /***/ }),
 
-/***/ 4908:
+/***/ 4999:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RowCache; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_js__ = __webpack_require__(3760);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -76152,7 +74368,7 @@ var RowCache = /** @class */function () {
 
 /***/ }),
 
-/***/ 4909:
+/***/ 5000:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76174,13 +74390,13 @@ var CombinedSpliceable = /** @class */function () {
 
 /***/ }),
 
-/***/ 4910:
+/***/ 5001:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4911);
+var content = __webpack_require__(5002);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -76188,7 +74404,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(1548)(content, options);
+var update = __webpack_require__(1636)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -76206,10 +74422,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 4911:
+/***/ 5002:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1547)(false);
+exports = module.exports = __webpack_require__(1635)(false);
 // imports
 
 
@@ -76221,22 +74437,22 @@ exports.push([module.i, "/*-----------------------------------------------------
 
 /***/ }),
 
-/***/ 4912:
+/***/ 5003:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export ChildrenResolutionReason */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsyncDataTree; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstractTree_js__ = __webpack_require__(3937);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objectTree_js__ = __webpack_require__(4188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_async_js__ = __webpack_require__(3601);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_iterator_js__ = __webpack_require__(3721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__list_listView_js__ = __webpack_require__(3936);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_errors_js__ = __webpack_require__(3598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_js__ = __webpack_require__(3585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_map_js__ = __webpack_require__(3658);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstractTree_js__ = __webpack_require__(4071);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objectTree_js__ = __webpack_require__(4303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_async_js__ = __webpack_require__(3773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_iterator_js__ = __webpack_require__(3873);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__list_listView_js__ = __webpack_require__(4070);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_errors_js__ = __webpack_require__(3771);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_js__ = __webpack_require__(3760);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__common_map_js__ = __webpack_require__(3819);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -76963,13 +75179,13 @@ var AsyncDataTree = /** @class */function () {
 
 /***/ }),
 
-/***/ 4913:
+/***/ 5004:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataTree; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstractTree_js__ = __webpack_require__(3937);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objectTreeModel_js__ = __webpack_require__(4190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstractTree_js__ = __webpack_require__(4071);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objectTreeModel_js__ = __webpack_require__(4305);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77007,16 +75223,16 @@ var DataTree = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4914:
+/***/ 5005:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MarkerService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_types_js__ = __webpack_require__(3605);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__markers_js__ = __webpack_require__(3938);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_arrays_js__ = __webpack_require__(3778);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_types_js__ = __webpack_require__(3776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__markers_js__ = __webpack_require__(4072);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77287,12 +75503,12 @@ var MarkerService = /** @class */function () {
 
 /***/ }),
 
-/***/ 4915:
+/***/ 5006:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IEditorProgressService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77302,16 +75518,16 @@ var IEditorProgressService = Object(__WEBPACK_IMPORTED_MODULE_0__instantiation_c
 
 /***/ }),
 
-/***/ 4916:
+/***/ 5007:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_js__ = __webpack_require__(3757);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commands_common_commands_js__ = __webpack_require__(3643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contextkey_common_contextkey_js__ = __webpack_require__(3604);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_js__ = __webpack_require__(3910);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commands_common_commands_js__ = __webpack_require__(3806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__contextkey_common_contextkey_js__ = __webpack_require__(3775);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77477,12 +75693,12 @@ var Menu = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4917:
+/***/ 5008:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IMarkerDecorationsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_instantiation_common_instantiation_js__ = __webpack_require__(3761);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77492,22 +75708,22 @@ var IMarkerDecorationsService = Object(__WEBPACK_IMPORTED_MODULE_0__platform_ins
 
 /***/ }),
 
-/***/ 4918:
+/***/ 5009:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MarkerDecorationsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_markers_common_markers_js__ = __webpack_require__(3938);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_js__ = __webpack_require__(3673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3599);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_editorColorRegistry_js__ = __webpack_require__(3649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modelService_js__ = __webpack_require__(3694);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_map_js__ = __webpack_require__(3658);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_network_js__ = __webpack_require__(3687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_common_types_js__ = __webpack_require__(3605);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__platform_markers_common_markers_js__ = __webpack_require__(4072);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_js__ = __webpack_require__(3832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__platform_theme_common_themeService_js__ = __webpack_require__(3772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_editorColorRegistry_js__ = __webpack_require__(3812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modelService_js__ = __webpack_require__(3850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_common_map_js__ = __webpack_require__(3819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_common_network_js__ = __webpack_require__(3844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_common_types_js__ = __webpack_require__(3776);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77739,14 +75955,14 @@ var MarkerDecorationsService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4919:
+/***/ 5010:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrowserAccessibilityService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__configuration_common_configuration_js__ = __webpack_require__(3662);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstractAccessibilityService_js__ = __webpack_require__(4920);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__configuration_common_configuration_js__ = __webpack_require__(3823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstractAccessibilityService_js__ = __webpack_require__(5011);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77798,16 +76014,16 @@ var BrowserAccessibilityService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4920:
+/***/ 5011:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractAccessibilityService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessibility_js__ = __webpack_require__(3700);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contextkey_common_contextkey_js__ = __webpack_require__(3604);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration_common_configuration_js__ = __webpack_require__(3662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_common_lifecycle_js__ = __webpack_require__(3755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__accessibility_js__ = __webpack_require__(3856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_common_event_js__ = __webpack_require__(3756);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contextkey_common_contextkey_js__ = __webpack_require__(3775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration_common_configuration_js__ = __webpack_require__(3823);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -77872,7 +76088,7 @@ var AbstractAccessibilityService = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 4921:
+/***/ 5012:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77906,15 +76122,15 @@ var AbstractAccessibilityService = /** @class */function (_super) {
 /* unused harmony export registerDeclarationProvider */
 /* unused harmony export registerSelectionRangeProvider */
 /* harmony export (immutable) */ __webpack_exports__["a"] = createMonacoLanguagesAPI;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_range_js__ = __webpack_require__(3582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_token_js__ = __webpack_require__(3823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modes_js__ = __webpack_require__(3547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modes_languageConfigurationRegistry_js__ = __webpack_require__(3675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_modesRegistry_js__ = __webpack_require__(3934);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_standalone_standaloneEnums_js__ = __webpack_require__(3920);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__standaloneServices_js__ = __webpack_require__(4180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_monarch_monarchCompile_js__ = __webpack_require__(4922);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_monarch_monarchLexer_js__ = __webpack_require__(4162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_core_range_js__ = __webpack_require__(3757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_core_token_js__ = __webpack_require__(3967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_modes_js__ = __webpack_require__(3721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_modes_languageConfigurationRegistry_js__ = __webpack_require__(3834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_modes_modesRegistry_js__ = __webpack_require__(4068);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_standalone_standaloneEnums_js__ = __webpack_require__(4054);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__standaloneServices_js__ = __webpack_require__(4295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_monarch_monarchCompile_js__ = __webpack_require__(5013);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__common_monarch_monarchLexer_js__ = __webpack_require__(4277);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -78316,12 +76532,12 @@ function createMonacoLanguagesAPI() {
 
 /***/ }),
 
-/***/ 4922:
+/***/ 5013:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = compile;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__monarchCommon_js__ = __webpack_require__(4163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__monarchCommon_js__ = __webpack_require__(4278);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -78832,13 +77048,13 @@ function compile(languageId, json) {
 
 /***/ }),
 
-/***/ 4923:
+/***/ 5014:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LanguageServiceDefaultsImpl", function() { return LanguageServiceDefaultsImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js__ = __webpack_require__(1028);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js__ = __webpack_require__(1084);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js__);
 
 /*---------------------------------------------------------------------------------------------
@@ -78922,7 +77138,7 @@ function createAPI() {
 monaco.languages.json = createAPI();
 // --- Registration to monaco editor ---
 function getMode() {
-    return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, 4924));
+    return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, 5015));
 }
 monaco.languages.register({
     id: 'json',
@@ -78936,12 +77152,12 @@ monaco.languages.onLanguage('json', function () {
 
 /***/ }),
 
-/***/ 4931:
+/***/ 5022:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contribution_js__ = __webpack_require__(4193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contribution_js__ = __webpack_require__(4308);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -78953,17 +77169,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__contribution_js__["a" /* registerLanguage */
     extensions: ['.html', '.htm', '.shtml', '.xhtml', '.mdoc', '.jsp', '.asp', '.aspx', '.jshtm'],
     aliases: ['HTML', 'htm', 'html', 'xhtml'],
     mimetypes: ['text/html', 'text/x-jshtm', 'text/template', 'text/ng-template'],
-    loader: function () {return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, 4932));} });
+    loader: function () {return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, 5023));} });
 
 /***/ }),
 
-/***/ 4933:
+/***/ 5024:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LanguageServiceDefaultsImpl", function() { return LanguageServiceDefaultsImpl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js__ = __webpack_require__(1028);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js__ = __webpack_require__(1084);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__editor_editor_api_js__);
 
 /*---------------------------------------------------------------------------------------------
@@ -79050,7 +77266,7 @@ function createAPI() {
 monaco.languages.html = createAPI();
 // --- Registration to monaco editor ---
 function getMode() {
-    return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, 4934));
+    return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, 5025));
 }
 monaco.languages.onLanguage(htmlLanguageId, function () {
     getMode().then(function (mode) {return mode.setupMode(htmlDefaults);});
@@ -79064,12 +77280,12 @@ monaco.languages.onLanguage(razorLanguageId, function () {
 
 /***/ }),
 
-/***/ 4938:
+/***/ 5029:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contribution_js__ = __webpack_require__(4193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__contribution_js__ = __webpack_require__(4308);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -79082,7 +77298,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__contribution_js__["a" /* registerLanguage */
     firstLine: '(\\<\\?xml.*)|(\\<svg)|(\\<\\!doctype\\s+svg)',
     aliases: ['XML', 'xml'],
     mimetypes: ['text/xml', 'application/xml', 'application/xaml+xml', 'application/xml-dtd'],
-    loader: function () {return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, 4939));} });
+    loader: function () {return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, 5030));} });
 
 /***/ })
 

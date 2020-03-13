@@ -74,10 +74,19 @@ function handleRunCreate (id, defaultOptions = {}, runOptions, meta = {}, collec
       fileResolver
     } = meta,
 
+    handleCookieAccessDenied = function handleCookieAccessDenied (domain) {
+      let message = `Unable to access "${domain}" cookie store.` +
+        ' Try whitelisting the domain in "Manage Cookies" screen.' +
+        ' View more detailed instructions in the Learning Center: https://go.pstmn.io/docs-cookies';
+
+        this.send('console', null, 'warn', message);
+      },
+
     cookieJar = new CookieJar(cookiePartitionId, {
       readFromDB: !runWithEmptyCookieJar,
       writeToDB: false, // disabled writeToDB to avoid real-time updates
-      programmaticAccess: cookieConfiguration
+      programmaticAccess: cookieConfiguration,
+      onCookieAccessDenied: handleCookieAccessDenied.bind(this)
     });
 
   // Set the cookieJar

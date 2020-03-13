@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "../js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3413);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3587);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -17175,7 +17175,7 @@
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(35)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(36)(module)))
 
 /***/ }),
 
@@ -17193,9 +17193,9 @@
 
 
 
-var base64 = __webpack_require__(445);
-var ieee754 = __webpack_require__(446);
-var isArray = __webpack_require__(244);
+var base64 = __webpack_require__(476);
+var ieee754 = __webpack_require__(477);
+var isArray = __webpack_require__(262);
 
 exports.Buffer = Buffer;
 exports.SlowBuffer = SlowBuffer;
@@ -18976,7 +18976,99 @@ function isnan(val) {
 
 /***/ }),
 
-/***/ 100:
+/***/ 105:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = series;
+
+var _parallel = __webpack_require__(425);
+
+var _parallel2 = _interopRequireDefault(_parallel);
+
+var _eachOfSeries = __webpack_require__(432);
+
+var _eachOfSeries2 = _interopRequireDefault(_eachOfSeries);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Run the functions in the `tasks` collection in series, each one running once
+ * the previous function has completed. If any functions in the series pass an
+ * error to its callback, no more functions are run, and `callback` is
+ * immediately called with the value of the error. Otherwise, `callback`
+ * receives an array of results when `tasks` have completed.
+ *
+ * It is also possible to use an object instead of an array. Each property will
+ * be run as a function, and the results will be passed to the final `callback`
+ * as an object instead of an array. This can be a more readable way of handling
+ *  results from {@link async.series}.
+ *
+ * **Note** that while many implementations preserve the order of object
+ * properties, the [ECMAScript Language Specification](http://www.ecma-international.org/ecma-262/5.1/#sec-8.6)
+ * explicitly states that
+ *
+ * > The mechanics and order of enumerating the properties is not specified.
+ *
+ * So if you rely on the order in which your series of functions are executed,
+ * and want this to work on all platforms, consider using an array.
+ *
+ * @name series
+ * @static
+ * @memberOf module:ControlFlow
+ * @method
+ * @category Control Flow
+ * @param {Array|Iterable|Object} tasks - A collection containing
+ * [async functions]{@link AsyncFunction} to run in series.
+ * Each function can complete with any number of optional `result` values.
+ * @param {Function} [callback] - An optional callback to run once all the
+ * functions have completed. This function gets a results array (or object)
+ * containing all the result arguments passed to the `task` callbacks. Invoked
+ * with (err, result).
+ * @example
+ * async.series([
+ *     function(callback) {
+ *         // do some stuff ...
+ *         callback(null, 'one');
+ *     },
+ *     function(callback) {
+ *         // do some more stuff ...
+ *         callback(null, 'two');
+ *     }
+ * ],
+ * // optional callback
+ * function(err, results) {
+ *     // results is now equal to ['one', 'two']
+ * });
+ *
+ * async.series({
+ *     one: function(callback) {
+ *         setTimeout(function() {
+ *             callback(null, 1);
+ *         }, 200);
+ *     },
+ *     two: function(callback){
+ *         setTimeout(function() {
+ *             callback(null, 2);
+ *         }, 100);
+ *     }
+ * }, function(err, results) {
+ *     // results is now equal to: {one: 1, two: 2}
+ * });
+ */
+function series(tasks, callback) {
+  (0, _parallel2.default)(_eachOfSeries2.default, tasks, callback);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 109:
 /***/ (function(module, exports) {
 
 /**
@@ -19000,11 +19092,11 @@ module.exports = noop;
 
 /***/ }),
 
-/***/ 115:
+/***/ 126:
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(395),
-    isLength = __webpack_require__(237);
+var isFunction = __webpack_require__(426),
+    isLength = __webpack_require__(255);
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -19040,7 +19132,7 @@ module.exports = isArrayLike;
 
 /***/ }),
 
-/***/ 116:
+/***/ 127:
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -19052,7 +19144,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 117:
+/***/ 128:
 /***/ (function(module, exports) {
 
 module.exports = stringify
@@ -19162,7 +19254,7 @@ function deterministicDecirc (val, k, stack, parent) {
 
 /***/ }),
 
-/***/ 118:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19215,7 +19307,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 /***/ }),
 
-/***/ 119:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19804,7 +19896,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(427);
+exports.isBuffer = __webpack_require__(458);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -19848,7 +19940,7 @@ exports.log = function () {
     *     prototype.
     * @param {function} superCtor Constructor function to inherit prototype from.
     */
-exports.inherits = __webpack_require__(16);
+exports.inherits = __webpack_require__(18);
 
 exports._extend = function (origin, add) {
   // Don't do anything if add isn't an object
@@ -19976,7 +20068,14 @@ exports.callbackify = callbackify;
 
 /***/ }),
 
-/***/ 145:
+/***/ 15:
+/***/ (function(module, exports) {
+
+module.exports = require("path");
+
+/***/ }),
+
+/***/ 157:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19999,48 +20098,12 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, exports) {
-
-module.exports = require("path");
-
-/***/ }),
-
-/***/ 16:
-/***/ (function(module, exports) {
-
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor;
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true } });
-
-
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor;
-    var TempCtor = function () {};
-    TempCtor.prototype = superCtor.prototype;
-    ctor.prototype = new TempCtor();
-    ctor.prototype.constructor = ctor;
-  };
-}
-
-/***/ }),
-
-/***/ 160:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(233),
-    getRawTag = __webpack_require__(396),
-    objectToString = __webpack_require__(397);
+var Symbol = __webpack_require__(251),
+    getRawTag = __webpack_require__(427),
+    objectToString = __webpack_require__(428);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -20070,7 +20133,7 @@ module.exports = baseGetTag;
 
 /***/ }),
 
-/***/ 161:
+/***/ 174:
 /***/ (function(module, exports) {
 
 /**
@@ -20106,7 +20169,7 @@ module.exports = isObjectLike;
 
 /***/ }),
 
-/***/ 162:
+/***/ 175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20125,14 +20188,14 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 163:
+/***/ 176:
 /***/ (function(module, exports, __webpack_require__) {
 
-const winston = __webpack_require__(240),
-    { consoleFormat } = __webpack_require__(261),
-    AbstractCollector = __webpack_require__(239),
+const winston = __webpack_require__(258),
+    { consoleFormat } = __webpack_require__(280),
+    AbstractCollector = __webpack_require__(257),
     format = winston.format.printf(consoleFormat),
-    { INFO } = __webpack_require__(116);
+    { INFO } = __webpack_require__(127);
 
 /**
  * @extends AbstractCollector
@@ -20178,7 +20241,7 @@ module.exports = WinstonCollector;
 
 /***/ }),
 
-/***/ 164:
+/***/ 177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20188,9 +20251,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var colors = __webpack_require__(242);
+var colors = __webpack_require__(260);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     LEVEL = _require.LEVEL;
 
 //
@@ -20332,7 +20395,7 @@ module.exports.Colorizer = module.exports.Format = Colorizer;
 
 /***/ }),
 
-/***/ 165:
+/***/ 178:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20365,7 +20428,7 @@ module.exports.Colorizer = module.exports.Format = Colorizer;
 
 /*<replacement>*/
 
-var pna = __webpack_require__(118);
+var pna = __webpack_require__(129);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -20402,23 +20465,23 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(89);
-util.inherits = __webpack_require__(30);
+var util = __webpack_require__(97);
+util.inherits = __webpack_require__(31);
 /*</replacement>*/
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(206)
+  deprecate: __webpack_require__(221)
 };
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(247);
+var Stream = __webpack_require__(265);
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(166).Buffer;
+var Buffer = __webpack_require__(179).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -20429,14 +20492,14 @@ function _isUint8Array(obj) {
 
 /*</replacement>*/
 
-var destroyImpl = __webpack_require__(248);
+var destroyImpl = __webpack_require__(266);
 
 util.inherits(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(76);
+  Duplex = Duplex || __webpack_require__(83);
 
   options = options || {};
 
@@ -20586,7 +20649,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || __webpack_require__(76);
+  Duplex = Duplex || __webpack_require__(83);
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -21027,7 +21090,7 @@ Writable.prototype._destroy = function (err, cb) {
 
 /***/ }),
 
-/***/ 166:
+/***/ 179:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
@@ -21096,13 +21159,42 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 /***/ }),
 
-/***/ 167:
+/***/ 18:
+/***/ (function(module, exports) {
+
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor;
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true } });
+
+
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor;
+    var TempCtor = function () {};
+    TempCtor.prototype = superCtor.prototype;
+    ctor.prototype = new TempCtor();
+    ctor.prototype.constructor = ctor;
+  };
+}
+
+/***/ }),
+
+/***/ 180:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enabled = __webpack_require__(466);
+var enabled = __webpack_require__(497);
 
 /**
  * Bare minimum browser version of diagnostics. It doesn't need fancy pancy
@@ -21139,20 +21231,20 @@ module.exports = function factory(name) {
 
 /***/ }),
 
-/***/ 168:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(253);
+exports = module.exports = __webpack_require__(271);
 exports.Stream = exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(207);
-exports.Duplex = __webpack_require__(72);
-exports.Transform = __webpack_require__(256);
-exports.PassThrough = __webpack_require__(475);
+exports.Writable = __webpack_require__(222);
+exports.Duplex = __webpack_require__(79);
+exports.Transform = __webpack_require__(274);
+exports.PassThrough = __webpack_require__(506);
 
 /***/ }),
 
-/***/ 169:
+/***/ 182:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21165,8 +21257,8 @@ exports.PassThrough = __webpack_require__(475);
 
 
 
-const logform = __webpack_require__(241);
-const { configs } = __webpack_require__(17);
+const logform = __webpack_require__(259);
+const { configs } = __webpack_require__(19);
 
 /**
  * Export config set for the CLI.
@@ -21195,7 +21287,7 @@ exports.addColors = logform.levels;
 
 /***/ }),
 
-/***/ 17:
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21243,60 +21335,9 @@ Object.defineProperty(exports, 'SPLAT', {
  * @type {Object}
  */
 Object.defineProperty(exports, 'configs', {
-  value: __webpack_require__(437)
+  value: __webpack_require__(468)
 });
 
-
-/***/ }),
-
-/***/ 187:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = once;
-function once(fn) {
-    return function () {
-        if (fn === null) return;
-        var callFn = fn;
-        fn = null;
-        callFn.apply(this, arguments);
-    };
-}
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ 188:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = onlyOnce;
-function onlyOnce(fn) {
-    return function () {
-        if (fn === null) throw new Error("Callback was already called.");
-        var callFn = fn;
-        fn = null;
-        callFn.apply(this, arguments);
-    };
-}
-module.exports = exports["default"];
-
-/***/ }),
-
-/***/ 189:
-/***/ (function(module, exports) {
-
-module.exports = require("zlib");
 
 /***/ }),
 
@@ -21317,7 +21358,7 @@ module.exports = require("zlib");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return subscribeToQueue; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_async__);
 
 
@@ -21514,7 +21555,65 @@ subscribeToQueue = function subscribeToQueue(handler, timeout) {
 
 /***/ }),
 
+/***/ 204:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = once;
+function once(fn) {
+    return function () {
+        if (fn === null) return;
+        var callFn = fn;
+        fn = null;
+        callFn.apply(this, arguments);
+    };
+}
+module.exports = exports["default"];
+
+/***/ }),
+
 /***/ 205:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = onlyOnce;
+function onlyOnce(fn) {
+    return function () {
+        if (fn === null) throw new Error("Callback was already called.");
+        var callFn = fn;
+        fn = null;
+        callFn.apply(this, arguments);
+    };
+}
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ 206:
+/***/ (function(module, exports) {
+
+module.exports = require("zlib");
+
+/***/ }),
+
+/***/ 21:
+/***/ (function(module, exports) {
+
+module.exports = require("electron");
+
+/***/ }),
+
+/***/ 220:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21525,11 +21624,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = eachOfLimit;
 
-var _eachOfLimit2 = __webpack_require__(290);
+var _eachOfLimit2 = __webpack_require__(311);
 
 var _eachOfLimit3 = _interopRequireDefault(_eachOfLimit2);
 
-var _wrapAsync = __webpack_require__(71);
+var _wrapAsync = __webpack_require__(78);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -21562,7 +21661,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 206:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -21637,7 +21736,7 @@ function config (name) {
 
 /***/ }),
 
-/***/ 207:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21670,7 +21769,7 @@ function config (name) {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(119);
+var pna = __webpack_require__(130);
 /*</replacement>*/
 
 module.exports = Writable;
@@ -21707,18 +21806,18 @@ var Duplex;
 Writable.WritableState = WritableState;
 
 /*<replacement>*/
-var util = __webpack_require__(90);
-util.inherits = __webpack_require__(16);
+var util = __webpack_require__(98);
+util.inherits = __webpack_require__(18);
 /*</replacement>*/
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(474) };
+  deprecate: __webpack_require__(505) };
 
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(254);
+var Stream = __webpack_require__(272);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -21734,14 +21833,14 @@ function _isUint8Array(obj) {
 
 /*</replacement>*/
 
-var destroyImpl = __webpack_require__(255);
+var destroyImpl = __webpack_require__(273);
 
 util.inherits(Writable, Stream);
 
 function nop() {}
 
 function WritableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(72);
+  Duplex = Duplex || __webpack_require__(79);
 
   options = options || {};
 
@@ -21891,7 +21990,7 @@ if (typeof Symbol === 'function' && Symbol.hasInstance && typeof Function.protot
 }
 
 function Writable(options) {
-  Duplex = Duplex || __webpack_require__(72);
+  Duplex = Duplex || __webpack_require__(79);
 
   // Writable ctor is applied to Duplexes, too.
   // `realHasInstance` is necessary because using plain `instanceof`
@@ -22332,7 +22431,7 @@ Writable.prototype._destroy = function (err, cb) {
 
 /***/ }),
 
-/***/ 208:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22403,21 +22502,14 @@ function destroyCircular(from, seen) {
 
 /***/ }),
 
-/***/ 21:
-/***/ (function(module, exports) {
-
-module.exports = require("electron");
-
-/***/ }),
-
-/***/ 230:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(470);
-var response = __webpack_require__(252);
-var extend = __webpack_require__(477);
-var statusCodes = __webpack_require__(478);
-var url = __webpack_require__(86);
+/* WEBPACK VAR INJECTION */(function(global) {var ClientRequest = __webpack_require__(501);
+var response = __webpack_require__(270);
+var extend = __webpack_require__(508);
+var statusCodes = __webpack_require__(509);
+var url = __webpack_require__(81);
 
 var http = exports;
 
@@ -22501,10 +22593,80 @@ http.METHODS = [
 
 /***/ }),
 
-/***/ 233:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
-var root = __webpack_require__(234);
+/* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !== "undefined" && global ||
+typeof self !== "undefined" && self ||
+window;
+var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function () {
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+};
+exports.setInterval = function () {
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function (timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function () {};
+Timeout.prototype.close = function () {
+  this._clearFn.call(scope, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function (item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function (item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function (item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+      item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(431);
+// On some exotic environments, it's not clear which object `setimmediate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = typeof self !== "undefined" && self.setImmediate ||
+typeof global !== "undefined" && global.setImmediate ||
+this && this.setImmediate;
+exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate ||
+typeof global !== "undefined" && global.clearImmediate ||
+this && this.clearImmediate;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(252);
 
 /** Built-in value references. */
 var Symbol = root.Symbol;
@@ -22514,10 +22676,10 @@ module.exports = Symbol;
 
 /***/ }),
 
-/***/ 234:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(235);
+var freeGlobal = __webpack_require__(253);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -22530,7 +22692,7 @@ module.exports = root;
 
 /***/ }),
 
-/***/ 235:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -22542,7 +22704,7 @@ module.exports = freeGlobal;
 
 /***/ }),
 
-/***/ 236:
+/***/ 254:
 /***/ (function(module, exports) {
 
 /**
@@ -22580,7 +22742,7 @@ module.exports = isObject;
 
 /***/ }),
 
-/***/ 237:
+/***/ 255:
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -22622,7 +22784,7 @@ module.exports = isLength;
 
 /***/ }),
 
-/***/ 238:
+/***/ 256:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22638,7 +22800,7 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 239:
+/***/ 257:
 /***/ (function(module, exports) {
 
 /**
@@ -22683,7 +22845,7 @@ module.exports = AbstractCollector;
 
 /***/ }),
 
-/***/ 240:
+/***/ 258:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22696,8 +22858,8 @@ module.exports = AbstractCollector;
 
 
 
-const logform = __webpack_require__(241);
-const { warn } = __webpack_require__(245);
+const logform = __webpack_require__(259);
+const { warn } = __webpack_require__(263);
 
 /**
  * Setup to expose.
@@ -22709,17 +22871,17 @@ const winston = exports;
  * Expose version. Use `require` method for `webpack` support.
  * @type {string}
  */
-winston.version = __webpack_require__(457).version;
+winston.version = __webpack_require__(488).version;
 /**
  * Include transports defined by default by winston
  * @type {Array}
  */
-winston.transports = __webpack_require__(458);
+winston.transports = __webpack_require__(489);
 /**
  * Expose utility methods
  * @type {Object}
  */
-winston.config = __webpack_require__(169);
+winston.config = __webpack_require__(182);
 /**
  * Hoist format-related functionality from logform.
  * @type {Object}
@@ -22734,22 +22896,22 @@ winston.format = logform.format;
  * Expose core Logging-related prototypes.
  * @type {function}
  */
-winston.createLogger = __webpack_require__(258);
+winston.createLogger = __webpack_require__(277);
 /**
  * Expose core Logging-related prototypes.
  * @type {Object}
  */
-winston.ExceptionHandler = __webpack_require__(260);
+winston.ExceptionHandler = __webpack_require__(279);
 /**
  * Expose core Logging-related prototypes.
  * @type {Container}
  */
-winston.Container = __webpack_require__(491);
+winston.Container = __webpack_require__(521);
 /**
  * Expose core Logging-related prototypes.
  * @type {Object}
  */
-winston.Transport = __webpack_require__(66);
+winston.Transport = __webpack_require__(71);
 /**
  * We create and expose a default `Container` to `winston.loggers` so that the
  * programmer may manage multiple `winston.Logger` instances without any
@@ -22870,7 +23032,7 @@ warn.moved(winston, 'createLogger', 'Logger');
 
 /***/ }),
 
-/***/ 241:
+/***/ 259:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22883,38 +23045,38 @@ warn.moved(winston, 'createLogger', 'Logger');
  * formats.
  */
 
-var format = exports.format = __webpack_require__(38);
+var format = exports.format = __webpack_require__(39);
 
 /*
  * @api public
  * @method {function} levels
  * Registers the specified levels with logform.
  */
-exports.levels = __webpack_require__(425);
+exports.levels = __webpack_require__(456);
 
 //
 // Setup all transports as eager-loaded exports
 // so that they are static for the bundlers.
 //
-Object.defineProperty(format, 'align', { value: __webpack_require__(441) });
-Object.defineProperty(format, 'cli', { value: __webpack_require__(442) });
-Object.defineProperty(format, 'combine', { value: __webpack_require__(443) });
-Object.defineProperty(format, 'colorize', { value: __webpack_require__(164) });
-Object.defineProperty(format, 'json', { value: __webpack_require__(444) });
-Object.defineProperty(format, 'label', { value: __webpack_require__(447) });
-Object.defineProperty(format, 'logstash', { value: __webpack_require__(448) });
-Object.defineProperty(format, 'metadata', { value: __webpack_require__(449) });
-Object.defineProperty(format, 'padLevels', { value: __webpack_require__(243) });
-Object.defineProperty(format, 'prettyPrint', { value: __webpack_require__(450) });
-Object.defineProperty(format, 'printf', { value: __webpack_require__(451) });
-Object.defineProperty(format, 'simple', { value: __webpack_require__(452) });
-Object.defineProperty(format, 'splat', { value: __webpack_require__(453) });
-Object.defineProperty(format, 'timestamp', { value: __webpack_require__(454) });
-Object.defineProperty(format, 'uncolorize', { value: __webpack_require__(456) });
+Object.defineProperty(format, 'align', { value: __webpack_require__(472) });
+Object.defineProperty(format, 'cli', { value: __webpack_require__(473) });
+Object.defineProperty(format, 'combine', { value: __webpack_require__(474) });
+Object.defineProperty(format, 'colorize', { value: __webpack_require__(177) });
+Object.defineProperty(format, 'json', { value: __webpack_require__(475) });
+Object.defineProperty(format, 'label', { value: __webpack_require__(478) });
+Object.defineProperty(format, 'logstash', { value: __webpack_require__(479) });
+Object.defineProperty(format, 'metadata', { value: __webpack_require__(480) });
+Object.defineProperty(format, 'padLevels', { value: __webpack_require__(261) });
+Object.defineProperty(format, 'prettyPrint', { value: __webpack_require__(481) });
+Object.defineProperty(format, 'printf', { value: __webpack_require__(482) });
+Object.defineProperty(format, 'simple', { value: __webpack_require__(483) });
+Object.defineProperty(format, 'splat', { value: __webpack_require__(484) });
+Object.defineProperty(format, 'timestamp', { value: __webpack_require__(485) });
+Object.defineProperty(format, 'uncolorize', { value: __webpack_require__(487) });
 
 /***/ }),
 
-/***/ 242:
+/***/ 260:
 /***/ (function(module, exports, __webpack_require__) {
 
 //
@@ -22925,13 +23087,13 @@ Object.defineProperty(format, 'uncolorize', { value: __webpack_require__(456) })
 //   colors.red("foo")
 //
 //
-var colors = __webpack_require__(426);
+var colors = __webpack_require__(457);
 module['exports'] = colors;
 
 
 /***/ }),
 
-/***/ 243:
+/***/ 261:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22944,7 +23106,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     configs = _require.configs,
     LEVEL = _require.LEVEL,
     MESSAGE = _require.MESSAGE;
@@ -23056,7 +23218,7 @@ module.exports.Padder = module.exports.Format = Padder;
 
 /***/ }),
 
-/***/ 244:
+/***/ 262:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -23067,7 +23229,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23136,23 +23298,23 @@ exports.warn = {
 
 /***/ }),
 
-/***/ 246:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(165);
+module.exports = __webpack_require__(178);
 
 
 /***/ }),
 
-/***/ 247:
+/***/ 265:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(37).EventEmitter;
+module.exports = __webpack_require__(38).EventEmitter;
 
 
 /***/ }),
 
-/***/ 248:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23160,7 +23322,7 @@ module.exports = __webpack_require__(37).EventEmitter;
 
 /*<replacement>*/
 
-var pna = __webpack_require__(118);
+var pna = __webpack_require__(129);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -23233,7 +23395,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 249:
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23262,13 +23424,13 @@ module.exports = {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(118);
+var pna = __webpack_require__(129);
 /*</replacement>*/
 
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(460);
+var isArray = __webpack_require__(491);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -23278,7 +23440,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(37).EventEmitter;
+var EE = __webpack_require__(38).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -23286,12 +23448,12 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(247);
+var Stream = __webpack_require__(265);
 /*</replacement>*/
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(166).Buffer;
+var Buffer = __webpack_require__(179).Buffer;
 var OurUint8Array = global.Uint8Array || function () {};
 function _uint8ArrayToBuffer(chunk) {
   return Buffer.from(chunk);
@@ -23303,12 +23465,12 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(89);
-util.inherits = __webpack_require__(30);
+var util = __webpack_require__(97);
+util.inherits = __webpack_require__(31);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(461);
+var debugUtil = __webpack_require__(492);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -23317,8 +23479,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(462);
-var destroyImpl = __webpack_require__(248);
+var BufferList = __webpack_require__(493);
+var destroyImpl = __webpack_require__(266);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -23338,7 +23500,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(76);
+  Duplex = Duplex || __webpack_require__(83);
 
   options = options || {};
 
@@ -23408,14 +23570,14 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(50).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(53).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(76);
+  Duplex = Duplex || __webpack_require__(83);
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -23564,7 +23726,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(50).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(53).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -24260,77 +24422,7 @@ function indexOf(xs, x) {
 
 /***/ }),
 
-/***/ 25:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !== "undefined" && global ||
-typeof self !== "undefined" && self ||
-window;
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function () {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
-};
-exports.setInterval = function () {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function (timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function () {};
-Timeout.prototype.close = function () {
-  this._clearFn.call(scope, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function (item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function (item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function (item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-      item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(400);
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = typeof self !== "undefined" && self.setImmediate ||
-typeof global !== "undefined" && global.setImmediate ||
-this && this.setImmediate;
-exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate ||
-typeof global !== "undefined" && global.clearImmediate ||
-this && this.clearImmediate;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-
-/***/ 250:
+/***/ 268:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24401,11 +24493,11 @@ this && this.clearImmediate;
 
 module.exports = Transform;
 
-var Duplex = __webpack_require__(76);
+var Duplex = __webpack_require__(83);
 
 /*<replacement>*/
-var util = __webpack_require__(89);
-util.inherits = __webpack_require__(30);
+var util = __webpack_require__(97);
+util.inherits = __webpack_require__(31);
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -24551,7 +24643,7 @@ function done(stream, er, data) {
 
 /***/ }),
 
-/***/ 251:
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream);
@@ -24631,12 +24723,80 @@ xhr = null; // Help gc
 
 /***/ }),
 
-/***/ 252:
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(251);
-var inherits = __webpack_require__(16);
-var stream = __webpack_require__(168);
+/* eslint-disable node/no-deprecated-api */
+var buffer = __webpack_require__(10);
+var Buffer = buffer.Buffer;
+
+// alternative to using Object.keys for old browsers
+function copyProps(src, dst) {
+  for (var key in src) {
+    dst[key] = src[key];
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer;
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports);
+  exports.Buffer = SafeBuffer;
+}
+
+function SafeBuffer(arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length);
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer);
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number');
+  }
+  return Buffer(arg, encodingOrOffset, length);
+};
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number');
+  }
+  var buf = Buffer(size);
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding);
+    } else {
+      buf.fill(fill);
+    }
+  } else {
+    buf.fill(0);
+  }
+  return buf;
+};
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number');
+  }
+  return Buffer(size);
+};
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number');
+  }
+  return buffer.SlowBuffer(size);
+};
+
+/***/ }),
+
+/***/ 270:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process, Buffer, global) {var capability = __webpack_require__(269);
+var inherits = __webpack_require__(18);
+var stream = __webpack_require__(181);
 
 var rStates = exports.readyStates = {
 	UNSENT: 0,
@@ -24862,7 +25022,7 @@ IncomingMessage.prototype._onXHRProgress = function () {
 
 /***/ }),
 
-/***/ 253:
+/***/ 271:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24891,13 +25051,13 @@ IncomingMessage.prototype._onXHRProgress = function () {
 
 /*<replacement>*/
 
-var pna = __webpack_require__(119);
+var pna = __webpack_require__(130);
 /*</replacement>*/
 
 module.exports = Readable;
 
 /*<replacement>*/
-var isArray = __webpack_require__(244);
+var isArray = __webpack_require__(262);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -24907,7 +25067,7 @@ var Duplex;
 Readable.ReadableState = ReadableState;
 
 /*<replacement>*/
-var EE = __webpack_require__(37).EventEmitter;
+var EE = __webpack_require__(38).EventEmitter;
 
 var EElistenerCount = function (emitter, type) {
   return emitter.listeners(type).length;
@@ -24915,7 +25075,7 @@ var EElistenerCount = function (emitter, type) {
 /*</replacement>*/
 
 /*<replacement>*/
-var Stream = __webpack_require__(254);
+var Stream = __webpack_require__(272);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -24932,12 +25092,12 @@ function _isUint8Array(obj) {
 /*</replacement>*/
 
 /*<replacement>*/
-var util = __webpack_require__(90);
-util.inherits = __webpack_require__(16);
+var util = __webpack_require__(98);
+util.inherits = __webpack_require__(18);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(471);
+var debugUtil = __webpack_require__(502);
 var debug = void 0;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -24946,8 +25106,8 @@ if (debugUtil && debugUtil.debuglog) {
 }
 /*</replacement>*/
 
-var BufferList = __webpack_require__(472);
-var destroyImpl = __webpack_require__(255);
+var BufferList = __webpack_require__(503);
+var destroyImpl = __webpack_require__(273);
 var StringDecoder;
 
 util.inherits(Readable, Stream);
@@ -24967,7 +25127,7 @@ function prependListener(emitter, event, fn) {
 }
 
 function ReadableState(options, stream) {
-  Duplex = Duplex || __webpack_require__(72);
+  Duplex = Duplex || __webpack_require__(79);
 
   options = options || {};
 
@@ -25037,14 +25197,14 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(50).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(53).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
 }
 
 function Readable(options) {
-  Duplex = Duplex || __webpack_require__(72);
+  Duplex = Duplex || __webpack_require__(79);
 
   if (!(this instanceof Readable)) return new Readable(options);
 
@@ -25193,7 +25353,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(50).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(53).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -25889,14 +26049,14 @@ function indexOf(xs, x) {
 
 /***/ }),
 
-/***/ 254:
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(37).EventEmitter;
+module.exports = __webpack_require__(38).EventEmitter;
 
 /***/ }),
 
-/***/ 255:
+/***/ 273:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25904,7 +26064,7 @@ module.exports = __webpack_require__(37).EventEmitter;
 
 /*<replacement>*/
 
-var pna = __webpack_require__(119);
+var pna = __webpack_require__(130);
 /*</replacement>*/
 
 // undocumented cb() API, needed for core, not for public API
@@ -25976,7 +26136,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 256:
+/***/ 274:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26047,11 +26207,11 @@ module.exports = {
 
 module.exports = Transform;
 
-var Duplex = __webpack_require__(72);
+var Duplex = __webpack_require__(79);
 
 /*<replacement>*/
-var util = __webpack_require__(90);
-util.inherits = __webpack_require__(16);
+var util = __webpack_require__(98);
+util.inherits = __webpack_require__(18);
 /*</replacement>*/
 
 util.inherits(Transform, Duplex);
@@ -26197,702 +26357,7 @@ function done(stream, er, data) {
 
 /***/ }),
 
-/***/ 257:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var isStream = module.exports = function (stream) {
-	return stream !== null && typeof stream === 'object' && typeof stream.pipe === 'function';
-};
-
-isStream.writable = function (stream) {
-	return isStream(stream) && stream.writable !== false && typeof stream._write === 'function' && typeof stream._writableState === 'object';
-};
-
-isStream.readable = function (stream) {
-	return isStream(stream) && stream.readable !== false && typeof stream._read === 'function' && typeof stream._readableState === 'object';
-};
-
-isStream.duplex = function (stream) {
-	return isStream.writable(stream) && isStream.readable(stream);
-};
-
-isStream.transform = function (stream) {
-	return isStream.duplex(stream) && typeof stream._transform === 'function' && typeof stream._transformState === 'object';
-};
-
-
-/***/ }),
-
-/***/ 258:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * create-logger.js: Logger factory for winston logger instances.
- *
- * (C) 2010 Charlie Robbins
- * MIT LICENCE
- */
-
-
-
-const { LEVEL } = __webpack_require__(17);
-const config = __webpack_require__(169);
-const Logger = __webpack_require__(482);
-const debug = __webpack_require__(167)('winston:create-logger');
-
-/**
- * DerivedLogger to attach the logs level methods.
- * @type {DerivedLogger}
- * @extends {Logger}
- */
-class DerivedLogger extends Logger {
-  /**
-   * Create a new class derived logger for which the levels can be attached to
-   * the prototype of. This is a V8 optimization that is well know to increase
-   * performance of prototype functions.
-   * @param {!Object} options - Options for the created logger.
-   */
-  constructor(options) {
-    super(options);
-    this._setupLevels();
-  }
-
-  /**
-   * Create the log level methods for the derived logger.
-   * @returns {undefined}
-   * @private
-   */
-  _setupLevels() {
-    Object.keys(this.levels).forEach(level => {
-      debug('Define prototype method for "%s"', level);
-      if (level === 'log') {
-        // eslint-disable-next-line no-console
-        console.warn('Level "log" not defined: conflicts with the method "log". Use a different level name.');
-        return;
-      }
-
-      // Define prototype methods for each log level
-      // e.g. logger.log('info', msg) <––> logger.info(msg) & logger.isInfoEnabled()
-      this[level] = (...args) => {
-        // Optimize the hot-path which is the single object.
-        if (args.length === 1) {
-          const [msg] = args;
-          const info = msg && msg.message && msg || { message: msg };
-          info.level = info[LEVEL] = level;
-          this.write(info);
-          return this;
-        }
-
-        // Otherwise build argument list which could potentially conform to
-        // either:
-        // . v3 API: log(obj)
-        // 2. v1/v2 API: log(level, msg, ... [string interpolate], [{metadata}], [callback])
-        return this.log(level, ...args);
-      };
-
-      this[isLevelEnabledFunctionName(level)] = () => this.isLevelEnabled(level);
-    });
-  }
-}
-
-function isLevelEnabledFunctionName(level) {
-  return 'is' + level.charAt(0).toUpperCase() + level.slice(1) + 'Enabled';
-}
-
-/**
- * Create a new instance of a winston Logger. Creates a new
- * prototype for each instance.
- * @param {!Object} opts - Options for the created logger.
- * @returns {Logger} - A newly created logger instance.
- */
-module.exports = (opts = { levels: config.npm.levels }) => (
-  new DerivedLogger(opts)
-);
-
-
-/***/ }),
-
-/***/ 259:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = eachLimit;
-
-var _eachOf = __webpack_require__(483);
-
-var _eachOf2 = _interopRequireDefault(_eachOf);
-
-var _withoutIndex = __webpack_require__(333);
-
-var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
-
-var _wrapAsync = __webpack_require__(71);
-
-var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Applies the function `iteratee` to each item in `coll`, in parallel.
- * The `iteratee` is called with an item from the list, and a callback for when
- * it has finished. If the `iteratee` passes an error to its `callback`, the
- * main `callback` (for the `each` function) is immediately called with the
- * error.
- *
- * Note, that since this function applies `iteratee` to each item in parallel,
- * there is no guarantee that the iteratee functions will complete in order.
- *
- * @name each
- * @static
- * @memberOf module:Collections
- * @method
- * @alias forEach
- * @category Collection
- * @param {Array|Iterable|Object} coll - A collection to iterate over.
- * @param {AsyncFunction} iteratee - An async function to apply to
- * each item in `coll`. Invoked with (item, callback).
- * The array index is not passed to the iteratee.
- * If you need the index, use `eachOf`.
- * @param {Function} [callback] - A callback which is called when all
- * `iteratee` functions have finished, or an error occurs. Invoked with (err).
- * @example
- *
- * // assuming openFiles is an array of file names and saveFile is a function
- * // to save the modified contents of that file:
- *
- * async.each(openFiles, saveFile, function(err){
- *   // if any of the saves produced an error, err would equal that error
- * });
- *
- * // assuming openFiles is an array of file names
- * async.each(openFiles, function(file, callback) {
- *
- *     // Perform operation on file here.
- *     console.log('Processing file ' + file);
- *
- *     if( file.length > 32 ) {
- *       console.log('This file name is too long');
- *       callback('File name too long');
- *     } else {
- *       // Do work to process file here
- *       console.log('File processed');
- *       callback();
- *     }
- * }, function(err) {
- *     // if any of the file processing produced an error, err would equal that error
- *     if( err ) {
- *       // One of the iterations produced an error.
- *       // All processing will now stop.
- *       console.log('A file failed to process');
- *     } else {
- *       console.log('All files have been processed successfully');
- *     }
- * });
- */
-function eachLimit(coll, iteratee, callback) {
-  (0, _eachOf2.default)(coll, (0, _withoutIndex2.default)((0, _wrapAsync2.default)(iteratee)), callback);
-}
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ 260:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * exception-handler.js: Object for handling uncaughtException events.
- *
- * (C) 2010 Charlie Robbins
- * MIT LICENCE
- */
-
-
-
-const os = __webpack_require__(61);
-const asyncForEach = __webpack_require__(259);
-const debug = __webpack_require__(167)('winston:exception');
-const once = __webpack_require__(484);
-const stackTrace = __webpack_require__(485);
-const ExceptionStream = __webpack_require__(486);
-
-/**
- * Object for handling uncaughtException events.
- * @type {ExceptionHandler}
- */
-module.exports = class ExceptionHandler {
-  /**
-   * TODO: add contructor description
-   * @param {!Logger} logger - TODO: add param description
-   */
-  constructor(logger) {
-    if (!logger) {
-      throw new Error('Logger is required to handle exceptions');
-    }
-
-    this.logger = logger;
-    this.handlers = new Map();
-  }
-
-  /**
-   * Handles `uncaughtException` events for the current process by adding any
-   * handlers passed in.
-   * @returns {undefined}
-   */
-  handle(...args) {
-    args.forEach(arg => {
-      if (Array.isArray(arg)) {
-        return arg.forEach(handler => this._addHandler(handler));
-      }
-
-      this._addHandler(arg);
-    });
-
-    if (!this.catcher) {
-      this.catcher = this._uncaughtException.bind(this);
-      process.on('uncaughtException', this.catcher);
-    }
-  }
-
-  /**
-   * Removes any handlers to `uncaughtException` events for the current
-   * process. This does not modify the state of the `this.handlers` set.
-   * @returns {undefined}
-   */
-  unhandle() {
-    if (this.catcher) {
-      process.removeListener('uncaughtException', this.catcher);
-      this.catcher = false;
-
-      Array.from(this.handlers.values())
-        .forEach(wrapper => this.logger.unpipe(wrapper));
-    }
-  }
-
-  /**
-   * TODO: add method description
-   * @param {Error} err - Error to get information about.
-   * @returns {mixed} - TODO: add return description.
-   */
-  getAllInfo(err) {
-    let { message } = err;
-    if (!message && typeof err === 'string') {
-      message = err;
-    }
-
-    return {
-      error: err,
-      // TODO (indexzero): how do we configure this?
-      level: 'error',
-      message: [
-        `uncaughtException: ${(message || '(no error message)')}`,
-        err.stack || '  No stack trace'
-      ].join('\n'),
-      stack: err.stack,
-      exception: true,
-      date: new Date().toString(),
-      process: this.getProcessInfo(),
-      os: this.getOsInfo(),
-      trace: this.getTrace(err)
-    };
-  }
-
-  /**
-   * Gets all relevant process information for the currently running process.
-   * @returns {mixed} - TODO: add return description.
-   */
-  getProcessInfo() {
-    return {
-      pid: process.pid,
-      uid: process.getuid ? process.getuid() : null,
-      gid: process.getgid ? process.getgid() : null,
-      cwd: process.cwd(),
-      execPath: process.execPath,
-      version: process.version,
-      argv: process.argv,
-      memoryUsage: process.memoryUsage()
-    };
-  }
-
-  /**
-   * Gets all relevant OS information for the currently running process.
-   * @returns {mixed} - TODO: add return description.
-   */
-  getOsInfo() {
-    return {
-      loadavg: os.loadavg(),
-      uptime: os.uptime()
-    };
-  }
-
-  /**
-   * Gets a stack trace for the specified error.
-   * @param {mixed} err - TODO: add param description.
-   * @returns {mixed} - TODO: add return description.
-   */
-  getTrace(err) {
-    const trace = err ? stackTrace.parse(err) : stackTrace.get();
-    return trace.map(site => {
-      return {
-        column: site.getColumnNumber(),
-        file: site.getFileName(),
-        function: site.getFunctionName(),
-        line: site.getLineNumber(),
-        method: site.getMethodName(),
-        native: site.isNative()
-      };
-    });
-  }
-
-  /**
-   * Helper method to add a transport as an exception handler.
-   * @param {Transport} handler - The transport to add as an exception handler.
-   * @returns {void}
-   */
-  _addHandler(handler) {
-    if (!this.handlers.has(handler)) {
-      handler.handleExceptions = true;
-      const wrapper = new ExceptionStream(handler);
-      this.handlers.set(handler, wrapper);
-      this.logger.pipe(wrapper);
-    }
-  }
-
-  /**
-   * Logs all relevant information around the `err` and exits the current
-   * process.
-   * @param {Error} err - Error to handle
-   * @returns {mixed} - TODO: add return description.
-   * @private
-   */
-  _uncaughtException(err) {
-    const info = this.getAllInfo(err);
-    const handlers = this._getExceptionHandlers();
-    // Calculate if we should exit on this error
-    let doExit = typeof this.logger.exitOnError === 'function'
-      ? this.logger.exitOnError(err)
-      : this.logger.exitOnError;
-    let timeout;
-
-    if (!handlers.length && doExit) {
-      // eslint-disable-next-line no-console
-      console.warn('winston: exitOnError cannot be false with no exception handlers.');
-      // eslint-disable-next-line no-console
-      console.warn('winston: exiting process.');
-      doExit = false;
-    }
-
-    function gracefulExit() {
-      debug('doExit', doExit);
-      debug('process._exiting', process._exiting);
-
-      if (doExit && !process._exiting) {
-        // Remark: Currently ignoring any exceptions from transports when
-        // catching uncaught exceptions.
-        if (timeout) {
-          clearTimeout(timeout);
-        }
-        // eslint-disable-next-line no-process-exit
-        process.exit(1);
-      }
-    }
-
-    if (!handlers || handlers.length === 0) {
-      return process.nextTick(gracefulExit);
-    }
-
-    // Log to all transports attempting to listen for when they are completed.
-    asyncForEach(handlers, (handler, next) => {
-      // TODO: Change these to the correct WritableStream events so that we
-      // wait until exit.
-      const done = once(next);
-      const transport = handler.transport || handler;
-
-      // Debug wrapping so that we can inspect what's going on under the covers.
-      function onDone(event) {
-        return () => {
-          debug(event);
-          done();
-        };
-      }
-
-      transport.once('logged', onDone('logged'));
-      transport.once('error', onDone('error'));
-    }, gracefulExit);
-
-    this.logger.log(info);
-
-    // If exitOnError is true, then only allow the logging of exceptions to
-    // take up to `3000ms`.
-    if (doExit) {
-      timeout = setTimeout(gracefulExit, 3000);
-    }
-  }
-
-  /**
-   * Returns the list of transports and exceptionHandlers for this instance.
-   * @returns {Array} - List of transports and exceptionHandlers for this
-   * instance.
-   * @private
-   */
-  _getExceptionHandlers() {
-    // Remark (indexzero): since `logger.transports` returns all of the pipes
-    // from the _readableState of the stream we actually get the join of the
-    // explicit handlers and the implicit transports with
-    // `handleExceptions: true`
-    return this.logger.transports.filter(wrap => {
-      const transport = wrap.transport || wrap;
-      return transport.handleExceptions;
-    });
-  }
-};
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-
-/***/ 261:
-/***/ (function(module, exports, __webpack_require__) {
-
-const sanitize = __webpack_require__(492);
-
-module.exports = {
-    /**
-     * @description It format the message it receives for file
-     * @param {[Object={}]} info
-     * @return {String}
-     */
-    file (info = {}) {
-        let messages = '';
-        try {
-            messages = sanitize(info.messages);
-        }
-        catch (e) {
-            console.error(e);
-        }
-        return `[${info.sessionId}][${info.timestamp}][${info.origin}][${info.level}][${messages}]`;
-    },
-
-    /**
-     * @description It format the message it receives, for console
-     * @param {[Object={}]} info
-     * @return {*}
-     */
-    consoleFormat (info = {}) {
-        let messages = '';
-        try {
-            messages = sanitize(info.messages);
-        }
-        catch (e) {
-            console.error(e);
-        }
-        return `${info.timestamp} ${info.origin} ${info.level} ${messages}`;
-    }
-};
-
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(10);
-var Buffer = buffer.Buffer;
-
-// alternative to using Object.keys for old browsers
-function copyProps(src, dst) {
-  for (var key in src) {
-    dst[key] = src[key];
-  }
-}
-if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
-  module.exports = buffer;
-} else {
-  // Copy properties from require('buffer')
-  copyProps(buffer, exports);
-  exports.Buffer = SafeBuffer;
-}
-
-function SafeBuffer(arg, encodingOrOffset, length) {
-  return Buffer(arg, encodingOrOffset, length);
-}
-
-// Copy static methods from Buffer
-copyProps(Buffer, SafeBuffer);
-
-SafeBuffer.from = function (arg, encodingOrOffset, length) {
-  if (typeof arg === 'number') {
-    throw new TypeError('Argument must not be a number');
-  }
-  return Buffer(arg, encodingOrOffset, length);
-};
-
-SafeBuffer.alloc = function (size, fill, encoding) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number');
-  }
-  var buf = Buffer(size);
-  if (fill !== undefined) {
-    if (typeof encoding === 'string') {
-      buf.fill(fill, encoding);
-    } else {
-      buf.fill(fill);
-    }
-  } else {
-    buf.fill(0);
-  }
-  return buf;
-};
-
-SafeBuffer.allocUnsafe = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number');
-  }
-  return Buffer(size);
-};
-
-SafeBuffer.allocUnsafeSlow = function (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('Argument must be a number');
-  }
-  return buffer.SlowBuffer(size);
-};
-
-/***/ }),
-
-/***/ 290:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = _eachOfLimit;
-
-var _noop = __webpack_require__(100);
-
-var _noop2 = _interopRequireDefault(_noop);
-
-var _once = __webpack_require__(187);
-
-var _once2 = _interopRequireDefault(_once);
-
-var _iterator = __webpack_require__(402);
-
-var _iterator2 = _interopRequireDefault(_iterator);
-
-var _onlyOnce = __webpack_require__(188);
-
-var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
-
-var _breakLoop = __webpack_require__(238);
-
-var _breakLoop2 = _interopRequireDefault(_breakLoop);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _eachOfLimit(limit) {
-    return function (obj, iteratee, callback) {
-        callback = (0, _once2.default)(callback || _noop2.default);
-        if (limit <= 0 || !obj) {
-            return callback(null);
-        }
-        var nextElem = (0, _iterator2.default)(obj);
-        var done = false;
-        var running = 0;
-        var looping = false;
-
-        function iterateeCallback(err, value) {
-            running -= 1;
-            if (err) {
-                done = true;
-                callback(err);
-            } else if (value === _breakLoop2.default || done && running <= 0) {
-                done = true;
-                return callback(null);
-            } else if (!looping) {
-                replenish();
-            }
-        }
-
-        function replenish() {
-            looping = true;
-            while (running < limit && !done) {
-                var elem = nextElem();
-                if (elem === null) {
-                    done = true;
-                    if (running <= 0) {
-                        callback(null);
-                    }
-                    return;
-                }
-                running += 1;
-                iteratee(elem.value, elem.key, (0, _onlyOnce2.default)(iterateeCallback));
-            }
-            looping = false;
-        }
-
-        replenish();
-    };
-}
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ 291:
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-
-module.exports = isArray;
-
-
-/***/ }),
-
-/***/ 292:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(420);
-
-
-/***/ }),
-
-/***/ 293:
+/***/ 275:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27301,6 +26766,511 @@ function decodeStr(s, decoder) {
 
 /***/ }),
 
+/***/ 276:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isStream = module.exports = function (stream) {
+	return stream !== null && typeof stream === 'object' && typeof stream.pipe === 'function';
+};
+
+isStream.writable = function (stream) {
+	return isStream(stream) && stream.writable !== false && typeof stream._write === 'function' && typeof stream._writableState === 'object';
+};
+
+isStream.readable = function (stream) {
+	return isStream(stream) && stream.readable !== false && typeof stream._read === 'function' && typeof stream._readableState === 'object';
+};
+
+isStream.duplex = function (stream) {
+	return isStream.writable(stream) && isStream.readable(stream);
+};
+
+isStream.transform = function (stream) {
+	return isStream.duplex(stream) && typeof stream._transform === 'function' && typeof stream._transformState === 'object';
+};
+
+
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * create-logger.js: Logger factory for winston logger instances.
+ *
+ * (C) 2010 Charlie Robbins
+ * MIT LICENCE
+ */
+
+
+
+const { LEVEL } = __webpack_require__(19);
+const config = __webpack_require__(182);
+const Logger = __webpack_require__(512);
+const debug = __webpack_require__(180)('winston:create-logger');
+
+/**
+ * DerivedLogger to attach the logs level methods.
+ * @type {DerivedLogger}
+ * @extends {Logger}
+ */
+class DerivedLogger extends Logger {
+  /**
+   * Create a new class derived logger for which the levels can be attached to
+   * the prototype of. This is a V8 optimization that is well know to increase
+   * performance of prototype functions.
+   * @param {!Object} options - Options for the created logger.
+   */
+  constructor(options) {
+    super(options);
+    this._setupLevels();
+  }
+
+  /**
+   * Create the log level methods for the derived logger.
+   * @returns {undefined}
+   * @private
+   */
+  _setupLevels() {
+    Object.keys(this.levels).forEach(level => {
+      debug('Define prototype method for "%s"', level);
+      if (level === 'log') {
+        // eslint-disable-next-line no-console
+        console.warn('Level "log" not defined: conflicts with the method "log". Use a different level name.');
+        return;
+      }
+
+      // Define prototype methods for each log level
+      // e.g. logger.log('info', msg) <––> logger.info(msg) & logger.isInfoEnabled()
+      this[level] = (...args) => {
+        // Optimize the hot-path which is the single object.
+        if (args.length === 1) {
+          const [msg] = args;
+          const info = msg && msg.message && msg || { message: msg };
+          info.level = info[LEVEL] = level;
+          this.write(info);
+          return this;
+        }
+
+        // Otherwise build argument list which could potentially conform to
+        // either:
+        // . v3 API: log(obj)
+        // 2. v1/v2 API: log(level, msg, ... [string interpolate], [{metadata}], [callback])
+        return this.log(level, ...args);
+      };
+
+      this[isLevelEnabledFunctionName(level)] = () => this.isLevelEnabled(level);
+    });
+  }
+}
+
+function isLevelEnabledFunctionName(level) {
+  return 'is' + level.charAt(0).toUpperCase() + level.slice(1) + 'Enabled';
+}
+
+/**
+ * Create a new instance of a winston Logger. Creates a new
+ * prototype for each instance.
+ * @param {!Object} opts - Options for the created logger.
+ * @returns {Logger} - A newly created logger instance.
+ */
+module.exports = (opts = { levels: config.npm.levels }) => (
+  new DerivedLogger(opts)
+);
+
+
+/***/ }),
+
+/***/ 278:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = eachLimit;
+
+var _eachOf = __webpack_require__(513);
+
+var _eachOf2 = _interopRequireDefault(_eachOf);
+
+var _withoutIndex = __webpack_require__(354);
+
+var _withoutIndex2 = _interopRequireDefault(_withoutIndex);
+
+var _wrapAsync = __webpack_require__(78);
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Applies the function `iteratee` to each item in `coll`, in parallel.
+ * The `iteratee` is called with an item from the list, and a callback for when
+ * it has finished. If the `iteratee` passes an error to its `callback`, the
+ * main `callback` (for the `each` function) is immediately called with the
+ * error.
+ *
+ * Note, that since this function applies `iteratee` to each item in parallel,
+ * there is no guarantee that the iteratee functions will complete in order.
+ *
+ * @name each
+ * @static
+ * @memberOf module:Collections
+ * @method
+ * @alias forEach
+ * @category Collection
+ * @param {Array|Iterable|Object} coll - A collection to iterate over.
+ * @param {AsyncFunction} iteratee - An async function to apply to
+ * each item in `coll`. Invoked with (item, callback).
+ * The array index is not passed to the iteratee.
+ * If you need the index, use `eachOf`.
+ * @param {Function} [callback] - A callback which is called when all
+ * `iteratee` functions have finished, or an error occurs. Invoked with (err).
+ * @example
+ *
+ * // assuming openFiles is an array of file names and saveFile is a function
+ * // to save the modified contents of that file:
+ *
+ * async.each(openFiles, saveFile, function(err){
+ *   // if any of the saves produced an error, err would equal that error
+ * });
+ *
+ * // assuming openFiles is an array of file names
+ * async.each(openFiles, function(file, callback) {
+ *
+ *     // Perform operation on file here.
+ *     console.log('Processing file ' + file);
+ *
+ *     if( file.length > 32 ) {
+ *       console.log('This file name is too long');
+ *       callback('File name too long');
+ *     } else {
+ *       // Do work to process file here
+ *       console.log('File processed');
+ *       callback();
+ *     }
+ * }, function(err) {
+ *     // if any of the file processing produced an error, err would equal that error
+ *     if( err ) {
+ *       // One of the iterations produced an error.
+ *       // All processing will now stop.
+ *       console.log('A file failed to process');
+ *     } else {
+ *       console.log('All files have been processed successfully');
+ *     }
+ * });
+ */
+function eachLimit(coll, iteratee, callback) {
+  (0, _eachOf2.default)(coll, (0, _withoutIndex2.default)((0, _wrapAsync2.default)(iteratee)), callback);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 279:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * exception-handler.js: Object for handling uncaughtException events.
+ *
+ * (C) 2010 Charlie Robbins
+ * MIT LICENCE
+ */
+
+
+
+const os = __webpack_require__(64);
+const asyncForEach = __webpack_require__(278);
+const debug = __webpack_require__(180)('winston:exception');
+const once = __webpack_require__(514);
+const stackTrace = __webpack_require__(515);
+const ExceptionStream = __webpack_require__(516);
+
+/**
+ * Object for handling uncaughtException events.
+ * @type {ExceptionHandler}
+ */
+module.exports = class ExceptionHandler {
+  /**
+   * TODO: add contructor description
+   * @param {!Logger} logger - TODO: add param description
+   */
+  constructor(logger) {
+    if (!logger) {
+      throw new Error('Logger is required to handle exceptions');
+    }
+
+    this.logger = logger;
+    this.handlers = new Map();
+  }
+
+  /**
+   * Handles `uncaughtException` events for the current process by adding any
+   * handlers passed in.
+   * @returns {undefined}
+   */
+  handle(...args) {
+    args.forEach(arg => {
+      if (Array.isArray(arg)) {
+        return arg.forEach(handler => this._addHandler(handler));
+      }
+
+      this._addHandler(arg);
+    });
+
+    if (!this.catcher) {
+      this.catcher = this._uncaughtException.bind(this);
+      process.on('uncaughtException', this.catcher);
+    }
+  }
+
+  /**
+   * Removes any handlers to `uncaughtException` events for the current
+   * process. This does not modify the state of the `this.handlers` set.
+   * @returns {undefined}
+   */
+  unhandle() {
+    if (this.catcher) {
+      process.removeListener('uncaughtException', this.catcher);
+      this.catcher = false;
+
+      Array.from(this.handlers.values())
+        .forEach(wrapper => this.logger.unpipe(wrapper));
+    }
+  }
+
+  /**
+   * TODO: add method description
+   * @param {Error} err - Error to get information about.
+   * @returns {mixed} - TODO: add return description.
+   */
+  getAllInfo(err) {
+    let { message } = err;
+    if (!message && typeof err === 'string') {
+      message = err;
+    }
+
+    return {
+      error: err,
+      // TODO (indexzero): how do we configure this?
+      level: 'error',
+      message: [
+        `uncaughtException: ${(message || '(no error message)')}`,
+        err.stack || '  No stack trace'
+      ].join('\n'),
+      stack: err.stack,
+      exception: true,
+      date: new Date().toString(),
+      process: this.getProcessInfo(),
+      os: this.getOsInfo(),
+      trace: this.getTrace(err)
+    };
+  }
+
+  /**
+   * Gets all relevant process information for the currently running process.
+   * @returns {mixed} - TODO: add return description.
+   */
+  getProcessInfo() {
+    return {
+      pid: process.pid,
+      uid: process.getuid ? process.getuid() : null,
+      gid: process.getgid ? process.getgid() : null,
+      cwd: process.cwd(),
+      execPath: process.execPath,
+      version: process.version,
+      argv: process.argv,
+      memoryUsage: process.memoryUsage()
+    };
+  }
+
+  /**
+   * Gets all relevant OS information for the currently running process.
+   * @returns {mixed} - TODO: add return description.
+   */
+  getOsInfo() {
+    return {
+      loadavg: os.loadavg(),
+      uptime: os.uptime()
+    };
+  }
+
+  /**
+   * Gets a stack trace for the specified error.
+   * @param {mixed} err - TODO: add param description.
+   * @returns {mixed} - TODO: add return description.
+   */
+  getTrace(err) {
+    const trace = err ? stackTrace.parse(err) : stackTrace.get();
+    return trace.map(site => {
+      return {
+        column: site.getColumnNumber(),
+        file: site.getFileName(),
+        function: site.getFunctionName(),
+        line: site.getLineNumber(),
+        method: site.getMethodName(),
+        native: site.isNative()
+      };
+    });
+  }
+
+  /**
+   * Helper method to add a transport as an exception handler.
+   * @param {Transport} handler - The transport to add as an exception handler.
+   * @returns {void}
+   */
+  _addHandler(handler) {
+    if (!this.handlers.has(handler)) {
+      handler.handleExceptions = true;
+      const wrapper = new ExceptionStream(handler);
+      this.handlers.set(handler, wrapper);
+      this.logger.pipe(wrapper);
+    }
+  }
+
+  /**
+   * Logs all relevant information around the `err` and exits the current
+   * process.
+   * @param {Error} err - Error to handle
+   * @returns {mixed} - TODO: add return description.
+   * @private
+   */
+  _uncaughtException(err) {
+    const info = this.getAllInfo(err);
+    const handlers = this._getExceptionHandlers();
+    // Calculate if we should exit on this error
+    let doExit = typeof this.logger.exitOnError === 'function'
+      ? this.logger.exitOnError(err)
+      : this.logger.exitOnError;
+    let timeout;
+
+    if (!handlers.length && doExit) {
+      // eslint-disable-next-line no-console
+      console.warn('winston: exitOnError cannot be false with no exception handlers.');
+      // eslint-disable-next-line no-console
+      console.warn('winston: exiting process.');
+      doExit = false;
+    }
+
+    function gracefulExit() {
+      debug('doExit', doExit);
+      debug('process._exiting', process._exiting);
+
+      if (doExit && !process._exiting) {
+        // Remark: Currently ignoring any exceptions from transports when
+        // catching uncaught exceptions.
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        // eslint-disable-next-line no-process-exit
+        process.exit(1);
+      }
+    }
+
+    if (!handlers || handlers.length === 0) {
+      return process.nextTick(gracefulExit);
+    }
+
+    // Log to all transports attempting to listen for when they are completed.
+    asyncForEach(handlers, (handler, next) => {
+      // TODO: Change these to the correct WritableStream events so that we
+      // wait until exit.
+      const done = once(next);
+      const transport = handler.transport || handler;
+
+      // Debug wrapping so that we can inspect what's going on under the covers.
+      function onDone(event) {
+        return () => {
+          debug(event);
+          done();
+        };
+      }
+
+      transport.once('logged', onDone('logged'));
+      transport.once('error', onDone('error'));
+    }, gracefulExit);
+
+    this.logger.log(info);
+
+    // If exitOnError is true, then only allow the logging of exceptions to
+    // take up to `3000ms`.
+    if (doExit) {
+      timeout = setTimeout(gracefulExit, 3000);
+    }
+  }
+
+  /**
+   * Returns the list of transports and exceptionHandlers for this instance.
+   * @returns {Array} - List of transports and exceptionHandlers for this
+   * instance.
+   * @private
+   */
+  _getExceptionHandlers() {
+    // Remark (indexzero): since `logger.transports` returns all of the pipes
+    // from the _readableState of the stream we actually get the join of the
+    // explicit handlers and the implicit transports with
+    // `handleExceptions: true`
+    return this.logger.transports.filter(wrap => {
+      const transport = wrap.transport || wrap;
+      return transport.handleExceptions;
+    });
+  }
+};
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+
+/***/ 280:
+/***/ (function(module, exports, __webpack_require__) {
+
+const sanitize = __webpack_require__(522);
+
+module.exports = {
+    /**
+     * @description It format the message it receives for file
+     * @param {[Object={}]} info
+     * @return {String}
+     */
+    file (info = {}) {
+        let messages = '';
+        try {
+            messages = sanitize(info.messages);
+        }
+        catch (e) {
+            console.error(e);
+        }
+        return `[${info.sessionId}][${info.timestamp}][${info.origin}][${info.level}][${messages}]`;
+    },
+
+    /**
+     * @description It format the message it receives, for console
+     * @param {[Object={}]} info
+     * @return {*}
+     */
+    consoleFormat (info = {}) {
+        let messages = '';
+        try {
+            messages = sanitize(info.messages);
+        }
+        catch (e) {
+            console.error(e);
+        }
+        return `${info.timestamp} ${info.origin} ${info.level} ${messages}`;
+    }
+};
+
+
+/***/ }),
+
 /***/ 3:
 /***/ (function(module, exports) {
 
@@ -27494,6 +27464,13 @@ process.umask = function () {return 0;};
 /***/ 30:
 /***/ (function(module, exports) {
 
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, exports) {
+
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -27521,14 +27498,665 @@ if (typeof Object.create === 'function') {
 
 /***/ }),
 
-/***/ 32:
-/***/ (function(module, exports) {
+/***/ 311:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("fs");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = _eachOfLimit;
+
+var _noop = __webpack_require__(109);
+
+var _noop2 = _interopRequireDefault(_noop);
+
+var _once = __webpack_require__(204);
+
+var _once2 = _interopRequireDefault(_once);
+
+var _iterator = __webpack_require__(433);
+
+var _iterator2 = _interopRequireDefault(_iterator);
+
+var _onlyOnce = __webpack_require__(205);
+
+var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
+
+var _breakLoop = __webpack_require__(256);
+
+var _breakLoop2 = _interopRequireDefault(_breakLoop);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _eachOfLimit(limit) {
+    return function (obj, iteratee, callback) {
+        callback = (0, _once2.default)(callback || _noop2.default);
+        if (limit <= 0 || !obj) {
+            return callback(null);
+        }
+        var nextElem = (0, _iterator2.default)(obj);
+        var done = false;
+        var running = 0;
+        var looping = false;
+
+        function iterateeCallback(err, value) {
+            running -= 1;
+            if (err) {
+                done = true;
+                callback(err);
+            } else if (value === _breakLoop2.default || done && running <= 0) {
+                done = true;
+                return callback(null);
+            } else if (!looping) {
+                replenish();
+            }
+        }
+
+        function replenish() {
+            looping = true;
+            while (running < limit && !done) {
+                var elem = nextElem();
+                if (elem === null) {
+                    done = true;
+                    if (running <= 0) {
+                        callback(null);
+                    }
+                    return;
+                }
+                running += 1;
+                iteratee(elem.value, elem.key, (0, _onlyOnce2.default)(iterateeCallback));
+            }
+            looping = false;
+        }
+
+        replenish();
+    };
+}
+module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 332:
+/***/ 312:
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+
+/***/ }),
+
+/***/ 313:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(451);
+
+
+/***/ }),
+
+/***/ 314:
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.3.2 by @mathias */
+;(function (root) {
+
+	/** Detect free variables */
+	var freeExports = typeof exports == 'object' && exports &&
+	!exports.nodeType && exports;
+	var freeModule = typeof module == 'object' && module &&
+	!module.nodeType && module;
+	var freeGlobal = typeof global == 'object' && global;
+	if (
+	freeGlobal.global === freeGlobal ||
+	freeGlobal.window === freeGlobal ||
+	freeGlobal.self === freeGlobal)
+	{
+		root = freeGlobal;
+	}
+
+	/**
+    * The `punycode` object.
+    * @name punycode
+    * @type Object
+    */
+	var punycode,
+
+	/** Highest positive signed 32-bit float value */
+	maxInt = 2147483647, // aka. 0x7FFFFFFF or 2^31-1
+
+	/** Bootstring parameters */
+	base = 36,
+	tMin = 1,
+	tMax = 26,
+	skew = 38,
+	damp = 700,
+	initialBias = 72,
+	initialN = 128, // 0x80
+	delimiter = '-', // '\x2D'
+
+	/** Regular expressions */
+	regexPunycode = /^xn--/,
+	regexNonASCII = /[^\x20-\x7E]/, // unprintable ASCII chars + non-ASCII chars
+	regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g, // RFC 3490 separators
+
+	/** Error messages */
+	errors = {
+		'overflow': 'Overflow: input needs wider integers to process',
+		'not-basic': 'Illegal input >= 0x80 (not a basic code point)',
+		'invalid-input': 'Invalid input' },
+
+
+	/** Convenience shortcuts */
+	baseMinusTMin = base - tMin,
+	floor = Math.floor,
+	stringFromCharCode = String.fromCharCode,
+
+	/** Temporary variable */
+	key;
+
+	/*--------------------------------------------------------------------------*/
+
+	/**
+                                                                                 * A generic error utility function.
+                                                                                 * @private
+                                                                                 * @param {String} type The error type.
+                                                                                 * @returns {Error} Throws a `RangeError` with the applicable error message.
+                                                                                 */
+	function error(type) {
+		throw RangeError(errors[type]);
+	}
+
+	/**
+    * A generic `Array#map` utility function.
+    * @private
+    * @param {Array} array The array to iterate over.
+    * @param {Function} callback The function that gets called for every array
+    * item.
+    * @returns {Array} A new array of values returned by the callback function.
+    */
+	function map(array, fn) {
+		var length = array.length;
+		var result = [];
+		while (length--) {
+			result[length] = fn(array[length]);
+		}
+		return result;
+	}
+
+	/**
+    * A simple `Array#map`-like wrapper to work with domain name strings or email
+    * addresses.
+    * @private
+    * @param {String} domain The domain name or email address.
+    * @param {Function} callback The function that gets called for every
+    * character.
+    * @returns {Array} A new string of characters returned by the callback
+    * function.
+    */
+	function mapDomain(string, fn) {
+		var parts = string.split('@');
+		var result = '';
+		if (parts.length > 1) {
+			// In email addresses, only the domain name should be punycoded. Leave
+			// the local part (i.e. everything up to `@`) intact.
+			result = parts[0] + '@';
+			string = parts[1];
+		}
+		// Avoid `split(regex)` for IE8 compatibility. See #17.
+		string = string.replace(regexSeparators, '\x2E');
+		var labels = string.split('.');
+		var encoded = map(labels, fn).join('.');
+		return result + encoded;
+	}
+
+	/**
+    * Creates an array containing the numeric code points of each Unicode
+    * character in the string. While JavaScript uses UCS-2 internally,
+    * this function will convert a pair of surrogate halves (each of which
+    * UCS-2 exposes as separate characters) into a single code point,
+    * matching UTF-16.
+    * @see `punycode.ucs2.encode`
+    * @see <https://mathiasbynens.be/notes/javascript-encoding>
+    * @memberOf punycode.ucs2
+    * @name decode
+    * @param {String} string The Unicode input string (UCS-2).
+    * @returns {Array} The new array of code points.
+    */
+	function ucs2decode(string) {
+		var output = [],
+		counter = 0,
+		length = string.length,
+		value,
+		extra;
+		while (counter < length) {
+			value = string.charCodeAt(counter++);
+			if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+				// high surrogate, and there is a next character
+				extra = string.charCodeAt(counter++);
+				if ((extra & 0xFC00) == 0xDC00) {// low surrogate
+					output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+				} else {
+					// unmatched surrogate; only append this code unit, in case the next
+					// code unit is the high surrogate of a surrogate pair
+					output.push(value);
+					counter--;
+				}
+			} else {
+				output.push(value);
+			}
+		}
+		return output;
+	}
+
+	/**
+    * Creates a string based on an array of numeric code points.
+    * @see `punycode.ucs2.decode`
+    * @memberOf punycode.ucs2
+    * @name encode
+    * @param {Array} codePoints The array of numeric code points.
+    * @returns {String} The new Unicode string (UCS-2).
+    */
+	function ucs2encode(array) {
+		return map(array, function (value) {
+			var output = '';
+			if (value > 0xFFFF) {
+				value -= 0x10000;
+				output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
+				value = 0xDC00 | value & 0x3FF;
+			}
+			output += stringFromCharCode(value);
+			return output;
+		}).join('');
+	}
+
+	/**
+    * Converts a basic code point into a digit/integer.
+    * @see `digitToBasic()`
+    * @private
+    * @param {Number} codePoint The basic numeric code point value.
+    * @returns {Number} The numeric value of a basic code point (for use in
+    * representing integers) in the range `0` to `base - 1`, or `base` if
+    * the code point does not represent a value.
+    */
+	function basicToDigit(codePoint) {
+		if (codePoint - 48 < 10) {
+			return codePoint - 22;
+		}
+		if (codePoint - 65 < 26) {
+			return codePoint - 65;
+		}
+		if (codePoint - 97 < 26) {
+			return codePoint - 97;
+		}
+		return base;
+	}
+
+	/**
+    * Converts a digit/integer into a basic code point.
+    * @see `basicToDigit()`
+    * @private
+    * @param {Number} digit The numeric value of a basic code point.
+    * @returns {Number} The basic code point whose value (when used for
+    * representing integers) is `digit`, which needs to be in the range
+    * `0` to `base - 1`. If `flag` is non-zero, the uppercase form is
+    * used; else, the lowercase form is used. The behavior is undefined
+    * if `flag` is non-zero and `digit` has no uppercase form.
+    */
+	function digitToBasic(digit, flag) {
+		//  0..25 map to ASCII a..z or A..Z
+		// 26..35 map to ASCII 0..9
+		return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
+	}
+
+	/**
+    * Bias adaptation function as per section 3.4 of RFC 3492.
+    * http://tools.ietf.org/html/rfc3492#section-3.4
+    * @private
+    */
+	function adapt(delta, numPoints, firstTime) {
+		var k = 0;
+		delta = firstTime ? floor(delta / damp) : delta >> 1;
+		delta += floor(delta / numPoints);
+		for (; /* no initialization */delta > baseMinusTMin * tMax >> 1; k += base) {
+			delta = floor(delta / baseMinusTMin);
+		}
+		return floor(k + (baseMinusTMin + 1) * delta / (delta + skew));
+	}
+
+	/**
+    * Converts a Punycode string of ASCII-only symbols to a string of Unicode
+    * symbols.
+    * @memberOf punycode
+    * @param {String} input The Punycode string of ASCII-only symbols.
+    * @returns {String} The resulting string of Unicode symbols.
+    */
+	function decode(input) {
+		// Don't use UCS-2
+		var output = [],
+		inputLength = input.length,
+		out,
+		i = 0,
+		n = initialN,
+		bias = initialBias,
+		basic,
+		j,
+		index,
+		oldi,
+		w,
+		k,
+		digit,
+		t,
+		/** Cached calculation results */
+		baseMinusT;
+
+		// Handle the basic code points: let `basic` be the number of input code
+		// points before the last delimiter, or `0` if there is none, then copy
+		// the first basic code points to the output.
+
+		basic = input.lastIndexOf(delimiter);
+		if (basic < 0) {
+			basic = 0;
+		}
+
+		for (j = 0; j < basic; ++j) {
+			// if it's not a basic code point
+			if (input.charCodeAt(j) >= 0x80) {
+				error('not-basic');
+			}
+			output.push(input.charCodeAt(j));
+		}
+
+		// Main decoding loop: start just after the last delimiter if any basic code
+		// points were copied; start at the beginning otherwise.
+
+		for (index = basic > 0 ? basic + 1 : 0; index < inputLength;) /* no final expression */{
+
+			// `index` is the index of the next character to be consumed.
+			// Decode a generalized variable-length integer into `delta`,
+			// which gets added to `i`. The overflow checking is easier
+			// if we increase `i` as we go, then subtract off its starting
+			// value at the end to obtain `delta`.
+			for (oldi = i, w = 1, k = base;; /* no condition */k += base) {
+
+				if (index >= inputLength) {
+					error('invalid-input');
+				}
+
+				digit = basicToDigit(input.charCodeAt(index++));
+
+				if (digit >= base || digit > floor((maxInt - i) / w)) {
+					error('overflow');
+				}
+
+				i += digit * w;
+				t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+
+				if (digit < t) {
+					break;
+				}
+
+				baseMinusT = base - t;
+				if (w > floor(maxInt / baseMinusT)) {
+					error('overflow');
+				}
+
+				w *= baseMinusT;
+
+			}
+
+			out = output.length + 1;
+			bias = adapt(i - oldi, out, oldi == 0);
+
+			// `i` was supposed to wrap around from `out` to `0`,
+			// incrementing `n` each time, so we'll fix that now:
+			if (floor(i / out) > maxInt - n) {
+				error('overflow');
+			}
+
+			n += floor(i / out);
+			i %= out;
+
+			// Insert `n` at position `i` of the output
+			output.splice(i++, 0, n);
+
+		}
+
+		return ucs2encode(output);
+	}
+
+	/**
+    * Converts a string of Unicode symbols (e.g. a domain name label) to a
+    * Punycode string of ASCII-only symbols.
+    * @memberOf punycode
+    * @param {String} input The string of Unicode symbols.
+    * @returns {String} The resulting Punycode string of ASCII-only symbols.
+    */
+	function encode(input) {
+		var n,
+		delta,
+		handledCPCount,
+		basicLength,
+		bias,
+		j,
+		m,
+		q,
+		k,
+		t,
+		currentValue,
+		output = [],
+		/** `inputLength` will hold the number of code points in `input`. */
+		inputLength,
+		/** Cached calculation results */
+		handledCPCountPlusOne,
+		baseMinusT,
+		qMinusT;
+
+		// Convert the input in UCS-2 to Unicode
+		input = ucs2decode(input);
+
+		// Cache the length
+		inputLength = input.length;
+
+		// Initialize the state
+		n = initialN;
+		delta = 0;
+		bias = initialBias;
+
+		// Handle the basic code points
+		for (j = 0; j < inputLength; ++j) {
+			currentValue = input[j];
+			if (currentValue < 0x80) {
+				output.push(stringFromCharCode(currentValue));
+			}
+		}
+
+		handledCPCount = basicLength = output.length;
+
+		// `handledCPCount` is the number of code points that have been handled;
+		// `basicLength` is the number of basic code points.
+
+		// Finish the basic string - if it is not empty - with a delimiter
+		if (basicLength) {
+			output.push(delimiter);
+		}
+
+		// Main encoding loop:
+		while (handledCPCount < inputLength) {
+
+			// All non-basic code points < n have been handled already. Find the next
+			// larger one:
+			for (m = maxInt, j = 0; j < inputLength; ++j) {
+				currentValue = input[j];
+				if (currentValue >= n && currentValue < m) {
+					m = currentValue;
+				}
+			}
+
+			// Increase `delta` enough to advance the decoder's <n,i> state to <m,0>,
+			// but guard against overflow
+			handledCPCountPlusOne = handledCPCount + 1;
+			if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
+				error('overflow');
+			}
+
+			delta += (m - n) * handledCPCountPlusOne;
+			n = m;
+
+			for (j = 0; j < inputLength; ++j) {
+				currentValue = input[j];
+
+				if (currentValue < n && ++delta > maxInt) {
+					error('overflow');
+				}
+
+				if (currentValue == n) {
+					// Represent delta as a generalized variable-length integer
+					for (q = delta, k = base;; /* no condition */k += base) {
+						t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+						if (q < t) {
+							break;
+						}
+						qMinusT = q - t;
+						baseMinusT = base - t;
+						output.push(
+						stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0)));
+
+						q = floor(qMinusT / baseMinusT);
+					}
+
+					output.push(stringFromCharCode(digitToBasic(q, 0)));
+					bias = adapt(delta, handledCPCountPlusOne, handledCPCount == basicLength);
+					delta = 0;
+					++handledCPCount;
+				}
+			}
+
+			++delta;
+			++n;
+
+		}
+		return output.join('');
+	}
+
+	/**
+    * Converts a Punycode string representing a domain name or an email address
+    * to Unicode. Only the Punycoded parts of the input will be converted, i.e.
+    * it doesn't matter if you call it on a string that has already been
+    * converted to Unicode.
+    * @memberOf punycode
+    * @param {String} input The Punycoded domain name or email address to
+    * convert to Unicode.
+    * @returns {String} The Unicode representation of the given Punycode
+    * string.
+    */
+	function toUnicode(input) {
+		return mapDomain(input, function (string) {
+			return regexPunycode.test(string) ?
+			decode(string.slice(4).toLowerCase()) :
+			string;
+		});
+	}
+
+	/**
+    * Converts a Unicode string representing a domain name or an email address to
+    * Punycode. Only the non-ASCII parts of the domain name will be converted,
+    * i.e. it doesn't matter if you call it with a domain that's already in
+    * ASCII.
+    * @memberOf punycode
+    * @param {String} input The domain name or email address to convert, as a
+    * Unicode string.
+    * @returns {String} The Punycode representation of the given domain name or
+    * email address.
+    */
+	function toASCII(input) {
+		return mapDomain(input, function (string) {
+			return regexNonASCII.test(string) ?
+			'xn--' + encode(string) :
+			string;
+		});
+	}
+
+	/*--------------------------------------------------------------------------*/
+
+	/** Define the public API */
+	punycode = {
+		/**
+               * A string representing the current Punycode.js version number.
+               * @memberOf punycode
+               * @type String
+               */
+		'version': '1.3.2',
+		/**
+                       * An object of methods to convert from JavaScript's internal character
+                       * representation (UCS-2) to Unicode code points, and back.
+                       * @see <https://mathiasbynens.be/notes/javascript-encoding>
+                       * @memberOf punycode
+                       * @type Object
+                       */
+		'ucs2': {
+			'decode': ucs2decode,
+			'encode': ucs2encode },
+
+		'decode': decode,
+		'encode': encode,
+		'toASCII': toASCII,
+		'toUnicode': toUnicode };
+
+
+	/** Expose `punycode` */
+	// Some AMD build optimizers, like r.js, check for specific condition patterns
+	// like the following:
+	if (
+	true)
+	{
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			return punycode;
+		}.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (freeExports && freeModule) {
+		if (module.exports == freeExports) {// in Node.js or RingoJS v0.8.0+
+			freeModule.exports = punycode;
+		} else {// in Narwhal or RingoJS v0.7.0-
+			for (key in punycode) {
+				punycode.hasOwnProperty(key) && (freeExports[key] = punycode[key]);
+			}
+		}
+	} else {// in Rhino or a web browser
+		root.punycode = punycode;
+	}
+
+})(this);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)(module), __webpack_require__(4)))
+
+/***/ }),
+
+/***/ 353:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27541,7 +28169,7 @@ exports.hasNextTick = exports.hasSetImmediate = undefined;
 exports.fallback = fallback;
 exports.wrap = wrap;
 
-var _slice = __webpack_require__(145);
+var _slice = __webpack_require__(157);
 
 var _slice2 = _interopRequireDefault(_slice);
 
@@ -27578,7 +28206,7 @@ exports.default = wrap(_defer);
 
 /***/ }),
 
-/***/ 333:
+/***/ 354:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27597,26 +28225,26 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ 3413:
+/***/ 3587:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(3414);
+module.exports = __webpack_require__(3588);
 
 
 /***/ }),
 
-/***/ 3414:
+/***/ 3588:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_auth_scss__ = __webpack_require__(3415);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_auth_scss__ = __webpack_require__(3589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__styles_auth_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__styles_auth_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__authService__ = __webpack_require__(3416);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__authService__ = __webpack_require__(3590);
 const _ = __webpack_require__(0),
 { shell } = __webpack_require__(21),
-url = __webpack_require__(86),
-querystring = __webpack_require__(293),
+url = __webpack_require__(81),
+querystring = __webpack_require__(275),
 session = __webpack_require__(21).remote.session;
 
 
@@ -27951,19 +28579,19 @@ const AuthRenderer = (() => {
 
 /***/ }),
 
-/***/ 3415:
+/***/ 3589:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 3416:
+/***/ 3590:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__authLogger__ = __webpack_require__(3417);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_initializeEventBus__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__authLogger__ = __webpack_require__(3591);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_initializeEventBus__ = __webpack_require__(527);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_initializeEventBus___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_initializeEventBus__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_model_event__ = __webpack_require__(2);
 
@@ -28011,12 +28639,12 @@ const AuthRenderer = (() => {
 
 /***/ }),
 
-/***/ 3417:
+/***/ 3591:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {const path = __webpack_require__(15),
-{ Originator, Collectors } = __webpack_require__(292);
+{ Originator, Collectors } = __webpack_require__(313);
 
 /**
                                                               * @description It initiates the logger and attaches the logger instance to pm object
@@ -28055,7 +28683,7 @@ const AuthRenderer = (() => {
 
 /***/ }),
 
-/***/ 35:
+/***/ 36:
 /***/ (function(module, exports) {
 
 module.exports = function (module) {
@@ -28083,7 +28711,7 @@ module.exports = function (module) {
 
 /***/ }),
 
-/***/ 37:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28538,7 +29166,7 @@ function unwrapListeners(arr) {
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28614,11 +29242,38 @@ module.exports = function (formatFn) {
 
 /***/ }),
 
-/***/ 390:
+/***/ 4:
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = function () {
+	return this;
+}();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object")
+	g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+/***/ }),
+
+/***/ 421:
 /***/ (function(module, exports, __webpack_require__) {
 
-var http = __webpack_require__(230);
-var url = __webpack_require__(86);
+var http = __webpack_require__(248);
+var url = __webpack_require__(81);
 
 var https = module.exports;
 
@@ -28651,7 +29306,7 @@ function validateParams(params) {
 
 /***/ }),
 
-/***/ 394:
+/***/ 425:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28662,19 +29317,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = _parallel;
 
-var _noop = __webpack_require__(100);
+var _noop = __webpack_require__(109);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _isArrayLike = __webpack_require__(115);
+var _isArrayLike = __webpack_require__(126);
 
 var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
 
-var _slice = __webpack_require__(145);
+var _slice = __webpack_require__(157);
 
 var _slice2 = _interopRequireDefault(_slice);
 
-var _wrapAsync = __webpack_require__(71);
+var _wrapAsync = __webpack_require__(78);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -28700,11 +29355,11 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 395:
+/***/ 426:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(160),
-    isObject = __webpack_require__(236);
+var baseGetTag = __webpack_require__(173),
+    isObject = __webpack_require__(254);
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
@@ -28744,10 +29399,10 @@ module.exports = isFunction;
 
 /***/ }),
 
-/***/ 396:
+/***/ 427:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(233);
+var Symbol = __webpack_require__(251);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -28797,7 +29452,7 @@ module.exports = getRawTag;
 
 /***/ }),
 
-/***/ 397:
+/***/ 428:
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -28826,7 +29481,7 @@ module.exports = objectToString;
 
 /***/ }),
 
-/***/ 398:
+/***/ 429:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28837,15 +29492,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = asyncify;
 
-var _isObject = __webpack_require__(236);
+var _isObject = __webpack_require__(254);
 
 var _isObject2 = _interopRequireDefault(_isObject);
 
-var _initialParams = __webpack_require__(399);
+var _initialParams = __webpack_require__(430);
 
 var _initialParams2 = _interopRequireDefault(_initialParams);
 
-var _setImmediate = __webpack_require__(332);
+var _setImmediate = __webpack_require__(353);
 
 var _setImmediate2 = _interopRequireDefault(_setImmediate);
 
@@ -28943,7 +29598,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 399:
+/***/ 430:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28961,7 +29616,7 @@ exports.default = function (fn) {
     };
 };
 
-var _slice = __webpack_require__(145);
+var _slice = __webpack_require__(157);
 
 var _slice2 = _interopRequireDefault(_slice);
 
@@ -28971,34 +29626,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = function () {
-	return this;
-}();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object")
-	g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-/***/ }),
-
-/***/ 400:
+/***/ 431:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -29191,7 +29819,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 401:
+/***/ 432:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29201,11 +29829,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _eachOfLimit = __webpack_require__(205);
+var _eachOfLimit = __webpack_require__(220);
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _doLimit = __webpack_require__(162);
+var _doLimit = __webpack_require__(175);
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
@@ -29233,7 +29861,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 402:
+/***/ 433:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29244,15 +29872,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = iterator;
 
-var _isArrayLike = __webpack_require__(115);
+var _isArrayLike = __webpack_require__(126);
 
 var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
 
-var _getIterator = __webpack_require__(403);
+var _getIterator = __webpack_require__(434);
 
 var _getIterator2 = _interopRequireDefault(_getIterator);
 
-var _keys = __webpack_require__(404);
+var _keys = __webpack_require__(435);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -29298,7 +29926,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 403:
+/***/ 434:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29318,12 +29946,12 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 404:
+/***/ 435:
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(405),
-    baseKeys = __webpack_require__(416),
-    isArrayLike = __webpack_require__(115);
+var arrayLikeKeys = __webpack_require__(436),
+    baseKeys = __webpack_require__(447),
+    isArrayLike = __webpack_require__(126);
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -29362,15 +29990,15 @@ module.exports = keys;
 
 /***/ }),
 
-/***/ 405:
+/***/ 436:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseTimes = __webpack_require__(406),
-    isArguments = __webpack_require__(407),
-    isArray = __webpack_require__(291),
-    isBuffer = __webpack_require__(409),
-    isIndex = __webpack_require__(411),
-    isTypedArray = __webpack_require__(412);
+var baseTimes = __webpack_require__(437),
+    isArguments = __webpack_require__(438),
+    isArray = __webpack_require__(312),
+    isBuffer = __webpack_require__(440),
+    isIndex = __webpack_require__(442),
+    isTypedArray = __webpack_require__(443);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -29418,7 +30046,7 @@ module.exports = arrayLikeKeys;
 
 /***/ }),
 
-/***/ 406:
+/***/ 437:
 /***/ (function(module, exports) {
 
 /**
@@ -29445,11 +30073,11 @@ module.exports = baseTimes;
 
 /***/ }),
 
-/***/ 407:
+/***/ 438:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(408),
-    isObjectLike = __webpack_require__(161);
+var baseIsArguments = __webpack_require__(439),
+    isObjectLike = __webpack_require__(174);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -29488,11 +30116,11 @@ module.exports = isArguments;
 
 /***/ }),
 
-/***/ 408:
+/***/ 439:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(160),
-    isObjectLike = __webpack_require__(161);
+var baseGetTag = __webpack_require__(173),
+    isObjectLike = __webpack_require__(174);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]';
@@ -29513,11 +30141,11 @@ module.exports = baseIsArguments;
 
 /***/ }),
 
-/***/ 409:
+/***/ 440:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(234),
-    stubFalse = __webpack_require__(410);
+/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(252),
+    stubFalse = __webpack_require__(441);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -29555,11 +30183,11 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)(module)))
 
 /***/ }),
 
-/***/ 410:
+/***/ 441:
 /***/ (function(module, exports) {
 
 /**
@@ -29584,7 +30212,7 @@ module.exports = stubFalse;
 
 /***/ }),
 
-/***/ 411:
+/***/ 442:
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -29616,12 +30244,12 @@ module.exports = isIndex;
 
 /***/ }),
 
-/***/ 412:
+/***/ 443:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(413),
-    baseUnary = __webpack_require__(414),
-    nodeUtil = __webpack_require__(415);
+var baseIsTypedArray = __webpack_require__(444),
+    baseUnary = __webpack_require__(445),
+    nodeUtil = __webpack_require__(446);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -29650,12 +30278,12 @@ module.exports = isTypedArray;
 
 /***/ }),
 
-/***/ 413:
+/***/ 444:
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(160),
-    isLength = __webpack_require__(237),
-    isObjectLike = __webpack_require__(161);
+var baseGetTag = __webpack_require__(173),
+    isLength = __webpack_require__(255),
+    isObjectLike = __webpack_require__(174);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]',
@@ -29717,7 +30345,7 @@ module.exports = baseIsTypedArray;
 
 /***/ }),
 
-/***/ 414:
+/***/ 445:
 /***/ (function(module, exports) {
 
 /**
@@ -29738,10 +30366,10 @@ module.exports = baseUnary;
 
 /***/ }),
 
-/***/ 415:
+/***/ 446:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(235);
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(253);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -29772,15 +30400,15 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(36)(module)))
 
 /***/ }),
 
-/***/ 416:
+/***/ 447:
 /***/ (function(module, exports, __webpack_require__) {
 
-var isPrototype = __webpack_require__(417),
-    nativeKeys = __webpack_require__(418);
+var isPrototype = __webpack_require__(448),
+    nativeKeys = __webpack_require__(449);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -29813,7 +30441,7 @@ module.exports = baseKeys;
 
 /***/ }),
 
-/***/ 417:
+/***/ 448:
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -29838,10 +30466,10 @@ module.exports = isPrototype;
 
 /***/ }),
 
-/***/ 418:
+/***/ 449:
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(419);
+var overArg = __webpack_require__(450);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeKeys = overArg(Object.keys, Object);
@@ -29851,7 +30479,7 @@ module.exports = nativeKeys;
 
 /***/ }),
 
-/***/ 419:
+/***/ 450:
 /***/ (function(module, exports) {
 
 /**
@@ -29873,33 +30501,33 @@ module.exports = overArg;
 
 /***/ }),
 
-/***/ 420:
+/***/ 451:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    Originator: __webpack_require__(421).AbstractOriginator,
-    Collectors: __webpack_require__(424)
+    Originator: __webpack_require__(452).AbstractOriginator,
+    Collectors: __webpack_require__(455)
 };
 
 
 /***/ }),
 
-/***/ 421:
+/***/ 452:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    AbstractOriginator: __webpack_require__(422)
+    AbstractOriginator: __webpack_require__(453)
 };
 
 
 /***/ }),
 
-/***/ 422:
+/***/ 453:
 /***/ (function(module, exports, __webpack_require__) {
 
-const { isValidLevel } = __webpack_require__(423),
-    { ERROR, WARN, INFO } = __webpack_require__(116),
-    Collector = __webpack_require__(239);
+const { isValidLevel } = __webpack_require__(454),
+    { ERROR, WARN, INFO } = __webpack_require__(127),
+    Collector = __webpack_require__(257);
 
 /**
  * @class Originator
@@ -30006,10 +30634,10 @@ module.exports = Originator;
 
 /***/ }),
 
-/***/ 423:
+/***/ 454:
 /***/ (function(module, exports, __webpack_require__) {
 
-const { ERROR, WARN, INFO } = __webpack_require__(116),
+const { ERROR, WARN, INFO } = __webpack_require__(127),
     allowedLevels = {
         [ERROR]: true,
         [WARN]: true,
@@ -30032,25 +30660,25 @@ module.exports = {
 
 /***/ }),
 
-/***/ 424:
+/***/ 455:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    Console: __webpack_require__(163),
-    File: __webpack_require__(494),
-    Sentry: __webpack_require__(495)
+    Console: __webpack_require__(176),
+    File: __webpack_require__(524),
+    Sentry: __webpack_require__(525)
 };
 
 
 /***/ }),
 
-/***/ 425:
+/***/ 456:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _require = __webpack_require__(164),
+var _require = __webpack_require__(177),
     Colorizer = _require.Colorizer;
 
 /*
@@ -30066,7 +30694,7 @@ module.exports = function (config) {
 
 /***/ }),
 
-/***/ 426:
+/***/ 457:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -30105,11 +30733,11 @@ module['exports'] = colors;
 colors.themes = {};
 
 var util = __webpack_require__(14);
-var ansiStyles = colors.styles = __webpack_require__(428);
+var ansiStyles = colors.styles = __webpack_require__(459);
 var defineProps = Object.defineProperties;
 var newLineRegex = new RegExp(/[\r\n]+/g);
 
-colors.supportsColor = __webpack_require__(429).supportsColor;
+colors.supportsColor = __webpack_require__(460).supportsColor;
 
 if (typeof colors.enabled === 'undefined') {
   colors.enabled = colors.supportsColor() !== false;
@@ -30251,15 +30879,15 @@ var sequencer = function sequencer(map, str) {
 };
 
 // custom formatter methods
-colors.trap = __webpack_require__(431);
-colors.zalgo = __webpack_require__(432);
+colors.trap = __webpack_require__(462);
+colors.zalgo = __webpack_require__(463);
 
 // maps
 colors.maps = {};
-colors.maps.america = __webpack_require__(433)(colors);
-colors.maps.zebra = __webpack_require__(434)(colors);
-colors.maps.rainbow = __webpack_require__(435)(colors);
-colors.maps.random = __webpack_require__(436)(colors);
+colors.maps.america = __webpack_require__(464)(colors);
+colors.maps.zebra = __webpack_require__(465)(colors);
+colors.maps.rainbow = __webpack_require__(466)(colors);
+colors.maps.random = __webpack_require__(467)(colors);
 
 for (var map in colors.maps) {
   (function(map) {
@@ -30274,7 +30902,7 @@ defineProps(colors, init());
 
 /***/ }),
 
-/***/ 427:
+/***/ 458:
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -30286,7 +30914,7 @@ module.exports = function isBuffer(arg) {
 
 /***/ }),
 
-/***/ 428:
+/***/ 459:
 /***/ (function(module, exports) {
 
 /*
@@ -30370,7 +30998,7 @@ Object.keys(codes).forEach(function(key) {
 
 /***/ }),
 
-/***/ 429:
+/***/ 460:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30401,8 +31029,8 @@ THE SOFTWARE.
 
 
 
-var os = __webpack_require__(61);
-var hasFlag = __webpack_require__(430);
+var os = __webpack_require__(64);
+var hasFlag = __webpack_require__(461);
 
 var env = process.env;
 
@@ -30530,7 +31158,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 430:
+/***/ 461:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30574,7 +31202,7 @@ module.exports = function(flag, argv) {
 
 /***/ }),
 
-/***/ 431:
+/***/ 462:
 /***/ (function(module, exports) {
 
 module['exports'] = function runTheTrap(text, options) {
@@ -30627,7 +31255,7 @@ module['exports'] = function runTheTrap(text, options) {
 
 /***/ }),
 
-/***/ 432:
+/***/ 463:
 /***/ (function(module, exports) {
 
 // please no
@@ -30744,7 +31372,7 @@ module['exports'] = function zalgo(text, options) {
 
 /***/ }),
 
-/***/ 433:
+/***/ 464:
 /***/ (function(module, exports) {
 
 module['exports'] = function(colors) {
@@ -30761,7 +31389,7 @@ module['exports'] = function(colors) {
 
 /***/ }),
 
-/***/ 434:
+/***/ 465:
 /***/ (function(module, exports) {
 
 module['exports'] = function(colors) {
@@ -30773,7 +31401,7 @@ module['exports'] = function(colors) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 466:
 /***/ (function(module, exports) {
 
 module['exports'] = function(colors) {
@@ -30792,7 +31420,7 @@ module['exports'] = function(colors) {
 
 /***/ }),
 
-/***/ 436:
+/***/ 467:
 /***/ (function(module, exports) {
 
 module['exports'] = function(colors) {
@@ -30809,7 +31437,7 @@ module['exports'] = function(colors) {
 
 /***/ }),
 
-/***/ 437:
+/***/ 468:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30827,7 +31455,7 @@ module['exports'] = function(colors) {
  * @type {Object}
  */
 Object.defineProperty(exports, 'cli', {
-  value: __webpack_require__(438)
+  value: __webpack_require__(469)
 });
 
 /**
@@ -30835,7 +31463,7 @@ Object.defineProperty(exports, 'cli', {
  * @type {Object}
  */
 Object.defineProperty(exports, 'npm', {
-  value: __webpack_require__(439)
+  value: __webpack_require__(470)
 });
 
 /**
@@ -30843,13 +31471,13 @@ Object.defineProperty(exports, 'npm', {
  * @type {Object}
  */
 Object.defineProperty(exports, 'syslog', {
-  value: __webpack_require__(440)
+  value: __webpack_require__(471)
 });
 
 
 /***/ }),
 
-/***/ 438:
+/***/ 469:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30899,7 +31527,7 @@ exports.colors = {
 
 /***/ }),
 
-/***/ 439:
+/***/ 470:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30943,7 +31571,7 @@ exports.colors = {
 
 /***/ }),
 
-/***/ 440:
+/***/ 471:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30989,13 +31617,13 @@ exports.colors = {
 
 /***/ }),
 
-/***/ 441:
+/***/ 472:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
 /*
  * function align (info)
@@ -31010,7 +31638,7 @@ module.exports = format(function (info) {
 
 /***/ }),
 
-/***/ 442:
+/***/ 473:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31020,13 +31648,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _require = __webpack_require__(164),
+var _require = __webpack_require__(177),
     Colorizer = _require.Colorizer;
 
-var _require2 = __webpack_require__(243),
+var _require2 = __webpack_require__(261),
     Padder = _require2.Padder;
 
-var _require3 = __webpack_require__(17),
+var _require3 = __webpack_require__(19),
     configs = _require3.configs,
     MESSAGE = _require3.MESSAGE;
 
@@ -31092,13 +31720,13 @@ module.exports.Format = CliFormat;
 
 /***/ }),
 
-/***/ 443:
+/***/ 474:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
 /*
  * function cascade(formats)
@@ -31165,18 +31793,18 @@ module.exports.cascade = cascade;
 
 /***/ }),
 
-/***/ 444:
+/***/ 475:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     MESSAGE = _require.MESSAGE;
 
-var jsonStringify = __webpack_require__(117);
+var jsonStringify = __webpack_require__(128);
 
 /*
  * function replacer (key, value)
@@ -31200,7 +31828,7 @@ module.exports = format(function (info, opts) {
 
 /***/ }),
 
-/***/ 445:
+/***/ 476:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31358,7 +31986,7 @@ function fromByteArray(uint8) {
 
 /***/ }),
 
-/***/ 446:
+/***/ 477:
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -31448,13 +32076,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ 447:
+/***/ 478:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
 /*
  * function label (info)
@@ -31474,18 +32102,18 @@ module.exports = format(function (info, opts) {
 
 /***/ }),
 
-/***/ 448:
+/***/ 479:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     MESSAGE = _require.MESSAGE;
 
-var jsonStringify = __webpack_require__(117);
+var jsonStringify = __webpack_require__(128);
 
 /*
  * function logstash (info)
@@ -31513,7 +32141,7 @@ module.exports = format(function (info) {
 
 /***/ }),
 
-/***/ 449:
+/***/ 480:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31521,7 +32149,7 @@ module.exports = format(function (info) {
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
 function fillExcept(info, fillExceptKeys, metadataKey) {
   var savedKeys = fillExceptKeys.reduce(function (acc, key) {
@@ -31583,16 +32211,16 @@ module.exports = format(function (info) {
 
 /***/ }),
 
-/***/ 450:
+/***/ 481:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var inspect = __webpack_require__(14).inspect;
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     MESSAGE = _require.MESSAGE;
 
 /*
@@ -31610,7 +32238,7 @@ module.exports = format(function (info, opts) {
 
 /***/ }),
 
-/***/ 451:
+/***/ 482:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31620,7 +32248,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     MESSAGE = _require.MESSAGE;
 
 var Printf = function () {
@@ -31657,19 +32285,19 @@ module.exports.Printf = module.exports.Format = Printf;
 
 /***/ }),
 
-/***/ 452:
+/***/ 483:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* eslint no-undefined: 0 */
 
 
-var format = __webpack_require__(38);
+var format = __webpack_require__(39);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     MESSAGE = _require.MESSAGE;
 
-var jsonStringify = __webpack_require__(117);
+var jsonStringify = __webpack_require__(128);
 
 /*
  * function simple (info)
@@ -31700,7 +32328,7 @@ module.exports = format(function (info) {
 
 /***/ }),
 
-/***/ 453:
+/***/ 484:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31714,7 +32342,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var util = __webpack_require__(14);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     SPLAT = _require.SPLAT;
 
 /**
@@ -31854,14 +32482,14 @@ module.exports = function (opts) {
 
 /***/ }),
 
-/***/ 454:
+/***/ 485:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var fecha = __webpack_require__(455);
-var format = __webpack_require__(38);
+var fecha = __webpack_require__(486);
+var format = __webpack_require__(39);
 
 /*
  * function timestamp (info)
@@ -31889,7 +32517,7 @@ module.exports = format(function (info, opts) {
 
 /***/ }),
 
-/***/ 455:
+/***/ 486:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;(function (main) {
@@ -32231,16 +32859,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;(function (main) {
 
 /***/ }),
 
-/***/ 456:
+/***/ 487:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var colors = __webpack_require__(242);
-var format = __webpack_require__(38);
+var colors = __webpack_require__(260);
+var format = __webpack_require__(39);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     MESSAGE = _require.MESSAGE;
 
 /*
@@ -32269,14 +32897,14 @@ module.exports = format(function (info, opts) {
 
 /***/ }),
 
-/***/ 457:
+/***/ 488:
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["winston@3.1.0","/var/lib/buildkite-agent/builds/postman-ci-agent-linux-build/postman/app-package-and-deploy/src/renderer"]],"_from":"winston@3.1.0","_id":"winston@3.1.0","_inBundle":false,"_integrity":"sha1-gHJDdq7xZOAk8xYQDVsXjXisUzE=","_location":"/winston","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"winston@3.1.0","name":"winston","escapedName":"winston","rawSpec":"3.1.0","saveSpec":null,"fetchSpec":"3.1.0"},"_requiredBy":["/@postman/app-logger"],"_resolved":"https://registry.npmjs.org/winston/-/winston-3.1.0.tgz","_spec":"3.1.0","_where":"/var/lib/buildkite-agent/builds/postman-ci-agent-linux-build/postman/app-package-and-deploy/src/renderer","author":{"name":"Charlie Robbins","email":"charlie.robbins@gmail.com"},"bugs":{"url":"https://github.com/winstonjs/winston/issues"},"dependencies":{"async":"^2.6.0","diagnostics":"^1.1.1","is-stream":"^1.1.0","logform":"^1.9.1","one-time":"0.0.4","readable-stream":"^2.3.6","stack-trace":"0.0.x","triple-beam":"^1.3.0","winston-transport":"^4.2.0"},"description":"A logger for just about everything.","devDependencies":{"@types/node":"^10.9.3","abstract-winston-transport":">= 0.5.1","assume":"^2.1.0","colors":"^1.3.2","cross-spawn-async":"^2.0.0","eslint-config-populist":"^4.1.0","hock":"^1.3.3","mocha":"^5.2.0","nyc":"^13.0.1","rimraf":"^2.6.2","split2":"^3.0.0","std-mocks":"^1.0.0","through2":"^2.0.0","winston-compat":"^0.1.1"},"engines":{"node":">= 6.4.0"},"homepage":"https://github.com/winstonjs/winston#readme","keywords":["winston","logger","logging","logs","sysadmin","bunyan","pino","loglevel","tools","json","stream"],"license":"MIT","main":"./lib/winston","maintainers":[{"name":"Jarrett Cruger","email":"jcrugzz@gmail.com"},{"name":"Chris Alderson","email":"chrisalderson@protonmail.com"},{"name":"David Hyde","email":"dabh@stanford.edu"}],"name":"winston","repository":{"type":"git","url":"git+https://github.com/winstonjs/winston.git"},"scripts":{"lint":"populist lib/*.js lib/winston/*.js lib/winston/**/*.js","pretest":"npm run lint","test":"nyc --reporter=text --reporter lcov npm run test:mocha","test:mocha":"mocha test/*.test.js test/**/*.test.js --exit"},"types":"./index.d.ts","version":"3.1.0"}
+module.exports = {"_args":[["winston@3.1.0","/var/lib/buildkite-agent/builds/postman-ci-agent-linux-build/postman/app-package-and-deploy/src/renderer"]],"_from":"winston@3.1.0","_id":"winston@3.1.0","_inBundle":false,"_integrity":"sha512-FsQfEE+8YIEeuZEYhHDk5cILo1HOcWkGwvoidLrDgPog0r4bser1lEIOco2dN9zpDJ1M88hfDgZvxe5z4xNcwg==","_location":"/winston","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"winston@3.1.0","name":"winston","escapedName":"winston","rawSpec":"3.1.0","saveSpec":null,"fetchSpec":"3.1.0"},"_requiredBy":["/@postman/app-logger"],"_resolved":"https://registry.npmjs.org/winston/-/winston-3.1.0.tgz","_spec":"3.1.0","_where":"/var/lib/buildkite-agent/builds/postman-ci-agent-linux-build/postman/app-package-and-deploy/src/renderer","author":{"name":"Charlie Robbins","email":"charlie.robbins@gmail.com"},"bugs":{"url":"https://github.com/winstonjs/winston/issues"},"dependencies":{"async":"^2.6.0","diagnostics":"^1.1.1","is-stream":"^1.1.0","logform":"^1.9.1","one-time":"0.0.4","readable-stream":"^2.3.6","stack-trace":"0.0.x","triple-beam":"^1.3.0","winston-transport":"^4.2.0"},"description":"A logger for just about everything.","devDependencies":{"@types/node":"^10.9.3","abstract-winston-transport":">= 0.5.1","assume":"^2.1.0","colors":"^1.3.2","cross-spawn-async":"^2.0.0","eslint-config-populist":"^4.1.0","hock":"^1.3.3","mocha":"^5.2.0","nyc":"^13.0.1","rimraf":"^2.6.2","split2":"^3.0.0","std-mocks":"^1.0.0","through2":"^2.0.0","winston-compat":"^0.1.1"},"engines":{"node":">= 6.4.0"},"homepage":"https://github.com/winstonjs/winston#readme","keywords":["winston","logger","logging","logs","sysadmin","bunyan","pino","loglevel","tools","json","stream"],"license":"MIT","main":"./lib/winston","maintainers":[{"name":"Jarrett Cruger","email":"jcrugzz@gmail.com"},{"name":"Chris Alderson","email":"chrisalderson@protonmail.com"},{"name":"David Hyde","email":"dabh@stanford.edu"}],"name":"winston","repository":{"type":"git","url":"git+https://github.com/winstonjs/winston.git"},"scripts":{"lint":"populist lib/*.js lib/winston/*.js lib/winston/**/*.js","pretest":"npm run lint","test":"nyc --reporter=text --reporter lcov npm run test:mocha","test:mocha":"mocha test/*.test.js test/**/*.test.js --exit"},"types":"./index.d.ts","version":"3.1.0"}
 
 /***/ }),
 
-/***/ 458:
+/***/ 489:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32297,7 +32925,7 @@ Object.defineProperty(exports, 'Console', {
   configurable: true,
   enumerable: true,
   get() {
-    return __webpack_require__(459);
+    return __webpack_require__(490);
   }
 });
 
@@ -32309,7 +32937,7 @@ Object.defineProperty(exports, 'File', {
   configurable: true,
   enumerable: true,
   get() {
-    return __webpack_require__(464);
+    return __webpack_require__(495);
   }
 });
 
@@ -32321,7 +32949,7 @@ Object.defineProperty(exports, 'Http', {
   configurable: true,
   enumerable: true,
   get() {
-    return __webpack_require__(469);
+    return __webpack_require__(500);
   }
 });
 
@@ -32333,14 +32961,14 @@ Object.defineProperty(exports, 'Stream', {
   configurable: true,
   enumerable: true,
   get() {
-    return __webpack_require__(481);
+    return __webpack_require__(511);
   }
 });
 
 
 /***/ }),
 
-/***/ 459:
+/***/ 490:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32354,9 +32982,9 @@ Object.defineProperty(exports, 'Stream', {
 
 
 
-const os = __webpack_require__(61);
-const { LEVEL, MESSAGE } = __webpack_require__(17);
-const TransportStream = __webpack_require__(66);
+const os = __webpack_require__(64);
+const { LEVEL, MESSAGE } = __webpack_require__(19);
+const TransportStream = __webpack_require__(71);
 
 /**
  * Transport for outputting to the console.
@@ -32464,7 +33092,7 @@ module.exports = class Console extends TransportStream {
 
 /***/ }),
 
-/***/ 460:
+/***/ 491:
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -32476,14 +33104,14 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 461:
+/***/ 492:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 462:
+/***/ 493:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32491,8 +33119,8 @@ module.exports = Array.isArray || function (arr) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Buffer = __webpack_require__(166).Buffer;
-var util = __webpack_require__(463);
+var Buffer = __webpack_require__(179).Buffer;
+var util = __webpack_require__(494);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -32569,14 +33197,14 @@ if (util && util.inspect && util.inspect.custom) {
 
 /***/ }),
 
-/***/ 463:
+/***/ 494:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 464:
+/***/ 495:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32589,16 +33217,16 @@ if (util && util.inspect && util.inspect.custom) {
 
 
 
-const fs = __webpack_require__(32);
+const fs = __webpack_require__(30);
 const path = __webpack_require__(15);
-const asyncSeries = __webpack_require__(96);
-const zlib = __webpack_require__(189);
-const { MESSAGE } = __webpack_require__(17);
-const { Stream, PassThrough } = __webpack_require__(83);
-const TransportStream = __webpack_require__(66);
-const debug = __webpack_require__(167)('winston:file');
-const os = __webpack_require__(61);
-const tailFile = __webpack_require__(468);
+const asyncSeries = __webpack_require__(105);
+const zlib = __webpack_require__(206);
+const { MESSAGE } = __webpack_require__(19);
+const { Stream, PassThrough } = __webpack_require__(91);
+const TransportStream = __webpack_require__(71);
+const debug = __webpack_require__(180)('winston:file');
+const os = __webpack_require__(64);
+const tailFile = __webpack_require__(499);
 
 /**
  * Transport for outputting to a local log file.
@@ -33206,7 +33834,7 @@ module.exports = class File extends TransportStream {
 
 /***/ }),
 
-/***/ 465:
+/***/ 496:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33239,11 +33867,11 @@ module.exports = class File extends TransportStream {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(250);
+var Transform = __webpack_require__(268);
 
 /*<replacement>*/
-var util = __webpack_require__(89);
-util.inherits = __webpack_require__(30);
+var util = __webpack_require__(97);
+util.inherits = __webpack_require__(31);
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -33260,13 +33888,13 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 
 /***/ }),
 
-/***/ 466:
+/***/ 497:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var env = __webpack_require__(467);
+var env = __webpack_require__(498);
 
 /**
  * Checks if a given namespace is allowed by the environment variables.
@@ -33314,7 +33942,7 @@ module.exports = function enabled(name, variables) {
 
 /***/ }),
 
-/***/ 467:
+/***/ 498:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33422,7 +34050,7 @@ module.exports = env;
 
 /***/ }),
 
-/***/ 468:
+/***/ 499:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33435,9 +34063,9 @@ module.exports = env;
 
 
 
-const fs = __webpack_require__(32);
-const { StringDecoder } = __webpack_require__(50);
-const { Stream } = __webpack_require__(83);
+const fs = __webpack_require__(30);
+const { StringDecoder } = __webpack_require__(53);
+const { Stream } = __webpack_require__(91);
 
 /**
  * Simple no-op function.
@@ -33555,7 +34183,7 @@ module.exports = (options, iter) => {
 
 /***/ }),
 
-/***/ 469:
+/***/ 500:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33568,10 +34196,10 @@ module.exports = (options, iter) => {
 
 
 
-const http = __webpack_require__(230);
-const https = __webpack_require__(390);
-const { Stream } = __webpack_require__(83);
-const TransportStream = __webpack_require__(66);
+const http = __webpack_require__(248);
+const https = __webpack_require__(421);
+const { Stream } = __webpack_require__(91);
+const TransportStream = __webpack_require__(71);
 
 /**
  * Transport for outputting to a json-rpc server.
@@ -33760,14 +34388,14 @@ module.exports = class Http extends TransportStream {
 
 /***/ }),
 
-/***/ 470:
+/***/ 501:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(251);
-var inherits = __webpack_require__(16);
-var response = __webpack_require__(252);
-var stream = __webpack_require__(168);
-var toArrayBuffer = __webpack_require__(476);
+/* WEBPACK VAR INJECTION */(function(Buffer, global, process) {var capability = __webpack_require__(269);
+var inherits = __webpack_require__(18);
+var response = __webpack_require__(270);
+var stream = __webpack_require__(181);
+var toArrayBuffer = __webpack_require__(507);
 
 var IncomingMessage = response.IncomingMessage;
 var rStates = response.readyStates;
@@ -34093,14 +34721,14 @@ var unsafeHeaders = [
 
 /***/ }),
 
-/***/ 471:
+/***/ 502:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 472:
+/***/ 503:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34109,7 +34737,7 @@ var unsafeHeaders = [
 function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}
 
 var Buffer = __webpack_require__(27).Buffer;
-var util = __webpack_require__(473);
+var util = __webpack_require__(504);
 
 function copyBuffer(src, target, offset) {
   src.copy(target, offset);
@@ -34186,14 +34814,14 @@ if (util && util.inspect && util.inspect.custom) {
 
 /***/ }),
 
-/***/ 473:
+/***/ 504:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 474:
+/***/ 505:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -34267,7 +34895,7 @@ function config(name) {
 
 /***/ }),
 
-/***/ 475:
+/***/ 506:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34300,11 +34928,11 @@ function config(name) {
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(256);
+var Transform = __webpack_require__(274);
 
 /*<replacement>*/
-var util = __webpack_require__(90);
-util.inherits = __webpack_require__(16);
+var util = __webpack_require__(98);
+util.inherits = __webpack_require__(18);
 /*</replacement>*/
 
 util.inherits(PassThrough, Transform);
@@ -34321,7 +34949,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 
 /***/ }),
 
-/***/ 476:
+/***/ 507:
 /***/ (function(module, exports, __webpack_require__) {
 
 var Buffer = __webpack_require__(10).Buffer;
@@ -34354,7 +34982,7 @@ module.exports = function (buf) {
 
 /***/ }),
 
-/***/ 477:
+/***/ 508:
 /***/ (function(module, exports) {
 
 module.exports = extend;
@@ -34379,7 +35007,7 @@ function extend() {
 
 /***/ }),
 
-/***/ 478:
+/***/ 509:
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -34448,543 +35076,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 479:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.3.2 by @mathias */
-;(function (root) {
-
-	/** Detect free variables */
-	var freeExports = typeof exports == 'object' && exports &&
-	!exports.nodeType && exports;
-	var freeModule = typeof module == 'object' && module &&
-	!module.nodeType && module;
-	var freeGlobal = typeof global == 'object' && global;
-	if (
-	freeGlobal.global === freeGlobal ||
-	freeGlobal.window === freeGlobal ||
-	freeGlobal.self === freeGlobal)
-	{
-		root = freeGlobal;
-	}
-
-	/**
-    * The `punycode` object.
-    * @name punycode
-    * @type Object
-    */
-	var punycode,
-
-	/** Highest positive signed 32-bit float value */
-	maxInt = 2147483647, // aka. 0x7FFFFFFF or 2^31-1
-
-	/** Bootstring parameters */
-	base = 36,
-	tMin = 1,
-	tMax = 26,
-	skew = 38,
-	damp = 700,
-	initialBias = 72,
-	initialN = 128, // 0x80
-	delimiter = '-', // '\x2D'
-
-	/** Regular expressions */
-	regexPunycode = /^xn--/,
-	regexNonASCII = /[^\x20-\x7E]/, // unprintable ASCII chars + non-ASCII chars
-	regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g, // RFC 3490 separators
-
-	/** Error messages */
-	errors = {
-		'overflow': 'Overflow: input needs wider integers to process',
-		'not-basic': 'Illegal input >= 0x80 (not a basic code point)',
-		'invalid-input': 'Invalid input' },
-
-
-	/** Convenience shortcuts */
-	baseMinusTMin = base - tMin,
-	floor = Math.floor,
-	stringFromCharCode = String.fromCharCode,
-
-	/** Temporary variable */
-	key;
-
-	/*--------------------------------------------------------------------------*/
-
-	/**
-                                                                                 * A generic error utility function.
-                                                                                 * @private
-                                                                                 * @param {String} type The error type.
-                                                                                 * @returns {Error} Throws a `RangeError` with the applicable error message.
-                                                                                 */
-	function error(type) {
-		throw RangeError(errors[type]);
-	}
-
-	/**
-    * A generic `Array#map` utility function.
-    * @private
-    * @param {Array} array The array to iterate over.
-    * @param {Function} callback The function that gets called for every array
-    * item.
-    * @returns {Array} A new array of values returned by the callback function.
-    */
-	function map(array, fn) {
-		var length = array.length;
-		var result = [];
-		while (length--) {
-			result[length] = fn(array[length]);
-		}
-		return result;
-	}
-
-	/**
-    * A simple `Array#map`-like wrapper to work with domain name strings or email
-    * addresses.
-    * @private
-    * @param {String} domain The domain name or email address.
-    * @param {Function} callback The function that gets called for every
-    * character.
-    * @returns {Array} A new string of characters returned by the callback
-    * function.
-    */
-	function mapDomain(string, fn) {
-		var parts = string.split('@');
-		var result = '';
-		if (parts.length > 1) {
-			// In email addresses, only the domain name should be punycoded. Leave
-			// the local part (i.e. everything up to `@`) intact.
-			result = parts[0] + '@';
-			string = parts[1];
-		}
-		// Avoid `split(regex)` for IE8 compatibility. See #17.
-		string = string.replace(regexSeparators, '\x2E');
-		var labels = string.split('.');
-		var encoded = map(labels, fn).join('.');
-		return result + encoded;
-	}
-
-	/**
-    * Creates an array containing the numeric code points of each Unicode
-    * character in the string. While JavaScript uses UCS-2 internally,
-    * this function will convert a pair of surrogate halves (each of which
-    * UCS-2 exposes as separate characters) into a single code point,
-    * matching UTF-16.
-    * @see `punycode.ucs2.encode`
-    * @see <https://mathiasbynens.be/notes/javascript-encoding>
-    * @memberOf punycode.ucs2
-    * @name decode
-    * @param {String} string The Unicode input string (UCS-2).
-    * @returns {Array} The new array of code points.
-    */
-	function ucs2decode(string) {
-		var output = [],
-		counter = 0,
-		length = string.length,
-		value,
-		extra;
-		while (counter < length) {
-			value = string.charCodeAt(counter++);
-			if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
-				// high surrogate, and there is a next character
-				extra = string.charCodeAt(counter++);
-				if ((extra & 0xFC00) == 0xDC00) {// low surrogate
-					output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
-				} else {
-					// unmatched surrogate; only append this code unit, in case the next
-					// code unit is the high surrogate of a surrogate pair
-					output.push(value);
-					counter--;
-				}
-			} else {
-				output.push(value);
-			}
-		}
-		return output;
-	}
-
-	/**
-    * Creates a string based on an array of numeric code points.
-    * @see `punycode.ucs2.decode`
-    * @memberOf punycode.ucs2
-    * @name encode
-    * @param {Array} codePoints The array of numeric code points.
-    * @returns {String} The new Unicode string (UCS-2).
-    */
-	function ucs2encode(array) {
-		return map(array, function (value) {
-			var output = '';
-			if (value > 0xFFFF) {
-				value -= 0x10000;
-				output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
-				value = 0xDC00 | value & 0x3FF;
-			}
-			output += stringFromCharCode(value);
-			return output;
-		}).join('');
-	}
-
-	/**
-    * Converts a basic code point into a digit/integer.
-    * @see `digitToBasic()`
-    * @private
-    * @param {Number} codePoint The basic numeric code point value.
-    * @returns {Number} The numeric value of a basic code point (for use in
-    * representing integers) in the range `0` to `base - 1`, or `base` if
-    * the code point does not represent a value.
-    */
-	function basicToDigit(codePoint) {
-		if (codePoint - 48 < 10) {
-			return codePoint - 22;
-		}
-		if (codePoint - 65 < 26) {
-			return codePoint - 65;
-		}
-		if (codePoint - 97 < 26) {
-			return codePoint - 97;
-		}
-		return base;
-	}
-
-	/**
-    * Converts a digit/integer into a basic code point.
-    * @see `basicToDigit()`
-    * @private
-    * @param {Number} digit The numeric value of a basic code point.
-    * @returns {Number} The basic code point whose value (when used for
-    * representing integers) is `digit`, which needs to be in the range
-    * `0` to `base - 1`. If `flag` is non-zero, the uppercase form is
-    * used; else, the lowercase form is used. The behavior is undefined
-    * if `flag` is non-zero and `digit` has no uppercase form.
-    */
-	function digitToBasic(digit, flag) {
-		//  0..25 map to ASCII a..z or A..Z
-		// 26..35 map to ASCII 0..9
-		return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
-	}
-
-	/**
-    * Bias adaptation function as per section 3.4 of RFC 3492.
-    * http://tools.ietf.org/html/rfc3492#section-3.4
-    * @private
-    */
-	function adapt(delta, numPoints, firstTime) {
-		var k = 0;
-		delta = firstTime ? floor(delta / damp) : delta >> 1;
-		delta += floor(delta / numPoints);
-		for (; /* no initialization */delta > baseMinusTMin * tMax >> 1; k += base) {
-			delta = floor(delta / baseMinusTMin);
-		}
-		return floor(k + (baseMinusTMin + 1) * delta / (delta + skew));
-	}
-
-	/**
-    * Converts a Punycode string of ASCII-only symbols to a string of Unicode
-    * symbols.
-    * @memberOf punycode
-    * @param {String} input The Punycode string of ASCII-only symbols.
-    * @returns {String} The resulting string of Unicode symbols.
-    */
-	function decode(input) {
-		// Don't use UCS-2
-		var output = [],
-		inputLength = input.length,
-		out,
-		i = 0,
-		n = initialN,
-		bias = initialBias,
-		basic,
-		j,
-		index,
-		oldi,
-		w,
-		k,
-		digit,
-		t,
-		/** Cached calculation results */
-		baseMinusT;
-
-		// Handle the basic code points: let `basic` be the number of input code
-		// points before the last delimiter, or `0` if there is none, then copy
-		// the first basic code points to the output.
-
-		basic = input.lastIndexOf(delimiter);
-		if (basic < 0) {
-			basic = 0;
-		}
-
-		for (j = 0; j < basic; ++j) {
-			// if it's not a basic code point
-			if (input.charCodeAt(j) >= 0x80) {
-				error('not-basic');
-			}
-			output.push(input.charCodeAt(j));
-		}
-
-		// Main decoding loop: start just after the last delimiter if any basic code
-		// points were copied; start at the beginning otherwise.
-
-		for (index = basic > 0 ? basic + 1 : 0; index < inputLength;) /* no final expression */{
-
-			// `index` is the index of the next character to be consumed.
-			// Decode a generalized variable-length integer into `delta`,
-			// which gets added to `i`. The overflow checking is easier
-			// if we increase `i` as we go, then subtract off its starting
-			// value at the end to obtain `delta`.
-			for (oldi = i, w = 1, k = base;; /* no condition */k += base) {
-
-				if (index >= inputLength) {
-					error('invalid-input');
-				}
-
-				digit = basicToDigit(input.charCodeAt(index++));
-
-				if (digit >= base || digit > floor((maxInt - i) / w)) {
-					error('overflow');
-				}
-
-				i += digit * w;
-				t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
-
-				if (digit < t) {
-					break;
-				}
-
-				baseMinusT = base - t;
-				if (w > floor(maxInt / baseMinusT)) {
-					error('overflow');
-				}
-
-				w *= baseMinusT;
-
-			}
-
-			out = output.length + 1;
-			bias = adapt(i - oldi, out, oldi == 0);
-
-			// `i` was supposed to wrap around from `out` to `0`,
-			// incrementing `n` each time, so we'll fix that now:
-			if (floor(i / out) > maxInt - n) {
-				error('overflow');
-			}
-
-			n += floor(i / out);
-			i %= out;
-
-			// Insert `n` at position `i` of the output
-			output.splice(i++, 0, n);
-
-		}
-
-		return ucs2encode(output);
-	}
-
-	/**
-    * Converts a string of Unicode symbols (e.g. a domain name label) to a
-    * Punycode string of ASCII-only symbols.
-    * @memberOf punycode
-    * @param {String} input The string of Unicode symbols.
-    * @returns {String} The resulting Punycode string of ASCII-only symbols.
-    */
-	function encode(input) {
-		var n,
-		delta,
-		handledCPCount,
-		basicLength,
-		bias,
-		j,
-		m,
-		q,
-		k,
-		t,
-		currentValue,
-		output = [],
-		/** `inputLength` will hold the number of code points in `input`. */
-		inputLength,
-		/** Cached calculation results */
-		handledCPCountPlusOne,
-		baseMinusT,
-		qMinusT;
-
-		// Convert the input in UCS-2 to Unicode
-		input = ucs2decode(input);
-
-		// Cache the length
-		inputLength = input.length;
-
-		// Initialize the state
-		n = initialN;
-		delta = 0;
-		bias = initialBias;
-
-		// Handle the basic code points
-		for (j = 0; j < inputLength; ++j) {
-			currentValue = input[j];
-			if (currentValue < 0x80) {
-				output.push(stringFromCharCode(currentValue));
-			}
-		}
-
-		handledCPCount = basicLength = output.length;
-
-		// `handledCPCount` is the number of code points that have been handled;
-		// `basicLength` is the number of basic code points.
-
-		// Finish the basic string - if it is not empty - with a delimiter
-		if (basicLength) {
-			output.push(delimiter);
-		}
-
-		// Main encoding loop:
-		while (handledCPCount < inputLength) {
-
-			// All non-basic code points < n have been handled already. Find the next
-			// larger one:
-			for (m = maxInt, j = 0; j < inputLength; ++j) {
-				currentValue = input[j];
-				if (currentValue >= n && currentValue < m) {
-					m = currentValue;
-				}
-			}
-
-			// Increase `delta` enough to advance the decoder's <n,i> state to <m,0>,
-			// but guard against overflow
-			handledCPCountPlusOne = handledCPCount + 1;
-			if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
-				error('overflow');
-			}
-
-			delta += (m - n) * handledCPCountPlusOne;
-			n = m;
-
-			for (j = 0; j < inputLength; ++j) {
-				currentValue = input[j];
-
-				if (currentValue < n && ++delta > maxInt) {
-					error('overflow');
-				}
-
-				if (currentValue == n) {
-					// Represent delta as a generalized variable-length integer
-					for (q = delta, k = base;; /* no condition */k += base) {
-						t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
-						if (q < t) {
-							break;
-						}
-						qMinusT = q - t;
-						baseMinusT = base - t;
-						output.push(
-						stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0)));
-
-						q = floor(qMinusT / baseMinusT);
-					}
-
-					output.push(stringFromCharCode(digitToBasic(q, 0)));
-					bias = adapt(delta, handledCPCountPlusOne, handledCPCount == basicLength);
-					delta = 0;
-					++handledCPCount;
-				}
-			}
-
-			++delta;
-			++n;
-
-		}
-		return output.join('');
-	}
-
-	/**
-    * Converts a Punycode string representing a domain name or an email address
-    * to Unicode. Only the Punycoded parts of the input will be converted, i.e.
-    * it doesn't matter if you call it on a string that has already been
-    * converted to Unicode.
-    * @memberOf punycode
-    * @param {String} input The Punycoded domain name or email address to
-    * convert to Unicode.
-    * @returns {String} The Unicode representation of the given Punycode
-    * string.
-    */
-	function toUnicode(input) {
-		return mapDomain(input, function (string) {
-			return regexPunycode.test(string) ?
-			decode(string.slice(4).toLowerCase()) :
-			string;
-		});
-	}
-
-	/**
-    * Converts a Unicode string representing a domain name or an email address to
-    * Punycode. Only the non-ASCII parts of the domain name will be converted,
-    * i.e. it doesn't matter if you call it with a domain that's already in
-    * ASCII.
-    * @memberOf punycode
-    * @param {String} input The domain name or email address to convert, as a
-    * Unicode string.
-    * @returns {String} The Punycode representation of the given domain name or
-    * email address.
-    */
-	function toASCII(input) {
-		return mapDomain(input, function (string) {
-			return regexNonASCII.test(string) ?
-			'xn--' + encode(string) :
-			string;
-		});
-	}
-
-	/*--------------------------------------------------------------------------*/
-
-	/** Define the public API */
-	punycode = {
-		/**
-               * A string representing the current Punycode.js version number.
-               * @memberOf punycode
-               * @type String
-               */
-		'version': '1.3.2',
-		/**
-                       * An object of methods to convert from JavaScript's internal character
-                       * representation (UCS-2) to Unicode code points, and back.
-                       * @see <https://mathiasbynens.be/notes/javascript-encoding>
-                       * @memberOf punycode
-                       * @type Object
-                       */
-		'ucs2': {
-			'decode': ucs2decode,
-			'encode': ucs2encode },
-
-		'decode': decode,
-		'encode': encode,
-		'toASCII': toASCII,
-		'toUnicode': toUnicode };
-
-
-	/** Expose `punycode` */
-	// Some AMD build optimizers, like r.js, check for specific condition patterns
-	// like the following:
-	if (
-	true)
-	{
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return punycode;
-		}.call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (freeExports && freeModule) {
-		if (module.exports == freeExports) {// in Node.js or RingoJS v0.8.0+
-			freeModule.exports = punycode;
-		} else {// in Narwhal or RingoJS v0.7.0-
-			for (key in punycode) {
-				punycode.hasOwnProperty(key) && (freeExports[key] = punycode[key]);
-			}
-		}
-	} else {// in Rhino or a web browser
-		root.punycode = punycode;
-	}
-
-})(this);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(35)(module), __webpack_require__(4)))
-
-/***/ }),
-
-/***/ 480:
+/***/ 510:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35006,7 +35098,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 481:
+/***/ 511:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35019,10 +35111,10 @@ module.exports = {
 
 
 
-const isStream = __webpack_require__(257);
-const { MESSAGE } = __webpack_require__(17);
-const os = __webpack_require__(61);
-const TransportStream = __webpack_require__(66);
+const isStream = __webpack_require__(276);
+const { MESSAGE } = __webpack_require__(19);
+const os = __webpack_require__(64);
+const TransportStream = __webpack_require__(71);
 
 /**
  * Transport for outputting to any arbitrary stream.
@@ -35078,7 +35170,7 @@ module.exports = class Stream extends TransportStream {
 
 /***/ }),
 
-/***/ 482:
+/***/ 512:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35091,15 +35183,15 @@ module.exports = class Stream extends TransportStream {
 
 
 
-const stream = __webpack_require__(83);
-const asyncForEach = __webpack_require__(259);
-const { LEVEL, SPLAT } = __webpack_require__(17);
-const isStream = __webpack_require__(257);
-const ExceptionHandler = __webpack_require__(260);
-const LegacyTransportStream = __webpack_require__(487);
-const Profiler = __webpack_require__(488);
-const { clone, warn } = __webpack_require__(245);
-const config = __webpack_require__(169);
+const stream = __webpack_require__(91);
+const asyncForEach = __webpack_require__(278);
+const { LEVEL, SPLAT } = __webpack_require__(19);
+const isStream = __webpack_require__(276);
+const ExceptionHandler = __webpack_require__(279);
+const LegacyTransportStream = __webpack_require__(517);
+const Profiler = __webpack_require__(518);
+const { clone, warn } = __webpack_require__(263);
+const config = __webpack_require__(182);
 
 /**
  * TODO: add class description.
@@ -35148,7 +35240,7 @@ class Logger extends stream.Transform {
     }
 
     this.silent = silent;
-    this.format = format || this.format || __webpack_require__(489)();
+    this.format = format || this.format || __webpack_require__(519)();
 
     // Hoist other options onto this instance.
     this.levels = levels || this.levels || config.npm.levels;
@@ -35647,7 +35739,7 @@ module.exports = Logger;
 
 /***/ }),
 
-/***/ 483:
+/***/ 513:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35662,35 +35754,35 @@ exports.default = function (coll, iteratee, callback) {
     eachOfImplementation(coll, (0, _wrapAsync2.default)(iteratee), callback);
 };
 
-var _isArrayLike = __webpack_require__(115);
+var _isArrayLike = __webpack_require__(126);
 
 var _isArrayLike2 = _interopRequireDefault(_isArrayLike);
 
-var _breakLoop = __webpack_require__(238);
+var _breakLoop = __webpack_require__(256);
 
 var _breakLoop2 = _interopRequireDefault(_breakLoop);
 
-var _eachOfLimit = __webpack_require__(205);
+var _eachOfLimit = __webpack_require__(220);
 
 var _eachOfLimit2 = _interopRequireDefault(_eachOfLimit);
 
-var _doLimit = __webpack_require__(162);
+var _doLimit = __webpack_require__(175);
 
 var _doLimit2 = _interopRequireDefault(_doLimit);
 
-var _noop = __webpack_require__(100);
+var _noop = __webpack_require__(109);
 
 var _noop2 = _interopRequireDefault(_noop);
 
-var _once = __webpack_require__(187);
+var _once = __webpack_require__(204);
 
 var _once2 = _interopRequireDefault(_once);
 
-var _onlyOnce = __webpack_require__(188);
+var _onlyOnce = __webpack_require__(205);
 
 var _onlyOnce2 = _interopRequireDefault(_onlyOnce);
 
-var _wrapAsync = __webpack_require__(71);
+var _wrapAsync = __webpack_require__(78);
 
 var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
@@ -35765,7 +35857,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 484:
+/***/ 514:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35810,7 +35902,7 @@ module.exports = function one(fn) {
 
 /***/ }),
 
-/***/ 485:
+/***/ 515:
 /***/ (function(module, exports) {
 
 exports.get = function(belowFn) {
@@ -35953,7 +36045,7 @@ exports._createParsedCallSite = function(properties) {
 
 /***/ }),
 
-/***/ 486:
+/***/ 516:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35966,7 +36058,7 @@ exports._createParsedCallSite = function(properties) {
 
 
 
-const Writable = __webpack_require__(246);
+const Writable = __webpack_require__(264);
 
 /**
  * TODO: add class description.
@@ -36015,15 +36107,15 @@ module.exports = class ExceptionStream extends Writable {
 
 /***/ }),
 
-/***/ 487:
+/***/ 517:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 const util = __webpack_require__(14);
-const { LEVEL } = __webpack_require__(17);
-const TransportStream = __webpack_require__(66);
+const { LEVEL } = __webpack_require__(19);
+const TransportStream = __webpack_require__(71);
 
 /**
  * Constructor function for the LegacyTransportStream. This is an internal
@@ -36142,7 +36234,7 @@ LegacyTransportStream.prototype.close = function close() {
 
 /***/ }),
 
-/***/ 488:
+/***/ 518:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36201,15 +36293,15 @@ module.exports = class Profiler {
 
 /***/ }),
 
-/***/ 489:
+/***/ 519:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
-const format = __webpack_require__(490);
-const { MESSAGE } = __webpack_require__(17);
-const jsonStringify = __webpack_require__(117);
+const format = __webpack_require__(520);
+const { MESSAGE } = __webpack_require__(19);
+const jsonStringify = __webpack_require__(128);
 
 /*
  * function replacer (key, value)
@@ -36236,7 +36328,7 @@ module.exports = format((info, opts) => {
 
 /***/ }),
 
-/***/ 490:
+/***/ 520:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36296,7 +36388,7 @@ module.exports = formatFn => {
 
 /***/ }),
 
-/***/ 491:
+/***/ 521:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36309,7 +36401,7 @@ module.exports = formatFn => {
 
 
 
-const createLogger = __webpack_require__(258);
+const createLogger = __webpack_require__(277);
 
 /**
  * Inversion of control container for winston logger instances.
@@ -36418,11 +36510,11 @@ module.exports = class Container {
 
 /***/ }),
 
-/***/ 492:
+/***/ 522:
 /***/ (function(module, exports, __webpack_require__) {
 
-const serializeError = __webpack_require__(208),
-    CircularJSON = __webpack_require__(493),
+const serializeError = __webpack_require__(223),
+    CircularJSON = __webpack_require__(523),
 
     /**
     * @description It sanitizes the message it receives, using serializeError if it is error
@@ -36454,7 +36546,7 @@ module.exports = (messages) => {
 
 /***/ }),
 
-/***/ 493:
+/***/ 523:
 /***/ (function(module, exports) {
 
 /*!
@@ -36668,12 +36760,12 @@ module.exports = CircularJSON;
 
 /***/ }),
 
-/***/ 494:
+/***/ 524:
 /***/ (function(module, exports, __webpack_require__) {
 
-const winston = __webpack_require__(240),
-    WinstonCollector = __webpack_require__(163),
-    { file } = __webpack_require__(261),
+const winston = __webpack_require__(258),
+    WinstonCollector = __webpack_require__(176),
+    { file } = __webpack_require__(280),
     format = winston.format.printf(file),
 
     MAX_FILES_COUNT = 5,
@@ -36725,12 +36817,12 @@ module.exports = WinstonFileCollector;
 
 /***/ }),
 
-/***/ 495:
+/***/ 525:
 /***/ (function(module, exports, __webpack_require__) {
 
-const WinstonCollector = __webpack_require__(163),
-    WinstonSentryTransport = __webpack_require__(496),
-    { ERROR } = __webpack_require__(116);
+const WinstonCollector = __webpack_require__(176),
+    WinstonSentryTransport = __webpack_require__(526),
+    { ERROR } = __webpack_require__(127);
 
 /**
  * @extends WinstonCollector
@@ -36767,10 +36859,10 @@ module.exports = WinstonSentryCollector;
 
 /***/ }),
 
-/***/ 496:
+/***/ 526:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(setImmediate) {const Transport = __webpack_require__(66);
+/* WEBPACK VAR INJECTION */(function(setImmediate) {const Transport = __webpack_require__(71);
 
 /**
  * Inherit from `winston-transport` so you can take advantage
@@ -36814,10 +36906,10 @@ module.exports = class SentryTransport extends Transport {
 
 /***/ }),
 
-/***/ 497:
+/***/ 527:
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(498);
+/* WEBPACK VAR INJECTION */(function(global) {var initializeEventBus = __webpack_require__(528);
 
 /**
                                                    * Initializes event bus on the global `pm` object. Does nothing if it is already initialized.
@@ -36836,11 +36928,11 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 498:
+/***/ 528:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var _ = __webpack_require__(0),
-EventEmitter = __webpack_require__(37);
+EventEmitter = __webpack_require__(38);
 
 // INTERNAL CHANNEL INDENTIFIERS
 var INTERNAL_CHANNEL_BROADCAST_MAIN = 'PM_EB_INT_BROADCAST_MAIN',
@@ -37057,7 +37149,7 @@ module.exports = function initialize() {
 
 /***/ }),
 
-/***/ 50:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37360,7 +37452,7 @@ function simpleEnd(buf) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate, process, global, module) {(function (global, factory) {
@@ -42973,27 +43065,27 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25).setImmediate, __webpack_require__(3), __webpack_require__(4), __webpack_require__(35)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25).setImmediate, __webpack_require__(3), __webpack_require__(4), __webpack_require__(36)(module)))
 
 /***/ }),
 
-/***/ 61:
+/***/ 64:
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
 
-/***/ 66:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var util = __webpack_require__(14);
-var Writable = __webpack_require__(246);
+var Writable = __webpack_require__(264);
 
-var _require = __webpack_require__(17),
+var _require = __webpack_require__(19),
     LEVEL = _require.LEVEL;
 
 /**
@@ -43202,7 +43294,7 @@ TransportStream.prototype._nop = function _nop() {
 
 /***/ }),
 
-/***/ 71:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43213,7 +43305,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isAsync = undefined;
 
-var _asyncify = __webpack_require__(398);
+var _asyncify = __webpack_require__(429);
 
 var _asyncify2 = _interopRequireDefault(_asyncify);
 
@@ -43234,7 +43326,7 @@ exports.isAsync = isAsync;
 
 /***/ }),
 
-/***/ 72:
+/***/ 79:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43268,7 +43360,7 @@ exports.isAsync = isAsync;
 
 /*<replacement>*/
 
-var pna = __webpack_require__(119);
+var pna = __webpack_require__(130);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -43283,12 +43375,12 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var util = __webpack_require__(90);
-util.inherits = __webpack_require__(16);
+var util = __webpack_require__(98);
+util.inherits = __webpack_require__(18);
 /*</replacement>*/
 
-var Readable = __webpack_require__(253);
-var Writable = __webpack_require__(207);
+var Readable = __webpack_require__(271);
+var Writable = __webpack_require__(222);
 
 util.inherits(Duplex, Readable);
 
@@ -43372,159 +43464,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
 /***/ }),
 
-/***/ 76:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// a duplex stream is just a stream that is both readable and writable.
-// Since JS doesn't have multiple prototypal inheritance, this class
-// prototypally inherits from Readable, and then parasitically from
-// Writable.
-
-
-
-/*<replacement>*/
-
-var pna = __webpack_require__(118);
-/*</replacement>*/
-
-/*<replacement>*/
-var objectKeys = Object.keys || function (obj) {
-  var keys = [];
-  for (var key in obj) {
-    keys.push(key);
-  }return keys;
-};
-/*</replacement>*/
-
-module.exports = Duplex;
-
-/*<replacement>*/
-var util = __webpack_require__(89);
-util.inherits = __webpack_require__(30);
-/*</replacement>*/
-
-var Readable = __webpack_require__(249);
-var Writable = __webpack_require__(165);
-
-util.inherits(Duplex, Readable);
-
-{
-  // avoid scope creep, the keys array can then be collected
-  var keys = objectKeys(Writable.prototype);
-  for (var v = 0; v < keys.length; v++) {
-    var method = keys[v];
-    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
-  }
-}
-
-function Duplex(options) {
-  if (!(this instanceof Duplex)) return new Duplex(options);
-
-  Readable.call(this, options);
-  Writable.call(this, options);
-
-  if (options && options.readable === false) this.readable = false;
-
-  if (options && options.writable === false) this.writable = false;
-
-  this.allowHalfOpen = true;
-  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
-
-  this.once('end', onend);
-}
-
-Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
-  // making it explicit this property is not enumerable
-  // because otherwise some prototype manipulation in
-  // userland will fail
-  enumerable: false,
-  get: function () {
-    return this._writableState.highWaterMark;
-  }
-});
-
-// the no-half-open enforcer
-function onend() {
-  // if we allow half-open state, or if the writable side ended,
-  // then we're ok.
-  if (this.allowHalfOpen || this._writableState.ended) return;
-
-  // no more data can be written.
-  // But allow more writes to happen in this tick.
-  pna.nextTick(onEndNT, this);
-}
-
-function onEndNT(self) {
-  self.end();
-}
-
-Object.defineProperty(Duplex.prototype, 'destroyed', {
-  get: function () {
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return false;
-    }
-    return this._readableState.destroyed && this._writableState.destroyed;
-  },
-  set: function (value) {
-    // we ignore the value if the stream
-    // has not been initialized yet
-    if (this._readableState === undefined || this._writableState === undefined) {
-      return;
-    }
-
-    // backward compatibility, the user is explicitly
-    // managing destroyed
-    this._readableState.destroyed = value;
-    this._writableState.destroyed = value;
-  }
-});
-
-Duplex.prototype._destroy = function (err, cb) {
-  this.push(null);
-  this.end();
-
-  pna.nextTick(cb, err);
-};
-
-/***/ }),
-
-/***/ 83:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(249);
-exports.Stream = exports;
-exports.Readable = exports;
-exports.Writable = __webpack_require__(165);
-exports.Duplex = __webpack_require__(76);
-exports.Transform = __webpack_require__(250);
-exports.PassThrough = __webpack_require__(465);
-
-
-/***/ }),
-
-/***/ 86:
+/***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43551,8 +43491,8 @@ exports.PassThrough = __webpack_require__(465);
 
 
 
-var punycode = __webpack_require__(479);
-var util = __webpack_require__(480);
+var punycode = __webpack_require__(314);
+var util = __webpack_require__(510);
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -43627,7 +43567,7 @@ slashedProtocol = {
   'gopher:': true,
   'file:': true },
 
-querystring = __webpack_require__(293);
+querystring = __webpack_require__(275);
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -44263,7 +44203,159 @@ Url.prototype.parseHost = function () {
 
 /***/ }),
 
-/***/ 89:
+/***/ 83:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// a duplex stream is just a stream that is both readable and writable.
+// Since JS doesn't have multiple prototypal inheritance, this class
+// prototypally inherits from Readable, and then parasitically from
+// Writable.
+
+
+
+/*<replacement>*/
+
+var pna = __webpack_require__(129);
+/*</replacement>*/
+
+/*<replacement>*/
+var objectKeys = Object.keys || function (obj) {
+  var keys = [];
+  for (var key in obj) {
+    keys.push(key);
+  }return keys;
+};
+/*</replacement>*/
+
+module.exports = Duplex;
+
+/*<replacement>*/
+var util = __webpack_require__(97);
+util.inherits = __webpack_require__(31);
+/*</replacement>*/
+
+var Readable = __webpack_require__(267);
+var Writable = __webpack_require__(178);
+
+util.inherits(Duplex, Readable);
+
+{
+  // avoid scope creep, the keys array can then be collected
+  var keys = objectKeys(Writable.prototype);
+  for (var v = 0; v < keys.length; v++) {
+    var method = keys[v];
+    if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
+  }
+}
+
+function Duplex(options) {
+  if (!(this instanceof Duplex)) return new Duplex(options);
+
+  Readable.call(this, options);
+  Writable.call(this, options);
+
+  if (options && options.readable === false) this.readable = false;
+
+  if (options && options.writable === false) this.writable = false;
+
+  this.allowHalfOpen = true;
+  if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
+
+  this.once('end', onend);
+}
+
+Object.defineProperty(Duplex.prototype, 'writableHighWaterMark', {
+  // making it explicit this property is not enumerable
+  // because otherwise some prototype manipulation in
+  // userland will fail
+  enumerable: false,
+  get: function () {
+    return this._writableState.highWaterMark;
+  }
+});
+
+// the no-half-open enforcer
+function onend() {
+  // if we allow half-open state, or if the writable side ended,
+  // then we're ok.
+  if (this.allowHalfOpen || this._writableState.ended) return;
+
+  // no more data can be written.
+  // But allow more writes to happen in this tick.
+  pna.nextTick(onEndNT, this);
+}
+
+function onEndNT(self) {
+  self.end();
+}
+
+Object.defineProperty(Duplex.prototype, 'destroyed', {
+  get: function () {
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return false;
+    }
+    return this._readableState.destroyed && this._writableState.destroyed;
+  },
+  set: function (value) {
+    // we ignore the value if the stream
+    // has not been initialized yet
+    if (this._readableState === undefined || this._writableState === undefined) {
+      return;
+    }
+
+    // backward compatibility, the user is explicitly
+    // managing destroyed
+    this._readableState.destroyed = value;
+    this._writableState.destroyed = value;
+  }
+});
+
+Duplex.prototype._destroy = function (err, cb) {
+  this.push(null);
+  this.end();
+
+  pna.nextTick(cb, err);
+};
+
+/***/ }),
+
+/***/ 91:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(267);
+exports.Stream = exports;
+exports.Readable = exports;
+exports.Writable = __webpack_require__(178);
+exports.Duplex = __webpack_require__(83);
+exports.Transform = __webpack_require__(268);
+exports.PassThrough = __webpack_require__(496);
+
+
+/***/ }),
+
+/***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
@@ -44378,7 +44470,7 @@ function objectToString(o) {
 
 /***/ }),
 
-/***/ 90:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
@@ -44489,98 +44581,6 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10).Buffer))
-
-/***/ }),
-
-/***/ 96:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = series;
-
-var _parallel = __webpack_require__(394);
-
-var _parallel2 = _interopRequireDefault(_parallel);
-
-var _eachOfSeries = __webpack_require__(401);
-
-var _eachOfSeries2 = _interopRequireDefault(_eachOfSeries);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Run the functions in the `tasks` collection in series, each one running once
- * the previous function has completed. If any functions in the series pass an
- * error to its callback, no more functions are run, and `callback` is
- * immediately called with the value of the error. Otherwise, `callback`
- * receives an array of results when `tasks` have completed.
- *
- * It is also possible to use an object instead of an array. Each property will
- * be run as a function, and the results will be passed to the final `callback`
- * as an object instead of an array. This can be a more readable way of handling
- *  results from {@link async.series}.
- *
- * **Note** that while many implementations preserve the order of object
- * properties, the [ECMAScript Language Specification](http://www.ecma-international.org/ecma-262/5.1/#sec-8.6)
- * explicitly states that
- *
- * > The mechanics and order of enumerating the properties is not specified.
- *
- * So if you rely on the order in which your series of functions are executed,
- * and want this to work on all platforms, consider using an array.
- *
- * @name series
- * @static
- * @memberOf module:ControlFlow
- * @method
- * @category Control Flow
- * @param {Array|Iterable|Object} tasks - A collection containing
- * [async functions]{@link AsyncFunction} to run in series.
- * Each function can complete with any number of optional `result` values.
- * @param {Function} [callback] - An optional callback to run once all the
- * functions have completed. This function gets a results array (or object)
- * containing all the result arguments passed to the `task` callbacks. Invoked
- * with (err, result).
- * @example
- * async.series([
- *     function(callback) {
- *         // do some stuff ...
- *         callback(null, 'one');
- *     },
- *     function(callback) {
- *         // do some more stuff ...
- *         callback(null, 'two');
- *     }
- * ],
- * // optional callback
- * function(err, results) {
- *     // results is now equal to ['one', 'two']
- * });
- *
- * async.series({
- *     one: function(callback) {
- *         setTimeout(function() {
- *             callback(null, 1);
- *         }, 200);
- *     },
- *     two: function(callback){
- *         setTimeout(function() {
- *             callback(null, 2);
- *         }, 100);
- *     }
- * }, function(err, results) {
- *     // results is now equal to: {one: 1, two: 2}
- * });
- */
-function series(tasks, callback) {
-  (0, _parallel2.default)(_eachOfSeries2.default, tasks, callback);
-}
-module.exports = exports['default'];
 
 /***/ })
 

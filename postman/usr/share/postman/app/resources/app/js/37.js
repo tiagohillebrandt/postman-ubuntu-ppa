@@ -1,13 +1,13 @@
 webpackJsonp([37],{
 
-/***/ 4934:
+/***/ 5025:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["setupMode"] = setupMode;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__workerManager_js__ = __webpack_require__(4935);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__languageFeatures_js__ = __webpack_require__(4936);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__workerManager_js__ = __webpack_require__(5026);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__languageFeatures_js__ = __webpack_require__(5027);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42,7 +42,7 @@ function setupMode(defaults) {
 
 /***/ }),
 
-/***/ 4935:
+/***/ 5026:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -119,7 +119,7 @@ var WorkerManager = /** @class */function () {
 
 /***/ }),
 
-/***/ 4936:
+/***/ 5027:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -132,7 +132,7 @@ var WorkerManager = /** @class */function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DocumentFormattingEditProvider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return DocumentRangeFormattingEditProvider; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return FoldingRangeAdapter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deps_vscode_languageserver_types_main_js__ = __webpack_require__(4937);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deps_vscode_languageserver_types_main_js__ = __webpack_require__(5028);
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -592,7 +592,7 @@ function toFoldingRangeKind(kind) {
 
 /***/ }),
 
-/***/ 4937:
+/***/ 5028:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -30,6 +30,7 @@ class PostmanCookieJar extends CookieJar {
       domain && whitelistedDomains.push(`http://${domain}/*`);
     });
 
+    this.onCookieAccessDenied = options.onCookieAccessDenied;
     this.whitelistedDomains = new UrlMatchPatternList(null, whitelistedDomains);
   }
 
@@ -50,7 +51,11 @@ class PostmanCookieJar extends CookieJar {
    * @returns {Boolean}
    */
   allowProgrammaticAccess (domain) {
-    return this.whitelistedDomains.test('http://' + domain);
+    let allowAccess = this.whitelistedDomains.test('http://' + domain);
+
+    !allowAccess && typeof this.onCookieAccessDenied === 'function' && this.onCookieAccessDenied(domain);
+
+    return allowAccess;
   }
 }
 

@@ -206,6 +206,17 @@ class PersistentStore {
       domain = PersistentStore.deserializeDomain(cookie.domain),
       expiry = cookie.expiryTime();
 
+    switch (expiry) {
+      case Infinity: // session cookie
+        expiry = null;
+        break;
+      case -Infinity: // expired cookie (maxAge <= 0)
+        expiry = 0; // it is equal to (new Date(0)).getTime() but faster!
+        break;
+      default: // convert milliseconds to seconds
+        expiry /= 1000;
+    }
+
     deserializedCookie = {
 
       // "After all this time?"
@@ -224,9 +235,7 @@ class PersistentStore {
       secure: cookie.secure,
       httpOnly: cookie.httpOnly,
       hostOnly: cookie.hostOnly,
-
-      // convert milliseconds to seconds and don't set Infinity
-      expirationDate: expiry === Infinity ? null : expiry / 1000,
+      expirationDate: expiry,
       path: cookie.path
     };
 
@@ -581,10 +590,12 @@ class CookieStore extends Store {
   _unset (cookie, cb) {
     typeof cb !== FUNCTION && (cb = function () {});
 
-    // remove single cookie by setting its expiry to past date.
+    // remove single cookie by setting its expiry to past date. Here, we also set maxAge=0 because
+    // it has precedence over expiry.
     // refer: https://github.com/electron/electron/issues/13557#issuecomment-512963780
     let expiredCookie = cookie.clone();
-    expiredCookie.expires = new Date(0);
+    expiredCookie.setExpires(new Date(0));
+    expiredCookie.setMaxAge(0);
 
     this._update(expiredCookie, (err) => {
       if (err) {

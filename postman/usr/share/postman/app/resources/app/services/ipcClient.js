@@ -1,9 +1,11 @@
-var windowManager = require('./windowManager').windowManager,
+var app = require('electron').app,
+  windowManager = require('./windowManager').windowManager,
   appSettings = require('./appSettings').appSettings,
   ipc = require('node-ipc'),
   CryptoJS = require('crypto-js'),
   { getConfig } = require('./AppConfigService'),
-  interceptorBridgeSocketName = getConfig('__WP_INTERCEPTOR_BRIDGE_SOCKET_NAME__'); // channel specific
+  interceptorBridgeSocketName = getConfig('__WP_INTERCEPTOR_BRIDGE_SOCKET_NAME__'), // channel specific
+  appVersion = app.getVersion();
 
 // default encryption key for Postman
 const POSTMAN_DEFAULT_KEY = 'postman_default_key',
@@ -136,9 +138,9 @@ exports.ipcClient = {
     ipc.config.silent = true;
 
     console.log('INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge');
-    ipc.connectTo(interceptorBridgeSocketName, function () {
+    ipc.connectTo(interceptorBridgeSocketName, () => {
       console.log('InterceptorBridge: Trying to connect Native App IPC~Interceptor Bridge');
-      ipc.of[interceptorBridgeSocketName].on('connect', function () {
+      ipc.of[interceptorBridgeSocketName].on('connect', () => {
         if (!isClientConnected) {
           console.log('InterceptorBridge: connected with postman app');
         }
@@ -149,10 +151,7 @@ exports.ipcClient = {
             connectedToPostman: true
           }
         };
-        ipc.of[interceptorBridgeSocketName].emit('connection_established', {
-          id: ipc.config.id,
-          message: msg
-        });
+        this.sendMessageToInterceptor('connection_established', msg);
         windowManager.sendInternalMessage({
           'event': 'updateInterceptorBridgeConnectionStatus',
           'object': msg
@@ -181,11 +180,7 @@ exports.ipcClient = {
         try {
           var decryptedText = decrypt(data.payload);
           if (decryptedText.type === 'KEY_MISMATCH') {
-            msg = decryptedText;
-            ipc.of[interceptorBridgeSocketName].emit('forwardMessageToInterceptor', {
-              id: ipc.config.id,
-              message: msg
-            });
+            this.sendMessageToInterceptor('forwardMessageToInterceptor', decryptedText);
           }
           else {
             try {
@@ -215,13 +210,10 @@ exports.ipcClient = {
         });
       });
 
-      ipc.of[interceptorBridgeSocketName].on('forward_msg_to_app', function (msg) {
+      ipc.of[interceptorBridgeSocketName].on('forward_msg_to_app', (msg) => {
         if (msg.type === 'VALIDATE_KEY') {
           var keyValidationResult = validateKey(msg.data);
-          ipc.of[interceptorBridgeSocketName].emit('forwardMessageToInterceptor', {
-            id: ipc.config.id,
-            message: keyValidationResult
-          });
+          this.sendMessageToInterceptor('forwardMessageToInterceptor', keyValidationResult);
           windowManager.sendInternalMessage({
             'event': 'interceptorResponse',
             'object': keyValidationResult
@@ -238,6 +230,7 @@ exports.ipcClient = {
   },
 
   sendEncryptedMessageToInterceptor: function (message) {
+    message.appVersion = appVersion;
     if (ipc && ipc.of && ipc.of[interceptorBridgeSocketName]) {
       ipc.of[interceptorBridgeSocketName].emit('forwardEncryptedMessageToInterceptor', {
         id: ipc.config.id,
@@ -268,13 +261,10 @@ exports.ipcClient = {
     // encrypts default validation payload and sends it to interceptor
     // to check whether the same key exists at interceptor or not
     var encryptedData = encrypt(JSON.stringify(DEFAULT_KEY_VALIDATION_PAYLOAD));
-    var msg = {
+
+    this.sendMessageToInterceptor('forwardMessageToInterceptor', {
       type: 'VALIDATE_KEY',
       data: encryptedData
-    };
-    ipc.of[interceptorBridgeSocketName].emit('forwardMessageToInterceptor', {
-      id: ipc.config.id,
-      message: msg
     });
   },
 
@@ -289,5 +279,13 @@ exports.ipcClient = {
       ipc.disconnect(interceptorBridgeSocketName);
       isClientConnected = false;
     }
+  },
+
+  sendMessageToInterceptor: function (event, message) {
+    message.appVersion = appVersion; // current Postman app version
+    ipc.of[interceptorBridgeSocketName].emit(event, {
+      id: ipc.config.id,
+      message
+    });
   }
 };

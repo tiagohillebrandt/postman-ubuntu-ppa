@@ -29,10 +29,24 @@ var interceptorDependenciesManifest,
  * Learn more: https://developer.chrome.com/apps/nativeMessaging
  */
 const nativeMessagingHosts = {
-  MACOS: '/Library/Application Support/Google/Chrome/NativeMessagingHosts/',
-  LINUX: '/.config/google-chrome/NativeMessagingHosts/',
-  WINDOWS: 'HKCU\\Software\\Google\\Chrome\\NativeMessagingHosts\\'
-};
+    MACOS: '/Library/Application Support/Google/Chrome/NativeMessagingHosts/',
+    LINUX: '/.config/google-chrome/NativeMessagingHosts/',
+    WINDOWS: 'HKCU\\Software\\Google\\Chrome\\NativeMessagingHosts\\'
+  },
+
+  /**
+   *
+   * Categorizing the installation and download errors into four major sub types based on their resolution steps.
+   *
+   * Note: This will be used to map the manual resolution steps mentioned in troubleshooting doc
+   * Link: https://go.pstmn.io/interceptor-installation-troubleshooting
+   */
+  errorSubTypes = {
+    chromeNotInstalled: 'CHROME_NOT_INSTALLED',
+    internetConnectivity: 'INTERNET_CONNECTIVITY',
+    registryAccessNeeded: 'REGISTRY_ACCESS_NEEDED',
+    permissionRequired: 'FILE_PERMISSIONS_REQUIRED'
+  };
 
 /**
  *
@@ -81,6 +95,7 @@ self = exports.utils = {
         pm.logger.error('Interceptor ~ Dependencies: Download failed', error);
         var err = new Error('Error occurred while downloading Interceptor Dependencies');
         err.type = 'download';
+        err.subType = errorSubTypes.internetConnectivity;
         console.log('Error occurred while downloading Interceptor Dependencies: ', error);
         return callback(err);
       }
@@ -161,6 +176,7 @@ self = exports.utils = {
             if (err) {
               pm.logger.error('Interceptor ~ Node: Unable to create Downloads directory', err);
               err.type = 'installation';
+              err.subType = errorSubTypes.permissionRequired;
               err.message = 'Error occurred in creating ~/Downloads folder';
               console.log('Error occurred in creating ~/Downloads folder');
               return callback(err);
@@ -171,6 +187,7 @@ self = exports.utils = {
         else {
           pm.logger.error('Interceptor ~ Node: Unable to access Downloads directory', err);
           err.type = 'installation';
+          err.subType = errorSubTypes.permissionRequired;
           err.message = 'Error occurred while checking existence of ~/Downloads folder';
           console.log('Error occurred while checking existence of ~/Downloads folder', err);
           return callback(err);
@@ -183,6 +200,7 @@ self = exports.utils = {
             pm.logger.error('Interceptor ~ Node: Unable to access Downloads directory', err);
             console.log('Do not have write access for ~/Downloads folder');
             err.type = 'installation';
+            err.subType = errorSubTypes.permissionRequired;
             err.message = 'Error occurred while accessing ~/Downloads folder';
             return callback(err);
           }
@@ -253,6 +271,7 @@ self = exports.utils = {
         catch (err) {
           pm.logger.error('Interceptor ~ Node: Unable to create write stream', err);
           err.type = 'installation';
+          err.subType = errorSubTypes.permissionRequired;
           file.end();
           return callback(err);
         }
@@ -266,7 +285,8 @@ self = exports.utils = {
         file.end();
         pm.logger.error('Interceptor ~ Node: Download failed', res.statusCode);
         var err = new Error('Error occurred while downloading Node installer');
-          err.type = 'download';
+        err.type = 'download';
+        err.subType = errorSubTypes.internetConnectivity;
         return callback(err);
       }
     });
@@ -274,6 +294,7 @@ self = exports.utils = {
       pm.logger.error('Interceptor ~ Node: Download failed', err);
       console.log('Error occurred while downloading Node installer');
       err.type = 'download';
+      err.subType = errorSubTypes.internetConnectivity;
       return callback(err);
     });
   },
@@ -314,6 +335,7 @@ self = exports.utils = {
     catch (err) {
       pm.logger.error('Interceptor ~ Node: Download failed', err);
       err.type = 'download';
+      err.subType = errorSubTypes.internetConnectivity;
       console.log('Error occurred while downloading the Node installer');
       return callback(err);
     }
@@ -389,6 +411,7 @@ self = exports.utils = {
         catch (err) {
           pm.logger.error('Interceptor ~ Node: Installation failed', err);
           err.type = 'installation';
+          err.subType = errorSubTypes.permissionRequired;
           return callback(err);
         }
 
@@ -509,9 +532,10 @@ self = exports.utils = {
       fs.mkdir(path, (err) => {
         if (err) {
           console.log('Error occurred while creating .postman directory');
-          pm.logger.error('Interceptor ~ Node: Unable to create .postman directory', err);
+          pm.logger.error('Interceptor ~ Bridge: Unable to create .postman directory', err);
           errObj = new Error('Error occurred while creating .postman directory');
           errObj.type = 'installation';
+          errObj.subType = errorSubTypes.permissionRequired;
           return callback(errObj);
         }
 
@@ -519,9 +543,10 @@ self = exports.utils = {
         fs.mkdir(path + folderName, (err) => {
           if (err) {
             console.log('Error occurred while creating InterceptorBridge folder');
-            pm.logger.error('Interceptor ~ Node: Unable to create InterceptorBridge folder', err);
+            pm.logger.error('Interceptor ~ Bridge: Unable to create InterceptorBridge folder', err);
             errObj = new Error('Error occurred while creating InterceptorBridge folder');
             errObj.type = 'installation';
+            errObj.subType = errorSubTypes.permissionRequired;
             return callback(errObj);
           }
 
@@ -536,9 +561,10 @@ self = exports.utils = {
         fs.mkdir(path + folderName, (err) => {
           if (err) {
             console.log('Error occurred while creating InterceptorBridge folder: ', err.message);
-            pm.logger.error('Interceptor ~ Node: Unable to create InterceptorBridge folder', err);
+            pm.logger.error('Interceptor ~ Bridge: Unable to create InterceptorBridge folder', err);
             errObj = new Error('Error occurred while creating InterceptorBridge folder: ', err.message);
             errObj.type = 'installation';
+            errObj.subType = errorSubTypes.permissionRequired;
             return callback(errObj);
           }
           return callback(null, require('path').join(path, folderName));
@@ -631,6 +657,7 @@ self = exports.utils = {
         pm.logger.error('Interceptor ~ Bridge: Unable to delete existing Interceptor Bridge', err);
         errObj = new Error(err);
         errObj.type = 'installation';
+        errObj.subType = errorSubTypes.permissionRequired;
         return callback(errObj);
       }
     }
@@ -643,6 +670,7 @@ self = exports.utils = {
       pm.logger.error('Interceptor ~ Bridge: Unable to create write stream', err);
       errObj = new Error('Error occurred in creating write stream to ' + filePath);
       errObj.type = 'installation';
+      errObj.subType = errorSubTypes.permissionRequired;
       return callback(errObj);
     }
 
@@ -687,6 +715,7 @@ self = exports.utils = {
                     console.log('Something went wrong while modifying the permission of InterceptorBridge');
                     pm.logger.error('Interceptor ~ Bridge: Unable to modify the permission of Interceptor Bridge', error);
                     error.type = 'installation';
+                    error.subType = errorSubTypes.permissionRequired;
                     return callback(error);
                   }
 
@@ -711,6 +740,7 @@ self = exports.utils = {
                   pm.logger.error('Interceptor ~ Bridge: Unable to modify the permission of Interceptor Bridge', err);
                   errObj = new Error('Something went wrong while modifying the permission of InterceptorBridge');
                   errObj.type = 'installation';
+                  errObj.subType = errorSubTypes.permissionRequired;
                   return callback(errObj);
                 }
               }
@@ -729,6 +759,7 @@ self = exports.utils = {
         pm.logger.error('Interceptor ~ Bridge: Download failed', res.statusCode);
         errObj = new Error('Error occurred while downloading InterceptorBridge');
         errObj.type = 'download';
+        errObj.subType = errorSubTypes.internetConnectivity;
         return callback(errObj);
       }
     });
@@ -737,6 +768,7 @@ self = exports.utils = {
       pm.logger.error('Interceptor ~ Bridge: Download failed', err);
       errObj = new Error('Error occurred while downloading InterceptorBridge from given URL');
       errObj.type = 'download';
+      errObj.subType = errorSubTypes.internetConnectivity;
       return callback(errObj);
     });
   },
@@ -772,6 +804,7 @@ self = exports.utils = {
         pm.logger.error('Interceptor ~ Bridge: Unable to add shebang line', err);
         errObj = new Error('Error occurred while creating streams');
         errObj.type = 'installation';
+        errObj.subType = errorSubTypes.permissionRequired;
         return callback(errObj);
       }
 
@@ -792,6 +825,7 @@ self = exports.utils = {
         pm.logger.error('Interceptor ~ Bridge: Unable to add shebang line', err);
         errObj = new Error('Something went wrong while reading stream');
         errObj.type = 'installation';
+        errObj.subType = errorSubTypes.permissionRequired;
         return callback(errObj);
       });
     }
@@ -873,6 +907,14 @@ self = exports.utils = {
       pm.logger.error('Interceptor ~ Bridge: Unable to add manifest', err);
       err.message = 'Error occurred while writing manifest';
       err.type = 'installation';
+      if (err.code === 'ENOENT') {
+        // NativeMessagingHosts folder is absent, chrome might not be installed
+        err.subType = errorSubTypes.chromeNotInstalled;
+      }
+      else {
+        // doesn't have required permission to add manifest
+        err.subType = errorSubTypes.permissionRequired;
+      }
       return callback(err);
     }
     windowManager.sendInternalMessage({
@@ -902,6 +944,7 @@ self = exports.utils = {
           pm.logger.error('Interceptor ~ Bridge: Unable to add registry key', stderr);
           var errObj = new Error('Error occurred while adding registry key: ', stderr);
           errObj.type = 'installation';
+          errObj.subType = errorSubTypes.registryAccessNeeded;
           return callback(errObj);
         }
         else {

@@ -1,14 +1,14 @@
 webpackJsonp([32],{
 
-/***/ 4329:
+/***/ 4446:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mobx__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_get_store__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_EditorService__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__external_navigation_ExternalNavigationService__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_EditorService__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__external_navigation_ExternalNavigationService__ = __webpack_require__(62);
 
 
 
@@ -122,7 +122,7 @@ PluginInterface = class PluginInterface {
 
 /***/ }),
 
-/***/ 4330:
+/***/ 4447:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -132,12 +132,12 @@ const OPENTABS = ['tabRequest', 'tabResponse'];
 
 /***/ }),
 
-/***/ 4331:
+/***/ 4448:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_util__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AuthConstants__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AuthConstants__ = __webpack_require__(246);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -731,14 +731,14 @@ globals = {
 
 /***/ }),
 
-/***/ 4332:
+/***/ 4449:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Text; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 
 let
@@ -762,14 +762,14 @@ Text = class Text extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 4333:
+/***/ 4450:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Icon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 
 let
@@ -798,16 +798,16 @@ Icon = class Icon extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 4334:
+/***/ 4451:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Pane; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_react_draggable__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_react_draggable__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postman_react_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__postman_react_draggable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_CloseIcon__ = __webpack_require__(94);
 
@@ -887,15 +887,15 @@ Pane = class Pane extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 /***/ }),
 
-/***/ 4335:
+/***/ 4452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Drawer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Dropdowns__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -963,7 +963,7 @@ Drawer.defaultProps = {
 
 /***/ }),
 
-/***/ 5574:
+/***/ 5668:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -972,15 +972,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_mobx_react__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_status_bar_StatusBar__ = __webpack_require__(5575);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_bar_plugins__ = __webpack_require__(5576);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugins_PluginInterface__ = __webpack_require__(4329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_status_bar_base_Item__ = __webpack_require__(5602);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_status_bar_base_Text__ = __webpack_require__(4332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_status_bar_base_Icon__ = __webpack_require__(4333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_status_bar_base_Pane__ = __webpack_require__(4334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_status_bar_base_Drawer__ = __webpack_require__(4335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_RequesterTabLayoutConstants__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_status_bar_StatusBar__ = __webpack_require__(5669);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_status_bar_plugins__ = __webpack_require__(5670);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugins_PluginInterface__ = __webpack_require__(4446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_status_bar_base_Item__ = __webpack_require__(5696);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_status_bar_base_Text__ = __webpack_require__(4449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_status_bar_base_Icon__ = __webpack_require__(4450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_status_bar_base_Pane__ = __webpack_require__(4451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_status_bar_base_Drawer__ = __webpack_require__(4452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_RequesterTabLayoutConstants__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_base_XPaths_XPath__ = __webpack_require__(24);
 var _class;
 
@@ -1125,13 +1125,13 @@ StatusBarContainer = Object(__WEBPACK_IMPORTED_MODULE_1_mobx_react__["b" /* obse
 
 /***/ }),
 
-/***/ 5575:
+/***/ 5669:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_events__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__plugins_PluginInterface__ = __webpack_require__(4329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__plugins_PluginInterface__ = __webpack_require__(4446);
 
 let
 
@@ -1163,18 +1163,18 @@ StatusBar = class StatusBar extends __WEBPACK_IMPORTED_MODULE_0_events___default
 
 /***/ }),
 
-/***/ 5576:
+/***/ 5670:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Console__ = __webpack_require__(5577);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Help__ = __webpack_require__(5579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShortcutsReference__ = __webpack_require__(5581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TwoPane__ = __webpack_require__(5583);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FindAndReplace__ = __webpack_require__(5586);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ToggleSidebar__ = __webpack_require__(5598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__WorkspaceTypeSwitcher__ = __webpack_require__(5600);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__onboarding_src_features_Skills_Bootcamp_components_BootcampLauncher__ = __webpack_require__(5601);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Console__ = __webpack_require__(5671);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Help__ = __webpack_require__(5673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShortcutsReference__ = __webpack_require__(5675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TwoPane__ = __webpack_require__(5677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FindAndReplace__ = __webpack_require__(5680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ToggleSidebar__ = __webpack_require__(5692);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__WorkspaceTypeSwitcher__ = __webpack_require__(5694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__onboarding_src_features_Skills_Bootcamp_components_BootcampLauncher__ = __webpack_require__(5695);
 
 
 
@@ -1196,11 +1196,11 @@ __WEBPACK_IMPORTED_MODULE_7__onboarding_src_features_Skills_Bootcamp_components_
 
 /***/ }),
 
-/***/ 5577:
+/***/ 5671:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_ConsoleIcon__ = __webpack_require__(5578);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_ConsoleIcon__ = __webpack_require__(5672);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'Console',
@@ -1273,14 +1273,14 @@ __WEBPACK_IMPORTED_MODULE_7__onboarding_src_features_Skills_Bootcamp_components_
 
 /***/ }),
 
-/***/ 5578:
+/***/ 5672:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = ConsoleIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__XPaths_XPath__ = __webpack_require__(24);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -1308,12 +1308,12 @@ function ConsoleIcon(props) {
 
 /***/ }),
 
-/***/ 5579:
+/***/ 5673:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_HelpIcon__ = __webpack_require__(5580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_HelpIcon__ = __webpack_require__(5674);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__ = __webpack_require__(69);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1343,13 +1343,13 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
             PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["x" /* DOCS_SECURITY_URL */]);
             break;
           case 'support':
-            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["_11" /* SUPPORT_URL */]);
+            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["_13" /* SUPPORT_URL */]);
             break;
           case 'twitter':
-            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["_17" /* TWITTER_URL */]);
+            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["_19" /* TWITTER_URL */]);
             break;
           case 'community':
-            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["Y" /* POSTMAN_COMMUNITY */]);
+            PluginInterface.openURL(__WEBPACK_IMPORTED_MODULE_1__constants_AppUrlConstants__["Z" /* POSTMAN_COMMUNITY */]);
             break;
           default:
             break;}
@@ -1419,14 +1419,14 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 /***/ }),
 
-/***/ 5580:
+/***/ 5674:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = HelpIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1450,11 +1450,11 @@ function HelpIcon(props) {
 
 /***/ }),
 
-/***/ 5581:
+/***/ 5675:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_KeyboardShortcutIcon__ = __webpack_require__(5582);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_KeyboardShortcutIcon__ = __webpack_require__(5676);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -1533,14 +1533,14 @@ function HelpIcon(props) {
 
 /***/ }),
 
-/***/ 5582:
+/***/ 5676:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = KeyboardShortcutIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__XPaths_XPath__ = __webpack_require__(24);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -1568,12 +1568,12 @@ function KeyboardShortcutIcon(props) {
 
 /***/ }),
 
-/***/ 5583:
+/***/ 5677:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_TwoPaneIcon__ = __webpack_require__(5584);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_SinglePaneIcon__ = __webpack_require__(5585);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_TwoPaneIcon__ = __webpack_require__(5678);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_SinglePaneIcon__ = __webpack_require__(5679);
 
 
 
@@ -1656,14 +1656,14 @@ function KeyboardShortcutIcon(props) {
 
 /***/ }),
 
-/***/ 5584:
+/***/ 5678:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = TwoPaneIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__XPaths_XPath__ = __webpack_require__(24);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -1691,14 +1691,14 @@ function TwoPaneIcon(props) {
 
 /***/ }),
 
-/***/ 5585:
+/***/ 5679:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SinglePaneIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__XPaths_XPath__ = __webpack_require__(24);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -1726,12 +1726,12 @@ function SinglePaneIcon(props) {
 
 /***/ }),
 
-/***/ 5586:
+/***/ 5680:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__find_replace__ = __webpack_require__(5587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_FindIcon__ = __webpack_require__(5597);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__find_replace__ = __webpack_require__(5681);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_base_Icons_FindIcon__ = __webpack_require__(5691);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -1821,24 +1821,24 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 /***/ }),
 
-/***/ 5587:
+/***/ 5681:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplace; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FindReplaceOptionSection__ = __webpack_require__(5588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceResultsSection__ = __webpack_require__(5590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_CollectionController__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_keymaps_KeyMaps__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FindReplaceOptionSection__ = __webpack_require__(5682);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceResultsSection__ = __webpack_require__(5684);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_keymaps_KeyMaps__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mobx_react__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__stores_get_store__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_EnvironmentController__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_GlobalsController__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_controllers_VariableSessionController__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_VariableSessionHelper__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ReplaceService__ = __webpack_require__(5595);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_controllers_EnvironmentController__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_controllers_GlobalsController__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_controllers_VariableSessionController__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_VariableSessionHelper__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ReplaceService__ = __webpack_require__(5689);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
 
 
@@ -1852,7 +1852,7 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 
 
-var WebpackWorker = __webpack_require__(5596);let
+var WebpackWorker = __webpack_require__(5690);let
 
 
 FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["b" /* observer */])(_class = class FindReplace extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
@@ -2147,7 +2147,7 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["b" /* observer */
 
 /***/ }),
 
-/***/ 5588:
+/***/ 5682:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2155,18 +2155,20 @@ FindReplace = Object(__WEBPACK_IMPORTED_MODULE_5_mobx_react__["b" /* observer */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_radio_group__ = __webpack_require__(1560);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_radio_group___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__ = __webpack_require__(5589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_mobx_react__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__constants_FindReplaceConstants__ = __webpack_require__(4330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Text__ = __webpack_require__(1065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Buttons__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_radio_group__ = __webpack_require__(1652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_radio_group___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_radio_group__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__FindReplaceSearchTargetSelector__ = __webpack_require__(5683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_mobx_react__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__constants_FindReplaceConstants__ = __webpack_require__(4447);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
 
 
 
@@ -2179,7 +2181,7 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 let
 
 
-FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /* observer */])(_class = class FindReplaceOptionSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_10_mobx_react__["b" /* observer */])(_class = class FindReplaceOptionSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = { uniqueName: Math.random().toString(36).substring(7) };
@@ -2241,25 +2243,25 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
       return;
     }
     this.props.onReplace(this.props.options.replaceString);
-    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'replace');
+    __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'replace');
   }
 
   handleFindAnalytics() {
-    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find', `${this.props.options.searchTarget === 'all' ? 'everything' : 'selective'}`);
+    __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find', `${this.props.options.searchTarget === 'all' ? 'everything' : 'selective'}`);
 
     if (this.props.options.searchTarget === 'some') {
       for (var key in this.props.options.selectedTarget) {
         if (this.props.options.subSearchTarget[key]) {
-          __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_choose_entities', key, _.size(this.props.options.selectedTarget[key].items));
+          __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_choose_entities', key, _.size(this.props.options.selectedTarget[key].items));
         }
       }
 
       if (this.props.options.subSearchTarget.globals) {
-        __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_choose_entities', 'globals');
+        __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_choose_entities', 'globals');
       }
 
       if (this.props.options.subSearchTarget.tabs) {
-        __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_choose_entities', 'tabs');
+        __WEBPACK_IMPORTED_MODULE_8__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_choose_entities', 'tabs');
       }
     }
   }
@@ -2323,14 +2325,14 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
   }
 
   getEntitiesClasses() {
-    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
+    return __WEBPACK_IMPORTED_MODULE_6_classnames___default()({
       'find-target-option-entities': true,
       'is-disabled': this.props.options.searchTarget === 'all' });
 
   }
 
   getReplaceBoxClasses() {
-    return __WEBPACK_IMPORTED_MODULE_5_classnames___default()({
+    return __WEBPACK_IMPORTED_MODULE_6_classnames___default()({
       'replace-box-wrapper': true,
       'is-disabled': _.isEmpty(this.props.searchedResult) });
 
@@ -2368,8 +2370,8 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
               let canReplace = true;
 
               // set RBAC permissions for find and replace in 'select all'
-              if (!_.includes(__WEBPACK_IMPORTED_MODULE_10__constants_FindReplaceConstants__["a" /* OPENTABS */], entity.type)) {
-                canReplace = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["getStore"])('PermissionStore').can('edit', entity.type, entity.id);
+              if (!_.includes(__WEBPACK_IMPORTED_MODULE_11__constants_FindReplaceConstants__["a" /* OPENTABS */], entity.type)) {
+                canReplace = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["getStore"])('PermissionStore').can('edit', entity.type, entity.id);
               }
               return _extends({},
               entity, {
@@ -2411,8 +2413,8 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-options-wrapper' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-box-container' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'FIND'),
-
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { type: 'heading-h5', value: 'FIND' })),
 
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-box-wrapper' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-wrapper' },
@@ -2432,32 +2434,32 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
                       checked: this.props.options.isRegex,
                       onChange: this.handleRegexChange }),
 
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Regex')),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Regex', type: 'body-medium' })),
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-input-extra-option-item' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
                       checked: this.props.options.ignoreCase,
                       onChange: this.handleCaseChange }),
 
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Ignore Case')))),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Ignore Case', type: 'body-medium' })))),
 
 
 
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], {
                   type: 'primary',
                   size: 'small',
                   onClick: this.handleFind,
-                  disabled: this.isFindDisabled() }, 'Find'))),
+                  disabled: this.isFindDisabled() },
 
-
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Find', type: 'button-medium' })))),
 
 
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-wrapper' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'WHERE'),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { type: 'heading-h5', value: 'WHERE' })),
 
-
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["RadioGroup"], {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_radio_group__["RadioGroup"], {
                 name: this.props.options.uniqueName,
                 selectedValue: this.props.options.searchTarget,
                 onChange: this.handleTargetSelect,
@@ -2465,12 +2467,18 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
 
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { className: 'find-target-option-item' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["Radio"], { value: 'all', className: 'radio-button' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Everything'))),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_radio_group__["Radio"], { value: 'all', className: 'radio-button' }),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { type: 'body-medium', value: 'Everything' })))),
+
 
 
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { className: 'find-target-option-item' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_radio_group__["Radio"], { value: 'some', className: 'radio-button' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Choose entities to find in')))),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_radio_group__["Radio"], { value: 'some', className: 'radio-button' }),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { type: 'body-medium', value: 'Choose entities to find in' }))))),
+
 
 
 
@@ -2486,12 +2494,12 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
                     onClick: this.handleTargetEntitySelectorOpen.bind(this, 'collections') },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Collections (${this.getSelectedTargetCount('collections')})`),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
 
 
                 _.get(this.props.options.selectedTarget, 'collections.show') &&
                 this.props.options.searchTarget === 'some' &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__FindReplaceSearchTargetSelector__["a" /* default */], {
                   label: 'Collections',
                   selectedItems: this.props.options.selectedTarget.collections.items,
                   items: this.props.userCollections,
@@ -2512,12 +2520,12 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
                     onClick: this.handleTargetEntitySelectorOpen.bind(this, 'environments') },
 
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `Environments (${this.getSelectedTargetCount('environments')})`),
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__["a" /* default */], { size: 'xs', className: 'expand-entity' })),
 
 
                 _.get(this.props.options.selectedTarget, 'environments.show') &&
                 this.props.options.searchTarget === 'some' &&
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__FindReplaceSearchTargetSelector__["a" /* default */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__FindReplaceSearchTargetSelector__["a" /* default */], {
                   label: 'Environments',
                   selectedItems: this.props.options.selectedTarget.environments.items,
                   items: this.props.userEnvironments,
@@ -2532,7 +2540,9 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
                   disabled: this.props.options.searchTarget === 'all',
                   onChange: this.handleGlobalsToggle }),
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { onClick: this.handleGlobalsToggle }, 'Globals')),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { onClick: this.handleGlobalsToggle },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Globals', type: 'body-medium' }))),
+
 
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-target-option-entity' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], {
@@ -2540,14 +2550,16 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
                   disabled: this.props.options.searchTarget === 'all',
                   onChange: this.handleTabsToggle }),
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { onClick: this.handleTabsToggle }, 'Open tabs'))))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { onClick: this.handleTabsToggle },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Open tabs', type: 'body-medium' })))))),
+
 
 
 
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getReplaceBoxClasses() },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' }, 'REPLACE WITH'),
-
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'section-label' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { type: 'heading-h5', value: 'REPLACE WITH' })),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'replace-input-wrapper' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'replace-input-option-wrapper' },
@@ -2566,16 +2578,16 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
                   checked: this.props.options.isSelectedAll,
                   onChange: this.handleSelectAllChange }),
 
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Select all'))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Select all', type: 'body-medium' }))),
 
 
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Buttons__["a" /* Button */], {
                 type: 'primary',
                 size: 'small',
                 onClick: this.handleReplace,
                 disabled: this.isReplaceDisabled() },
 
-              `Replace in ${this.props.selectedCount} selected`)))));
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: `Replace in ${this.props.selectedCount} selected`, type: 'button-medium' }))))));
 
 
 
@@ -2586,7 +2598,7 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
 
 /***/ }),
 
-/***/ 5589:
+/***/ 5683:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2595,17 +2607,21 @@ FindReplaceOptionSection = Object(__WEBPACK_IMPORTED_MODULE_9_mobx_react__["b" /
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CloseIcon__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Text__ = __webpack_require__(1065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__collections_CollectionForkLabel__ = __webpack_require__(733);
 var _class;
+
+
 
 
 
 let
 
 
-FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default()(_class = class FindReplaceSearchTargetSelector extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside___default()(_class = class FindReplaceSearchTargetSelector extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
@@ -2653,8 +2669,8 @@ FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_cli
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-target-selector-wrapper' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-target-selector-header' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-target-selector-label' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, this.props.label),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CloseIcon__["a" /* default */], { onClick: this.props.onClose })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: this.props.label, type: 'label-primary-medium' }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_CloseIcon__["a" /* default */], { onClick: this.props.onClose })),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["b" /* Input */], {
             type: 'text',
@@ -2665,11 +2681,15 @@ FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_cli
             onCancel: this.props.onCancel }),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-target-selector-meta' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'search-target-selector-meta--count' }, `All ${_.toLower(this.props.label)} (${_.size(this.props.items)})`),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'search-target-selector-meta--count' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `All ${_.toLower(this.props.label)} (${_.size(this.props.items)})`, type: 'label-primary-medium' })),
+
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null,
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'search-target-selector-meta--count-selected' }, `${_.size(this.props.selectedItems)} selected`),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'search-target-selector-meta--count-selected' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `${_.size(this.props.selectedItems)} selected`, type: 'label-primary-medium' })),
+
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Buttons__["a" /* Button */], { type: 'text', className: 'search-target-selector-meta--action', onClick: this.handleSelectAllItems },
-                `${_.size(this.props.selectedItems) === _.size(this.props.items) ? 'Unselect' : 'Select'} all`)))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `${_.size(this.props.selectedItems) === _.size(this.props.items) ? 'Unselect' : 'Select'} all`, type: 'button-medium' }))))),
 
 
 
@@ -2684,7 +2704,15 @@ FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_cli
                   onClick: this.handleSelectItem.bind(this, item.id) },
 
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], { checked: _.includes(this.props.selectedItems, item.id) }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, item.name)));
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { title: item.name },
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: item.name, type: 'body-medium' })),
+
+                item.type === 'collection' && item.forkInfo &&
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__collections_CollectionForkLabel__["a" /* default */], {
+                  className: 'search-target-selector--list-item-fork',
+                  forkInfo: item.forkInfo })));
+
+
 
 
           }))));
@@ -2697,7 +2725,7 @@ FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_cli
 
 /***/ }),
 
-/***/ 5590:
+/***/ 5684:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2705,18 +2733,20 @@ FindReplaceSearchTargetSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_cli
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tabs__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__ = __webpack_require__(5591);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_pure_render_decorator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_LoadingIndicator__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_ManageEnvironmentViews__ = __webpack_require__(1552);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__ = __webpack_require__(4331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_EditorService__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_EditorUtils__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_EditorUtils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__utils_EditorUtils__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tabs__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Text__ = __webpack_require__(1065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FindReplaceTab__ = __webpack_require__(5685);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pure_render_decorator__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_pure_render_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_pure_render_decorator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_LoadingIndicator__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__constants_ManageEnvironmentViews__ = __webpack_require__(1642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__ = __webpack_require__(4448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_EditorService__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_EditorUtils__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_EditorUtils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__utils_EditorUtils__);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};var _class;
+
 
 
 
@@ -2751,45 +2781,45 @@ function deNormalizeFilter(data) {
 const collectionFields = [{
   type: 'collection',
   displayName: 'Collections',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].collection) },
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].collection) },
 {
   type: 'folder',
   displayName: 'Folders',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].folder) },
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].folder) },
 {
   type: 'request',
   displayName: 'Requests',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].request) },
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].request) },
 {
   type: 'response',
   displayName: 'Examples',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].response) }];
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].response) }];
 
 
 const environmentFields = [{
   type: 'environment',
   displayName: 'Environments',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].environment) }];
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].environment) }];
 
 
 const globalFields = [{
   type: 'globals',
   displayName: 'Globals',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].globals) }];
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].globals) }];
 
 
 const tabFields = [{
   type: 'tabRequest',
   displayName: 'Requests',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].tabRequest) },
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].tabRequest) },
 {
   type: 'tabResponse',
   displayName: 'Examples',
-  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_8__utils_FindReplaceHelper__["a" /* default */].tabResponse) }];let
+  fields: deNormalizeFilter(__WEBPACK_IMPORTED_MODULE_9__utils_FindReplaceHelper__["a" /* default */].tabResponse) }];let
 
 
 
-FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___default()(_class = class FindReplaceResultsSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_5_pure_render_decorator___default()(_class = class FindReplaceResultsSection extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = { activeTab: TABS.EDITORS };
@@ -2820,7 +2850,7 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
     if (this.props.isLoading) {
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_LoadingIndicator__["a" /* default */], null)));
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_LoadingIndicator__["a" /* default */], null)));
 
 
     }
@@ -2828,11 +2858,11 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
       return (
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
 
-          this.props.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_LoadingIndicator__["a" /* default */], null) :
+          this.props.isLoading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_LoadingIndicator__["a" /* default */], null) :
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-wrapper empty-results' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-image' }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-text' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Enter the search query in the left to search across collections, environments and globals. When you find something, you\u2019ll see the search results here. ')))));
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: 'Enter the search query in the left to search across collections, environments and globals. When you find something, you\'ll see the search results here.', type: 'body-medium' })))));
 
 
 
@@ -2849,15 +2879,23 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
               activeRef: this.state.activeTab,
               onChange: this.handleTabSelect },
 
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.EDITORS, className: 'find-replace-results--editors' }, `Open tabs (${this.getResultCount(this.props.searchedResult.tabs)})`),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.COLLECTIONS, className: 'find-replace-results--collections' }, `Collections (${this.getResultCount(this.props.searchedResult.collections)})`),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.ENVIRONMENTS, className: 'find-replace-results--environments' }, `Environments (${this.getResultCount(this.props.searchedResult.environments)})`),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.GLOBALS, className: 'find-replace-results--globals' }, `Globals (${this.getResultCount(this.props.searchedResult.globals)})`))),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.EDITORS, className: 'find-replace-results--editors' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `Open tabs (${this.getResultCount(this.props.searchedResult.tabs)})`, type: 'body-medium' })),
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.COLLECTIONS, className: 'find-replace-results--collections' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `Collections (${this.getResultCount(this.props.searchedResult.collections)})`, type: 'body-medium' })),
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.ENVIRONMENTS, className: 'find-replace-results--environments' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `Environments (${this.getResultCount(this.props.searchedResult.environments)})`, type: 'body-medium' })),
+
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Tabs__["a" /* Tab */], { refKey: TABS.GLOBALS, className: 'find-replace-results--globals' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `Globals (${this.getResultCount(this.props.searchedResult.globals)})`, type: 'body-medium' })))),
+
 
 
 
         this.state.activeTab === TABS.EDITORS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FindReplaceTab__["a" /* default */], {
           type: 'tabs',
           searchedItems: this.props.searchedResult.tabs,
           searchedQuery: this.props.searchedQuery,
@@ -2867,7 +2905,7 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
 
 
         this.state.activeTab === TABS.COLLECTIONS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FindReplaceTab__["a" /* default */], {
           type: 'collection',
           searchedItems: this.props.searchedResult.collections,
           searchedQuery: this.props.searchedQuery,
@@ -2877,10 +2915,10 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
             let resourceId;
             switch (entity.type) {
               case 'request':
-                resourceId = Object(__WEBPACK_IMPORTED_MODULE_10__utils_EditorUtils__["requestResourceId"])({ id: entity.id });
+                resourceId = Object(__WEBPACK_IMPORTED_MODULE_11__utils_EditorUtils__["requestResourceId"])({ id: entity.id });
                 break;
               case 'response':
-                resourceId = Object(__WEBPACK_IMPORTED_MODULE_10__utils_EditorUtils__["responseResourceId"])({ id: entity.id });
+                resourceId = Object(__WEBPACK_IMPORTED_MODULE_11__utils_EditorUtils__["responseResourceId"])({ id: entity.id });
                 break;}
 
             if (!resourceId) {
@@ -2895,13 +2933,13 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
                       return;
                     }
 
-                    return __WEBPACK_IMPORTED_MODULE_9__services_EditorService__["a" /* default */].open(resourceId, { preview: false }).
+                    return __WEBPACK_IMPORTED_MODULE_10__services_EditorService__["a" /* default */].open(resourceId, { preview: false }).
                     then(() => {
-                      __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'collections');
+                      __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'collections');
                     });
-                  } }, 'Open in builder'));
+                  } },
 
-
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: 'Open in builder', type: 'button-small' })));
 
 
           } }),
@@ -2909,7 +2947,7 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
 
 
         this.state.activeTab === TABS.ENVIRONMENTS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FindReplaceTab__["a" /* default */], {
           type: 'environment',
           searchedItems: this.props.searchedResult.environments,
           searchedQuery: this.props.searchedQuery,
@@ -2922,7 +2960,7 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
                   className: 'open-entity',
                   onClick: () => {
                     pm.mediator.trigger('showManageEnvironmentModal', entity.id);
-                    __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'environments');
+                    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'environments');
                   } }, 'Open'));
 
 
@@ -2933,7 +2971,7 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
 
 
         this.state.activeTab === TABS.GLOBALS &&
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__FindReplaceTab__["a" /* default */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__FindReplaceTab__["a" /* default */], {
           type: 'globals',
           searchedItems: this.props.searchedResult.globals,
           searchedQuery: this.props.searchedQuery,
@@ -2945,8 +2983,8 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
                   type: 'text',
                   className: 'open-entity',
                   onClick: () => {
-                    pm.mediator.trigger('showManageEnvironmentModal', __WEBPACK_IMPORTED_MODULE_7__constants_ManageEnvironmentViews__["d" /* MANAGE_ENVIRONMENT_VIEW_GLOBALS */]);
-                    __WEBPACK_IMPORTED_MODULE_6__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'globals');
+                    pm.mediator.trigger('showManageEnvironmentModal', __WEBPACK_IMPORTED_MODULE_8__constants_ManageEnvironmentViews__["d" /* MANAGE_ENVIRONMENT_VIEW_GLOBALS */]);
+                    __WEBPACK_IMPORTED_MODULE_7__modules_services_AnalyticsService__["a" /* default */].addEvent('bottombar', 'find_open', 'globals');
                   } }, 'Open'));
 
 
@@ -2962,16 +3000,16 @@ FindReplaceResultsSection = __WEBPACK_IMPORTED_MODULE_4_pure_render_decorator___
 
 /***/ }),
 
-/***/ 5591:
+/***/ 5685:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindReplaceCollectionsTab; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FoundTarget__ = __webpack_require__(5592);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__ = __webpack_require__(5593);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__ = __webpack_require__(5594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FoundTarget__ = __webpack_require__(5686);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FindReplaceFieldSelector__ = __webpack_require__(5687);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FindReplaceNotFound__ = __webpack_require__(5688);
 
 
 
@@ -3076,26 +3114,28 @@ FindReplaceCollectionsTab = class FindReplaceCollectionsTab extends __WEBPACK_IM
 
 /***/ }),
 
-/***/ 5592:
+/***/ 5686:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FoundTarget; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tooltips__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Icons_CollectionIcon__ = __webpack_require__(563);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_EnvironmentIcon__ = __webpack_require__(693);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__ = __webpack_require__(1017);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__stores_get_store__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__collections_CollectionMetaIcons__ = __webpack_require__(1551);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__base_Inputs__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_PluralizeHelper__ = __webpack_require__(687);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__constants_FindReplaceConstants__ = __webpack_require__(4330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Tooltips__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Text__ = __webpack_require__(1065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_CollectionIcon__ = __webpack_require__(597);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_EnvironmentIcon__ = __webpack_require__(736);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Icons_DownSolidIcon__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__base_Icons_RightSolidIcon__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__base_Icons_FolderIcon__ = __webpack_require__(1073);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__stores_get_store__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__collections_CollectionMetaIcons__ = __webpack_require__(1641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__base_Inputs__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_PluralizeHelper__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__constants_FindReplaceConstants__ = __webpack_require__(4447);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__collections_CollectionForkLabel__ = __webpack_require__(733);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -3108,7 +3148,10 @@ var _extends = Object.assign || function (target) {for (var i = 1; i < arguments
 
 
 
+
+
 let
+
 FoundInstance = class FoundInstance extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
   constructor(props) {
     super(props);
@@ -3148,7 +3191,7 @@ FoundInstance = class FoundInstance extends __WEBPACK_IMPORTED_MODULE_0_react__[
     this.props.instance;
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-instance-row' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Inputs__["a" /* Checkbox */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Inputs__["a" /* Checkbox */], {
           checked: isSelected,
           onChange: this.handleChange,
           disabled: this.props.disabled }),
@@ -3158,9 +3201,11 @@ FoundInstance = class FoundInstance extends __WEBPACK_IMPORTED_MODULE_0_react__[
             onMouseEnter: this.handleShowTooltipToggle,
             onMouseLeave: this.handleHideTooltipToggle },
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, metaString.substring(0, index)),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'instance-highlight-text' }, matchedString),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, metaString.substring(index + matchedString.length, metaString.length)),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: metaString.substring(0, index), type: 'body-medium' }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'instance-highlight-text' },
+            matchedString),
+
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: metaString.substring(index + matchedString.length, metaString.length), type: 'body-medium' }),
 
           tooltipContent &&
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'instance-tooltip', ref: 'instanceTooltip' },
@@ -3223,12 +3268,14 @@ FoundFields = class FoundFields extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__field' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__field-label-row' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Inputs__["a" /* Checkbox */], {
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Inputs__["a" /* Checkbox */], {
             checked: this.props.field.isSelected,
             onChange: this.handleChange,
             disabled: this.props.disabled }),
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target-entity__field-label' }, field.label)),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__field-label' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: field.label, type: 'body-medium' }))),
+
 
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity--instances' },
 
@@ -3263,12 +3310,12 @@ FoundEntity = class FoundEntity extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null);
     }
     const labels = {
-      'GET': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--GET' }, entity),
-      'POST': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--POST' }, entity),
-      'DELETE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--DELETE' }, entity),
-      'PUT': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, entity),
-      'FOLDER': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__["a" /* default */], { className: 'identifier--FOLDER' }),
-      'EXAMPLE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, 'EXAMPLE') };
+      'GET': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'identifier--GET', value: entity }),
+      'POST': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'identifier--POST', value: entity }),
+      'DELETE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'identifier--DELETE', value: entity }),
+      'PUT': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'identifier--PUT', value: entity }),
+      'FOLDER': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_Icons_FolderIcon__["a" /* default */], { className: 'identifier--FOLDER' }),
+      'EXAMPLE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'identifier--PUT', value: 'EXAMPLE' }) };
 
 
     return labels[entity] || __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--default' }, entity);
@@ -3329,18 +3376,18 @@ FoundEntity = class FoundEntity extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__path-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__base_Inputs__["a" /* Checkbox */], {
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_11__base_Inputs__["a" /* Checkbox */], {
             checked: this.props.entity.isSelected,
             onChange: this.handleChange,
             disabled: this.props.disabled }),
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'found-in-target-entity__path' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-breadcrumb' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'path-prefix' }, entity.path),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'path-prefix', value: entity.path }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-name-wrapper' },
                 entity.path ? '  >  ' : '',
                 this.getLabelForEntity(entity.label),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'entity-name' }, entity.name))))),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { className: 'entity-name', value: entity.name }))))),
 
 
 
@@ -3377,13 +3424,13 @@ FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
 
   getBaseIcon(type) {
     const labels = {
-      'collection': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Icons_CollectionIcon__["a" /* default */], { className: 'target-collection' }),
-      'environment': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_EnvironmentIcon__["a" /* default */], { className: 'target-environment' }),
+      'collection': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_CollectionIcon__["a" /* default */], { className: 'target-collection' }),
+      'environment': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_EnvironmentIcon__["a" /* default */], { className: 'target-environment' }),
       'GET': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--GET' }, type),
       'POST': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--POST' }, type),
       'DELETE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--DELETE' }, type),
       'PUT': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, type),
-      'FOLDER': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_FolderIcon__["a" /* default */], { className: 'identifier--FOLDER' }),
+      'FOLDER': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__base_Icons_FolderIcon__["a" /* default */], { className: 'identifier--FOLDER' }),
       'EXAMPLE': __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'identifier--PUT' }, 'EXAMPLE') };
 
 
@@ -3411,8 +3458,8 @@ FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
       });
 
       // set permissions for find and replace in collection,environment and globals
-      if (!_.includes(__WEBPACK_IMPORTED_MODULE_12__constants_FindReplaceConstants__["a" /* OPENTABS */], entity.type)) {
-        canReplace = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["getStore"])('PermissionStore').can('edit', entity.type, entity.id);
+      if (!_.includes(__WEBPACK_IMPORTED_MODULE_13__constants_FindReplaceConstants__["a" /* OPENTABS */], entity.type)) {
+        canReplace = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["getStore"])('PermissionStore').can('edit', entity.type, entity.id);
       }
 
       if (!_.isEmpty(filteredFields)) {
@@ -3436,28 +3483,38 @@ FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
 
   render() {
     let { target } = this.props;
-    let collection = Object(__WEBPACK_IMPORTED_MODULE_8__stores_get_store__["getStore"])('CollectionStore').find(target.id);
+    let collection = Object(__WEBPACK_IMPORTED_MODULE_9__stores_get_store__["getStore"])('CollectionStore').find(target.id);
     return (
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: this.getClassNames() },
 
         target.targetName &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--header', onClick: this.toggleShow },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--name-wrapper' },
-            this.state.show ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__["a" /* default */], { className: 'arrow' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_RightSolidIcon__["a" /* default */], { className: 'arrow' }),
+            this.state.show ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__base_Icons_DownSolidIcon__["a" /* default */], { className: 'arrow' }) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__base_Icons_RightSolidIcon__["a" /* default */], { className: 'arrow' }),
             this.getBaseIcon(target.type),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--name' }, target.targetName),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--name', title: target.targetName },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: target.targetName, type: 'label-primary-medium' })),
+
 
             this.props.baseType === 'collection' && collection &&
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__collections_CollectionMetaIcons__["a" /* default */], { collection: collection })),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__collections_CollectionMetaIcons__["a" /* default */], { collection: collection }),
+
+            this.props.baseType === 'collection' && collection &&
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_14__collections_CollectionForkLabel__["a" /* default */], {
+              className: 'found-in-target__fork',
+              forkInfo: collection.forkInfo })),
+
 
 
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'found-in-target--count' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value:
+              ` (${target.occurrences} ${__WEBPACK_IMPORTED_MODULE_12__utils_PluralizeHelper__["a" /* default */].pluralize({
+                count: target.occurrences,
+                singular: 'result',
+                plural: 'results' })
+              })`,
 
-            ` (${target.occurrences} ${__WEBPACK_IMPORTED_MODULE_11__utils_PluralizeHelper__["a" /* default */].pluralize({
-              count: target.occurrences,
-              singular: 'result',
-              plural: 'results' })
-            })`)),
+              type: 'body-medium' }))),
 
 
 
@@ -3472,7 +3529,7 @@ FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
 
 /***/ }),
 
-/***/ 5593:
+/***/ 5687:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3481,17 +3538,19 @@ FoundTarget = class FoundTarget extends __WEBPACK_IMPORTED_MODULE_0_react__["Pur
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Inputs__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Buttons__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_Text__ = __webpack_require__(1065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__ = __webpack_require__(75);
 var _class;
+
 
 
 
 let
 
 
-FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outside___default()(_class = class FindReplaceFieldSelector extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_4__postman_react_click_outside___default()(_class = class FindReplaceFieldSelector extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
   constructor(props) {
     super(props);
     this.state = { show: false };
@@ -3523,25 +3582,29 @@ FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outs
             className: 'find-replace--field-selector-button',
             onClick: this.handleToggleSelector },
 
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, `FILTER (${this.getFieldLabelText()} FIELDS)`),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__base_Icons_DownSolidIcon__["a" /* default */], { className: 'find-replace--field-selector-expand' })),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: `FILTER (${this.getFieldLabelText()} FIELDS)`, type: 'button-medium' }),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__base_Icons_DownSolidIcon__["a" /* default */], { className: 'find-replace--field-selector-expand' })),
 
 
         this.state.show &&
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector-wrapper' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--head' }, 'INCLUDE FIELDS'),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--head' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: 'INCLUDE FIELDS', type: 'heading-h6' })),
+
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--list' },
 
             _.map(this.props.fields, (fieldType, index) => {
               return (
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: index, className: 'search-field-selector--section' },
-                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--section-label' }, fieldType.displayName),
+                  __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'search-field-selector--section-label' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: fieldType.displayName, type: 'label-primary-medium' })),
+
 
                   _.map(fieldType.fields, (field, index) => {
                     return (
                       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { key: index, className: 'search-field-selector--section-item' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__base_Inputs__["a" /* Checkbox */], { checked: _.includes(this.props.includedFields, `${fieldType.type}-${field.key}`), onChange: this.handleFieldSelect.bind(this, fieldType.type, field.key) }),
-                        field.displayName));
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__base_Text__["a" /* default */], { value: field.displayName, type: 'body-medium' })));
 
 
                   })));
@@ -3560,7 +3623,7 @@ FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outs
 
 /***/ }),
 
-/***/ 5594:
+/***/ 5688:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3568,7 +3631,9 @@ FindReplaceFieldSelector = __WEBPACK_IMPORTED_MODULE_3__postman_react_click_outs
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_Buttons__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_AppUrlConstants__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_Text__ = __webpack_require__(1065);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_AppUrlConstants__ = __webpack_require__(69);
+
 
 
 let
@@ -3583,9 +3648,11 @@ FindReplaceNotFound = class FindReplaceNotFound extends __WEBPACK_IMPORTED_MODUL
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-results-wrapper' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-wrapper' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-image' }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'find-replace-empty-results-header' }, `Nothing found for "${this.props.searchedQuery}"`),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'find-replace-empty-results-header' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: `Nothing found for "${this.props.searchedQuery}"`, type: 'heading-h4' })),
+
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null,
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', null, 'Try another search, or modify the entities to find in. ')))));
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__base_Text__["a" /* default */], { value: 'Try another search, or modify the entities to find in.', type: 'body-medium' })))));
 
 
 
@@ -3594,17 +3661,17 @@ FindReplaceNotFound = class FindReplaceNotFound extends __WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
-/***/ 5595:
+/***/ 5689:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_pipelines_user_action__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_GlobalsController__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_FindReplaceHelper__ = __webpack_require__(4331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_VariableSessionController__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_VariableSessionHelper__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_controllers_CollectionController__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_controllers_EnvironmentController__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_controllers_GlobalsController__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_FindReplaceHelper__ = __webpack_require__(4448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_controllers_VariableSessionController__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_VariableSessionHelper__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__stores_get_store__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_model_event__ = __webpack_require__(2);
 
@@ -3908,7 +3975,7 @@ function normalizeTarget(replaceTarget) {
 
 /***/ }),
 
-/***/ 5596:
+/***/ 5690:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function() {
@@ -3917,14 +3984,14 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 5597:
+/***/ 5691:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = FindIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__XPaths_XPath__ = __webpack_require__(24);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -3952,11 +4019,11 @@ function FindIcon(props) {
 
 /***/ }),
 
-/***/ 5598:
+/***/ 5692:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_SidebarShowIcon__ = __webpack_require__(5599);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_base_Icons_SidebarShowIcon__ = __webpack_require__(5693);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(7);
 
@@ -4025,14 +4092,14 @@ function FindIcon(props) {
 
 /***/ }),
 
-/***/ 5599:
+/***/ 5693:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = SidebarShowIcon;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__XPaths_XPath__ = __webpack_require__(24);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
@@ -4060,22 +4127,22 @@ function SidebarShowIcon(props) {
 
 /***/ }),
 
-/***/ 5600:
+/***/ 5694:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_RequesterTabConstants__ = __webpack_require__(200);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants_RequesterTabConstants__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stores_get_store__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mobx_react__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mobx__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_WorkspaceViewModeService__ = __webpack_require__(1027);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_AppUrlConstants_js__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceTypeSwitcherIntro__ = __webpack_require__(4198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__TypeSwitcher__ = __webpack_require__(3829);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__external_navigation_ExternalNavigationService__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_services_AnalyticsService__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_WorkspaceViewModeService__ = __webpack_require__(1083);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_AppUrlConstants_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__WorkspaceTypeSwitcherIntro__ = __webpack_require__(4312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__TypeSwitcher__ = __webpack_require__(3973);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__external_navigation_ExternalNavigationService__ = __webpack_require__(62);
 var _extends = Object.assign || function (target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i];for (var key in source) {if (Object.prototype.hasOwnProperty.call(source, key)) {target[key] = source[key];}}}return target;};
 
 
@@ -4224,18 +4291,18 @@ const labelMap = {
 
 /***/ }),
 
-/***/ 5601:
+/***/ 5695:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames__ = __webpack_require__(9);
+/* WEBPACK VAR INJECTION */(function(_) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LessonConstants__ = __webpack_require__(1049);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_APIService__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LessonController__ = __webpack_require__(726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_dependencies__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LessonConstants__ = __webpack_require__(1109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_APIService__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LessonController__ = __webpack_require__(768);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_dependencies__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_components_base_XPaths_XPath__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__js_components_base_Icons_BootcampIcon__ = __webpack_require__(1653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__js_components_base_Icons_BootcampIcon__ = __webpack_require__(1752);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__js_components_base_Icons_CloseIcon__ = __webpack_require__(94);
 
 
@@ -4276,13 +4343,13 @@ SUCCESS_STATE = 'success';
         this.handleContinue = this.handleContinue.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleHighlightLessonButton = this.handleHighlightLessonButton.bind(this);
-        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["o" /* UIEventService */].subscribe(__WEBPACK_IMPORTED_MODULE_1__LessonConstants__["b" /* LESSON_PAUSED */], this.handleContinue);
-        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["o" /* UIEventService */].subscribe('highlightLessonButton', this.handleHighlightLessonButton);
-        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["o" /* UIEventService */].subscribe(__WEBPACK_IMPORTED_MODULE_4__common_dependencies__["j" /* OPEN_LESSON_PLAN */], this.openBootcampTab);
+        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["p" /* UIEventService */].subscribe(__WEBPACK_IMPORTED_MODULE_1__LessonConstants__["b" /* LESSON_PAUSED */], this.handleContinue);
+        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["p" /* UIEventService */].subscribe('highlightLessonButton', this.handleHighlightLessonButton);
+        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["p" /* UIEventService */].subscribe(__WEBPACK_IMPORTED_MODULE_4__common_dependencies__["k" /* OPEN_LESSON_PLAN */], this.openBootcampTab);
       }
 
       openBootcampTab() {
-        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["f" /* EditorService */].open('customView://bootcamp', { preview: false });
+        __WEBPACK_IMPORTED_MODULE_4__common_dependencies__["g" /* EditorService */].open('customView://bootcamp', { preview: false });
       }
 
       continuePausedLesson() {
@@ -4300,7 +4367,7 @@ SUCCESS_STATE = 'success';
           this.continuePausedLesson();
           return;
         }
-        let currentUser = Object(__WEBPACK_IMPORTED_MODULE_4__common_dependencies__["z" /* getStore */])('CurrentUserStore'),
+        let currentUser = Object(__WEBPACK_IMPORTED_MODULE_4__common_dependencies__["A" /* getStore */])('CurrentUserStore'),
         isLoggedIn = currentUser && currentUser.isLoggedIn;
 
         if (!isLoggedIn) {
@@ -4386,20 +4453,20 @@ SUCCESS_STATE = 'success';
 
 /***/ }),
 
-/***/ 5602:
+/***/ 5696:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Item; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Text__ = __webpack_require__(4332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Icon__ = __webpack_require__(4333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Pane__ = __webpack_require__(4334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Drawer__ = __webpack_require__(4335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Tooltips__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Text__ = __webpack_require__(4449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Icon__ = __webpack_require__(4450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Pane__ = __webpack_require__(4451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Drawer__ = __webpack_require__(4452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__base_Tooltips__ = __webpack_require__(70);
 
 
 

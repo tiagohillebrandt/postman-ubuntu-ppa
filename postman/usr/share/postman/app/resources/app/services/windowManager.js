@@ -6,6 +6,13 @@ var electron = require('electron'),
   shell = electron.shell,
   BrowserWindow = electron.BrowserWindow,
   WindowController = require('../common/controllers/WindowController'),
+  {
+    DEFAULT_REQUESTER_BOUNDS,
+    DEFAULT_CONSOLE_BOUNDS,
+    DEFAULT_RUNNER_BOUNDS,
+    MIN_ALLOWED_WINDOW_HEIGHT,
+    MIN_ALLOWED_WINDOW_WIDTH
+  } = require('../constants/WindowConstants'),
   uuidV4 = require('uuid/v4'),
   { getValue } = require('../utils/processArg'),
   _ = require('lodash').noConflict();
@@ -314,12 +321,9 @@ exports.windowManager = {
     return window;
   },
 
-  sanitizeBounds (bounds) {
-    if (_.isUndefined(bounds.x) || _.isUndefined(bounds.y)) {
-      return {
-        x: null,
-        y: null
-      };
+  sanitizeCoordinates (bounds) {
+    if (!_.isInteger(bounds.x) || !_.isInteger(bounds.y)) {
+      return { x: null, y: null };
     }
 
     let screen = electron.screen,
@@ -382,10 +386,13 @@ exports.windowManager = {
   newRequesterWindow (window = {}, params = {}) {
     let startTime = Date.now(),
         windowName = 'requester',
-        sanitizedBounds = this.sanitizeBounds({
+        bounds = {
           x: _.get(window, 'position.x'),
-          y: _.get(window, 'position.y')
-        });
+          y: _.get(window, 'position.y'),
+          width: _.get(window, 'size.width'),
+          height: _.get(window, 'size.height')
+        },
+        sanitizedBounds = this.sanitizeBounds(bounds, windowName);
 
     if (!global.isSharedBooted) {
       pm.logger.warn('WindowManager~newRequesterWindow - Bailing requester window creation as shared is not booted!');
@@ -393,14 +400,16 @@ exports.windowManager = {
     }
 
     let mainWindow = new BrowserWindow(Object.assign(
-      this.getWindowPref('Postman'),
+      this.getWindowPref(app.getName()),
       {
-        width: _.get(window, 'size.width', 1280),
-        height: _.get(window, 'size.height', 800),
+        width: sanitizedBounds.width,
+        height: sanitizedBounds.height,
         x: sanitizedBounds.x,
         y: sanitizedBounds.y,
         center: !window.position,
-        show: this.isWindowVisibleByDefault
+        show: this.isWindowVisibleByDefault,
+        minWidth: MIN_ALLOWED_WINDOW_WIDTH,
+        minHeight: MIN_ALLOWED_WINDOW_HEIGHT
       }
     ));
 
@@ -444,8 +453,8 @@ exports.windowManager = {
       id: windowId,
       browserWindowId: mainWindow.id,
       activeSession: window.activeSession || '',
-      position: window.position || {},
-      size: window.size || { width: 1280, height: 800 },
+      position: { x: sanitizedBounds.x, y: sanitizedBounds.y },
+      size: { width: sanitizedBounds.width, height: sanitizedBounds.height },
       visibility: window.visibility || { maximized: false, isFullScreen: false }
     }, {
       id: windowId,
@@ -474,7 +483,9 @@ exports.windowManager = {
           return WindowController
             .update({
               id: window.id,
-              browserWindowId: mainWindow.id
+              browserWindowId: mainWindow.id,
+              position: { x: sanitizedBounds.x, y: sanitizedBounds.y },
+              size: { width: sanitizedBounds.width, height: sanitizedBounds.height }
             });
         }
         else {
@@ -546,10 +557,13 @@ exports.windowManager = {
   newRunnerWindow (window = {}, params = {}) {
     let startTime = Date.now(),
         windowName = 'runner',
-        sanitizedBounds = this.sanitizeBounds({
+        bounds = {
           x: _.get(window, 'position.x'),
-          y: _.get(window, 'position.y')
-        });
+          y: _.get(window, 'position.y'),
+          width: _.get(window, 'size.width'),
+          height: _.get(window, 'size.height')
+        },
+        sanitizedBounds = this.sanitizeBounds(bounds, windowName);
 
     if (!global.isSharedBooted) {
       pm.logger.warn('WindowManager~newRunnerWindow - Bailing requester window creation as shared is not booted!');
@@ -559,12 +573,14 @@ exports.windowManager = {
     let mainWindow = new BrowserWindow(Object.assign(
       this.getWindowPref('Collection Runner'),
       {
-        width: _.get(window, 'size.width', 1280),
-        height: _.get(window, 'size.height', 800),
+        width: sanitizedBounds.width,
+        height: sanitizedBounds.height,
         x: sanitizedBounds.x,
         y: sanitizedBounds.y,
         center: !window.position,
-        show: this.isWindowVisibleByDefault
+        show: this.isWindowVisibleByDefault,
+        minWidth: MIN_ALLOWED_WINDOW_WIDTH,
+        minHeight: MIN_ALLOWED_WINDOW_HEIGHT
       }
     ));
 
@@ -594,8 +610,8 @@ exports.windowManager = {
       id: windowId,
       browserWindowId: mainWindow.id,
       activeSession: window.activeSession || '',
-      position: window.position || {},
-      size: window.size || { width: 1280, height: 800 },
+      position: { x: sanitizedBounds.x, y: sanitizedBounds.y },
+      size: { width: sanitizedBounds.width, height: sanitizedBounds.height },
       visibility: window.visibility || { maximized: false, isFullScreen: false }
     }, {
       session: {
@@ -628,7 +644,9 @@ exports.windowManager = {
           return WindowController
             .update({
               id: window.id,
-              browserWindowId: mainWindow.id
+              browserWindowId: mainWindow.id,
+              position: { x: sanitizedBounds.x, y: sanitizedBounds.y },
+              size: { width: sanitizedBounds.width, height: sanitizedBounds.height }
             });
         }
         else {
@@ -651,10 +669,13 @@ exports.windowManager = {
   newConsoleWindow (window = {}, params = {}) {
     let startTime = Date.now(),
         windowName = 'console',
-        sanitizedBounds = this.sanitizeBounds({
+        bounds = {
           x: _.get(window, 'position.x'),
-          y: _.get(window, 'position.y')
-        });
+          y: _.get(window, 'position.y'),
+          width: _.get(window, 'size.width'),
+          height: _.get(window, 'size.height')
+        },
+        sanitizedBounds = this.sanitizeBounds(bounds, windowName);
 
     if (!global.isSharedBooted) {
       pm.logger.warn('WindowManager~newConsoleWindow - Bailing requester window creation as shared is not booted!');
@@ -665,12 +686,14 @@ exports.windowManager = {
       let mainWindow = new BrowserWindow(Object.assign(
         this.getWindowPref('Postman Console'),
         {
-          width: _.get(window, 'size.width', 900),
-          height: _.get(window, 'size.height', 600),
+          width: sanitizedBounds.width,
+          height: sanitizedBounds.height,
           x: sanitizedBounds.x,
           y: sanitizedBounds.y,
           center: !window.position,
-          show: this.isWindowVisibleByDefault
+          show: this.isWindowVisibleByDefault,
+          minWidth: MIN_ALLOWED_WINDOW_WIDTH,
+          minHeight: MIN_ALLOWED_WINDOW_HEIGHT
         }
       ));
 
@@ -703,8 +726,8 @@ exports.windowManager = {
         id: windowId,
         browserWindowId: mainWindow.id,
         activeSession: window.activeSession || '',
-        position: window.position || {},
-        size: window.size || { width: 900, height: 600 },
+        position: { x: sanitizedBounds.x, y: sanitizedBounds.y },
+        size: { width: sanitizedBounds.width, height: sanitizedBounds.height },
         visibility: window.visibility || { maximized: false, isFullScreen: false }
       }, {
         id: windowId,
@@ -730,7 +753,9 @@ exports.windowManager = {
           return WindowController
             .update({
               id: window.id,
-              browserWindowId: mainWindow.id
+              browserWindowId: mainWindow.id,
+              position: { x: sanitizedBounds.x, y: sanitizedBounds.y },
+              size: { width: sanitizedBounds.width, height: sanitizedBounds.height }
             });
         }
         else {
@@ -1025,9 +1050,9 @@ exports.windowManager = {
     }
 
     let primaryDisplay = electron.screen.getPrimaryDisplay(),
-        sanitizedBounds = this.sanitizeBounds({ x: window.getBounds().x, y: window.getBounds().y }),
-        finalBounds = { x: sanitizedBounds && sanitizedBounds.x,
-                        y: sanitizedBounds && sanitizedBounds.y,
+        sanitizedCoordinates = this.sanitizeCoordinates({ x: window.getBounds().x, y: window.getBounds().y }),
+        finalBounds = { x: sanitizedCoordinates && sanitizedCoordinates.x,
+                        y: sanitizedCoordinates && sanitizedCoordinates.y,
                         width: window.getBounds().width,
                         height: window.getBounds().height
                       };
@@ -1073,5 +1098,48 @@ exports.windowManager = {
           return window;
         }
       });
+  },
+
+  /**
+   * Function to sanitize position coordinates and dimensions for window. It makes sure when
+   * window is restored or opened its position coordinates and size are valid.
+   * @param {Object} bounds - Object which has window's position and size values
+   * @param {String} windowName - Window type
+   */
+  sanitizeBounds (bounds = {}, windowName) {
+    let defaultBounds,
+        sanitizedCoordinates;
+
+    switch (windowName) {
+      case 'requester':
+        defaultBounds = DEFAULT_REQUESTER_BOUNDS;
+        break;
+      case 'console':
+        defaultBounds = DEFAULT_CONSOLE_BOUNDS;
+        break;
+      case 'runner':
+        defaultBounds = DEFAULT_RUNNER_BOUNDS;
+        break;
+      default:
+        defaultBounds = DEFAULT_REQUESTER_BOUNDS;
+        break;
+    }
+
+    // Addded this safe check for the issue: https://github.com/postmanlabs/postman-app-support/issues/6304
+    if (!_.isInteger(bounds.width) ||
+        !_.isInteger(bounds.height) ||
+        bounds.width < MIN_ALLOWED_WINDOW_WIDTH ||
+        bounds.height < MIN_ALLOWED_WINDOW_HEIGHT) {
+      return defaultBounds;
+    }
+
+    sanitizedCoordinates = this.sanitizeCoordinates({ x: bounds.x, y: bounds.y });
+
+    return {
+      x: sanitizedCoordinates.x,
+      y: sanitizedCoordinates.y,
+      width: bounds.width,
+      height: bounds.height
+    };
   }
 };

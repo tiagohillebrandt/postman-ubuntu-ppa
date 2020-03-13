@@ -93,8 +93,24 @@ var electron = require('electron'),
       {
         label: 'Edit',
         submenu: [
-          { role: 'undo' },
-          { role: 'redo' },
+          {
+            label: 'Undo',
+            accelerator: 'CmdOrCtrl+Z',
+            click: function (menuItem, browserWindow, options) {
+              // this is only for MacOS as undo didnt work implicilty for this platform
+              // we are relying on electron for the case of windows and linux
+              menuManager.handleMenuAction('undo', { type: 'shortcut', isGlobal: true }, options);
+             }
+          },
+          {
+            label: 'Redo',
+            accelerator: 'Shift+CmdOrCtrl+Z',
+            click: function (menuItem, browserWindow, options) {
+              // this is only for MacOS as redo didnt work implicilty for this platform
+              // we are relying on electron for the case of windows and linux
+              menuManager.handleMenuAction('redo', { type: 'shortcut', isGlobal: true }, options);
+             }
+          },
           { type: 'separator' },
           { role: 'cut' },
           { role: 'copy' },
@@ -464,10 +480,23 @@ menuManager = {
       else if (action === 'openConsole') {
         windowManager.newConsoleWindow();
       }
+      else if (action === 'undo') {
+        let win = BrowserWindow.getFocusedWindow();
+        if (win) {
+          win.webContents && win.webContents.send('undo');
+        }
+      }
+      else if (action === 'redo') {
+        let win = BrowserWindow.getFocusedWindow();
+        if (win) {
+          win.webContents && win.webContents.send('redo');
+        }
+      }
       else if (action === 'closeWindow') {
         let win = BrowserWindow.getFocusedWindow();
         win && win.close();
-      } else if (action === 'pasteAndMatch') {
+      }
+      else if (action === 'pasteAndMatch') {
         let focusedWebContents = electron.webContents && electron.webContents.getFocusedWebContents();
         focusedWebContents && focusedWebContents.pasteAndMatchStyle();
       }
